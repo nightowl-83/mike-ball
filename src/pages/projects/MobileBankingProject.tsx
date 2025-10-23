@@ -2,7 +2,7 @@ import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
-const ProjectDetail = () => {
+const MobileBankingProject = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation */}
@@ -51,7 +51,7 @@ const ProjectDetail = () => {
           <div className="w-full aspect-[16/9] rounded-2xl overflow-hidden mb-24 animate-scale-in shadow-glow">
             <img 
               src="/placeholder.svg" 
-              alt="Project hero"
+              alt="Mobile Banking App hero"
               className="w-full h-full object-cover"
             />
           </div>
@@ -238,7 +238,7 @@ const ProjectDetail = () => {
               <p className="text-sm text-muted-foreground">Next Project</p>
               <h3 className="text-2xl font-bold">E-Commerce Platform</h3>
             </div>
-            <Link to="/">
+            <Link to="/projects/ecommerce-platform">
               <Button variant="outline" className="gap-2">
                 View Project
                 <ArrowLeft className="h-4 w-4 rotate-180" />
@@ -251,4 +251,4 @@ const ProjectDetail = () => {
   );
 };
 
-export default ProjectDetail;
+export default MobileBankingProject;

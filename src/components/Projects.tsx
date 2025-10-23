@@ -1,28 +1,5 @@
 import ProjectCard from "./ProjectCard";
-import project1 from "@/assets/project-1.jpg";
-import project2 from "@/assets/project-2.jpg";
-import project3 from "@/assets/project-3.jpg";
-
-const projects = [
-  {
-    title: "Mobile Banking App",
-    description: "A modern banking experience with intuitive navigation and seamless transactions. Designed for simplicity and security.",
-    category: "Mobile App",
-    image: project1,
-  },
-  {
-    title: "E-Commerce Platform",
-    description: "Complete redesign of an online shopping experience focusing on conversion optimization and user engagement.",
-    category: "Web Design",
-    image: project2,
-  },
-  {
-    title: "Analytics Dashboard",
-    description: "Data visualization platform helping teams make informed decisions with real-time insights and beautiful charts.",
-    category: "SaaS Product",
-    image: project3,
-  },
-];
+import { projectsData } from "@/data/projectsData";
 
 const Projects = () => {
   return (
@@ -40,13 +17,19 @@ const Projects = () => {
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-          {projects.map((project, index) => (
+          {projectsData.map((project, index) => (
             <div 
-              key={project.title} 
+              key={project.id} 
               className="animate-scale-in"
               style={{ animationDelay: `${0.1 * index}s` }}
             >
-              <ProjectCard {...project} />
+              <ProjectCard 
+                title={project.title}
+                description={project.description}
+                category={project.category}
+                image={project.image}
+                link={project.route}
+              />
             </div>
           ))}
         </div>
