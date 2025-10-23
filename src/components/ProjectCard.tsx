@@ -9,7 +9,7 @@ interface ProjectCardProps {
   link?: string;
 }
 
-const ProjectCard = ({ title, description, category, image, link = "#" }: ProjectCardProps) => {
+const ProjectCard = ({ title, description, category, image, link = "/project/1" }: ProjectCardProps) => {
   return (
     <a href={link} className="group block">
       <Card className="overflow-hidden bg-card border-border hover:border-primary/50 transition-all duration-300 hover:shadow-card h-full">
