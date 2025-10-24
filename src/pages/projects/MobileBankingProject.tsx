@@ -519,9 +519,12 @@ const MobileBankingProject = () => {
               {/* Left Column */}
               <div className="space-y-12">
                 <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold">Discovery</h2>
-                <p className="text-xl text-muted-foreground">
-                  Through user interviews and usability testing, we identified key pain points and opportunities for improvement.
-                </p>
+                <div>
+                  <h3 className="text-2xl font-semibold mb-6">User Interviews</h3>
+                  <p className="text-xl text-muted-foreground leading-relaxed">
+                    We surveyed <strong className="text-foreground">30</strong> real estate agents about their current platform experience. <strong className="text-foreground">22</strong> responded with valuable feedback that shaped our design direction.
+                  </p>
+                </div>
               </div>
 
               {/* Right Column */}
@@ -530,23 +533,121 @@ const MobileBankingProject = () => {
                   <span className="text-6xl md:text-7xl font-bold font-mono opacity-30">/02</span>
                 </div>
                 
-                <div className="space-y-6 text-lg text-muted-foreground">
-                  <p>
-                    <strong className="text-foreground">User Pain Points:</strong> Navigation was confusing, with critical features buried in nested menus. Users reported frustration with the upload process and lack of mobile responsiveness.
-                  </p>
-                  
-                  <p>
-                    <strong className="text-foreground">Competitive Analysis:</strong> We analyzed leading property management platforms to identify industry best practices and differentiation opportunities.
-                  </p>
-                  
-                  <p>
-                    <strong className="text-foreground">User Personas:</strong> Developed detailed personas representing rural real estate agents, property managers, and administrative staff with varying technical expertise.
-                  </p>
-                  
-                  <div className="p-6 rounded-xl bg-card/50 border-2 border-primary/20">
-                    <h3 className="text-xl font-bold text-foreground mb-4">Key Insights</h3>
-                    <p>Users need quick access to listing management and lead tracking without complex navigation structures.</p>
-                    <p className="mt-2">Mobile access is critical for agents working in the field, requiring a fully responsive design.</p>
+                {/* Statistics */}
+                <div className="grid grid-cols-3 gap-8 mb-12">
+                  {/* 36% Satisfaction */}
+                  <div className="text-center">
+                    <svg className="w-24 h-24 mx-auto mb-4" viewBox="0 0 100 100">
+                      <circle
+                        cx="50"
+                        cy="50"
+                        r="40"
+                        fill="none"
+                        stroke="hsl(var(--muted))"
+                        strokeWidth="8"
+                        opacity="0.2"
+                      />
+                      <circle
+                        cx="50"
+                        cy="50"
+                        r="40"
+                        fill="none"
+                        stroke="hsl(45 93% 47%)"
+                        strokeWidth="8"
+                        strokeDasharray="251.2"
+                        strokeDashoffset="160.8"
+                        strokeLinecap="round"
+                        transform="rotate(-90 50 50)"
+                      />
+                    </svg>
+                    <div className="text-4xl font-bold mb-2">36%</div>
+                    <p className="text-sm text-muted-foreground">Overall user satisfaction</p>
+                  </div>
+
+                  {/* 91% Difficult Management */}
+                  <div className="text-center">
+                    <svg className="w-24 h-24 mx-auto mb-4" viewBox="0 0 100 100">
+                      <circle
+                        cx="50"
+                        cy="50"
+                        r="40"
+                        fill="none"
+                        stroke="hsl(var(--muted))"
+                        strokeWidth="8"
+                        opacity="0.2"
+                      />
+                      <circle
+                        cx="50"
+                        cy="50"
+                        r="40"
+                        fill="none"
+                        stroke="hsl(142 76% 36%)"
+                        strokeWidth="8"
+                        strokeDasharray="251.2"
+                        strokeDashoffset="22.6"
+                        strokeLinecap="round"
+                        transform="rotate(-90 50 50)"
+                      />
+                    </svg>
+                    <div className="text-4xl font-bold mb-2">91%</div>
+                    <p className="text-sm text-muted-foreground">Find listing management difficult</p>
+                  </div>
+
+                  {/* 24% Confidence */}
+                  <div className="text-center">
+                    <svg className="w-24 h-24 mx-auto mb-4" viewBox="0 0 100 100">
+                      <circle
+                        cx="50"
+                        cy="50"
+                        r="40"
+                        fill="none"
+                        stroke="hsl(var(--muted))"
+                        strokeWidth="8"
+                        opacity="0.2"
+                      />
+                      <circle
+                        cx="50"
+                        cy="50"
+                        r="40"
+                        fill="none"
+                        stroke="hsl(25 95% 53%)"
+                        strokeWidth="8"
+                        strokeDasharray="251.2"
+                        strokeDashoffset="190.9"
+                        strokeLinecap="round"
+                        transform="rotate(-90 50 50)"
+                      />
+                    </svg>
+                    <div className="text-4xl font-bold mb-2">24%</div>
+                    <p className="text-sm text-muted-foreground">Confidence in listing metrics</p>
+                  </div>
+                </div>
+
+                {/* User Pain Point Quotes */}
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-card rounded-lg p-4 shadow-sm">
+                    <p className="text-sm text-muted-foreground">"There is no save function when I am creating a listing."</p>
+                  </div>
+                  <div className="bg-card rounded-lg p-4 shadow-sm">
+                    <p className="text-sm text-muted-foreground">"I tried to use from my phone and it was impossible. There should be an app."</p>
+                  </div>
+                  <div className="bg-card rounded-lg p-4 shadow-sm">
+                    <p className="text-sm text-muted-foreground">"I thought I wasn't receiving any leads only to find out I just didn't know where they were going."</p>
+                  </div>
+                  <div className="bg-card rounded-lg p-4 shadow-sm">
+                    <p className="text-sm text-muted-foreground">"Listing performance reports are not useful. What do these numbers mean?"</p>
+                  </div>
+                  <div className="bg-card rounded-lg p-4 shadow-sm">
+                    <p className="text-sm text-muted-foreground">"Navigation is hard to 'navigate'"</p>
+                  </div>
+                  <div className="bg-card rounded-lg p-4 shadow-sm">
+                    <p className="text-sm text-muted-foreground">"The menus are super confusing. I have to click around a bunch just to edit a listing or check on a lead. Nothing is where I expect it to be."</p>
+                  </div>
+                  <div className="bg-card rounded-lg p-4 shadow-sm">
+                    <p className="text-sm text-muted-foreground">"Uploading a new property is such a slow process. It feels like there are millions of steps, and there's no way to speed it up if I have a lot of listings."</p>
+                  </div>
+                  <div className="bg-card rounded-lg p-4 shadow-sm">
+                    <p className="text-sm text-muted-foreground">"The site feels really outdated and cluttered. It's hard to find what I'm looking for without getting frustrated."</p>
                   </div>
                 </div>
               </div>
