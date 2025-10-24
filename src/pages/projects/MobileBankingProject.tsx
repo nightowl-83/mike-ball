@@ -449,23 +449,31 @@ const MobileBankingProject = () => {
                 <div className="grid grid-cols-3 gap-8">
                   {/* 36% Satisfaction */}
                   <div className="text-center">
-                    <svg className="w-full h-28 mb-6" viewBox="0 0 200 120">
-                      {/* Background arc */}
-                      <path
-                        d="M 20 100 A 80 80 0 0 1 180 100"
+                    <svg className="w-40 h-40 mx-auto mb-6" viewBox="0 0 160 160">
+                      <circle
+                        cx="80"
+                        cy="80"
+                        r="60"
                         fill="none"
                         stroke="hsl(var(--muted))"
-                        strokeWidth="16"
-                        opacity="0.2"
+                        strokeWidth="12"
+                        opacity="0.15"
+                        strokeDasharray="188.4"
+                        strokeDashoffset="94.2"
                         strokeLinecap="round"
+                        transform="rotate(180 80 80)"
                       />
-                      {/* Foreground arc - 36% */}
-                      <path
-                        d="M 20 100 Q 58 54, 100 34"
+                      <circle
+                        cx="80"
+                        cy="80"
+                        r="60"
                         fill="none"
                         stroke="hsl(220 70% 50%)"
-                        strokeWidth="16"
+                        strokeWidth="12"
+                        strokeDasharray="188.4"
+                        strokeDashoffset="120.6"
                         strokeLinecap="round"
+                        transform="rotate(180 80 80)"
                       />
                     </svg>
                     <div className="text-5xl font-normal mb-3">36%</div>
@@ -474,23 +482,31 @@ const MobileBankingProject = () => {
 
                   {/* 24% Confidence */}
                   <div className="text-center">
-                    <svg className="w-full h-28 mb-6" viewBox="0 0 200 120">
-                      {/* Background arc */}
-                      <path
-                        d="M 20 100 A 80 80 0 0 1 180 100"
+                    <svg className="w-40 h-40 mx-auto mb-6" viewBox="0 0 160 160">
+                      <circle
+                        cx="80"
+                        cy="80"
+                        r="60"
                         fill="none"
                         stroke="hsl(var(--muted))"
-                        strokeWidth="16"
-                        opacity="0.2"
+                        strokeWidth="12"
+                        opacity="0.15"
+                        strokeDasharray="188.4"
+                        strokeDashoffset="94.2"
                         strokeLinecap="round"
+                        transform="rotate(180 80 80)"
                       />
-                      {/* Foreground arc - 24% */}
-                      <path
-                        d="M 20 100 Q 38 82, 62 62"
+                      <circle
+                        cx="80"
+                        cy="80"
+                        r="60"
                         fill="none"
                         stroke="hsl(280 60% 55%)"
-                        strokeWidth="16"
+                        strokeWidth="12"
+                        strokeDasharray="188.4"
+                        strokeDashoffset="143.2"
                         strokeLinecap="round"
+                        transform="rotate(180 80 80)"
                       />
                     </svg>
                     <div className="text-5xl font-normal mb-3">24%</div>
@@ -499,28 +515,127 @@ const MobileBankingProject = () => {
 
                   {/* 91% Difficult Management */}
                   <div className="text-center">
-                    <svg className="w-full h-28 mb-6" viewBox="0 0 200 120">
-                      {/* Background arc */}
-                      <path
-                        d="M 20 100 A 80 80 0 0 1 180 100"
+                    <svg className="w-40 h-40 mx-auto mb-6" viewBox="0 0 160 160">
+                      <circle
+                        cx="80"
+                        cy="80"
+                        r="60"
                         fill="none"
                         stroke="hsl(var(--muted))"
-                        strokeWidth="16"
-                        opacity="0.2"
+                        strokeWidth="12"
+                        opacity="0.15"
+                        strokeDasharray="188.4"
+                        strokeDashoffset="94.2"
                         strokeLinecap="round"
+                        transform="rotate(180 80 80)"
                       />
-                      {/* Foreground arc - 91% */}
-                      <path
-                        d="M 20 100 Q 100 24, 174 55"
+                      <circle
+                        cx="80"
+                        cy="80"
+                        r="60"
                         fill="none"
                         stroke="hsl(0 70% 55%)"
-                        strokeWidth="16"
+                        strokeWidth="12"
+                        strokeDasharray="188.4"
+                        strokeDashoffset="17"
                         strokeLinecap="round"
+                        transform="rotate(180 80 80)"
                       />
                     </svg>
                     <div className="text-5xl font-normal mb-3">91%</div>
                     <p className="text-base text-muted-foreground">Difficulty managing listings</p>
                   </div>
+                </div>
+              </div>
+            </div>
+
+            {/* User Persona Section - 2x2 Grid */}
+            <div className="mt-32 mb-24">
+              <div className="grid grid-cols-2 gap-6 max-w-6xl mx-auto">
+                {/* Top Left - Photo & Bio */}
+                <div className="bg-card rounded-2xl overflow-hidden shadow-sm">
+                  <div className="aspect-[4/3] bg-muted">
+                    <img src="/placeholder.svg" alt="Rural Land Agent" className="w-full h-full object-cover" />
+                  </div>
+                  <div className="p-8">
+                    <h3 className="text-3xl font-bold mb-2">Ben F.</h3>
+                    <p className="text-lg text-muted-foreground">41 years old, Rural Land Agent</p>
+                  </div>
+                </div>
+
+                {/* Top Right - User Goals */}
+                <div className="bg-card rounded-2xl p-8 shadow-sm">
+                  <h3 className="text-2xl font-bold mb-6">User Goals</h3>
+                  <div className="space-y-4 mb-6">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                        <svg className="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <span className="text-base">Effective Inventory Management</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                        <svg className="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <span className="text-base">Streamlined operations</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                        <svg className="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <span className="text-base">Market understanding</span>
+                    </div>
+                  </div>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Ben is dedicated to optimizing processes and implementing strategies for organizing success.
+                  </p>
+                </div>
+
+                {/* Bottom Left - Personality */}
+                <div className="bg-card rounded-2xl p-8 shadow-sm">
+                  <h3 className="text-2xl font-bold mb-8">Personality</h3>
+                  <div className="space-y-6">
+                    <div>
+                      <div className="flex justify-between text-sm mb-2">
+                        <span>Sensing</span>
+                        <span>Intuition</span>
+                      </div>
+                      <div className="h-3 bg-muted rounded-full overflow-hidden">
+                        <div className="h-full bg-primary rounded-full" style={{ width: '65%' }}></div>
+                      </div>
+                    </div>
+                    <div>
+                      <div className="flex justify-between text-sm mb-2">
+                        <span>Extrovert</span>
+                        <span>Introvert</span>
+                      </div>
+                      <div className="h-3 bg-muted rounded-full overflow-hidden">
+                        <div className="h-full bg-primary rounded-full" style={{ width: '45%' }}></div>
+                      </div>
+                    </div>
+                    <div>
+                      <div className="flex justify-between text-sm mb-2">
+                        <span>Feeling</span>
+                        <span>Thinking</span>
+                      </div>
+                      <div className="h-3 bg-muted rounded-full overflow-hidden">
+                        <div className="h-full bg-primary rounded-full" style={{ width: '75%' }}></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bottom Right - Quote */}
+                <div className="bg-card rounded-2xl p-8 shadow-sm flex items-center">
+                  <p className="text-xl text-muted-foreground leading-relaxed italic">
+                    "Content management is very important to me. I need to be able to effectively manage inventory, post, track leads and analyze the markets."
+                  </p>
                 </div>
               </div>
             </div>
