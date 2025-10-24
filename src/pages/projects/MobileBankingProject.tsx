@@ -56,11 +56,12 @@ Client Dashboard</h1>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div className="space-y-6 animate-fade-in">
                 <h2 className="text-4xl font-bold">Background</h2>
-                <p className="text-lg text-muted-foreground leading-relaxed">T
-
-he Property Control Center (PCC) was originally built as a one-stop solution for rural real estate professionals to manage property listings, track leads, and monitor analytics. 
-
-Over time, however, the platform became outdated, with a non-responsive design and inefficient workflows that frustrated users. Recognizing the need for modernization, our team embarked on a complete redesign, focusing on usability, responsiveness, and customization for rural-specific needs.</p>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  The Property Control Center (PCC) was originally built as a one-stop solution for rural real estate professionals to manage property listings, track leads, and monitor analytics.
+                </p>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  Over time, however, the platform became outdated, with a non-responsive design and inefficient workflows that frustrated users. Recognizing the need for modernization, our team embarked on a complete redesign, focusing on usability, responsiveness, and customization for rural-specific needs.
+                </p>
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   Through extensive user research and iterative design, we developed a solution 
                   that increased user engagement by 45% and reduced transaction time by 60%.
