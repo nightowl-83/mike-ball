@@ -854,7 +854,18 @@ const MobileBankingProject = () => {
 
         {/* Full Viewport Design Image */}
         <div className="viewport-image-section">
-          <h3 className="absolute top-12 left-12 text-4xl font-bold text-foreground z-20">Design System</h3>
+          <div className="absolute top-0 left-0 right-0 z-20 px-6 pt-24">
+            <div className="container mx-auto max-w-[1440px]">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <div>
+                  <h3 className="text-4xl font-bold text-foreground">Design System</h3>
+                </div>
+                <div className="text-right">
+                  <span className="text-6xl md:text-7xl font-bold font-mono opacity-30">/03</span>
+                </div>
+              </div>
+            </div>
+          </div>
           <img src="/placeholder.svg" alt="Design showcase" className="w-full h-full object-cover" />
         </div>
 
