@@ -122,8 +122,26 @@ const MobileBankingProject = () => {
                   that increased user engagement by 45% and reduced transaction time by 60%.
                 </p>
               </div>
-              <div className="w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-card animate-scale-in">
-                <img src="/placeholder.svg" alt="Overview" className="w-full h-full object-cover" />
+              <div className="space-y-6 animate-fade-in">
+                <h2 className="text-4xl font-bold">Project Highlights</h2>
+                <ul className="space-y-6 text-lg text-muted-foreground">
+                  <li className="flex items-start gap-4">
+                    <span className="w-2 h-2 rounded-full bg-primary mt-2.5 flex-shrink-0" />
+                    <span>Comprehensive audit of the existing system to identify valuable features and pain points.</span>
+                  </li>
+                  <li className="flex items-start gap-4">
+                    <span className="w-2 h-2 rounded-full bg-primary mt-2.5 flex-shrink-0" />
+                    <span>A responsive, mobile-friendly interface tailored for seamless usage across devices.</span>
+                  </li>
+                  <li className="flex items-start gap-4">
+                    <span className="w-2 h-2 rounded-full bg-primary mt-2.5 flex-shrink-0" />
+                    <span>Improved workflows for managing listings, leads, analytics, and billing.</span>
+                  </li>
+                  <li className="flex items-start gap-4">
+                    <span className="w-2 h-2 rounded-full bg-primary mt-2.5 flex-shrink-0" />
+                    <span>A user-centered design process incorporating feedback from rural real estate agents.</span>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
