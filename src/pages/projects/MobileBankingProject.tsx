@@ -867,7 +867,7 @@ const MobileBankingProject = () => {
               </div>
             </div>
           </div>
-          <img src={userFlowImage} alt="User flow design" className="w-full h-full object-cover" />
+          <img src={userFlowImage} alt="User flow design" className="w-full h-full object-cover object-left-top" />
         </div>
 
         {/* Delivery Section - 04 */}
