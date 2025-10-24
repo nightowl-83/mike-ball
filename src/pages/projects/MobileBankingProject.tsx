@@ -86,6 +86,12 @@ const MobileBankingProject = () => {
                     <p className="font-semibold">2024</p>
                   </div>
                 </div>
+                <div className="flex flex-wrap gap-3 pt-6">
+                  <span className="px-4 py-2 rounded-full bg-card border border-border text-sm font-medium">Figma</span>
+                  <span className="px-4 py-2 rounded-full bg-card border border-border text-sm font-medium">Maze</span>
+                  <span className="px-4 py-2 rounded-full bg-card border border-border text-sm font-medium">AI Prototyping</span>
+                  <span className="px-4 py-2 rounded-full bg-card border border-border text-sm font-medium">UI/UX Design</span>
+                </div>
               </div>
             </div>
             
