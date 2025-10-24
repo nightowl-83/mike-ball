@@ -330,19 +330,19 @@ const MobileBankingProject = () => {
               <div className="space-y-12">
                 <div className="space-y-6 text-lg text-muted-foreground">
                   <p>
-                    <strong className="text-foreground">Listing Upload:</strong> Users could upload property information, photos, and descriptions, though the interface was not intuitive and cluttered.
+                    <strong className="text-primary">Listing Upload:</strong> Users could upload property information, photos, and descriptions, though the interface was not intuitive and cluttered.
                   </p>
                   
                   <p>
-                    <strong className="text-foreground">Listing Manager:</strong> Allowed users to view, edit, and manage listing statuses (e.g., sold, pending).
+                    <strong className="text-primary">Listing Manager:</strong> Allowed users to view, edit, and manage listing statuses (e.g., sold, pending).
                   </p>
                   
                   <p>
-                    <strong className="text-foreground">Lead Tracking:</strong> Provided basic lead inquiry details.
+                    <strong className="text-primary">Lead Tracking:</strong> Provided basic lead inquiry details.
                   </p>
                   
                   <p>
-                    <strong className="text-foreground">Listing Analytics:</strong> Offered performance metrics such as views and inquiries.
+                    <strong className="text-primary">Listing Analytics:</strong> Offered performance metrics such as views and inquiries.
                   </p>
                   
                   <div className="p-6 rounded-xl bg-card/50 border-2 border-primary/20">
@@ -401,10 +401,10 @@ const MobileBankingProject = () => {
                   <img src={galleryImages[4].src} alt={galleryImages[4].alt} className="w-full h-full object-cover" />
                 </button>
                 
-                {/* Image 6 - Medium */}
+                {/* Image 6 - Full Width */}
                 <button
                   onClick={() => openGallery(5)}
-                  className="col-span-2 md:col-span-2 row-span-1 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer"
+                  className="col-span-4 md:col-span-6 row-span-1 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer"
                   style={{ animationDelay: '0.25s' }}
                 >
                   <img src={galleryImages[5].src} alt={galleryImages[5].alt} className="w-full h-full object-cover" />
