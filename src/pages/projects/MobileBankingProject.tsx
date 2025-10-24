@@ -1,53 +1,100 @@
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Layout, Columns2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
+
 const MobileBankingProject = () => {
+  const [isColumnLayout, setIsColumnLayout] = useState(false);
+
   return <div className="min-h-screen bg-background">
-      {/* Full-Width Hero Section */}
+      {/* Hero Section - Toggle between layouts */}
       <section className="relative h-[80vh] w-full overflow-hidden">
-        {/* Back Button */}
-        <div className="absolute top-6 left-6 z-50">
+        {/* Back Button & Layout Toggle */}
+        <div className="absolute top-6 left-6 z-50 flex gap-2">
           <Link to="/">
             <Button variant="ghost" size="sm" className="gap-2 bg-background/20 backdrop-blur-md hover:bg-background/40 text-foreground">
               <ArrowLeft className="h-4 w-4" />
               Back to Home
             </Button>
           </Link>
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            onClick={() => setIsColumnLayout(!isColumnLayout)}
+            className="gap-2 bg-background/20 backdrop-blur-md hover:bg-background/40 text-foreground"
+          >
+            {isColumnLayout ? <Layout className="h-4 w-4" /> : <Columns2 className="h-4 w-4" />}
+            {isColumnLayout ? "Full Width" : "2 Column"}
+          </Button>
         </div>
 
-        {/* Hero Image */}
-        <img src="/placeholder.svg" alt="Mobile Banking App hero" className="w-full h-full object-cover" />
-        
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent from-0% via-transparent via-50% to-background to-100%" />
-
-        {/* Hero Content */}
-        <div className="absolute bottom-0 left-0 right-0 px-6 pb-16">
-          <div className="container mx-auto max-w-6xl">
-            <div className="space-y-6 animate-fade-in">
-              <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium backdrop-blur-sm">Dashboard Design</span>
-              <h1 className="text-5xl md:text-7xl font-bold text-foreground">
-                Marketing Hub<br />
-                Client Dashboard
-              </h1>
-              <p className="text-xl text-muted-foreground max-w-3xl">A modern CMS experience with intuitive navigation and seamless transactions. Designed for simplicity and security.</p>
-              <div className="flex flex-wrap gap-6 pt-4">
-                <div>
-                  <span className="text-sm text-muted-foreground">Role</span>
-                  <p className="font-semibold">Lead Product Designer</p>
-                </div>
-                <div>
-                  <span className="text-sm text-muted-foreground">Timeline</span>
-                  <p className="font-semibold">3 months</p>
-                </div>
-                <div>
-                  <span className="text-sm text-muted-foreground">Year</span>
-                  <p className="font-semibold">2024</p>
+        {!isColumnLayout ? (
+          /* Full-Width Layout */
+          <>
+            <img src="/placeholder.svg" alt="Mobile Banking App hero" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent from-0% via-transparent via-50% to-background to-100%" />
+            <div className="absolute bottom-0 left-0 right-0 px-6 pb-16">
+              <div className="container mx-auto max-w-6xl">
+                <div className="space-y-6 animate-fade-in">
+                  <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium backdrop-blur-sm">Dashboard Design</span>
+                  <h1 className="text-5xl md:text-7xl font-bold text-foreground">
+                    Marketing Hub<br />
+                    Client Dashboard
+                  </h1>
+                  <p className="text-xl text-muted-foreground max-w-3xl">A modern CMS experience with intuitive navigation and seamless transactions. Designed for simplicity and security.</p>
+                  <div className="flex flex-wrap gap-6 pt-4">
+                    <div>
+                      <span className="text-sm text-muted-foreground">Role</span>
+                      <p className="font-semibold">Lead Product Designer</p>
+                    </div>
+                    <div>
+                      <span className="text-sm text-muted-foreground">Timeline</span>
+                      <p className="font-semibold">3 months</p>
+                    </div>
+                    <div>
+                      <span className="text-sm text-muted-foreground">Year</span>
+                      <p className="font-semibold">2024</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
+          </>
+        ) : (
+          /* 2-Column Layout */
+          <div className="flex h-full">
+            {/* Left: Content */}
+            <div className="w-1/2 flex items-center px-12 lg:px-20 bg-background">
+              <div className="space-y-6 animate-fade-in max-w-2xl">
+                <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">Dashboard Design</span>
+                <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground">
+                  Marketing Hub<br />
+                  Client Dashboard
+                </h1>
+                <p className="text-lg md:text-xl text-muted-foreground">A modern CMS experience with intuitive navigation and seamless transactions. Designed for simplicity and security.</p>
+                <div className="flex flex-wrap gap-6 pt-4">
+                  <div>
+                    <span className="text-sm text-muted-foreground">Role</span>
+                    <p className="font-semibold">Lead Product Designer</p>
+                  </div>
+                  <div>
+                    <span className="text-sm text-muted-foreground">Timeline</span>
+                    <p className="font-semibold">3 months</p>
+                  </div>
+                  <div>
+                    <span className="text-sm text-muted-foreground">Year</span>
+                    <p className="font-semibold">2024</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Right: Image - 50vw width, full container height */}
+            <div className="w-1/2 h-full relative">
+              <img src="/placeholder.svg" alt="Mobile Banking App hero" className="w-full h-full object-cover" />
+            </div>
           </div>
-        </div>
+        )}
       </section>
 
       {/* Main Content Container */}
