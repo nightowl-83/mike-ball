@@ -472,13 +472,15 @@ const MobileBankingProject = () => {
                         opacity="0.15"
                         strokeLinecap="round"
                       />
-                      {/* Foreground arc - 36% */}
+                      {/* Foreground arc - 36% using dasharray */}
                       <path
-                        d="M 20 140 A 60 60 0 0 1 55 86"
+                        d="M 20 140 A 60 60 0 0 1 140 140"
                         fill="none"
                         stroke="url(#gradient1)"
                         strokeWidth="12"
                         strokeLinecap="round"
+                        strokeDasharray="188.5"
+                        strokeDashoffset="120.6"
                         filter="url(#glow1)"
                       />
                     </svg>
@@ -511,13 +513,15 @@ const MobileBankingProject = () => {
                         opacity="0.15"
                         strokeLinecap="round"
                       />
-                      {/* Foreground arc - 24% */}
+                      {/* Foreground arc - 24% using dasharray */}
                       <path
-                        d="M 20 140 A 60 60 0 0 0 43 104"
+                        d="M 20 140 A 60 60 0 0 1 140 140"
                         fill="none"
                         stroke="url(#gradient2)"
                         strokeWidth="12"
                         strokeLinecap="round"
+                        strokeDasharray="188.5"
+                        strokeDashoffset="143.3"
                         filter="url(#glow2)"
                       />
                     </svg>
@@ -550,13 +554,15 @@ const MobileBankingProject = () => {
                         opacity="0.15"
                         strokeLinecap="round"
                       />
-                      {/* Foreground arc - 91% */}
+                      {/* Foreground arc - 91% using dasharray */}
                       <path
-                        d="M 20 140 A 60 60 0 0 1 130 86"
+                        d="M 20 140 A 60 60 0 0 1 140 140"
                         fill="none"
                         stroke="url(#gradient3)"
                         strokeWidth="12"
                         strokeLinecap="round"
+                        strokeDasharray="188.5"
+                        strokeDashoffset="17"
                         filter="url(#glow3)"
                       />
                     </svg>
