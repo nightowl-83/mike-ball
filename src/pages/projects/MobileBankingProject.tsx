@@ -318,10 +318,9 @@ const MobileBankingProject = () => {
           </div>
 
           <div className="container mx-auto max-w-[1440px]">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 pt-24">
               {/* Left Column */}
               <div className="space-y-12">
-                <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold">Define</h2>
                 <p className="text-xl text-muted-foreground">
                   Audit of the Existing System revealed these were the most used, and valuable features to users.
                 </p>
@@ -329,10 +328,6 @@ const MobileBankingProject = () => {
 
               {/* Right Column */}
               <div className="space-y-12">
-                <div className="text-right">
-                  <span className="text-6xl md:text-7xl font-bold font-mono opacity-30">/01</span>
-                </div>
-                
                 <div className="space-y-6 text-lg text-muted-foreground">
                   <p>
                     <strong className="text-foreground">Listing Upload:</strong> Users could upload property information, photos, and descriptions, though the interface was not intuitive and cluttered.
@@ -350,7 +345,7 @@ const MobileBankingProject = () => {
                     <strong className="text-foreground">Listing Analytics:</strong> Offered performance metrics such as views and inquiries.
                   </p>
                   
-                  <div className="pt-4">
+                  <div className="p-6 rounded-xl bg-card/50 border-2 border-primary/20">
                     <h3 className="text-xl font-bold text-foreground mb-4">Summary of Audit</h3>
                     <p>Retain and improve core features like listing upload, management, leads, and analytics.</p>
                     <p className="mt-2">Address navigation, usability, and responsiveness issues.</p>
@@ -360,7 +355,7 @@ const MobileBankingProject = () => {
             </div>
 
             {/* Bento Grid Layout - 7 Images */}
-            <div className="container mx-auto max-w-[1440px] mt-24">
+            <div className="mt-32">
               <div className="grid grid-cols-4 md:grid-cols-6 gap-4 auto-rows-[200px]">
                 {/* Image 1 - Large */}
                 <button
@@ -423,6 +418,184 @@ const MobileBankingProject = () => {
                 >
                   <img src={galleryImages[6].src} alt={galleryImages[6].alt} className="w-full h-full object-cover" />
                 </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Discovery Section - 02 */}
+        <section className="relative px-6 py-24 bg-card/30">
+          <div className="container mx-auto max-w-[1440px]">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+              {/* Left Column */}
+              <div className="space-y-12">
+                <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold">Discovery</h2>
+                <p className="text-xl text-muted-foreground">
+                  Through user interviews and usability testing, we identified key pain points and opportunities for improvement.
+                </p>
+              </div>
+
+              {/* Right Column */}
+              <div className="space-y-12">
+                <div className="text-right">
+                  <span className="text-6xl md:text-7xl font-bold font-mono opacity-30">/02</span>
+                </div>
+                
+                <div className="space-y-6 text-lg text-muted-foreground">
+                  <p>
+                    <strong className="text-foreground">User Pain Points:</strong> Navigation was confusing, with critical features buried in nested menus. Users reported frustration with the upload process and lack of mobile responsiveness.
+                  </p>
+                  
+                  <p>
+                    <strong className="text-foreground">Competitive Analysis:</strong> We analyzed leading property management platforms to identify industry best practices and differentiation opportunities.
+                  </p>
+                  
+                  <p>
+                    <strong className="text-foreground">User Personas:</strong> Developed detailed personas representing rural real estate agents, property managers, and administrative staff with varying technical expertise.
+                  </p>
+                  
+                  <div className="p-6 rounded-xl bg-card/50 border-2 border-primary/20">
+                    <h3 className="text-xl font-bold text-foreground mb-4">Key Insights</h3>
+                    <p>Users need quick access to listing management and lead tracking without complex navigation structures.</p>
+                    <p className="mt-2">Mobile access is critical for agents working in the field, requiring a fully responsive design.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Design Section - 03 */}
+        <section className="relative px-6 py-24">
+          <div className="container mx-auto max-w-[1440px]">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+              {/* Left Column */}
+              <div className="space-y-12">
+                <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold">Design</h2>
+                <p className="text-xl text-muted-foreground">
+                  Creating an intuitive, modern interface that streamlines workflows and enhances user experience.
+                </p>
+              </div>
+
+              {/* Right Column */}
+              <div className="space-y-12">
+                <div className="text-right">
+                  <span className="text-6xl md:text-7xl font-bold font-mono opacity-30">/03</span>
+                </div>
+                
+                <div className="space-y-6 text-lg text-muted-foreground">
+                  <p>
+                    <strong className="text-foreground">Information Architecture:</strong> Restructured navigation to prioritize most-used features, reducing clicks by 40% for common tasks.
+                  </p>
+                  
+                  <p>
+                    <strong className="text-foreground">Visual Design System:</strong> Developed a cohesive design system with reusable components, ensuring consistency across all pages and reducing development time.
+                  </p>
+                  
+                  <p>
+                    <strong className="text-foreground">Mobile-First Approach:</strong> Designed for mobile devices first, then scaled up for tablets and desktops, ensuring optimal experience across all screen sizes.
+                  </p>
+                  
+                  <p>
+                    <strong className="text-foreground">Usability Testing:</strong> Conducted multiple rounds of testing with real estate professionals, iterating based on feedback to refine interactions.
+                  </p>
+                  
+                  <div className="p-6 rounded-xl bg-card/50 border-2 border-primary/20">
+                    <h3 className="text-xl font-bold text-foreground mb-4">Design Principles</h3>
+                    <p>Simplicity over complexity - every feature must serve a clear purpose.</p>
+                    <p className="mt-2">Accessibility for all users, regardless of technical skill level.</p>
+                    <p className="mt-2">Performance-focused design for fast load times even in rural areas with limited connectivity.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Discovery Section - 02 */}
+        <section className="relative px-6 py-24 bg-card/30">
+          <div className="container mx-auto max-w-[1440px]">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+              {/* Left Column */}
+              <div className="space-y-12">
+                <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold">Discovery</h2>
+                <p className="text-xl text-muted-foreground">
+                  Through user interviews and usability testing, we identified key pain points and opportunities for improvement.
+                </p>
+              </div>
+
+              {/* Right Column */}
+              <div className="space-y-12">
+                <div className="text-right">
+                  <span className="text-6xl md:text-7xl font-bold font-mono opacity-30">/02</span>
+                </div>
+                
+                <div className="space-y-6 text-lg text-muted-foreground">
+                  <p>
+                    <strong className="text-foreground">User Pain Points:</strong> Navigation was confusing, with critical features buried in nested menus. Users reported frustration with the upload process and lack of mobile responsiveness.
+                  </p>
+                  
+                  <p>
+                    <strong className="text-foreground">Competitive Analysis:</strong> We analyzed leading property management platforms to identify industry best practices and differentiation opportunities.
+                  </p>
+                  
+                  <p>
+                    <strong className="text-foreground">User Personas:</strong> Developed detailed personas representing rural real estate agents, property managers, and administrative staff with varying technical expertise.
+                  </p>
+                  
+                  <div className="p-6 rounded-xl bg-card/50 border-2 border-primary/20">
+                    <h3 className="text-xl font-bold text-foreground mb-4">Key Insights</h3>
+                    <p>Users need quick access to listing management and lead tracking without complex navigation structures.</p>
+                    <p className="mt-2">Mobile access is critical for agents working in the field, requiring a fully responsive design.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Design Section - 03 */}
+        <section className="relative px-6 py-24">
+          <div className="container mx-auto max-w-[1440px]">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+              {/* Left Column */}
+              <div className="space-y-12">
+                <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold">Design</h2>
+                <p className="text-xl text-muted-foreground">
+                  Creating an intuitive, modern interface that streamlines workflows and enhances user experience.
+                </p>
+              </div>
+
+              {/* Right Column */}
+              <div className="space-y-12">
+                <div className="text-right">
+                  <span className="text-6xl md:text-7xl font-bold font-mono opacity-30">/03</span>
+                </div>
+                
+                <div className="space-y-6 text-lg text-muted-foreground">
+                  <p>
+                    <strong className="text-foreground">Information Architecture:</strong> Restructured navigation to prioritize most-used features, reducing clicks by 40% for common tasks.
+                  </p>
+                  
+                  <p>
+                    <strong className="text-foreground">Visual Design System:</strong> Developed a cohesive design system with reusable components, ensuring consistency across all pages and reducing development time.
+                  </p>
+                  
+                  <p>
+                    <strong className="text-foreground">Mobile-First Approach:</strong> Designed for mobile devices first, then scaled up for tablets and desktops, ensuring optimal experience across all screen sizes.
+                  </p>
+                  
+                  <p>
+                    <strong className="text-foreground">Usability Testing:</strong> Conducted multiple rounds of testing with real estate professionals, iterating based on feedback to refine interactions.
+                  </p>
+                  
+                  <div className="p-6 rounded-xl bg-card/50 border-2 border-primary/20">
+                    <h3 className="text-xl font-bold text-foreground mb-4">Design Principles</h3>
+                    <p>Simplicity over complexity - every feature must serve a clear purpose.</p>
+                    <p className="mt-2">Accessibility for all users, regardless of technical skill level.</p>
+                    <p className="mt-2">Performance-focused design for fast load times even in rural areas with limited connectivity.</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
