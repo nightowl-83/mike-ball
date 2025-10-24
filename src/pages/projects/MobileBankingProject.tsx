@@ -107,7 +107,7 @@ const MobileBankingProject = () => {
       <div className="relative -mt-[10vh] z-10 bg-background">
         {/* Overview Section */}
         <section className="min-h-screen flex items-center justify-center px-6 py-24">
-          <div className="container mx-auto max-w-6xl">
+          <div className="container mx-auto max-w-7xl">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
               <div className="space-y-6 animate-fade-in">
                 <h2 className="text-4xl font-bold">Background</h2>
@@ -149,7 +149,7 @@ const MobileBankingProject = () => {
 
         {/* Two Column Product Shots */}
         <section className="px-6 py-24">
-          <div className="container mx-auto max-w-6xl">
+          <div className="container mx-auto max-w-7xl">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-card animate-scale-in">
                 <img src="/placeholder.svg" alt="Product shot 1" className="w-full h-full object-cover" />
@@ -162,8 +162,8 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Design Process */}
-        <section className="px-6 py-24 bg-card/30">
-          <div className="container mx-auto max-w-6xl">
+        <section className="min-h-screen flex items-center justify-center px-6 py-24 bg-card/30">
+          <div className="container mx-auto max-w-7xl">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
               {/* Left Column - Title & Description */}
               <div className="space-y-6">
@@ -235,7 +235,7 @@ const MobileBankingProject = () => {
 
         {/* Challenge Section */}
         <section className="min-h-screen flex items-center justify-center px-6 py-24">
-          <div className="container mx-auto max-w-6xl">
+          <div className="container mx-auto max-w-7xl">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div className="w-full aspect-square rounded-2xl overflow-hidden shadow-card animate-scale-in order-2 lg:order-1">
                 <img src="/placeholder.svg" alt="Challenge" className="w-full h-full object-cover" />
@@ -268,7 +268,7 @@ const MobileBankingProject = () => {
 
         {/* Solution Section */}
         <section className="min-h-screen flex items-center justify-center px-6 py-24 bg-card/30">
-          <div className="container mx-auto max-w-6xl">
+          <div className="container mx-auto max-w-7xl">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div className="space-y-6 animate-fade-in">
                 <h2 className="text-4xl font-bold">The Solution</h2>
@@ -296,7 +296,7 @@ const MobileBankingProject = () => {
 
         {/* Results Section */}
         <section className="min-h-screen flex items-center justify-center px-6 py-24">
-          <div className="container mx-auto max-w-6xl text-center">
+          <div className="container mx-auto max-w-7xl text-center">
             <h2 className="text-4xl font-bold mb-16 animate-fade-in">Impact & Results</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
               <div className="space-y-4 animate-scale-in">
@@ -352,7 +352,7 @@ const MobileBankingProject = () => {
 
         {/* Navigation to Next Project */}
         <section className="px-6 py-24 border-t border-border">
-          <div className="container mx-auto max-w-6xl">
+          <div className="container mx-auto max-w-7xl">
             <div className="flex items-center justify-between">
               <div className="space-y-2">
                 <p className="text-sm text-muted-foreground">Next Project</p>
