@@ -232,6 +232,52 @@ const MobileBankingProject = () => {
           </div>
         </section>
 
+        {/* Define Section - 01 */}
+        <section className="px-6 py-24">
+          <div className="container mx-auto max-w-[1440px]">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+              {/* Left Column */}
+              <div className="space-y-6">
+                <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold">Define</h2>
+                <p className="text-xl text-muted-foreground">
+                  Audit of the Existing System revealed these were the most used, and valuable features to users.
+                </p>
+              </div>
+
+              {/* Right Column */}
+              <div className="space-y-8">
+                <div className="text-right">
+                  <span className="text-6xl md:text-7xl font-bold font-mono opacity-30">/01</span>
+                </div>
+                
+                <div className="space-y-6 text-lg text-muted-foreground">
+                  <p>
+                    <strong className="text-foreground">Listing Upload:</strong> Users could upload property information, photos, and descriptions, though the interface was not intuitive and cluttered.
+                  </p>
+                  
+                  <p>
+                    <strong className="text-foreground">Listing Manager:</strong> Allowed users to view, edit, and manage listing statuses (e.g., sold, pending).
+                  </p>
+                  
+                  <p>
+                    <strong className="text-foreground">Lead Tracking:</strong> Provided basic lead inquiry details.
+                  </p>
+                  
+                  <p>
+                    <strong className="text-foreground">Listing Analytics:</strong> Offered performance metrics such as views and inquiries.
+                  </p>
+                  
+                  <div className="pt-4">
+                    <h3 className="text-xl font-bold text-foreground mb-4">Summary of Audit</h3>
+                    <p>Retain and improve core features like listing upload, management, leads, and analytics.</p>
+                    <p className="mt-2">Address navigation, usability, and responsiveness issues.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Full Width Image */}
         <section className="min-h-screen flex items-center justify-center px-6 py-24 bg-card/30">
           <div className="container mx-auto max-w-[1600px]">
