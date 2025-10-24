@@ -176,8 +176,8 @@ const MobileBankingProject = () => {
               {/* Right Column - Steps */}
               <div className="space-y-0">
                 {/* Step 1 */}
-                <div className="flex gap-6 pb-8 border-b border-border animate-fade-in">
-                  <div className="text-4xl md:text-5xl font-bold font-mono text-primary flex-shrink-0">/01</div>
+                <div className="flex gap-10 pb-8 border-b border-border animate-fade-in">
+                  <div className="text-2xl md:text-3xl font-bold font-mono text-primary flex-shrink-0">/01</div>
                   <div className="space-y-3">
                     <h3 className="text-3xl md:text-4xl font-bold">Defining the Goal</h3>
                     <div className="space-y-1 text-lg text-muted-foreground">
@@ -189,8 +189,8 @@ const MobileBankingProject = () => {
                 </div>
 
                 {/* Step 2 */}
-                <div className="flex gap-6 py-8 border-b border-border animate-fade-in" style={{ animationDelay: '0.1s' }}>
-                  <div className="text-4xl md:text-5xl font-bold font-mono text-primary flex-shrink-0">/02</div>
+                <div className="flex gap-10 py-8 border-b border-border animate-fade-in" style={{ animationDelay: '0.1s' }}>
+                  <div className="text-2xl md:text-3xl font-bold font-mono text-primary flex-shrink-0">/02</div>
                   <div className="space-y-3">
                     <h3 className="text-3xl md:text-4xl font-bold">Discovery</h3>
                     <div className="space-y-1 text-lg text-muted-foreground">
@@ -202,8 +202,8 @@ const MobileBankingProject = () => {
                 </div>
 
                 {/* Step 3 */}
-                <div className="flex gap-6 py-8 border-b border-border animate-fade-in" style={{ animationDelay: '0.2s' }}>
-                  <div className="text-4xl md:text-5xl font-bold font-mono text-primary flex-shrink-0">/03</div>
+                <div className="flex gap-10 py-8 border-b border-border animate-fade-in" style={{ animationDelay: '0.2s' }}>
+                  <div className="text-2xl md:text-3xl font-bold font-mono text-primary flex-shrink-0">/03</div>
                   <div className="space-y-3">
                     <h3 className="text-3xl md:text-4xl font-bold">Design</h3>
                     <div className="space-y-1 text-lg text-muted-foreground">
@@ -216,8 +216,8 @@ const MobileBankingProject = () => {
                 </div>
 
                 {/* Step 4 */}
-                <div className="flex gap-6 pt-8 animate-fade-in" style={{ animationDelay: '0.3s' }}>
-                  <div className="text-4xl md:text-5xl font-bold font-mono text-primary flex-shrink-0">/04</div>
+                <div className="flex gap-10 pt-8 animate-fade-in" style={{ animationDelay: '0.3s' }}>
+                  <div className="text-2xl md:text-3xl font-bold font-mono text-primary flex-shrink-0">/04</div>
                   <div className="space-y-3">
                     <h3 className="text-3xl md:text-4xl font-bold">Delivery</h3>
                     <div className="space-y-1 text-lg text-muted-foreground">
