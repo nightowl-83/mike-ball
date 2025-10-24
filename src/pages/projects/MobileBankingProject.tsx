@@ -452,12 +452,13 @@ const MobileBankingProject = () => {
                     <svg className="w-40 h-40 mx-auto mb-6" viewBox="0 0 160 160">
                       <defs>
                         <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
-                          <stop offset="0%" stopColor="hsl(220 70% 50%)" />
-                          <stop offset="100%" stopColor="hsl(220 70% 60%)" />
+                          <stop offset="0%" stopColor="hsl(220 90% 60%)" />
+                          <stop offset="100%" stopColor="hsl(220 90% 75%)" />
                         </linearGradient>
                         <filter id="glow1">
-                          <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                          <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
                           <feMerge>
+                            <feMergeNode in="coloredBlur"/>
                             <feMergeNode in="coloredBlur"/>
                             <feMergeNode in="SourceGraphic"/>
                           </feMerge>
@@ -468,8 +469,8 @@ const MobileBankingProject = () => {
                         d="M 20 140 A 60 60 0 0 1 140 140"
                         fill="none"
                         stroke="hsl(var(--muted))"
-                        strokeWidth="12"
-                        opacity="0.15"
+                        strokeWidth="6"
+                        opacity="0.2"
                         strokeLinecap="round"
                       />
                       {/* Foreground arc - 36% using dasharray */}
@@ -477,7 +478,7 @@ const MobileBankingProject = () => {
                         d="M 20 140 A 60 60 0 0 1 140 140"
                         fill="none"
                         stroke="url(#gradient1)"
-                        strokeWidth="12"
+                        strokeWidth="6"
                         strokeLinecap="round"
                         strokeDasharray="188.5"
                         strokeDashoffset="120.6"
@@ -493,12 +494,13 @@ const MobileBankingProject = () => {
                     <svg className="w-40 h-40 mx-auto mb-6" viewBox="0 0 160 160">
                       <defs>
                         <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
-                          <stop offset="0%" stopColor="hsl(280 60% 55%)" />
-                          <stop offset="100%" stopColor="hsl(280 60% 65%)" />
+                          <stop offset="0%" stopColor="hsl(280 85% 65%)" />
+                          <stop offset="100%" stopColor="hsl(280 85% 80%)" />
                         </linearGradient>
                         <filter id="glow2">
-                          <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                          <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
                           <feMerge>
+                            <feMergeNode in="coloredBlur"/>
                             <feMergeNode in="coloredBlur"/>
                             <feMergeNode in="SourceGraphic"/>
                           </feMerge>
@@ -509,8 +511,8 @@ const MobileBankingProject = () => {
                         d="M 20 140 A 60 60 0 0 1 140 140"
                         fill="none"
                         stroke="hsl(var(--muted))"
-                        strokeWidth="12"
-                        opacity="0.15"
+                        strokeWidth="6"
+                        opacity="0.2"
                         strokeLinecap="round"
                       />
                       {/* Foreground arc - 24% using dasharray */}
@@ -518,7 +520,7 @@ const MobileBankingProject = () => {
                         d="M 20 140 A 60 60 0 0 1 140 140"
                         fill="none"
                         stroke="url(#gradient2)"
-                        strokeWidth="12"
+                        strokeWidth="6"
                         strokeLinecap="round"
                         strokeDasharray="188.5"
                         strokeDashoffset="143.3"
@@ -534,12 +536,13 @@ const MobileBankingProject = () => {
                     <svg className="w-40 h-40 mx-auto mb-6" viewBox="0 0 160 160">
                       <defs>
                         <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="0%">
-                          <stop offset="0%" stopColor="hsl(0 70% 55%)" />
-                          <stop offset="100%" stopColor="hsl(0 70% 65%)" />
+                          <stop offset="0%" stopColor="hsl(0 85% 65%)" />
+                          <stop offset="100%" stopColor="hsl(0 85% 80%)" />
                         </linearGradient>
                         <filter id="glow3">
-                          <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                          <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
                           <feMerge>
+                            <feMergeNode in="coloredBlur"/>
                             <feMergeNode in="coloredBlur"/>
                             <feMergeNode in="SourceGraphic"/>
                           </feMerge>
@@ -550,8 +553,8 @@ const MobileBankingProject = () => {
                         d="M 20 140 A 60 60 0 0 1 140 140"
                         fill="none"
                         stroke="hsl(var(--muted))"
-                        strokeWidth="12"
-                        opacity="0.15"
+                        strokeWidth="6"
+                        opacity="0.2"
                         strokeLinecap="round"
                       />
                       {/* Foreground arc - 91% using dasharray */}
@@ -559,7 +562,7 @@ const MobileBankingProject = () => {
                         d="M 20 140 A 60 60 0 0 1 140 140"
                         fill="none"
                         stroke="url(#gradient3)"
-                        strokeWidth="12"
+                        strokeWidth="6"
                         strokeLinecap="round"
                         strokeDasharray="188.5"
                         strokeDashoffset="17"
