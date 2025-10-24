@@ -450,6 +450,19 @@ const MobileBankingProject = () => {
                   {/* 36% Satisfaction */}
                   <div className="text-center">
                     <svg className="w-40 h-40 mx-auto mb-6" viewBox="0 0 160 160">
+                      <defs>
+                        <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+                          <stop offset="0%" stopColor="hsl(220 70% 50%)" />
+                          <stop offset="100%" stopColor="hsl(220 70% 60%)" />
+                        </linearGradient>
+                        <filter id="glow1">
+                          <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                          <feMerge>
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                          </feMerge>
+                        </filter>
+                      </defs>
                       {/* Background arc */}
                       <path
                         d="M 20 140 A 60 60 0 0 1 140 140"
@@ -459,13 +472,14 @@ const MobileBankingProject = () => {
                         opacity="0.15"
                         strokeLinecap="round"
                       />
-                      {/* Foreground arc - 36% (left to right) */}
+                      {/* Foreground arc - 36% */}
                       <path
-                        d="M 20 140 A 60 60 0 0 1 63 75"
+                        d="M 20 140 A 60 60 0 0 1 63 76"
                         fill="none"
-                        stroke="hsl(220 70% 50%)"
+                        stroke="url(#gradient1)"
                         strokeWidth="12"
                         strokeLinecap="round"
+                        filter="url(#glow1)"
                       />
                     </svg>
                     <div className="text-5xl font-normal mb-3">36%</div>
@@ -475,6 +489,19 @@ const MobileBankingProject = () => {
                   {/* 24% Confidence */}
                   <div className="text-center">
                     <svg className="w-40 h-40 mx-auto mb-6" viewBox="0 0 160 160">
+                      <defs>
+                        <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+                          <stop offset="0%" stopColor="hsl(280 60% 55%)" />
+                          <stop offset="100%" stopColor="hsl(280 60% 65%)" />
+                        </linearGradient>
+                        <filter id="glow2">
+                          <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                          <feMerge>
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                          </feMerge>
+                        </filter>
+                      </defs>
                       {/* Background arc */}
                       <path
                         d="M 20 140 A 60 60 0 0 1 140 140"
@@ -484,13 +511,14 @@ const MobileBankingProject = () => {
                         opacity="0.15"
                         strokeLinecap="round"
                       />
-                      {/* Foreground arc - 24% (left to right) */}
+                      {/* Foreground arc - 24% */}
                       <path
-                        d="M 20 140 A 60 60 0 0 0 49 102"
+                        d="M 20 140 A 60 60 0 0 0 49 103"
                         fill="none"
-                        stroke="hsl(280 60% 55%)"
+                        stroke="url(#gradient2)"
                         strokeWidth="12"
                         strokeLinecap="round"
+                        filter="url(#glow2)"
                       />
                     </svg>
                     <div className="text-5xl font-normal mb-3">24%</div>
@@ -500,6 +528,19 @@ const MobileBankingProject = () => {
                   {/* 91% Difficult Management */}
                   <div className="text-center">
                     <svg className="w-40 h-40 mx-auto mb-6" viewBox="0 0 160 160">
+                      <defs>
+                        <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="0%">
+                          <stop offset="0%" stopColor="hsl(0 70% 55%)" />
+                          <stop offset="100%" stopColor="hsl(0 70% 65%)" />
+                        </linearGradient>
+                        <filter id="glow3">
+                          <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                          <feMerge>
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                          </feMerge>
+                        </filter>
+                      </defs>
                       {/* Background arc */}
                       <path
                         d="M 20 140 A 60 60 0 0 1 140 140"
@@ -509,13 +550,14 @@ const MobileBankingProject = () => {
                         opacity="0.15"
                         strokeLinecap="round"
                       />
-                      {/* Foreground arc - 91% (left to right) */}
+                      {/* Foreground arc - 91% */}
                       <path
-                        d="M 20 140 A 60 60 0 0 1 131 85"
+                        d="M 20 140 A 60 60 0 0 1 129 84"
                         fill="none"
-                        stroke="hsl(0 70% 55%)"
+                        stroke="url(#gradient3)"
                         strokeWidth="12"
                         strokeLinecap="round"
+                        filter="url(#glow3)"
                       />
                     </svg>
                     <div className="text-5xl font-normal mb-3">91%</div>
@@ -571,35 +613,35 @@ const MobileBankingProject = () => {
                 </div>
 
                 {/* Top Right - User Goals */}
-                <div className="bg-card rounded-2xl p-8 shadow-sm">
-                  <h3 className="text-2xl font-bold mb-6">User Goals</h3>
-                  <div className="space-y-4 mb-6">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
-                        <svg className="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                <div className="bg-card rounded-2xl p-10 shadow-sm flex flex-col justify-center">
+                  <h3 className="text-3xl font-bold mb-8">User Goals</h3>
+                  <div className="space-y-6 mb-8">
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                        <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                         </svg>
                       </div>
-                      <span className="text-base">Effective Inventory Management</span>
+                      <span className="text-xl">Effective Inventory Management</span>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
-                        <svg className="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                        <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                         </svg>
                       </div>
-                      <span className="text-base">Streamlined operations</span>
+                      <span className="text-xl">Streamlined operations</span>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
-                        <svg className="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                        <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                         </svg>
                       </div>
-                      <span className="text-base">Market understanding</span>
+                      <span className="text-xl">Market understanding</span>
                     </div>
                   </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                  <p className="text-base text-muted-foreground leading-relaxed">
                     Ben is dedicated to optimizing processes and implementing strategies for organizing success.
                   </p>
                 </div>
@@ -613,8 +655,14 @@ const MobileBankingProject = () => {
                         <span>Sensing</span>
                         <span>Intuition</span>
                       </div>
-                      <div className="h-3 bg-muted rounded-full overflow-hidden">
-                        <div className="h-full bg-primary rounded-full" style={{ width: '65%' }}></div>
+                      <div className="h-3 bg-muted rounded-full overflow-hidden relative">
+                        <div 
+                          className="h-full rounded-full absolute inset-0 bg-gradient-to-r from-primary to-primary/80"
+                          style={{ 
+                            width: '65%',
+                            boxShadow: '0 0 12px hsla(var(--primary) / 0.5)'
+                          }}
+                        ></div>
                       </div>
                     </div>
                     <div>
@@ -622,8 +670,14 @@ const MobileBankingProject = () => {
                         <span>Extrovert</span>
                         <span>Introvert</span>
                       </div>
-                      <div className="h-3 bg-muted rounded-full overflow-hidden">
-                        <div className="h-full bg-primary rounded-full" style={{ width: '45%' }}></div>
+                      <div className="h-3 bg-muted rounded-full overflow-hidden relative">
+                        <div 
+                          className="h-full rounded-full absolute inset-0 bg-gradient-to-r from-primary to-primary/80"
+                          style={{ 
+                            width: '45%',
+                            boxShadow: '0 0 12px hsla(var(--primary) / 0.5)'
+                          }}
+                        ></div>
                       </div>
                     </div>
                     <div>
@@ -631,8 +685,14 @@ const MobileBankingProject = () => {
                         <span>Feeling</span>
                         <span>Thinking</span>
                       </div>
-                      <div className="h-3 bg-muted rounded-full overflow-hidden">
-                        <div className="h-full bg-primary rounded-full" style={{ width: '75%' }}></div>
+                      <div className="h-3 bg-muted rounded-full overflow-hidden relative">
+                        <div 
+                          className="h-full rounded-full absolute inset-0 bg-gradient-to-r from-primary to-primary/80"
+                          style={{ 
+                            width: '75%',
+                            boxShadow: '0 0 12px hsla(var(--primary) / 0.5)'
+                          }}
+                        ></div>
                       </div>
                     </div>
                   </div>
