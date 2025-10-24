@@ -69,17 +69,17 @@ All colors MUST be HSL.
 @layer components {
   /* Full-width viewport image with gradient overlays */
   .viewport-image-section {
-    @apply relative h-[80vh] w-screen -mx-[50vw] left-[50%] right-[50%];
+    @apply relative h-[90vh] w-screen -mx-[50vw] left-[50%] right-[50%];
   }
   
   .viewport-image-section::before {
     content: '';
-    @apply absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-background to-transparent z-10 pointer-events-none;
+    @apply absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-background to-transparent z-10 pointer-events-none;
   }
   
   .viewport-image-section::after {
     content: '';
-    @apply absolute bottom-0 left-0 right-0 h-64 z-10 pointer-events-none;
-    background: linear-gradient(to top, hsl(var(--card) / 0.3) 0%, transparent 100%);
+    @apply absolute bottom-0 left-0 right-0 h-32 z-10 pointer-events-none;
+    background: linear-gradient(to top, hsl(var(--background)) 0%, transparent 100%);
   }
 }
