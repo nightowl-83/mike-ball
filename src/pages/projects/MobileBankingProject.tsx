@@ -26,8 +26,10 @@ const MobileBankingProject = () => {
           <div className="container mx-auto max-w-6xl">
             <div className="space-y-6 animate-fade-in">
               <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium backdrop-blur-sm">Dashboard Design</span>
-              <h1 className="text-5xl md:text-7xl font-bold text-foreground">Marketing Hub 
-Client Dashboard</h1>
+              <h1 className="text-5xl md:text-7xl font-bold text-foreground">
+                Marketing Hub<br />
+                Client Dashboard
+              </h1>
               <p className="text-xl text-muted-foreground max-w-3xl">A modern CMS experience with intuitive navigation and seamless transactions. Designed for simplicity and security.</p>
               <div className="flex flex-wrap gap-6 pt-4">
                 <div>
