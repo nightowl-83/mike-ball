@@ -423,94 +423,6 @@ const MobileBankingProject = () => {
           </div>
         </section>
 
-        {/* Discovery Section - 02 */}
-        <section className="relative px-6 py-24 bg-card/30">
-          <div className="container mx-auto max-w-[1440px]">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-              {/* Left Column */}
-              <div className="space-y-12">
-                <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold">Discovery</h2>
-                <p className="text-xl text-muted-foreground">
-                  Through user interviews and usability testing, we identified key pain points and opportunities for improvement.
-                </p>
-              </div>
-
-              {/* Right Column */}
-              <div className="space-y-12">
-                <div className="text-right">
-                  <span className="text-6xl md:text-7xl font-bold font-mono opacity-30">/02</span>
-                </div>
-                
-                <div className="space-y-6 text-lg text-muted-foreground">
-                  <p>
-                    <strong className="text-foreground">User Pain Points:</strong> Navigation was confusing, with critical features buried in nested menus. Users reported frustration with the upload process and lack of mobile responsiveness.
-                  </p>
-                  
-                  <p>
-                    <strong className="text-foreground">Competitive Analysis:</strong> We analyzed leading property management platforms to identify industry best practices and differentiation opportunities.
-                  </p>
-                  
-                  <p>
-                    <strong className="text-foreground">User Personas:</strong> Developed detailed personas representing rural real estate agents, property managers, and administrative staff with varying technical expertise.
-                  </p>
-                  
-                  <div className="p-6 rounded-xl bg-card/50 border-2 border-primary/20">
-                    <h3 className="text-xl font-bold text-foreground mb-4">Key Insights</h3>
-                    <p>Users need quick access to listing management and lead tracking without complex navigation structures.</p>
-                    <p className="mt-2">Mobile access is critical for agents working in the field, requiring a fully responsive design.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Design Section - 03 */}
-        <section className="relative px-6 py-24">
-          <div className="container mx-auto max-w-[1440px]">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-              {/* Left Column */}
-              <div className="space-y-12">
-                <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold">Design</h2>
-                <p className="text-xl text-muted-foreground">
-                  Creating an intuitive, modern interface that streamlines workflows and enhances user experience.
-                </p>
-              </div>
-
-              {/* Right Column */}
-              <div className="space-y-12">
-                <div className="text-right">
-                  <span className="text-6xl md:text-7xl font-bold font-mono opacity-30">/03</span>
-                </div>
-                
-                <div className="space-y-6 text-lg text-muted-foreground">
-                  <p>
-                    <strong className="text-foreground">Information Architecture:</strong> Restructured navigation to prioritize most-used features, reducing clicks by 40% for common tasks.
-                  </p>
-                  
-                  <p>
-                    <strong className="text-foreground">Visual Design System:</strong> Developed a cohesive design system with reusable components, ensuring consistency across all pages and reducing development time.
-                  </p>
-                  
-                  <p>
-                    <strong className="text-foreground">Mobile-First Approach:</strong> Designed for mobile devices first, then scaled up for tablets and desktops, ensuring optimal experience across all screen sizes.
-                  </p>
-                  
-                  <p>
-                    <strong className="text-foreground">Usability Testing:</strong> Conducted multiple rounds of testing with real estate professionals, iterating based on feedback to refine interactions.
-                  </p>
-                  
-                  <div className="p-6 rounded-xl bg-card/50 border-2 border-primary/20">
-                    <h3 className="text-xl font-bold text-foreground mb-4">Design Principles</h3>
-                    <p>Simplicity over complexity - every feature must serve a clear purpose.</p>
-                    <p className="mt-2">Accessibility for all users, regardless of technical skill level.</p>
-                    <p className="mt-2">Performance-focused design for fast load times even in rural areas with limited connectivity.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* Discovery Section - 02 */}
         <section className="relative px-6 py-24 bg-card/30">
@@ -695,6 +607,53 @@ const MobileBankingProject = () => {
                     <p>Simplicity over complexity - every feature must serve a clear purpose.</p>
                     <p className="mt-2">Accessibility for all users, regardless of technical skill level.</p>
                     <p className="mt-2">Performance-focused design for fast load times even in rural areas with limited connectivity.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Delivery Section - 04 */}
+        <section className="relative px-6 py-24 bg-card/30">
+          <div className="container mx-auto max-w-[1440px]">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+              {/* Left Column */}
+              <div className="space-y-12">
+                <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold">Delivery</h2>
+                <p className="text-xl text-muted-foreground">
+                  Implementing a comprehensive design system and ensuring seamless handoff to development teams.
+                </p>
+              </div>
+
+              {/* Right Column */}
+              <div className="space-y-12">
+                <div className="text-right">
+                  <span className="text-6xl md:text-7xl font-bold font-mono opacity-30">/04</span>
+                </div>
+                
+                <div className="space-y-6 text-lg text-muted-foreground">
+                  <p>
+                    <strong className="text-foreground">Design System:</strong> Created a comprehensive design system with reusable components, color palettes, typography guidelines, and interaction patterns for consistent implementation across all screens.
+                  </p>
+                  
+                  <p>
+                    <strong className="text-foreground">Developer Handoff:</strong> Provided detailed documentation, Figma prototypes with dev mode enabled, and component specifications to ensure accurate implementation.
+                  </p>
+                  
+                  <p>
+                    <strong className="text-foreground">Quality Assurance:</strong> Conducted thorough testing across devices and browsers, working closely with developers to refine interactions and fix edge cases.
+                  </p>
+                  
+                  <p>
+                    <strong className="text-foreground">User Training:</strong> Developed onboarding flows and help documentation to guide users through the new interface and feature set.
+                  </p>
+                  
+                  <div className="p-6 rounded-xl bg-card/50 border-2 border-primary/20">
+                    <h3 className="text-xl font-bold text-foreground mb-4">Deliverables</h3>
+                    <p>Complete design system with 50+ components and comprehensive documentation.</p>
+                    <p className="mt-2">Interactive prototypes for all major user flows and responsive breakpoints.</p>
+                    <p className="mt-2">User testing reports and iterative improvements based on real-world feedback.</p>
                   </div>
                 </div>
               </div>
