@@ -69,7 +69,7 @@ All colors MUST be HSL.
 @layer components {
   /* Full-width viewport image with gradient overlays */
   .viewport-image-section {
-    @apply relative h-[90vh] w-screen -mx-[50vw] left-[50%] right-[50%];
+    @apply relative h-[90vh] w-screen -mx-[50vw] left-[50%] right-[50%] my-24;
   }
   
   .viewport-image-section::before {
@@ -79,7 +79,6 @@ All colors MUST be HSL.
   
   .viewport-image-section::after {
     content: '';
-    @apply absolute bottom-0 left-0 right-0 h-32 z-10 pointer-events-none;
-    background: linear-gradient(to top, hsl(var(--background)) 0%, transparent 100%);
+    @apply absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background to-transparent z-10 pointer-events-none;
   }
 }
