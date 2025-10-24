@@ -852,6 +852,11 @@ const MobileBankingProject = () => {
           </div>
         </section>
 
+        {/* Full Viewport Design Image */}
+        <div className="viewport-image-section">
+          <img src="/placeholder.svg" alt="Design showcase" className="w-full h-full object-cover" />
+        </div>
+
         {/* Delivery Section - 04 */}
         <section ref={deliveryContentAnim.ref} className={`relative px-6 py-24 bg-card/30 transition-all duration-700 ${deliveryContentAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div ref={deliveryRef} className="absolute top-0 left-0 w-full h-1" />

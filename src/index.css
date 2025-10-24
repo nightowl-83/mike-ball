@@ -65,3 +65,20 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  /* Full-width viewport image with gradient overlays */
+  .viewport-image-section {
+    @apply relative min-h-screen w-screen -mx-[50vw] left-[50%] right-[50%];
+  }
+  
+  .viewport-image-section::before {
+    content: '';
+    @apply absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-background to-transparent z-10 pointer-events-none;
+  }
+  
+  .viewport-image-section::after {
+    content: '';
+    @apply absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-card/30 to-transparent z-10 pointer-events-none;
+  }
+}
