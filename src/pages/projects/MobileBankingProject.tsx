@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useState, useEffect, useRef } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import userFlowImage from "@/assets/user-flow.jpg";
 
 const MobileBankingProject = () => {
   const [isColumnLayout, setIsColumnLayout] = useState(false);
@@ -866,7 +867,7 @@ const MobileBankingProject = () => {
               </div>
             </div>
           </div>
-          <img src="/placeholder.svg" alt="Design showcase" className="w-full h-full object-cover" />
+          <img src={userFlowImage} alt="User flow design" className="w-full h-full object-cover" />
         </div>
 
         {/* Delivery Section - 04 */}
