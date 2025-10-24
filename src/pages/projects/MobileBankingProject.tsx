@@ -427,20 +427,20 @@ const MobileBankingProject = () => {
         {/* Discovery Section - 02 */}
         <section className="relative px-6 py-24 bg-card/30">
           <div className="container mx-auto max-w-[1440px]">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 mb-32">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 mb-32 items-center">
               {/* Left Column - User Interviews (1 column) */}
-              <div className="space-y-20">
+              <div className="space-y-12">
                 <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold">Discovery</h2>
                 <div>
                   <h3 className="text-2xl font-semibold mb-6">User Interviews</h3>
                   <p className="text-xl text-muted-foreground leading-relaxed">
-                    We surveyed <strong className="text-foreground">30</strong> real estate agents about their current platform experience. <strong className="text-foreground">22</strong> responded with valuable feedback that shaped our design direction.
+                    We surveyed <strong className="text-primary">30</strong> real estate agents about their current platform experience. <strong className="text-primary">22</strong> responded with valuable feedback that shaped our design direction.
                   </p>
                 </div>
               </div>
 
               {/* Right Columns - Charts (2 columns) */}
-              <div className="lg:col-span-2 space-y-12 pt-12">
+              <div className="lg:col-span-2 space-y-8">
                 <div className="text-right">
                   <span className="text-6xl md:text-7xl font-bold font-mono opacity-30">/02</span>
                 </div>
