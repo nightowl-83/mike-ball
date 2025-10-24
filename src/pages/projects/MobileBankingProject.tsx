@@ -429,7 +429,7 @@ const MobileBankingProject = () => {
           <div className="container mx-auto max-w-[1440px]">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 mb-32 items-center">
               {/* Left Column - User Interviews (1 column) */}
-              <div className="space-y-12">
+              <div className="space-y-12 flex flex-col justify-center h-full">
                 <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold">Discovery</h2>
                 <div>
                   <h3 className="text-2xl font-semibold mb-6">User Interviews</h3>
