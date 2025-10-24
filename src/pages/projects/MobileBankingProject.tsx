@@ -164,97 +164,60 @@ const MobileBankingProject = () => {
         {/* Design Process */}
         <section className="px-6 py-24 bg-card/30">
           <div className="container mx-auto max-w-6xl">
-            <div className="space-y-12">
-              <div className="text-center space-y-4">
-                <h2 className="text-4xl font-bold">Design Process</h2>
-                <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+              {/* Left Column - Title & Description */}
+              <div className="space-y-6">
+                <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold leading-tight">Design Process</h2>
+                <p className="text-xl text-muted-foreground">
                   A structured approach combining user research, iterative design, and continuous testing to deliver an intuitive and effective solution.
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pt-8">
+              {/* Right Column - Steps */}
+              <div className="space-y-12">
                 {/* Step 1 */}
                 <div className="space-y-4 animate-fade-in">
                   <div className="text-sm font-mono text-primary">/01</div>
-                  <h3 className="text-2xl font-bold">Defining the Goal</h3>
-                  <ul className="space-y-2 text-muted-foreground">
-                    <li className="flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                      <span>Ease of use</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                      <span>Competitor analysis</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                      <span>Understanding product wants</span>
-                    </li>
-                  </ul>
+                  <h3 className="text-3xl md:text-4xl font-bold">Defining the Goal</h3>
+                  <div className="space-y-2 text-lg text-muted-foreground">
+                    <p>Ease of use</p>
+                    <p>Competitor analysis</p>
+                    <p>Understanding product wants</p>
+                  </div>
                 </div>
 
                 {/* Step 2 */}
                 <div className="space-y-4 animate-fade-in" style={{ animationDelay: '0.1s' }}>
                   <div className="text-sm font-mono text-primary">/02</div>
-                  <h3 className="text-2xl font-bold">Discovery</h3>
-                  <ul className="space-y-2 text-muted-foreground">
-                    <li className="flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                      <span>User Surveys</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                      <span>Audit of current systems</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                      <span>Competitor analysis</span>
-                    </li>
-                  </ul>
+                  <h3 className="text-3xl md:text-4xl font-bold">Discovery</h3>
+                  <div className="space-y-2 text-lg text-muted-foreground">
+                    <p>User Surveys</p>
+                    <p>Audit of current systems</p>
+                    <p>Competitor analysis</p>
+                  </div>
                 </div>
 
                 {/* Step 3 */}
                 <div className="space-y-4 animate-fade-in" style={{ animationDelay: '0.2s' }}>
                   <div className="text-sm font-mono text-primary">/03</div>
-                  <h3 className="text-2xl font-bold">Design</h3>
-                  <ul className="space-y-2 text-muted-foreground">
-                    <li className="flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                      <span>Ease of use</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                      <span>Accessible</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                      <span>Desirable</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                      <span>Intuitive</span>
-                    </li>
-                  </ul>
+                  <h3 className="text-3xl md:text-4xl font-bold">Design</h3>
+                  <div className="space-y-2 text-lg text-muted-foreground">
+                    <p>Ease of use</p>
+                    <p>Accessible</p>
+                    <p>Desirable</p>
+                    <p>Intuitive</p>
+                  </div>
                 </div>
 
                 {/* Step 4 */}
                 <div className="space-y-4 animate-fade-in" style={{ animationDelay: '0.3s' }}>
                   <div className="text-sm font-mono text-primary">/04</div>
-                  <h3 className="text-2xl font-bold">Defining the Goal</h3>
-                  <ul className="space-y-2 text-muted-foreground">
-                    <li className="flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                      <span>Design System</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                      <span>Testing</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                      <span>UI patterns</span>
-                    </li>
-                  </ul>
+                  <h3 className="text-3xl md:text-4xl font-bold">Delivery</h3>
+                  <div className="space-y-2 text-lg text-muted-foreground">
+                    <p>Design System</p>
+                    <p>Testing</p>
+                    <p>UI patterns</p>
+                  </div>
                 </div>
               </div>
             </div>
