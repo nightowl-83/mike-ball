@@ -108,7 +108,7 @@ const MobileBankingProject = () => {
         {/* Overview Section */}
         <section className="min-h-screen flex items-center justify-center px-6 py-24">
           <div className="container mx-auto max-w-6xl">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
               <div className="space-y-6 animate-fade-in">
                 <h2 className="text-4xl font-bold">Background</h2>
                 <p className="text-lg text-muted-foreground leading-relaxed">
