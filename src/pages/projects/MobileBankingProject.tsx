@@ -854,6 +854,7 @@ const MobileBankingProject = () => {
 
         {/* Full Viewport Design Image */}
         <div className="viewport-image-section">
+          <h3 className="absolute top-12 left-12 text-4xl font-bold text-foreground z-20">Design System</h3>
           <img src="/placeholder.svg" alt="Design showcase" className="w-full h-full object-cover" />
         </div>
 

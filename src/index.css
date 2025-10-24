@@ -69,7 +69,7 @@ All colors MUST be HSL.
 @layer components {
   /* Full-width viewport image with gradient overlays */
   .viewport-image-section {
-    @apply relative min-h-screen w-screen -mx-[50vw] left-[50%] right-[50%];
+    @apply relative h-[80vh] w-screen -mx-[50vw] left-[50%] right-[50%];
   }
   
   .viewport-image-section::before {
