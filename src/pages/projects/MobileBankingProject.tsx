@@ -474,7 +474,7 @@ const MobileBankingProject = () => {
                       />
                       {/* Foreground arc - 36% */}
                       <path
-                        d="M 20 140 A 60 60 0 0 1 63 76"
+                        d="M 20 140 A 60 60 0 0 1 55 86"
                         fill="none"
                         stroke="url(#gradient1)"
                         strokeWidth="12"
@@ -513,7 +513,7 @@ const MobileBankingProject = () => {
                       />
                       {/* Foreground arc - 24% */}
                       <path
-                        d="M 20 140 A 60 60 0 0 0 49 103"
+                        d="M 20 140 A 60 60 0 0 0 43 104"
                         fill="none"
                         stroke="url(#gradient2)"
                         strokeWidth="12"
@@ -552,7 +552,7 @@ const MobileBankingProject = () => {
                       />
                       {/* Foreground arc - 91% */}
                       <path
-                        d="M 20 140 A 60 60 0 0 1 129 84"
+                        d="M 20 140 A 60 60 0 0 1 130 86"
                         fill="none"
                         stroke="url(#gradient3)"
                         strokeWidth="12"
