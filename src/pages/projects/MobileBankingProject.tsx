@@ -3,13 +3,22 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useState, useEffect, useRef } from "react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const MobileBankingProject = () => {
   const [isColumnLayout, setIsColumnLayout] = useState(false);
-  const [isDefineSticky, setIsDefineSticky] = useState(false);
+  const [stickyHeader, setStickyHeader] = useState({ visible: false, section: '', subsection: '', number: '' });
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  
+  // Refs for sections and subsections
   const defineRef = useRef<HTMLDivElement>(null);
+  const defineGalleryRef = useRef<HTMLDivElement>(null);
+  const discoveryRef = useRef<HTMLDivElement>(null);
+  const discoveryInterviewsRef = useRef<HTMLDivElement>(null);
+  const discoveryPersonaRef = useRef<HTMLDivElement>(null);
+  const designRef = useRef<HTMLDivElement>(null);
+  const deliveryRef = useRef<HTMLDivElement>(null);
 
   // Array of 7 gallery images
   const galleryImages = Array.from({ length: 7 }, (_, i) => ({
@@ -17,19 +26,77 @@ const MobileBankingProject = () => {
     alt: `Gallery image ${i + 1}`
   }));
 
+  // Sticky header tracking
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsDefineSticky(!entry.isIntersecting && entry.boundingClientRect.top < 0);
-      },
-      { threshold: [0], rootMargin: "-1px 0px 0px 0px" }
-    );
+    const observerOptions = { 
+      threshold: 0.5, 
+      rootMargin: '-100px 0px -50% 0px' 
+    };
 
+    const createObserver = (ref: React.RefObject<HTMLDivElement>, data: { section: string; subsection: string; number: string }) => {
+      return new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+          setStickyHeader({ visible: true, ...data });
+        }
+      }, observerOptions);
+    };
+
+    const observers: IntersectionObserver[] = [];
+
+    // Define section observers
     if (defineRef.current) {
-      observer.observe(defineRef.current);
+      observers.push(createObserver(defineRef, { section: 'Define', subsection: '', number: '/01' }));
+      observers[observers.length - 1].observe(defineRef.current);
     }
 
-    return () => observer.disconnect();
+    if (defineGalleryRef.current) {
+      observers.push(createObserver(defineGalleryRef, { section: 'Define', subsection: 'Gallery', number: '/01' }));
+      observers[observers.length - 1].observe(defineGalleryRef.current);
+    }
+
+    // Discovery section observers
+    if (discoveryRef.current) {
+      observers.push(createObserver(discoveryRef, { section: 'Discovery', subsection: '', number: '/02' }));
+      observers[observers.length - 1].observe(discoveryRef.current);
+    }
+
+    if (discoveryInterviewsRef.current) {
+      observers.push(createObserver(discoveryInterviewsRef, { section: 'Discovery', subsection: 'User Interviews', number: '/02' }));
+      observers[observers.length - 1].observe(discoveryInterviewsRef.current);
+    }
+
+    if (discoveryPersonaRef.current) {
+      observers.push(createObserver(discoveryPersonaRef, { section: 'Discovery', subsection: 'User Persona', number: '/02' }));
+      observers[observers.length - 1].observe(discoveryPersonaRef.current);
+    }
+
+    // Design section observer
+    if (designRef.current) {
+      observers.push(createObserver(designRef, { section: 'Design', subsection: '', number: '/03' }));
+      observers[observers.length - 1].observe(designRef.current);
+    }
+
+    // Delivery section observer
+    if (deliveryRef.current) {
+      observers.push(createObserver(deliveryRef, { section: 'Delivery', subsection: '', number: '/04' }));
+      observers[observers.length - 1].observe(deliveryRef.current);
+    }
+
+    // Hide sticky header when at top
+    const topObserver = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setStickyHeader({ visible: false, section: '', subsection: '', number: '' });
+      }
+    }, { threshold: 0.1 });
+
+    if (defineRef.current) {
+      topObserver.observe(defineRef.current);
+    }
+
+    return () => {
+      observers.forEach(obs => obs.disconnect());
+      topObserver.disconnect();
+    };
   }, []);
 
   const openGallery = (index: number) => {
@@ -57,9 +124,47 @@ const MobileBankingProject = () => {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [galleryOpen]);
 
+  // Scroll animations for all sections
+  const heroAnim = useScrollAnimation();
+  const overviewAnim = useScrollAnimation();
+  const productShotsAnim = useScrollAnimation();
+  const processAnim = useScrollAnimation();
+  const defineContentAnim = useScrollAnimation();
+  const bentoAnim = useScrollAnimation();
+  const discoveryStatsAnim = useScrollAnimation();
+  const quotesAnim = useScrollAnimation();
+  const personaAnim = useScrollAnimation();
+  const designContentAnim = useScrollAnimation();
+  const deliveryContentAnim = useScrollAnimation();
+  const fullWidthAnim = useScrollAnimation();
+  const challengeAnim = useScrollAnimation();
+  const solutionAnim = useScrollAnimation();
+  const resultsAnim = useScrollAnimation();
+  const showcaseAnim = useScrollAnimation();
+  const navigationAnim = useScrollAnimation();
+
   return <div className="min-h-screen bg-background">
+      {/* Unified Sticky Header */}
+      <div className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        stickyHeader.visible 
+          ? 'bg-background/95 backdrop-blur-lg border-b border-border shadow-sm' 
+          : 'opacity-0 pointer-events-none'
+      }`}>
+        <div className="container mx-auto max-w-[1440px] px-6 py-4">
+          <div className="flex items-center justify-between">
+            <h2 className="text-3xl md:text-4xl font-bold">
+              {stickyHeader.section}
+              {stickyHeader.subsection && ` - ${stickyHeader.subsection}`}
+            </h2>
+            <span className="text-2xl md:text-3xl font-bold font-mono opacity-30">
+              {stickyHeader.number}
+            </span>
+          </div>
+        </div>
+      </div>
+
       {/* Hero Section - Toggle between layouts */}
-      <section className="relative h-[80vh] w-full overflow-hidden">
+      <section ref={heroAnim.ref} className={`relative h-[80vh] w-full overflow-hidden transition-all duration-700 ${heroAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         {/* Back Button & Layout Toggle */}
         <div className="absolute top-6 left-6 z-50 flex gap-2">
           <Link to="/">
@@ -157,10 +262,10 @@ const MobileBankingProject = () => {
       {/* Main Content Container */}
       <div className="relative -mt-[10vh] z-10 bg-background">
         {/* Overview Section */}
-        <section className="min-h-screen flex items-center justify-center px-6 py-24">
+        <section ref={overviewAnim.ref} className={`min-h-screen flex items-center justify-center px-6 py-24 transition-all duration-700 ${overviewAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="container mx-auto max-w-[1440px]">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-              <div className="space-y-6 animate-fade-in">
+              <div className="space-y-6">
                 <h2 className="text-4xl font-bold">Background</h2>
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   The Property Control Center (PCC) was originally built as a one-stop solution for rural real estate professionals to manage property listings, track leads, and monitor analytics.
@@ -173,7 +278,7 @@ const MobileBankingProject = () => {
                   that increased user engagement by 45% and reduced transaction time by 60%.
                 </p>
               </div>
-              <div className="space-y-6 animate-fade-in">
+              <div className="space-y-6">
                 <h2 className="text-4xl font-bold">Project Highlights</h2>
                 <ul className="space-y-6 text-lg text-muted-foreground">
                   <li className="flex items-start gap-4">
@@ -199,13 +304,13 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Two Column Product Shots */}
-        <section className="px-6 py-24">
+        <section ref={productShotsAnim.ref} className={`px-6 py-24 transition-all duration-700 ${productShotsAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="container mx-auto max-w-[1440px]">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-card animate-scale-in">
+              <div className="w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-card">
                 <img src="/placeholder.svg" alt="Product shot 1" className="w-full h-full object-cover" />
               </div>
-              <div className="w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-card animate-scale-in" style={{ animationDelay: '0.1s' }}>
+              <div className="w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-card">
                 <img src="/placeholder.svg" alt="Product shot 2" className="w-full h-full object-cover" />
               </div>
             </div>
@@ -213,7 +318,7 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Design Process */}
-        <section className="min-h-screen flex items-center justify-center px-6 py-24 bg-card/30">
+        <section ref={processAnim.ref} className={`min-h-screen flex items-center justify-center px-6 py-24 bg-card/30 transition-all duration-700 ${processAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="container mx-auto max-w-[1440px]">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
               {/* Left Column - Title & Description */}
@@ -227,7 +332,7 @@ const MobileBankingProject = () => {
               {/* Right Column - Steps */}
               <div className="space-y-0">
                 {/* Step 1 */}
-                <div className="flex gap-10 pb-8 border-b border-border animate-fade-in">
+                <div className="flex gap-10 pb-8 border-b border-border">
                   <div className="text-2xl md:text-3xl font-bold font-mono text-primary flex-shrink-0">/01</div>
                   <div className="space-y-3">
                     <h3 className="text-3xl md:text-4xl font-bold">Defining the Goal</h3>
@@ -240,7 +345,7 @@ const MobileBankingProject = () => {
                 </div>
 
                 {/* Step 2 */}
-                <div className="flex gap-10 py-8 border-b border-border animate-fade-in" style={{ animationDelay: '0.1s' }}>
+                <div className="flex gap-10 py-8 border-b border-border">
                   <div className="text-2xl md:text-3xl font-bold font-mono text-primary flex-shrink-0">/02</div>
                   <div className="space-y-3">
                     <h3 className="text-3xl md:text-4xl font-bold">Discovery</h3>
@@ -253,7 +358,7 @@ const MobileBankingProject = () => {
                 </div>
 
                 {/* Step 3 */}
-                <div className="flex gap-10 py-8 border-b border-border animate-fade-in" style={{ animationDelay: '0.2s' }}>
+                <div className="flex gap-10 py-8 border-b border-border">
                   <div className="text-2xl md:text-3xl font-bold font-mono text-primary flex-shrink-0">/03</div>
                   <div className="space-y-3">
                     <h3 className="text-3xl md:text-4xl font-bold">Design</h3>
@@ -267,7 +372,7 @@ const MobileBankingProject = () => {
                 </div>
 
                 {/* Step 4 */}
-                <div className="flex gap-10 pt-8 animate-fade-in" style={{ animationDelay: '0.3s' }}>
+                <div className="flex gap-10 pt-8">
                   <div className="text-2xl md:text-3xl font-bold font-mono text-primary flex-shrink-0">/04</div>
                   <div className="space-y-3">
                     <h3 className="text-3xl md:text-4xl font-bold">Delivery</h3>
@@ -284,41 +389,17 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Define Section - 01 */}
-        <section className="relative px-6 py-24">
+        <section ref={defineContentAnim.ref} className={`relative px-6 py-24 transition-all duration-700 ${defineContentAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div ref={defineRef} className="absolute top-0 left-0 w-full h-1" />
-          
-          {/* Sticky Headers */}
-          <div className={`sticky top-0 z-40 transition-all duration-300 ${
-            isDefineSticky 
-              ? 'bg-background/95 backdrop-blur-lg border-b border-border shadow-sm -mx-6 px-6 py-4' 
-              : ''
-          }`}>
-            <div className={`container mx-auto max-w-[1440px] transition-all duration-300 ${
-              isDefineSticky ? '' : 'pointer-events-none'
-            }`}>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <h2 className={`font-bold transition-all duration-300 ${
-                  isDefineSticky 
-                    ? 'text-3xl md:text-4xl' 
-                    : 'text-6xl md:text-7xl lg:text-8xl'
-                }`}>
-                  Define
-                </h2>
-                <div className="text-right">
-                  <span className={`font-bold font-mono opacity-30 transition-all duration-300 ${
-                    isDefineSticky 
-                      ? 'text-2xl md:text-3xl' 
-                      : 'text-6xl md:text-7xl'
-                  }`}>
-                    /01
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
 
           <div className="container mx-auto max-w-[1440px]">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 pt-24">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-16">
+              <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold">Define</h2>
+              <div className="text-right">
+                <span className="text-6xl md:text-7xl font-bold font-mono opacity-30">/01</span>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
               {/* Left Column */}
               <div className="space-y-12">
                 <p className="text-xl text-muted-foreground">
@@ -355,7 +436,7 @@ const MobileBankingProject = () => {
             </div>
 
             {/* Bento Grid Layout - 7 Images */}
-            <div className="mt-32">
+            <div ref={defineGalleryRef} className="mt-32">
               <div className="grid grid-cols-4 md:grid-cols-6 gap-4 auto-rows-[200px]">
                 {/* Image 1 - Large */}
                 <button
@@ -426,10 +507,11 @@ const MobileBankingProject = () => {
 
         {/* Discovery Section - 02 */}
         <section className="relative px-6 py-24 bg-card/30">
+          <div ref={discoveryRef} className="absolute top-0 left-0 w-full h-1" />
           <div className="container mx-auto max-w-[1440px]">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 mb-32 items-center">
+            <div ref={discoveryInterviewsRef} className="grid grid-cols-1 lg:grid-cols-3 gap-16 mb-32 items-stretch">
               {/* Left Column - User Interviews (1 column) */}
-              <div className="space-y-12 flex flex-col justify-end h-full animate-fade-in">
+              <div className="flex flex-col justify-between h-full">
                 <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold">Discovery</h2>
                 <div>
                   <h3 className="text-2xl font-semibold mb-6">User Interviews</h3>
@@ -440,14 +522,14 @@ const MobileBankingProject = () => {
               </div>
 
               {/* Right Columns - Charts (2 columns) */}
-              <div className="lg:col-span-2 space-y-8 animate-fade-in" style={{ animationDelay: '0.1s' }}>
+              <div ref={discoveryStatsAnim.ref} className={`lg:col-span-2 space-y-8 transition-all duration-700 ${discoveryStatsAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                 <div className="text-right">
                   <span className="text-6xl md:text-7xl font-bold font-mono opacity-30">/02</span>
                 </div>
                 {/* Statistics */}
                 <div className="grid grid-cols-3 gap-8 pt-8">
                   {/* 36% Satisfaction */}
-                  <div className="text-center animate-scale-in" style={{ animationDelay: '0.2s' }}>
+                  <div className="text-center">
                     <svg className="w-40 h-40 mx-auto mb-6 transition-all duration-700 hover:scale-110" viewBox="0 0 160 160">
                       <defs>
                         <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -489,7 +571,7 @@ const MobileBankingProject = () => {
                   </div>
 
                   {/* 24% Confidence */}
-                  <div className="text-center animate-scale-in" style={{ animationDelay: '0.3s' }}>
+                  <div className="text-center">
                     <svg className="w-40 h-40 mx-auto mb-6 transition-all duration-700 hover:scale-110" viewBox="0 0 160 160">
                       <defs>
                         <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -531,7 +613,7 @@ const MobileBankingProject = () => {
                   </div>
 
                   {/* 91% Difficult Management */}
-                  <div className="text-center animate-scale-in" style={{ animationDelay: '0.4s' }}>
+                  <div className="text-center">
                     <svg className="w-40 h-40 mx-auto mb-6 transition-all duration-700 hover:scale-110" viewBox="0 0 160 160">
                       <defs>
                         <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -576,7 +658,7 @@ const MobileBankingProject = () => {
             </div>
 
             {/* User Pain Point Quotes */}
-            <div className="mt-24 animate-fade-in" style={{ animationDelay: '0.5s' }}>
+            <div ref={quotesAnim.ref} className={`mt-24 transition-all duration-700 ${quotesAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
               <div className="grid grid-cols-2 gap-4 max-w-6xl mx-auto">
                 <div className="bg-card rounded-xl p-8 shadow-sm">
                   <p className="text-lg text-muted-foreground leading-relaxed">"There is no save function when I am creating a listing."</p>
@@ -606,7 +688,8 @@ const MobileBankingProject = () => {
             </div>
 
             {/* User Persona Section - 2x2 Grid */}
-            <div className="mt-32 animate-fade-in" style={{ animationDelay: '0.6s' }}>
+            <div ref={discoveryPersonaRef} className="mt-32">
+              <div ref={personaAnim.ref} className={`transition-all duration-700 ${personaAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
               <h3 className="text-3xl font-semibold mb-12 max-w-6xl mx-auto">User Persona</h3>
               <div className="grid grid-cols-2 gap-6 max-w-6xl mx-auto">
                 {/* Top Left - Photo & Bio */}
@@ -716,12 +799,14 @@ const MobileBankingProject = () => {
                   </p>
                 </div>
               </div>
+              </div>
             </div>
           </div>
         </section>
 
         {/* Design Section - 03 */}
-        <section className="relative px-6 py-24">
+        <section ref={designContentAnim.ref} className={`relative px-6 py-24 transition-all duration-700 ${designContentAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div ref={designRef} className="absolute top-0 left-0 w-full h-1" />
           <div className="container mx-auto max-w-[1440px]">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
               {/* Left Column */}
@@ -768,7 +853,8 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Delivery Section - 04 */}
-        <section className="relative px-6 py-24 bg-card/30">
+        <section ref={deliveryContentAnim.ref} className={`relative px-6 py-24 bg-card/30 transition-all duration-700 ${deliveryContentAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div ref={deliveryRef} className="absolute top-0 left-0 w-full h-1" />
           <div className="container mx-auto max-w-[1440px]">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
               {/* Left Column */}
@@ -815,22 +901,22 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Full Width Image */}
-        <section className="min-h-screen flex items-center justify-center px-6 py-24 bg-card/30">
+        <section ref={fullWidthAnim.ref} className={`min-h-screen flex items-center justify-center px-6 py-24 bg-card/30 transition-all duration-700 ${fullWidthAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="container mx-auto max-w-[1600px]">
-            <div className="w-full aspect-[21/9] rounded-2xl overflow-hidden shadow-glow animate-fade-in">
+            <div className="w-full aspect-[21/9] rounded-2xl overflow-hidden shadow-glow">
               <img src="/placeholder.svg" alt="Full width showcase" className="w-full h-full object-cover" />
             </div>
           </div>
         </section>
 
         {/* Challenge Section */}
-        <section className="min-h-screen flex items-center justify-center px-6 py-24">
+        <section ref={challengeAnim.ref} className={`min-h-screen flex items-center justify-center px-6 py-24 transition-all duration-700 ${challengeAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="container mx-auto max-w-[1440px]">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              <div className="w-full aspect-square rounded-2xl overflow-hidden shadow-card animate-scale-in order-2 lg:order-1">
+              <div className="w-full aspect-square rounded-2xl overflow-hidden shadow-card order-2 lg:order-1">
                 <img src="/placeholder.svg" alt="Challenge" className="w-full h-full object-cover" />
               </div>
-              <div className="space-y-6 animate-fade-in order-1 lg:order-2">
+              <div className="space-y-6 order-1 lg:order-2">
                 <h2 className="text-4xl font-bold">The Challenge</h2>
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   Traditional banking apps are often cluttered and difficult to navigate. 
@@ -857,10 +943,10 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Solution Section */}
-        <section className="min-h-screen flex items-center justify-center px-6 py-24 bg-card/30">
+        <section ref={solutionAnim.ref} className={`min-h-screen flex items-center justify-center px-6 py-24 bg-card/30 transition-all duration-700 ${solutionAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="container mx-auto max-w-[1440px]">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              <div className="space-y-6 animate-fade-in">
+              <div className="space-y-6">
                 <h2 className="text-4xl font-bold">The Solution</h2>
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   We designed a clean, minimal interface that puts the most important features 
@@ -877,7 +963,7 @@ const MobileBankingProject = () => {
                   </div>
                 </div>
               </div>
-              <div className="w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-card animate-scale-in">
+              <div className="w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-card">
                 <img src="/placeholder.svg" alt="Solution" className="w-full h-full object-cover" />
               </div>
             </div>
@@ -885,11 +971,11 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Results Section */}
-        <section className="min-h-screen flex items-center justify-center px-6 py-24">
+        <section ref={resultsAnim.ref} className={`min-h-screen flex items-center justify-center px-6 py-24 transition-all duration-700 ${resultsAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="container mx-auto max-w-[1440px] text-center">
-            <h2 className="text-4xl font-bold mb-16 animate-fade-in">Impact & Results</h2>
+            <h2 className="text-4xl font-bold mb-16">Impact & Results</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-              <div className="space-y-4 animate-scale-in">
+              <div className="space-y-4">
                 <div className="text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent">
                   45%
                 </div>
@@ -897,9 +983,7 @@ const MobileBankingProject = () => {
                   Increase in user engagement
                 </p>
               </div>
-              <div className="space-y-4 animate-scale-in" style={{
-              animationDelay: '0.1s'
-            }}>
+              <div className="space-y-4">
                 <div className="text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent">
                   60%
                 </div>
@@ -907,9 +991,7 @@ const MobileBankingProject = () => {
                   Reduction in transaction time
                 </p>
               </div>
-              <div className="space-y-4 animate-scale-in" style={{
-              animationDelay: '0.2s'
-            }}>
+              <div className="space-y-4">
                 <div className="text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent">
                   4.8/5
                 </div>
@@ -922,18 +1004,16 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Final Showcase */}
-        <section className="min-h-screen flex items-center justify-center px-6 py-24 bg-card/30">
+        <section ref={showcaseAnim.ref} className={`min-h-screen flex items-center justify-center px-6 py-24 bg-card/30 transition-all duration-700 ${showcaseAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="container mx-auto max-w-[1600px] space-y-12">
-            <div className="w-full aspect-video rounded-2xl overflow-hidden shadow-glow animate-fade-in">
+            <div className="w-full aspect-video rounded-2xl overflow-hidden shadow-glow">
               <img src="/placeholder.svg" alt="Final showcase 1" className="w-full h-full object-cover" />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="w-full aspect-square rounded-2xl overflow-hidden shadow-card animate-scale-in">
+              <div className="w-full aspect-square rounded-2xl overflow-hidden shadow-card">
                 <img src="/placeholder.svg" alt="Final showcase 2" className="w-full h-full object-cover" />
               </div>
-              <div className="w-full aspect-square rounded-2xl overflow-hidden shadow-card animate-scale-in" style={{
-              animationDelay: '0.1s'
-            }}>
+              <div className="w-full aspect-square rounded-2xl overflow-hidden shadow-card">
                 <img src="/placeholder.svg" alt="Final showcase 3" className="w-full h-full object-cover" />
               </div>
             </div>
@@ -941,7 +1021,7 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Navigation to Next Project */}
-        <section className="px-6 py-24 border-t border-border">
+        <section ref={navigationAnim.ref} className={`px-6 py-24 border-t border-border transition-all duration-700 ${navigationAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="container mx-auto max-w-[1440px]">
             <div className="flex items-center justify-between">
               <div className="space-y-2">
