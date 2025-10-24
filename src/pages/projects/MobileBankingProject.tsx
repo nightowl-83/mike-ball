@@ -427,9 +427,9 @@ const MobileBankingProject = () => {
         {/* Discovery Section - 02 */}
         <section className="relative px-6 py-24 bg-card/30">
           <div className="container mx-auto max-w-[1440px]">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-20">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-32">
               {/* Left Column */}
-              <div className="space-y-12">
+              <div className="space-y-20">
                 <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold">Discovery</h2>
                 <div>
                   <h3 className="text-2xl font-semibold mb-6">User Interviews</h3>
@@ -461,40 +461,15 @@ const MobileBankingProject = () => {
                       />
                       {/* Foreground arc - 36% */}
                       <path
-                        d="M 20 100 A 80 80 0 0 1 92 28"
+                        d="M 20 100 Q 58 54, 100 34"
                         fill="none"
-                        stroke="hsl(45 93% 47%)"
+                        stroke="hsl(220 70% 50%)"
                         strokeWidth="16"
                         strokeLinecap="round"
                       />
                     </svg>
-                    <div className="text-5xl font-bold mb-3">36%</div>
+                    <div className="text-5xl font-normal mb-3">36%</div>
                     <p className="text-base text-muted-foreground">Overall user satisfaction</p>
-                  </div>
-
-                  {/* 91% Difficult Management */}
-                  <div className="text-center">
-                    <svg className="w-full h-28 mb-6" viewBox="0 0 200 120">
-                      {/* Background arc */}
-                      <path
-                        d="M 20 100 A 80 80 0 0 1 180 100"
-                        fill="none"
-                        stroke="hsl(var(--muted))"
-                        strokeWidth="16"
-                        opacity="0.2"
-                        strokeLinecap="round"
-                      />
-                      {/* Foreground arc - 91% */}
-                      <path
-                        d="M 20 100 A 80 80 0 0 1 174 55"
-                        fill="none"
-                        stroke="hsl(0 84% 60%)"
-                        strokeWidth="16"
-                        strokeLinecap="round"
-                      />
-                    </svg>
-                    <div className="text-5xl font-bold mb-3">91%</div>
-                    <p className="text-base text-muted-foreground">Find listing management difficult</p>
                   </div>
 
                   {/* 24% Confidence */}
@@ -511,15 +486,40 @@ const MobileBankingProject = () => {
                       />
                       {/* Foreground arc - 24% */}
                       <path
-                        d="M 20 100 A 80 80 0 0 1 68 46"
+                        d="M 20 100 Q 38 82, 62 62"
                         fill="none"
-                        stroke="hsl(25 95% 53%)"
+                        stroke="hsl(280 60% 55%)"
                         strokeWidth="16"
                         strokeLinecap="round"
                       />
                     </svg>
-                    <div className="text-5xl font-bold mb-3">24%</div>
+                    <div className="text-5xl font-normal mb-3">24%</div>
                     <p className="text-base text-muted-foreground">Confidence in listing metrics</p>
+                  </div>
+
+                  {/* 91% Difficult Management */}
+                  <div className="text-center">
+                    <svg className="w-full h-28 mb-6" viewBox="0 0 200 120">
+                      {/* Background arc */}
+                      <path
+                        d="M 20 100 A 80 80 0 0 1 180 100"
+                        fill="none"
+                        stroke="hsl(var(--muted))"
+                        strokeWidth="16"
+                        opacity="0.2"
+                        strokeLinecap="round"
+                      />
+                      {/* Foreground arc - 91% */}
+                      <path
+                        d="M 20 100 Q 100 24, 174 55"
+                        fill="none"
+                        stroke="hsl(0 70% 55%)"
+                        strokeWidth="16"
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                    <div className="text-5xl font-normal mb-3">91%</div>
+                    <p className="text-base text-muted-foreground">Difficulty managing listings</p>
                   </div>
                 </div>
               </div>
@@ -527,7 +527,7 @@ const MobileBankingProject = () => {
 
             {/* User Pain Point Quotes - Full Width Below */}
             <div className="mt-24">
-              <div className="grid grid-cols-2 gap-8 max-w-6xl mx-auto">
+              <div className="grid grid-cols-2 gap-4 max-w-6xl mx-auto">
                 <div className="bg-card rounded-xl p-8 shadow-sm">
                   <p className="text-lg text-muted-foreground leading-relaxed">"There is no save function when I am creating a listing."</p>
                 </div>
