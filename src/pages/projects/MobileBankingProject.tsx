@@ -401,10 +401,10 @@ const MobileBankingProject = () => {
                   <img src={galleryImages[4].src} alt={galleryImages[4].alt} className="w-full h-full object-cover" />
                 </button>
                 
-                {/* Image 6 - Full Width */}
+                {/* Image 6 - Full Height */}
                 <button
                   onClick={() => openGallery(5)}
-                  className="col-span-4 md:col-span-6 row-span-1 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer"
+                  className="col-span-2 row-span-2 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer"
                   style={{ animationDelay: '0.25s' }}
                 >
                   <img src={galleryImages[5].src} alt={galleryImages[5].alt} className="w-full h-full object-cover" />
@@ -413,7 +413,7 @@ const MobileBankingProject = () => {
                 {/* Image 7 - Large */}
                 <button
                   onClick={() => openGallery(6)}
-                  className="col-span-4 md:col-span-4 row-span-2 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer"
+                  className="col-span-4 row-span-2 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer"
                   style={{ animationDelay: '0.3s' }}
                 >
                   <img src={galleryImages[6].src} alt={galleryImages[6].alt} className="w-full h-full object-cover" />
