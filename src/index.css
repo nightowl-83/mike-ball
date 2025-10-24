@@ -79,6 +79,7 @@ All colors MUST be HSL.
   
   .viewport-image-section::after {
     content: '';
-    @apply absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-card/30 to-transparent z-10 pointer-events-none;
+    @apply absolute bottom-0 left-0 right-0 h-64 z-10 pointer-events-none;
+    background: linear-gradient(to top, hsl(var(--card) / 0.3) 0%, transparent 100%);
   }
 }
