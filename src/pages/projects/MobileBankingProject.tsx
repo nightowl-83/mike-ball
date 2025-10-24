@@ -147,6 +147,20 @@ const MobileBankingProject = () => {
           </div>
         </section>
 
+        {/* Two Column Product Shots */}
+        <section className="px-6 py-24">
+          <div className="container mx-auto max-w-6xl">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-card animate-scale-in">
+                <img src="/placeholder.svg" alt="Product shot 1" className="w-full h-full object-cover" />
+              </div>
+              <div className="w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-card animate-scale-in" style={{ animationDelay: '0.1s' }}>
+                <img src="/placeholder.svg" alt="Product shot 2" className="w-full h-full object-cover" />
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Full Width Image */}
         <section className="min-h-screen flex items-center justify-center px-6 py-24 bg-card/30">
           <div className="container mx-auto max-w-7xl">
