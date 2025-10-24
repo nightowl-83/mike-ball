@@ -427,7 +427,7 @@ const MobileBankingProject = () => {
         {/* Discovery Section - 02 */}
         <section className="relative px-6 py-24 bg-card/30">
           <div className="container mx-auto max-w-[1440px]">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-20">
               {/* Left Column */}
               <div className="space-y-12">
                 <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold">Discovery</h2>
@@ -446,34 +446,26 @@ const MobileBankingProject = () => {
                 </div>
                 
                 {/* Statistics */}
-                <div className="grid grid-cols-3 gap-12 mb-16">
+                <div className="grid grid-cols-3 gap-8">
                   {/* 36% Satisfaction */}
                   <div className="text-center">
-                    <svg className="w-40 h-40 mx-auto mb-6" viewBox="0 0 160 160">
-                      <circle
-                        cx="80"
-                        cy="80"
-                        r="60"
+                    <svg className="w-full h-28 mb-6" viewBox="0 0 200 120">
+                      {/* Background arc */}
+                      <path
+                        d="M 20 100 A 80 80 0 0 1 180 100"
                         fill="none"
                         stroke="hsl(var(--muted))"
-                        strokeWidth="12"
-                        opacity="0.15"
-                        strokeDasharray="188.4"
-                        strokeDashoffset="94.2"
+                        strokeWidth="16"
+                        opacity="0.2"
                         strokeLinecap="round"
-                        transform="rotate(180 80 80)"
                       />
-                      <circle
-                        cx="80"
-                        cy="80"
-                        r="60"
+                      {/* Foreground arc - 36% */}
+                      <path
+                        d="M 20 100 A 80 80 0 0 1 92 28"
                         fill="none"
                         stroke="hsl(45 93% 47%)"
-                        strokeWidth="12"
-                        strokeDasharray="188.4"
-                        strokeDashoffset="120.6"
+                        strokeWidth="16"
                         strokeLinecap="round"
-                        transform="rotate(180 80 80)"
                       />
                     </svg>
                     <div className="text-5xl font-bold mb-3">36%</div>
@@ -482,31 +474,23 @@ const MobileBankingProject = () => {
 
                   {/* 91% Difficult Management */}
                   <div className="text-center">
-                    <svg className="w-40 h-40 mx-auto mb-6" viewBox="0 0 160 160">
-                      <circle
-                        cx="80"
-                        cy="80"
-                        r="60"
+                    <svg className="w-full h-28 mb-6" viewBox="0 0 200 120">
+                      {/* Background arc */}
+                      <path
+                        d="M 20 100 A 80 80 0 0 1 180 100"
                         fill="none"
                         stroke="hsl(var(--muted))"
-                        strokeWidth="12"
-                        opacity="0.15"
-                        strokeDasharray="188.4"
-                        strokeDashoffset="94.2"
+                        strokeWidth="16"
+                        opacity="0.2"
                         strokeLinecap="round"
-                        transform="rotate(180 80 80)"
                       />
-                      <circle
-                        cx="80"
-                        cy="80"
-                        r="60"
+                      {/* Foreground arc - 91% */}
+                      <path
+                        d="M 20 100 A 80 80 0 0 1 174 55"
                         fill="none"
                         stroke="hsl(0 84% 60%)"
-                        strokeWidth="12"
-                        strokeDasharray="188.4"
-                        strokeDashoffset="17"
+                        strokeWidth="16"
                         strokeLinecap="round"
-                        transform="rotate(180 80 80)"
                       />
                     </svg>
                     <div className="text-5xl font-bold mb-3">91%</div>
@@ -515,66 +499,58 @@ const MobileBankingProject = () => {
 
                   {/* 24% Confidence */}
                   <div className="text-center">
-                    <svg className="w-40 h-40 mx-auto mb-6" viewBox="0 0 160 160">
-                      <circle
-                        cx="80"
-                        cy="80"
-                        r="60"
+                    <svg className="w-full h-28 mb-6" viewBox="0 0 200 120">
+                      {/* Background arc */}
+                      <path
+                        d="M 20 100 A 80 80 0 0 1 180 100"
                         fill="none"
                         stroke="hsl(var(--muted))"
-                        strokeWidth="12"
-                        opacity="0.15"
-                        strokeDasharray="188.4"
-                        strokeDashoffset="94.2"
+                        strokeWidth="16"
+                        opacity="0.2"
                         strokeLinecap="round"
-                        transform="rotate(180 80 80)"
                       />
-                      <circle
-                        cx="80"
-                        cy="80"
-                        r="60"
+                      {/* Foreground arc - 24% */}
+                      <path
+                        d="M 20 100 A 80 80 0 0 1 68 46"
                         fill="none"
                         stroke="hsl(25 95% 53%)"
-                        strokeWidth="12"
-                        strokeDasharray="188.4"
-                        strokeDashoffset="143.2"
+                        strokeWidth="16"
                         strokeLinecap="round"
-                        transform="rotate(180 80 80)"
                       />
                     </svg>
                     <div className="text-5xl font-bold mb-3">24%</div>
                     <p className="text-base text-muted-foreground">Confidence in listing metrics</p>
                   </div>
                 </div>
+              </div>
+            </div>
 
-                {/* User Pain Point Quotes */}
-                <div className="max-w-4xl mx-auto">
-                  <div className="grid grid-cols-2 gap-6">
-                    <div className="bg-card rounded-xl p-6 shadow-sm">
-                      <p className="text-base text-muted-foreground leading-relaxed">"There is no save function when I am creating a listing."</p>
-                    </div>
-                    <div className="bg-card rounded-xl p-6 shadow-sm">
-                      <p className="text-base text-muted-foreground leading-relaxed">"I tried to use from my phone and it was impossible. There should be an app."</p>
-                    </div>
-                    <div className="bg-card rounded-xl p-6 shadow-sm">
-                      <p className="text-base text-muted-foreground leading-relaxed">"I thought I wasn't receiving any leads only to find out I just didn't know where they were going."</p>
-                    </div>
-                    <div className="bg-card rounded-xl p-6 shadow-sm">
-                      <p className="text-base text-muted-foreground leading-relaxed">"Listing performance reports are not useful. What do these numbers mean?"</p>
-                    </div>
-                    <div className="bg-card rounded-xl p-6 shadow-sm">
-                      <p className="text-base text-muted-foreground leading-relaxed">"Navigation is hard to 'navigate'"</p>
-                    </div>
-                    <div className="bg-card rounded-xl p-6 shadow-sm">
-                      <p className="text-base text-muted-foreground leading-relaxed">"The menus are super confusing. I have to click around a bunch just to edit a listing or check on a lead. Nothing is where I expect it to be."</p>
-                    </div>
-                    <div className="bg-card rounded-xl p-6 shadow-sm">
-                      <p className="text-base text-muted-foreground leading-relaxed">"Uploading a new property is such a slow process. It feels like there are millions of steps, and there's no way to speed it up if I have a lot of listings."</p>
-                    </div>
-                    <div className="bg-card rounded-xl p-6 shadow-sm">
-                      <p className="text-base text-muted-foreground leading-relaxed">"The site feels really outdated and cluttered. It's hard to find what I'm looking for without getting frustrated."</p>
-                    </div>
-                  </div>
+            {/* User Pain Point Quotes - Full Width Below */}
+            <div className="mt-24">
+              <div className="grid grid-cols-2 gap-8 max-w-6xl mx-auto">
+                <div className="bg-card rounded-xl p-8 shadow-sm">
+                  <p className="text-lg text-muted-foreground leading-relaxed">"There is no save function when I am creating a listing."</p>
+                </div>
+                <div className="bg-card rounded-xl p-8 shadow-sm">
+                  <p className="text-lg text-muted-foreground leading-relaxed">"I tried to use from my phone and it was impossible. There should be an app."</p>
+                </div>
+                <div className="bg-card rounded-xl p-8 shadow-sm">
+                  <p className="text-lg text-muted-foreground leading-relaxed">"I thought I wasn't receiving any leads only to find out I just didn't know where they were going."</p>
+                </div>
+                <div className="bg-card rounded-xl p-8 shadow-sm">
+                  <p className="text-lg text-muted-foreground leading-relaxed">"Listing performance reports are not useful. What do these numbers mean?"</p>
+                </div>
+                <div className="bg-card rounded-xl p-8 shadow-sm">
+                  <p className="text-lg text-muted-foreground leading-relaxed">"Navigation is hard to 'navigate'"</p>
+                </div>
+                <div className="bg-card rounded-xl p-8 shadow-sm">
+                  <p className="text-lg text-muted-foreground leading-relaxed">"The menus are super confusing. I have to click around a bunch just to edit a listing or check on a lead. Nothing is where I expect it to be."</p>
+                </div>
+                <div className="bg-card rounded-xl p-8 shadow-sm">
+                  <p className="text-lg text-muted-foreground leading-relaxed">"Uploading a new property is such a slow process. It feels like there are millions of steps, and there's no way to speed it up if I have a lot of listings."</p>
+                </div>
+                <div className="bg-card rounded-xl p-8 shadow-sm">
+                  <p className="text-lg text-muted-foreground leading-relaxed">"The site feels really outdated and cluttered. It's hard to find what I'm looking for without getting frustrated."</p>
                 </div>
               </div>
             </div>
