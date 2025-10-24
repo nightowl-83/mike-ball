@@ -174,49 +174,57 @@ const MobileBankingProject = () => {
               </div>
 
               {/* Right Column - Steps */}
-              <div className="space-y-12">
+              <div className="space-y-0">
                 {/* Step 1 */}
-                <div className="space-y-4 animate-fade-in">
-                  <div className="text-sm font-mono text-primary">/01</div>
-                  <h3 className="text-3xl md:text-4xl font-bold">Defining the Goal</h3>
-                  <div className="space-y-2 text-lg text-muted-foreground">
-                    <p>Ease of use</p>
-                    <p>Competitor analysis</p>
-                    <p>Understanding product wants</p>
+                <div className="flex gap-6 pb-8 border-b border-border animate-fade-in">
+                  <div className="text-4xl md:text-5xl font-bold font-mono text-primary flex-shrink-0">/01</div>
+                  <div className="space-y-3">
+                    <h3 className="text-3xl md:text-4xl font-bold">Defining the Goal</h3>
+                    <div className="space-y-1 text-lg text-muted-foreground">
+                      <p>Ease of use</p>
+                      <p>Competitor analysis</p>
+                      <p>Understanding product wants</p>
+                    </div>
                   </div>
                 </div>
 
                 {/* Step 2 */}
-                <div className="space-y-4 animate-fade-in" style={{ animationDelay: '0.1s' }}>
-                  <div className="text-sm font-mono text-primary">/02</div>
-                  <h3 className="text-3xl md:text-4xl font-bold">Discovery</h3>
-                  <div className="space-y-2 text-lg text-muted-foreground">
-                    <p>User Surveys</p>
-                    <p>Audit of current systems</p>
-                    <p>Competitor analysis</p>
+                <div className="flex gap-6 py-8 border-b border-border animate-fade-in" style={{ animationDelay: '0.1s' }}>
+                  <div className="text-4xl md:text-5xl font-bold font-mono text-primary flex-shrink-0">/02</div>
+                  <div className="space-y-3">
+                    <h3 className="text-3xl md:text-4xl font-bold">Discovery</h3>
+                    <div className="space-y-1 text-lg text-muted-foreground">
+                      <p>User Surveys</p>
+                      <p>Audit of current systems</p>
+                      <p>Competitor analysis</p>
+                    </div>
                   </div>
                 </div>
 
                 {/* Step 3 */}
-                <div className="space-y-4 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-                  <div className="text-sm font-mono text-primary">/03</div>
-                  <h3 className="text-3xl md:text-4xl font-bold">Design</h3>
-                  <div className="space-y-2 text-lg text-muted-foreground">
-                    <p>Ease of use</p>
-                    <p>Accessible</p>
-                    <p>Desirable</p>
-                    <p>Intuitive</p>
+                <div className="flex gap-6 py-8 border-b border-border animate-fade-in" style={{ animationDelay: '0.2s' }}>
+                  <div className="text-4xl md:text-5xl font-bold font-mono text-primary flex-shrink-0">/03</div>
+                  <div className="space-y-3">
+                    <h3 className="text-3xl md:text-4xl font-bold">Design</h3>
+                    <div className="space-y-1 text-lg text-muted-foreground">
+                      <p>Ease of use</p>
+                      <p>Accessible</p>
+                      <p>Desirable</p>
+                      <p>Intuitive</p>
+                    </div>
                   </div>
                 </div>
 
                 {/* Step 4 */}
-                <div className="space-y-4 animate-fade-in" style={{ animationDelay: '0.3s' }}>
-                  <div className="text-sm font-mono text-primary">/04</div>
-                  <h3 className="text-3xl md:text-4xl font-bold">Delivery</h3>
-                  <div className="space-y-2 text-lg text-muted-foreground">
-                    <p>Design System</p>
-                    <p>Testing</p>
-                    <p>UI patterns</p>
+                <div className="flex gap-6 pt-8 animate-fade-in" style={{ animationDelay: '0.3s' }}>
+                  <div className="text-4xl md:text-5xl font-bold font-mono text-primary flex-shrink-0">/04</div>
+                  <div className="space-y-3">
+                    <h3 className="text-3xl md:text-4xl font-bold">Delivery</h3>
+                    <div className="space-y-1 text-lg text-muted-foreground">
+                      <p>Design System</p>
+                      <p>Testing</p>
+                      <p>UI patterns</p>
+                    </div>
                   </div>
                 </div>
               </div>
