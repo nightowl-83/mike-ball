@@ -1,10 +1,27 @@
 import { ArrowLeft, Layout, Columns2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const MobileBankingProject = () => {
   const [isColumnLayout, setIsColumnLayout] = useState(false);
+  const [isDefineSticky, setIsDefineSticky] = useState(false);
+  const defineRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsDefineSticky(!entry.isIntersecting && entry.boundingClientRect.top < 0);
+      },
+      { threshold: [0], rootMargin: "-1px 0px 0px 0px" }
+    );
+
+    if (defineRef.current) {
+      observer.observe(defineRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   return <div className="min-h-screen bg-background">
       {/* Hero Section - Toggle between layouts */}
@@ -233,11 +250,43 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Define Section - 01 */}
-        <section className="px-6 py-24">
+        <section className="relative px-6 py-24">
+          <div ref={defineRef} className="absolute top-0 left-0 w-full h-1" />
+          
+          {/* Sticky Headers */}
+          <div className={`sticky top-0 z-40 transition-all duration-300 ${
+            isDefineSticky 
+              ? 'bg-background/95 backdrop-blur-lg border-b border-border shadow-sm -mx-6 px-6 py-4' 
+              : ''
+          }`}>
+            <div className={`container mx-auto max-w-[1440px] transition-all duration-300 ${
+              isDefineSticky ? '' : 'pointer-events-none'
+            }`}>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <h2 className={`font-bold transition-all duration-300 ${
+                  isDefineSticky 
+                    ? 'text-3xl md:text-4xl' 
+                    : 'text-6xl md:text-7xl lg:text-8xl'
+                }`}>
+                  Define
+                </h2>
+                <div className="text-right">
+                  <span className={`font-bold font-mono opacity-30 transition-all duration-300 ${
+                    isDefineSticky 
+                      ? 'text-2xl md:text-3xl' 
+                      : 'text-6xl md:text-7xl'
+                  }`}>
+                    /01
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div className="container mx-auto max-w-[1440px]">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
               {/* Left Column */}
-              <div className="space-y-6">
+              <div className="space-y-12">
                 <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold">Define</h2>
                 <p className="text-xl text-muted-foreground">
                   Audit of the Existing System revealed these were the most used, and valuable features to users.
@@ -245,7 +294,7 @@ const MobileBankingProject = () => {
               </div>
 
               {/* Right Column */}
-              <div className="space-y-8">
+              <div className="space-y-12">
                 <div className="text-right">
                   <span className="text-6xl md:text-7xl font-bold font-mono opacity-30">/01</span>
                 </div>
