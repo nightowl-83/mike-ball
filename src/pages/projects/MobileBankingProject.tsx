@@ -324,6 +324,61 @@ const MobileBankingProject = () => {
                 </div>
               </div>
             </div>
+
+            {/* Bento Grid Layout */}
+            <div className="container mx-auto max-w-[1440px] mt-24">
+              <div className="grid grid-cols-4 md:grid-cols-8 gap-4 auto-rows-[200px]">
+                {/* Image 1 - Large */}
+                <div className="col-span-4 row-span-2 rounded-2xl overflow-hidden shadow-card animate-fade-in">
+                  <img src="/placeholder.svg" alt="Bento image 1" className="w-full h-full object-cover" />
+                </div>
+                
+                {/* Image 2 - Medium */}
+                <div className="col-span-2 md:col-span-2 row-span-1 rounded-2xl overflow-hidden shadow-card animate-fade-in" style={{ animationDelay: '0.05s' }}>
+                  <img src="/placeholder.svg" alt="Bento image 2" className="w-full h-full object-cover" />
+                </div>
+                
+                {/* Image 3 - Medium */}
+                <div className="col-span-2 md:col-span-2 row-span-1 rounded-2xl overflow-hidden shadow-card animate-fade-in" style={{ animationDelay: '0.1s' }}>
+                  <img src="/placeholder.svg" alt="Bento image 3" className="w-full h-full object-cover" />
+                </div>
+                
+                {/* Image 4 - Tall */}
+                <div className="col-span-2 md:col-span-2 row-span-2 rounded-2xl overflow-hidden shadow-card animate-fade-in" style={{ animationDelay: '0.15s' }}>
+                  <img src="/placeholder.svg" alt="Bento image 4" className="w-full h-full object-cover" />
+                </div>
+                
+                {/* Image 5 - Tall */}
+                <div className="col-span-2 md:col-span-2 row-span-2 rounded-2xl overflow-hidden shadow-card animate-fade-in" style={{ animationDelay: '0.2s' }}>
+                  <img src="/placeholder.svg" alt="Bento image 5" className="w-full h-full object-cover" />
+                </div>
+                
+                {/* Image 6 - Medium */}
+                <div className="col-span-2 row-span-1 rounded-2xl overflow-hidden shadow-card animate-fade-in" style={{ animationDelay: '0.25s' }}>
+                  <img src="/placeholder.svg" alt="Bento image 6" className="w-full h-full object-cover" />
+                </div>
+                
+                {/* Image 7 - Medium */}
+                <div className="col-span-2 row-span-1 rounded-2xl overflow-hidden shadow-card animate-fade-in" style={{ animationDelay: '0.3s' }}>
+                  <img src="/placeholder.svg" alt="Bento image 7" className="w-full h-full object-cover" />
+                </div>
+                
+                {/* Image 8 - Wide */}
+                <div className="col-span-4 md:col-span-3 row-span-1 rounded-2xl overflow-hidden shadow-card animate-fade-in" style={{ animationDelay: '0.35s' }}>
+                  <img src="/placeholder.svg" alt="Bento image 8" className="w-full h-full object-cover" />
+                </div>
+                
+                {/* Image 9 - Small */}
+                <div className="col-span-2 md:col-span-1 row-span-1 rounded-2xl overflow-hidden shadow-card animate-fade-in" style={{ animationDelay: '0.4s' }}>
+                  <img src="/placeholder.svg" alt="Bento image 9" className="w-full h-full object-cover" />
+                </div>
+                
+                {/* Image 10 - Large Square */}
+                <div className="col-span-4 row-span-2 rounded-2xl overflow-hidden shadow-card animate-fade-in" style={{ animationDelay: '0.45s' }}>
+                  <img src="/placeholder.svg" alt="Bento image 10" className="w-full h-full object-cover" />
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
