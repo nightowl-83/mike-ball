@@ -452,12 +452,13 @@ const MobileBankingProject = () => {
                     <svg className="w-40 h-40 mx-auto mb-6" viewBox="0 0 160 160">
                       <defs>
                         <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
-                          <stop offset="0%" stopColor="hsl(220 70% 50%)" />
-                          <stop offset="100%" stopColor="hsl(220 70% 60%)" />
+                          <stop offset="0%" stopColor="hsl(220 80% 55%)" />
+                          <stop offset="100%" stopColor="hsl(220 80% 70%)" />
                         </linearGradient>
                         <filter id="glow1">
-                          <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                          <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
                           <feMerge>
+                            <feMergeNode in="coloredBlur"/>
                             <feMergeNode in="coloredBlur"/>
                             <feMergeNode in="SourceGraphic"/>
                           </feMerge>
@@ -491,12 +492,13 @@ const MobileBankingProject = () => {
                     <svg className="w-40 h-40 mx-auto mb-6" viewBox="0 0 160 160">
                       <defs>
                         <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
-                          <stop offset="0%" stopColor="hsl(280 60% 55%)" />
-                          <stop offset="100%" stopColor="hsl(280 60% 65%)" />
+                          <stop offset="0%" stopColor="hsl(280 70% 60%)" />
+                          <stop offset="100%" stopColor="hsl(280 70% 75%)" />
                         </linearGradient>
                         <filter id="glow2">
-                          <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                          <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
                           <feMerge>
+                            <feMergeNode in="coloredBlur"/>
                             <feMergeNode in="coloredBlur"/>
                             <feMergeNode in="SourceGraphic"/>
                           </feMerge>
@@ -530,12 +532,13 @@ const MobileBankingProject = () => {
                     <svg className="w-40 h-40 mx-auto mb-6" viewBox="0 0 160 160">
                       <defs>
                         <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="0%">
-                          <stop offset="0%" stopColor="hsl(0 70% 55%)" />
-                          <stop offset="100%" stopColor="hsl(0 70% 65%)" />
+                          <stop offset="0%" stopColor="hsl(0 80% 60%)" />
+                          <stop offset="100%" stopColor="hsl(0 80% 75%)" />
                         </linearGradient>
                         <filter id="glow3">
-                          <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                          <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
                           <feMerge>
+                            <feMergeNode in="coloredBlur"/>
                             <feMergeNode in="coloredBlur"/>
                             <feMergeNode in="SourceGraphic"/>
                           </feMerge>
@@ -657,10 +660,11 @@ const MobileBankingProject = () => {
                       </div>
                       <div className="h-3 bg-muted rounded-full overflow-hidden relative">
                         <div 
-                          className="h-full rounded-full absolute inset-0 bg-gradient-to-r from-primary to-primary/80"
+                          className="h-full rounded-full absolute inset-0"
                           style={{ 
                             width: '65%',
-                            boxShadow: '0 0 12px hsla(var(--primary) / 0.5)'
+                            background: 'linear-gradient(to right, hsl(var(--primary)), hsl(var(--primary) / 0.8))',
+                            boxShadow: '0 0 20px hsla(var(--primary) / 0.7), inset 0 0 10px hsla(var(--primary) / 0.3)'
                           }}
                         ></div>
                       </div>
@@ -672,10 +676,11 @@ const MobileBankingProject = () => {
                       </div>
                       <div className="h-3 bg-muted rounded-full overflow-hidden relative">
                         <div 
-                          className="h-full rounded-full absolute inset-0 bg-gradient-to-r from-primary to-primary/80"
+                          className="h-full rounded-full absolute inset-0"
                           style={{ 
                             width: '45%',
-                            boxShadow: '0 0 12px hsla(var(--primary) / 0.5)'
+                            background: 'linear-gradient(to right, hsl(var(--primary)), hsl(var(--primary) / 0.8))',
+                            boxShadow: '0 0 20px hsla(var(--primary) / 0.7), inset 0 0 10px hsla(var(--primary) / 0.3)'
                           }}
                         ></div>
                       </div>
@@ -687,10 +692,11 @@ const MobileBankingProject = () => {
                       </div>
                       <div className="h-3 bg-muted rounded-full overflow-hidden relative">
                         <div 
-                          className="h-full rounded-full absolute inset-0 bg-gradient-to-r from-primary to-primary/80"
+                          className="h-full rounded-full absolute inset-0"
                           style={{ 
                             width: '75%',
-                            boxShadow: '0 0 12px hsla(var(--primary) / 0.5)'
+                            background: 'linear-gradient(to right, hsl(var(--primary)), hsl(var(--primary) / 0.8))',
+                            boxShadow: '0 0 20px hsla(var(--primary) / 0.7), inset 0 0 10px hsla(var(--primary) / 0.3)'
                           }}
                         ></div>
                       </div>
