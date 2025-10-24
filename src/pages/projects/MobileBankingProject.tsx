@@ -446,120 +446,134 @@ const MobileBankingProject = () => {
                 </div>
                 
                 {/* Statistics */}
-                <div className="grid grid-cols-3 gap-8 mb-12">
+                <div className="grid grid-cols-3 gap-12 mb-16">
                   {/* 36% Satisfaction */}
                   <div className="text-center">
-                    <svg className="w-24 h-24 mx-auto mb-4" viewBox="0 0 100 100">
+                    <svg className="w-40 h-40 mx-auto mb-6" viewBox="0 0 160 160">
                       <circle
-                        cx="50"
-                        cy="50"
-                        r="40"
+                        cx="80"
+                        cy="80"
+                        r="60"
                         fill="none"
                         stroke="hsl(var(--muted))"
-                        strokeWidth="8"
-                        opacity="0.2"
+                        strokeWidth="12"
+                        opacity="0.15"
+                        strokeDasharray="188.4"
+                        strokeDashoffset="94.2"
+                        strokeLinecap="round"
+                        transform="rotate(180 80 80)"
                       />
                       <circle
-                        cx="50"
-                        cy="50"
-                        r="40"
+                        cx="80"
+                        cy="80"
+                        r="60"
                         fill="none"
                         stroke="hsl(45 93% 47%)"
-                        strokeWidth="8"
-                        strokeDasharray="251.2"
-                        strokeDashoffset="160.8"
+                        strokeWidth="12"
+                        strokeDasharray="188.4"
+                        strokeDashoffset="120.6"
                         strokeLinecap="round"
-                        transform="rotate(-90 50 50)"
+                        transform="rotate(180 80 80)"
                       />
                     </svg>
-                    <div className="text-4xl font-bold mb-2">36%</div>
-                    <p className="text-sm text-muted-foreground">Overall user satisfaction</p>
+                    <div className="text-5xl font-bold mb-3">36%</div>
+                    <p className="text-base text-muted-foreground">Overall user satisfaction</p>
                   </div>
 
                   {/* 91% Difficult Management */}
                   <div className="text-center">
-                    <svg className="w-24 h-24 mx-auto mb-4" viewBox="0 0 100 100">
+                    <svg className="w-40 h-40 mx-auto mb-6" viewBox="0 0 160 160">
                       <circle
-                        cx="50"
-                        cy="50"
-                        r="40"
+                        cx="80"
+                        cy="80"
+                        r="60"
                         fill="none"
                         stroke="hsl(var(--muted))"
-                        strokeWidth="8"
-                        opacity="0.2"
+                        strokeWidth="12"
+                        opacity="0.15"
+                        strokeDasharray="188.4"
+                        strokeDashoffset="94.2"
+                        strokeLinecap="round"
+                        transform="rotate(180 80 80)"
                       />
                       <circle
-                        cx="50"
-                        cy="50"
-                        r="40"
+                        cx="80"
+                        cy="80"
+                        r="60"
                         fill="none"
-                        stroke="hsl(142 76% 36%)"
-                        strokeWidth="8"
-                        strokeDasharray="251.2"
-                        strokeDashoffset="22.6"
+                        stroke="hsl(0 84% 60%)"
+                        strokeWidth="12"
+                        strokeDasharray="188.4"
+                        strokeDashoffset="17"
                         strokeLinecap="round"
-                        transform="rotate(-90 50 50)"
+                        transform="rotate(180 80 80)"
                       />
                     </svg>
-                    <div className="text-4xl font-bold mb-2">91%</div>
-                    <p className="text-sm text-muted-foreground">Find listing management difficult</p>
+                    <div className="text-5xl font-bold mb-3">91%</div>
+                    <p className="text-base text-muted-foreground">Find listing management difficult</p>
                   </div>
 
                   {/* 24% Confidence */}
                   <div className="text-center">
-                    <svg className="w-24 h-24 mx-auto mb-4" viewBox="0 0 100 100">
+                    <svg className="w-40 h-40 mx-auto mb-6" viewBox="0 0 160 160">
                       <circle
-                        cx="50"
-                        cy="50"
-                        r="40"
+                        cx="80"
+                        cy="80"
+                        r="60"
                         fill="none"
                         stroke="hsl(var(--muted))"
-                        strokeWidth="8"
-                        opacity="0.2"
+                        strokeWidth="12"
+                        opacity="0.15"
+                        strokeDasharray="188.4"
+                        strokeDashoffset="94.2"
+                        strokeLinecap="round"
+                        transform="rotate(180 80 80)"
                       />
                       <circle
-                        cx="50"
-                        cy="50"
-                        r="40"
+                        cx="80"
+                        cy="80"
+                        r="60"
                         fill="none"
                         stroke="hsl(25 95% 53%)"
-                        strokeWidth="8"
-                        strokeDasharray="251.2"
-                        strokeDashoffset="190.9"
+                        strokeWidth="12"
+                        strokeDasharray="188.4"
+                        strokeDashoffset="143.2"
                         strokeLinecap="round"
-                        transform="rotate(-90 50 50)"
+                        transform="rotate(180 80 80)"
                       />
                     </svg>
-                    <div className="text-4xl font-bold mb-2">24%</div>
-                    <p className="text-sm text-muted-foreground">Confidence in listing metrics</p>
+                    <div className="text-5xl font-bold mb-3">24%</div>
+                    <p className="text-base text-muted-foreground">Confidence in listing metrics</p>
                   </div>
                 </div>
 
                 {/* User Pain Point Quotes */}
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-card rounded-lg p-4 shadow-sm">
-                    <p className="text-sm text-muted-foreground">"There is no save function when I am creating a listing."</p>
-                  </div>
-                  <div className="bg-card rounded-lg p-4 shadow-sm">
-                    <p className="text-sm text-muted-foreground">"I tried to use from my phone and it was impossible. There should be an app."</p>
-                  </div>
-                  <div className="bg-card rounded-lg p-4 shadow-sm">
-                    <p className="text-sm text-muted-foreground">"I thought I wasn't receiving any leads only to find out I just didn't know where they were going."</p>
-                  </div>
-                  <div className="bg-card rounded-lg p-4 shadow-sm">
-                    <p className="text-sm text-muted-foreground">"Listing performance reports are not useful. What do these numbers mean?"</p>
-                  </div>
-                  <div className="bg-card rounded-lg p-4 shadow-sm">
-                    <p className="text-sm text-muted-foreground">"Navigation is hard to 'navigate'"</p>
-                  </div>
-                  <div className="bg-card rounded-lg p-4 shadow-sm">
-                    <p className="text-sm text-muted-foreground">"The menus are super confusing. I have to click around a bunch just to edit a listing or check on a lead. Nothing is where I expect it to be."</p>
-                  </div>
-                  <div className="bg-card rounded-lg p-4 shadow-sm">
-                    <p className="text-sm text-muted-foreground">"Uploading a new property is such a slow process. It feels like there are millions of steps, and there's no way to speed it up if I have a lot of listings."</p>
-                  </div>
-                  <div className="bg-card rounded-lg p-4 shadow-sm">
-                    <p className="text-sm text-muted-foreground">"The site feels really outdated and cluttered. It's hard to find what I'm looking for without getting frustrated."</p>
+                <div className="max-w-4xl mx-auto">
+                  <div className="grid grid-cols-2 gap-6">
+                    <div className="bg-card rounded-xl p-6 shadow-sm">
+                      <p className="text-base text-muted-foreground leading-relaxed">"There is no save function when I am creating a listing."</p>
+                    </div>
+                    <div className="bg-card rounded-xl p-6 shadow-sm">
+                      <p className="text-base text-muted-foreground leading-relaxed">"I tried to use from my phone and it was impossible. There should be an app."</p>
+                    </div>
+                    <div className="bg-card rounded-xl p-6 shadow-sm">
+                      <p className="text-base text-muted-foreground leading-relaxed">"I thought I wasn't receiving any leads only to find out I just didn't know where they were going."</p>
+                    </div>
+                    <div className="bg-card rounded-xl p-6 shadow-sm">
+                      <p className="text-base text-muted-foreground leading-relaxed">"Listing performance reports are not useful. What do these numbers mean?"</p>
+                    </div>
+                    <div className="bg-card rounded-xl p-6 shadow-sm">
+                      <p className="text-base text-muted-foreground leading-relaxed">"Navigation is hard to 'navigate'"</p>
+                    </div>
+                    <div className="bg-card rounded-xl p-6 shadow-sm">
+                      <p className="text-base text-muted-foreground leading-relaxed">"The menus are super confusing. I have to click around a bunch just to edit a listing or check on a lead. Nothing is where I expect it to be."</p>
+                    </div>
+                    <div className="bg-card rounded-xl p-6 shadow-sm">
+                      <p className="text-base text-muted-foreground leading-relaxed">"Uploading a new property is such a slow process. It feels like there are millions of steps, and there's no way to speed it up if I have a lot of listings."</p>
+                    </div>
+                    <div className="bg-card rounded-xl p-6 shadow-sm">
+                      <p className="text-base text-muted-foreground leading-relaxed">"The site feels really outdated and cluttered. It's hard to find what I'm looking for without getting frustrated."</p>
+                    </div>
                   </div>
                 </div>
               </div>
