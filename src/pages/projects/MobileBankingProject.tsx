@@ -429,7 +429,7 @@ const MobileBankingProject = () => {
           <div className="container mx-auto max-w-[1440px]">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 mb-32 items-center">
               {/* Left Column - User Interviews (1 column) */}
-              <div className="space-y-12 flex flex-col justify-center h-full">
+              <div className="space-y-12 flex flex-col justify-end h-full animate-fade-in">
                 <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold">Discovery</h2>
                 <div>
                   <h3 className="text-2xl font-semibold mb-6">User Interviews</h3>
@@ -440,20 +440,19 @@ const MobileBankingProject = () => {
               </div>
 
               {/* Right Columns - Charts (2 columns) */}
-              <div className="lg:col-span-2 space-y-8">
+              <div className="lg:col-span-2 space-y-8 animate-fade-in" style={{ animationDelay: '0.1s' }}>
                 <div className="text-right">
                   <span className="text-6xl md:text-7xl font-bold font-mono opacity-30">/02</span>
                 </div>
-                
                 {/* Statistics */}
                 <div className="grid grid-cols-3 gap-8 pt-8">
                   {/* 36% Satisfaction */}
-                  <div className="text-center">
-                    <svg className="w-40 h-40 mx-auto mb-6" viewBox="0 0 160 160">
+                  <div className="text-center animate-scale-in" style={{ animationDelay: '0.2s' }}>
+                    <svg className="w-40 h-40 mx-auto mb-6 transition-all duration-700 hover:scale-110" viewBox="0 0 160 160">
                       <defs>
                         <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
-                          <stop offset="0%" stopColor="hsl(220 90% 60%)" />
-                          <stop offset="100%" stopColor="hsl(220 90% 75%)" />
+                          <stop offset="0%" stopColor="hsl(220 100% 65%)" />
+                          <stop offset="100%" stopColor="hsl(220 100% 80%)" />
                         </linearGradient>
                         <filter id="glow1">
                           <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
@@ -482,6 +481,7 @@ const MobileBankingProject = () => {
                         strokeDasharray="188.5"
                         strokeDashoffset="120.6"
                         filter="url(#glow1)"
+                        className="transition-all duration-1000"
                       />
                     </svg>
                     <div className="text-5xl font-normal mb-3">36%</div>
@@ -489,12 +489,12 @@ const MobileBankingProject = () => {
                   </div>
 
                   {/* 24% Confidence */}
-                  <div className="text-center">
-                    <svg className="w-40 h-40 mx-auto mb-6" viewBox="0 0 160 160">
+                  <div className="text-center animate-scale-in" style={{ animationDelay: '0.3s' }}>
+                    <svg className="w-40 h-40 mx-auto mb-6 transition-all duration-700 hover:scale-110" viewBox="0 0 160 160">
                       <defs>
                         <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
-                          <stop offset="0%" stopColor="hsl(280 85% 65%)" />
-                          <stop offset="100%" stopColor="hsl(280 85% 80%)" />
+                          <stop offset="0%" stopColor="hsl(280 100% 70%)" />
+                          <stop offset="100%" stopColor="hsl(280 100% 85%)" />
                         </linearGradient>
                         <filter id="glow2">
                           <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
@@ -523,6 +523,7 @@ const MobileBankingProject = () => {
                         strokeDasharray="188.5"
                         strokeDashoffset="143.3"
                         filter="url(#glow2)"
+                        className="transition-all duration-1000"
                       />
                     </svg>
                     <div className="text-5xl font-normal mb-3">24%</div>
@@ -530,12 +531,12 @@ const MobileBankingProject = () => {
                   </div>
 
                   {/* 91% Difficult Management */}
-                  <div className="text-center">
-                    <svg className="w-40 h-40 mx-auto mb-6" viewBox="0 0 160 160">
+                  <div className="text-center animate-scale-in" style={{ animationDelay: '0.4s' }}>
+                    <svg className="w-40 h-40 mx-auto mb-6 transition-all duration-700 hover:scale-110" viewBox="0 0 160 160">
                       <defs>
                         <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="0%">
-                          <stop offset="0%" stopColor="hsl(0 85% 65%)" />
-                          <stop offset="100%" stopColor="hsl(0 85% 80%)" />
+                          <stop offset="0%" stopColor="hsl(0 100% 70%)" />
+                          <stop offset="100%" stopColor="hsl(0 100% 85%)" />
                         </linearGradient>
                         <filter id="glow3">
                           <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
@@ -564,6 +565,7 @@ const MobileBankingProject = () => {
                         strokeDasharray="188.5"
                         strokeDashoffset="17"
                         filter="url(#glow3)"
+                        className="transition-all duration-1000"
                       />
                     </svg>
                     <div className="text-5xl font-normal mb-3">91%</div>
@@ -574,7 +576,7 @@ const MobileBankingProject = () => {
             </div>
 
             {/* User Pain Point Quotes */}
-            <div className="mt-24">
+            <div className="mt-24 animate-fade-in" style={{ animationDelay: '0.5s' }}>
               <div className="grid grid-cols-2 gap-4 max-w-6xl mx-auto">
                 <div className="bg-card rounded-xl p-8 shadow-sm">
                   <p className="text-lg text-muted-foreground leading-relaxed">"There is no save function when I am creating a listing."</p>
@@ -604,7 +606,7 @@ const MobileBankingProject = () => {
             </div>
 
             {/* User Persona Section - 2x2 Grid */}
-            <div className="mt-32">
+            <div className="mt-32 animate-fade-in" style={{ animationDelay: '0.6s' }}>
               <h3 className="text-3xl font-semibold mb-12 max-w-6xl mx-auto">User Persona</h3>
               <div className="grid grid-cols-2 gap-6 max-w-6xl mx-auto">
                 {/* Top Left - Photo & Bio */}
@@ -663,7 +665,7 @@ const MobileBankingProject = () => {
                       </div>
                       <div className="h-3 bg-muted rounded-full overflow-hidden relative">
                         <div 
-                          className="h-full rounded-full absolute inset-0"
+                          className="h-full rounded-full absolute inset-0 transition-all duration-1000 ease-out"
                           style={{ 
                             width: '65%',
                             background: 'linear-gradient(to right, hsl(var(--primary)), hsl(var(--primary) / 0.8))',
@@ -679,7 +681,7 @@ const MobileBankingProject = () => {
                       </div>
                       <div className="h-3 bg-muted rounded-full overflow-hidden relative">
                         <div 
-                          className="h-full rounded-full absolute inset-0"
+                          className="h-full rounded-full absolute inset-0 transition-all duration-1000 ease-out"
                           style={{ 
                             width: '45%',
                             background: 'linear-gradient(to right, hsl(var(--primary)), hsl(var(--primary) / 0.8))',
@@ -695,7 +697,7 @@ const MobileBankingProject = () => {
                       </div>
                       <div className="h-3 bg-muted rounded-full overflow-hidden relative">
                         <div 
-                          className="h-full rounded-full absolute inset-0"
+                          className="h-full rounded-full absolute inset-0 transition-all duration-1000 ease-out"
                           style={{ 
                             width: '75%',
                             background: 'linear-gradient(to right, hsl(var(--primary)), hsl(var(--primary) / 0.8))',
