@@ -1,12 +1,21 @@
-import { ArrowLeft, Layout, Columns2 } from "lucide-react";
+import { ArrowLeft, Layout, Columns2, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useState, useEffect, useRef } from "react";
 
 const MobileBankingProject = () => {
   const [isColumnLayout, setIsColumnLayout] = useState(false);
   const [isDefineSticky, setIsDefineSticky] = useState(false);
+  const [galleryOpen, setGalleryOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const defineRef = useRef<HTMLDivElement>(null);
+
+  // Array of 7 gallery images
+  const galleryImages = Array.from({ length: 7 }, (_, i) => ({
+    src: "/placeholder.svg",
+    alt: `Gallery image ${i + 1}`
+  }));
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -22,6 +31,31 @@ const MobileBankingProject = () => {
 
     return () => observer.disconnect();
   }, []);
+
+  const openGallery = (index: number) => {
+    setCurrentImageIndex(index);
+    setGalleryOpen(true);
+  };
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % galleryImages.length);
+  };
+
+  const previousImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!galleryOpen) return;
+      if (e.key === "ArrowRight") nextImage();
+      if (e.key === "ArrowLeft") previousImage();
+      if (e.key === "Escape") setGalleryOpen(false);
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [galleryOpen]);
 
   return <div className="min-h-screen bg-background">
       {/* Hero Section - Toggle between layouts */}
@@ -325,58 +359,70 @@ const MobileBankingProject = () => {
               </div>
             </div>
 
-            {/* Bento Grid Layout */}
+            {/* Bento Grid Layout - 7 Images */}
             <div className="container mx-auto max-w-[1440px] mt-24">
-              <div className="grid grid-cols-4 md:grid-cols-8 gap-4 auto-rows-[200px]">
+              <div className="grid grid-cols-4 md:grid-cols-6 gap-4 auto-rows-[200px]">
                 {/* Image 1 - Large */}
-                <div className="col-span-4 row-span-2 rounded-2xl overflow-hidden shadow-card animate-fade-in">
-                  <img src="/placeholder.svg" alt="Bento image 1" className="w-full h-full object-cover" />
-                </div>
+                <button
+                  onClick={() => openGallery(0)}
+                  className="col-span-4 md:col-span-3 row-span-2 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer"
+                >
+                  <img src={galleryImages[0].src} alt={galleryImages[0].alt} className="w-full h-full object-cover" />
+                </button>
                 
-                {/* Image 2 - Medium */}
-                <div className="col-span-2 md:col-span-2 row-span-1 rounded-2xl overflow-hidden shadow-card animate-fade-in" style={{ animationDelay: '0.05s' }}>
-                  <img src="/placeholder.svg" alt="Bento image 2" className="w-full h-full object-cover" />
-                </div>
+                {/* Image 2 - Tall */}
+                <button
+                  onClick={() => openGallery(1)}
+                  className="col-span-4 md:col-span-3 row-span-2 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer"
+                  style={{ animationDelay: '0.05s' }}
+                >
+                  <img src={galleryImages[1].src} alt={galleryImages[1].alt} className="w-full h-full object-cover" />
+                </button>
                 
                 {/* Image 3 - Medium */}
-                <div className="col-span-2 md:col-span-2 row-span-1 rounded-2xl overflow-hidden shadow-card animate-fade-in" style={{ animationDelay: '0.1s' }}>
-                  <img src="/placeholder.svg" alt="Bento image 3" className="w-full h-full object-cover" />
-                </div>
+                <button
+                  onClick={() => openGallery(2)}
+                  className="col-span-2 row-span-1 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer"
+                  style={{ animationDelay: '0.1s' }}
+                >
+                  <img src={galleryImages[2].src} alt={galleryImages[2].alt} className="w-full h-full object-cover" />
+                </button>
                 
-                {/* Image 4 - Tall */}
-                <div className="col-span-2 md:col-span-2 row-span-2 rounded-2xl overflow-hidden shadow-card animate-fade-in" style={{ animationDelay: '0.15s' }}>
-                  <img src="/placeholder.svg" alt="Bento image 4" className="w-full h-full object-cover" />
-                </div>
+                {/* Image 4 - Medium */}
+                <button
+                  onClick={() => openGallery(3)}
+                  className="col-span-2 row-span-1 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer"
+                  style={{ animationDelay: '0.15s' }}
+                >
+                  <img src={galleryImages[3].src} alt={galleryImages[3].alt} className="w-full h-full object-cover" />
+                </button>
                 
-                {/* Image 5 - Tall */}
-                <div className="col-span-2 md:col-span-2 row-span-2 rounded-2xl overflow-hidden shadow-card animate-fade-in" style={{ animationDelay: '0.2s' }}>
-                  <img src="/placeholder.svg" alt="Bento image 5" className="w-full h-full object-cover" />
-                </div>
+                {/* Image 5 - Wide */}
+                <button
+                  onClick={() => openGallery(4)}
+                  className="col-span-4 md:col-span-2 row-span-1 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer"
+                  style={{ animationDelay: '0.2s' }}
+                >
+                  <img src={galleryImages[4].src} alt={galleryImages[4].alt} className="w-full h-full object-cover" />
+                </button>
                 
                 {/* Image 6 - Medium */}
-                <div className="col-span-2 row-span-1 rounded-2xl overflow-hidden shadow-card animate-fade-in" style={{ animationDelay: '0.25s' }}>
-                  <img src="/placeholder.svg" alt="Bento image 6" className="w-full h-full object-cover" />
-                </div>
+                <button
+                  onClick={() => openGallery(5)}
+                  className="col-span-2 md:col-span-2 row-span-1 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer"
+                  style={{ animationDelay: '0.25s' }}
+                >
+                  <img src={galleryImages[5].src} alt={galleryImages[5].alt} className="w-full h-full object-cover" />
+                </button>
                 
-                {/* Image 7 - Medium */}
-                <div className="col-span-2 row-span-1 rounded-2xl overflow-hidden shadow-card animate-fade-in" style={{ animationDelay: '0.3s' }}>
-                  <img src="/placeholder.svg" alt="Bento image 7" className="w-full h-full object-cover" />
-                </div>
-                
-                {/* Image 8 - Wide */}
-                <div className="col-span-4 md:col-span-3 row-span-1 rounded-2xl overflow-hidden shadow-card animate-fade-in" style={{ animationDelay: '0.35s' }}>
-                  <img src="/placeholder.svg" alt="Bento image 8" className="w-full h-full object-cover" />
-                </div>
-                
-                {/* Image 9 - Small */}
-                <div className="col-span-2 md:col-span-1 row-span-1 rounded-2xl overflow-hidden shadow-card animate-fade-in" style={{ animationDelay: '0.4s' }}>
-                  <img src="/placeholder.svg" alt="Bento image 9" className="w-full h-full object-cover" />
-                </div>
-                
-                {/* Image 10 - Large Square */}
-                <div className="col-span-4 row-span-2 rounded-2xl overflow-hidden shadow-card animate-fade-in" style={{ animationDelay: '0.45s' }}>
-                  <img src="/placeholder.svg" alt="Bento image 10" className="w-full h-full object-cover" />
-                </div>
+                {/* Image 7 - Large */}
+                <button
+                  onClick={() => openGallery(6)}
+                  className="col-span-4 md:col-span-4 row-span-2 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer"
+                  style={{ animationDelay: '0.3s' }}
+                >
+                  <img src={galleryImages[6].src} alt={galleryImages[6].alt} className="w-full h-full object-cover" />
+                </button>
               </div>
             </div>
           </div>
@@ -526,6 +572,72 @@ const MobileBankingProject = () => {
           </div>
         </section>
       </div>
+
+      {/* Fullscreen Gallery Modal */}
+      <Dialog open={galleryOpen} onOpenChange={setGalleryOpen}>
+        <DialogContent className="max-w-[100vw] max-h-[100vh] w-screen h-screen p-0 bg-background/98 backdrop-blur-xl border-none">
+          <div className="relative w-full h-full flex items-center justify-center">
+            {/* Close Button */}
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setGalleryOpen(false)}
+              className="absolute top-6 right-6 z-50 bg-background/20 backdrop-blur-md hover:bg-background/40 text-foreground"
+            >
+              <X className="h-6 w-6" />
+            </Button>
+
+            {/* Image Counter */}
+            <div className="absolute top-6 left-6 z-50 bg-background/20 backdrop-blur-md px-4 py-2 rounded-full text-foreground font-medium">
+              {currentImageIndex + 1} / {galleryImages.length}
+            </div>
+
+            {/* Previous Button */}
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={previousImage}
+              className="absolute left-6 z-50 bg-background/20 backdrop-blur-md hover:bg-background/40 text-foreground h-12 w-12"
+            >
+              <ChevronLeft className="h-8 w-8" />
+            </Button>
+
+            {/* Current Image */}
+            <div className="w-full h-full flex items-center justify-center p-20">
+              <img
+                src={galleryImages[currentImageIndex].src}
+                alt={galleryImages[currentImageIndex].alt}
+                className="max-w-full max-h-full object-contain rounded-lg animate-fade-in"
+              />
+            </div>
+
+            {/* Next Button */}
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={nextImage}
+              className="absolute right-6 z-50 bg-background/20 backdrop-blur-md hover:bg-background/40 text-foreground h-12 w-12"
+            >
+              <ChevronRight className="h-8 w-8" />
+            </Button>
+
+            {/* Thumbnail Strip */}
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-50 flex gap-2 bg-background/20 backdrop-blur-md p-3 rounded-full">
+              {galleryImages.map((img, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentImageIndex(idx)}
+                  className={`w-3 h-3 rounded-full transition-all ${
+                    idx === currentImageIndex 
+                      ? 'bg-primary w-8' 
+                      : 'bg-muted-foreground/40 hover:bg-muted-foreground/60'
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>;
 };
 export default MobileBankingProject;
