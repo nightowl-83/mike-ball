@@ -4,14 +4,17 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useState, useEffect, useRef } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import userFlowImage from "@/assets/user-flow.jpg";
-
 const MobileBankingProject = () => {
   const [isColumnLayout, setIsColumnLayout] = useState(false);
-  const [stickyHeader, setStickyHeader] = useState({ visible: false, section: '', subsection: '', number: '' });
+  const [stickyHeader, setStickyHeader] = useState({
+    visible: false,
+    section: '',
+    subsection: '',
+    number: ''
+  });
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  
+
   // Refs for sections and subsections
   const defineRef = useRef<HTMLDivElement>(null);
   const defineGalleryRef = useRef<HTMLDivElement>(null);
@@ -22,97 +25,130 @@ const MobileBankingProject = () => {
   const deliveryRef = useRef<HTMLDivElement>(null);
 
   // Array of 7 gallery images
-  const galleryImages = Array.from({ length: 7 }, (_, i) => ({
+  const galleryImages = Array.from({
+    length: 7
+  }, (_, i) => ({
     src: "/placeholder.svg",
     alt: `Gallery image ${i + 1}`
   }));
 
   // Sticky header tracking
   useEffect(() => {
-    const observerOptions = { 
-      threshold: 0.5, 
-      rootMargin: '-100px 0px -50% 0px' 
+    const observerOptions = {
+      threshold: 0.5,
+      rootMargin: '-100px 0px -50% 0px'
     };
-
-    const createObserver = (ref: React.RefObject<HTMLDivElement>, data: { section: string; subsection: string; number: string }) => {
+    const createObserver = (ref: React.RefObject<HTMLDivElement>, data: {
+      section: string;
+      subsection: string;
+      number: string;
+    }) => {
       return new IntersectionObserver(([entry]) => {
         if (entry.isIntersecting) {
-          setStickyHeader({ visible: true, ...data });
+          setStickyHeader({
+            visible: true,
+            ...data
+          });
         }
       }, observerOptions);
     };
-
     const observers: IntersectionObserver[] = [];
 
     // Define section observers
     if (defineRef.current) {
-      observers.push(createObserver(defineRef, { section: 'Define', subsection: '', number: '/01' }));
+      observers.push(createObserver(defineRef, {
+        section: 'Define',
+        subsection: '',
+        number: '/01'
+      }));
       observers[observers.length - 1].observe(defineRef.current);
     }
-
     if (defineGalleryRef.current) {
-      observers.push(createObserver(defineGalleryRef, { section: 'Define', subsection: 'Gallery', number: '/01' }));
+      observers.push(createObserver(defineGalleryRef, {
+        section: 'Define',
+        subsection: 'Gallery',
+        number: '/01'
+      }));
       observers[observers.length - 1].observe(defineGalleryRef.current);
     }
 
     // Discovery section observers
     if (discoveryRef.current) {
-      observers.push(createObserver(discoveryRef, { section: 'Discovery', subsection: '', number: '/02' }));
+      observers.push(createObserver(discoveryRef, {
+        section: 'Discovery',
+        subsection: '',
+        number: '/02'
+      }));
       observers[observers.length - 1].observe(discoveryRef.current);
     }
-
     if (discoveryInterviewsRef.current) {
-      observers.push(createObserver(discoveryInterviewsRef, { section: 'Discovery', subsection: 'User Interviews', number: '/02' }));
+      observers.push(createObserver(discoveryInterviewsRef, {
+        section: 'Discovery',
+        subsection: 'User Interviews',
+        number: '/02'
+      }));
       observers[observers.length - 1].observe(discoveryInterviewsRef.current);
     }
-
     if (discoveryPersonaRef.current) {
-      observers.push(createObserver(discoveryPersonaRef, { section: 'Discovery', subsection: 'User Persona', number: '/02' }));
+      observers.push(createObserver(discoveryPersonaRef, {
+        section: 'Discovery',
+        subsection: 'User Persona',
+        number: '/02'
+      }));
       observers[observers.length - 1].observe(discoveryPersonaRef.current);
     }
 
     // Design section observer
     if (designRef.current) {
-      observers.push(createObserver(designRef, { section: 'Design', subsection: '', number: '/03' }));
+      observers.push(createObserver(designRef, {
+        section: 'Design',
+        subsection: '',
+        number: '/03'
+      }));
       observers[observers.length - 1].observe(designRef.current);
     }
 
     // Delivery section observer
     if (deliveryRef.current) {
-      observers.push(createObserver(deliveryRef, { section: 'Delivery', subsection: '', number: '/04' }));
+      observers.push(createObserver(deliveryRef, {
+        section: 'Delivery',
+        subsection: '',
+        number: '/04'
+      }));
       observers[observers.length - 1].observe(deliveryRef.current);
     }
 
     // Hide sticky header when at top
     const topObserver = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
-        setStickyHeader({ visible: false, section: '', subsection: '', number: '' });
+        setStickyHeader({
+          visible: false,
+          section: '',
+          subsection: '',
+          number: ''
+        });
       }
-    }, { threshold: 0.1 });
-
+    }, {
+      threshold: 0.1
+    });
     if (defineRef.current) {
       topObserver.observe(defineRef.current);
     }
-
     return () => {
       observers.forEach(obs => obs.disconnect());
       topObserver.disconnect();
     };
   }, []);
-
   const openGallery = (index: number) => {
     setCurrentImageIndex(index);
     setGalleryOpen(true);
   };
-
   const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % galleryImages.length);
+    setCurrentImageIndex(prev => (prev + 1) % galleryImages.length);
   };
-
   const previousImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+    setCurrentImageIndex(prev => (prev - 1 + galleryImages.length) % galleryImages.length);
   };
-
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!galleryOpen) return;
@@ -120,7 +156,6 @@ const MobileBankingProject = () => {
       if (e.key === "ArrowLeft") previousImage();
       if (e.key === "Escape") setGalleryOpen(false);
     };
-
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [galleryOpen]);
@@ -143,14 +178,9 @@ const MobileBankingProject = () => {
   const resultsAnim = useScrollAnimation();
   const showcaseAnim = useScrollAnimation();
   const navigationAnim = useScrollAnimation();
-
   return <div className="min-h-screen bg-background">
       {/* Unified Sticky Header */}
-      <div className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        stickyHeader.visible 
-          ? 'bg-background/95 backdrop-blur-lg border-b border-border shadow-sm' 
-          : 'opacity-0 pointer-events-none'
-      }`}>
+      <div className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${stickyHeader.visible ? 'bg-background/95 backdrop-blur-lg border-b border-border shadow-sm' : 'opacity-0 pointer-events-none'}`}>
         <div className="container mx-auto max-w-[1440px] px-6 py-4">
           <div className="flex items-center justify-between">
             <h2 className="text-3xl md:text-4xl font-bold">
@@ -174,20 +204,14 @@ const MobileBankingProject = () => {
               Back to Home
             </Button>
           </Link>
-          <Button 
-            variant="ghost" 
-            size="sm" 
-            onClick={() => setIsColumnLayout(!isColumnLayout)}
-            className="gap-2 bg-background/20 backdrop-blur-md hover:bg-background/40 text-foreground"
-          >
+          <Button variant="ghost" size="sm" onClick={() => setIsColumnLayout(!isColumnLayout)} className="gap-2 bg-background/20 backdrop-blur-md hover:bg-background/40 text-foreground">
             {isColumnLayout ? <Layout className="h-4 w-4" /> : <Columns2 className="h-4 w-4" />}
             {isColumnLayout ? "Full Width" : "2 Column"}
           </Button>
         </div>
 
-        {!isColumnLayout ? (
-          /* Full-Width Layout */
-          <>
+        {!isColumnLayout ? (/* Full-Width Layout */
+      <>
             <img src="/placeholder.svg" alt="Mobile Banking App hero" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent from-0% via-transparent via-50% to-background to-100%" />
             <div className="absolute bottom-0 left-0 right-0 px-6 pb-16">
@@ -216,10 +240,8 @@ const MobileBankingProject = () => {
                 </div>
               </div>
             </div>
-          </>
-        ) : (
-          /* 2-Column Layout */
-          <div className="flex h-full">
+          </>) : (/* 2-Column Layout */
+      <div className="flex h-full">
             {/* Left: Content */}
             <div className="w-1/2 flex items-center px-12 lg:px-20 bg-background">
               <div className="space-y-6 animate-fade-in max-w-2xl">
@@ -256,8 +278,7 @@ const MobileBankingProject = () => {
             <div className="w-1/2 h-full relative">
               <img src="/placeholder.svg" alt="Mobile Banking App hero" className="w-full h-full object-cover" />
             </div>
-          </div>
-        )}
+          </div>)}
       </section>
 
       {/* Main Content Container */}
@@ -440,64 +461,49 @@ const MobileBankingProject = () => {
             <div ref={defineGalleryRef} className="mt-32">
               <div className="grid grid-cols-4 md:grid-cols-6 gap-4 auto-rows-[200px]">
                 {/* Image 1 - Large */}
-                <button
-                  onClick={() => openGallery(0)}
-                  className="col-span-4 md:col-span-3 row-span-2 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer"
-                >
+                <button onClick={() => openGallery(0)} className="col-span-4 md:col-span-3 row-span-2 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer">
                   <img src={galleryImages[0].src} alt={galleryImages[0].alt} className="w-full h-full object-cover" />
                 </button>
                 
                 {/* Image 2 - Tall */}
-                <button
-                  onClick={() => openGallery(1)}
-                  className="col-span-4 md:col-span-3 row-span-2 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer"
-                  style={{ animationDelay: '0.05s' }}
-                >
+                <button onClick={() => openGallery(1)} className="col-span-4 md:col-span-3 row-span-2 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{
+                animationDelay: '0.05s'
+              }}>
                   <img src={galleryImages[1].src} alt={galleryImages[1].alt} className="w-full h-full object-cover" />
                 </button>
                 
                 {/* Image 3 - Medium */}
-                <button
-                  onClick={() => openGallery(2)}
-                  className="col-span-2 row-span-1 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer"
-                  style={{ animationDelay: '0.1s' }}
-                >
+                <button onClick={() => openGallery(2)} className="col-span-2 row-span-1 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{
+                animationDelay: '0.1s'
+              }}>
                   <img src={galleryImages[2].src} alt={galleryImages[2].alt} className="w-full h-full object-cover" />
                 </button>
                 
                 {/* Image 4 - Medium */}
-                <button
-                  onClick={() => openGallery(3)}
-                  className="col-span-2 row-span-1 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer"
-                  style={{ animationDelay: '0.15s' }}
-                >
+                <button onClick={() => openGallery(3)} className="col-span-2 row-span-1 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{
+                animationDelay: '0.15s'
+              }}>
                   <img src={galleryImages[3].src} alt={galleryImages[3].alt} className="w-full h-full object-cover" />
                 </button>
                 
                 {/* Image 5 - Wide */}
-                <button
-                  onClick={() => openGallery(4)}
-                  className="col-span-4 md:col-span-2 row-span-1 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer"
-                  style={{ animationDelay: '0.2s' }}
-                >
+                <button onClick={() => openGallery(4)} className="col-span-4 md:col-span-2 row-span-1 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{
+                animationDelay: '0.2s'
+              }}>
                   <img src={galleryImages[4].src} alt={galleryImages[4].alt} className="w-full h-full object-cover" />
                 </button>
                 
                 {/* Image 6 - Full Height */}
-                <button
-                  onClick={() => openGallery(5)}
-                  className="col-span-2 row-span-2 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer"
-                  style={{ animationDelay: '0.25s' }}
-                >
+                <button onClick={() => openGallery(5)} className="col-span-2 row-span-2 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{
+                animationDelay: '0.25s'
+              }}>
                   <img src={galleryImages[5].src} alt={galleryImages[5].alt} className="w-full h-full object-cover" />
                 </button>
                 
                 {/* Image 7 - Large */}
-                <button
-                  onClick={() => openGallery(6)}
-                  className="col-span-4 row-span-2 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer"
-                  style={{ animationDelay: '0.3s' }}
-                >
+                <button onClick={() => openGallery(6)} className="col-span-4 row-span-2 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{
+                animationDelay: '0.3s'
+              }}>
                   <img src={galleryImages[6].src} alt={galleryImages[6].alt} className="w-full h-full object-cover" />
                 </button>
               </div>
@@ -538,34 +544,17 @@ const MobileBankingProject = () => {
                           <stop offset="100%" stopColor="hsl(220 100% 80%)" />
                         </linearGradient>
                         <filter id="glow1">
-                          <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                          <feGaussianBlur stdDeviation="2" result="coloredBlur" />
                           <feMerge>
-                            <feMergeNode in="coloredBlur"/>
-                            <feMergeNode in="SourceGraphic"/>
+                            <feMergeNode in="coloredBlur" />
+                            <feMergeNode in="SourceGraphic" />
                           </feMerge>
                         </filter>
                       </defs>
                       {/* Background arc */}
-                      <path
-                        d="M 20 140 A 60 60 0 0 1 140 140"
-                        fill="none"
-                        stroke="hsl(var(--muted))"
-                        strokeWidth="6"
-                        opacity="0.2"
-                        strokeLinecap="round"
-                      />
+                      <path d="M 20 140 A 60 60 0 0 1 140 140" fill="none" stroke="hsl(var(--muted))" strokeWidth="6" opacity="0.2" strokeLinecap="round" />
                       {/* Foreground arc - 36% using dasharray */}
-                      <path
-                        d="M 20 140 A 60 60 0 0 1 140 140"
-                        fill="none"
-                        stroke="url(#gradient1)"
-                        strokeWidth="6"
-                        strokeLinecap="round"
-                        strokeDasharray="188.5"
-                        strokeDashoffset="120.6"
-                        filter="url(#glow1)"
-                        className="transition-all duration-1000"
-                      />
+                      <path d="M 20 140 A 60 60 0 0 1 140 140" fill="none" stroke="url(#gradient1)" strokeWidth="6" strokeLinecap="round" strokeDasharray="188.5" strokeDashoffset="120.6" filter="url(#glow1)" className="transition-all duration-1000" />
                     </svg>
                     <div className="text-5xl font-normal mb-3">36%</div>
                     <p className="text-base text-muted-foreground">Overall user satisfaction</p>
@@ -580,34 +569,17 @@ const MobileBankingProject = () => {
                           <stop offset="100%" stopColor="hsl(280 100% 85%)" />
                         </linearGradient>
                         <filter id="glow2">
-                          <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                          <feGaussianBlur stdDeviation="2" result="coloredBlur" />
                           <feMerge>
-                            <feMergeNode in="coloredBlur"/>
-                            <feMergeNode in="SourceGraphic"/>
+                            <feMergeNode in="coloredBlur" />
+                            <feMergeNode in="SourceGraphic" />
                           </feMerge>
                         </filter>
                       </defs>
                       {/* Background arc */}
-                      <path
-                        d="M 20 140 A 60 60 0 0 1 140 140"
-                        fill="none"
-                        stroke="hsl(var(--muted))"
-                        strokeWidth="6"
-                        opacity="0.2"
-                        strokeLinecap="round"
-                      />
+                      <path d="M 20 140 A 60 60 0 0 1 140 140" fill="none" stroke="hsl(var(--muted))" strokeWidth="6" opacity="0.2" strokeLinecap="round" />
                       {/* Foreground arc - 24% using dasharray */}
-                      <path
-                        d="M 20 140 A 60 60 0 0 1 140 140"
-                        fill="none"
-                        stroke="url(#gradient2)"
-                        strokeWidth="6"
-                        strokeLinecap="round"
-                        strokeDasharray="188.5"
-                        strokeDashoffset="143.3"
-                        filter="url(#glow2)"
-                        className="transition-all duration-1000"
-                      />
+                      <path d="M 20 140 A 60 60 0 0 1 140 140" fill="none" stroke="url(#gradient2)" strokeWidth="6" strokeLinecap="round" strokeDasharray="188.5" strokeDashoffset="143.3" filter="url(#glow2)" className="transition-all duration-1000" />
                     </svg>
                     <div className="text-5xl font-normal mb-3">24%</div>
                     <p className="text-base text-muted-foreground">Confidence in listing metrics</p>
@@ -622,34 +594,17 @@ const MobileBankingProject = () => {
                           <stop offset="100%" stopColor="hsl(0 100% 85%)" />
                         </linearGradient>
                         <filter id="glow3">
-                          <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                          <feGaussianBlur stdDeviation="2" result="coloredBlur" />
                           <feMerge>
-                            <feMergeNode in="coloredBlur"/>
-                            <feMergeNode in="SourceGraphic"/>
+                            <feMergeNode in="coloredBlur" />
+                            <feMergeNode in="SourceGraphic" />
                           </feMerge>
                         </filter>
                       </defs>
                       {/* Background arc */}
-                      <path
-                        d="M 20 140 A 60 60 0 0 1 140 140"
-                        fill="none"
-                        stroke="hsl(var(--muted))"
-                        strokeWidth="6"
-                        opacity="0.2"
-                        strokeLinecap="round"
-                      />
+                      <path d="M 20 140 A 60 60 0 0 1 140 140" fill="none" stroke="hsl(var(--muted))" strokeWidth="6" opacity="0.2" strokeLinecap="round" />
                       {/* Foreground arc - 91% using dasharray */}
-                      <path
-                        d="M 20 140 A 60 60 0 0 1 140 140"
-                        fill="none"
-                        stroke="url(#gradient3)"
-                        strokeWidth="6"
-                        strokeLinecap="round"
-                        strokeDasharray="188.5"
-                        strokeDashoffset="17"
-                        filter="url(#glow3)"
-                        className="transition-all duration-1000"
-                      />
+                      <path d="M 20 140 A 60 60 0 0 1 140 140" fill="none" stroke="url(#gradient3)" strokeWidth="6" strokeLinecap="round" strokeDasharray="188.5" strokeDashoffset="17" filter="url(#glow3)" className="transition-all duration-1000" />
                     </svg>
                     <div className="text-5xl font-normal mb-3">91%</div>
                     <p className="text-base text-muted-foreground">Difficulty managing listings</p>
@@ -748,14 +703,11 @@ const MobileBankingProject = () => {
                         <span>Intuition</span>
                       </div>
                       <div className="h-3 bg-muted rounded-full overflow-hidden relative">
-                        <div 
-                          className="h-full rounded-full absolute inset-0 transition-all duration-1000 ease-out"
-                          style={{ 
-                            width: '65%',
-                            background: 'linear-gradient(to right, hsl(var(--primary)), hsl(var(--primary) / 0.8))',
-                            boxShadow: '0 0 20px hsla(var(--primary) / 0.7), inset 0 0 10px hsla(var(--primary) / 0.3)'
-                          }}
-                        ></div>
+                        <div className="h-full rounded-full absolute inset-0 transition-all duration-1000 ease-out" style={{
+                          width: '65%',
+                          background: 'linear-gradient(to right, hsl(var(--primary)), hsl(var(--primary) / 0.8))',
+                          boxShadow: '0 0 20px hsla(var(--primary) / 0.7), inset 0 0 10px hsla(var(--primary) / 0.3)'
+                        }}></div>
                       </div>
                     </div>
                     <div>
@@ -764,14 +716,11 @@ const MobileBankingProject = () => {
                         <span>Introvert</span>
                       </div>
                       <div className="h-3 bg-muted rounded-full overflow-hidden relative">
-                        <div 
-                          className="h-full rounded-full absolute inset-0 transition-all duration-1000 ease-out"
-                          style={{ 
-                            width: '45%',
-                            background: 'linear-gradient(to right, hsl(var(--primary)), hsl(var(--primary) / 0.8))',
-                            boxShadow: '0 0 20px hsla(var(--primary) / 0.7), inset 0 0 10px hsla(var(--primary) / 0.3)'
-                          }}
-                        ></div>
+                        <div className="h-full rounded-full absolute inset-0 transition-all duration-1000 ease-out" style={{
+                          width: '45%',
+                          background: 'linear-gradient(to right, hsl(var(--primary)), hsl(var(--primary) / 0.8))',
+                          boxShadow: '0 0 20px hsla(var(--primary) / 0.7), inset 0 0 10px hsla(var(--primary) / 0.3)'
+                        }}></div>
                       </div>
                     </div>
                     <div>
@@ -780,14 +729,11 @@ const MobileBankingProject = () => {
                         <span>Thinking</span>
                       </div>
                       <div className="h-3 bg-muted rounded-full overflow-hidden relative">
-                        <div 
-                          className="h-full rounded-full absolute inset-0 transition-all duration-1000 ease-out"
-                          style={{ 
-                            width: '75%',
-                            background: 'linear-gradient(to right, hsl(var(--primary)), hsl(var(--primary) / 0.8))',
-                            boxShadow: '0 0 20px hsla(var(--primary) / 0.7), inset 0 0 10px hsla(var(--primary) / 0.3)'
-                          }}
-                        ></div>
+                        <div className="h-full rounded-full absolute inset-0 transition-all duration-1000 ease-out" style={{
+                          width: '75%',
+                          background: 'linear-gradient(to right, hsl(var(--primary)), hsl(var(--primary) / 0.8))',
+                          boxShadow: '0 0 20px hsla(var(--primary) / 0.7), inset 0 0 10px hsla(var(--primary) / 0.3)'
+                        }}></div>
                       </div>
                     </div>
                   </div>
@@ -853,23 +799,6 @@ const MobileBankingProject = () => {
           </div>
         </section>
 
-        {/* Full Viewport Design Image */}
-        <div className="viewport-image-section">
-          <div className="absolute top-0 left-0 right-0 z-20 px-6 pt-24">
-            <div className="container mx-auto max-w-[1440px]">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-                <div>
-                  <h3 className="text-4xl font-bold text-foreground">Design System</h3>
-                </div>
-                <div className="text-right">
-                  <span className="text-6xl md:text-7xl font-bold font-mono opacity-30">/03</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <img src={userFlowImage} alt="User flow design" className="w-full h-full object-cover object-left-top" />
-        </div>
-
         {/* Delivery Section - 04 */}
         <section ref={deliveryContentAnim.ref} className={`relative px-6 py-24 bg-card/30 transition-all duration-700 ${deliveryContentAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div ref={deliveryRef} className="absolute top-0 left-0 w-full h-1" />
@@ -877,7 +806,7 @@ const MobileBankingProject = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
               {/* Left Column */}
               <div className="space-y-12">
-                <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold">Delivery</h2>
+                <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold">User Flow</h2>
                 <p className="text-xl text-muted-foreground">
                   Implementing a comprehensive design system and ensuring seamless handoff to development teams.
                 </p>
@@ -1062,12 +991,7 @@ const MobileBankingProject = () => {
         <DialogContent className="max-w-[100vw] max-h-[100vh] w-screen h-screen p-0 bg-background/98 backdrop-blur-xl border-none">
           <div className="relative w-full h-full flex items-center justify-center">
             {/* Close Button */}
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setGalleryOpen(false)}
-              className="absolute top-6 right-6 z-50 bg-background/20 backdrop-blur-md hover:bg-background/40 text-foreground"
-            >
+            <Button variant="ghost" size="icon" onClick={() => setGalleryOpen(false)} className="absolute top-6 right-6 z-50 bg-background/20 backdrop-blur-md hover:bg-background/40 text-foreground">
               <X className="h-6 w-6" />
             </Button>
 
@@ -1077,47 +1001,23 @@ const MobileBankingProject = () => {
             </div>
 
             {/* Previous Button */}
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={previousImage}
-              className="absolute left-6 z-50 bg-background/20 backdrop-blur-md hover:bg-background/40 text-foreground h-12 w-12"
-            >
+            <Button variant="ghost" size="icon" onClick={previousImage} className="absolute left-6 z-50 bg-background/20 backdrop-blur-md hover:bg-background/40 text-foreground h-12 w-12">
               <ChevronLeft className="h-8 w-8" />
             </Button>
 
             {/* Current Image */}
             <div className="w-full h-full flex items-center justify-center p-20">
-              <img
-                src={galleryImages[currentImageIndex].src}
-                alt={galleryImages[currentImageIndex].alt}
-                className="max-w-full max-h-full object-contain rounded-lg animate-fade-in"
-              />
+              <img src={galleryImages[currentImageIndex].src} alt={galleryImages[currentImageIndex].alt} className="max-w-full max-h-full object-contain rounded-lg animate-fade-in" />
             </div>
 
             {/* Next Button */}
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={nextImage}
-              className="absolute right-6 z-50 bg-background/20 backdrop-blur-md hover:bg-background/40 text-foreground h-12 w-12"
-            >
+            <Button variant="ghost" size="icon" onClick={nextImage} className="absolute right-6 z-50 bg-background/20 backdrop-blur-md hover:bg-background/40 text-foreground h-12 w-12">
               <ChevronRight className="h-8 w-8" />
             </Button>
 
             {/* Thumbnail Strip */}
             <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-50 flex gap-2 bg-background/20 backdrop-blur-md p-3 rounded-full">
-              {galleryImages.map((img, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setCurrentImageIndex(idx)}
-                  className={`w-3 h-3 rounded-full transition-all ${
-                    idx === currentImageIndex 
-                      ? 'bg-primary w-8' 
-                      : 'bg-muted-foreground/40 hover:bg-muted-foreground/60'
-                  }`}
-                />
-              ))}
+              {galleryImages.map((img, idx) => <button key={idx} onClick={() => setCurrentImageIndex(idx)} className={`w-3 h-3 rounded-full transition-all ${idx === currentImageIndex ? 'bg-primary w-8' : 'bg-muted-foreground/40 hover:bg-muted-foreground/60'}`} />)}
             </div>
           </div>
         </DialogContent>
