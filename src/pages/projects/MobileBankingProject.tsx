@@ -427,8 +427,8 @@ const MobileBankingProject = () => {
         {/* Discovery Section - 02 */}
         <section className="relative px-6 py-24 bg-card/30">
           <div className="container mx-auto max-w-[1440px]">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-32">
-              {/* Left Column */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 mb-32">
+              {/* Left Column - User Interviews (1 column) */}
               <div className="space-y-20">
                 <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold">Discovery</h2>
                 <div>
@@ -439,14 +439,14 @@ const MobileBankingProject = () => {
                 </div>
               </div>
 
-              {/* Right Column */}
-              <div className="space-y-12">
+              {/* Right Columns - Charts (2 columns) */}
+              <div className="lg:col-span-2 space-y-12 pt-12">
                 <div className="text-right">
                   <span className="text-6xl md:text-7xl font-bold font-mono opacity-30">/02</span>
                 </div>
                 
                 {/* Statistics */}
-                <div className="grid grid-cols-3 gap-8">
+                <div className="grid grid-cols-3 gap-8 pt-8">
                   {/* 36% Satisfaction */}
                   <div className="text-center">
                     <svg className="w-40 h-40 mx-auto mb-6" viewBox="0 0 160 160">
@@ -456,9 +456,8 @@ const MobileBankingProject = () => {
                           <stop offset="100%" stopColor="hsl(220 90% 75%)" />
                         </linearGradient>
                         <filter id="glow1">
-                          <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                          <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
                           <feMerge>
-                            <feMergeNode in="coloredBlur"/>
                             <feMergeNode in="coloredBlur"/>
                             <feMergeNode in="SourceGraphic"/>
                           </feMerge>
@@ -498,9 +497,8 @@ const MobileBankingProject = () => {
                           <stop offset="100%" stopColor="hsl(280 85% 80%)" />
                         </linearGradient>
                         <filter id="glow2">
-                          <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                          <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
                           <feMerge>
-                            <feMergeNode in="coloredBlur"/>
                             <feMergeNode in="coloredBlur"/>
                             <feMergeNode in="SourceGraphic"/>
                           </feMerge>
@@ -540,9 +538,8 @@ const MobileBankingProject = () => {
                           <stop offset="100%" stopColor="hsl(0 85% 80%)" />
                         </linearGradient>
                         <filter id="glow3">
-                          <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                          <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
                           <feMerge>
-                            <feMergeNode in="coloredBlur"/>
                             <feMergeNode in="coloredBlur"/>
                             <feMergeNode in="SourceGraphic"/>
                           </feMerge>
