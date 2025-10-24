@@ -25,7 +25,7 @@ const AnalyticsDashboardProject = () => {
         />
         
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent from-0% via-transparent via-50% to-background to-100%" />
 
         {/* Hero Content */}
         <div className="absolute bottom-0 left-0 right-0 px-6 pb-16">
