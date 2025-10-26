@@ -882,7 +882,7 @@ const MobileBankingProject = () => {
             <div className="container mx-auto max-w-[1440px]">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
                 <div>
-                  <h3 className="text-4xl font-bold text-foreground">Design System</h3>
+                  <h3 className="text-4xl font-bold text-foreground">User Flow</h3>
                 </div>
                 <div className="text-right">
                   <span className="text-6xl md:text-7xl font-bold font-mono opacity-30">/03</span>
