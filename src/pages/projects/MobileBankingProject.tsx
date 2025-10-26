@@ -20,6 +20,7 @@ const MobileBankingProject = () => {
   const [stickyHeader, setStickyHeader] = useState({ visible: false, section: '', subsection: '', number: '' });
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [designLayout, setDesignLayout] = useState<1 | 2 | 3>(1);
   
   // Refs for sections and subsections
   const defineRef = useRef<HTMLDivElement>(null);
@@ -894,86 +895,90 @@ const MobileBankingProject = () => {
         </div>
 
         {/* Design System Section */}
-        <section className="relative px-6 py-24 bg-background min-h-[90vh] flex items-center">
+        <section className="relative px-6 py-24 bg-background flex items-center">
           <div className="container mx-auto max-w-[1440px]">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              {/* Typography Column */}
-              <div className="flex flex-col h-full">
-                <h3 className="text-2xl font-bold mb-12">Typography</h3>
-                <div className="flex flex-col justify-between flex-1 space-y-8">
-                  <div>
-                    <h1 className="text-7xl font-bold mb-2">Roboto</h1>
-                    <p className="text-base text-muted-foreground">Font Family</p>
-                  </div>
-                  <div>
-                    <p className="text-4xl font-semibold mb-3 text-foreground">H1</p>
-                    <p className="text-base text-muted-foreground">weight: <span className="font-semibold">Semi Bold</span> | size: <span className="font-semibold">34 px</span></p>
-                  </div>
-                  <div>
-                    <p className="text-3xl font-semibold mb-3 text-foreground">H2</p>
-                    <p className="text-base text-muted-foreground">weight: <span className="font-semibold">Semi Bold</span> | size: <span className="font-semibold">28 px</span></p>
-                  </div>
-                  <div>
-                    <p className="text-2xl font-medium mb-3 text-foreground">H3</p>
-                    <p className="text-base text-muted-foreground">weight: <span className="font-semibold">Medium</span> | size: <span className="font-semibold">24 px</span></p>
-                  </div>
-                  <div>
-                    <p className="text-xl font-medium mb-3 text-foreground">H4</p>
-                    <p className="text-base text-muted-foreground">weight: <span className="font-semibold">Medium</span> | size: <span className="font-semibold">20 px</span></p>
-                  </div>
-                  <div className="opacity-70">
-                    <p className="text-lg font-semibold mb-3 text-foreground">Subtitle</p>
-                    <p className="text-base text-muted-foreground">weight: <span className="font-semibold">Semi Bold</span> | size: <span className="font-semibold">18 px</span></p>
-                  </div>
-                  <div className="opacity-50">
-                    <p className="text-base font-normal mb-3 text-foreground">Body</p>
-                    <p className="text-base text-muted-foreground">weight: <span className="font-semibold">Regular</span> | size: <span className="font-semibold">16 px</span></p>
-                  </div>
-                  <div className="opacity-30">
-                    <p className="text-sm font-normal mb-3 text-foreground">Paragraph</p>
-                    <p className="text-base text-muted-foreground">weight: <span className="font-semibold">Regular</span> | size: <span className="font-semibold">14 px</span></p>
+            <div className="flex items-center justify-between mb-16">
+              <h2 className="text-4xl font-bold">Design System</h2>
+              <div className="flex gap-2">
+                <Button
+                  variant={designLayout === 1 ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setDesignLayout(1)}
+                >
+                  Compact Grid
+                </Button>
+                <Button
+                  variant={designLayout === 2 ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setDesignLayout(2)}
+                >
+                  Bento Box
+                </Button>
+                <Button
+                  variant={designLayout === 3 ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setDesignLayout(3)}
+                >
+                  Horizontal
+                </Button>
+              </div>
+            </div>
+
+            {/* Layout 1: Compact Grid */}
+            {designLayout === 1 && (
+              <div className="grid grid-cols-3 gap-8 h-[60vh] transition-all duration-300">
+                {/* Typography */}
+                <div className="flex flex-col">
+                  <h3 className="text-xl font-bold mb-8">Typography</h3>
+                  <div className="space-y-4">
+                    <div>
+                      <h1 className="text-5xl font-bold">Roboto</h1>
+                      <p className="text-sm text-muted-foreground">Font Family</p>
+                    </div>
+                    <div className="space-y-2">
+                      <p className="text-2xl font-semibold">H1 <span className="text-xs text-muted-foreground ml-2">34px Semi Bold</span></p>
+                      <p className="text-xl font-semibold">H2 <span className="text-xs text-muted-foreground ml-2">28px Semi Bold</span></p>
+                      <p className="text-lg font-medium">H3 <span className="text-xs text-muted-foreground ml-2">24px Medium</span></p>
+                      <p className="text-base font-medium">H4 <span className="text-xs text-muted-foreground ml-2">20px Medium</span></p>
+                      <p className="text-sm font-semibold opacity-70">Subtitle <span className="text-xs text-muted-foreground ml-2">18px</span></p>
+                      <p className="text-sm opacity-50">Body <span className="text-xs text-muted-foreground ml-2">16px Regular</span></p>
+                      <p className="text-xs opacity-30">Paragraph <span className="text-xs text-muted-foreground ml-2">14px</span></p>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Colors and Icons Column */}
-              <div className="flex flex-col gap-12">
                 {/* Colors */}
                 <div className="flex flex-col">
-                  <h3 className="text-2xl font-bold mb-12">Colors</h3>
-                  <div className="grid grid-cols-2 gap-4 h-[400px]">
-                    {/* Left column - Land Green spanning full height */}
-                    <div className="rounded-lg relative overflow-hidden" style={{backgroundColor: '#006D31'}}>
-                      <div className="absolute bottom-4 left-4 text-white">
-                        <p className="font-semibold">Land Green</p>
-                        <p className="text-sm">#006D31</p>
+                  <h3 className="text-xl font-bold mb-8">Colors</h3>
+                  <div className="grid grid-cols-2 gap-3 flex-1">
+                    <div className="rounded-lg p-4 flex items-end row-span-2" style={{backgroundColor: '#006D31'}}>
+                      <div className="text-white">
+                        <p className="font-semibold text-sm">Land Green</p>
+                        <p className="text-xs">#006D31</p>
                       </div>
                     </div>
-                    {/* Right column - 4 colors stacked */}
-                    <div className="flex flex-col gap-4">
-                      <div className="flex-1 rounded-lg relative overflow-hidden" style={{backgroundColor: '#155443'}}>
-                        <div className="absolute bottom-3 left-3 text-white">
-                          <p className="font-semibold text-sm">Deep Green</p>
-                          <p className="text-xs">#155443</p>
-                        </div>
+                    <div className="rounded-lg p-3 flex items-end" style={{backgroundColor: '#155443'}}>
+                      <div className="text-white">
+                        <p className="font-semibold text-xs">Deep Green</p>
+                        <p className="text-xs opacity-80">#155443</p>
                       </div>
-                      <div className="flex-1 rounded-lg relative overflow-hidden" style={{backgroundColor: '#0E7080'}}>
-                        <div className="absolute bottom-3 left-3 text-white">
-                          <p className="font-semibold text-sm">Blue Spruce</p>
-                          <p className="text-xs">#0E7080</p>
-                        </div>
+                    </div>
+                    <div className="rounded-lg p-3 flex items-end" style={{backgroundColor: '#0E7080'}}>
+                      <div className="text-white">
+                        <p className="font-semibold text-xs">Blue Spruce</p>
+                        <p className="text-xs opacity-80">#0E7080</p>
                       </div>
-                      <div className="flex-1 rounded-lg relative overflow-hidden" style={{backgroundColor: '#A82445'}}>
-                        <div className="absolute bottom-3 left-3 text-white">
-                          <p className="font-semibold text-sm">Raspberry</p>
-                          <p className="text-xs">#A82445</p>
-                        </div>
+                    </div>
+                    <div className="rounded-lg p-3 flex items-end" style={{backgroundColor: '#A82445'}}>
+                      <div className="text-white">
+                        <p className="font-semibold text-xs">Raspberry</p>
+                        <p className="text-xs opacity-80">#A82445</p>
                       </div>
-                      <div className="flex-1 rounded-lg relative overflow-hidden" style={{backgroundColor: '#AF5A1D'}}>
-                        <div className="absolute bottom-3 left-3 text-white">
-                          <p className="font-semibold text-sm">Chestnut</p>
-                          <p className="text-xs">#AF5A1D</p>
-                        </div>
+                    </div>
+                    <div className="rounded-lg p-3 flex items-end" style={{backgroundColor: '#AF5A1D'}}>
+                      <div className="text-white">
+                        <p className="font-semibold text-xs">Chestnut</p>
+                        <p className="text-xs opacity-80">#AF5A1D</p>
                       </div>
                     </div>
                   </div>
@@ -981,132 +986,144 @@ const MobileBankingProject = () => {
 
                 {/* Icons */}
                 <div className="flex flex-col">
-                  <h3 className="text-2xl font-bold mb-12">Icons</h3>
-                  <div className="grid grid-cols-5 gap-4">
-                    <div className="aspect-square flex items-center justify-center text-foreground/60">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                  <h3 className="text-xl font-bold mb-8">Icons</h3>
+                  <div className="grid grid-cols-6 gap-2">
+                    {Array.from({ length: 36 }).map((_, i) => (
+                      <div key={i} className="aspect-square flex items-center justify-center text-foreground/60 hover:text-foreground transition-colors">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          {i % 6 === 0 && <circle cx="11" cy="11" r="8"/>}
+                          {i % 6 === 1 && <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>}
+                          {i % 6 === 2 && <polyline points="9 18 15 12 9 6"/>}
+                          {i % 6 === 3 && <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/>}
+                          {i % 6 === 4 && <circle cx="12" cy="12" r="10"/>}
+                          {i % 6 === 5 && <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>}
+                        </svg>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Layout 2: Bento Box */}
+            {designLayout === 2 && (
+              <div className="grid grid-cols-2 gap-6 h-[70vh] transition-all duration-300">
+                {/* Large Typography Card */}
+                <div className="bg-card border border-border rounded-lg p-8 flex flex-col">
+                  <h3 className="text-xl font-bold mb-6">Typography</h3>
+                  <div className="flex-1 flex flex-col justify-center space-y-6">
+                    <div>
+                      <h1 className="text-7xl font-bold mb-2">Roboto</h1>
+                      <p className="text-base text-muted-foreground">Font Family</p>
                     </div>
-                    <div className="aspect-square flex items-center justify-center text-foreground/60">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    <div className="space-y-3 pt-6">
+                      <p className="text-3xl font-semibold">H1 Heading</p>
+                      <p className="text-2xl font-semibold opacity-80">H2 Heading</p>
+                      <p className="text-xl font-medium opacity-70">H3 Heading</p>
+                      <p className="text-base opacity-60">Body text sample</p>
                     </div>
-                    <div className="aspect-square flex items-center justify-center text-foreground/60">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+                  </div>
+                </div>
+
+                {/* Right Column */}
+                <div className="flex flex-col gap-6">
+                  {/* Colors Card */}
+                  <div className="bg-card border border-border rounded-lg p-6 flex-1">
+                    <h3 className="text-xl font-bold mb-6">Colors</h3>
+                    <div className="flex gap-3 h-32">
+                      <div className="flex-1 rounded-lg" style={{backgroundColor: '#006D31'}}></div>
+                      <div className="flex-1 rounded-lg" style={{backgroundColor: '#155443'}}></div>
+                      <div className="flex-1 rounded-lg" style={{backgroundColor: '#0E7080'}}></div>
+                      <div className="flex-1 rounded-lg" style={{backgroundColor: '#A82445'}}></div>
+                      <div className="flex-1 rounded-lg" style={{backgroundColor: '#AF5A1D'}}></div>
                     </div>
-                    <div className="aspect-square flex items-center justify-center text-foreground/60">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+                    <div className="grid grid-cols-5 gap-2 mt-3">
+                      <p className="text-xs text-muted-foreground">Land Green</p>
+                      <p className="text-xs text-muted-foreground">Deep Green</p>
+                      <p className="text-xs text-muted-foreground">Blue Spruce</p>
+                      <p className="text-xs text-muted-foreground">Raspberry</p>
+                      <p className="text-xs text-muted-foreground">Chestnut</p>
                     </div>
-                    <div className="aspect-square flex items-center justify-center text-foreground/60">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                    </div>
-                    <div className="aspect-square flex items-center justify-center text-foreground/60">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                    </div>
-                    <div className="aspect-square flex items-center justify-center text-foreground/60">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                    </div>
-                    <div className="aspect-square flex items-center justify-center text-foreground/60">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-                    </div>
-                    <div className="aspect-square flex items-center justify-center text-foreground/60">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-                    </div>
-                    <div className="aspect-square flex items-center justify-center text-foreground/60">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-                    </div>
-                    <div className="aspect-square flex items-center justify-center text-foreground/60">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
-                    </div>
-                    <div className="aspect-square flex items-center justify-center text-foreground/60">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-                    </div>
-                    <div className="aspect-square flex items-center justify-center text-foreground/60">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
-                    </div>
-                    <div className="aspect-square flex items-center justify-center text-foreground/60">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-                    </div>
-                    <div className="aspect-square flex items-center justify-center text-foreground/60">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-                    </div>
-                    <div className="aspect-square flex items-center justify-center text-foreground/60">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                    </div>
-                    <div className="aspect-square flex items-center justify-center text-foreground/60">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                    </div>
-                    <div className="aspect-square flex items-center justify-center text-foreground/60">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                    </div>
-                    <div className="aspect-square flex items-center justify-center text-foreground/60">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                    </div>
-                    <div className="aspect-square flex items-center justify-center text-foreground/60">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                    </div>
-                    <div className="aspect-square flex items-center justify-center text-foreground/60">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-                    </div>
-                    <div className="aspect-square flex items-center justify-center text-foreground/60">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-                    </div>
-                    <div className="aspect-square flex items-center justify-center text-foreground/60">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><rect x="7" y="7" width="3" height="9"/><rect x="14" y="7" width="3" height="5"/></svg>
-                    </div>
-                    <div className="aspect-square flex items-center justify-center text-foreground/60">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6M5.64 5.64l4.24 4.24m4.24 4.24l4.24 4.24M1 12h6m6 0h6M5.64 18.36l4.24-4.24m4.24-4.24l4.24-4.24"/></svg>
-                    </div>
-                    <div className="aspect-square flex items-center justify-center text-foreground/60">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                    </div>
-                    <div className="aspect-square flex items-center justify-center text-foreground/60">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87m-4-12a4 4 0 0 1 0 7.75"/></svg>
-                    </div>
-                    <div className="aspect-square flex items-center justify-center text-foreground/60">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    </div>
-                    <div className="aspect-square flex items-center justify-center text-foreground/60">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-                    </div>
-                    <div className="aspect-square flex items-center justify-center text-foreground/60">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-                    </div>
-                    <div className="aspect-square flex items-center justify-center text-foreground/60">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                    </div>
-                    <div className="aspect-square flex items-center justify-center text-foreground/60">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-                    </div>
-                    <div className="aspect-square flex items-center justify-center text-foreground/60">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    </div>
-                    <div className="aspect-square flex items-center justify-center text-foreground/60">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                    </div>
-                    <div className="aspect-square flex items-center justify-center text-foreground/60">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-                    </div>
-                    <div className="aspect-square flex items-center justify-center text-foreground/60">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-                    </div>
-                    <div className="aspect-square flex items-center justify-center text-foreground/60">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                    </div>
-                    <div className="aspect-square flex items-center justify-center text-foreground/60">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-                    </div>
-                    <div className="aspect-square flex items-center justify-center text-foreground/60">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
-                    </div>
-                    <div className="aspect-square flex items-center justify-center text-foreground/60">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                    </div>
-                    <div className="aspect-square flex items-center justify-center text-foreground/60">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                  </div>
+
+                  {/* Icons Card */}
+                  <div className="bg-card border border-border rounded-lg p-6 flex-1">
+                    <h3 className="text-xl font-bold mb-6">Icons</h3>
+                    <div className="grid grid-cols-8 gap-3">
+                      {Array.from({ length: 24 }).map((_, i) => (
+                        <div key={i} className="aspect-square bg-muted/50 rounded flex items-center justify-center text-foreground/60 hover:bg-muted hover:text-foreground transition-all">
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            {i % 6 === 0 && <circle cx="12" cy="12" r="10"/>}
+                            {i % 6 === 1 && <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/>}
+                            {i % 6 === 2 && <polyline points="9 18 15 12 9 6"/>}
+                            {i % 6 === 3 && <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>}
+                            {i % 6 === 4 && <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>}
+                            {i % 6 === 5 && <circle cx="11" cy="11" r="8"/>}
+                          </svg>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            )}
+
+            {/* Layout 3: Horizontal Panels */}
+            {designLayout === 3 && (
+              <div className="grid grid-cols-3 gap-8 h-[50vh] transition-all duration-300">
+                {/* Typography Panel */}
+                <div className="border border-border rounded-lg p-6 flex flex-col">
+                  <h3 className="text-lg font-bold mb-4">Typography</h3>
+                  <div className="flex-1 flex items-center">
+                    <div className="space-y-2">
+                      <h1 className="text-4xl font-bold">Roboto</h1>
+                      <p className="text-xs text-muted-foreground mb-4">Font Family</p>
+                      <div className="space-y-1">
+                        <p className="text-lg font-semibold">H1</p>
+                        <p className="text-base font-semibold">H2</p>
+                        <p className="text-sm font-medium">H3</p>
+                        <p className="text-xs">Body</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Colors Panel */}
+                <div className="border border-border rounded-lg p-6 flex flex-col">
+                  <h3 className="text-lg font-bold mb-4">Colors</h3>
+                  <div className="flex-1 flex flex-col justify-center gap-2">
+                    <div className="h-12 rounded flex items-center px-3 text-white text-sm font-semibold" style={{backgroundColor: '#006D31'}}>Land Green</div>
+                    <div className="h-12 rounded flex items-center px-3 text-white text-sm font-semibold" style={{backgroundColor: '#155443'}}>Deep Green</div>
+                    <div className="h-12 rounded flex items-center px-3 text-white text-sm font-semibold" style={{backgroundColor: '#0E7080'}}>Blue Spruce</div>
+                    <div className="h-12 rounded flex items-center px-3 text-white text-sm font-semibold" style={{backgroundColor: '#A82445'}}>Raspberry</div>
+                    <div className="h-12 rounded flex items-center px-3 text-white text-sm font-semibold" style={{backgroundColor: '#AF5A1D'}}>Chestnut</div>
+                  </div>
+                </div>
+
+                {/* Icons Panel */}
+                <div className="border border-border rounded-lg p-6 flex flex-col">
+                  <h3 className="text-lg font-bold mb-4">Icons</h3>
+                  <div className="flex-1">
+                    <div className="grid grid-cols-8 gap-2 h-full content-center">
+                      {Array.from({ length: 32 }).map((_, i) => (
+                        <div key={i} className="aspect-square flex items-center justify-center text-foreground/60 hover:text-foreground transition-colors">
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            {i % 8 === 0 && <circle cx="12" cy="12" r="10"/>}
+                            {i % 8 === 1 && <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/>}
+                            {i % 8 === 2 && <polyline points="9 18 15 12 9 6"/>}
+                            {i % 8 === 3 && <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>}
+                            {i % 8 === 4 && <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>}
+                            {i % 8 === 5 && <circle cx="11" cy="11" r="8"/>}
+                            {i % 8 === 6 && <line x1="12" y1="5" x2="12" y2="19"/>}
+                            {i % 8 === 7 && <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>}
+                          </svg>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </section>
 
