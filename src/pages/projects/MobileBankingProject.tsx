@@ -902,80 +902,87 @@ const MobileBankingProject = () => {
           <div className="container mx-auto max-w-[1440px]">
             <h2 className="text-4xl font-bold mb-12">Design System</h2>
             
-            <Tabs defaultValue="fundamentals" className="w-full">
-              <TabsList className="mb-8">
-                <TabsTrigger value="fundamentals">Fundamentals</TabsTrigger>
-                <TabsTrigger value="ui-elements">UI Elements</TabsTrigger>
-              </TabsList>
-              
-              <TabsContent value="fundamentals">
-                {/* Bento Box Layout */}
-                <div className="grid grid-cols-2 gap-6 h-[70vh] transition-all duration-300">
-                  {/* Large Typography Card */}
-                  <div className="bg-card border border-border rounded-lg p-8 flex flex-col">
-                    <h3 className="text-xl font-bold mb-8">Typography</h3>
-                    <div className="space-y-4">
-                      <div>
-                        <h1 className="text-5xl font-bold mb-2">Roboto</h1>
-                        <p className="text-sm text-muted-foreground">Font Family</p>
-                      </div>
-                      <div className="space-y-2 pt-4">
-                        <p className="text-2xl font-semibold">H1 <span className="text-xs text-muted-foreground ml-2">34px Semi Bold</span></p>
-                        <p className="text-xl font-semibold">H2 <span className="text-xs text-muted-foreground ml-2">28px Semi Bold</span></p>
-                        <p className="text-lg font-medium">H3 <span className="text-xs text-muted-foreground ml-2">24px Medium</span></p>
-                        <p className="text-base font-medium">H4 <span className="text-xs text-muted-foreground ml-2">20px Medium</span></p>
-                        <p className="text-sm font-semibold opacity-70">Subtitle <span className="text-xs text-muted-foreground ml-2">18px</span></p>
-                        <p className="text-sm opacity-50">Body <span className="text-xs text-muted-foreground ml-2">16px Regular</span></p>
-                        <p className="text-xs opacity-30">Paragraph <span className="text-xs text-muted-foreground ml-2">14px</span></p>
-                      </div>
+            {/* Bento Box Layout */}
+            <div className="grid grid-cols-2 gap-6 h-[70vh]">
+              {/* Large Typography Card */}
+              <div className="bg-card border border-border rounded-lg p-8 flex flex-col">
+                <h3 className="text-xl font-bold mb-8">Typography</h3>
+                <div className="space-y-6 flex-1 flex flex-col justify-center">
+                  <div>
+                    <h1 className="text-5xl font-bold mb-2">Roboto</h1>
+                    <p className="text-sm text-muted-foreground">Font Family</p>
+                  </div>
+                  <div className="space-y-4 pt-4">
+                    <div>
+                      <p className="text-2xl font-semibold">H1</p>
+                      <p className="text-xs text-muted-foreground">34px Semi Bold</p>
                     </div>
+                    <div>
+                      <p className="text-xl font-semibold">H2</p>
+                      <p className="text-xs text-muted-foreground">28px Semi Bold</p>
+                    </div>
+                    <div>
+                      <p className="text-lg font-medium">H3</p>
+                      <p className="text-xs text-muted-foreground">24px Medium</p>
+                    </div>
+                    <div>
+                      <p className="text-base font-medium">H4</p>
+                      <p className="text-xs text-muted-foreground">20px Medium</p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold">Subtitle</p>
+                      <p className="text-xs text-muted-foreground">18px</p>
+                    </div>
+                    <div>
+                      <p className="text-sm">Body</p>
+                      <p className="text-xs text-muted-foreground">16px Regular</p>
+                    </div>
+                    <div>
+                      <p className="text-xs">Paragraph</p>
+                      <p className="text-xs text-muted-foreground">14px</p>
+                    </div>
+                  </div>
+                </div>
                   </div>
 
                   {/* Right Column */}
                   <div className="flex flex-col gap-6">
                     {/* Colors Card */}
                     <div className="bg-card border border-border rounded-lg p-6 flex-1">
-                      <h3 className="text-xl font-bold mb-6">Colors</h3>
-                      <div className="grid grid-cols-2 gap-3 flex-1">
-                        <div className="rounded-lg p-4 flex items-end row-span-2 relative overflow-hidden" style={{backgroundColor: '#006D31'}}>
-                          <div className="absolute top-3 right-3">
-                            <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
-                              <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm3.707 6.707l-4 4a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L9 10.586l3.293-3.293a1 1 0 011.414 1.414z"/>
-                              </svg>
-                            </div>
-                          </div>
-                          <div className="text-white">
-                            <p className="font-semibold text-base mb-1">Land Green</p>
-                            <p className="text-xs opacity-80">#006D31</p>
-                            <p className="text-xs opacity-60 mt-1">Primary</p>
-                          </div>
-                        </div>
-                        <div className="rounded-lg p-3 flex items-end" style={{backgroundColor: '#155443'}}>
-                          <div className="text-white">
-                            <p className="font-semibold text-xs">Deep Green</p>
-                            <p className="text-xs opacity-80">#155443</p>
-                          </div>
-                        </div>
-                        <div className="rounded-lg p-3 flex items-end" style={{backgroundColor: '#0E7080'}}>
-                          <div className="text-white">
-                            <p className="font-semibold text-xs">Blue Spruce</p>
-                            <p className="text-xs opacity-80">#0E7080</p>
-                          </div>
-                        </div>
-                        <div className="rounded-lg p-3 flex items-end" style={{backgroundColor: '#A82445'}}>
-                          <div className="text-white">
-                            <p className="font-semibold text-xs">Raspberry</p>
-                            <p className="text-xs opacity-80">#A82445</p>
-                          </div>
-                        </div>
-                        <div className="rounded-lg p-3 flex items-end" style={{backgroundColor: '#AF5A1D'}}>
-                          <div className="text-white">
-                            <p className="font-semibold text-xs">Chestnut</p>
-                            <p className="text-xs opacity-80">#AF5A1D</p>
-                          </div>
-                        </div>
+                  <h3 className="text-xl font-bold mb-6">Colors</h3>
+                  <div className="grid grid-cols-2 gap-3 flex-1">
+                    <div className="rounded-lg p-4 flex items-end row-span-2" style={{backgroundColor: '#006D31'}}>
+                      <div className="text-white">
+                        <p className="font-semibold text-base mb-1">Land Green</p>
+                        <p className="text-xs opacity-80">#006D31</p>
+                        <p className="text-xs opacity-60 mt-1">Primary</p>
                       </div>
+                    </div>
+                    <div className="rounded-lg p-4 flex items-end" style={{backgroundColor: '#155443'}}>
+                      <div className="text-white">
+                        <p className="font-semibold text-xs">Deep Green</p>
+                        <p className="text-xs opacity-80">#155443</p>
+                      </div>
+                    </div>
+                    <div className="rounded-lg p-4 flex items-end" style={{backgroundColor: '#0E7080'}}>
+                      <div className="text-white">
+                        <p className="font-semibold text-xs">Blue Spruce</p>
+                        <p className="text-xs opacity-80">#0E7080</p>
+                      </div>
+                    </div>
+                    <div className="rounded-lg p-4 flex items-end" style={{backgroundColor: '#A82445'}}>
+                      <div className="text-white">
+                        <p className="font-semibold text-xs">Raspberry</p>
+                        <p className="text-xs opacity-80">#A82445</p>
+                      </div>
+                    </div>
+                    <div className="rounded-lg p-4 flex items-end" style={{backgroundColor: '#AF5A1D'}}>
+                      <div className="text-white">
+                        <p className="font-semibold text-xs">Chestnut</p>
+                        <p className="text-xs opacity-80">#AF5A1D</p>
+                      </div>
+                    </div>
+                  </div>
                     </div>
 
                     {/* Icons Card */}
@@ -1051,146 +1058,34 @@ const MobileBankingProject = () => {
                         <div className="aspect-square bg-muted/50 rounded flex items-center justify-center text-foreground/60 hover:bg-muted hover:text-foreground transition-all">
                           <Check className="w-5 h-5" />
                         </div>
-                        <div className="aspect-square bg-muted/50 rounded flex items-center justify-center text-foreground/60 hover:bg-muted hover:text-foreground transition-all">
-                          <Plus className="w-5 h-5" />
-                        </div>
-                      </div>
+                    <div className="aspect-square bg-muted/50 rounded flex items-center justify-center text-foreground/60 hover:bg-muted hover:text-foreground transition-all">
+                      <Minus className="w-5 h-5" />
+                    </div>
+                    <div className="aspect-square bg-muted/50 rounded flex items-center justify-center text-foreground/60 hover:bg-muted hover:text-foreground transition-all">
+                      <ArrowLeft className="w-5 h-5" />
+                    </div>
+                    <div className="aspect-square bg-muted/50 rounded flex items-center justify-center text-foreground/60 hover:bg-muted hover:text-foreground transition-all">
+                      <Layout className="w-5 h-5" />
+                    </div>
+                    <div className="aspect-square bg-muted/50 rounded flex items-center justify-center text-foreground/60 hover:bg-muted hover:text-foreground transition-all">
+                      <Columns2 className="w-5 h-5" />
+                    </div>
+                    <div className="aspect-square bg-muted/50 rounded flex items-center justify-center text-foreground/60 hover:bg-muted hover:text-foreground transition-all">
+                      <User className="w-5 h-5" />
+                    </div>
+                    <div className="aspect-square bg-muted/50 rounded flex items-center justify-center text-foreground/60 hover:bg-muted hover:text-foreground transition-all">
+                      <Mail className="w-5 h-5" />
+                    </div>
+                    <div className="aspect-square bg-muted/50 rounded flex items-center justify-center text-foreground/60 hover:bg-muted hover:text-foreground transition-all">
+                      <Settings className="w-5 h-5" />
+                    </div>
+                    <div className="aspect-square bg-muted/50 rounded flex items-center justify-center text-foreground/60 hover:bg-muted hover:text-foreground transition-all">
+                      <Heart className="w-5 h-5" />
                     </div>
                   </div>
                 </div>
-              </TabsContent>
-
-              <TabsContent value="ui-elements">
-                <div className="grid grid-cols-4 gap-6 py-8">
-                  {/* Text Input */}
-                  <div className="space-y-2">
-                    <Label>Title</Label>
-                    <Input placeholder="Placeholder" />
-                  </div>
-
-                  {/* Text Input with Search */}
-                  <div className="space-y-2">
-                    <Label>Title</Label>
-                    <div className="relative">
-                      <Input placeholder="Placeholder" className="pr-10" />
-                      <Search className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                    </div>
-                  </div>
-
-                  {/* Text Input with Button */}
-                  <div className="space-y-2">
-                    <Label>Title</Label>
-                    <div className="flex gap-2">
-                      <Input placeholder="Placeholder" />
-                      <Button variant="secondary" size="sm">Search</Button>
-                    </div>
-                  </div>
-
-                  {/* Select Dropdown */}
-                  <div className="space-y-2">
-                    <Label>Title</Label>
-                    <div className="relative">
-                      <Input placeholder="Placeholder" className="pr-10" />
-                      <Search className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                    </div>
-                  </div>
-
-                  {/* Text Input with Clear */}
-                  <div className="space-y-2">
-                    <Label>Title</Label>
-                    <div className="relative">
-                      <Input placeholder="Inputted Text" value="Inputted Text" readOnly />
-                      <button className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-muted hover:bg-muted/80 flex items-center justify-center">
-                        <X className="w-3 h-3" />
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Text Input with Clear Button Below */}
-                  <div className="space-y-2">
-                    <Label>Title</Label>
-                    <Input placeholder="Inputted Text" value="Inputted Text" readOnly />
-                    <Button variant="secondary" size="sm" className="w-full">Clear</Button>
-                  </div>
-
-                  {/* Filter Buttons */}
-                  <div className="space-y-2 col-span-2">
-                    <Label>Filters Button</Label>
-                    <div className="flex gap-2 flex-wrap">
-                      <Button variant="outline" size="sm">Placeholder</Button>
-                      <Button variant="outline" size="sm">Placeholder</Button>
-                      <Button variant="outline" size="sm">Placeholder</Button>
-                      <Button variant="outline" size="sm">
-                        Placeholder
-                        <X className="w-3 h-3 ml-1" />
-                      </Button>
-                    </div>
-                    <div className="flex gap-2 flex-wrap mt-2">
-                      <Button variant="outline" size="sm">
-                        <Filter className="w-3 h-3 mr-1" />
-                        Filters
-                      </Button>
-                      <Button variant="outline" size="sm">
-                        <Filter className="w-3 h-3 mr-1" />
-                        Filters
-                      </Button>
-                      <Button variant="outline" size="sm">
-                        <Filter className="w-3 h-3 mr-1" />
-                        Filters
-                      </Button>
-                      <Button variant="outline" size="sm">
-                        <Filter className="w-3 h-3 mr-1" />
-                        Filters
-                      </Button>
-                    </div>
-                  </div>
-
-                  {/* Counter */}
-                  <div className="space-y-4">
-                    <Label>Counter</Label>
-                    <div className="space-y-3">
-                      <div className="flex items-center gap-3">
-                        <span className="text-sm">Title</span>
-                        <div className="flex items-center gap-2">
-                          <Button variant="outline" size="icon" className="h-8 w-8">
-                            <Minus className="w-4 h-4" />
-                          </Button>
-                          <span className="w-8 text-center">0</span>
-                          <Button variant="outline" size="icon" className="h-8 w-8">
-                            <Plus className="w-4 h-4" />
-                          </Button>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <span className="text-sm">Title</span>
-                        <div className="flex items-center gap-2">
-                          <Button variant="outline" size="icon" className="h-8 w-8">
-                            <Minus className="w-4 h-4" />
-                          </Button>
-                          <span className="w-8 text-center">0</span>
-                          <Button variant="outline" size="icon" className="h-8 w-8">
-                            <Plus className="w-4 h-4" />
-                          </Button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Number Select */}
-                  <div className="space-y-2">
-                    <Label>Number Select</Label>
-                    <div className="flex gap-2 flex-wrap">
-                      <Button variant="outline" size="sm">Any</Button>
-                      <Button variant="default" size="sm">1+</Button>
-                      <Button variant="outline" size="sm">2+</Button>
-                      <Button variant="outline" size="sm">3+</Button>
-                      <Button variant="outline" size="sm">4+</Button>
-                      <Button variant="outline" size="sm">5+</Button>
-                    </div>
-                  </div>
-                </div>
-              </TabsContent>
-            </Tabs>
+              </div>
+            </div>
           </div>
         </section>
 
