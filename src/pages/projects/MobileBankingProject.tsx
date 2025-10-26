@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { useState, useEffect, useRef } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import userFlowImage from "@/assets/user-flow.jpg";
-import locateListingImage from "@/assets/locate-listing.png";
+import locateListingImage from "@/assets/locate-listing-new.png";
 import audit1 from "@/assets/MH-Audit-1.webp";
 import audit2 from "@/assets/MH-Audit-2.webp";
 import brainstorm1 from "@/assets/mh-brainstorm-1.webp";
