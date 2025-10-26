@@ -893,6 +893,130 @@ const MobileBankingProject = () => {
           <img src={userFlowImage} alt="User flow design" className="w-full h-full object-cover object-left-top" />
         </div>
 
+        {/* Design System Section */}
+        <section className="relative px-6 py-24 bg-background">
+          <div className="container mx-auto max-w-[1440px]">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+              {/* Typography Column */}
+              <div>
+                <h3 className="text-2xl font-bold mb-8">Typography</h3>
+                <div className="space-y-8">
+                  <div>
+                    <h1 className="text-5xl font-bold mb-2">Roboto</h1>
+                  </div>
+                  <div className="space-y-6">
+                    <div>
+                      <p className="text-4xl font-semibold mb-2 text-foreground">H1</p>
+                      <p className="text-sm text-muted-foreground">weight: <span className="font-semibold">Semi Bold</span> | size: <span className="font-semibold">34 px</span></p>
+                    </div>
+                    <div>
+                      <p className="text-3xl font-semibold mb-2 text-foreground">H2</p>
+                      <p className="text-sm text-muted-foreground">weight: <span className="font-semibold">Semi Bold</span> | size: <span className="font-semibold">28 px</span></p>
+                    </div>
+                    <div>
+                      <p className="text-2xl font-medium mb-2 text-foreground">H3</p>
+                      <p className="text-sm text-muted-foreground">weight: <span className="font-semibold">Medium</span> | size: <span className="font-semibold">24 px</span></p>
+                    </div>
+                    <div>
+                      <p className="text-xl font-medium mb-2 text-foreground">H4</p>
+                      <p className="text-sm text-muted-foreground">weight: <span className="font-semibold">Medium</span> | size: <span className="font-semibold">20 px</span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Colors Column */}
+              <div>
+                <h3 className="text-2xl font-bold mb-8">Colors</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="col-span-2 aspect-[2/1] rounded-lg relative overflow-hidden" style={{backgroundColor: '#006D31'}}>
+                    <div className="absolute bottom-4 left-4 text-white">
+                      <p className="font-semibold">Land Green</p>
+                      <p className="text-sm">#006D31</p>
+                    </div>
+                  </div>
+                  <div className="aspect-square rounded-lg relative overflow-hidden" style={{backgroundColor: '#155443'}}>
+                    <div className="absolute bottom-3 left-3 text-white">
+                      <p className="font-semibold text-sm">Deep Green</p>
+                      <p className="text-xs">#155443</p>
+                    </div>
+                  </div>
+                  <div className="aspect-square rounded-lg relative overflow-hidden" style={{backgroundColor: '#0E7080'}}>
+                    <div className="absolute bottom-3 left-3 text-white">
+                      <p className="font-semibold text-sm">Blue Spruce</p>
+                      <p className="text-xs">#0E7080</p>
+                    </div>
+                  </div>
+                  <div className="aspect-square rounded-lg relative overflow-hidden" style={{backgroundColor: '#A82445'}}>
+                    <div className="absolute bottom-3 left-3 text-white">
+                      <p className="font-semibold text-sm">Raspberry</p>
+                      <p className="text-xs">#A82445</p>
+                    </div>
+                  </div>
+                  <div className="aspect-square rounded-lg relative overflow-hidden" style={{backgroundColor: '#AF5A1D'}}>
+                    <div className="absolute bottom-3 left-3 text-white">
+                      <p className="font-semibold text-sm">Chestnut</p>
+                      <p className="text-xs">#AF5A1D</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Icons Column */}
+              <div>
+                <h3 className="text-2xl font-bold mb-8">Icons</h3>
+                <div className="grid grid-cols-5 gap-4">
+                  <div className="aspect-square flex items-center justify-center text-foreground/60">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                  </div>
+                  <div className="aspect-square flex items-center justify-center text-foreground/60">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                  </div>
+                  <div className="aspect-square flex items-center justify-center text-foreground/60">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+                  </div>
+                  <div className="aspect-square flex items-center justify-center text-foreground/60">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+                  </div>
+                  <div className="aspect-square flex items-center justify-center text-foreground/60">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  </div>
+                  <div className="aspect-square flex items-center justify-center text-foreground/60">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  </div>
+                  <div className="aspect-square flex items-center justify-center text-foreground/60">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                  </div>
+                  <div className="aspect-square flex items-center justify-center text-foreground/60">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+                  </div>
+                  <div className="aspect-square flex items-center justify-center text-foreground/60">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+                  </div>
+                  <div className="aspect-square flex items-center justify-center text-foreground/60">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                  </div>
+                  <div className="aspect-square flex items-center justify-center text-foreground/60">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+                  </div>
+                  <div className="aspect-square flex items-center justify-center text-foreground/60">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+                  </div>
+                  <div className="aspect-square flex items-center justify-center text-foreground/60">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+                  </div>
+                  <div className="aspect-square flex items-center justify-center text-foreground/60">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                  </div>
+                  <div className="aspect-square flex items-center justify-center text-foreground/60">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Delivery Section - 04 */}
         <section ref={deliveryContentAnim.ref} className={`relative px-6 py-24 bg-card/30 transition-all duration-700 ${deliveryContentAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div ref={deliveryRef} className="absolute top-0 left-0 w-full h-1" />
