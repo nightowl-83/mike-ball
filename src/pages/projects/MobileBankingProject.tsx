@@ -688,8 +688,15 @@ const MobileBankingProject = () => {
               </div>
             </div>
 
+            {/* Persona Header Section */}
+            <div className="mt-32 max-w-6xl mx-auto text-center">
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+                Creating in-depth user personas to better understand our users, goals & needs.
+              </h2>
+            </div>
+
             {/* User Persona Section - 2x2 Grid */}
-            <div ref={discoveryPersonaRef} className="mt-32">
+            <div ref={discoveryPersonaRef} className="mt-20">
               <div ref={personaAnim.ref} className={`transition-all duration-700 ${personaAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
               <h3 className="text-3xl font-semibold mb-12 max-w-6xl mx-auto">User Persona</h3>
               <div className="grid grid-cols-2 gap-6 max-w-6xl mx-auto">
