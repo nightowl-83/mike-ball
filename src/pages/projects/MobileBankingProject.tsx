@@ -1142,11 +1142,11 @@ const MobileBankingProject = () => {
         <section className="relative w-full overflow-hidden">
           <div className="flex min-h-[600px] lg:min-h-[700px]">
             {/* Left Column - Phone Mockups (50vw, flush left) */}
-            <div className="w-full lg:w-[50vw] relative overflow-hidden">
+            <div className="w-full lg:w-[50vw] relative overflow-hidden bg-background">
               <img 
                 src={locateListingImage} 
                 alt="Add and Edit Listing Flow" 
-                className="w-full h-full object-cover object-center"
+                className="w-full h-full object-contain object-left"
               />
             </div>
 
