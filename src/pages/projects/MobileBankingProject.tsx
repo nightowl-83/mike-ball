@@ -1,7 +1,10 @@
-import { ArrowLeft, Layout, Columns2, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowLeft, Layout, Columns2, X, ChevronLeft, ChevronRight, Home, Search, Bell, User, Settings, Heart, Star, Mail, Phone, Camera, MapPin, Calendar, Download, Upload, Trash2, Edit, Share2, Filter, Menu, Check, Plus, Minus } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { useState, useEffect, useRef } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import userFlowImage from "@/assets/user-flow.jpg";
@@ -897,233 +900,297 @@ const MobileBankingProject = () => {
         {/* Design System Section */}
         <section className="relative px-6 py-24 bg-background flex items-center">
           <div className="container mx-auto max-w-[1440px]">
-            <div className="flex items-center justify-between mb-16">
-              <h2 className="text-4xl font-bold">Design System</h2>
-              <div className="flex gap-2">
-                <Button
-                  variant={designLayout === 1 ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setDesignLayout(1)}
-                >
-                  Compact Grid
-                </Button>
-                <Button
-                  variant={designLayout === 2 ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setDesignLayout(2)}
-                >
-                  Bento Box
-                </Button>
-                <Button
-                  variant={designLayout === 3 ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setDesignLayout(3)}
-                >
-                  Horizontal
-                </Button>
-              </div>
-            </div>
+            <h2 className="text-4xl font-bold mb-12">Design System</h2>
+            
+            <Tabs defaultValue="fundamentals" className="w-full">
+              <TabsList className="mb-8">
+                <TabsTrigger value="fundamentals">Fundamentals</TabsTrigger>
+                <TabsTrigger value="ui-elements">UI Elements</TabsTrigger>
+              </TabsList>
+              
+              <TabsContent value="fundamentals">
+                {/* Bento Box Layout */}
+                <div className="grid grid-cols-2 gap-6 h-[70vh] transition-all duration-300">
+                  {/* Large Typography Card */}
+                  <div className="bg-card border border-border rounded-lg p-8 flex flex-col">
+                    <h3 className="text-xl font-bold mb-8">Typography</h3>
+                    <div className="space-y-4">
+                      <div>
+                        <h1 className="text-5xl font-bold mb-2">Roboto</h1>
+                        <p className="text-sm text-muted-foreground">Font Family</p>
+                      </div>
+                      <div className="space-y-2 pt-4">
+                        <p className="text-2xl font-semibold">H1 <span className="text-xs text-muted-foreground ml-2">34px Semi Bold</span></p>
+                        <p className="text-xl font-semibold">H2 <span className="text-xs text-muted-foreground ml-2">28px Semi Bold</span></p>
+                        <p className="text-lg font-medium">H3 <span className="text-xs text-muted-foreground ml-2">24px Medium</span></p>
+                        <p className="text-base font-medium">H4 <span className="text-xs text-muted-foreground ml-2">20px Medium</span></p>
+                        <p className="text-sm font-semibold opacity-70">Subtitle <span className="text-xs text-muted-foreground ml-2">18px</span></p>
+                        <p className="text-sm opacity-50">Body <span className="text-xs text-muted-foreground ml-2">16px Regular</span></p>
+                        <p className="text-xs opacity-30">Paragraph <span className="text-xs text-muted-foreground ml-2">14px</span></p>
+                      </div>
+                    </div>
+                  </div>
 
-            {/* Layout 1: Compact Grid */}
-            {designLayout === 1 && (
-              <div className="grid grid-cols-3 gap-8 h-[60vh] transition-all duration-300">
-                {/* Typography */}
-                <div className="flex flex-col">
-                  <h3 className="text-xl font-bold mb-8">Typography</h3>
+                  {/* Right Column */}
+                  <div className="flex flex-col gap-6">
+                    {/* Colors Card */}
+                    <div className="bg-card border border-border rounded-lg p-6 flex-1">
+                      <h3 className="text-xl font-bold mb-6">Colors</h3>
+                      <div className="grid grid-cols-2 gap-3 flex-1">
+                        <div className="rounded-lg p-4 flex items-end row-span-2 relative overflow-hidden" style={{backgroundColor: '#006D31'}}>
+                          <div className="absolute top-3 right-3">
+                            <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
+                              <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm3.707 6.707l-4 4a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L9 10.586l3.293-3.293a1 1 0 011.414 1.414z"/>
+                              </svg>
+                            </div>
+                          </div>
+                          <div className="text-white">
+                            <p className="font-semibold text-base mb-1">Land Green</p>
+                            <p className="text-xs opacity-80">#006D31</p>
+                            <p className="text-xs opacity-60 mt-1">Primary</p>
+                          </div>
+                        </div>
+                        <div className="rounded-lg p-3 flex items-end" style={{backgroundColor: '#155443'}}>
+                          <div className="text-white">
+                            <p className="font-semibold text-xs">Deep Green</p>
+                            <p className="text-xs opacity-80">#155443</p>
+                          </div>
+                        </div>
+                        <div className="rounded-lg p-3 flex items-end" style={{backgroundColor: '#0E7080'}}>
+                          <div className="text-white">
+                            <p className="font-semibold text-xs">Blue Spruce</p>
+                            <p className="text-xs opacity-80">#0E7080</p>
+                          </div>
+                        </div>
+                        <div className="rounded-lg p-3 flex items-end" style={{backgroundColor: '#A82445'}}>
+                          <div className="text-white">
+                            <p className="font-semibold text-xs">Raspberry</p>
+                            <p className="text-xs opacity-80">#A82445</p>
+                          </div>
+                        </div>
+                        <div className="rounded-lg p-3 flex items-end" style={{backgroundColor: '#AF5A1D'}}>
+                          <div className="text-white">
+                            <p className="font-semibold text-xs">Chestnut</p>
+                            <p className="text-xs opacity-80">#AF5A1D</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Icons Card */}
+                    <div className="bg-card border border-border rounded-lg p-6 flex-1">
+                      <h3 className="text-xl font-bold mb-6">Icons</h3>
+                      <div className="grid grid-cols-8 gap-3">
+                        <div className="aspect-square bg-muted/50 rounded flex items-center justify-center text-foreground/60 hover:bg-muted hover:text-foreground transition-all">
+                          <Home className="w-5 h-5" />
+                        </div>
+                        <div className="aspect-square bg-muted/50 rounded flex items-center justify-center text-foreground/60 hover:bg-muted hover:text-foreground transition-all">
+                          <Search className="w-5 h-5" />
+                        </div>
+                        <div className="aspect-square bg-muted/50 rounded flex items-center justify-center text-foreground/60 hover:bg-muted hover:text-foreground transition-all">
+                          <Bell className="w-5 h-5" />
+                        </div>
+                        <div className="aspect-square bg-muted/50 rounded flex items-center justify-center text-foreground/60 hover:bg-muted hover:text-foreground transition-all">
+                          <User className="w-5 h-5" />
+                        </div>
+                        <div className="aspect-square bg-muted/50 rounded flex items-center justify-center text-foreground/60 hover:bg-muted hover:text-foreground transition-all">
+                          <Settings className="w-5 h-5" />
+                        </div>
+                        <div className="aspect-square bg-muted/50 rounded flex items-center justify-center text-foreground/60 hover:bg-muted hover:text-foreground transition-all">
+                          <Heart className="w-5 h-5" />
+                        </div>
+                        <div className="aspect-square bg-muted/50 rounded flex items-center justify-center text-foreground/60 hover:bg-muted hover:text-foreground transition-all">
+                          <Star className="w-5 h-5" />
+                        </div>
+                        <div className="aspect-square bg-muted/50 rounded flex items-center justify-center text-foreground/60 hover:bg-muted hover:text-foreground transition-all">
+                          <Mail className="w-5 h-5" />
+                        </div>
+                        <div className="aspect-square bg-muted/50 rounded flex items-center justify-center text-foreground/60 hover:bg-muted hover:text-foreground transition-all">
+                          <Phone className="w-5 h-5" />
+                        </div>
+                        <div className="aspect-square bg-muted/50 rounded flex items-center justify-center text-foreground/60 hover:bg-muted hover:text-foreground transition-all">
+                          <Camera className="w-5 h-5" />
+                        </div>
+                        <div className="aspect-square bg-muted/50 rounded flex items-center justify-center text-foreground/60 hover:bg-muted hover:text-foreground transition-all">
+                          <MapPin className="w-5 h-5" />
+                        </div>
+                        <div className="aspect-square bg-muted/50 rounded flex items-center justify-center text-foreground/60 hover:bg-muted hover:text-foreground transition-all">
+                          <Calendar className="w-5 h-5" />
+                        </div>
+                        <div className="aspect-square bg-muted/50 rounded flex items-center justify-center text-foreground/60 hover:bg-muted hover:text-foreground transition-all">
+                          <Download className="w-5 h-5" />
+                        </div>
+                        <div className="aspect-square bg-muted/50 rounded flex items-center justify-center text-foreground/60 hover:bg-muted hover:text-foreground transition-all">
+                          <Upload className="w-5 h-5" />
+                        </div>
+                        <div className="aspect-square bg-muted/50 rounded flex items-center justify-center text-foreground/60 hover:bg-muted hover:text-foreground transition-all">
+                          <Trash2 className="w-5 h-5" />
+                        </div>
+                        <div className="aspect-square bg-muted/50 rounded flex items-center justify-center text-foreground/60 hover:bg-muted hover:text-foreground transition-all">
+                          <Edit className="w-5 h-5" />
+                        </div>
+                        <div className="aspect-square bg-muted/50 rounded flex items-center justify-center text-foreground/60 hover:bg-muted hover:text-foreground transition-all">
+                          <Share2 className="w-5 h-5" />
+                        </div>
+                        <div className="aspect-square bg-muted/50 rounded flex items-center justify-center text-foreground/60 hover:bg-muted hover:text-foreground transition-all">
+                          <ChevronRight className="w-5 h-5" />
+                        </div>
+                        <div className="aspect-square bg-muted/50 rounded flex items-center justify-center text-foreground/60 hover:bg-muted hover:text-foreground transition-all">
+                          <ChevronLeft className="w-5 h-5" />
+                        </div>
+                        <div className="aspect-square bg-muted/50 rounded flex items-center justify-center text-foreground/60 hover:bg-muted hover:text-foreground transition-all">
+                          <Filter className="w-5 h-5" />
+                        </div>
+                        <div className="aspect-square bg-muted/50 rounded flex items-center justify-center text-foreground/60 hover:bg-muted hover:text-foreground transition-all">
+                          <Menu className="w-5 h-5" />
+                        </div>
+                        <div className="aspect-square bg-muted/50 rounded flex items-center justify-center text-foreground/60 hover:bg-muted hover:text-foreground transition-all">
+                          <X className="w-5 h-5" />
+                        </div>
+                        <div className="aspect-square bg-muted/50 rounded flex items-center justify-center text-foreground/60 hover:bg-muted hover:text-foreground transition-all">
+                          <Check className="w-5 h-5" />
+                        </div>
+                        <div className="aspect-square bg-muted/50 rounded flex items-center justify-center text-foreground/60 hover:bg-muted hover:text-foreground transition-all">
+                          <Plus className="w-5 h-5" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </TabsContent>
+
+              <TabsContent value="ui-elements">
+                <div className="grid grid-cols-4 gap-6 py-8">
+                  {/* Text Input */}
+                  <div className="space-y-2">
+                    <Label>Title</Label>
+                    <Input placeholder="Placeholder" />
+                  </div>
+
+                  {/* Text Input with Search */}
+                  <div className="space-y-2">
+                    <Label>Title</Label>
+                    <div className="relative">
+                      <Input placeholder="Placeholder" className="pr-10" />
+                      <Search className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                    </div>
+                  </div>
+
+                  {/* Text Input with Button */}
+                  <div className="space-y-2">
+                    <Label>Title</Label>
+                    <div className="flex gap-2">
+                      <Input placeholder="Placeholder" />
+                      <Button variant="secondary" size="sm">Search</Button>
+                    </div>
+                  </div>
+
+                  {/* Select Dropdown */}
+                  <div className="space-y-2">
+                    <Label>Title</Label>
+                    <div className="relative">
+                      <Input placeholder="Placeholder" className="pr-10" />
+                      <Search className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                    </div>
+                  </div>
+
+                  {/* Text Input with Clear */}
+                  <div className="space-y-2">
+                    <Label>Title</Label>
+                    <div className="relative">
+                      <Input placeholder="Inputted Text" value="Inputted Text" readOnly />
+                      <button className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-muted hover:bg-muted/80 flex items-center justify-center">
+                        <X className="w-3 h-3" />
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Text Input with Clear Button Below */}
+                  <div className="space-y-2">
+                    <Label>Title</Label>
+                    <Input placeholder="Inputted Text" value="Inputted Text" readOnly />
+                    <Button variant="secondary" size="sm" className="w-full">Clear</Button>
+                  </div>
+
+                  {/* Filter Buttons */}
+                  <div className="space-y-2 col-span-2">
+                    <Label>Filters Button</Label>
+                    <div className="flex gap-2 flex-wrap">
+                      <Button variant="outline" size="sm">Placeholder</Button>
+                      <Button variant="outline" size="sm">Placeholder</Button>
+                      <Button variant="outline" size="sm">Placeholder</Button>
+                      <Button variant="outline" size="sm">
+                        Placeholder
+                        <X className="w-3 h-3 ml-1" />
+                      </Button>
+                    </div>
+                    <div className="flex gap-2 flex-wrap mt-2">
+                      <Button variant="outline" size="sm">
+                        <Filter className="w-3 h-3 mr-1" />
+                        Filters
+                      </Button>
+                      <Button variant="outline" size="sm">
+                        <Filter className="w-3 h-3 mr-1" />
+                        Filters
+                      </Button>
+                      <Button variant="outline" size="sm">
+                        <Filter className="w-3 h-3 mr-1" />
+                        Filters
+                      </Button>
+                      <Button variant="outline" size="sm">
+                        <Filter className="w-3 h-3 mr-1" />
+                        Filters
+                      </Button>
+                    </div>
+                  </div>
+
+                  {/* Counter */}
                   <div className="space-y-4">
-                    <div>
-                      <h1 className="text-5xl font-bold">Roboto</h1>
-                      <p className="text-sm text-muted-foreground">Font Family</p>
-                    </div>
-                    <div className="space-y-2">
-                      <p className="text-2xl font-semibold">H1 <span className="text-xs text-muted-foreground ml-2">34px Semi Bold</span></p>
-                      <p className="text-xl font-semibold">H2 <span className="text-xs text-muted-foreground ml-2">28px Semi Bold</span></p>
-                      <p className="text-lg font-medium">H3 <span className="text-xs text-muted-foreground ml-2">24px Medium</span></p>
-                      <p className="text-base font-medium">H4 <span className="text-xs text-muted-foreground ml-2">20px Medium</span></p>
-                      <p className="text-sm font-semibold opacity-70">Subtitle <span className="text-xs text-muted-foreground ml-2">18px</span></p>
-                      <p className="text-sm opacity-50">Body <span className="text-xs text-muted-foreground ml-2">16px Regular</span></p>
-                      <p className="text-xs opacity-30">Paragraph <span className="text-xs text-muted-foreground ml-2">14px</span></p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Colors */}
-                <div className="flex flex-col">
-                  <h3 className="text-xl font-bold mb-8">Colors</h3>
-                  <div className="grid grid-cols-2 gap-3 flex-1">
-                    <div className="rounded-lg p-4 flex items-end row-span-2" style={{backgroundColor: '#006D31'}}>
-                      <div className="text-white">
-                        <p className="font-semibold text-sm">Land Green</p>
-                        <p className="text-xs">#006D31</p>
-                      </div>
-                    </div>
-                    <div className="rounded-lg p-3 flex items-end" style={{backgroundColor: '#155443'}}>
-                      <div className="text-white">
-                        <p className="font-semibold text-xs">Deep Green</p>
-                        <p className="text-xs opacity-80">#155443</p>
-                      </div>
-                    </div>
-                    <div className="rounded-lg p-3 flex items-end" style={{backgroundColor: '#0E7080'}}>
-                      <div className="text-white">
-                        <p className="font-semibold text-xs">Blue Spruce</p>
-                        <p className="text-xs opacity-80">#0E7080</p>
-                      </div>
-                    </div>
-                    <div className="rounded-lg p-3 flex items-end" style={{backgroundColor: '#A82445'}}>
-                      <div className="text-white">
-                        <p className="font-semibold text-xs">Raspberry</p>
-                        <p className="text-xs opacity-80">#A82445</p>
-                      </div>
-                    </div>
-                    <div className="rounded-lg p-3 flex items-end" style={{backgroundColor: '#AF5A1D'}}>
-                      <div className="text-white">
-                        <p className="font-semibold text-xs">Chestnut</p>
-                        <p className="text-xs opacity-80">#AF5A1D</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Icons */}
-                <div className="flex flex-col">
-                  <h3 className="text-xl font-bold mb-8">Icons</h3>
-                  <div className="grid grid-cols-6 gap-2">
-                    {Array.from({ length: 36 }).map((_, i) => (
-                      <div key={i} className="aspect-square flex items-center justify-center text-foreground/60 hover:text-foreground transition-colors">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          {i % 6 === 0 && <circle cx="11" cy="11" r="8"/>}
-                          {i % 6 === 1 && <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>}
-                          {i % 6 === 2 && <polyline points="9 18 15 12 9 6"/>}
-                          {i % 6 === 3 && <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/>}
-                          {i % 6 === 4 && <circle cx="12" cy="12" r="10"/>}
-                          {i % 6 === 5 && <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>}
-                        </svg>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* Layout 2: Bento Box */}
-            {designLayout === 2 && (
-              <div className="grid grid-cols-2 gap-6 h-[70vh] transition-all duration-300">
-                {/* Large Typography Card */}
-                <div className="bg-card border border-border rounded-lg p-8 flex flex-col">
-                  <h3 className="text-xl font-bold mb-6">Typography</h3>
-                  <div className="flex-1 flex flex-col justify-center space-y-6">
-                    <div>
-                      <h1 className="text-7xl font-bold mb-2">Roboto</h1>
-                      <p className="text-base text-muted-foreground">Font Family</p>
-                    </div>
-                    <div className="space-y-3 pt-6">
-                      <p className="text-3xl font-semibold">H1 Heading</p>
-                      <p className="text-2xl font-semibold opacity-80">H2 Heading</p>
-                      <p className="text-xl font-medium opacity-70">H3 Heading</p>
-                      <p className="text-base opacity-60">Body text sample</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Right Column */}
-                <div className="flex flex-col gap-6">
-                  {/* Colors Card */}
-                  <div className="bg-card border border-border rounded-lg p-6 flex-1">
-                    <h3 className="text-xl font-bold mb-6">Colors</h3>
-                    <div className="flex gap-3 h-32">
-                      <div className="flex-1 rounded-lg" style={{backgroundColor: '#006D31'}}></div>
-                      <div className="flex-1 rounded-lg" style={{backgroundColor: '#155443'}}></div>
-                      <div className="flex-1 rounded-lg" style={{backgroundColor: '#0E7080'}}></div>
-                      <div className="flex-1 rounded-lg" style={{backgroundColor: '#A82445'}}></div>
-                      <div className="flex-1 rounded-lg" style={{backgroundColor: '#AF5A1D'}}></div>
-                    </div>
-                    <div className="grid grid-cols-5 gap-2 mt-3">
-                      <p className="text-xs text-muted-foreground">Land Green</p>
-                      <p className="text-xs text-muted-foreground">Deep Green</p>
-                      <p className="text-xs text-muted-foreground">Blue Spruce</p>
-                      <p className="text-xs text-muted-foreground">Raspberry</p>
-                      <p className="text-xs text-muted-foreground">Chestnut</p>
-                    </div>
-                  </div>
-
-                  {/* Icons Card */}
-                  <div className="bg-card border border-border rounded-lg p-6 flex-1">
-                    <h3 className="text-xl font-bold mb-6">Icons</h3>
-                    <div className="grid grid-cols-8 gap-3">
-                      {Array.from({ length: 24 }).map((_, i) => (
-                        <div key={i} className="aspect-square bg-muted/50 rounded flex items-center justify-center text-foreground/60 hover:bg-muted hover:text-foreground transition-all">
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            {i % 6 === 0 && <circle cx="12" cy="12" r="10"/>}
-                            {i % 6 === 1 && <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/>}
-                            {i % 6 === 2 && <polyline points="9 18 15 12 9 6"/>}
-                            {i % 6 === 3 && <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>}
-                            {i % 6 === 4 && <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>}
-                            {i % 6 === 5 && <circle cx="11" cy="11" r="8"/>}
-                          </svg>
+                    <Label>Counter</Label>
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-3">
+                        <span className="text-sm">Title</span>
+                        <div className="flex items-center gap-2">
+                          <Button variant="outline" size="icon" className="h-8 w-8">
+                            <Minus className="w-4 h-4" />
+                          </Button>
+                          <span className="w-8 text-center">0</span>
+                          <Button variant="outline" size="icon" className="h-8 w-8">
+                            <Plus className="w-4 h-4" />
+                          </Button>
                         </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* Layout 3: Horizontal Panels */}
-            {designLayout === 3 && (
-              <div className="grid grid-cols-3 gap-8 h-[50vh] transition-all duration-300">
-                {/* Typography Panel */}
-                <div className="border border-border rounded-lg p-6 flex flex-col">
-                  <h3 className="text-lg font-bold mb-4">Typography</h3>
-                  <div className="flex-1 flex items-center">
-                    <div className="space-y-2">
-                      <h1 className="text-4xl font-bold">Roboto</h1>
-                      <p className="text-xs text-muted-foreground mb-4">Font Family</p>
-                      <div className="space-y-1">
-                        <p className="text-lg font-semibold">H1</p>
-                        <p className="text-base font-semibold">H2</p>
-                        <p className="text-sm font-medium">H3</p>
-                        <p className="text-xs">Body</p>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <span className="text-sm">Title</span>
+                        <div className="flex items-center gap-2">
+                          <Button variant="outline" size="icon" className="h-8 w-8">
+                            <Minus className="w-4 h-4" />
+                          </Button>
+                          <span className="w-8 text-center">0</span>
+                          <Button variant="outline" size="icon" className="h-8 w-8">
+                            <Plus className="w-4 h-4" />
+                          </Button>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
 
-                {/* Colors Panel */}
-                <div className="border border-border rounded-lg p-6 flex flex-col">
-                  <h3 className="text-lg font-bold mb-4">Colors</h3>
-                  <div className="flex-1 flex flex-col justify-center gap-2">
-                    <div className="h-12 rounded flex items-center px-3 text-white text-sm font-semibold" style={{backgroundColor: '#006D31'}}>Land Green</div>
-                    <div className="h-12 rounded flex items-center px-3 text-white text-sm font-semibold" style={{backgroundColor: '#155443'}}>Deep Green</div>
-                    <div className="h-12 rounded flex items-center px-3 text-white text-sm font-semibold" style={{backgroundColor: '#0E7080'}}>Blue Spruce</div>
-                    <div className="h-12 rounded flex items-center px-3 text-white text-sm font-semibold" style={{backgroundColor: '#A82445'}}>Raspberry</div>
-                    <div className="h-12 rounded flex items-center px-3 text-white text-sm font-semibold" style={{backgroundColor: '#AF5A1D'}}>Chestnut</div>
-                  </div>
-                </div>
-
-                {/* Icons Panel */}
-                <div className="border border-border rounded-lg p-6 flex flex-col">
-                  <h3 className="text-lg font-bold mb-4">Icons</h3>
-                  <div className="flex-1">
-                    <div className="grid grid-cols-8 gap-2 h-full content-center">
-                      {Array.from({ length: 32 }).map((_, i) => (
-                        <div key={i} className="aspect-square flex items-center justify-center text-foreground/60 hover:text-foreground transition-colors">
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            {i % 8 === 0 && <circle cx="12" cy="12" r="10"/>}
-                            {i % 8 === 1 && <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/>}
-                            {i % 8 === 2 && <polyline points="9 18 15 12 9 6"/>}
-                            {i % 8 === 3 && <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>}
-                            {i % 8 === 4 && <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>}
-                            {i % 8 === 5 && <circle cx="11" cy="11" r="8"/>}
-                            {i % 8 === 6 && <line x1="12" y1="5" x2="12" y2="19"/>}
-                            {i % 8 === 7 && <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>}
-                          </svg>
-                        </div>
-                      ))}
+                  {/* Number Select */}
+                  <div className="space-y-2">
+                    <Label>Number Select</Label>
+                    <div className="flex gap-2 flex-wrap">
+                      <Button variant="outline" size="sm">Any</Button>
+                      <Button variant="default" size="sm">1+</Button>
+                      <Button variant="outline" size="sm">2+</Button>
+                      <Button variant="outline" size="sm">3+</Button>
+                      <Button variant="outline" size="sm">4+</Button>
+                      <Button variant="outline" size="sm">5+</Button>
                     </div>
                   </div>
                 </div>
-              </div>
-            )}
+              </TabsContent>
+            </Tabs>
           </div>
         </section>
 
