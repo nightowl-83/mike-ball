@@ -900,7 +900,7 @@ const MobileBankingProject = () => {
               {/* Typography Column */}
               <div className="flex flex-col">
                 <h3 className="text-2xl font-bold mb-12">Typography</h3>
-                <div className="flex flex-col justify-between flex-1 space-y-10">
+                <div className="flex flex-col justify-between flex-1 space-y-6">
                   <div>
                     <h1 className="text-5xl font-bold mb-2">Roboto</h1>
                   </div>
@@ -920,15 +920,15 @@ const MobileBankingProject = () => {
                     <p className="text-xl font-medium mb-3 text-foreground">H4</p>
                     <p className="text-base text-muted-foreground">weight: <span className="font-semibold">Medium</span> | size: <span className="font-semibold">20 px</span></p>
                   </div>
-                  <div>
+                  <div className="opacity-70">
                     <p className="text-lg font-semibold mb-3 text-foreground">Subtitle</p>
                     <p className="text-base text-muted-foreground">weight: <span className="font-semibold">Semi Bold</span> | size: <span className="font-semibold">18 px</span></p>
                   </div>
-                  <div>
+                  <div className="opacity-50">
                     <p className="text-base font-normal mb-3 text-foreground">Body</p>
                     <p className="text-base text-muted-foreground">weight: <span className="font-semibold">Regular</span> | size: <span className="font-semibold">16 px</span></p>
                   </div>
-                  <div>
+                  <div className="opacity-30">
                     <p className="text-sm font-normal mb-3 text-foreground">Paragraph</p>
                     <p className="text-base text-muted-foreground">weight: <span className="font-semibold">Regular</span> | size: <span className="font-semibold">14 px</span></p>
                   </div>
@@ -938,7 +938,7 @@ const MobileBankingProject = () => {
               {/* Colors Column */}
               <div className="flex flex-col">
                 <h3 className="text-2xl font-bold mb-12">Colors</h3>
-                <div className="grid grid-cols-2 gap-4 flex-1">
+                <div className="grid grid-cols-2 gap-4 h-[500px]">
                   {/* Left column - Land Green spanning full height */}
                   <div className="rounded-lg relative overflow-hidden" style={{backgroundColor: '#006D31'}}>
                     <div className="absolute bottom-4 left-4 text-white">
@@ -1072,6 +1072,33 @@ const MobileBankingProject = () => {
                   </div>
                   <div className="aspect-square flex items-center justify-center text-foreground/60">
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                  </div>
+                  <div className="aspect-square flex items-center justify-center text-foreground/60">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  </div>
+                  <div className="aspect-square flex items-center justify-center text-foreground/60">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                  </div>
+                  <div className="aspect-square flex items-center justify-center text-foreground/60">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <div className="aspect-square flex items-center justify-center text-foreground/60">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                  </div>
+                  <div className="aspect-square flex items-center justify-center text-foreground/60">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  </div>
+                  <div className="aspect-square flex items-center justify-center text-foreground/60">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                  </div>
+                  <div className="aspect-square flex items-center justify-center text-foreground/60">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+                  </div>
+                  <div className="aspect-square flex items-center justify-center text-foreground/60">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                  </div>
+                  <div className="aspect-square flex items-center justify-center text-foreground/60">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
                   </div>
                 </div>
               </div>
