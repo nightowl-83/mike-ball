@@ -1139,25 +1139,25 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Add & Edit a Listing Section */}
-        <section className="relative px-6 py-24 bg-background">
-          <div className="container mx-auto max-w-[1440px]">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              {/* Left Column - Phone Mockups */}
-              <div className="relative h-[600px] lg:h-[700px]">
-                <img 
-                  src={locateListingImage} 
-                  alt="Add and Edit Listing Flow" 
-                  className="w-full h-full object-contain object-center"
-                />
-              </div>
+        <section className="relative w-full overflow-hidden">
+          <div className="flex min-h-[600px] lg:min-h-[700px]">
+            {/* Left Column - Phone Mockups (50vw, flush left) */}
+            <div className="w-full lg:w-[50vw] relative overflow-hidden">
+              <img 
+                src={locateListingImage} 
+                alt="Add and Edit Listing Flow" 
+                className="w-full h-full object-cover object-center"
+              />
+            </div>
 
-              {/* Right Column - Content */}
-              <div className="space-y-8">
+            {/* Right Column - Content */}
+            <div className="w-full lg:w-[50vw] flex items-center px-6 lg:px-16 py-16 bg-background">
+              <div className="space-y-8 max-w-2xl">
                 <div className="text-right lg:text-left">
-                  <span className="text-6xl md:text-7xl font-bold font-mono opacity-30">/04</span>
+                  <span className="text-4xl md:text-5xl font-bold font-mono opacity-30">/04</span>
                 </div>
                 
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold">Add & Edit a Listing</h2>
+                <h2 className="text-3xl md:text-4xl font-bold">Add & Edit a Listing</h2>
                 
                 <ul className="space-y-4 text-lg text-muted-foreground">
                   <li className="flex items-start gap-4">
