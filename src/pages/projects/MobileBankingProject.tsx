@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState, useEffect, useRef } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { StickyNavHeader } from "@/components/StickyNavHeader";
 import userFlowImage from "@/assets/user-flow.jpg";
 import locateListingImage from "@/assets/locate-listing-new.png";
 import audit1 from "@/assets/MH-Audit-1.webp";
@@ -34,6 +35,19 @@ const MobileBankingProject = () => {
   const discoveryPersonaRef = useRef<HTMLDivElement>(null);
   const designRef = useRef<HTMLDivElement>(null);
   const deliveryRef = useRef<HTMLDivElement>(null);
+  const addEditListingRef = useRef<HTMLDivElement>(null);
+
+  // Section navigation data
+  const sections = [
+    { id: 'define', section: 'Define', subsection: '', number: '/01', ref: defineRef },
+    { id: 'define-gallery', section: 'Define', subsection: 'Gallery', number: '/01', ref: defineGalleryRef },
+    { id: 'discovery', section: 'Discovery', subsection: '', number: '/02', ref: discoveryRef },
+    { id: 'discovery-interviews', section: 'Discovery', subsection: 'User Interviews', number: '/02', ref: discoveryInterviewsRef },
+    { id: 'discovery-persona', section: 'Discovery', subsection: 'User Persona', number: '/02', ref: discoveryPersonaRef },
+    { id: 'design', section: 'Design', subsection: '', number: '/03', ref: designRef },
+    { id: 'delivery', section: 'Delivery', subsection: '', number: '/04', ref: deliveryRef },
+    { id: 'delivery-listing', section: 'Delivery', subsection: 'Add & Edit a Listing', number: '/04', ref: addEditListingRef },
+  ];
 
   // Array of gallery images
   const galleryImages = [
@@ -104,6 +118,12 @@ const MobileBankingProject = () => {
       observers[observers.length - 1].observe(deliveryRef.current);
     }
 
+    // Add & Edit Listing observer
+    if (addEditListingRef.current) {
+      observers.push(createObserver(addEditListingRef, { section: 'Delivery', subsection: 'Add & Edit a Listing', number: '/04' }));
+      observers[observers.length - 1].observe(addEditListingRef.current);
+    }
+
     // Hide sticky header when at top
     const topObserver = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
@@ -167,23 +187,13 @@ const MobileBankingProject = () => {
 
   return <div className="min-h-screen bg-background">
       {/* Unified Sticky Header */}
-      <div className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        stickyHeader.visible 
-          ? 'bg-background/95 backdrop-blur-lg border-b border-border shadow-sm' 
-          : 'opacity-0 pointer-events-none'
-      }`}>
-        <div className="container mx-auto max-w-[1440px] px-6 py-4">
-          <div className="flex items-center justify-between">
-            <h2 className="text-3xl md:text-4xl font-bold">
-              {stickyHeader.section}
-              {stickyHeader.subsection && ` - ${stickyHeader.subsection}`}
-            </h2>
-            <span className="text-2xl md:text-3xl font-bold font-mono opacity-30">
-              {stickyHeader.number}
-            </span>
-          </div>
-        </div>
-      </div>
+      <StickyNavHeader
+        visible={stickyHeader.visible}
+        currentSection={stickyHeader.section}
+        currentSubsection={stickyHeader.subsection}
+        currentNumber={stickyHeader.number}
+        sections={sections}
+      />
 
       {/* Hero Section - Toggle between layouts */}
       <section ref={heroAnim.ref} className={`relative h-[80vh] w-full overflow-hidden transition-all duration-700 ${heroAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
@@ -1140,6 +1150,7 @@ const MobileBankingProject = () => {
 
         {/* Add & Edit a Listing Section */}
         <section className="relative w-full overflow-hidden">
+          <div ref={addEditListingRef} className="absolute top-0 left-0 w-full h-1" />
           <div className="flex min-h-[600px] lg:min-h-[700px]">
             {/* Left Column - Phone Mockups (50vw, flush left) */}
             <div className="w-full lg:w-[50vw] relative overflow-hidden bg-background">
@@ -1151,12 +1162,13 @@ const MobileBankingProject = () => {
             </div>
 
             {/* Right Column - Content */}
-            <div className="w-full lg:w-[50vw] flex items-center px-6 lg:px-16 py-16 bg-background">
+            <div className="w-full lg:w-[50vw] flex items-center px-6 lg:px-16 py-16 bg-background relative">
+              {/* Section number in top right */}
+              <div className="absolute top-6 right-6">
+                <span className="text-4xl md:text-5xl font-bold font-mono opacity-30">/04</span>
+              </div>
+
               <div className="space-y-8 max-w-2xl">
-                <div className="text-right lg:text-left">
-                  <span className="text-4xl md:text-5xl font-bold font-mono opacity-30">/04</span>
-                </div>
-                
                 <h2 className="text-3xl md:text-4xl font-bold">Add & Edit a Listing</h2>
                 
                 <ul className="space-y-4 text-lg text-muted-foreground">
@@ -1185,6 +1197,22 @@ const MobileBankingProject = () => {
                     <span>Draft states allowing users to save progress and return later to complete listings.</span>
                   </li>
                 </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Mobile Process GIFs Section */}
+        <section className="relative w-full overflow-hidden bg-card/30 py-16">
+          <div className="container mx-auto max-w-[1440px] px-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* GIF 1 Placeholder */}
+              <div className="w-full aspect-[9/16] rounded-2xl overflow-hidden shadow-card bg-muted flex items-center justify-center">
+                <p className="text-muted-foreground">Upload GIF 1 here</p>
+              </div>
+              {/* GIF 2 Placeholder */}
+              <div className="w-full aspect-[9/16] rounded-2xl overflow-hidden shadow-card bg-muted flex items-center justify-center">
+                <p className="text-muted-foreground">Upload GIF 2 here</p>
               </div>
             </div>
           </div>
