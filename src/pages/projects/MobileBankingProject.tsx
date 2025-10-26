@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { useState, useEffect, useRef } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import userFlowImage from "@/assets/user-flow.jpg";
+import locateListingImage from "@/assets/locate-listing.png";
 import audit1 from "@/assets/MH-Audit-1.webp";
 import audit2 from "@/assets/MH-Audit-2.webp";
 import brainstorm1 from "@/assets/mh-brainstorm-1.webp";
@@ -1132,6 +1133,58 @@ const MobileBankingProject = () => {
                     <p className="mt-2">User testing reports and iterative improvements based on real-world feedback.</p>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Add & Edit a Listing Section */}
+        <section className="relative px-6 py-24 bg-background">
+          <div className="container mx-auto max-w-[1440px]">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              {/* Left Column - Phone Mockups */}
+              <div className="relative h-[600px] lg:h-[700px]">
+                <img 
+                  src={locateListingImage} 
+                  alt="Add and Edit Listing Flow" 
+                  className="w-full h-full object-contain object-center"
+                />
+              </div>
+
+              {/* Right Column - Content */}
+              <div className="space-y-8">
+                <div className="text-right lg:text-left">
+                  <span className="text-6xl md:text-7xl font-bold font-mono opacity-30">/04</span>
+                </div>
+                
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold">Add & Edit a Listing</h2>
+                
+                <ul className="space-y-4 text-lg text-muted-foreground">
+                  <li className="flex items-start gap-4">
+                    <span className="w-2 h-2 rounded-full bg-primary mt-2.5 flex-shrink-0" />
+                    <span>Address search with geolocation APIs for auto-completion and verification.</span>
+                  </li>
+                  <li className="flex items-start gap-4">
+                    <span className="w-2 h-2 rounded-full bg-primary mt-2.5 flex-shrink-0" />
+                    <span>Drag-and-drop photo upload with automatic optimization.</span>
+                  </li>
+                  <li className="flex items-start gap-4">
+                    <span className="w-2 h-2 rounded-full bg-primary mt-2.5 flex-shrink-0" />
+                    <span>Rich text editor for property descriptions.</span>
+                  </li>
+                  <li className="flex items-start gap-4">
+                    <span className="w-2 h-2 rounded-full bg-primary mt-2.5 flex-shrink-0" />
+                    <span>Categorized amenities tailored to rural needs.</span>
+                  </li>
+                  <li className="flex items-start gap-4">
+                    <span className="w-2 h-2 rounded-full bg-primary mt-2.5 flex-shrink-0" />
+                    <span>Auto-save functionality to prevent data loss during interruptions.</span>
+                  </li>
+                  <li className="flex items-start gap-4">
+                    <span className="w-2 h-2 rounded-full bg-primary mt-2.5 flex-shrink-0" />
+                    <span>Draft states allowing users to save progress and return later to complete listings.</span>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
