@@ -5,6 +5,15 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useState, useEffect, useRef } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import userFlowImage from "@/assets/user-flow.jpg";
+import audit1 from "@/assets/MH-Audit-1.webp";
+import audit2 from "@/assets/MH-Audit-2.webp";
+import brainstorm1 from "@/assets/mh-brainstorm-1.webp";
+import brainstorm4 from "@/assets/mh-brainstorm-4.webp";
+import brainstorm5 from "@/assets/mh-brainstorm-5.webp";
+import brainstorm6 from "@/assets/mh-brainstorm-6.webp";
+import brainstorm8 from "@/assets/mh-brainstorm-8.webp";
+import brainstorm9 from "@/assets/mh-brainstorm-9.webp";
+import brainstorm10 from "@/assets/mh-brainstorm-10.webp";
 
 const MobileBankingProject = () => {
   const [isColumnLayout, setIsColumnLayout] = useState(false);
@@ -21,11 +30,18 @@ const MobileBankingProject = () => {
   const designRef = useRef<HTMLDivElement>(null);
   const deliveryRef = useRef<HTMLDivElement>(null);
 
-  // Array of 7 gallery images
-  const galleryImages = Array.from({ length: 7 }, (_, i) => ({
-    src: "/placeholder.svg",
-    alt: `Gallery image ${i + 1}`
-  }));
+  // Array of gallery images
+  const galleryImages = [
+    { src: audit1, alt: "Marketing Hub Audit 1" },
+    { src: audit2, alt: "Marketing Hub Audit 2" },
+    { src: brainstorm1, alt: "Brainstorm session 1" },
+    { src: brainstorm4, alt: "Brainstorm whiteboard" },
+    { src: brainstorm5, alt: "Team brainstorm session" },
+    { src: brainstorm6, alt: "Brainstorm overview" },
+    { src: brainstorm8, alt: "Presentation session" },
+    { src: brainstorm9, alt: "Brainstorm workspace" },
+    { src: brainstorm10, alt: "Close-up brainstorm notes" }
+  ];
 
   // Sticky header tracking
   useEffect(() => {
