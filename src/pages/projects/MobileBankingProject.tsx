@@ -894,7 +894,7 @@ const MobileBankingProject = () => {
         </div>
 
         {/* Design System Section */}
-        <section className="relative px-6 py-24 bg-background">
+        <section className="relative px-6 py-24 bg-background min-h-[90vh] flex items-center">
           <div className="container mx-auto max-w-[1440px]">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
               {/* Typography Column */}
