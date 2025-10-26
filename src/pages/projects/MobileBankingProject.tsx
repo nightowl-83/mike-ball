@@ -898,11 +898,12 @@ const MobileBankingProject = () => {
           <div className="container mx-auto max-w-[1440px]">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
               {/* Typography Column */}
-              <div className="flex flex-col">
+              <div className="flex flex-col h-full">
                 <h3 className="text-2xl font-bold mb-12">Typography</h3>
-                <div className="flex flex-col justify-between flex-1 space-y-6">
+                <div className="flex flex-col justify-between flex-1 space-y-8">
                   <div>
-                    <h1 className="text-5xl font-bold mb-2">Roboto</h1>
+                    <h1 className="text-7xl font-bold mb-2">Roboto</h1>
+                    <p className="text-base text-muted-foreground">Font Family</p>
                   </div>
                   <div>
                     <p className="text-4xl font-semibold mb-3 text-foreground">H1</p>
@@ -936,9 +937,9 @@ const MobileBankingProject = () => {
               </div>
 
               {/* Colors Column */}
-              <div className="flex flex-col">
+              <div className="flex flex-col h-full">
                 <h3 className="text-2xl font-bold mb-12">Colors</h3>
-                <div className="grid grid-cols-2 gap-4 h-[500px]">
+                <div className="grid grid-cols-2 gap-4 flex-1">
                   {/* Left column - Land Green spanning full height */}
                   <div className="rounded-lg relative overflow-hidden" style={{backgroundColor: '#006D31'}}>
                     <div className="absolute bottom-4 left-4 text-white">
@@ -977,7 +978,7 @@ const MobileBankingProject = () => {
               </div>
 
               {/* Icons Column */}
-              <div className="flex flex-col">
+              <div className="flex flex-col h-full">
                 <h3 className="text-2xl font-bold mb-12">Icons</h3>
                 <div className="grid grid-cols-5 gap-4 flex-1 content-start">
                   <div className="aspect-square flex items-center justify-center text-foreground/60">
