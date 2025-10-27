@@ -1205,11 +1205,11 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Mobile Process GIFs Section */}
-        <section className="relative w-full overflow-hidden bg-card/30 py-8">
+        <section className="relative w-full overflow-hidden bg-card/30 py-16">
           <div className="container mx-auto max-w-[1440px] px-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* Location Selection GIF */}
-              <div className="w-full max-w-[80%] mx-auto aspect-[9/16] rounded-2xl overflow-hidden shadow-card bg-muted">
+              <div className="w-full max-w-[72%] mx-auto aspect-[9/16] rounded-2xl overflow-hidden shadow-card bg-muted">
                 <img 
                   src={addListingLocationGif} 
                   alt="Add listing location selection process" 
@@ -1217,7 +1217,7 @@ const MobileBankingProject = () => {
                 />
               </div>
               {/* Full Listing Form GIF */}
-              <div className="w-full max-w-[80%] mx-auto aspect-[9/16] rounded-2xl overflow-hidden shadow-card bg-muted">
+              <div className="w-full max-w-[72%] mx-auto aspect-[9/16] rounded-2xl overflow-hidden shadow-card bg-muted">
                 <img 
                   src={addListingFullGif} 
                   alt="Complete listing creation process" 
