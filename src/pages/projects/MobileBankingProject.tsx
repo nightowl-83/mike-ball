@@ -10,6 +10,8 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { StickyNavHeader } from "@/components/StickyNavHeader";
 import userFlowImage from "@/assets/user-flow.jpg";
 import locateListingImage from "@/assets/locate-listing-new.png";
+import addListingLocationGif from "@/assets/add-listing-location.gif";
+import addListingFullGif from "@/assets/add-listing-full.gif";
 import audit1 from "@/assets/MH-Audit-1.webp";
 import audit2 from "@/assets/MH-Audit-2.webp";
 import brainstorm1 from "@/assets/mh-brainstorm-1.webp";
@@ -1206,13 +1208,21 @@ const MobileBankingProject = () => {
         <section className="relative w-full overflow-hidden bg-card/30 py-16">
           <div className="container mx-auto max-w-[1440px] px-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* GIF 1 Placeholder */}
-              <div className="w-full aspect-[9/16] rounded-2xl overflow-hidden shadow-card bg-muted flex items-center justify-center">
-                <p className="text-muted-foreground">Upload GIF 1 here</p>
+              {/* Location Selection GIF */}
+              <div className="w-full aspect-[9/16] rounded-2xl overflow-hidden shadow-card bg-muted">
+                <img 
+                  src={addListingLocationGif} 
+                  alt="Add listing location selection process" 
+                  className="w-full h-full object-cover"
+                />
               </div>
-              {/* GIF 2 Placeholder */}
-              <div className="w-full aspect-[9/16] rounded-2xl overflow-hidden shadow-card bg-muted flex items-center justify-center">
-                <p className="text-muted-foreground">Upload GIF 2 here</p>
+              {/* Full Listing Form GIF */}
+              <div className="w-full aspect-[9/16] rounded-2xl overflow-hidden shadow-card bg-muted">
+                <img 
+                  src={addListingFullGif} 
+                  alt="Complete listing creation process" 
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
           </div>
