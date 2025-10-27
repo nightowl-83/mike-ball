@@ -1205,7 +1205,7 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Mobile Process GIFs Section */}
-        <section className="relative w-full overflow-hidden bg-card/30 py-16">
+        <section className="relative w-full overflow-hidden bg-card/30 py-8">
           <div className="container mx-auto max-w-[1440px] px-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* Location Selection GIF */}
