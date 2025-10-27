@@ -1211,9 +1211,9 @@ const MobileBankingProject = () => {
               <h3 className="text-3xl md:text-4xl font-bold">Listing Creation Process</h3>
               <p className="text-lg text-muted-foreground mt-4">Interactive flows demonstrating the streamlined property listing experience</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               {/* Location Selection GIF */}
-              <div className="w-full max-w-[72%] mx-auto max-h-[600px] aspect-[9/19.5] rounded-2xl overflow-hidden shadow-card bg-muted">
+              <div className="w-full max-w-[72%] mx-auto max-h-[600px] aspect-[9/19.5] rounded-2xl overflow-hidden shadow-card">
                 <img 
                   src={addListingLocationGif} 
                   alt="Add listing location selection process" 
@@ -1221,7 +1221,7 @@ const MobileBankingProject = () => {
                 />
               </div>
               {/* Full Listing Form GIF */}
-              <div className="w-full max-w-[72%] mx-auto max-h-[600px] aspect-[9/19.5] rounded-2xl overflow-hidden shadow-card bg-muted">
+              <div className="w-full max-w-[72%] mx-auto max-h-[600px] aspect-[9/19.5] rounded-2xl overflow-hidden shadow-card">
                 <img 
                   src={addListingFullGif} 
                   alt="Complete listing creation process" 
