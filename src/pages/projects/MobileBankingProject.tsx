@@ -12,6 +12,7 @@ import userFlowImage from "@/assets/user-flow.jpg";
 import locateListingImage from "@/assets/locate-listing-new.png";
 import addListingLocationGif from "@/assets/add-listing-location.gif";
 import addListingFullGif from "@/assets/add-listing-full.gif";
+import leadsGif from "@/assets/leads-transparent.gif";
 import audit1 from "@/assets/MH-Audit-1.webp";
 import audit2 from "@/assets/MH-Audit-2.webp";
 import brainstorm1 from "@/assets/mh-brainstorm-1.webp";
@@ -1207,7 +1208,7 @@ const MobileBankingProject = () => {
         {/* Mobile Process GIFs Section */}
         <section className="relative w-full overflow-hidden bg-card/30 py-24">
           <div className="container mx-auto max-w-[1440px] px-6">
-            <div className="mb-12">
+            <div className="mb-12 text-center">
               <h3 className="text-3xl md:text-4xl font-bold">Listing Creation Process</h3>
               <p className="text-lg text-muted-foreground mt-4">Interactive flows demonstrating the streamlined property listing experience</p>
             </div>
@@ -1225,6 +1226,43 @@ const MobileBankingProject = () => {
                 <img 
                   src={addListingFullGif} 
                   alt="Complete listing creation process" 
+                  className="w-full h-full object-contain"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Lead Management Section */}
+        <section className="relative w-full overflow-hidden py-24">
+          <div className="container mx-auto max-w-[1440px] px-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
+              {/* Left Column - Text Content */}
+              <div className="space-y-6">
+                <div>
+                  <h3 className="text-3xl md:text-4xl font-bold mb-2">Managing Leads</h3>
+                  <p className="text-2xl text-muted-foreground">/04</p>
+                </div>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  The Leads section is designed with a focused, streamlined approach—helping users concentrate on one task at a time. Whether reviewing new inquiries, checking contact details, or tracking engagement history, the layout guides you step by step so nothing gets lost in the shuffle.
+                </p>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  It's a clear, actionable space to manage your pipeline without distractions.
+                </p>
+              </div>
+
+              {/* Right Column - Section Number */}
+              <div className="flex items-start justify-end">
+                <p className="text-6xl md:text-7xl font-bold text-muted-foreground/20">/04</p>
+              </div>
+            </div>
+
+            {/* Full Width GIF Row */}
+            <div className="w-full">
+              <div className="w-full max-w-[85%] mx-auto rounded-2xl overflow-hidden shadow-card">
+                <img 
+                  src={leadsGif} 
+                  alt="Lead management interface demonstration" 
                   className="w-full h-full object-contain"
                 />
               </div>

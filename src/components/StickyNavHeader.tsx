@@ -54,25 +54,23 @@ export const StickyNavHeader = ({
       <div className="container mx-auto max-w-[1440px] px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex-1">
-            <h2 className="text-3xl md:text-4xl font-bold mb-1">
+            <h2 className="text-3xl md:text-4xl font-bold">
               {currentSection}
             </h2>
-            {currentSubsection && (
-              <p className="text-lg text-muted-foreground">
-                {currentSection}: {currentSubsection} {currentNumber}
-              </p>
-            )}
           </div>
 
           <div className="flex items-center gap-4">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="sm" className="gap-2">
-                  <ChevronDown className="h-4 w-4" />
-                  Navigate
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-56 bg-background z-[60]">
+            {currentSubsection && (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="gap-2 text-lg">
+                    <span className="text-muted-foreground">
+                      {currentSection}: {currentSubsection} {currentNumber}
+                    </span>
+                    <ChevronDown className="h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56 bg-background z-[60]">
                 {previousSection && (
                   <DropdownMenuItem
                     onClick={() => scrollToSection(previousSection.ref)}
@@ -110,6 +108,7 @@ export const StickyNavHeader = ({
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
+            )}
           </div>
         </div>
       </div>
