@@ -1214,7 +1214,7 @@ const MobileBankingProject = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               {/* Location Selection GIF */}
-              <div className="w-full max-w-[72%] mx-auto max-h-[600px] aspect-[9/19.5] rounded-2xl overflow-hidden shadow-card">
+              <div className="w-full max-w-[85%] mx-auto max-h-[600px] aspect-[9/19.5] rounded-2xl overflow-hidden shadow-card">
                 <img 
                   src={addListingLocationGif} 
                   alt="Add listing location selection process" 
@@ -1222,7 +1222,7 @@ const MobileBankingProject = () => {
                 />
               </div>
               {/* Full Listing Form GIF */}
-              <div className="w-full max-w-[72%] mx-auto max-h-[600px] aspect-[9/19.5] rounded-2xl overflow-hidden shadow-card">
+              <div className="w-full max-w-[85%] mx-auto max-h-[600px] aspect-[9/19.5] rounded-2xl overflow-hidden shadow-card">
                 <img 
                   src={addListingFullGif} 
                   alt="Complete listing creation process" 
@@ -1239,10 +1239,7 @@ const MobileBankingProject = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
               {/* Left Column - Text Content */}
               <div className="space-y-6">
-                <div>
-                  <h3 className="text-3xl md:text-4xl font-bold mb-2">Managing Leads</h3>
-                  <p className="text-2xl text-muted-foreground">/04</p>
-                </div>
+                <h3 className="text-3xl md:text-4xl font-bold mb-2">Managing Leads</h3>
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   The Leads section is designed with a focused, streamlined approach—helping users concentrate on one task at a time. Whether reviewing new inquiries, checking contact details, or tracking engagement history, the layout guides you step by step so nothing gets lost in the shuffle.
                 </p>
