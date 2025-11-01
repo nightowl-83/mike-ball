@@ -30,7 +30,7 @@ const Hero = () => {
           </div>
 
           {/* Main Heading */}
-          <h1 className="text-5xl md:text-7xl font-bold leading-tight">
+          <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight">
             Crafting Digital
             <span className="block bg-gradient-primary bg-clip-text text-transparent">
               Experiences
@@ -38,12 +38,12 @@ const Hero = () => {
           </h1>
 
           {/* Description */}
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             UI/UX & Product Designer specializing in creating beautiful, intuitive interfaces that users love.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 pt-4">
             <Button size="lg" className="group bg-gradient-primary hover:shadow-glow transition-all duration-300">
               View My Work
               <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />

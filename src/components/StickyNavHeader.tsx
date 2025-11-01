@@ -51,23 +51,26 @@ export const StickyNavHeader = ({
           : "opacity-0 pointer-events-none"
       }`}
     >
-      <div className="container mx-auto max-w-[1440px] px-6 py-4">
-        <div className="flex items-center justify-between">
-          <div className="flex-1">
-            <h2 className="text-3xl md:text-4xl font-bold">
+      <div className="container mx-auto max-w-[1440px] px-4 md:px-6 py-3 md:py-4">
+        <div className="flex items-center justify-between gap-2">
+          <div className="flex-1 min-w-0">
+            <h2 className="text-xl md:text-3xl lg:text-4xl font-bold truncate">
               {currentSection}
             </h2>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 md:gap-4 flex-shrink-0">
             {currentSubsection && (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="gap-2 text-lg">
-                    <span className="text-muted-foreground">
+                  <Button variant="ghost" className="gap-1 md:gap-2 text-sm md:text-base lg:text-lg px-2 md:px-4">
+                    <span className="text-muted-foreground hidden sm:inline">
                       {currentSection}: {currentSubsection} {currentNumber}
                     </span>
-                    <ChevronDown className="h-4 w-4" />
+                    <span className="text-muted-foreground sm:hidden">
+                      {currentNumber}
+                    </span>
+                    <ChevronDown className="h-3 w-3 md:h-4 md:w-4" />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-56 bg-background z-[60]">

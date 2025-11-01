@@ -288,14 +288,15 @@ const MobileBankingProject = () => {
       {/* Hero Section - Toggle between layouts */}
       <section ref={heroAnim.ref} className={`relative h-[80vh] w-full overflow-hidden transition-all duration-700 ${heroAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         {/* Back Button & Layout Toggle */}
-        <div className="absolute top-6 left-6 z-50 flex gap-2">
+        <div className="absolute top-4 left-4 md:top-6 md:left-6 z-50 flex gap-2">
           <Link to="/">
-            <Button variant="ghost" size="sm" className="gap-2 bg-background/20 backdrop-blur-md hover:bg-background/40 text-foreground">
-              <ArrowLeft className="h-4 w-4" />
-              Back to Home
+            <Button variant="ghost" size="sm" className="gap-2 bg-background/20 backdrop-blur-md hover:bg-background/40 text-foreground text-xs md:text-sm">
+              <ArrowLeft className="h-3 w-3 md:h-4 md:w-4" />
+              <span className="hidden sm:inline">Back to Home</span>
+              <span className="sm:hidden">Back</span>
             </Button>
           </Link>
-          <Button variant="ghost" size="sm" onClick={() => setIsColumnLayout(!isColumnLayout)} className="gap-2 bg-background/20 backdrop-blur-md hover:bg-background/40 text-foreground">
+          <Button variant="ghost" size="sm" onClick={() => setIsColumnLayout(!isColumnLayout)} className="hidden md:flex gap-2 bg-background/20 backdrop-blur-md hover:bg-background/40 text-foreground">
             {isColumnLayout ? <Layout className="h-4 w-4" /> : <Columns2 className="h-4 w-4" />}
             {isColumnLayout ? "Full Width" : "2 Column"}
           </Button>
@@ -305,68 +306,68 @@ const MobileBankingProject = () => {
       <>
             <img src="/placeholder.svg" alt="Mobile Banking App hero" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent from-0% via-transparent via-50% to-background to-100%" />
-            <div className="absolute bottom-0 left-0 right-0 px-6 pb-16">
+            <div className="absolute bottom-0 left-0 right-0 px-4 md:px-6 pb-12 md:pb-16">
               <div className="container mx-auto max-w-6xl">
-                <div className="space-y-6 animate-fade-in">
-                  <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium backdrop-blur-sm">Dashboard Design</span>
-                  <h1 className="text-5xl md:text-7xl font-bold text-foreground">
+                <div className="space-y-4 md:space-y-6 animate-fade-in">
+                  <span className="inline-block px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-primary/10 text-primary text-xs md:text-sm font-medium backdrop-blur-sm">Dashboard Design</span>
+                  <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-foreground">
                     Marketing Hub<br />
                     Client Dashboard
                   </h1>
-                  <p className="text-xl text-muted-foreground max-w-3xl">A modern CMS experience with intuitive navigation and seamless transactions. Designed for simplicity and security.</p>
-                  <div className="flex flex-wrap gap-6 pt-4">
+                  <p className="text-base md:text-xl text-muted-foreground max-w-3xl">A modern CMS experience with intuitive navigation and seamless transactions. Designed for simplicity and security.</p>
+                  <div className="flex flex-wrap gap-4 md:gap-6 pt-2 md:pt-4">
                     <div>
-                      <span className="text-sm text-muted-foreground">Role</span>
-                      <p className="font-semibold">Lead Product Designer</p>
+                      <span className="text-xs md:text-sm text-muted-foreground">Role</span>
+                      <p className="font-semibold text-sm md:text-base">Lead Product Designer</p>
                     </div>
                     <div>
-                      <span className="text-sm text-muted-foreground">Timeline</span>
-                      <p className="font-semibold">3 months</p>
+                      <span className="text-xs md:text-sm text-muted-foreground">Timeline</span>
+                      <p className="font-semibold text-sm md:text-base">3 months</p>
                     </div>
                     <div>
-                      <span className="text-sm text-muted-foreground">Year</span>
-                      <p className="font-semibold">2024</p>
+                      <span className="text-xs md:text-sm text-muted-foreground">Year</span>
+                      <p className="font-semibold text-sm md:text-base">2024</p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </>) : (/* 2-Column Layout */
-      <div className="flex h-full">
+      <div className="flex flex-col md:flex-row h-full">
             {/* Left: Content */}
-            <div className="w-1/2 flex items-center px-12 lg:px-20 bg-background">
-              <div className="space-y-6 animate-fade-in max-w-2xl">
-                <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">Dashboard Design</span>
-                <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground">
+            <div className="w-full md:w-1/2 flex items-center px-6 md:px-12 lg:px-20 bg-background py-12 md:py-0">
+              <div className="space-y-4 md:space-y-6 animate-fade-in max-w-2xl">
+                <span className="inline-block px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-primary/10 text-primary text-xs md:text-sm font-medium">Dashboard Design</span>
+                <h1 className="text-3xl md:text-4xl lg:text-6xl xl:text-7xl font-bold text-foreground">
                   Marketing Hub<br />
                   Client Dashboard
                 </h1>
-                <p className="text-lg md:text-xl text-muted-foreground">A modern CMS experience with intuitive navigation and seamless transactions. Designed for simplicity and security.</p>
-                <div className="flex flex-wrap gap-6 pt-4">
+                <p className="text-base md:text-lg lg:text-xl text-muted-foreground">A modern CMS experience with intuitive navigation and seamless transactions. Designed for simplicity and security.</p>
+                <div className="flex flex-wrap gap-4 md:gap-6 pt-2 md:pt-4">
                   <div>
-                    <span className="text-sm text-muted-foreground">Role</span>
-                    <p className="font-semibold">Lead Product Designer</p>
+                    <span className="text-xs md:text-sm text-muted-foreground">Role</span>
+                    <p className="font-semibold text-sm md:text-base">Lead Product Designer</p>
                   </div>
                   <div>
-                    <span className="text-sm text-muted-foreground">Timeline</span>
-                    <p className="font-semibold">3 months</p>
+                    <span className="text-xs md:text-sm text-muted-foreground">Timeline</span>
+                    <p className="font-semibold text-sm md:text-base">3 months</p>
                   </div>
                   <div>
-                    <span className="text-sm text-muted-foreground">Year</span>
-                    <p className="font-semibold">2024</p>
+                    <span className="text-xs md:text-sm text-muted-foreground">Year</span>
+                    <p className="font-semibold text-sm md:text-base">2024</p>
                   </div>
                 </div>
-                <div className="flex flex-wrap gap-3 pt-6">
-                  <span className="px-4 py-2 rounded-full bg-card border border-border text-sm font-medium">Figma</span>
-                  <span className="px-4 py-2 rounded-full bg-card border border-border text-sm font-medium">Maze</span>
-                  <span className="px-4 py-2 rounded-full bg-card border border-border text-sm font-medium">AI Prototyping</span>
-                  <span className="px-4 py-2 rounded-full bg-card border border-border text-sm font-medium">UI/UX Design</span>
+                <div className="flex flex-wrap gap-2 md:gap-3 pt-4 md:pt-6">
+                  <span className="px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-card border border-border text-xs md:text-sm font-medium">Figma</span>
+                  <span className="px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-card border border-border text-xs md:text-sm font-medium">Maze</span>
+                  <span className="px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-card border border-border text-xs md:text-sm font-medium">AI Prototyping</span>
+                  <span className="px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-card border border-border text-xs md:text-sm font-medium">UI/UX Design</span>
                 </div>
               </div>
             </div>
             
-            {/* Right: Image - 50vw width, full container height */}
-            <div className="w-1/2 h-full relative">
+            {/* Right: Image - 50vw width on desktop, full on mobile */}
+            <div className="w-full md:w-1/2 h-64 md:h-full relative">
               <img src="/placeholder.svg" alt="Mobile Banking App hero" className="w-full h-full object-cover" />
             </div>
           </div>)}
@@ -375,38 +376,38 @@ const MobileBankingProject = () => {
       {/* Main Content Container */}
       <div className="relative -mt-[10vh] z-10 bg-background">
         {/* Overview Section */}
-        <section ref={overviewAnim.ref} className={`min-h-screen flex items-center justify-center px-6 py-24 transition-all duration-700 ${overviewAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <section ref={overviewAnim.ref} className={`min-h-screen flex items-center justify-center px-4 md:px-6 py-12 md:py-24 transition-all duration-700 ${overviewAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="container mx-auto max-w-[1440px]">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-              <div className="space-y-6">
-                <h2 className="text-4xl font-bold">Background</h2>
-                <p className="text-lg text-muted-foreground leading-relaxed">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-start">
+              <div className="space-y-4 md:space-y-6">
+                <h2 className="text-3xl md:text-4xl font-bold">Background</h2>
+                <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
                   The Property Control Center (PCC) was originally built as a one-stop solution for rural real estate professionals to manage property listings, track leads, and monitor analytics.
                 </p>
-                <p className="text-lg text-muted-foreground leading-relaxed">
+                <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
                   Over time, however, the platform became outdated, with a non-responsive design and inefficient workflows that frustrated users. Recognizing the need for modernization, our team embarked on a complete redesign, focusing on usability, responsiveness, and customization for rural-specific needs.
                 </p>
-                <p className="text-lg text-muted-foreground leading-relaxed">
+                <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
                   Through extensive user research and iterative design, we developed a solution 
                   that increased user engagement by 45% and reduced transaction time by 60%.
                 </p>
               </div>
-              <div className="space-y-6">
-                <h2 className="text-4xl font-bold">Project Highlights</h2>
-                <ul className="space-y-6 text-lg text-muted-foreground">
-                  <li className="flex items-start gap-4">
+              <div className="space-y-4 md:space-y-6">
+                <h2 className="text-3xl md:text-4xl font-bold">Project Highlights</h2>
+                <ul className="space-y-4 md:space-y-6 text-base md:text-lg text-muted-foreground">
+                  <li className="flex items-start gap-3 md:gap-4">
                     <span className="w-2 h-2 rounded-full bg-primary mt-2.5 flex-shrink-0" />
                     <span>Comprehensive audit of the existing system to identify valuable features and pain points.</span>
                   </li>
-                  <li className="flex items-start gap-4">
+                  <li className="flex items-start gap-3 md:gap-4">
                     <span className="w-2 h-2 rounded-full bg-primary mt-2.5 flex-shrink-0" />
                     <span>A responsive, mobile-friendly interface tailored for seamless usage across devices.</span>
                   </li>
-                  <li className="flex items-start gap-4">
+                  <li className="flex items-start gap-3 md:gap-4">
                     <span className="w-2 h-2 rounded-full bg-primary mt-2.5 flex-shrink-0" />
                     <span>Improved workflows for managing listings, leads, analytics, and billing.</span>
                   </li>
-                  <li className="flex items-start gap-4">
+                  <li className="flex items-start gap-3 md:gap-4">
                     <span className="w-2 h-2 rounded-full bg-primary mt-2.5 flex-shrink-0" />
                     <span>A user-centered design process incorporating feedback from rural real estate agents.</span>
                   </li>
@@ -431,13 +432,13 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Design Process */}
-        <section ref={processAnim.ref} className={`min-h-screen flex items-center justify-center px-6 py-24 bg-card/30 transition-all duration-700 ${processAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <section ref={processAnim.ref} className={`min-h-screen flex items-center justify-center px-4 md:px-6 py-12 md:py-24 bg-card/30 transition-all duration-700 ${processAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="container mx-auto max-w-[1440px]">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-start">
               {/* Left Column - Title & Description */}
-              <div className="space-y-6">
-                <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold leading-tight">Design Process</h2>
-                <p className="text-xl text-muted-foreground">
+              <div className="space-y-4 md:space-y-6">
+                <h2 className="text-4xl md:text-5xl lg:text-7xl xl:text-8xl font-bold leading-tight">Design Process</h2>
+                <p className="text-base md:text-xl text-muted-foreground">
                   A structured approach combining user research, iterative design, and continuous testing to deliver an intuitive and effective solution.
                 </p>
               </div>
@@ -445,11 +446,11 @@ const MobileBankingProject = () => {
               {/* Right Column - Steps */}
               <div className="space-y-0">
                 {/* Step 1 */}
-                <div className="flex gap-10 pb-8 border-b border-border">
-                  <div className="text-2xl md:text-3xl font-bold font-mono text-primary flex-shrink-0">/01</div>
-                  <div className="space-y-3">
-                    <h3 className="text-3xl md:text-4xl font-bold">Defining the Goal</h3>
-                    <div className="space-y-1 text-lg text-muted-foreground">
+                <div className="flex gap-4 md:gap-10 pb-6 md:pb-8 border-b border-border">
+                  <div className="text-xl md:text-2xl lg:text-3xl font-bold font-mono text-primary flex-shrink-0">/01</div>
+                  <div className="space-y-2 md:space-y-3">
+                    <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold">Defining the Goal</h3>
+                    <div className="space-y-1 text-base md:text-lg text-muted-foreground">
                       <p>Ease of use</p>
                       <p>Competitor analysis</p>
                       <p>Understanding product wants</p>
@@ -458,11 +459,11 @@ const MobileBankingProject = () => {
                 </div>
 
                 {/* Step 2 */}
-                <div className="flex gap-10 py-8 border-b border-border">
-                  <div className="text-2xl md:text-3xl font-bold font-mono text-primary flex-shrink-0">/02</div>
-                  <div className="space-y-3">
-                    <h3 className="text-3xl md:text-4xl font-bold">Discovery</h3>
-                    <div className="space-y-1 text-lg text-muted-foreground">
+                <div className="flex gap-4 md:gap-10 py-6 md:py-8 border-b border-border">
+                  <div className="text-xl md:text-2xl lg:text-3xl font-bold font-mono text-primary flex-shrink-0">/02</div>
+                  <div className="space-y-2 md:space-y-3">
+                    <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold">Discovery</h3>
+                    <div className="space-y-1 text-base md:text-lg text-muted-foreground">
                       <p>User Surveys</p>
                       <p>Audit of current systems</p>
                       <p>Competitor analysis</p>
@@ -471,11 +472,11 @@ const MobileBankingProject = () => {
                 </div>
 
                 {/* Step 3 */}
-                <div className="flex gap-10 py-8 border-b border-border">
-                  <div className="text-2xl md:text-3xl font-bold font-mono text-primary flex-shrink-0">/03</div>
-                  <div className="space-y-3">
-                    <h3 className="text-3xl md:text-4xl font-bold">Design</h3>
-                    <div className="space-y-1 text-lg text-muted-foreground">
+                <div className="flex gap-4 md:gap-10 py-6 md:py-8 border-b border-border">
+                  <div className="text-xl md:text-2xl lg:text-3xl font-bold font-mono text-primary flex-shrink-0">/03</div>
+                  <div className="space-y-2 md:space-y-3">
+                    <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold">Design</h3>
+                    <div className="space-y-1 text-base md:text-lg text-muted-foreground">
                       <p>Ease of use</p>
                       <p>Accessible</p>
                       <p>Desirable</p>
@@ -485,11 +486,11 @@ const MobileBankingProject = () => {
                 </div>
 
                 {/* Step 4 */}
-                <div className="flex gap-10 pt-8">
-                  <div className="text-2xl md:text-3xl font-bold font-mono text-primary flex-shrink-0">/04</div>
-                  <div className="space-y-3">
-                    <h3 className="text-3xl md:text-4xl font-bold">Delivery</h3>
-                    <div className="space-y-1 text-lg text-muted-foreground">
+                <div className="flex gap-4 md:gap-10 pt-6 md:pt-8">
+                  <div className="text-xl md:text-2xl lg:text-3xl font-bold font-mono text-primary flex-shrink-0">/04</div>
+                  <div className="space-y-2 md:space-y-3">
+                    <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold">Delivery</h3>
+                    <div className="space-y-1 text-base md:text-lg text-muted-foreground">
                       <p>Design System</p>
                       <p>Testing</p>
                       <p>UI patterns</p>
@@ -502,27 +503,27 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Define Section - 01 */}
-        <section ref={defineContentAnim.ref} className={`relative px-6 py-24 transition-all duration-700 ${defineContentAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <section ref={defineContentAnim.ref} className={`relative px-4 md:px-6 py-12 md:py-24 transition-all duration-700 ${defineContentAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div ref={defineRef} className="absolute top-0 left-0 w-full h-1" />
 
           <div className="container mx-auto max-w-[1440px]">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-16">
-              <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold">Define</h2>
-              <div className="text-right">
-                <span className="text-6xl md:text-7xl font-bold font-mono opacity-30">/01</span>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 mb-8 md:mb-16">
+              <h2 className="text-4xl md:text-5xl lg:text-7xl xl:text-8xl font-bold">Define</h2>
+              <div className="text-left lg:text-right">
+                <span className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold font-mono opacity-30">/01</span>
               </div>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16">
               {/* Left Column */}
-              <div className="space-y-12">
-                <p className="text-xl text-muted-foreground">
+              <div className="space-y-6 md:space-y-12">
+                <p className="text-base md:text-xl text-muted-foreground">
                   Audit of the Existing System revealed these were the most used, and valuable features to users.
                 </p>
               </div>
 
               {/* Right Column */}
-              <div className="space-y-12">
-                <div className="space-y-6 text-lg text-muted-foreground">
+              <div className="space-y-6 md:space-y-12">
+                <div className="space-y-4 md:space-y-6 text-base md:text-lg text-muted-foreground">
                   <p>
                     <strong className="text-primary">Listing Upload:</strong> Users could upload property information, photos, and descriptions, though the interface was not intuitive and cluttered.
                   </p>
@@ -539,8 +540,8 @@ const MobileBankingProject = () => {
                     <strong className="text-primary">Listing Analytics:</strong> Offered performance metrics such as views and inquiries.
                   </p>
                   
-                  <div className="p-6 rounded-xl bg-card/50 border-2 border-primary/20">
-                    <h3 className="text-xl font-bold text-foreground mb-4">Summary of Audit</h3>
+                  <div className="p-4 md:p-6 rounded-xl bg-card/50 border-2 border-primary/20">
+                    <h3 className="text-lg md:text-xl font-bold text-foreground mb-3 md:mb-4">Summary of Audit</h3>
                     <p>Retain and improve core features like listing upload, management, leads, and analytics.</p>
                     <p className="mt-2">Address navigation, usability, and responsiveness issues.</p>
                   </div>
@@ -549,50 +550,50 @@ const MobileBankingProject = () => {
             </div>
 
             {/* Bento Grid Layout - 7 Images */}
-            <div ref={defineGalleryRef} className="mt-32">
-              <div className="grid grid-cols-4 md:grid-cols-6 gap-4 auto-rows-[200px]">
+            <div ref={defineGalleryRef} className="mt-16 md:mt-32">
+              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4 auto-rows-[150px] md:auto-rows-[200px]">
                 {/* Image 1 - Large */}
-                <button onClick={() => openGallery(0)} className="col-span-4 md:col-span-3 row-span-2 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer">
+                <button onClick={() => openGallery(0)} className="col-span-2 md:col-span-4 lg:col-span-3 row-span-2 rounded-xl md:rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer">
                   <img src={galleryImages[0].src} alt={galleryImages[0].alt} className="w-full h-full object-cover" />
                 </button>
                 
                 {/* Image 2 - Tall */}
-                <button onClick={() => openGallery(1)} className="col-span-4 md:col-span-3 row-span-2 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{
+                <button onClick={() => openGallery(1)} className="col-span-2 md:col-span-4 lg:col-span-3 row-span-2 rounded-xl md:rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{
                 animationDelay: '0.05s'
               }}>
                   <img src={galleryImages[1].src} alt={galleryImages[1].alt} className="w-full h-full object-cover" />
                 </button>
                 
                 {/* Image 3 - Medium */}
-                <button onClick={() => openGallery(2)} className="col-span-2 row-span-1 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{
+                <button onClick={() => openGallery(2)} className="col-span-1 md:col-span-2 row-span-1 rounded-xl md:rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{
                 animationDelay: '0.1s'
               }}>
                   <img src={galleryImages[2].src} alt={galleryImages[2].alt} className="w-full h-full object-cover" />
                 </button>
                 
                 {/* Image 4 - Medium */}
-                <button onClick={() => openGallery(3)} className="col-span-2 row-span-1 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{
+                <button onClick={() => openGallery(3)} className="col-span-1 md:col-span-2 row-span-1 rounded-xl md:rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{
                 animationDelay: '0.15s'
               }}>
                   <img src={galleryImages[3].src} alt={galleryImages[3].alt} className="w-full h-full object-cover" />
                 </button>
                 
                 {/* Image 5 - Wide */}
-                <button onClick={() => openGallery(4)} className="col-span-4 md:col-span-2 row-span-1 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{
+                <button onClick={() => openGallery(4)} className="col-span-2 md:col-span-4 lg:col-span-2 row-span-1 rounded-xl md:rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{
                 animationDelay: '0.2s'
               }}>
                   <img src={galleryImages[4].src} alt={galleryImages[4].alt} className="w-full h-full object-cover" />
                 </button>
                 
                 {/* Image 6 - Full Height */}
-                <button onClick={() => openGallery(5)} className="col-span-2 row-span-2 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{
+                <button onClick={() => openGallery(5)} className="col-span-1 md:col-span-2 row-span-2 rounded-xl md:rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{
                 animationDelay: '0.25s'
               }}>
                   <img src={galleryImages[5].src} alt={galleryImages[5].alt} className="w-full h-full object-cover" />
                 </button>
                 
                 {/* Image 7 - Large */}
-                <button onClick={() => openGallery(6)} className="col-span-4 row-span-2 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{
+                <button onClick={() => openGallery(6)} className="col-span-2 md:col-span-4 row-span-2 rounded-xl md:rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{
                 animationDelay: '0.3s'
               }}>
                   <img src={galleryImages[6].src} alt={galleryImages[6].alt} className="w-full h-full object-cover" />
@@ -705,47 +706,47 @@ const MobileBankingProject = () => {
             </div>
 
             {/* User Pain Point Quotes */}
-            <div ref={quotesAnim.ref} className={`mt-24 transition-all duration-700 ${quotesAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-              <div className="grid grid-cols-2 gap-4 max-w-6xl mx-auto">
-                <div className="bg-card rounded-xl p-8 shadow-sm">
-                  <p className="text-lg text-muted-foreground leading-relaxed">"There is no save function when I am creating a listing."</p>
+            <div ref={quotesAnim.ref} className={`mt-12 md:mt-24 transition-all duration-700 ${quotesAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 max-w-6xl mx-auto">
+                <div className="bg-card rounded-lg md:rounded-xl p-4 md:p-8 shadow-sm">
+                  <p className="text-sm md:text-lg text-muted-foreground leading-relaxed">"There is no save function when I am creating a listing."</p>
                 </div>
-                <div className="bg-card rounded-xl p-8 shadow-sm">
-                  <p className="text-lg text-muted-foreground leading-relaxed">"I tried to use from my phone and it was impossible. There should be an app."</p>
+                <div className="bg-card rounded-lg md:rounded-xl p-4 md:p-8 shadow-sm">
+                  <p className="text-sm md:text-lg text-muted-foreground leading-relaxed">"I tried to use from my phone and it was impossible. There should be an app."</p>
                 </div>
-                <div className="bg-card rounded-xl p-8 shadow-sm">
-                  <p className="text-lg text-muted-foreground leading-relaxed">"I thought I wasn't receiving any leads only to find out I just didn't know where they were going."</p>
+                <div className="bg-card rounded-lg md:rounded-xl p-4 md:p-8 shadow-sm">
+                  <p className="text-sm md:text-lg text-muted-foreground leading-relaxed">"I thought I wasn't receiving any leads only to find out I just didn't know where they were going."</p>
                 </div>
-                <div className="bg-card rounded-xl p-8 shadow-sm">
-                  <p className="text-lg text-muted-foreground leading-relaxed">"Listing performance reports are not useful. What do these numbers mean?"</p>
+                <div className="bg-card rounded-lg md:rounded-xl p-4 md:p-8 shadow-sm">
+                  <p className="text-sm md:text-lg text-muted-foreground leading-relaxed">"Listing performance reports are not useful. What do these numbers mean?"</p>
                 </div>
-                <div className="bg-card rounded-xl p-8 shadow-sm">
-                  <p className="text-lg text-muted-foreground leading-relaxed">"Navigation is hard to 'navigate'"</p>
+                <div className="bg-card rounded-lg md:rounded-xl p-4 md:p-8 shadow-sm">
+                  <p className="text-sm md:text-lg text-muted-foreground leading-relaxed">"Navigation is hard to 'navigate'"</p>
                 </div>
-                <div className="bg-card rounded-xl p-8 shadow-sm">
-                  <p className="text-lg text-muted-foreground leading-relaxed">"The menus are super confusing. I have to click around a bunch just to edit a listing or check on a lead. Nothing is where I expect it to be."</p>
+                <div className="bg-card rounded-lg md:rounded-xl p-4 md:p-8 shadow-sm">
+                  <p className="text-sm md:text-lg text-muted-foreground leading-relaxed">"The menus are super confusing. I have to click around a bunch just to edit a listing or check on a lead. Nothing is where I expect it to be."</p>
                 </div>
-                <div className="bg-card rounded-xl p-8 shadow-sm">
-                  <p className="text-lg text-muted-foreground leading-relaxed">"Uploading a new property is such a slow process. It feels like there are millions of steps, and there's no way to speed it up if I have a lot of listings."</p>
+                <div className="bg-card rounded-lg md:rounded-xl p-4 md:p-8 shadow-sm">
+                  <p className="text-sm md:text-lg text-muted-foreground leading-relaxed">"Uploading a new property is such a slow process. It feels like there are millions of steps, and there's no way to speed it up if I have a lot of listings."</p>
                 </div>
-                <div className="bg-card rounded-xl p-8 shadow-sm">
-                  <p className="text-lg text-muted-foreground leading-relaxed">"The site feels really outdated and cluttered. It's hard to find what I'm looking for without getting frustrated."</p>
+                <div className="bg-card rounded-lg md:rounded-xl p-4 md:p-8 shadow-sm">
+                  <p className="text-sm md:text-lg text-muted-foreground leading-relaxed">"The site feels really outdated and cluttered. It's hard to find what I'm looking for without getting frustrated."</p>
                 </div>
               </div>
             </div>
 
             {/* Persona Header Section */}
-            <div className="mt-32 max-w-6xl mx-auto text-center">
-              <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+            <div className="mt-16 md:mt-32 max-w-6xl mx-auto text-center px-4">
+              <h2 className="text-3xl md:text-4xl lg:text-6xl xl:text-7xl font-bold leading-tight">
                 Creating in-depth user personas to better understand our users, goals & needs.
               </h2>
             </div>
 
             {/* User Persona Section - 2x2 Grid */}
-            <div ref={discoveryPersonaRef} className="mt-20">
+            <div ref={discoveryPersonaRef} className="mt-12 md:mt-20">
               <div ref={personaAnim.ref} className={`transition-all duration-700 ${personaAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-              <h3 className="text-3xl font-semibold mb-12 max-w-6xl mx-auto">User Persona</h3>
-              <div className="grid grid-cols-2 gap-6 max-w-6xl mx-auto">
+              <h3 className="text-2xl md:text-3xl font-semibold mb-8 md:mb-12 max-w-6xl mx-auto">User Persona</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-6xl mx-auto">
                 {/* Top Left - Photo & Bio */}
                 <div className="bg-card rounded-2xl overflow-hidden shadow-sm">
                   <div className="aspect-[4/3] bg-muted">
@@ -915,21 +916,21 @@ const MobileBankingProject = () => {
         </div>
 
         {/* Design System Section */}
-        <section className="relative px-6 py-24 bg-background flex items-center">
+        <section className="relative px-4 md:px-6 py-12 md:py-24 bg-background flex items-center">
           <div className="container mx-auto max-w-[1440px]">
-            <h2 className="text-4xl font-bold mb-12">Design System</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-12">Design System</h2>
             
             {/* Bento Box Layout */}
-            <div className="grid grid-cols-2 gap-6 h-[70vh]">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 min-h-[600px] lg:h-[70vh]">
               {/* Large Typography Card */}
-              <div className="bg-card border border-border rounded-lg p-8 flex flex-col">
-                <h3 className="text-xl font-bold mb-8">Typography</h3>
-                <div className="space-y-6 flex-1 flex flex-col justify-center">
+              <div className="bg-card border border-border rounded-lg p-6 md:p-8 flex flex-col">
+                <h3 className="text-lg md:text-xl font-bold mb-6 md:mb-8">Typography</h3>
+                <div className="space-y-4 md:space-y-6 flex-1 flex flex-col justify-center">
                   <div>
-                    <h1 className="text-5xl font-bold mb-2">Roboto</h1>
-                    <p className="text-sm text-muted-foreground">Font Family</p>
+                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2">Roboto</h1>
+                    <p className="text-xs md:text-sm text-muted-foreground">Font Family</p>
                   </div>
-                  <div className="space-y-4 pt-4">
+                  <div className="space-y-3 md:space-y-4 pt-2 md:pt-4">
                     <div>
                       <p className="text-2xl font-semibold">H1</p>
                       <p className="text-xs text-muted-foreground">34px Semi Bold</p>
@@ -963,11 +964,11 @@ const MobileBankingProject = () => {
                   </div>
 
                   {/* Right Column */}
-                  <div className="flex flex-col gap-6">
+                  <div className="flex flex-col gap-4 md:gap-6">
                     {/* Colors Card */}
-                    <div className="bg-card border border-border rounded-lg p-6 flex-1">
-                  <h3 className="text-xl font-bold mb-6">Colors</h3>
-                  <div className="grid grid-cols-2 gap-3 flex-1">
+                    <div className="bg-card border border-border rounded-lg p-4 md:p-6 flex-1">
+                  <h3 className="text-lg md:text-xl font-bold mb-4 md:mb-6">Colors</h3>
+                  <div className="grid grid-cols-2 gap-2 md:gap-3 flex-1">
                     <div className="rounded-lg p-4 flex items-end row-span-2" style={{
                     backgroundColor: '#006D31'
                   }}>
@@ -1013,9 +1014,9 @@ const MobileBankingProject = () => {
                     </div>
 
                     {/* Icons Card */}
-                    <div className="bg-card border border-border rounded-lg p-6 flex-1">
-                      <h3 className="text-xl font-bold mb-6">Icons</h3>
-                      <div className="grid grid-cols-8 gap-3">
+                    <div className="bg-card border border-border rounded-lg p-4 md:p-6 flex-1">
+                      <h3 className="text-lg md:text-xl font-bold mb-4 md:mb-6">Icons</h3>
+                      <div className="grid grid-cols-6 md:grid-cols-8 gap-2 md:gap-3">
                         <div className="aspect-square bg-muted/50 rounded flex items-center justify-center text-foreground/60 hover:bg-muted hover:text-foreground transition-all">
                           <Home className="w-5 h-5" />
                         </div>
@@ -1167,23 +1168,23 @@ const MobileBankingProject = () => {
         {/* Add & Edit a Listing Section */}
         <section className="relative w-full overflow-hidden">
           <div ref={addEditListingRef} className="absolute top-0 left-0 w-full h-1" />
-          <div className="flex min-h-[600px] lg:min-h-[700px]">
-            {/* Left Column - Phone Mockups (50vw, flush left) */}
-            <div className="w-full lg:w-[50vw] relative overflow-hidden bg-background">
-              <img src={locateListingImage} alt="Add and Edit Listing Flow" className="w-full h-full object-contain object-left" />
+          <div className="flex flex-col lg:flex-row min-h-[400px] md:min-h-[600px] lg:min-h-[700px]">
+            {/* Left Column - Phone Mockups (full width on mobile, 50vw on desktop) */}
+            <div className="w-full lg:w-[50vw] relative overflow-hidden bg-background min-h-[300px] lg:min-h-auto">
+              <img src={locateListingImage} alt="Add and Edit Listing Flow" className="w-full h-full object-contain object-center lg:object-left" />
             </div>
 
             {/* Right Column - Content */}
-            <div className="w-full lg:w-[50vw] flex items-center px-6 lg:px-16 py-16 bg-background relative">
-              {/* Section number in top right */}
-              <div className="absolute top-6 right-6">
-                <span className="text-4xl md:text-5xl font-bold font-mono opacity-30">/04</span>
+            <div className="w-full lg:w-[50vw] flex items-center px-4 md:px-6 lg:px-16 py-12 md:py-16 bg-background relative">
+              {/* Section number - centered on mobile, top right on desktop */}
+              <div className="absolute top-4 right-4 md:top-6 md:right-6">
+                <span className="text-2xl md:text-4xl lg:text-5xl font-bold font-mono opacity-30">/04</span>
               </div>
 
-              <div className="space-y-8 max-w-2xl">
-                <h2 className="text-3xl md:text-4xl font-bold">Add & Edit a Listing</h2>
+              <div className="space-y-6 md:space-y-8 max-w-2xl">
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold">Add & Edit a Listing</h2>
                 
-                <ul className="space-y-4 text-lg text-muted-foreground">
+                <ul className="space-y-3 md:space-y-4 text-base md:text-lg text-muted-foreground">
                   <li className="flex items-start gap-4">
                     <span className="w-2 h-2 rounded-full bg-primary mt-2.5 flex-shrink-0" />
                     <span>Address search with geolocation APIs for auto-completion and verification.</span>
@@ -1216,18 +1217,18 @@ const MobileBankingProject = () => {
 
         {/* Mobile Process GIFs Section */}
         <section className="container mx-auto max-w-[1440px]">
-          <div className="container mx-auto max-w-[1440px] px-6">
-            <div className="mb-12 text-center">
-              <h3 className="text-3xl md:text-4xl font-bold">Listing Creation Process</h3>
-              <p className="text-lg text-muted-foreground mt-4">Interactive flows demonstrating the streamlined property listing experience</p>
+          <div className="container mx-auto max-w-[1440px] px-4 md:px-6">
+            <div className="mb-8 md:mb-12 text-center">
+              <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold">Listing Creation Process</h3>
+              <p className="text-sm md:text-base lg:text-lg text-muted-foreground mt-3 md:mt-4">Interactive flows demonstrating the streamlined property listing experience</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-[1200px] mx-auto py-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-[1200px] mx-auto py-2 md:py-4">
               {/* Location Selection GIF */}
-              <div className="w-full max-h-[600px] aspect-[9/19.5] rounded-2xl overflow-hidden py-6">
+              <div className="w-full max-h-[500px] md:max-h-[600px] aspect-[9/19.5] rounded-xl md:rounded-2xl overflow-hidden py-4 md:py-6">
                 <img src={addListingLocationGif} alt="Add listing location selection process" className="w-full h-full object-contain" />
               </div>
               {/* Full Listing Form GIF */}
-              <div className="w-full max-h-[600px] aspect-[9/19.5] rounded-2xl overflow-hidden py-6">
+              <div className="w-full max-h-[500px] md:max-h-[600px] aspect-[9/19.5] rounded-xl md:rounded-2xl overflow-hidden py-4 md:py-6">
                 <img src={addListingFullGif} alt="Complete listing creation process" className="w-full h-full object-contain" />
               </div>
             </div>
@@ -1235,29 +1236,29 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Lead Management Section */}
-        <section className="container mx-auto max-w-[1440px]">
+        <section className="container mx-auto max-w-[1440px] px-4 md:px-6">
           <div className="container mx-auto max-w-[1440px]">
-            <div className="grid grid-cols-2 lg:grid-cols-2 gap-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16">
               {/* Left Column - Text Content */}
-              <div className="space-y-6">
-                <h3 className="text-3xl md:text-4xl font-bold mb-2">Managing Leads</h3>
-                <p className="text-lg text-muted-foreground leading-relaxed">
+              <div className="space-y-4 md:space-y-6">
+                <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2">Managing Leads</h3>
+                <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
                   The Leads section is designed with a focused, streamlined approach—helping users concentrate on one task at a time. Whether reviewing new inquiries, checking contact details, or tracking engagement history, the layout guides you step by step so nothing gets lost in the shuffle.
                 </p>
-                <p className="text-lg text-muted-foreground leading-relaxed">
+                <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
                   It's a clear, actionable space to manage your pipeline without distractions.
                 </p>
               </div>
 
               {/* Right Column - Section Number */}
-              <div className="flex items-start justify-end">
-                <p className="text-6xl md:text-7xl font-bold text-muted-foreground/20">/04</p>
+              <div className="flex items-start justify-start lg:justify-end">
+                <p className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-muted-foreground/20">/04</p>
               </div>
             </div>
 
             {/* Full Width GIF Row */}
-            <div className="w-full">
-              <div className="w-full max-w-[85%] mx-auto rounded-2xl overflow-hidden shadow-card">
+            <div className="w-full mt-8 md:mt-12">
+              <div className="w-full max-w-[95%] md:max-w-[85%] mx-auto rounded-xl md:rounded-2xl overflow-hidden shadow-card">
                 <img src={leadsGif} alt="Lead management interface demonstration" className="w-full h-full object-contain" />
               </div>
             </div>
@@ -1274,14 +1275,14 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Challenge Section */}
-        <section ref={challengeAnim.ref} className={`min-h-screen flex items-center justify-center px-6 py-24 transition-all duration-700 ${challengeAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <section ref={challengeAnim.ref} className={`min-h-screen flex items-center justify-center px-4 md:px-6 py-12 md:py-24 transition-all duration-700 ${challengeAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="container mx-auto max-w-[1440px]">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              <div className="w-full aspect-square rounded-2xl overflow-hidden shadow-card order-2 lg:order-1">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-center">
+              <div className="w-full aspect-square rounded-xl md:rounded-2xl overflow-hidden shadow-card order-2 lg:order-1">
                 <img src="/placeholder.svg" alt="Challenge" className="w-full h-full object-cover" />
               </div>
-              <div className="space-y-6 order-1 lg:order-2">
-                <h2 className="text-4xl font-bold">The Challenge</h2>
+              <div className="space-y-4 md:space-y-6 order-1 lg:order-2">
+                <h2 className="text-3xl md:text-4xl font-bold">The Challenge</h2>
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   Traditional banking apps are often cluttered and difficult to navigate. 
                   Users struggle with finding basic features and feel overwhelmed by 
@@ -1307,11 +1308,11 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Solution Section */}
-        <section ref={solutionAnim.ref} className={`min-h-screen flex items-center justify-center px-6 py-24 bg-card/30 transition-all duration-700 ${solutionAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <section ref={solutionAnim.ref} className={`min-h-screen flex items-center justify-center px-4 md:px-6 py-12 md:py-24 bg-card/30 transition-all duration-700 ${solutionAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="container mx-auto max-w-[1440px]">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              <div className="space-y-6">
-                <h2 className="text-4xl font-bold">The Solution</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-center">
+              <div className="space-y-4 md:space-y-6">
+                <h2 className="text-3xl md:text-4xl font-bold">The Solution</h2>
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   We designed a clean, minimal interface that puts the most important features 
                   front and center. The new design uses clear visual hierarchy, intuitive 
@@ -1335,31 +1336,31 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Results Section */}
-        <section ref={resultsAnim.ref} className={`min-h-screen flex items-center justify-center px-6 py-24 transition-all duration-700 ${resultsAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <section ref={resultsAnim.ref} className={`min-h-screen flex items-center justify-center px-4 md:px-6 py-12 md:py-24 transition-all duration-700 ${resultsAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="container mx-auto max-w-[1440px] text-center">
-            <h2 className="text-4xl font-bold mb-16">Impact & Results</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-              <div className="space-y-4">
-                <div className="text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+            <h2 className="text-3xl md:text-4xl font-bold mb-12 md:mb-16">Impact & Results</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+              <div className="space-y-3 md:space-y-4">
+                <div className="text-4xl md:text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent">
                   45%
                 </div>
-                <p className="text-muted-foreground">
+                <p className="text-sm md:text-base text-muted-foreground">
                   Increase in user engagement
                 </p>
               </div>
-              <div className="space-y-4">
-                <div className="text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+              <div className="space-y-3 md:space-y-4">
+                <div className="text-4xl md:text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent">
                   60%
                 </div>
-                <p className="text-muted-foreground">
+                <p className="text-sm md:text-base text-muted-foreground">
                   Reduction in transaction time
                 </p>
               </div>
-              <div className="space-y-4">
-                <div className="text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+              <div className="space-y-3 md:space-y-4">
+                <div className="text-4xl md:text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent">
                   4.8/5
                 </div>
-                <p className="text-muted-foreground">
+                <p className="text-sm md:text-base text-muted-foreground">
                   Average user rating
                 </p>
               </div>
@@ -1368,16 +1369,16 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Final Showcase */}
-        <section ref={showcaseAnim.ref} className={`min-h-screen flex items-center justify-center px-6 py-24 bg-card/30 transition-all duration-700 ${showcaseAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="container mx-auto max-w-[1600px] space-y-12">
-            <div className="w-full aspect-video rounded-2xl overflow-hidden shadow-glow">
+        <section ref={showcaseAnim.ref} className={`min-h-screen flex items-center justify-center px-4 md:px-6 py-12 md:py-24 bg-card/30 transition-all duration-700 ${showcaseAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div className="container mx-auto max-w-[1600px] space-y-6 md:space-y-12">
+            <div className="w-full aspect-video rounded-xl md:rounded-2xl overflow-hidden shadow-glow">
               <img src="/placeholder.svg" alt="Final showcase 1" className="w-full h-full object-cover" />
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="w-full aspect-square rounded-2xl overflow-hidden shadow-card">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+              <div className="w-full aspect-square rounded-xl md:rounded-2xl overflow-hidden shadow-card">
                 <img src="/placeholder.svg" alt="Final showcase 2" className="w-full h-full object-cover" />
               </div>
-              <div className="w-full aspect-square rounded-2xl overflow-hidden shadow-card">
+              <div className="w-full aspect-square rounded-xl md:rounded-2xl overflow-hidden shadow-card">
                 <img src="/placeholder.svg" alt="Final showcase 3" className="w-full h-full object-cover" />
               </div>
             </div>

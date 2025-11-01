@@ -3,20 +3,20 @@ import { projectsData } from "@/data/projectsData";
 
 const Projects = () => {
   return (
-    <section className="py-24 px-6">
+    <section className="py-12 md:py-24 px-4 md:px-6">
       <div className="container mx-auto max-w-7xl">
         {/* Section Header */}
-        <div className="text-center space-y-4 mb-16 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold">
+        <div className="text-center space-y-3 md:space-y-4 mb-12 md:mb-16 animate-fade-in">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
             Featured <span className="bg-gradient-primary bg-clip-text text-transparent">Projects</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base md:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto">
             A selection of my recent work in UI/UX design and product development
           </p>
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
           {projectsData.map((project, index) => (
             <div 
               key={project.id} 
