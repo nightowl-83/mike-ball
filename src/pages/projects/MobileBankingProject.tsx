@@ -13,15 +13,13 @@ import locateListingImage from "@/assets/locate-listing-new.png";
 import addListingLocationGif from "@/assets/add-listing-location.gif";
 import addListingFullGif from "@/assets/add-listing-full.gif";
 import leadsGif from "@/assets/leads-transparent.gif";
-import audit1 from "@/assets/MH-Audit-1.webp";
-import audit2 from "@/assets/MH-Audit-2.webp";
-import brainstorm1 from "@/assets/mh-brainstorm-1.webp";
-import brainstorm4 from "@/assets/mh-brainstorm-4.webp";
-import brainstorm5 from "@/assets/mh-brainstorm-5.webp";
-import brainstorm6 from "@/assets/mh-brainstorm-6.webp";
-import brainstorm8 from "@/assets/mh-brainstorm-8.webp";
-import brainstorm9 from "@/assets/mh-brainstorm-9.webp";
-import brainstorm10 from "@/assets/mh-brainstorm-10.webp";
+import audit1 from "@/assets/MH-Audit-1-2.webp";
+import brainstorm1 from "@/assets/mh-brainstorm-1-2.webp";
+import brainstorm4 from "@/assets/mh-brainstorm-4-2.webp";
+import brainstorm5 from "@/assets/mh-brainstorm-5-2.webp";
+import brainstorm6 from "@/assets/mh-brainstorm-6-2.webp";
+import brainstorm7 from "@/assets/mh-brainstorm-7.webp";
+import brainstorm8 from "@/assets/mh-brainstorm-8-2.webp";
 import benFHeadshot from "@/assets/ben-f-headshot.webp";
 const MobileBankingProject = () => {
   const [isColumnLayout, setIsColumnLayout] = useState(false);
@@ -99,31 +97,25 @@ const MobileBankingProject = () => {
   // Array of gallery images
   const galleryImages = [{
     src: audit1,
-    alt: "Marketing Hub Audit 1"
-  }, {
-    src: audit2,
-    alt: "Marketing Hub Audit 2"
+    alt: "Marketing Hub Audit - Whiteboard session"
   }, {
     src: brainstorm1,
-    alt: "Brainstorm session 1"
+    alt: "Brainstorm session - Design sketches"
   }, {
     src: brainstorm4,
-    alt: "Brainstorm whiteboard"
+    alt: "Brainstorm whiteboard - Feature planning"
   }, {
     src: brainstorm5,
     alt: "Team brainstorm session"
   }, {
     src: brainstorm6,
-    alt: "Brainstorm overview"
+    alt: "Brainstorm overview - Full board"
+  }, {
+    src: brainstorm7,
+    alt: "Marketing Hub mission and goals"
   }, {
     src: brainstorm8,
     alt: "Presentation session"
-  }, {
-    src: brainstorm9,
-    alt: "Brainstorm workspace"
-  }, {
-    src: brainstorm10,
-    alt: "Close-up brainstorm notes"
   }];
 
   // Sticky header tracking
