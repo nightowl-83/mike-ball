@@ -1190,8 +1190,8 @@ const MobileBankingProject = () => {
             </div>
 
             {/* Right Column - Content - Overlaps on mobile */}
-            <div className="w-full lg:w-[50vw] flex items-center lg:px-16 py-6 md:py-24 bg-background relative -mt-20 lg:mt-0 z-10 rounded-t-3xl lg:rounded-none">
-              <div className="space-y-4 md:space-y-8 max-w-2xl">
+            <div className="w-full lg:w-[50vw] flex items-center px-6 lg:px-16 py-6 md:py-24 bg-background relative -mt-20 lg:mt-0 z-10 rounded-t-3xl lg:rounded-none">
+              <div className="space-y-4 md:space-y-8 max-w-2xl w-full">
                 <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold">Add & Edit a Listing</h2>
                 
                 <ul className="space-y-3 md:space-y-4 text-base md:text-lg text-muted-foreground">
