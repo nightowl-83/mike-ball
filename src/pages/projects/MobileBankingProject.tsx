@@ -21,6 +21,7 @@ import brainstorm6 from "@/assets/mh-brainstorm-6-2.webp";
 import brainstorm7 from "@/assets/mh-brainstorm-7.webp";
 import brainstorm8 from "@/assets/mh-brainstorm-8-2.webp";
 import benFHeadshot from "@/assets/ben-f-headshot.webp";
+import dashboardHero from "@/assets/dashboard-home.webp";
 const MobileBankingProject = () => {
   const [isColumnLayout, setIsColumnLayout] = useState(false);
   const [stickyHeader, setStickyHeader] = useState({
@@ -297,7 +298,7 @@ const MobileBankingProject = () => {
 
         {!isColumnLayout ? (/* Full-Width Layout */
       <>
-            <img src="/placeholder.svg" alt="Mobile Banking App hero" className="w-full h-full object-cover" />
+            <img src={dashboardHero} alt="Marketing Hub Dashboard" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent from-0% via-transparent via-50% to-background to-100%" />
             <div className="absolute bottom-0 left-0 right-0 px-4 md:px-6 pb-12 md:pb-16">
               <div className="container mx-auto max-w-6xl">
@@ -361,7 +362,7 @@ const MobileBankingProject = () => {
             
             {/* Right: Image - 50vw width on desktop, full on mobile */}
             <div className="w-full md:w-1/2 h-64 md:h-full relative">
-              <img src="/placeholder.svg" alt="Mobile Banking App hero" className="w-full h-full object-cover" />
+              <img src={dashboardHero} alt="Marketing Hub Dashboard" className="w-full h-full object-cover" />
             </div>
           </div>)}
       </section>
