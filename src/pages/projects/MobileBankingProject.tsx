@@ -1063,46 +1063,59 @@ const MobileBankingProject = () => {
             
             {/* Bento Box Layout */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 pb-8 md:pb-12">
-              {/* Large Typography Card */}
+              {/* Large Typography Card - Split into two columns */}
               <div className="bg-card border border-border rounded-lg p-6 md:p-8 flex flex-col">
                 <h3 className="text-lg md:text-xl font-bold mb-6 md:mb-8">Typography</h3>
-                <div className="space-y-4 md:space-y-6 flex-1 flex flex-col justify-center">
-                  <div>
-                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2">Roboto</h1>
-                    <p className="text-xs md:text-sm text-muted-foreground">Font Family</p>
+                <div className="flex-1 flex flex-col justify-center">
+                  <div className="mb-6 md:mb-8">
+                    <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-2">Roboto</h1>
+                    <p className="text-sm md:text-base text-muted-foreground">Font Family</p>
                   </div>
-                  <div className="space-y-3 md:space-y-4 pt-2 md:pt-4">
-                    <div>
-                      <p className="text-2xl font-semibold">H1</p>
-                      <p className="text-xs text-muted-foreground">34px Semi Bold</p>
+                  
+                  {/* Two Column Layout for Text Styles */}
+                  <div className="grid grid-cols-2 gap-6 md:gap-8">
+                    {/* First Column */}
+                    <div className="space-y-3 md:space-y-4">
+                      <div>
+                        <p className="text-2xl font-semibold">H1</p>
+                        <p className="text-xs text-muted-foreground">34px Semi Bold</p>
+                      </div>
+                      <div>
+                        <p className="text-xl font-semibold">H2</p>
+                        <p className="text-xs text-muted-foreground">28px Semi Bold</p>
+                      </div>
+                      <div>
+                        <p className="text-lg font-medium">H3</p>
+                        <p className="text-xs text-muted-foreground">24px Medium</p>
+                      </div>
+                      <div>
+                        <p className="text-base font-medium">H4</p>
+                        <p className="text-xs text-muted-foreground">20px Medium</p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="text-xl font-semibold">H2</p>
-                      <p className="text-xs text-muted-foreground">28px Semi Bold</p>
-                    </div>
-                    <div>
-                      <p className="text-lg font-medium">H3</p>
-                      <p className="text-xs text-muted-foreground">24px Medium</p>
-                    </div>
-                    <div>
-                      <p className="text-base font-medium">H4</p>
-                      <p className="text-xs text-muted-foreground">20px Medium</p>
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold">Subtitle</p>
-                      <p className="text-xs text-muted-foreground">18px</p>
-                    </div>
-                    <div>
-                      <p className="text-sm">Body</p>
-                      <p className="text-xs text-muted-foreground">16px Regular</p>
-                    </div>
-                    <div>
-                      <p className="text-xs">Paragraph</p>
-                      <p className="text-xs text-muted-foreground">14px</p>
+                    
+                    {/* Second Column */}
+                    <div className="space-y-3 md:space-y-4">
+                      <div>
+                        <p className="text-sm font-semibold">Subtitle</p>
+                        <p className="text-xs text-muted-foreground">18px Semi Bold</p>
+                      </div>
+                      <div>
+                        <p className="text-sm">Body</p>
+                        <p className="text-xs text-muted-foreground">16px Regular</p>
+                      </div>
+                      <div>
+                        <p className="text-xs font-medium">Caption</p>
+                        <p className="text-xs text-muted-foreground">14px Medium</p>
+                      </div>
+                      <div>
+                        <p className="text-xs">Small</p>
+                        <p className="text-xs text-muted-foreground">12px Regular</p>
+                      </div>
                     </div>
                   </div>
                 </div>
-                  </div>
+              </div>
 
                   {/* Right Column */}
                   <div className="flex flex-col gap-4 md:gap-6">
