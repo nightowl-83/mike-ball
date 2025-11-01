@@ -23,7 +23,6 @@ import brainstorm8 from "@/assets/mh-brainstorm-8-2.webp";
 import benFHeadshot from "@/assets/ben-f-headshot.webp";
 import dashboardHero from "@/assets/dashboard-home.webp";
 const MobileBankingProject = () => {
-  const [isColumnLayout, setIsColumnLayout] = useState(false);
   const [stickyHeader, setStickyHeader] = useState({
     visible: false,
     section: '',
@@ -50,6 +49,7 @@ const MobileBankingProject = () => {
   const addEditListingRef = useRef<HTMLDivElement>(null);
   const listingProcessRef = useRef<HTMLDivElement>(null);
   const leadsRef = useRef<HTMLDivElement>(null);
+  const analyticsRef = useRef<HTMLDivElement>(null);
 
   // Section navigation data
   const sections = [{
@@ -142,6 +142,12 @@ const MobileBankingProject = () => {
     subsection: 'Managing Leads',
     number: '/04',
     ref: leadsRef
+  }, {
+    id: 'delivery-analytics',
+    section: 'Delivery',
+    subsection: 'Listing Analytics',
+    number: '/04',
+    ref: analyticsRef
   }];
 
   // Array of gallery images
@@ -334,6 +340,16 @@ const MobileBankingProject = () => {
       observers[observers.length - 1].observe(leadsRef.current);
     }
 
+    // Listing Analytics observer
+    if (analyticsRef.current) {
+      observers.push(createObserver(analyticsRef, {
+        section: 'Delivery',
+        subsection: 'Listing Analytics',
+        number: '/04'
+      }));
+      observers[observers.length - 1].observe(analyticsRef.current);
+    }
+
     // Hide sticky header when at top (hero is visible)
     const topObserver = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
@@ -398,11 +414,11 @@ const MobileBankingProject = () => {
       {/* Unified Sticky Header */}
       <StickyNavHeader visible={stickyHeader.visible} currentSection={stickyHeader.section} currentSubsection={stickyHeader.subsection} currentNumber={stickyHeader.number} sections={sections} />
 
-      {/* Hero Section - Toggle between layouts */}
-      <section ref={heroAnim.ref} className={`relative h-[80vh] w-full overflow-hidden border-b border-border transition-all duration-700 ${heroAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+      {/* Hero Section - Two Column Layout Only */}
+      <section ref={heroAnim.ref} className={`relative h-screen max-h-[900px] w-full overflow-hidden border-b border-border transition-all duration-700 ${heroAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div ref={heroRef} className="absolute top-0 left-0 w-full h-1" />
-        {/* Back Button & Layout Toggle */}
-        <div className="absolute top-4 left-4 md:top-6 md:left-6 z-50 flex gap-2">
+        {/* Back Button */}
+        <div className="absolute top-4 left-4 md:top-6 md:left-6 z-50">
           <Link to="/">
             <Button variant="ghost" size="sm" className="gap-2 bg-background/20 backdrop-blur-md hover:bg-background/40 text-foreground text-xs md:text-sm">
               <ArrowLeft className="h-3 w-3 md:h-4 md:w-4" />
@@ -410,87 +426,53 @@ const MobileBankingProject = () => {
               <span className="sm:hidden">Back</span>
             </Button>
           </Link>
-          <Button variant="ghost" size="sm" onClick={() => setIsColumnLayout(!isColumnLayout)} className="hidden md:flex gap-2 bg-background/20 backdrop-blur-md hover:bg-background/40 text-foreground">
-            {isColumnLayout ? <Layout className="h-4 w-4" /> : <Columns2 className="h-4 w-4" />}
-            {isColumnLayout ? "Full Width" : "2 Column"}
-          </Button>
         </div>
 
-        {!isColumnLayout ? (/* Full-Width Layout */
-      <>
+        {/* 2-Column Layout */}
+        <div className="flex flex-col md:flex-row h-full">
+          {/* Left: Content */}
+          <div className="w-full md:w-1/2 flex items-center px-6 md:px-12 lg:px-20 bg-card py-12 md:py-0">
+            <div className="space-y-4 md:space-y-6 animate-fade-in max-w-2xl">
+              <span className="inline-block px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-primary/10 text-primary text-xs md:text-sm font-medium">Dashboard Design</span>
+              <h1 className="text-3xl md:text-4xl lg:text-6xl xl:text-7xl font-bold text-foreground">
+                Marketing Hub<br />
+                Client Dashboard
+              </h1>
+              <p className="text-base md:text-lg lg:text-xl text-muted-foreground">A modern CMS experience with intuitive navigation and seamless transactions. Designed for simplicity and security.</p>
+              <div className="flex flex-wrap gap-4 md:gap-6 pt-2 md:pt-4">
+                <div>
+                  <span className="text-xs md:text-sm text-muted-foreground">Role</span>
+                  <p className="font-semibold text-sm md:text-base">Lead Product Designer</p>
+                </div>
+                <div>
+                  <span className="text-xs md:text-sm text-muted-foreground">Timeline</span>
+                  <p className="font-semibold text-sm md:text-base">3 months</p>
+                </div>
+                <div>
+                  <span className="text-xs md:text-sm text-muted-foreground">Year</span>
+                  <p className="font-semibold text-sm md:text-base">2024</p>
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-2 md:gap-3 pt-4 md:pt-6 overflow-visible">
+                <span className="px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-background border border-border text-xs md:text-sm font-medium">Figma</span>
+                <span className="px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-background border border-border text-xs md:text-sm font-medium">Maze</span>
+                <span className="px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-background border border-border text-xs md:text-sm font-medium">AI Prototyping</span>
+                <span className="px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-background border border-border text-xs md:text-sm font-medium">UI/UX Design</span>
+              </div>
+            </div>
+          </div>
+          
+          {/* Right: Image - 50vw width on desktop, full on mobile */}
+          <div className="w-full md:w-1/2 h-64 md:h-full relative">
             <img src={dashboardHero} alt="Marketing Hub Dashboard" className="w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent from-0% via-transparent via-50% to-background to-100%" />
-            <div className="absolute bottom-0 left-0 right-0 px-4 md:px-6 pb-12 md:pb-16">
-              <div className="container mx-auto max-w-6xl">
-                <div className="space-y-4 md:space-y-6 animate-fade-in">
-                  <span className="inline-block px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-primary/10 text-primary text-xs md:text-sm font-medium backdrop-blur-sm">Dashboard Design</span>
-                  <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-foreground">
-                    Marketing Hub<br />
-                    Client Dashboard
-                  </h1>
-                  <p className="text-base md:text-xl text-muted-foreground max-w-3xl">A modern CMS experience with intuitive navigation and seamless transactions. Designed for simplicity and security.</p>
-                  <div className="flex flex-wrap gap-4 md:gap-6 pt-2 md:pt-4">
-                    <div>
-                      <span className="text-xs md:text-sm text-muted-foreground">Role</span>
-                      <p className="font-semibold text-sm md:text-base">Lead Product Designer</p>
-                    </div>
-                    <div>
-                      <span className="text-xs md:text-sm text-muted-foreground">Timeline</span>
-                      <p className="font-semibold text-sm md:text-base">3 months</p>
-                    </div>
-                    <div>
-                      <span className="text-xs md:text-sm text-muted-foreground">Year</span>
-                      <p className="font-semibold text-sm md:text-base">2024</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </>) : (/* 2-Column Layout */
-      <div className="flex flex-col md:flex-row h-full">
-            {/* Left: Content */}
-            <div className="w-full md:w-1/2 flex items-center px-6 md:px-12 lg:px-20 bg-card py-12 md:py-0">
-              <div className="space-y-4 md:space-y-6 animate-fade-in max-w-2xl">
-                <span className="inline-block px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-primary/10 text-primary text-xs md:text-sm font-medium">Dashboard Design</span>
-                <h1 className="text-3xl md:text-4xl lg:text-6xl xl:text-7xl font-bold text-foreground">
-                  Marketing Hub<br />
-                  Client Dashboard
-                </h1>
-                <p className="text-base md:text-lg lg:text-xl text-muted-foreground">A modern CMS experience with intuitive navigation and seamless transactions. Designed for simplicity and security.</p>
-                <div className="flex flex-wrap gap-4 md:gap-6 pt-2 md:pt-4">
-                  <div>
-                    <span className="text-xs md:text-sm text-muted-foreground">Role</span>
-                    <p className="font-semibold text-sm md:text-base">Lead Product Designer</p>
-                  </div>
-                  <div>
-                    <span className="text-xs md:text-sm text-muted-foreground">Timeline</span>
-                    <p className="font-semibold text-sm md:text-base">3 months</p>
-                  </div>
-                  <div>
-                    <span className="text-xs md:text-sm text-muted-foreground">Year</span>
-                    <p className="font-semibold text-sm md:text-base">2024</p>
-                  </div>
-                </div>
-                <div className="flex flex-wrap gap-2 md:gap-3 pt-4 md:pt-6 overflow-visible">
-                  <span className="px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-background border border-border text-xs md:text-sm font-medium">Figma</span>
-                  <span className="px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-background border border-border text-xs md:text-sm font-medium">Maze</span>
-                  <span className="px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-background border border-border text-xs md:text-sm font-medium">AI Prototyping</span>
-                  <span className="px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-background border border-border text-xs md:text-sm font-medium">UI/UX Design</span>
-                </div>
-              </div>
-            </div>
-            
-            {/* Right: Image - 50vw width on desktop, full on mobile */}
-            <div className="w-full md:w-1/2 h-64 md:h-full relative">
-              <img src={dashboardHero} alt="Marketing Hub Dashboard" className="w-full h-full object-cover" />
-            </div>
-          </div>)}
+          </div>
+        </div>
       </section>
 
       {/* Main Content Container */}
       <div className="relative -mt-[10vh] z-10 bg-background">
         {/* Overview Section */}
-        <section ref={overviewAnim.ref} className={`min-h-screen flex items-center justify-center py-10 md:py-24 transition-all duration-700 ${overviewAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <section ref={overviewAnim.ref} className={`min-h-[60vh] flex items-center justify-center py-10 md:py-16 transition-all duration-700 ${overviewAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div ref={overviewRef} className="absolute top-0 left-0 w-full h-1" />
           <div className="container mx-auto max-w-[1440px]">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-start">
@@ -1373,7 +1355,7 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Lead Management Section */}
-        <section className="py-10 md:py-24">
+        <section className="relative py-10 md:py-24">
           <div ref={leadsRef} className="absolute top-0 left-0 w-full h-1" />
           <div className="container mx-auto max-w-[1440px]">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16">
@@ -1398,6 +1380,129 @@ const MobileBankingProject = () => {
             <div className="w-full mt-4 md:mt-12 -mx-2 md:mx-0">
               <div className="w-full md:max-w-[85%] md:mx-auto md:rounded-2xl overflow-hidden shadow-card">
                 <img src={leadsGif} alt="Lead management interface demonstration" className="w-full h-full object-contain" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Listing Analytics Section */}
+        <section className="relative py-10 md:py-24 bg-card/30">
+          <div ref={analyticsRef} className="absolute top-0 left-0 w-full h-1" />
+          <div className="container mx-auto max-w-[1440px]">
+            <div className="mb-8 md:mb-12">
+              <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4">Listing Analytics</h3>
+              <p className="text-base md:text-lg text-muted-foreground">Comprehensive insights and performance tracking for your property listings</p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {/* Overview Dashboard */}
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-semibold text-base md:text-lg">Overview Dashboard</h4>
+                    <p className="text-sm md:text-base text-muted-foreground mt-1">Track views, clicks, and leads in one place.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Traffic Sources */}
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-semibold text-base md:text-lg">Traffic Sources</h4>
+                    <p className="text-sm md:text-base text-muted-foreground mt-1">See where your listing traffic is coming from.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Lead Insights */}
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-semibold text-base md:text-lg">Lead Insights</h4>
+                    <p className="text-sm md:text-base text-muted-foreground mt-1">Monitor inquiries and engagement over time.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Compare Listings */}
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-semibold text-base md:text-lg">Compare Listings</h4>
+                    <p className="text-sm md:text-base text-muted-foreground mt-1">Benchmark performance against similar listings.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Interest by Location */}
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-semibold text-base md:text-lg">Interest by Location</h4>
+                    <p className="text-sm md:text-base text-muted-foreground mt-1">Visualize buyer activity with heat-maps.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Performance Suggestions */}
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-semibold text-base md:text-lg">Performance Suggestions</h4>
+                    <p className="text-sm md:text-base text-muted-foreground mt-1">Get tips to improve your listing results.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Export Reports */}
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-semibold text-base md:text-lg">Export Reports</h4>
+                    <p className="text-sm md:text-base text-muted-foreground mt-1">Download or schedule performance summaries.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Ad Performance */}
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-semibold text-base md:text-lg">Ad Performance</h4>
+                    <p className="text-sm md:text-base text-muted-foreground mt-1">Track ROI from featured listings and campaigns.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Custom Filters */}
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-semibold text-base md:text-lg">Custom Filters</h4>
+                    <p className="text-sm md:text-base text-muted-foreground mt-1">View data by custom date ranges.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Mobile-Ready */}
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-semibold text-base md:text-lg">Mobile-Ready</h4>
+                    <p className="text-sm md:text-base text-muted-foreground mt-1">Access insights anytime, anywhere.</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
