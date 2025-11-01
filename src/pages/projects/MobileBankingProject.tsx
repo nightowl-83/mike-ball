@@ -376,7 +376,7 @@ const MobileBankingProject = () => {
       {/* Main Content Container */}
       <div className="relative -mt-[10vh] z-10 bg-background">
         {/* Overview Section */}
-        <section ref={overviewAnim.ref} className={`min-h-screen flex items-center justify-center px-2 md:px-6 py-10 md:py-24 transition-all duration-700 ${overviewAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <section ref={overviewAnim.ref} className={`min-h-screen flex items-center justify-center py-10 md:py-24 transition-all duration-700 ${overviewAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="container mx-auto max-w-[1440px]">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-start">
               <div className="space-y-4 md:space-y-6">
@@ -418,7 +418,7 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Two Column Product Shots */}
-        <section ref={productShotsAnim.ref} className={`px-6 py-24 transition-all duration-700 ${productShotsAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <section ref={productShotsAnim.ref} className={`py-24 transition-all duration-700 ${productShotsAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="container mx-auto max-w-[1440px]">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-card">
@@ -432,7 +432,7 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Design Process */}
-        <section ref={processAnim.ref} className={`min-h-screen flex items-center justify-center px-2 md:px-6 py-10 md:py-24 bg-card/30 transition-all duration-700 ${processAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <section ref={processAnim.ref} className={`min-h-screen flex items-center justify-center py-10 md:py-24 bg-card/30 transition-all duration-700 ${processAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="container mx-auto max-w-[1440px]">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-start">
               {/* Left Column - Title & Description */}
@@ -503,7 +503,7 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Define Section - 01 */}
-        <section ref={defineContentAnim.ref} className={`relative px-2 md:px-6 py-10 md:py-24 transition-all duration-700 ${defineContentAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <section ref={defineContentAnim.ref} className={`relative py-10 md:py-24 transition-all duration-700 ${defineContentAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div ref={defineRef} className="absolute top-0 left-0 w-full h-1" />
 
           <div className="container mx-auto max-w-[1440px]">
@@ -621,7 +621,7 @@ const MobileBankingProject = () => {
 
 
         {/* Discovery Section - 02 */}
-        <section className="relative px-2 md:px-6 py-10 md:py-24 bg-card/30">
+        <section className="relative py-10 md:py-24 bg-card/30">
           <div ref={discoveryRef} className="absolute top-0 left-0 w-full h-1" />
           <div className="container mx-auto max-w-[1440px]">
             <div ref={discoveryInterviewsRef} className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-16 mb-8 md:mb-32 items-stretch">
@@ -867,7 +867,7 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Design Section - 03 */}
-        <section ref={designContentAnim.ref} className={`relative px-2 md:px-6 py-10 md:py-24 transition-all duration-700 ${designContentAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <section ref={designContentAnim.ref} className={`relative py-10 md:py-24 transition-all duration-700 ${designContentAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div ref={designRef} className="absolute top-0 left-0 w-full h-1" />
           <div className="container mx-auto max-w-[1440px]">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-16">
@@ -932,7 +932,7 @@ const MobileBankingProject = () => {
         </div>
 
         {/* Design System Section */}
-        <section className="relative px-4 md:px-6 py-12 md:py-24 bg-background flex items-center">
+        <section className="relative py-12 md:py-24 bg-background flex items-center">
           <div className="container mx-auto max-w-[1440px]">
             <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-12">Design System</h2>
             
@@ -1134,7 +1134,7 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Delivery Section - 04 */}
-        <section ref={deliveryContentAnim.ref} className={`relative px-2 md:px-6 py-10 md:py-24 bg-card/30 transition-all duration-700 ${deliveryContentAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <section ref={deliveryContentAnim.ref} className={`relative py-10 md:py-24 bg-card/30 transition-all duration-700 ${deliveryContentAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div ref={deliveryRef} className="absolute top-0 left-0 w-full h-1" />
           <div className="container mx-auto max-w-[1440px]">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-16">
@@ -1197,7 +1197,7 @@ const MobileBankingProject = () => {
             </div>
 
             {/* Right Column - Content - Overlaps on mobile */}
-            <div className="w-full lg:w-[50vw] flex items-center px-2 md:px-6 lg:px-16 py-6 md:py-16 bg-background relative -mt-20 lg:mt-0 z-10 rounded-t-3xl lg:rounded-none">
+            <div className="w-full lg:w-[50vw] flex items-center lg:px-16 py-6 md:py-16 bg-background relative -mt-20 lg:mt-0 z-10 rounded-t-3xl lg:rounded-none">
               <div className="space-y-4 md:space-y-8 max-w-2xl">
                 <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold">Add & Edit a Listing</h2>
                 
@@ -1283,7 +1283,7 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Full Width Image */}
-        <section ref={fullWidthAnim.ref} className={`min-h-screen flex items-center justify-center px-6 py-24 bg-card/30 transition-all duration-700 ${fullWidthAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <section ref={fullWidthAnim.ref} className={`min-h-screen flex items-center justify-center py-24 bg-card/30 transition-all duration-700 ${fullWidthAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="container mx-auto max-w-[1600px]">
             <div className="w-full aspect-[21/9] rounded-2xl overflow-hidden shadow-glow">
               <img src="/placeholder.svg" alt="Full width showcase" className="w-full h-full object-cover" />
@@ -1292,7 +1292,7 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Challenge Section */}
-        <section ref={challengeAnim.ref} className={`min-h-screen flex items-center justify-center px-2 md:px-6 py-10 md:py-24 transition-all duration-700 ${challengeAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <section ref={challengeAnim.ref} className={`min-h-screen flex items-center justify-center py-10 md:py-24 transition-all duration-700 ${challengeAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="container mx-auto max-w-[1440px]">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-16 items-center">
               <div className="w-full aspect-square rounded-xl md:rounded-2xl overflow-hidden shadow-card order-2 lg:order-1">
@@ -1325,7 +1325,7 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Solution Section */}
-        <section ref={solutionAnim.ref} className={`min-h-screen flex items-center justify-center px-2 md:px-6 py-10 md:py-24 bg-card/30 transition-all duration-700 ${solutionAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <section ref={solutionAnim.ref} className={`min-h-screen flex items-center justify-center py-10 md:py-24 bg-card/30 transition-all duration-700 ${solutionAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="container mx-auto max-w-[1440px]">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-16 items-center">
               <div className="space-y-4 md:space-y-6">
@@ -1353,7 +1353,7 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Results Section */}
-        <section ref={resultsAnim.ref} className={`min-h-screen flex items-center justify-center px-2 md:px-6 py-10 md:py-24 transition-all duration-700 ${resultsAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <section ref={resultsAnim.ref} className={`min-h-screen flex items-center justify-center py-10 md:py-24 transition-all duration-700 ${resultsAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="container mx-auto max-w-[1440px] text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-16">Impact & Results</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-12">
@@ -1386,7 +1386,7 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Final Showcase */}
-        <section ref={showcaseAnim.ref} className={`min-h-screen flex items-center justify-center px-4 md:px-6 py-12 md:py-24 bg-card/30 transition-all duration-700 ${showcaseAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <section ref={showcaseAnim.ref} className={`min-h-screen flex items-center justify-center py-12 md:py-24 bg-card/30 transition-all duration-700 ${showcaseAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="container mx-auto max-w-[1600px] space-y-6 md:space-y-12">
             <div className="w-full aspect-video rounded-xl md:rounded-2xl overflow-hidden shadow-glow">
               <img src="/placeholder.svg" alt="Final showcase 1" className="w-full h-full object-cover" />
@@ -1403,7 +1403,7 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Navigation to Next Project */}
-        <section ref={navigationAnim.ref} className={`px-6 py-24 border-t border-border transition-all duration-700 ${navigationAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <section ref={navigationAnim.ref} className={`py-24 border-t border-border transition-all duration-700 ${navigationAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="container mx-auto max-w-[1440px]">
             <div className="flex items-center justify-between">
               <div className="space-y-2">
