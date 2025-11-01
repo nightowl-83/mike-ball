@@ -1214,7 +1214,7 @@ const MobileBankingProject = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-[1200px] mx-auto py-4">
               {/* Location Selection GIF */}
-              <div className="w-full max-h-[600px] aspect-[9/19.5] rounded-2xl overflow-hidden shadow-card">
+              <div className="w-full max-h-[600px] aspect-[9/19.5] rounded-2xl overflow-hidden shadow-card py-2">
                 <img 
                   src={addListingLocationGif} 
                   alt="Add listing location selection process" 
@@ -1222,7 +1222,7 @@ const MobileBankingProject = () => {
                 />
               </div>
               {/* Full Listing Form GIF */}
-              <div className="w-full max-h-[600px] aspect-[9/19.5] rounded-2xl overflow-hidden shadow-card">
+              <div className="w-full max-h-[600px] aspect-[9/19.5] rounded-2xl overflow-hidden shadow-card py-2">
                 <img 
                   src={addListingFullGif} 
                   alt="Complete listing creation process" 
