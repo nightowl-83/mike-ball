@@ -22,14 +22,18 @@ import brainstorm6 from "@/assets/mh-brainstorm-6.webp";
 import brainstorm8 from "@/assets/mh-brainstorm-8.webp";
 import brainstorm9 from "@/assets/mh-brainstorm-9.webp";
 import brainstorm10 from "@/assets/mh-brainstorm-10.webp";
-
 const MobileBankingProject = () => {
   const [isColumnLayout, setIsColumnLayout] = useState(false);
-  const [stickyHeader, setStickyHeader] = useState({ visible: false, section: '', subsection: '', number: '' });
+  const [stickyHeader, setStickyHeader] = useState({
+    visible: false,
+    section: '',
+    subsection: '',
+    number: ''
+  });
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [designLayout, setDesignLayout] = useState<1 | 2 | 3>(1);
-  
+
   // Refs for sections and subsections
   const defineRef = useRef<HTMLDivElement>(null);
   const defineGalleryRef = useRef<HTMLDivElement>(null);
@@ -41,122 +45,213 @@ const MobileBankingProject = () => {
   const addEditListingRef = useRef<HTMLDivElement>(null);
 
   // Section navigation data
-  const sections = [
-    { id: 'define', section: 'Define', subsection: '', number: '/01', ref: defineRef },
-    { id: 'define-gallery', section: 'Define', subsection: 'Gallery', number: '/01', ref: defineGalleryRef },
-    { id: 'discovery', section: 'Discovery', subsection: '', number: '/02', ref: discoveryRef },
-    { id: 'discovery-interviews', section: 'Discovery', subsection: 'User Interviews', number: '/02', ref: discoveryInterviewsRef },
-    { id: 'discovery-persona', section: 'Discovery', subsection: 'User Persona', number: '/02', ref: discoveryPersonaRef },
-    { id: 'design', section: 'Design', subsection: '', number: '/03', ref: designRef },
-    { id: 'delivery', section: 'Delivery', subsection: '', number: '/04', ref: deliveryRef },
-    { id: 'delivery-listing', section: 'Delivery', subsection: 'Add & Edit a Listing', number: '/04', ref: addEditListingRef },
-  ];
+  const sections = [{
+    id: 'define',
+    section: 'Define',
+    subsection: '',
+    number: '/01',
+    ref: defineRef
+  }, {
+    id: 'define-gallery',
+    section: 'Define',
+    subsection: 'Gallery',
+    number: '/01',
+    ref: defineGalleryRef
+  }, {
+    id: 'discovery',
+    section: 'Discovery',
+    subsection: '',
+    number: '/02',
+    ref: discoveryRef
+  }, {
+    id: 'discovery-interviews',
+    section: 'Discovery',
+    subsection: 'User Interviews',
+    number: '/02',
+    ref: discoveryInterviewsRef
+  }, {
+    id: 'discovery-persona',
+    section: 'Discovery',
+    subsection: 'User Persona',
+    number: '/02',
+    ref: discoveryPersonaRef
+  }, {
+    id: 'design',
+    section: 'Design',
+    subsection: '',
+    number: '/03',
+    ref: designRef
+  }, {
+    id: 'delivery',
+    section: 'Delivery',
+    subsection: '',
+    number: '/04',
+    ref: deliveryRef
+  }, {
+    id: 'delivery-listing',
+    section: 'Delivery',
+    subsection: 'Add & Edit a Listing',
+    number: '/04',
+    ref: addEditListingRef
+  }];
 
   // Array of gallery images
-  const galleryImages = [
-    { src: audit1, alt: "Marketing Hub Audit 1" },
-    { src: audit2, alt: "Marketing Hub Audit 2" },
-    { src: brainstorm1, alt: "Brainstorm session 1" },
-    { src: brainstorm4, alt: "Brainstorm whiteboard" },
-    { src: brainstorm5, alt: "Team brainstorm session" },
-    { src: brainstorm6, alt: "Brainstorm overview" },
-    { src: brainstorm8, alt: "Presentation session" },
-    { src: brainstorm9, alt: "Brainstorm workspace" },
-    { src: brainstorm10, alt: "Close-up brainstorm notes" }
-  ];
+  const galleryImages = [{
+    src: audit1,
+    alt: "Marketing Hub Audit 1"
+  }, {
+    src: audit2,
+    alt: "Marketing Hub Audit 2"
+  }, {
+    src: brainstorm1,
+    alt: "Brainstorm session 1"
+  }, {
+    src: brainstorm4,
+    alt: "Brainstorm whiteboard"
+  }, {
+    src: brainstorm5,
+    alt: "Team brainstorm session"
+  }, {
+    src: brainstorm6,
+    alt: "Brainstorm overview"
+  }, {
+    src: brainstorm8,
+    alt: "Presentation session"
+  }, {
+    src: brainstorm9,
+    alt: "Brainstorm workspace"
+  }, {
+    src: brainstorm10,
+    alt: "Close-up brainstorm notes"
+  }];
 
   // Sticky header tracking
   useEffect(() => {
-    const observerOptions = { 
-      threshold: 0.5, 
-      rootMargin: '-100px 0px -50% 0px' 
+    const observerOptions = {
+      threshold: 0.5,
+      rootMargin: '-100px 0px -50% 0px'
     };
-
-    const createObserver = (ref: React.RefObject<HTMLDivElement>, data: { section: string; subsection: string; number: string }) => {
+    const createObserver = (ref: React.RefObject<HTMLDivElement>, data: {
+      section: string;
+      subsection: string;
+      number: string;
+    }) => {
       return new IntersectionObserver(([entry]) => {
         if (entry.isIntersecting) {
-          setStickyHeader({ visible: true, ...data });
+          setStickyHeader({
+            visible: true,
+            ...data
+          });
         }
       }, observerOptions);
     };
-
     const observers: IntersectionObserver[] = [];
 
     // Define section observers
     if (defineRef.current) {
-      observers.push(createObserver(defineRef, { section: 'Define', subsection: '', number: '/01' }));
+      observers.push(createObserver(defineRef, {
+        section: 'Define',
+        subsection: '',
+        number: '/01'
+      }));
       observers[observers.length - 1].observe(defineRef.current);
     }
-
     if (defineGalleryRef.current) {
-      observers.push(createObserver(defineGalleryRef, { section: 'Define', subsection: 'Gallery', number: '/01' }));
+      observers.push(createObserver(defineGalleryRef, {
+        section: 'Define',
+        subsection: 'Gallery',
+        number: '/01'
+      }));
       observers[observers.length - 1].observe(defineGalleryRef.current);
     }
 
     // Discovery section observers
     if (discoveryRef.current) {
-      observers.push(createObserver(discoveryRef, { section: 'Discovery', subsection: '', number: '/02' }));
+      observers.push(createObserver(discoveryRef, {
+        section: 'Discovery',
+        subsection: '',
+        number: '/02'
+      }));
       observers[observers.length - 1].observe(discoveryRef.current);
     }
-
     if (discoveryInterviewsRef.current) {
-      observers.push(createObserver(discoveryInterviewsRef, { section: 'Discovery', subsection: 'User Interviews', number: '/02' }));
+      observers.push(createObserver(discoveryInterviewsRef, {
+        section: 'Discovery',
+        subsection: 'User Interviews',
+        number: '/02'
+      }));
       observers[observers.length - 1].observe(discoveryInterviewsRef.current);
     }
-
     if (discoveryPersonaRef.current) {
-      observers.push(createObserver(discoveryPersonaRef, { section: 'Discovery', subsection: 'User Persona', number: '/02' }));
+      observers.push(createObserver(discoveryPersonaRef, {
+        section: 'Discovery',
+        subsection: 'User Persona',
+        number: '/02'
+      }));
       observers[observers.length - 1].observe(discoveryPersonaRef.current);
     }
 
     // Design section observer
     if (designRef.current) {
-      observers.push(createObserver(designRef, { section: 'Design', subsection: '', number: '/03' }));
+      observers.push(createObserver(designRef, {
+        section: 'Design',
+        subsection: '',
+        number: '/03'
+      }));
       observers[observers.length - 1].observe(designRef.current);
     }
 
     // Delivery section observer
     if (deliveryRef.current) {
-      observers.push(createObserver(deliveryRef, { section: 'Delivery', subsection: '', number: '/04' }));
+      observers.push(createObserver(deliveryRef, {
+        section: 'Delivery',
+        subsection: '',
+        number: '/04'
+      }));
       observers[observers.length - 1].observe(deliveryRef.current);
     }
 
     // Add & Edit Listing observer
     if (addEditListingRef.current) {
-      observers.push(createObserver(addEditListingRef, { section: 'Delivery', subsection: 'Add & Edit a Listing', number: '/04' }));
+      observers.push(createObserver(addEditListingRef, {
+        section: 'Delivery',
+        subsection: 'Add & Edit a Listing',
+        number: '/04'
+      }));
       observers[observers.length - 1].observe(addEditListingRef.current);
     }
 
     // Hide sticky header when at top
     const topObserver = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
-        setStickyHeader({ visible: false, section: '', subsection: '', number: '' });
+        setStickyHeader({
+          visible: false,
+          section: '',
+          subsection: '',
+          number: ''
+        });
       }
-    }, { threshold: 0.1 });
-
+    }, {
+      threshold: 0.1
+    });
     if (defineRef.current) {
       topObserver.observe(defineRef.current);
     }
-
     return () => {
       observers.forEach(obs => obs.disconnect());
       topObserver.disconnect();
     };
   }, []);
-
   const openGallery = (index: number) => {
     setCurrentImageIndex(index);
     setGalleryOpen(true);
   };
-
   const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % galleryImages.length);
+    setCurrentImageIndex(prev => (prev + 1) % galleryImages.length);
   };
-
   const previousImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+    setCurrentImageIndex(prev => (prev - 1 + galleryImages.length) % galleryImages.length);
   };
-
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!galleryOpen) return;
@@ -164,7 +259,6 @@ const MobileBankingProject = () => {
       if (e.key === "ArrowLeft") previousImage();
       if (e.key === "Escape") setGalleryOpen(false);
     };
-
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [galleryOpen]);
@@ -187,16 +281,9 @@ const MobileBankingProject = () => {
   const resultsAnim = useScrollAnimation();
   const showcaseAnim = useScrollAnimation();
   const navigationAnim = useScrollAnimation();
-
   return <div className="min-h-screen bg-background">
       {/* Unified Sticky Header */}
-      <StickyNavHeader
-        visible={stickyHeader.visible}
-        currentSection={stickyHeader.section}
-        currentSubsection={stickyHeader.subsection}
-        currentNumber={stickyHeader.number}
-        sections={sections}
-      />
+      <StickyNavHeader visible={stickyHeader.visible} currentSection={stickyHeader.section} currentSubsection={stickyHeader.subsection} currentNumber={stickyHeader.number} sections={sections} />
 
       {/* Hero Section - Toggle between layouts */}
       <section ref={heroAnim.ref} className={`relative h-[80vh] w-full overflow-hidden transition-all duration-700 ${heroAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
@@ -208,20 +295,14 @@ const MobileBankingProject = () => {
               Back to Home
             </Button>
           </Link>
-          <Button 
-            variant="ghost" 
-            size="sm" 
-            onClick={() => setIsColumnLayout(!isColumnLayout)}
-            className="gap-2 bg-background/20 backdrop-blur-md hover:bg-background/40 text-foreground"
-          >
+          <Button variant="ghost" size="sm" onClick={() => setIsColumnLayout(!isColumnLayout)} className="gap-2 bg-background/20 backdrop-blur-md hover:bg-background/40 text-foreground">
             {isColumnLayout ? <Layout className="h-4 w-4" /> : <Columns2 className="h-4 w-4" />}
             {isColumnLayout ? "Full Width" : "2 Column"}
           </Button>
         </div>
 
-        {!isColumnLayout ? (
-          /* Full-Width Layout */
-          <>
+        {!isColumnLayout ? (/* Full-Width Layout */
+      <>
             <img src="/placeholder.svg" alt="Mobile Banking App hero" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent from-0% via-transparent via-50% to-background to-100%" />
             <div className="absolute bottom-0 left-0 right-0 px-6 pb-16">
@@ -250,10 +331,8 @@ const MobileBankingProject = () => {
                 </div>
               </div>
             </div>
-          </>
-        ) : (
-          /* 2-Column Layout */
-          <div className="flex h-full">
+          </>) : (/* 2-Column Layout */
+      <div className="flex h-full">
             {/* Left: Content */}
             <div className="w-1/2 flex items-center px-12 lg:px-20 bg-background">
               <div className="space-y-6 animate-fade-in max-w-2xl">
@@ -290,8 +369,7 @@ const MobileBankingProject = () => {
             <div className="w-1/2 h-full relative">
               <img src="/placeholder.svg" alt="Mobile Banking App hero" className="w-full h-full object-cover" />
             </div>
-          </div>
-        )}
+          </div>)}
       </section>
 
       {/* Main Content Container */}
@@ -474,64 +552,49 @@ const MobileBankingProject = () => {
             <div ref={defineGalleryRef} className="mt-32">
               <div className="grid grid-cols-4 md:grid-cols-6 gap-4 auto-rows-[200px]">
                 {/* Image 1 - Large */}
-                <button
-                  onClick={() => openGallery(0)}
-                  className="col-span-4 md:col-span-3 row-span-2 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer"
-                >
+                <button onClick={() => openGallery(0)} className="col-span-4 md:col-span-3 row-span-2 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer">
                   <img src={galleryImages[0].src} alt={galleryImages[0].alt} className="w-full h-full object-cover" />
                 </button>
                 
                 {/* Image 2 - Tall */}
-                <button
-                  onClick={() => openGallery(1)}
-                  className="col-span-4 md:col-span-3 row-span-2 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer"
-                  style={{ animationDelay: '0.05s' }}
-                >
+                <button onClick={() => openGallery(1)} className="col-span-4 md:col-span-3 row-span-2 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{
+                animationDelay: '0.05s'
+              }}>
                   <img src={galleryImages[1].src} alt={galleryImages[1].alt} className="w-full h-full object-cover" />
                 </button>
                 
                 {/* Image 3 - Medium */}
-                <button
-                  onClick={() => openGallery(2)}
-                  className="col-span-2 row-span-1 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer"
-                  style={{ animationDelay: '0.1s' }}
-                >
+                <button onClick={() => openGallery(2)} className="col-span-2 row-span-1 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{
+                animationDelay: '0.1s'
+              }}>
                   <img src={galleryImages[2].src} alt={galleryImages[2].alt} className="w-full h-full object-cover" />
                 </button>
                 
                 {/* Image 4 - Medium */}
-                <button
-                  onClick={() => openGallery(3)}
-                  className="col-span-2 row-span-1 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer"
-                  style={{ animationDelay: '0.15s' }}
-                >
+                <button onClick={() => openGallery(3)} className="col-span-2 row-span-1 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{
+                animationDelay: '0.15s'
+              }}>
                   <img src={galleryImages[3].src} alt={galleryImages[3].alt} className="w-full h-full object-cover" />
                 </button>
                 
                 {/* Image 5 - Wide */}
-                <button
-                  onClick={() => openGallery(4)}
-                  className="col-span-4 md:col-span-2 row-span-1 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer"
-                  style={{ animationDelay: '0.2s' }}
-                >
+                <button onClick={() => openGallery(4)} className="col-span-4 md:col-span-2 row-span-1 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{
+                animationDelay: '0.2s'
+              }}>
                   <img src={galleryImages[4].src} alt={galleryImages[4].alt} className="w-full h-full object-cover" />
                 </button>
                 
                 {/* Image 6 - Full Height */}
-                <button
-                  onClick={() => openGallery(5)}
-                  className="col-span-2 row-span-2 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer"
-                  style={{ animationDelay: '0.25s' }}
-                >
+                <button onClick={() => openGallery(5)} className="col-span-2 row-span-2 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{
+                animationDelay: '0.25s'
+              }}>
                   <img src={galleryImages[5].src} alt={galleryImages[5].alt} className="w-full h-full object-cover" />
                 </button>
                 
                 {/* Image 7 - Large */}
-                <button
-                  onClick={() => openGallery(6)}
-                  className="col-span-4 row-span-2 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer"
-                  style={{ animationDelay: '0.3s' }}
-                >
+                <button onClick={() => openGallery(6)} className="col-span-4 row-span-2 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{
+                animationDelay: '0.3s'
+              }}>
                   <img src={galleryImages[6].src} alt={galleryImages[6].alt} className="w-full h-full object-cover" />
                 </button>
               </div>
@@ -572,34 +635,17 @@ const MobileBankingProject = () => {
                           <stop offset="100%" stopColor="hsl(220 100% 80%)" />
                         </linearGradient>
                         <filter id="glow1">
-                          <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                          <feGaussianBlur stdDeviation="2" result="coloredBlur" />
                           <feMerge>
-                            <feMergeNode in="coloredBlur"/>
-                            <feMergeNode in="SourceGraphic"/>
+                            <feMergeNode in="coloredBlur" />
+                            <feMergeNode in="SourceGraphic" />
                           </feMerge>
                         </filter>
                       </defs>
                       {/* Background arc */}
-                      <path
-                        d="M 20 140 A 60 60 0 0 1 140 140"
-                        fill="none"
-                        stroke="hsl(var(--muted))"
-                        strokeWidth="6"
-                        opacity="0.2"
-                        strokeLinecap="round"
-                      />
+                      <path d="M 20 140 A 60 60 0 0 1 140 140" fill="none" stroke="hsl(var(--muted))" strokeWidth="6" opacity="0.2" strokeLinecap="round" />
                       {/* Foreground arc - 36% using dasharray */}
-                      <path
-                        d="M 20 140 A 60 60 0 0 1 140 140"
-                        fill="none"
-                        stroke="url(#gradient1)"
-                        strokeWidth="6"
-                        strokeLinecap="round"
-                        strokeDasharray="188.5"
-                        strokeDashoffset="120.6"
-                        filter="url(#glow1)"
-                        className="transition-all duration-1000"
-                      />
+                      <path d="M 20 140 A 60 60 0 0 1 140 140" fill="none" stroke="url(#gradient1)" strokeWidth="6" strokeLinecap="round" strokeDasharray="188.5" strokeDashoffset="120.6" filter="url(#glow1)" className="transition-all duration-1000" />
                     </svg>
                     <div className="text-5xl font-normal mb-3">36%</div>
                     <p className="text-base text-muted-foreground">Overall user satisfaction</p>
@@ -614,34 +660,17 @@ const MobileBankingProject = () => {
                           <stop offset="100%" stopColor="hsl(280 100% 85%)" />
                         </linearGradient>
                         <filter id="glow2">
-                          <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                          <feGaussianBlur stdDeviation="2" result="coloredBlur" />
                           <feMerge>
-                            <feMergeNode in="coloredBlur"/>
-                            <feMergeNode in="SourceGraphic"/>
+                            <feMergeNode in="coloredBlur" />
+                            <feMergeNode in="SourceGraphic" />
                           </feMerge>
                         </filter>
                       </defs>
                       {/* Background arc */}
-                      <path
-                        d="M 20 140 A 60 60 0 0 1 140 140"
-                        fill="none"
-                        stroke="hsl(var(--muted))"
-                        strokeWidth="6"
-                        opacity="0.2"
-                        strokeLinecap="round"
-                      />
+                      <path d="M 20 140 A 60 60 0 0 1 140 140" fill="none" stroke="hsl(var(--muted))" strokeWidth="6" opacity="0.2" strokeLinecap="round" />
                       {/* Foreground arc - 24% using dasharray */}
-                      <path
-                        d="M 20 140 A 60 60 0 0 1 140 140"
-                        fill="none"
-                        stroke="url(#gradient2)"
-                        strokeWidth="6"
-                        strokeLinecap="round"
-                        strokeDasharray="188.5"
-                        strokeDashoffset="143.3"
-                        filter="url(#glow2)"
-                        className="transition-all duration-1000"
-                      />
+                      <path d="M 20 140 A 60 60 0 0 1 140 140" fill="none" stroke="url(#gradient2)" strokeWidth="6" strokeLinecap="round" strokeDasharray="188.5" strokeDashoffset="143.3" filter="url(#glow2)" className="transition-all duration-1000" />
                     </svg>
                     <div className="text-5xl font-normal mb-3">24%</div>
                     <p className="text-base text-muted-foreground">Confidence in listing metrics</p>
@@ -656,34 +685,17 @@ const MobileBankingProject = () => {
                           <stop offset="100%" stopColor="hsl(0 100% 85%)" />
                         </linearGradient>
                         <filter id="glow3">
-                          <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                          <feGaussianBlur stdDeviation="2" result="coloredBlur" />
                           <feMerge>
-                            <feMergeNode in="coloredBlur"/>
-                            <feMergeNode in="SourceGraphic"/>
+                            <feMergeNode in="coloredBlur" />
+                            <feMergeNode in="SourceGraphic" />
                           </feMerge>
                         </filter>
                       </defs>
                       {/* Background arc */}
-                      <path
-                        d="M 20 140 A 60 60 0 0 1 140 140"
-                        fill="none"
-                        stroke="hsl(var(--muted))"
-                        strokeWidth="6"
-                        opacity="0.2"
-                        strokeLinecap="round"
-                      />
+                      <path d="M 20 140 A 60 60 0 0 1 140 140" fill="none" stroke="hsl(var(--muted))" strokeWidth="6" opacity="0.2" strokeLinecap="round" />
                       {/* Foreground arc - 91% using dasharray */}
-                      <path
-                        d="M 20 140 A 60 60 0 0 1 140 140"
-                        fill="none"
-                        stroke="url(#gradient3)"
-                        strokeWidth="6"
-                        strokeLinecap="round"
-                        strokeDasharray="188.5"
-                        strokeDashoffset="17"
-                        filter="url(#glow3)"
-                        className="transition-all duration-1000"
-                      />
+                      <path d="M 20 140 A 60 60 0 0 1 140 140" fill="none" stroke="url(#gradient3)" strokeWidth="6" strokeLinecap="round" strokeDasharray="188.5" strokeDashoffset="17" filter="url(#glow3)" className="transition-all duration-1000" />
                     </svg>
                     <div className="text-5xl font-normal mb-3">91%</div>
                     <p className="text-base text-muted-foreground">Difficulty managing listings</p>
@@ -789,14 +801,11 @@ const MobileBankingProject = () => {
                         <span>Intuition</span>
                       </div>
                       <div className="h-3 bg-muted rounded-full overflow-hidden relative">
-                        <div 
-                          className="h-full rounded-full absolute inset-0 transition-all duration-1000 ease-out"
-                          style={{ 
-                            width: '65%',
-                            background: 'linear-gradient(to right, hsl(var(--primary)), hsl(var(--primary) / 0.8))',
-                            boxShadow: '0 0 20px hsla(var(--primary) / 0.7), inset 0 0 10px hsla(var(--primary) / 0.3)'
-                          }}
-                        ></div>
+                        <div className="h-full rounded-full absolute inset-0 transition-all duration-1000 ease-out" style={{
+                          width: '65%',
+                          background: 'linear-gradient(to right, hsl(var(--primary)), hsl(var(--primary) / 0.8))',
+                          boxShadow: '0 0 20px hsla(var(--primary) / 0.7), inset 0 0 10px hsla(var(--primary) / 0.3)'
+                        }}></div>
                       </div>
                     </div>
                     <div>
@@ -805,14 +814,11 @@ const MobileBankingProject = () => {
                         <span>Introvert</span>
                       </div>
                       <div className="h-3 bg-muted rounded-full overflow-hidden relative">
-                        <div 
-                          className="h-full rounded-full absolute inset-0 transition-all duration-1000 ease-out"
-                          style={{ 
-                            width: '45%',
-                            background: 'linear-gradient(to right, hsl(var(--primary)), hsl(var(--primary) / 0.8))',
-                            boxShadow: '0 0 20px hsla(var(--primary) / 0.7), inset 0 0 10px hsla(var(--primary) / 0.3)'
-                          }}
-                        ></div>
+                        <div className="h-full rounded-full absolute inset-0 transition-all duration-1000 ease-out" style={{
+                          width: '45%',
+                          background: 'linear-gradient(to right, hsl(var(--primary)), hsl(var(--primary) / 0.8))',
+                          boxShadow: '0 0 20px hsla(var(--primary) / 0.7), inset 0 0 10px hsla(var(--primary) / 0.3)'
+                        }}></div>
                       </div>
                     </div>
                     <div>
@@ -821,14 +827,11 @@ const MobileBankingProject = () => {
                         <span>Thinking</span>
                       </div>
                       <div className="h-3 bg-muted rounded-full overflow-hidden relative">
-                        <div 
-                          className="h-full rounded-full absolute inset-0 transition-all duration-1000 ease-out"
-                          style={{ 
-                            width: '75%',
-                            background: 'linear-gradient(to right, hsl(var(--primary)), hsl(var(--primary) / 0.8))',
-                            boxShadow: '0 0 20px hsla(var(--primary) / 0.7), inset 0 0 10px hsla(var(--primary) / 0.3)'
-                          }}
-                        ></div>
+                        <div className="h-full rounded-full absolute inset-0 transition-all duration-1000 ease-out" style={{
+                          width: '75%',
+                          background: 'linear-gradient(to right, hsl(var(--primary)), hsl(var(--primary) / 0.8))',
+                          boxShadow: '0 0 20px hsla(var(--primary) / 0.7), inset 0 0 10px hsla(var(--primary) / 0.3)'
+                        }}></div>
                       </div>
                     </div>
                   </div>
@@ -965,32 +968,42 @@ const MobileBankingProject = () => {
                     <div className="bg-card border border-border rounded-lg p-6 flex-1">
                   <h3 className="text-xl font-bold mb-6">Colors</h3>
                   <div className="grid grid-cols-2 gap-3 flex-1">
-                    <div className="rounded-lg p-4 flex items-end row-span-2" style={{backgroundColor: '#006D31'}}>
+                    <div className="rounded-lg p-4 flex items-end row-span-2" style={{
+                    backgroundColor: '#006D31'
+                  }}>
                       <div className="text-white">
                         <p className="font-semibold text-base mb-1">Land Green</p>
                         <p className="text-xs opacity-80">#006D31</p>
                         <p className="text-xs opacity-60 mt-1">Primary</p>
                       </div>
                     </div>
-                    <div className="rounded-lg p-4 flex items-end" style={{backgroundColor: '#155443'}}>
+                    <div className="rounded-lg p-4 flex items-end" style={{
+                    backgroundColor: '#155443'
+                  }}>
                       <div className="text-white">
                         <p className="font-semibold text-xs">Deep Green</p>
                         <p className="text-xs opacity-80">#155443</p>
                       </div>
                     </div>
-                    <div className="rounded-lg p-4 flex items-end" style={{backgroundColor: '#0E7080'}}>
+                    <div className="rounded-lg p-4 flex items-end" style={{
+                    backgroundColor: '#0E7080'
+                  }}>
                       <div className="text-white">
                         <p className="font-semibold text-xs">Blue Spruce</p>
                         <p className="text-xs opacity-80">#0E7080</p>
                       </div>
                     </div>
-                    <div className="rounded-lg p-4 flex items-end" style={{backgroundColor: '#A82445'}}>
+                    <div className="rounded-lg p-4 flex items-end" style={{
+                    backgroundColor: '#A82445'
+                  }}>
                       <div className="text-white">
                         <p className="font-semibold text-xs">Raspberry</p>
                         <p className="text-xs opacity-80">#A82445</p>
                       </div>
                     </div>
-                    <div className="rounded-lg p-4 flex items-end" style={{backgroundColor: '#AF5A1D'}}>
+                    <div className="rounded-lg p-4 flex items-end" style={{
+                    backgroundColor: '#AF5A1D'
+                  }}>
                       <div className="text-white">
                         <p className="font-semibold text-xs">Chestnut</p>
                         <p className="text-xs opacity-80">#AF5A1D</p>
@@ -1157,11 +1170,7 @@ const MobileBankingProject = () => {
           <div className="flex min-h-[600px] lg:min-h-[700px]">
             {/* Left Column - Phone Mockups (50vw, flush left) */}
             <div className="w-full lg:w-[50vw] relative overflow-hidden bg-background">
-              <img 
-                src={locateListingImage} 
-                alt="Add and Edit Listing Flow" 
-                className="w-full h-full object-contain object-left"
-              />
+              <img src={locateListingImage} alt="Add and Edit Listing Flow" className="w-full h-full object-contain object-left" />
             </div>
 
             {/* Right Column - Content */}
@@ -1206,7 +1215,7 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Mobile Process GIFs Section */}
-        <section className="relative w-full overflow-hidden bg-card/30 py-24">
+        <section className="container mx-auto max-w-[1440px]">
           <div className="container mx-auto max-w-[1440px] px-6">
             <div className="mb-12 text-center">
               <h3 className="text-3xl md:text-4xl font-bold">Listing Creation Process</h3>
@@ -1215,28 +1224,20 @@ const MobileBankingProject = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-[1200px] mx-auto py-4">
               {/* Location Selection GIF */}
               <div className="w-full max-h-[600px] aspect-[9/19.5] rounded-2xl overflow-hidden shadow-card py-6">
-                <img 
-                  src={addListingLocationGif} 
-                  alt="Add listing location selection process" 
-                  className="w-full h-full object-contain"
-                />
+                <img src={addListingLocationGif} alt="Add listing location selection process" className="w-full h-full object-contain" />
               </div>
               {/* Full Listing Form GIF */}
               <div className="w-full max-h-[600px] aspect-[9/19.5] rounded-2xl overflow-hidden shadow-card py-6">
-                <img 
-                  src={addListingFullGif} 
-                  alt="Complete listing creation process" 
-                  className="w-full h-full object-contain"
-                />
+                <img src={addListingFullGif} alt="Complete listing creation process" className="w-full h-full object-contain" />
               </div>
             </div>
           </div>
         </section>
 
         {/* Lead Management Section */}
-        <section className="relative w-full overflow-hidden py-24">
-          <div className="container mx-auto max-w-[1440px] px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-12">
+        <section className="container mx-auto max-w-[1440px]">
+          <div className="container mx-auto max-w-[1440px]">
+            <div className="grid grid-cols-2 lg:grid-cols-2 gap-16">
               {/* Left Column - Text Content */}
               <div className="space-y-6">
                 <h3 className="text-3xl md:text-4xl font-bold mb-2">Managing Leads</h3>
@@ -1257,11 +1258,7 @@ const MobileBankingProject = () => {
             {/* Full Width GIF Row */}
             <div className="w-full">
               <div className="w-full max-w-[85%] mx-auto rounded-2xl overflow-hidden shadow-card">
-                <img 
-                  src={leadsGif} 
-                  alt="Lead management interface demonstration" 
-                  className="w-full h-full object-contain"
-                />
+                <img src={leadsGif} alt="Lead management interface demonstration" className="w-full h-full object-contain" />
               </div>
             </div>
           </div>
@@ -1411,12 +1408,7 @@ const MobileBankingProject = () => {
         <DialogContent className="max-w-[100vw] max-h-[100vh] w-screen h-screen p-0 bg-background/98 backdrop-blur-xl border-none">
           <div className="relative w-full h-full flex items-center justify-center">
             {/* Close Button */}
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setGalleryOpen(false)}
-              className="absolute top-6 right-6 z-50 bg-background/20 backdrop-blur-md hover:bg-background/40 text-foreground"
-            >
+            <Button variant="ghost" size="icon" onClick={() => setGalleryOpen(false)} className="absolute top-6 right-6 z-50 bg-background/20 backdrop-blur-md hover:bg-background/40 text-foreground">
               <X className="h-6 w-6" />
             </Button>
 
@@ -1426,47 +1418,23 @@ const MobileBankingProject = () => {
             </div>
 
             {/* Previous Button */}
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={previousImage}
-              className="absolute left-6 z-50 bg-background/20 backdrop-blur-md hover:bg-background/40 text-foreground h-12 w-12"
-            >
+            <Button variant="ghost" size="icon" onClick={previousImage} className="absolute left-6 z-50 bg-background/20 backdrop-blur-md hover:bg-background/40 text-foreground h-12 w-12">
               <ChevronLeft className="h-8 w-8" />
             </Button>
 
             {/* Current Image */}
             <div className="w-full h-full flex items-center justify-center p-20">
-              <img
-                src={galleryImages[currentImageIndex].src}
-                alt={galleryImages[currentImageIndex].alt}
-                className="max-w-full max-h-full object-contain rounded-lg animate-fade-in"
-              />
+              <img src={galleryImages[currentImageIndex].src} alt={galleryImages[currentImageIndex].alt} className="max-w-full max-h-full object-contain rounded-lg animate-fade-in" />
             </div>
 
             {/* Next Button */}
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={nextImage}
-              className="absolute right-6 z-50 bg-background/20 backdrop-blur-md hover:bg-background/40 text-foreground h-12 w-12"
-            >
+            <Button variant="ghost" size="icon" onClick={nextImage} className="absolute right-6 z-50 bg-background/20 backdrop-blur-md hover:bg-background/40 text-foreground h-12 w-12">
               <ChevronRight className="h-8 w-8" />
             </Button>
 
             {/* Thumbnail Strip */}
             <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-50 flex gap-2 bg-background/20 backdrop-blur-md p-3 rounded-full">
-              {galleryImages.map((img, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setCurrentImageIndex(idx)}
-                  className={`w-3 h-3 rounded-full transition-all ${
-                    idx === currentImageIndex 
-                      ? 'bg-primary w-8' 
-                      : 'bg-muted-foreground/40 hover:bg-muted-foreground/60'
-                  }`}
-                />
-              ))}
+              {galleryImages.map((img, idx) => <button key={idx} onClick={() => setCurrentImageIndex(idx)} className={`w-3 h-3 rounded-full transition-all ${idx === currentImageIndex ? 'bg-primary w-8' : 'bg-muted-foreground/40 hover:bg-muted-foreground/60'}`} />)}
             </div>
           </div>
         </DialogContent>
