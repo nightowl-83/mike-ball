@@ -10,7 +10,7 @@ export default {
       padding: {
         DEFAULT: '1.5rem',  // 24px mobile
         sm: '1.5rem',       // 24px
-        md: '1.5rem',       // 24px
+        md: '2rem',         // 32px tablet
         lg: '2rem',         // 32px desktop
       },
       screens: {
