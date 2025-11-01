@@ -1,13 +1,15 @@
 import { ArrowLeft, Layout, Columns2, X, ChevronLeft, ChevronRight, Home, Search, Bell, User, Settings, Heart, Star, Mail, Phone, Camera, MapPin, Calendar, Download, Upload, Trash2, Edit, Share2, Filter, Menu, Check, Plus, Minus } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from "@/components/ui/carousel";
 import { useState, useEffect, useRef } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { StickyNavHeader } from "@/components/StickyNavHeader";
+import { cn } from "@/lib/utils";
 import userFlowImage from "@/assets/user-flow.jpg";
 import locateListingImage from "@/assets/locate-listing-new.png";
 import addListingLocationGif from "@/assets/add-listing-location.gif";
@@ -22,6 +24,10 @@ import brainstorm7 from "@/assets/mh-brainstorm-7.webp";
 import brainstorm8 from "@/assets/mh-brainstorm-8-2.webp";
 import benFHeadshot from "@/assets/ben-f-headshot.webp";
 import dashboardHero from "@/assets/dashboard-home.webp";
+import analyticsTable1 from "@/assets/analytics-table-1.webp";
+import analyticsTable2 from "@/assets/analytics-table-2.webp";
+import analyticsTable3 from "@/assets/analytics-table-3.webp";
+import analyticsTable4 from "@/assets/analytics-table-4.webp";
 const MobileBankingProject = () => {
   const [stickyHeader, setStickyHeader] = useState({
     visible: false,
@@ -32,6 +38,8 @@ const MobileBankingProject = () => {
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [designLayout, setDesignLayout] = useState<1 | 2 | 3>(1);
+  const [currentAnalyticsSlide, setCurrentAnalyticsSlide] = useState(0);
+  const [analyticsApi, setAnalyticsApi] = useState<CarouselApi>();
 
   // Refs for sections and subsections
   const heroRef = useRef<HTMLDivElement>(null);
@@ -391,6 +399,23 @@ const MobileBankingProject = () => {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [galleryOpen]);
+
+  // Analytics carousel effect
+  useEffect(() => {
+    if (!analyticsApi) return;
+    
+    analyticsApi.on("select", () => {
+      setCurrentAnalyticsSlide(analyticsApi.selectedScrollSnap());
+    });
+  }, [analyticsApi]);
+
+  // Analytics images data
+  const analyticsImages = [
+    { src: analyticsTable1, alt: "Analytics dashboard showing listing exposure and metrics" },
+    { src: analyticsTable2, alt: "Analytics chart displaying listing exposure over time" },
+    { src: analyticsTable3, alt: "Analytics overview with interaction metrics and location map" },
+    { src: analyticsTable4, alt: "Analytics visitor details and listing history" }
+  ];
 
   // Scroll animations for all sections
   const heroAnim = useScrollAnimation();
@@ -1388,121 +1413,121 @@ const MobileBankingProject = () => {
         {/* Listing Analytics Section */}
         <section className="relative py-10 md:py-24 bg-card/30">
           <div ref={analyticsRef} className="absolute top-0 left-0 w-full h-1" />
-          <div className="container mx-auto max-w-[1440px]">
+          <div className="container mx-auto max-w-[1440px] px-6">
+            {/* Section Header */}
             <div className="mb-8 md:mb-12">
               <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4">Listing Analytics</h3>
               <p className="text-base md:text-lg text-muted-foreground">Comprehensive insights and performance tracking for your property listings</p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-              {/* Overview Dashboard */}
-              <div className="space-y-3">
-                <div className="flex items-start gap-3">
-                  <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  <div>
-                    <h4 className="font-semibold text-base md:text-lg">Overview Dashboard</h4>
-                    <p className="text-sm md:text-base text-muted-foreground mt-1">Track views, clicks, and leads in one place.</p>
+            {/* Two Column Layout */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+              {/* Left Column - Text Content */}
+              <div className="space-y-6">
+                {[
+                  {
+                    title: "Overview Dashboard",
+                    description: "Track views, clicks, and leads in one place."
+                  },
+                  {
+                    title: "Traffic Sources",
+                    description: "See where your listing traffic is coming from."
+                  },
+                  {
+                    title: "Lead Insights",
+                    description: "Monitor inquiries and engagement over time."
+                  },
+                  {
+                    title: "Compare Listings",
+                    description: "Benchmark performance against similar listings."
+                  },
+                  {
+                    title: "Interest by Location",
+                    description: "Visualize buyer activity with heat-maps."
+                  },
+                  {
+                    title: "Performance Suggestions",
+                    description: "Get tips to improve your listing results."
+                  },
+                  {
+                    title: "Export Reports",
+                    description: "Download or schedule performance summaries."
+                  },
+                  {
+                    title: "Ad Performance",
+                    description: "Track ROI from featured listings and campaigns."
+                  },
+                  {
+                    title: "Custom Filters",
+                    description: "View data by custom date ranges."
+                  },
+                  {
+                    title: "Mobile-Ready",
+                    description: "Access insights anytime, anywhere."
+                  }
+                ].map((feature, index) => (
+                  <div key={index} className="flex items-start gap-3">
+                    <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold text-base md:text-lg">{feature.title}</h4>
+                      <p className="text-sm md:text-base text-muted-foreground mt-1">{feature.description}</p>
+                    </div>
                   </div>
-                </div>
+                ))}
               </div>
-
-              {/* Traffic Sources */}
-              <div className="space-y-3">
-                <div className="flex items-start gap-3">
-                  <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  <div>
-                    <h4 className="font-semibold text-base md:text-lg">Traffic Sources</h4>
-                    <p className="text-sm md:text-base text-muted-foreground mt-1">See where your listing traffic is coming from.</p>
+              
+              {/* Right Column - Image Carousel */}
+              <div className="flex items-center">
+                <Carousel className="w-full" setApi={setAnalyticsApi}>
+                  <CarouselContent>
+                    {analyticsImages.map((image, index) => (
+                      <CarouselItem key={index}>
+                        <Dialog>
+                          <DialogTrigger asChild>
+                            <button className="relative w-full cursor-pointer group">
+                              <img 
+                                src={image.src} 
+                                alt={image.alt}
+                                className="w-full h-auto rounded-lg shadow-lg border border-border transition-transform duration-300 group-hover:scale-[1.02]"
+                              />
+                              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 rounded-lg transition-colors duration-300" />
+                            </button>
+                          </DialogTrigger>
+                          <DialogContent className="max-w-[95vw] max-h-[95vh] p-0 bg-black/95">
+                            <div className="relative w-full h-full flex items-center justify-center p-4">
+                              <img 
+                                src={image.src} 
+                                alt={image.alt}
+                                className="max-w-full max-h-[90vh] object-contain"
+                              />
+                            </div>
+                          </DialogContent>
+                        </Dialog>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  
+                  {/* Carousel Navigation Arrows */}
+                  <CarouselPrevious className="left-2 lg:-left-12" />
+                  <CarouselNext className="right-2 lg:-right-12" />
+                  
+                  {/* Slide Indicators */}
+                  <div className="flex justify-center gap-2 mt-4">
+                    {analyticsImages.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => analyticsApi?.scrollTo(index)}
+                        className={cn(
+                          "w-2 h-2 rounded-full transition-all duration-300",
+                          currentAnalyticsSlide === index 
+                            ? "bg-primary w-8" 
+                            : "bg-muted hover:bg-primary/50"
+                        )}
+                        aria-label={`Go to slide ${index + 1}`}
+                      />
+                    ))}
                   </div>
-                </div>
-              </div>
-
-              {/* Lead Insights */}
-              <div className="space-y-3">
-                <div className="flex items-start gap-3">
-                  <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  <div>
-                    <h4 className="font-semibold text-base md:text-lg">Lead Insights</h4>
-                    <p className="text-sm md:text-base text-muted-foreground mt-1">Monitor inquiries and engagement over time.</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Compare Listings */}
-              <div className="space-y-3">
-                <div className="flex items-start gap-3">
-                  <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  <div>
-                    <h4 className="font-semibold text-base md:text-lg">Compare Listings</h4>
-                    <p className="text-sm md:text-base text-muted-foreground mt-1">Benchmark performance against similar listings.</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Interest by Location */}
-              <div className="space-y-3">
-                <div className="flex items-start gap-3">
-                  <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  <div>
-                    <h4 className="font-semibold text-base md:text-lg">Interest by Location</h4>
-                    <p className="text-sm md:text-base text-muted-foreground mt-1">Visualize buyer activity with heat-maps.</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Performance Suggestions */}
-              <div className="space-y-3">
-                <div className="flex items-start gap-3">
-                  <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  <div>
-                    <h4 className="font-semibold text-base md:text-lg">Performance Suggestions</h4>
-                    <p className="text-sm md:text-base text-muted-foreground mt-1">Get tips to improve your listing results.</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Export Reports */}
-              <div className="space-y-3">
-                <div className="flex items-start gap-3">
-                  <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  <div>
-                    <h4 className="font-semibold text-base md:text-lg">Export Reports</h4>
-                    <p className="text-sm md:text-base text-muted-foreground mt-1">Download or schedule performance summaries.</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Ad Performance */}
-              <div className="space-y-3">
-                <div className="flex items-start gap-3">
-                  <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  <div>
-                    <h4 className="font-semibold text-base md:text-lg">Ad Performance</h4>
-                    <p className="text-sm md:text-base text-muted-foreground mt-1">Track ROI from featured listings and campaigns.</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Custom Filters */}
-              <div className="space-y-3">
-                <div className="flex items-start gap-3">
-                  <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  <div>
-                    <h4 className="font-semibold text-base md:text-lg">Custom Filters</h4>
-                    <p className="text-sm md:text-base text-muted-foreground mt-1">View data by custom date ranges.</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Mobile-Ready */}
-              <div className="space-y-3">
-                <div className="flex items-start gap-3">
-                  <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  <div>
-                    <h4 className="font-semibold text-base md:text-lg">Mobile-Ready</h4>
-                    <p className="text-sm md:text-base text-muted-foreground mt-1">Access insights anytime, anywhere.</p>
-                  </div>
-                </div>
+                </Carousel>
               </div>
             </div>
           </div>
