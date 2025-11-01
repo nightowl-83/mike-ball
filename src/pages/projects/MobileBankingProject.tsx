@@ -22,6 +22,7 @@ import brainstorm6 from "@/assets/mh-brainstorm-6.webp";
 import brainstorm8 from "@/assets/mh-brainstorm-8.webp";
 import brainstorm9 from "@/assets/mh-brainstorm-9.webp";
 import brainstorm10 from "@/assets/mh-brainstorm-10.webp";
+import benFHeadshot from "@/assets/ben-f-headshot.webp";
 const MobileBankingProject = () => {
   const [isColumnLayout, setIsColumnLayout] = useState(false);
   const [stickyHeader, setStickyHeader] = useState({
@@ -766,7 +767,7 @@ const MobileBankingProject = () => {
                 {/* Top Left - Photo & Bio */}
                 <div className="bg-card rounded-2xl overflow-hidden shadow-sm">
                   <div className="aspect-[4/3] bg-muted">
-                    <img src="/placeholder.svg" alt="Rural Land Agent" className="w-full h-full object-cover" />
+                    <img src={benFHeadshot} alt="Rural Land Agent" className="w-full h-full object-cover" />
                   </div>
                   <div className="p-8">
                     <h3 className="text-3xl font-bold mb-2">Ben F.</h3>
