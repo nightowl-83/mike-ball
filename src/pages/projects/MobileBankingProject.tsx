@@ -1037,7 +1037,7 @@ const MobileBankingProject = () => {
             <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-12">Design System</h2>
             
             {/* Bento Box Layout */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 min-h-[600px] lg:h-[70vh]">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 pb-8 md:pb-12">
               {/* Large Typography Card */}
               <div className="bg-card border border-border rounded-lg p-6 md:p-8 flex flex-col">
                 <h3 className="text-lg md:text-xl font-bold mb-6 md:mb-8">Typography</h3>
