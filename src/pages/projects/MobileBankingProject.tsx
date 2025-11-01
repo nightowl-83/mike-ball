@@ -1197,7 +1197,7 @@ const MobileBankingProject = () => {
             </div>
 
             {/* Right Column - Content - Overlaps on mobile */}
-            <div className="w-full lg:w-[50vw] flex items-center lg:px-16 py-6 md:py-16 bg-background relative -mt-20 lg:mt-0 z-10 rounded-t-3xl lg:rounded-none">
+            <div className="w-full lg:w-[50vw] flex items-center lg:px-16 py-6 md:py-24 bg-background relative -mt-20 lg:mt-0 z-10 rounded-t-3xl lg:rounded-none">
               <div className="space-y-4 md:space-y-8 max-w-2xl">
                 <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold">Add & Edit a Listing</h2>
                 
@@ -1233,8 +1233,8 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Mobile Process GIFs Section */}
-        <section className="container mx-auto max-w-[1440px]">
-          <div className="container mx-auto max-w-[1440px] px-4 md:px-6">
+        <section className="py-10 md:py-24">
+          <div className="container mx-auto max-w-[1440px]">
             <div className="mb-8 md:mb-12 text-center">
               <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold">Listing Creation Process</h3>
               <p className="text-sm md:text-base lg:text-lg text-muted-foreground mt-3 md:mt-4">Interactive flows demonstrating the streamlined property listing experience</p>
@@ -1253,7 +1253,7 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Lead Management Section */}
-        <section className="container mx-auto max-w-[1440px] px-4 md:px-6">
+        <section className="py-10 md:py-24">
           <div className="container mx-auto max-w-[1440px]">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16">
               {/* Left Column - Text Content */}
