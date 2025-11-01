@@ -1359,7 +1359,7 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Mobile Process GIFs Section */}
-        <section className="py-10 md:py-24">
+        <section className="py-10 md:py-24 border-t border-b border-border/50">
           <div ref={listingProcessRef} className="absolute top-0 left-0 w-full h-1" />
           <div className="container mx-auto max-w-[1440px]">
             <div className="mb-8 md:mb-12 text-center">
@@ -1422,8 +1422,8 @@ const MobileBankingProject = () => {
             
             {/* Two Column Layout */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-              {/* Left Column - Text Content */}
-              <div className="space-y-6">
+          {/* Left Column - Text Content */}
+          <div className="space-y-4">
                 {[
                   {
                     title: "Overview Dashboard",
@@ -1476,9 +1476,9 @@ const MobileBankingProject = () => {
                 ))}
               </div>
               
-              {/* Right Column - Image Carousel */}
-              <div className="flex items-center">
-                <Carousel className="w-full" setApi={setAnalyticsApi}>
+          {/* Right Column - Image Carousel */}
+          <div className="flex items-center">
+            <Carousel className="w-full" setApi={setAnalyticsApi} opts={{ loop: true }}>
                   <CarouselContent>
                     {analyticsImages.map((image, index) => (
                       <CarouselItem key={index}>
