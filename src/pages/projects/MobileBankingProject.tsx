@@ -35,17 +35,42 @@ const MobileBankingProject = () => {
   const [designLayout, setDesignLayout] = useState<1 | 2 | 3>(1);
 
   // Refs for sections and subsections
+  const heroRef = useRef<HTMLDivElement>(null);
+  const overviewRef = useRef<HTMLDivElement>(null);
+  const processRef = useRef<HTMLDivElement>(null);
   const defineRef = useRef<HTMLDivElement>(null);
   const defineGalleryRef = useRef<HTMLDivElement>(null);
   const discoveryRef = useRef<HTMLDivElement>(null);
   const discoveryInterviewsRef = useRef<HTMLDivElement>(null);
   const discoveryPersonaRef = useRef<HTMLDivElement>(null);
   const designRef = useRef<HTMLDivElement>(null);
+  const userFlowRef = useRef<HTMLDivElement>(null);
+  const designSystemRef = useRef<HTMLDivElement>(null);
   const deliveryRef = useRef<HTMLDivElement>(null);
   const addEditListingRef = useRef<HTMLDivElement>(null);
+  const listingProcessRef = useRef<HTMLDivElement>(null);
+  const leadsRef = useRef<HTMLDivElement>(null);
 
   // Section navigation data
   const sections = [{
+    id: 'hero',
+    section: 'Hero',
+    subsection: '',
+    number: '',
+    ref: heroRef
+  }, {
+    id: 'overview',
+    section: 'Overview',
+    subsection: '',
+    number: '',
+    ref: overviewRef
+  }, {
+    id: 'process',
+    section: 'Process',
+    subsection: '',
+    number: '',
+    ref: processRef
+  }, {
     id: 'define',
     section: 'Define',
     subsection: '',
@@ -82,6 +107,18 @@ const MobileBankingProject = () => {
     number: '/03',
     ref: designRef
   }, {
+    id: 'design-userflow',
+    section: 'Design',
+    subsection: 'User Flow',
+    number: '/03',
+    ref: userFlowRef
+  }, {
+    id: 'design-system',
+    section: 'Design',
+    subsection: 'Design System',
+    number: '/03',
+    ref: designSystemRef
+  }, {
     id: 'delivery',
     section: 'Delivery',
     subsection: '',
@@ -93,6 +130,18 @@ const MobileBankingProject = () => {
     subsection: 'Add & Edit a Listing',
     number: '/04',
     ref: addEditListingRef
+  }, {
+    id: 'delivery-process',
+    section: 'Delivery',
+    subsection: 'Listing Creation Process',
+    number: '/04',
+    ref: listingProcessRef
+  }, {
+    id: 'delivery-leads',
+    section: 'Delivery',
+    subsection: 'Managing Leads',
+    number: '/04',
+    ref: leadsRef
   }];
 
   // Array of gallery images
@@ -140,6 +189,36 @@ const MobileBankingProject = () => {
       }, observerOptions);
     };
     const observers: IntersectionObserver[] = [];
+
+    // Hero section observer
+    if (heroRef.current) {
+      observers.push(createObserver(heroRef, {
+        section: 'Hero',
+        subsection: '',
+        number: ''
+      }));
+      observers[observers.length - 1].observe(heroRef.current);
+    }
+
+    // Overview section observer
+    if (overviewRef.current) {
+      observers.push(createObserver(overviewRef, {
+        section: 'Overview',
+        subsection: '',
+        number: ''
+      }));
+      observers[observers.length - 1].observe(overviewRef.current);
+    }
+
+    // Process section observer
+    if (processRef.current) {
+      observers.push(createObserver(processRef, {
+        section: 'Process',
+        subsection: '',
+        number: ''
+      }));
+      observers[observers.length - 1].observe(processRef.current);
+    }
 
     // Define section observers
     if (defineRef.current) {
@@ -195,6 +274,26 @@ const MobileBankingProject = () => {
       observers[observers.length - 1].observe(designRef.current);
     }
 
+    // User Flow subsection observer
+    if (userFlowRef.current) {
+      observers.push(createObserver(userFlowRef, {
+        section: 'Design',
+        subsection: 'User Flow',
+        number: '/03'
+      }));
+      observers[observers.length - 1].observe(userFlowRef.current);
+    }
+
+    // Design System subsection observer
+    if (designSystemRef.current) {
+      observers.push(createObserver(designSystemRef, {
+        section: 'Design',
+        subsection: 'Design System',
+        number: '/03'
+      }));
+      observers[observers.length - 1].observe(designSystemRef.current);
+    }
+
     // Delivery section observer
     if (deliveryRef.current) {
       observers.push(createObserver(deliveryRef, {
@@ -215,7 +314,27 @@ const MobileBankingProject = () => {
       observers[observers.length - 1].observe(addEditListingRef.current);
     }
 
-    // Hide sticky header when at top
+    // Listing Creation Process observer
+    if (listingProcessRef.current) {
+      observers.push(createObserver(listingProcessRef, {
+        section: 'Delivery',
+        subsection: 'Listing Creation Process',
+        number: '/04'
+      }));
+      observers[observers.length - 1].observe(listingProcessRef.current);
+    }
+
+    // Managing Leads observer
+    if (leadsRef.current) {
+      observers.push(createObserver(leadsRef, {
+        section: 'Delivery',
+        subsection: 'Managing Leads',
+        number: '/04'
+      }));
+      observers[observers.length - 1].observe(leadsRef.current);
+    }
+
+    // Hide sticky header when at top (hero is visible)
     const topObserver = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
         setStickyHeader({
@@ -228,8 +347,8 @@ const MobileBankingProject = () => {
     }, {
       threshold: 0.1
     });
-    if (defineRef.current) {
-      topObserver.observe(defineRef.current);
+    if (heroRef.current) {
+      topObserver.observe(heroRef.current);
     }
     return () => {
       observers.forEach(obs => obs.disconnect());
@@ -280,7 +399,8 @@ const MobileBankingProject = () => {
       <StickyNavHeader visible={stickyHeader.visible} currentSection={stickyHeader.section} currentSubsection={stickyHeader.subsection} currentNumber={stickyHeader.number} sections={sections} />
 
       {/* Hero Section - Toggle between layouts */}
-      <section ref={heroAnim.ref} className={`relative h-[80vh] w-full overflow-hidden transition-all duration-700 ${heroAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+      <section ref={heroAnim.ref} className={`relative h-[80vh] w-full overflow-hidden border-b border-border transition-all duration-700 ${heroAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <div ref={heroRef} className="absolute top-0 left-0 w-full h-1" />
         {/* Back Button & Layout Toggle */}
         <div className="absolute top-4 left-4 md:top-6 md:left-6 z-50 flex gap-2">
           <Link to="/">
@@ -329,7 +449,7 @@ const MobileBankingProject = () => {
           </>) : (/* 2-Column Layout */
       <div className="flex flex-col md:flex-row h-full">
             {/* Left: Content */}
-            <div className="w-full md:w-1/2 flex items-center px-6 md:px-12 lg:px-20 bg-background py-12 md:py-0">
+            <div className="w-full md:w-1/2 flex items-center px-6 md:px-12 lg:px-20 bg-card py-12 md:py-0">
               <div className="space-y-4 md:space-y-6 animate-fade-in max-w-2xl">
                 <span className="inline-block px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-primary/10 text-primary text-xs md:text-sm font-medium">Dashboard Design</span>
                 <h1 className="text-3xl md:text-4xl lg:text-6xl xl:text-7xl font-bold text-foreground">
@@ -351,11 +471,11 @@ const MobileBankingProject = () => {
                     <p className="font-semibold text-sm md:text-base">2024</p>
                   </div>
                 </div>
-                <div className="flex flex-wrap gap-2 md:gap-3 pt-4 md:pt-6">
-                  <span className="px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-card border border-border text-xs md:text-sm font-medium">Figma</span>
-                  <span className="px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-card border border-border text-xs md:text-sm font-medium">Maze</span>
-                  <span className="px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-card border border-border text-xs md:text-sm font-medium">AI Prototyping</span>
-                  <span className="px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-card border border-border text-xs md:text-sm font-medium">UI/UX Design</span>
+                <div className="flex flex-wrap gap-2 md:gap-3 pt-4 md:pt-6 overflow-visible">
+                  <span className="px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-background border border-border text-xs md:text-sm font-medium">Figma</span>
+                  <span className="px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-background border border-border text-xs md:text-sm font-medium">Maze</span>
+                  <span className="px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-background border border-border text-xs md:text-sm font-medium">AI Prototyping</span>
+                  <span className="px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-background border border-border text-xs md:text-sm font-medium">UI/UX Design</span>
                 </div>
               </div>
             </div>
@@ -371,6 +491,7 @@ const MobileBankingProject = () => {
       <div className="relative -mt-[10vh] z-10 bg-background">
         {/* Overview Section */}
         <section ref={overviewAnim.ref} className={`min-h-screen flex items-center justify-center py-10 md:py-24 transition-all duration-700 ${overviewAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div ref={overviewRef} className="absolute top-0 left-0 w-full h-1" />
           <div className="container mx-auto max-w-[1440px]">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-start">
               <div className="space-y-4 md:space-y-6">
@@ -427,6 +548,7 @@ const MobileBankingProject = () => {
 
         {/* Design Process */}
         <section ref={processAnim.ref} className={`min-h-screen flex items-center justify-center py-10 md:py-24 bg-card/30 transition-all duration-700 ${processAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div ref={processRef} className="absolute top-0 left-0 w-full h-1" />
           <div className="container mx-auto max-w-[1440px]">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-start">
               {/* Left Column - Title & Description */}
@@ -910,6 +1032,7 @@ const MobileBankingProject = () => {
 
         {/* Full Viewport Design Image */}
         <div className="viewport-image-section">
+          <div ref={userFlowRef} className="absolute top-0 left-0 w-full h-1" />
           <div className="absolute top-0 left-0 right-0 z-20 px-6 pt-24">
             <div className="container mx-auto max-w-[1440px]">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
@@ -927,6 +1050,7 @@ const MobileBankingProject = () => {
 
         {/* Design System Section */}
         <section className="relative py-12 md:py-24 bg-background flex items-center">
+          <div ref={designSystemRef} className="absolute top-0 left-0 w-full h-1" />
           <div className="container mx-auto max-w-[1440px]">
             <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-12">Design System</h2>
             
@@ -1184,10 +1308,11 @@ const MobileBankingProject = () => {
               <img src={locateListingImage} alt="Add and Edit Listing Flow" className="w-full h-full object-contain object-center lg:object-left" />
               {/* Gradient overlay - only on mobile */}
               <div className="absolute inset-x-0 bottom-0 h-48 lg:hidden bg-gradient-to-t from-background/100 via-background/60 via-60% to-transparent pointer-events-none" />
-              {/* Section number - centered on mobile, top right on desktop */}
-              <div className="absolute top-2 left-1/2 -translate-x-1/2 md:top-6 md:right-6 md:left-auto md:translate-x-0 hidden md:block">
-                <span className="text-3xl md:text-6xl lg:text-7xl font-bold font-mono opacity-20">/04</span>
-              </div>
+            </div>
+
+            {/* Section number - top right on desktop only */}
+            <div className="absolute top-6 right-6 hidden lg:block">
+              <span className="text-6xl lg:text-7xl font-bold font-mono opacity-20">/04</span>
             </div>
 
             {/* Right Column - Content - Overlaps on mobile */}
@@ -1228,6 +1353,7 @@ const MobileBankingProject = () => {
 
         {/* Mobile Process GIFs Section */}
         <section className="py-10 md:py-24">
+          <div ref={listingProcessRef} className="absolute top-0 left-0 w-full h-1" />
           <div className="container mx-auto max-w-[1440px]">
             <div className="mb-8 md:mb-12 text-center">
               <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold">Listing Creation Process</h3>
@@ -1248,6 +1374,7 @@ const MobileBankingProject = () => {
 
         {/* Lead Management Section */}
         <section className="py-10 md:py-24">
+          <div ref={leadsRef} className="absolute top-0 left-0 w-full h-1" />
           <div className="container mx-auto max-w-[1440px]">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16">
               {/* Left Column - Text Content */}

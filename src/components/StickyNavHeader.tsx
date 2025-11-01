@@ -60,19 +60,26 @@ export const StickyNavHeader = ({
           </div>
 
           <div className="flex items-center gap-2 md:gap-4 flex-shrink-0">
-            {currentSubsection && (
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="gap-1 md:gap-2 text-sm md:text-base lg:text-lg px-2 md:px-4">
-                    <span className="text-muted-foreground hidden sm:inline">
-                      {currentSection}: {currentSubsection} {currentNumber}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="gap-1 md:gap-2 text-sm md:text-base lg:text-lg px-2 md:px-4">
+                  {currentSubsection ? (
+                    <>
+                      <span className="text-muted-foreground hidden sm:inline">
+                        {currentSection}: {currentSubsection} {currentNumber}
+                      </span>
+                      <span className="text-muted-foreground sm:hidden">
+                        {currentNumber}
+                      </span>
+                    </>
+                  ) : (
+                    <span className="text-muted-foreground">
+                      {currentSection} {currentNumber}
                     </span>
-                    <span className="text-muted-foreground sm:hidden">
-                      {currentNumber}
-                    </span>
-                    <ChevronDown className="h-3 w-3 md:h-4 md:w-4" />
-                  </Button>
-                </DropdownMenuTrigger>
+                  )}
+                  <ChevronDown className="h-3 w-3 md:h-4 md:w-4" />
+                </Button>
+              </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-56 bg-background z-[60]">
                 {previousSection && (
                   <DropdownMenuItem
@@ -107,11 +114,10 @@ export const StickyNavHeader = ({
                       ? `${section.section}: ${section.subsection}`
                       : section.section}{" "}
                     {section.number}
-                  </DropdownMenuItem>
+                </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
-            )}
           </div>
         </div>
       </div>
