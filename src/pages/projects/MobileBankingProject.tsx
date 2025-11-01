@@ -376,7 +376,7 @@ const MobileBankingProject = () => {
       {/* Main Content Container */}
       <div className="relative -mt-[10vh] z-10 bg-background">
         {/* Overview Section */}
-        <section ref={overviewAnim.ref} className={`min-h-screen flex items-center justify-center px-4 md:px-6 py-12 md:py-24 transition-all duration-700 ${overviewAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <section ref={overviewAnim.ref} className={`min-h-screen flex items-center justify-center px-2 md:px-6 py-10 md:py-24 transition-all duration-700 ${overviewAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="container mx-auto max-w-[1440px]">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-start">
               <div className="space-y-4 md:space-y-6">
@@ -432,7 +432,7 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Design Process */}
-        <section ref={processAnim.ref} className={`min-h-screen flex items-center justify-center px-4 md:px-6 py-8 md:py-24 bg-card/30 transition-all duration-700 ${processAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <section ref={processAnim.ref} className={`min-h-screen flex items-center justify-center px-2 md:px-6 py-10 md:py-24 bg-card/30 transition-all duration-700 ${processAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="container mx-auto max-w-[1440px]">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-start">
               {/* Left Column - Title & Description */}
@@ -503,15 +503,15 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Define Section - 01 */}
-        <section ref={defineContentAnim.ref} className={`relative px-4 md:px-6 py-8 md:py-24 transition-all duration-700 ${defineContentAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <section ref={defineContentAnim.ref} className={`relative px-2 md:px-6 py-10 md:py-24 transition-all duration-700 ${defineContentAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div ref={defineRef} className="absolute top-0 left-0 w-full h-1" />
 
           <div className="container mx-auto max-w-[1440px]">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-16 mb-4 md:mb-16">
-              <div className="order-2 lg:order-1">
+              <div className="order-1 lg:order-1">
                 <h2 className="text-3xl md:text-5xl lg:text-7xl xl:text-8xl font-bold">Define</h2>
               </div>
-              <div className="order-1 lg:order-2 text-center lg:text-right">
+              <div className="order-2 lg:order-2 text-center lg:text-right hidden md:block">
                 <span className="text-3xl md:text-6xl lg:text-7xl font-bold font-mono opacity-20">/01</span>
               </div>
             </div>
@@ -554,12 +554,12 @@ const MobileBankingProject = () => {
             {/* Bento Grid Layout - 7 Images */}
             <div ref={defineGalleryRef} className="mt-8 md:mt-32">
               {/* Mobile: Horizontal Scroll Gallery */}
-              <div className="flex md:hidden overflow-x-auto snap-x snap-mandatory gap-3 pb-4 -mx-4 px-4 scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent">
+              <div className="flex md:hidden overflow-x-scroll snap-x snap-mandatory gap-3 pb-4 -mx-2 px-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                 {galleryImages.map((img, idx) => (
                   <button 
                     key={idx}
                     onClick={() => openGallery(idx)} 
-                    className="min-w-[85vw] h-[400px] snap-center rounded-xl overflow-hidden shadow-card hover:scale-[1.02] transition-transform flex-shrink-0"
+                    className="min-w-[calc(100vw-48px)] h-[400px] snap-center rounded-xl overflow-hidden shadow-card hover:scale-[1.02] transition-transform flex-shrink-0"
                   >
                     <img src={img.src} alt={img.alt} className="w-full h-full object-cover" />
                   </button>
@@ -621,7 +621,7 @@ const MobileBankingProject = () => {
 
 
         {/* Discovery Section - 02 */}
-        <section className="relative px-4 md:px-6 py-8 md:py-24 bg-card/30">
+        <section className="relative px-2 md:px-6 py-10 md:py-24 bg-card/30">
           <div ref={discoveryRef} className="absolute top-0 left-0 w-full h-1" />
           <div className="container mx-auto max-w-[1440px]">
             <div ref={discoveryInterviewsRef} className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-16 mb-8 md:mb-32 items-stretch">
@@ -638,7 +638,7 @@ const MobileBankingProject = () => {
 
               {/* Right Columns - Charts (2 columns) */}
               <div ref={discoveryStatsAnim.ref} className={`lg:col-span-2 space-y-4 md:space-y-8 transition-all duration-700 ${discoveryStatsAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                <div className="text-center lg:text-right">
+                <div className="text-center lg:text-right hidden md:block">
                   <span className="text-3xl md:text-6xl lg:text-7xl font-bold font-mono opacity-20">/02</span>
                 </div>
                 {/* Statistics */}
@@ -867,7 +867,7 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Design Section - 03 */}
-        <section ref={designContentAnim.ref} className={`relative px-4 md:px-6 py-8 md:py-24 transition-all duration-700 ${designContentAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <section ref={designContentAnim.ref} className={`relative px-2 md:px-6 py-10 md:py-24 transition-all duration-700 ${designContentAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div ref={designRef} className="absolute top-0 left-0 w-full h-1" />
           <div className="container mx-auto max-w-[1440px]">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-16">
@@ -881,7 +881,7 @@ const MobileBankingProject = () => {
 
               {/* Right Column */}
               <div className="space-y-4 md:space-y-12">
-                <div className="text-center lg:text-right">
+                <div className="text-center lg:text-right hidden md:block">
                   <span className="text-3xl md:text-6xl lg:text-7xl font-bold font-mono opacity-20">/03</span>
                 </div>
                 
@@ -1134,7 +1134,7 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Delivery Section - 04 */}
-        <section ref={deliveryContentAnim.ref} className={`relative px-4 md:px-6 py-8 md:py-24 bg-card/30 transition-all duration-700 ${deliveryContentAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <section ref={deliveryContentAnim.ref} className={`relative px-2 md:px-6 py-10 md:py-24 bg-card/30 transition-all duration-700 ${deliveryContentAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div ref={deliveryRef} className="absolute top-0 left-0 w-full h-1" />
           <div className="container mx-auto max-w-[1440px]">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-16">
@@ -1148,7 +1148,7 @@ const MobileBankingProject = () => {
 
               {/* Right Column */}
               <div className="space-y-4 md:space-y-12">
-                <div className="text-center lg:text-right">
+                <div className="text-center lg:text-right hidden md:block">
                   <span className="text-3xl md:text-6xl lg:text-7xl font-bold font-mono opacity-20">/04</span>
                 </div>
                 
@@ -1189,15 +1189,15 @@ const MobileBankingProject = () => {
             <div className="w-full lg:w-[50vw] relative overflow-hidden bg-background min-h-[300px] lg:min-h-auto">
               <img src={locateListingImage} alt="Add and Edit Listing Flow" className="w-full h-full object-contain object-center lg:object-left" />
               {/* Gradient overlay - only on mobile */}
-              <div className="absolute inset-x-0 bottom-0 h-32 lg:hidden bg-gradient-to-t from-background via-background/80 to-transparent pointer-events-none" />
+              <div className="absolute inset-x-0 bottom-0 h-48 lg:hidden bg-gradient-to-t from-background/100 via-background/60 via-60% to-transparent pointer-events-none" />
               {/* Section number - centered on mobile, top right on desktop */}
-              <div className="absolute top-2 left-1/2 -translate-x-1/2 md:top-6 md:right-6 md:left-auto md:translate-x-0">
+              <div className="absolute top-2 left-1/2 -translate-x-1/2 md:top-6 md:right-6 md:left-auto md:translate-x-0 hidden md:block">
                 <span className="text-3xl md:text-6xl lg:text-7xl font-bold font-mono opacity-20">/04</span>
               </div>
             </div>
 
             {/* Right Column - Content - Overlaps on mobile */}
-            <div className="w-full lg:w-[50vw] flex items-center px-4 md:px-6 lg:px-16 py-6 md:py-16 bg-background relative -mt-20 lg:mt-0 z-10 rounded-t-3xl lg:rounded-none">
+            <div className="w-full lg:w-[50vw] flex items-center px-2 md:px-6 lg:px-16 py-6 md:py-16 bg-background relative -mt-20 lg:mt-0 z-10 rounded-t-3xl lg:rounded-none">
               <div className="space-y-4 md:space-y-8 max-w-2xl">
                 <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold">Add & Edit a Listing</h2>
                 
@@ -1268,13 +1268,13 @@ const MobileBankingProject = () => {
               </div>
 
               {/* Right Column - Section Number */}
-              <div className="flex items-start justify-center lg:justify-end">
+              <div className="flex items-start justify-center lg:justify-end hidden md:flex">
                 <p className="text-3xl md:text-6xl lg:text-7xl font-bold text-muted-foreground/20">/04</p>
               </div>
             </div>
 
             {/* Full Width GIF Row - Full width on mobile */}
-            <div className="w-full mt-4 md:mt-12 -mx-4 md:mx-0">
+            <div className="w-full mt-4 md:mt-12 -mx-2 md:mx-0">
               <div className="w-full md:max-w-[85%] md:mx-auto md:rounded-2xl overflow-hidden shadow-card">
                 <img src={leadsGif} alt="Lead management interface demonstration" className="w-full h-full object-contain" />
               </div>
@@ -1292,7 +1292,7 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Challenge Section */}
-        <section ref={challengeAnim.ref} className={`min-h-screen flex items-center justify-center px-4 md:px-6 py-6 md:py-24 transition-all duration-700 ${challengeAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <section ref={challengeAnim.ref} className={`min-h-screen flex items-center justify-center px-2 md:px-6 py-10 md:py-24 transition-all duration-700 ${challengeAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="container mx-auto max-w-[1440px]">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-16 items-center">
               <div className="w-full aspect-square rounded-xl md:rounded-2xl overflow-hidden shadow-card order-2 lg:order-1">
@@ -1325,7 +1325,7 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Solution Section */}
-        <section ref={solutionAnim.ref} className={`min-h-screen flex items-center justify-center px-4 md:px-6 py-6 md:py-24 bg-card/30 transition-all duration-700 ${solutionAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <section ref={solutionAnim.ref} className={`min-h-screen flex items-center justify-center px-2 md:px-6 py-10 md:py-24 bg-card/30 transition-all duration-700 ${solutionAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="container mx-auto max-w-[1440px]">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-16 items-center">
               <div className="space-y-4 md:space-y-6">
@@ -1353,7 +1353,7 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Results Section */}
-        <section ref={resultsAnim.ref} className={`min-h-screen flex items-center justify-center px-4 md:px-6 py-8 md:py-24 transition-all duration-700 ${resultsAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <section ref={resultsAnim.ref} className={`min-h-screen flex items-center justify-center px-2 md:px-6 py-10 md:py-24 transition-all duration-700 ${resultsAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="container mx-auto max-w-[1440px] text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-16">Impact & Results</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-12">
