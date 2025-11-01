@@ -1077,40 +1077,40 @@ const MobileBankingProject = () => {
                     {/* First Column */}
                     <div className="space-y-3 md:space-y-4">
                       <div>
-                        <p className="text-2xl font-semibold">H1</p>
-                        <p className="text-xs text-muted-foreground">34px Semi Bold</p>
+                        <p className="text-3xl md:text-4xl font-semibold">H1</p>
+                        <p className="text-sm text-muted-foreground">34px Semi Bold</p>
                       </div>
                       <div>
-                        <p className="text-xl font-semibold">H2</p>
-                        <p className="text-xs text-muted-foreground">28px Semi Bold</p>
+                        <p className="text-2xl md:text-3xl font-semibold">H2</p>
+                        <p className="text-sm text-muted-foreground">28px Semi Bold</p>
                       </div>
                       <div>
-                        <p className="text-lg font-medium">H3</p>
-                        <p className="text-xs text-muted-foreground">24px Medium</p>
+                        <p className="text-xl md:text-2xl font-medium">H3</p>
+                        <p className="text-sm text-muted-foreground">24px Medium</p>
                       </div>
                       <div>
-                        <p className="text-base font-medium">H4</p>
-                        <p className="text-xs text-muted-foreground">20px Medium</p>
+                        <p className="text-lg md:text-xl font-medium">H4</p>
+                        <p className="text-sm text-muted-foreground">20px Medium</p>
                       </div>
                     </div>
                     
                     {/* Second Column */}
                     <div className="space-y-3 md:space-y-4">
                       <div>
-                        <p className="text-sm font-semibold">Subtitle</p>
-                        <p className="text-xs text-muted-foreground">18px Semi Bold</p>
+                        <p className="text-base md:text-lg font-semibold">Subtitle</p>
+                        <p className="text-sm text-muted-foreground">18px Semi Bold</p>
                       </div>
                       <div>
-                        <p className="text-sm">Body</p>
-                        <p className="text-xs text-muted-foreground">16px Regular</p>
+                        <p className="text-base md:text-lg">Body</p>
+                        <p className="text-sm text-muted-foreground">16px Regular</p>
                       </div>
                       <div>
-                        <p className="text-xs font-medium">Caption</p>
-                        <p className="text-xs text-muted-foreground">14px Medium</p>
+                        <p className="text-sm md:text-base font-medium">Caption</p>
+                        <p className="text-sm text-muted-foreground">14px Medium</p>
                       </div>
                       <div>
-                        <p className="text-xs">Small</p>
-                        <p className="text-xs text-muted-foreground">12px Regular</p>
+                        <p className="text-sm md:text-base">Small</p>
+                        <p className="text-sm text-muted-foreground">12px Regular</p>
                       </div>
                     </div>
                   </div>
