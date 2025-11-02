@@ -785,7 +785,17 @@ const MobileBankingProject = () => {
                       {/* Background arc */}
                       <path d="M 20 140 A 60 60 0 0 1 140 140" fill="none" stroke="hsl(var(--muted))" strokeWidth="6" opacity="0.2" strokeLinecap="round" />
                       {/* Foreground arc - 36% using dasharray */}
-                      <path d="M 20 140 A 60 60 0 0 1 140 140" fill="none" stroke="url(#gradient1)" strokeWidth="6" strokeLinecap="round" strokeDasharray="188.5" strokeDashoffset="120.6" filter="url(#glow1)" className="transition-all duration-1000" />
+                      <path 
+                        d="M 20 140 A 60 60 0 0 1 140 140" 
+                        fill="none" 
+                        stroke="url(#gradient1)" 
+                        strokeWidth="6" 
+                        strokeLinecap="round" 
+                        strokeDasharray="188.5" 
+                        strokeDashoffset={discoveryStatsAnim.isVisible ? "120.6" : "188.5"}
+                        filter="url(#glow1)" 
+                        className="transition-all duration-1500 ease-out" 
+                      />
                     </svg>
                     <div className="text-5xl font-normal mb-3">36%</div>
                     <p className="text-base text-muted-foreground">Overall user satisfaction</p>
@@ -810,7 +820,17 @@ const MobileBankingProject = () => {
                       {/* Background arc */}
                       <path d="M 20 140 A 60 60 0 0 1 140 140" fill="none" stroke="hsl(var(--muted))" strokeWidth="6" opacity="0.2" strokeLinecap="round" />
                       {/* Foreground arc - 24% using dasharray */}
-                      <path d="M 20 140 A 60 60 0 0 1 140 140" fill="none" stroke="url(#gradient2)" strokeWidth="6" strokeLinecap="round" strokeDasharray="188.5" strokeDashoffset="143.3" filter="url(#glow2)" className="transition-all duration-1000" />
+                      <path 
+                        d="M 20 140 A 60 60 0 0 1 140 140" 
+                        fill="none" 
+                        stroke="url(#gradient2)" 
+                        strokeWidth="6" 
+                        strokeLinecap="round" 
+                        strokeDasharray="188.5" 
+                        strokeDashoffset={discoveryStatsAnim.isVisible ? "143.3" : "188.5"}
+                        filter="url(#glow2)" 
+                        className="transition-all duration-1500 ease-out delay-150" 
+                      />
                     </svg>
                     <div className="text-5xl font-normal mb-3">24%</div>
                     <p className="text-base text-muted-foreground">Confidence in listing metrics</p>
@@ -835,7 +855,17 @@ const MobileBankingProject = () => {
                       {/* Background arc */}
                       <path d="M 20 140 A 60 60 0 0 1 140 140" fill="none" stroke="hsl(var(--muted))" strokeWidth="6" opacity="0.2" strokeLinecap="round" />
                       {/* Foreground arc - 91% using dasharray */}
-                      <path d="M 20 140 A 60 60 0 0 1 140 140" fill="none" stroke="url(#gradient3)" strokeWidth="6" strokeLinecap="round" strokeDasharray="188.5" strokeDashoffset="17" filter="url(#glow3)" className="transition-all duration-1000" />
+                      <path 
+                        d="M 20 140 A 60 60 0 0 1 140 140" 
+                        fill="none" 
+                        stroke="url(#gradient3)" 
+                        strokeWidth="6" 
+                        strokeLinecap="round" 
+                        strokeDasharray="188.5" 
+                        strokeDashoffset={discoveryStatsAnim.isVisible ? "17" : "188.5"}
+                        filter="url(#glow3)" 
+                        className="transition-all duration-1500 ease-out delay-300" 
+                      />
                     </svg>
                     <div className="text-5xl font-normal mb-3">91%</div>
                     <p className="text-base text-muted-foreground">Difficulty managing listings</p>
