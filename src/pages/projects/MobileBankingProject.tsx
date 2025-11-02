@@ -403,19 +403,25 @@ const MobileBankingProject = () => {
   // Analytics carousel effect
   useEffect(() => {
     if (!analyticsApi) return;
-    
     analyticsApi.on("select", () => {
       setCurrentAnalyticsSlide(analyticsApi.selectedScrollSnap());
     });
   }, [analyticsApi]);
 
   // Analytics images data
-  const analyticsImages = [
-    { src: analyticsTable1, alt: "Analytics dashboard showing listing exposure and metrics" },
-    { src: analyticsTable2, alt: "Analytics chart displaying listing exposure over time" },
-    { src: analyticsTable3, alt: "Analytics overview with interaction metrics and location map" },
-    { src: analyticsTable4, alt: "Analytics visitor details and listing history" }
-  ];
+  const analyticsImages = [{
+    src: analyticsTable1,
+    alt: "Analytics dashboard showing listing exposure and metrics"
+  }, {
+    src: analyticsTable2,
+    alt: "Analytics chart displaying listing exposure over time"
+  }, {
+    src: analyticsTable3,
+    alt: "Analytics overview with interaction metrics and location map"
+  }, {
+    src: analyticsTable4,
+    alt: "Analytics visitor details and listing history"
+  }];
 
   // Scroll animations for all sections
   const heroAnim = useScrollAnimation();
@@ -456,7 +462,7 @@ const MobileBankingProject = () => {
         {/* 2-Column Layout */}
         <div className="flex flex-col md:flex-row h-full">
           {/* Left: Content */}
-          <div className="w-full md:w-1/2 flex items-center px-6 md:px-12 lg:px-20 bg-card py-12 md:py-0">
+          <div className="w-full md:w-1/2 flex items-center px-6 md:px-12 lg:px-20 bg-card py-12 md:py-0 mx-0 my-0">
             <div className="space-y-4 md:space-y-6 animate-fade-in max-w-2xl">
               <span className="inline-block px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-primary/10 text-primary text-xs md:text-sm font-medium">Dashboard Design</span>
               <h1 className="text-3xl md:text-4xl lg:text-6xl xl:text-7xl font-bold text-foreground">
@@ -678,15 +684,9 @@ const MobileBankingProject = () => {
             <div ref={defineGalleryRef} className="mt-8 md:mt-32">
               {/* Mobile: Horizontal Scroll Gallery */}
               <div className="flex md:hidden overflow-x-scroll snap-x snap-mandatory gap-3 pb-4 -mx-2 px-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-                {galleryImages.map((img, idx) => (
-                  <button 
-                    key={idx}
-                    onClick={() => openGallery(idx)} 
-                    className="min-w-[calc(100vw-48px)] h-[400px] snap-center rounded-xl overflow-hidden shadow-card hover:scale-[1.02] transition-transform flex-shrink-0"
-                  >
+                {galleryImages.map((img, idx) => <button key={idx} onClick={() => openGallery(idx)} className="min-w-[calc(100vw-48px)] h-[400px] snap-center rounded-xl overflow-hidden shadow-card hover:scale-[1.02] transition-transform flex-shrink-0">
                     <img src={img.src} alt={img.alt} className="w-full h-full object-cover" />
-                  </button>
-                ))}
+                  </button>)}
               </div>
               
               {/* Tablet/Desktop: Bento Grid */}
@@ -785,17 +785,9 @@ const MobileBankingProject = () => {
                       {/* Background arc */}
                       <path d="M 20 140 A 60 60 0 0 1 140 140" fill="none" stroke="hsl(var(--muted))" strokeWidth="6" opacity="0.2" strokeLinecap="round" />
                       {/* Foreground arc - 36% using dasharray */}
-                      <path 
-                        d="M 20 140 A 60 60 0 0 1 140 140" 
-                        fill="none" 
-                        stroke="url(#gradient1)" 
-                        strokeWidth="6" 
-                        strokeLinecap="round" 
-                        strokeDasharray="188.5" 
-                        strokeDashoffset={discoveryStatsAnim.isVisible ? "120.6" : "188.5"}
-                        filter="url(#glow1)" 
-                        style={{ transition: "stroke-dashoffset 2.5s cubic-bezier(0.4, 0, 0.2, 1)" }}
-                      />
+                      <path d="M 20 140 A 60 60 0 0 1 140 140" fill="none" stroke="url(#gradient1)" strokeWidth="6" strokeLinecap="round" strokeDasharray="188.5" strokeDashoffset={discoveryStatsAnim.isVisible ? "120.6" : "188.5"} filter="url(#glow1)" style={{
+                      transition: "stroke-dashoffset 2.5s cubic-bezier(0.4, 0, 0.2, 1)"
+                    }} />
                     </svg>
                     <div className="text-5xl font-normal mb-3">36%</div>
                     <p className="text-base text-muted-foreground">Overall user satisfaction</p>
@@ -820,17 +812,9 @@ const MobileBankingProject = () => {
                       {/* Background arc */}
                       <path d="M 20 140 A 60 60 0 0 1 140 140" fill="none" stroke="hsl(var(--muted))" strokeWidth="6" opacity="0.2" strokeLinecap="round" />
                       {/* Foreground arc - 24% using dasharray */}
-                      <path 
-                        d="M 20 140 A 60 60 0 0 1 140 140" 
-                        fill="none" 
-                        stroke="url(#gradient2)" 
-                        strokeWidth="6" 
-                        strokeLinecap="round" 
-                        strokeDasharray="188.5" 
-                        strokeDashoffset={discoveryStatsAnim.isVisible ? "143.3" : "188.5"}
-                        filter="url(#glow2)" 
-                        style={{ transition: "stroke-dashoffset 2.5s cubic-bezier(0.4, 0, 0.2, 1) 0.2s" }}
-                      />
+                      <path d="M 20 140 A 60 60 0 0 1 140 140" fill="none" stroke="url(#gradient2)" strokeWidth="6" strokeLinecap="round" strokeDasharray="188.5" strokeDashoffset={discoveryStatsAnim.isVisible ? "143.3" : "188.5"} filter="url(#glow2)" style={{
+                      transition: "stroke-dashoffset 2.5s cubic-bezier(0.4, 0, 0.2, 1) 0.2s"
+                    }} />
                     </svg>
                     <div className="text-5xl font-normal mb-3">24%</div>
                     <p className="text-base text-muted-foreground">Confidence in listing metrics</p>
@@ -855,17 +839,9 @@ const MobileBankingProject = () => {
                       {/* Background arc */}
                       <path d="M 20 140 A 60 60 0 0 1 140 140" fill="none" stroke="hsl(var(--muted))" strokeWidth="6" opacity="0.2" strokeLinecap="round" />
                       {/* Foreground arc - 91% using dasharray */}
-                      <path 
-                        d="M 20 140 A 60 60 0 0 1 140 140" 
-                        fill="none" 
-                        stroke="url(#gradient3)" 
-                        strokeWidth="6" 
-                        strokeLinecap="round" 
-                        strokeDasharray="188.5" 
-                        strokeDashoffset={discoveryStatsAnim.isVisible ? "17" : "188.5"}
-                        filter="url(#glow3)" 
-                        style={{ transition: "stroke-dashoffset 2.5s cubic-bezier(0.4, 0, 0.2, 1) 0.4s" }}
-                      />
+                      <path d="M 20 140 A 60 60 0 0 1 140 140" fill="none" stroke="url(#gradient3)" strokeWidth="6" strokeLinecap="round" strokeDasharray="188.5" strokeDashoffset={discoveryStatsAnim.isVisible ? "17" : "188.5"} filter="url(#glow3)" style={{
+                      transition: "stroke-dashoffset 2.5s cubic-bezier(0.4, 0, 0.2, 1) 0.4s"
+                    }} />
                     </svg>
                     <div className="text-5xl font-normal mb-3">91%</div>
                     <p className="text-base text-muted-foreground">Difficulty managing listings</p>
@@ -1467,87 +1443,66 @@ const MobileBankingProject = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Left Column - Text Content */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
-                {[
-                  {
-                    title: "Overview Dashboard",
-                    description: "Track views, clicks, and leads in one place."
-                  },
-                  {
-                    title: "Traffic Sources",
-                    description: "See where your listing traffic is coming from."
-                  },
-                  {
-                    title: "Lead Insights",
-                    description: "Monitor inquiries and engagement over time."
-                  },
-                  {
-                    title: "Compare Listings",
-                    description: "Benchmark performance against similar listings."
-                  },
-                  {
-                    title: "Interest by Location",
-                    description: "Visualize buyer activity with heat-maps."
-                  },
-                  {
-                    title: "Performance Suggestions",
-                    description: "Get tips to improve your listing results."
-                  },
-                  {
-                    title: "Export Reports",
-                    description: "Download or schedule performance summaries."
-                  },
-                  {
-                    title: "Ad Performance",
-                    description: "Track ROI from featured listings and campaigns."
-                  },
-                  {
-                    title: "Custom Filters",
-                    description: "View data by custom date ranges."
-                  },
-                  {
-                    title: "Mobile-Ready",
-                    description: "Access insights anytime, anywhere."
-                  }
-                ].map((feature, index) => (
-                  <div key={index} className="flex items-start gap-3">
+                {[{
+                title: "Overview Dashboard",
+                description: "Track views, clicks, and leads in one place."
+              }, {
+                title: "Traffic Sources",
+                description: "See where your listing traffic is coming from."
+              }, {
+                title: "Lead Insights",
+                description: "Monitor inquiries and engagement over time."
+              }, {
+                title: "Compare Listings",
+                description: "Benchmark performance against similar listings."
+              }, {
+                title: "Interest by Location",
+                description: "Visualize buyer activity with heat-maps."
+              }, {
+                title: "Performance Suggestions",
+                description: "Get tips to improve your listing results."
+              }, {
+                title: "Export Reports",
+                description: "Download or schedule performance summaries."
+              }, {
+                title: "Ad Performance",
+                description: "Track ROI from featured listings and campaigns."
+              }, {
+                title: "Custom Filters",
+                description: "View data by custom date ranges."
+              }, {
+                title: "Mobile-Ready",
+                description: "Access insights anytime, anywhere."
+              }].map((feature, index) => <div key={index} className="flex items-start gap-3">
                     <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
                     <div>
                       <h4 className="font-semibold text-base md:text-lg">{feature.title}</h4>
                       <p className="text-sm md:text-base text-muted-foreground mt-1">{feature.description}</p>
                     </div>
-                  </div>
-                ))}
+                  </div>)}
               </div>
               
           {/* Right Column - Image Carousel */}
           <div className="flex items-center">
-            <Carousel className="w-full" setApi={setAnalyticsApi} opts={{ loop: true }}>
+            <Carousel className="w-full" setApi={setAnalyticsApi} opts={{
+                loop: true
+              }}>
                   <CarouselContent>
-                    {analyticsImages.map((image, index) => (
-                      <CarouselItem key={index}>
+                    {analyticsImages.map((image, index) => <CarouselItem key={index}>
                         <Dialog>
                           <DialogTrigger asChild>
                             <button className="relative w-full cursor-pointer group">
-                              <img 
-                                src={image.src} 
-                                alt={image.alt}
-                                className="w-full h-auto rounded-lg shadow-lg border border-border transition-transform duration-300 group-hover:scale-[1.02]"
-                              />
+                              <img src={image.src} alt={image.alt} className="w-full h-auto rounded-lg shadow-lg border border-border transition-transform duration-300 group-hover:scale-[1.02]" />
                               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 rounded-lg transition-colors duration-300" />
                             </button>
                           </DialogTrigger>
                           <DialogContent className="max-w-[95vw] max-h-[95vh] p-0 bg-black/95">
                             <div className="relative w-full h-full flex items-center justify-center p-4">
-                              <img 
-                                src={image.src} 
-                                alt={image.alt}
-                                className="max-w-full max-h-[90vh] object-contain"
-                              />
+                              <img src={image.src} alt={image.alt} className="max-w-full max-h-[90vh] object-contain" />
                             </div>
                           </DialogContent>
                         </Dialog>
-                      </CarouselItem>
-                    ))}
+                      </CarouselItem>)}
                   </CarouselContent>
                   
                   {/* Carousel Navigation Arrows */}
@@ -1556,19 +1511,7 @@ const MobileBankingProject = () => {
                   
                   {/* Slide Indicators */}
                   <div className="flex justify-center gap-2 mt-4">
-                    {analyticsImages.map((_, index) => (
-                      <button
-                        key={index}
-                        onClick={() => analyticsApi?.scrollTo(index)}
-                        className={cn(
-                          "w-2 h-2 rounded-full transition-all duration-300",
-                          currentAnalyticsSlide === index 
-                            ? "bg-primary w-8" 
-                            : "bg-muted hover:bg-primary/50"
-                        )}
-                        aria-label={`Go to slide ${index + 1}`}
-                      />
-                    ))}
+                    {analyticsImages.map((_, index) => <button key={index} onClick={() => analyticsApi?.scrollTo(index)} className={cn("w-2 h-2 rounded-full transition-all duration-300", currentAnalyticsSlide === index ? "bg-primary w-8" : "bg-muted hover:bg-primary/50")} aria-label={`Go to slide ${index + 1}`} />)}
                   </div>
                 </Carousel>
               </div>
@@ -1577,74 +1520,13 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Full Width Image */}
-        <section ref={fullWidthAnim.ref} className={`min-h-screen flex items-center justify-center py-24 bg-card/30 transition-all duration-700 ${fullWidthAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="container mx-auto max-w-[1600px]">
-            <div className="w-full aspect-[21/9] rounded-2xl overflow-hidden shadow-glow">
-              <img src="/placeholder.svg" alt="Full width showcase" className="w-full h-full object-cover" />
-            </div>
-          </div>
-        </section>
+        
 
         {/* Challenge Section */}
-        <section ref={challengeAnim.ref} className={`min-h-screen flex items-center justify-center py-10 md:py-24 transition-all duration-700 ${challengeAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="container mx-auto max-w-[1440px]">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-16 items-center">
-              <div className="w-full aspect-square rounded-xl md:rounded-2xl overflow-hidden shadow-card order-2 lg:order-1">
-                <img src="/placeholder.svg" alt="Challenge" className="w-full h-full object-cover" />
-              </div>
-              <div className="space-y-4 md:space-y-6 order-1 lg:order-2">
-                <h2 className="text-3xl md:text-4xl font-bold">The Challenge</h2>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  Traditional banking apps are often cluttered and difficult to navigate. 
-                  Users struggle with finding basic features and feel overwhelmed by 
-                  unnecessary complexity.
-                </p>
-                <ul className="space-y-3 text-muted-foreground">
-                  <li className="flex items-start gap-3">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                    <span>Simplify complex financial operations</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                    <span>Maintain high security standards</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                    <span>Create an intuitive user experience</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
+        
 
         {/* Solution Section */}
-        <section ref={solutionAnim.ref} className={`min-h-screen flex items-center justify-center py-10 md:py-24 bg-card/30 transition-all duration-700 ${solutionAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="container mx-auto max-w-[1440px]">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-16 items-center">
-              <div className="space-y-4 md:space-y-6">
-                <h2 className="text-3xl md:text-4xl font-bold">The Solution</h2>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  We designed a clean, minimal interface that puts the most important features 
-                  front and center. The new design uses clear visual hierarchy, intuitive 
-                  navigation, and delightful micro-interactions.
-                </p>
-                <div className="space-y-4 pt-4">
-                  <div className="space-y-2">
-                    <h3 className="text-xl font-semibold">Key Features</h3>
-                    <p className="text-muted-foreground">
-                      Quick actions, biometric authentication, real-time notifications, 
-                      and personalized financial insights.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-card">
-                <img src="/placeholder.svg" alt="Solution" className="w-full h-full object-cover" />
-              </div>
-            </div>
-          </div>
-        </section>
+        
 
         {/* Results Section */}
         <section ref={resultsAnim.ref} className={`min-h-screen flex items-center justify-center py-10 md:py-24 transition-all duration-700 ${resultsAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
