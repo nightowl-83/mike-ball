@@ -1436,7 +1436,7 @@ const MobileBankingProject = () => {
             {/* Two Column Layout */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Left Column - Text Content */}
-          <div className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
                 {[
                   {
                     title: "Overview Dashboard",
