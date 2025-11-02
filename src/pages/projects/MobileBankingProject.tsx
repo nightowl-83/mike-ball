@@ -794,7 +794,7 @@ const MobileBankingProject = () => {
                         strokeDasharray="188.5" 
                         strokeDashoffset={discoveryStatsAnim.isVisible ? "120.6" : "188.5"}
                         filter="url(#glow1)" 
-                        className="transition-all duration-1500 ease-out" 
+                        style={{ transition: "stroke-dashoffset 2.5s cubic-bezier(0.4, 0, 0.2, 1)" }}
                       />
                     </svg>
                     <div className="text-5xl font-normal mb-3">36%</div>
@@ -829,7 +829,7 @@ const MobileBankingProject = () => {
                         strokeDasharray="188.5" 
                         strokeDashoffset={discoveryStatsAnim.isVisible ? "143.3" : "188.5"}
                         filter="url(#glow2)" 
-                        className="transition-all duration-1500 ease-out delay-150" 
+                        style={{ transition: "stroke-dashoffset 2.5s cubic-bezier(0.4, 0, 0.2, 1) 0.2s" }}
                       />
                     </svg>
                     <div className="text-5xl font-normal mb-3">24%</div>
@@ -864,7 +864,7 @@ const MobileBankingProject = () => {
                         strokeDasharray="188.5" 
                         strokeDashoffset={discoveryStatsAnim.isVisible ? "17" : "188.5"}
                         filter="url(#glow3)" 
-                        className="transition-all duration-1500 ease-out delay-300" 
+                        style={{ transition: "stroke-dashoffset 2.5s cubic-bezier(0.4, 0, 0.2, 1) 0.4s" }}
                       />
                     </svg>
                     <div className="text-5xl font-normal mb-3">91%</div>
