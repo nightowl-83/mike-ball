@@ -947,11 +947,16 @@ const MobileBankingProject = () => {
                         <span>Intuition</span>
                       </div>
                       <div className="h-3 bg-muted rounded-full overflow-hidden relative">
-                        <div className="h-full rounded-full absolute inset-0 transition-all duration-1000 ease-out" style={{
-                          width: '65%',
-                          background: 'linear-gradient(to right, hsl(var(--primary)), hsl(var(--primary) / 0.8))',
-                          boxShadow: '0 0 20px hsla(var(--primary) / 0.7), inset 0 0 10px hsla(var(--primary) / 0.3)'
-                        }}></div>
+                        <div 
+                          className="h-full rounded-full absolute inset-0" 
+                          style={{
+                            width: discoveryStatsAnim.isVisible ? '65%' : '0%',
+                            background: 'linear-gradient(to right, hsl(var(--primary)), hsl(var(--primary) / 0.8))',
+                            boxShadow: '0 0 20px hsla(var(--primary) / 0.7), inset 0 0 10px hsla(var(--primary) / 0.3)',
+                            transition: 'width 2.5s cubic-bezier(0.4, 0, 0.2, 1)',
+                            transitionDelay: '0s'
+                          }}
+                        ></div>
                       </div>
                     </div>
                     <div>
@@ -960,11 +965,16 @@ const MobileBankingProject = () => {
                         <span>Introvert</span>
                       </div>
                       <div className="h-3 bg-muted rounded-full overflow-hidden relative">
-                        <div className="h-full rounded-full absolute inset-0 transition-all duration-1000 ease-out" style={{
-                          width: '45%',
-                          background: 'linear-gradient(to right, hsl(var(--primary)), hsl(var(--primary) / 0.8))',
-                          boxShadow: '0 0 20px hsla(var(--primary) / 0.7), inset 0 0 10px hsla(var(--primary) / 0.3)'
-                        }}></div>
+                        <div 
+                          className="h-full rounded-full absolute inset-0" 
+                          style={{
+                            width: discoveryStatsAnim.isVisible ? '45%' : '0%',
+                            background: 'linear-gradient(to right, hsl(var(--primary)), hsl(var(--primary) / 0.8))',
+                            boxShadow: '0 0 20px hsla(var(--primary) / 0.7), inset 0 0 10px hsla(var(--primary) / 0.3)',
+                            transition: 'width 2.5s cubic-bezier(0.4, 0, 0.2, 1)',
+                            transitionDelay: '0.2s'
+                          }}
+                        ></div>
                       </div>
                     </div>
                     <div>
@@ -973,11 +983,16 @@ const MobileBankingProject = () => {
                         <span>Thinking</span>
                       </div>
                       <div className="h-3 bg-muted rounded-full overflow-hidden relative">
-                        <div className="h-full rounded-full absolute inset-0 transition-all duration-1000 ease-out" style={{
-                          width: '75%',
-                          background: 'linear-gradient(to right, hsl(var(--primary)), hsl(var(--primary) / 0.8))',
-                          boxShadow: '0 0 20px hsla(var(--primary) / 0.7), inset 0 0 10px hsla(var(--primary) / 0.3)'
-                        }}></div>
+                        <div 
+                          className="h-full rounded-full absolute inset-0" 
+                          style={{
+                            width: discoveryStatsAnim.isVisible ? '75%' : '0%',
+                            background: 'linear-gradient(to right, hsl(var(--primary)), hsl(var(--primary) / 0.8))',
+                            boxShadow: '0 0 20px hsla(var(--primary) / 0.7), inset 0 0 10px hsla(var(--primary) / 0.3)',
+                            transition: 'width 2.5s cubic-bezier(0.4, 0, 0.2, 1)',
+                            transitionDelay: '0.4s'
+                          }}
+                        ></div>
                       </div>
                     </div>
                   </div>
@@ -1388,10 +1403,12 @@ const MobileBankingProject = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-[1200px] mx-auto py-2 md:py-4">
               {/* Location Selection GIF */}
               <div className="w-full max-h-[500px] md:max-h-[600px] aspect-[9/19.5] rounded-xl md:rounded-2xl overflow-hidden py-4 md:py-6">
+                <h4 className="text-lg md:text-xl font-semibold text-center mb-4">Location Property</h4>
                 <img src={addListingLocationGif} alt="Add listing location selection process" className="w-full h-full object-contain" />
               </div>
               {/* Full Listing Form GIF */}
               <div className="w-full max-h-[500px] md:max-h-[600px] aspect-[9/19.5] rounded-xl md:rounded-2xl overflow-hidden py-4 md:py-6">
+                <h4 className="text-lg md:text-xl font-semibold text-center mb-4">Adding Listing Details</h4>
                 <img src={addListingFullGif} alt="Complete listing creation process" className="w-full h-full object-contain" />
               </div>
             </div>
@@ -1531,31 +1548,37 @@ const MobileBankingProject = () => {
         {/* Results Section */}
         <section ref={resultsAnim.ref} className={`min-h-screen flex items-center justify-center py-10 md:py-24 transition-all duration-700 ${resultsAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="container mx-auto max-w-[1440px] text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-16">Impact & Results</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-16">Outcomes</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-12">
               <div className="space-y-3 md:space-y-4">
-                <div className="text-4xl md:text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-                  45%
-                </div>
-                <p className="text-sm md:text-base text-muted-foreground">
-                  Increase in user engagement
+                <div className="text-lg md:text-xl font-bold text-muted-foreground mb-2">01</div>
+                <h3 className="text-xl md:text-2xl font-bold mb-2">User Engagement</h3>
+                <p className="text-sm md:text-base text-muted-foreground mb-4">
+                  Significantly Improved user engagement.
                 </p>
+                <div className="text-4xl md:text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+                  +69%
+                </div>
               </div>
               <div className="space-y-3 md:space-y-4">
-                <div className="text-4xl md:text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-                  60%
-                </div>
-                <p className="text-sm md:text-base text-muted-foreground">
-                  Reduction in transaction time
+                <div className="text-lg md:text-xl font-bold text-muted-foreground mb-2">02</div>
+                <h3 className="text-xl md:text-2xl font-bold mb-2">Active Users</h3>
+                <p className="text-sm md:text-base text-muted-foreground mb-4">
+                  Indicated growing role in managing their listings.
                 </p>
+                <div className="text-4xl md:text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+                  +155%
+                </div>
               </div>
               <div className="space-y-3 md:space-y-4">
-                <div className="text-4xl md:text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-                  4.8/5
-                </div>
-                <p className="text-sm md:text-base text-muted-foreground">
-                  Average user rating
+                <div className="text-lg md:text-xl font-bold text-muted-foreground mb-2">03</div>
+                <h3 className="text-xl md:text-2xl font-bold mb-2">User Engagement</h3>
+                <p className="text-sm md:text-base text-muted-foreground mb-4">
+                  Reduction in time spent on uploading new listings.
                 </p>
+                <div className="text-4xl md:text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+                  32%
+                </div>
               </div>
             </div>
           </div>
