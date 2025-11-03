@@ -948,11 +948,9 @@ const MobileBankingProject = () => {
                       </div>
                       <div className="h-3 bg-muted rounded-full overflow-hidden relative">
                         <div 
-                          className="h-full rounded-full absolute inset-0" 
+                          className="h-full bg-primary rounded-full absolute left-0 top-0" 
                           style={{
                             width: discoveryStatsAnim.isVisible ? '65%' : '0%',
-                            background: 'linear-gradient(to right, hsl(var(--primary)), hsl(var(--primary) / 0.8))',
-                            boxShadow: '0 0 20px hsla(var(--primary) / 0.7), inset 0 0 10px hsla(var(--primary) / 0.3)',
                             transition: 'width 2.5s cubic-bezier(0.4, 0, 0.2, 1)',
                             transitionDelay: '0s'
                           }}
@@ -966,11 +964,9 @@ const MobileBankingProject = () => {
                       </div>
                       <div className="h-3 bg-muted rounded-full overflow-hidden relative">
                         <div 
-                          className="h-full rounded-full absolute inset-0" 
+                          className="h-full bg-primary rounded-full absolute left-0 top-0" 
                           style={{
                             width: discoveryStatsAnim.isVisible ? '45%' : '0%',
-                            background: 'linear-gradient(to right, hsl(var(--primary)), hsl(var(--primary) / 0.8))',
-                            boxShadow: '0 0 20px hsla(var(--primary) / 0.7), inset 0 0 10px hsla(var(--primary) / 0.3)',
                             transition: 'width 2.5s cubic-bezier(0.4, 0, 0.2, 1)',
                             transitionDelay: '0.2s'
                           }}
@@ -984,11 +980,9 @@ const MobileBankingProject = () => {
                       </div>
                       <div className="h-3 bg-muted rounded-full overflow-hidden relative">
                         <div 
-                          className="h-full rounded-full absolute inset-0" 
+                          className="h-full bg-primary rounded-full absolute left-0 top-0" 
                           style={{
                             width: discoveryStatsAnim.isVisible ? '75%' : '0%',
-                            background: 'linear-gradient(to right, hsl(var(--primary)), hsl(var(--primary) / 0.8))',
-                            boxShadow: '0 0 20px hsla(var(--primary) / 0.7), inset 0 0 10px hsla(var(--primary) / 0.3)',
                             transition: 'width 2.5s cubic-bezier(0.4, 0, 0.2, 1)',
                             transitionDelay: '0.4s'
                           }}
@@ -1403,12 +1397,12 @@ const MobileBankingProject = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-[1200px] mx-auto py-2 md:py-4">
               {/* Location Selection GIF */}
               <div className="w-full max-h-[500px] md:max-h-[600px] aspect-[9/19.5] rounded-xl md:rounded-2xl overflow-hidden py-4 md:py-6">
-                <h4 className="text-lg md:text-xl font-semibold text-center mb-4">Location Property</h4>
+                <p className="text-base text-muted-foreground text-center mb-4">Location Property</p>
                 <img src={addListingLocationGif} alt="Add listing location selection process" className="w-full h-full object-contain" />
               </div>
               {/* Full Listing Form GIF */}
               <div className="w-full max-h-[500px] md:max-h-[600px] aspect-[9/19.5] rounded-xl md:rounded-2xl overflow-hidden py-4 md:py-6">
-                <h4 className="text-lg md:text-xl font-semibold text-center mb-4">Adding Listing Details</h4>
+                <p className="text-base text-muted-foreground text-center mb-4">Adding Listing Details</p>
                 <img src={addListingFullGif} alt="Complete listing creation process" className="w-full h-full object-contain" />
               </div>
             </div>
@@ -1549,8 +1543,8 @@ const MobileBankingProject = () => {
         <section ref={resultsAnim.ref} className={`min-h-screen flex items-center justify-center py-10 md:py-24 transition-all duration-700 ${resultsAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="container mx-auto max-w-[1440px] text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-16">Outcomes</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-12">
-              <div className="space-y-3 md:space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+              <div className="bg-card rounded-2xl p-8 shadow-sm space-y-3 md:space-y-4">
                 <div className="text-lg md:text-xl font-bold text-muted-foreground mb-2">01</div>
                 <h3 className="text-xl md:text-2xl font-bold mb-2">User Engagement</h3>
                 <p className="text-sm md:text-base text-muted-foreground mb-4">
@@ -1560,7 +1554,7 @@ const MobileBankingProject = () => {
                   +69%
                 </div>
               </div>
-              <div className="space-y-3 md:space-y-4">
+              <div className="bg-card rounded-2xl p-8 shadow-sm space-y-3 md:space-y-4">
                 <div className="text-lg md:text-xl font-bold text-muted-foreground mb-2">02</div>
                 <h3 className="text-xl md:text-2xl font-bold mb-2">Active Users</h3>
                 <p className="text-sm md:text-base text-muted-foreground mb-4">
@@ -1570,7 +1564,7 @@ const MobileBankingProject = () => {
                   +155%
                 </div>
               </div>
-              <div className="space-y-3 md:space-y-4">
+              <div className="bg-card rounded-2xl p-8 shadow-sm space-y-3 md:space-y-4">
                 <div className="text-lg md:text-xl font-bold text-muted-foreground mb-2">03</div>
                 <h3 className="text-xl md:text-2xl font-bold mb-2">User Engagement</h3>
                 <p className="text-sm md:text-base text-muted-foreground mb-4">
