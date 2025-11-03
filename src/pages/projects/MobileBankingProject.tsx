@@ -1541,8 +1541,11 @@ const MobileBankingProject = () => {
 
         {/* Results Section */}
         <section ref={resultsAnim.ref} className={`min-h-screen flex items-center justify-center py-10 md:py-24 transition-all duration-700 ${resultsAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="container mx-auto max-w-[1440px] text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-16">Outcomes</h2>
+          <div className="container mx-auto max-w-[1440px] text-left">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Outcomes</h2>
+            <p className="text-base text-muted-foreground mb-8 md:mb-16">
+              After deploying the redesigned dashboard, key metrics improved significantly.
+            </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
               <div className="bg-card rounded-2xl p-8 shadow-sm space-y-3 md:space-y-4 text-left">
                 <div className="text-lg md:text-xl font-bold text-muted-foreground mb-2">01</div>
