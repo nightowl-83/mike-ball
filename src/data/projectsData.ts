@@ -14,9 +14,9 @@ export interface ProjectData {
 export const projectsData: ProjectData[] = [
   {
     id: "mobile-banking",
-    title: "Mobile Banking App",
-    description: "A modern banking experience with intuitive navigation and seamless transactions. Designed for simplicity and security.",
-    category: "Mobile App",
+    title: "Marketing Hub CMS",
+    description: "A comprehensive content management system designed to streamline marketing operations with powerful analytics and intuitive workflows.",
+    category: "Dashboard",
     image: project1,
     route: "/projects/mobile-banking",
   },
