@@ -947,14 +947,11 @@ const MobileBankingProject = () => {
                         <span>Intuition</span>
                       </div>
                       <div className="h-3 bg-muted rounded-full overflow-hidden relative">
-                        <div 
-                          className="h-full bg-primary rounded-full absolute left-0 top-0" 
-                          style={{
-                            width: discoveryStatsAnim.isVisible ? '65%' : '0%',
-                            transition: 'width 2.5s cubic-bezier(0.4, 0, 0.2, 1)',
-                            transitionDelay: '0s'
-                          }}
-                        ></div>
+                        <div className="h-full bg-primary rounded-full absolute left-0 top-0" style={{
+                          width: discoveryStatsAnim.isVisible ? '65%' : '0%',
+                          transition: 'width 2.5s cubic-bezier(0.4, 0, 0.2, 1)',
+                          transitionDelay: '0s'
+                        }}></div>
                       </div>
                     </div>
                     <div>
@@ -963,14 +960,11 @@ const MobileBankingProject = () => {
                         <span>Introvert</span>
                       </div>
                       <div className="h-3 bg-muted rounded-full overflow-hidden relative">
-                        <div 
-                          className="h-full bg-primary rounded-full absolute left-0 top-0" 
-                          style={{
-                            width: discoveryStatsAnim.isVisible ? '45%' : '0%',
-                            transition: 'width 2.5s cubic-bezier(0.4, 0, 0.2, 1)',
-                            transitionDelay: '0.2s'
-                          }}
-                        ></div>
+                        <div className="h-full bg-primary rounded-full absolute left-0 top-0" style={{
+                          width: discoveryStatsAnim.isVisible ? '45%' : '0%',
+                          transition: 'width 2.5s cubic-bezier(0.4, 0, 0.2, 1)',
+                          transitionDelay: '0.2s'
+                        }}></div>
                       </div>
                     </div>
                     <div>
@@ -979,14 +973,11 @@ const MobileBankingProject = () => {
                         <span>Thinking</span>
                       </div>
                       <div className="h-3 bg-muted rounded-full overflow-hidden relative">
-                        <div 
-                          className="h-full bg-primary rounded-full absolute left-0 top-0" 
-                          style={{
-                            width: discoveryStatsAnim.isVisible ? '75%' : '0%',
-                            transition: 'width 2.5s cubic-bezier(0.4, 0, 0.2, 1)',
-                            transitionDelay: '0.4s'
-                          }}
-                        ></div>
+                        <div className="h-full bg-primary rounded-full absolute left-0 top-0" style={{
+                          width: discoveryStatsAnim.isVisible ? '75%' : '0%',
+                          transition: 'width 2.5s cubic-bezier(0.4, 0, 0.2, 1)',
+                          transitionDelay: '0.4s'
+                        }}></div>
                       </div>
                     </div>
                   </div>
@@ -1062,7 +1053,7 @@ const MobileBankingProject = () => {
                   <h3 className="text-4xl font-bold text-foreground">User Flow</h3>
                 </div>
                 <div className="text-right">
-                  <span className="text-6xl md:text-7xl font-bold font-mono opacity-30">/03</span>
+                  
                 </div>
               </div>
             </div>
