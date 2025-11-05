@@ -1,4 +1,4 @@
-import project1 from "@/assets/project-1.jpg";
+import marketingHubDashboard from "@/assets/marketing-hub-dashboard.webp";
 import project2 from "@/assets/project-2.jpg";
 import project3 from "@/assets/project-3.jpg";
 
@@ -17,7 +17,7 @@ export const projectsData: ProjectData[] = [
     title: "Marketing Hub CMS",
     description: "A comprehensive content management system designed to streamline marketing operations with powerful analytics and intuitive workflows.",
     category: "Dashboard",
-    image: project1,
+    image: marketingHubDashboard,
     route: "/projects/mobile-banking",
   },
   {

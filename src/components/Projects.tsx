@@ -16,7 +16,7 @@ const Projects = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+        <div className="flex flex-col gap-6 md:gap-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
           {projectsData.map((project, index) => (
             <div 
               key={project.id} 
