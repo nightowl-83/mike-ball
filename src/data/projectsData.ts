@@ -9,6 +9,7 @@ export interface ProjectData {
   category: string;
   image: string;
   route: string;
+  tags: string[];
 }
 
 export const projectsData: ProjectData[] = [
@@ -19,6 +20,7 @@ export const projectsData: ProjectData[] = [
     category: "Dashboard",
     image: marketingHubDashboard,
     route: "/projects/mobile-banking",
+    tags: ["UX Research", "UI Design", "Prototyping", "User Testing"],
   },
   {
     id: "ecommerce-platform",
@@ -27,6 +29,7 @@ export const projectsData: ProjectData[] = [
     category: "Web Design",
     image: project2,
     route: "/projects/ecommerce-platform",
+    tags: ["Conversion Optimization", "A/B Testing", "Responsive Design", "Brand Identity"],
   },
   {
     id: "analytics-dashboard",
@@ -35,5 +38,6 @@ export const projectsData: ProjectData[] = [
     category: "SaaS Product",
     image: project3,
     route: "/projects/analytics-dashboard",
+    tags: ["Data Visualization", "Dashboard Design", "User Research", "Interaction Design"],
   },
 ];

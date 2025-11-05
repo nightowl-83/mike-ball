@@ -7,24 +7,49 @@ interface ProjectCardProps {
   category: string;
   image: string;
   link?: string;
+  tags?: string[];
 }
 
-const ProjectCard = ({ title, description, category, image, link = "/project/1" }: ProjectCardProps) => {
+const ProjectCard = ({ title, description, category, image, link = "/project/1", tags = [] }: ProjectCardProps) => {
   return (
     <a href={link} className="group block">
       <Card className="overflow-hidden bg-card border-border hover:border-primary/50 transition-all duration-300 hover:shadow-card h-full">
         <div className="flex flex-col md:flex-row items-stretch h-full">
           {/* Content - Left Side */}
-          <div className="flex-1 p-6 md:p-8 space-y-3 md:space-y-4 flex flex-col justify-center order-2 md:order-1">
-            <div className="flex items-center">
-              <span className="text-sm font-medium text-primary">{category}</span>
+          <div className="flex-1 p-6 md:p-8 space-y-3 md:space-y-4 flex flex-col justify-between order-2 md:order-1">
+            <div className="space-y-3 md:space-y-4">
+              <div className="flex items-center">
+                <span className="text-sm font-medium text-primary">{category}</span>
+              </div>
+              <h3 className="text-2xl md:text-3xl font-bold group-hover:text-primary transition-colors duration-300">
+                {title}
+              </h3>
+              <p className="text-muted-foreground leading-relaxed">
+                {description}
+              </p>
+              
+              {/* Tags */}
+              {tags.length > 0 && (
+                <div className="flex flex-wrap gap-2">
+                  {tags.map((tag, index) => (
+                    <span 
+                      key={index}
+                      className="text-xs px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
-            <h3 className="text-2xl md:text-3xl font-bold group-hover:text-primary transition-colors duration-300">
-              {title}
-            </h3>
-            <p className="text-muted-foreground leading-relaxed">
-              {description}
-            </p>
+
+            {/* CTA Button */}
+            <div className="pt-2">
+              <span className="inline-flex items-center gap-2 text-sm font-medium text-primary group-hover:gap-3 transition-all duration-300">
+                View Project 
+                <ArrowUpRight className="h-4 w-4" />
+              </span>
+            </div>
           </div>
 
           {/* Image Container - Right Side */}

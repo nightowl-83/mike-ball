@@ -29,6 +29,7 @@ const Projects = () => {
                 category={project.category}
                 image={project.image}
                 link={project.route}
+                tags={project.tags}
               />
             </div>
           ))}
