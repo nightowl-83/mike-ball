@@ -11,6 +11,7 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { StickyNavHeader } from "@/components/StickyNavHeader";
 import { cn } from "@/lib/utils";
 import ruralLandHero from "@/assets/rural-land-marketplace.jpg";
+import benFHeadshot from "@/assets/ben-f-headshot.webp";
 
 const RuralLandMarketplaceProject = () => {
   const [stickyHeader, setStickyHeader] = useState({
@@ -664,70 +665,116 @@ const RuralLandMarketplaceProject = () => {
               </div>
             </div>
 
-            {/* User Persona */}
-            <div ref={personaAnim.ref} className={`mt-16 md:mt-32 transition-all duration-700 ${personaAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-              <div ref={discoveryPersonaRef} className="absolute -mt-20" />
-              <h3 className="text-2xl md:text-3xl font-bold mb-8 md:mb-12">User Persona</h3>
-              <div className="bg-card rounded-2xl p-6 md:p-12 border border-border">
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
-                  <div className="lg:col-span-1 flex flex-col items-center lg:items-start">
-                    <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-muted mb-6 overflow-hidden">
-                      <img src="/placeholder.svg" alt="User persona" className="w-full h-full object-cover" />
+            {/* Persona Header Section */}
+            <div className="mt-16 md:mt-32 max-w-6xl mx-auto text-center px-4">
+              <h2 className="text-3xl md:text-4xl lg:text-6xl xl:text-7xl font-bold leading-tight">
+                Creating in-depth user personas to better understand our users, goals & needs.
+              </h2>
+            </div>
+
+            {/* User Persona Section - 2x2 Grid */}
+            <div ref={discoveryPersonaRef} className="mt-12 md:mt-20">
+              <div ref={personaAnim.ref} className={`transition-all duration-700 ${personaAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+              <h3 className="text-xl md:text-3xl font-semibold mb-4 md:mb-12 max-w-6xl mx-auto">User Persona</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6 max-w-6xl mx-auto">
+                {/* Top Left - Photo & Bio */}
+                <div className="bg-card rounded-2xl overflow-hidden shadow-sm">
+                  <div className="aspect-[4/3] bg-muted">
+                    <img src={benFHeadshot} alt="Rural Land Agent" className="w-full h-full object-cover" />
+                  </div>
+                  <div className="p-8">
+                    <h3 className="text-3xl font-bold mb-2">Ben F.</h3>
+                    <p className="text-lg text-muted-foreground">41 years old, Rural Land Agent</p>
+                  </div>
+                </div>
+
+                {/* Top Right - User Goals */}
+                <div className="bg-card rounded-2xl p-10 shadow-sm flex flex-col justify-center">
+                  <h3 className="text-3xl font-bold mb-8">User Goals</h3>
+                  <div className="space-y-6 mb-8">
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                        <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <span className="text-xl">Effective Inventory Management</span>
                     </div>
-                    <h4 className="text-xl md:text-2xl font-bold mb-2">Sarah Thompson</h4>
-                    <p className="text-sm md:text-base text-muted-foreground mb-4">Land Buyer, 42</p>
-                    <div className="space-y-2 text-sm">
-                      <p><strong>Occupation:</strong> Business Owner</p>
-                      <p><strong>Location:</strong> Rural Texas</p>
-                      <p><strong>Tech Savvy:</strong> Moderate</p>
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                        <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <span className="text-xl">Streamlined operations</span>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                        <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <span className="text-xl">Market understanding</span>
                     </div>
                   </div>
-                  
-                  <div className="lg:col-span-2 space-y-6">
+                  <p className="text-base text-muted-foreground leading-relaxed">
+                    Ben is dedicated to optimizing processes and implementing strategies for organizing success.
+                  </p>
+                </div>
+
+                {/* Bottom Left - Personality */}
+                <div className="bg-card rounded-2xl p-8 shadow-sm">
+                  <h3 className="text-2xl font-bold mb-8">Personality</h3>
+                  <div className="space-y-6">
                     <div>
-                      <h5 className="font-semibold text-lg mb-3">Goals</h5>
-                      <ul className="space-y-2 text-muted-foreground">
-                        <li className="flex items-start gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                          <span>Find affordable rural land for investment or personal use</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                          <span>Quickly compare multiple properties by location and features</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                          <span>Access detailed information while browsing on mobile</span>
-                        </li>
-                      </ul>
+                      <div className="flex justify-between text-sm mb-2">
+                        <span>Sensing</span>
+                        <span>Intuition</span>
+                      </div>
+                      <div className="h-3 bg-muted rounded-full overflow-hidden relative">
+                        <div className="h-full bg-primary rounded-full absolute left-0 top-0" style={{
+                          width: discoveryStatsAnim.isVisible ? '65%' : '0%',
+                          transition: 'width 2.5s cubic-bezier(0.4, 0, 0.2, 1)',
+                          transitionDelay: '0s'
+                        }}></div>
+                      </div>
                     </div>
-                    
                     <div>
-                      <h5 className="font-semibold text-lg mb-3">Frustrations</h5>
-                      <ul className="space-y-2 text-muted-foreground">
-                        <li className="flex items-start gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-destructive mt-2 flex-shrink-0" />
-                          <span>Complex search filters that are hard to understand</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-destructive mt-2 flex-shrink-0" />
-                          <span>Disconnected map experience that doesn't integrate with search</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-destructive mt-2 flex-shrink-0" />
-                          <span>Poor mobile experience makes browsing on-the-go frustrating</span>
-                        </li>
-                      </ul>
+                      <div className="flex justify-between text-sm mb-2">
+                        <span>Extrovert</span>
+                        <span>Introvert</span>
+                      </div>
+                      <div className="h-3 bg-muted rounded-full overflow-hidden relative">
+                        <div className="h-full bg-primary rounded-full absolute left-0 top-0" style={{
+                          width: discoveryStatsAnim.isVisible ? '45%' : '0%',
+                          transition: 'width 2.5s cubic-bezier(0.4, 0, 0.2, 1)',
+                          transitionDelay: '0.2s'
+                        }}></div>
+                      </div>
                     </div>
-                    
                     <div>
-                      <h5 className="font-semibold text-lg mb-3">Quote</h5>
-                      <p className="text-lg italic text-muted-foreground border-l-4 border-primary pl-4">
-                        "I need a platform that makes it easy to find land in specific areas without jumping through hoops. The map should be my main tool, not an afterthought."
-                      </p>
+                      <div className="flex justify-between text-sm mb-2">
+                        <span>Feeling</span>
+                        <span>Thinking</span>
+                      </div>
+                      <div className="h-3 bg-muted rounded-full overflow-hidden relative">
+                        <div className="h-full bg-primary rounded-full absolute left-0 top-0" style={{
+                          width: discoveryStatsAnim.isVisible ? '75%' : '0%',
+                          transition: 'width 2.5s cubic-bezier(0.4, 0, 0.2, 1)',
+                          transitionDelay: '0.4s'
+                        }}></div>
+                      </div>
                     </div>
                   </div>
                 </div>
+
+                {/* Bottom Right - Quote */}
+                <div className="bg-card rounded-2xl p-8 shadow-sm flex items-center">
+                  <p className="text-xl text-muted-foreground leading-relaxed italic">
+                    "Content management is very important to me. I need to be able to effectively manage inventory, post, track leads and analyze the markets."
+                  </p>
+                </div>
+              </div>
               </div>
             </div>
           </div>
