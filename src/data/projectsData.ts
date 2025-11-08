@@ -1,4 +1,5 @@
 import marketingHubDashboard from "@/assets/marketing-hub-dashboard.webp";
+import ruralLandMarketplace from "@/assets/rural-land-marketplace.jpg";
 import project2 from "@/assets/project-2.jpg";
 import project3 from "@/assets/project-3.jpg";
 
@@ -21,6 +22,15 @@ export const projectsData: ProjectData[] = [
     image: marketingHubDashboard,
     route: "/projects/mobile-banking",
     tags: ["UX Research", "UI Design", "Prototyping", "User Testing"],
+  },
+  {
+    id: "rural-land-marketplace",
+    title: "Rural Land Marketplace",
+    description: "A complete relaunch of Costar's Rural Land Marketplace with modern design, intuitive search, and enhanced map functionality.",
+    category: "Web Design",
+    image: ruralLandMarketplace,
+    route: "/projects/rural-land-marketplace",
+    tags: ["Lead Designer", "User Testing", "UI Design", "Mobile & Responsive Design", "Search & Map Redesign"],
   },
   {
     id: "ecommerce-platform",
