@@ -1385,19 +1385,19 @@ const MobileBankingProject = () => {
               <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold">Listing Creation Process</h3>
               <p className="text-sm md:text-base lg:text-lg text-muted-foreground mt-3 md:mt-4">Interactive flows demonstrating the streamlined property listing experience</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-[800px] mx-auto py-2 md:py-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-[1000px] mx-auto py-2 md:py-4">
               {/* Location Selection GIF */}
               <div className="flex flex-col gap-4">
                 <p className="text-base text-muted-foreground text-center">Location Property</p>
-                <div className="w-full max-h-[400px] rounded-xl md:rounded-2xl overflow-hidden bg-card/50 flex items-center justify-center">
-                  <img src={addListingLocationGif} alt="Add listing location selection process" className="w-full h-full object-contain scale-90" />
+                <div className="w-full max-h-[600px] rounded-xl md:rounded-2xl overflow-hidden bg-card/50 flex items-center justify-center">
+                  <img src={addListingLocationGif} alt="Add listing location selection process" className="w-full h-full object-contain" />
                 </div>
               </div>
               {/* Full Listing Form GIF */}
               <div className="flex flex-col gap-4">
                 <p className="text-base text-muted-foreground text-center">Adding Listing Details</p>
-                <div className="w-full max-h-[400px] rounded-xl md:rounded-2xl overflow-hidden bg-card/50 flex items-center justify-center">
-                  <img src={addListingFullGif} alt="Complete listing creation process" className="w-full h-full object-contain scale-90" />
+                <div className="w-full max-h-[600px] rounded-xl md:rounded-2xl overflow-hidden bg-card/50 flex items-center justify-center">
+                  <img src={addListingFullGif} alt="Complete listing creation process" className="w-full h-full object-contain" />
                 </div>
               </div>
             </div>
