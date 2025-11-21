@@ -409,7 +409,7 @@ const RuralLandMarketplaceProject = () => {
                 </div>
 
                 {/* Step 4 */}
-                <div className="flex gap-4 md:gap-10 py-6 md:py-8 border-b border-border">
+                <div className="flex gap-4 md:gap-10 pt-6 md:pt-8">
                   <div className="text-xl md:text-2xl lg:text-3xl font-bold font-mono text-primary flex-shrink-0">/04</div>
                   <div className="space-y-2 md:space-y-3">
                     <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold">Delivery</h3>
@@ -417,20 +417,6 @@ const RuralLandMarketplaceProject = () => {
                       <p>Design System</p>
                       <p>User Testing</p>
                       <p>UI Implementation</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Step 5 */}
-                <div className="flex gap-4 md:gap-10 pt-6 md:pt-8">
-                  <div className="text-xl md:text-2xl lg:text-3xl font-bold font-mono text-primary flex-shrink-0">/05</div>
-                  <div className="space-y-2 md:space-y-3">
-                    <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold">Search</h3>
-                    <div className="space-y-1 text-base md:text-lg text-muted-foreground">
-                      <p>Advanced filters</p>
-                      <p>Map integration</p>
-                      <p>Smart suggestions</p>
-                      <p>Mobile optimization</p>
                     </div>
                   </div>
                 </div>
