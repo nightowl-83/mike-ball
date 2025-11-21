@@ -11,7 +11,7 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { StickyNavHeader } from "@/components/StickyNavHeader";
 import { cn } from "@/lib/utils";
 import ruralLandHero from "@/assets/rural-land-marketplace.jpg";
-import benFHeadshot from "@/assets/ben-f-headshot.webp";
+import personaHeadshot from "@/assets/persona-headshot.jpg";
 import landPromoDesktop from "@/assets/land-promo-desktop-2.png";
 import landPromoMobile from "@/assets/land-promo-mobile.jpg";
 
@@ -682,11 +682,11 @@ const RuralLandMarketplaceProject = () => {
                 {/* Top Left - Photo & Bio */}
                 <div className="bg-card rounded-2xl overflow-hidden shadow-sm">
                   <div className="aspect-[4/3] bg-muted">
-                    <img src={benFHeadshot} alt="Rural Land Agent" className="w-full h-full object-cover" />
+                    <img src={personaHeadshot} alt="Land Buyer Persona" className="w-full h-full object-cover" />
                   </div>
                   <div className="p-8">
-                    <h3 className="text-3xl font-bold mb-2">Ben F.</h3>
-                    <p className="text-lg text-muted-foreground">41 years old, Rural Land Agent</p>
+                    <h3 className="text-3xl font-bold mb-2">Carlos M.</h3>
+                    <p className="text-lg text-muted-foreground">38 years old, Land Buyer</p>
                   </div>
                 </div>
 
@@ -700,7 +700,7 @@ const RuralLandMarketplaceProject = () => {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                         </svg>
                       </div>
-                      <span className="text-xl">Effective Inventory Management</span>
+                      <span className="text-xl">Map-based property searching</span>
                     </div>
                     <div className="flex items-center gap-4">
                       <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
@@ -708,7 +708,7 @@ const RuralLandMarketplaceProject = () => {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                         </svg>
                       </div>
-                      <span className="text-xl">Streamlined operations</span>
+                      <span className="text-xl">Mobile-friendly experience</span>
                     </div>
                     <div className="flex items-center gap-4">
                       <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
@@ -716,11 +716,19 @@ const RuralLandMarketplaceProject = () => {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                         </svg>
                       </div>
-                      <span className="text-xl">Market understanding</span>
+                      <span className="text-xl">Improved search functionality</span>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                        <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <span className="text-xl">Better image viewing on detail pages</span>
                     </div>
                   </div>
                   <p className="text-base text-muted-foreground leading-relaxed">
-                    Ben is dedicated to optimizing processes and implementing strategies for organizing success.
+                    Carlos is looking for a seamless way to discover and explore land properties through an intuitive, location-first platform.
                   </p>
                 </div>
 
@@ -773,7 +781,7 @@ const RuralLandMarketplaceProject = () => {
                 {/* Bottom Right - Quote */}
                 <div className="bg-card rounded-2xl p-8 shadow-sm flex items-center">
                   <p className="text-xl text-muted-foreground leading-relaxed italic">
-                    "Content management is very important to me. I need to be able to effectively manage inventory, post, track leads and analyze the markets."
+                    "I need to easily search properties on a map from my phone, with better filters and image galleries that actually work well."
                   </p>
                 </div>
               </div>
