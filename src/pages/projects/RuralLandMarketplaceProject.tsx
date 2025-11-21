@@ -12,6 +12,8 @@ import { StickyNavHeader } from "@/components/StickyNavHeader";
 import { cn } from "@/lib/utils";
 import ruralLandHero from "@/assets/rural-land-marketplace.jpg";
 import benFHeadshot from "@/assets/ben-f-headshot.webp";
+import landPromoDesktop from "@/assets/land-promo-desktop.png";
+import landPromoMobile from "@/assets/land-promo-mobile.jpg";
 
 const RuralLandMarketplaceProject = () => {
   const [stickyHeader, setStickyHeader] = useState({
@@ -342,10 +344,10 @@ const RuralLandMarketplaceProject = () => {
           <div className="container mx-auto max-w-[1440px]">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-card">
-                <img src="/placeholder.svg" alt="Search interface design" className="w-full h-full object-cover" />
+                <img src={landPromoDesktop} alt="Land.com Find Your Open Space promotional banner" className="w-full h-full object-cover" />
               </div>
               <div className="w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-card">
-                <img src="/placeholder.svg" alt="Map view design" className="w-full h-full object-cover" />
+                <img src={landPromoMobile} alt="Land.com mobile app interface" className="w-full h-full object-cover" />
               </div>
             </div>
           </div>
