@@ -409,7 +409,7 @@ const RuralLandMarketplaceProject = () => {
                 </div>
 
                 {/* Step 4 */}
-                <div className="flex gap-4 md:gap-10 pt-6 md:pt-8">
+                <div className="flex gap-4 md:gap-10 py-6 md:py-8 border-b border-border">
                   <div className="text-xl md:text-2xl lg:text-3xl font-bold font-mono text-primary flex-shrink-0">/04</div>
                   <div className="space-y-2 md:space-y-3">
                     <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold">Delivery</h3>
@@ -418,6 +418,69 @@ const RuralLandMarketplaceProject = () => {
                       <p>User Testing</p>
                       <p>UI Implementation</p>
                     </div>
+                  </div>
+                </div>
+
+                {/* Step 5 */}
+                <div className="flex gap-4 md:gap-10 pt-6 md:pt-8">
+                  <div className="text-xl md:text-2xl lg:text-3xl font-bold font-mono text-primary flex-shrink-0">/05</div>
+                  <div className="space-y-2 md:space-y-3">
+                    <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold">Search</h3>
+                    <div className="space-y-1 text-base md:text-lg text-muted-foreground">
+                      <p>Advanced filters</p>
+                      <p>Map integration</p>
+                      <p>Smart suggestions</p>
+                      <p>Mobile optimization</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Search Section - 05 */}
+        <section className="relative py-10 md:py-24 bg-card/30">
+          <div className="container mx-auto max-w-[1440px]">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-16 mb-4 md:mb-16">
+              <div className="order-1 lg:order-1">
+                <h2 className="text-3xl md:text-5xl lg:text-7xl xl:text-8xl font-bold">Search</h2>
+              </div>
+              <div className="order-2 lg:order-2 text-center lg:text-right hidden md:block">
+                <span className="text-3xl md:text-6xl lg:text-7xl font-bold font-mono opacity-20">/05</span>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-16">
+              {/* Left Column */}
+              <div className="space-y-4 md:space-y-12">
+                <p className="text-base md:text-xl text-muted-foreground">
+                  The new search experience became the cornerstone of the platform redesign, prioritizing speed, clarity, and seamless integration with map browsing.
+                </p>
+              </div>
+
+              {/* Right Column */}
+              <div className="space-y-4 md:space-y-12">
+                <div className="space-y-4 md:space-y-6 text-base md:text-lg text-muted-foreground">
+                  <p>
+                    <strong className="text-primary">Simplified Filters:</strong> Streamlined search controls for property type, acreage, price range, and location with an intuitive interface that reduces cognitive load.
+                  </p>
+                  
+                  <p>
+                    <strong className="text-primary">Map-First Approach:</strong> Integrated search directly into the map view, allowing users to draw search boundaries, explore by region, and see results in real-time.
+                  </p>
+                  
+                  <p>
+                    <strong className="text-primary">Mobile-Optimized:</strong> Touch-friendly controls and gestures designed specifically for mobile devices, with quick filters accessible via bottom sheet navigation.
+                  </p>
+                  
+                  <p>
+                    <strong className="text-primary">Smart Suggestions:</strong> Auto-complete and location-based suggestions help users find properties faster, with saved searches and alerts for new listings.
+                  </p>
+                  
+                  <div className="p-4 md:p-6 rounded-xl bg-card/50 border-2 border-primary/20">
+                    <h3 className="text-lg md:text-xl font-bold text-foreground mb-3 md:mb-4">Key Impact</h3>
+                    <p>Search satisfaction increased from 28% to 76%, with users completing property searches 40% faster on average.</p>
+                    <p className="mt-2">Mobile search engagement grew by 85%, making it the primary way users discovered properties.</p>
                   </div>
                 </div>
               </div>
