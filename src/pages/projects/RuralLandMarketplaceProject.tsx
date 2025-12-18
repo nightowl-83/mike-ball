@@ -14,6 +14,8 @@ import ruralLandHero from "@/assets/rural-land-marketplace.jpg";
 import personaHeadshot from "@/assets/persona-headshot.jpg";
 import landPromoDesktop from "@/assets/land-promo-desktop-2.png";
 import landPromoMobile from "@/assets/land-promo-mobile.jpg";
+import landFlowDesktop from "@/assets/LandNetwork-Flow.jpg";
+import landFlowMobile from "@/assets/Land-Flow-mobile.jpg";
 
 const RuralLandMarketplaceProject = () => {
   const [stickyHeader, setStickyHeader] = useState({
@@ -853,7 +855,10 @@ const RuralLandMarketplaceProject = () => {
               </div>
             </div>
           </div>
-          <img src="/placeholder.svg" alt="User flow design" className="w-full h-full object-cover object-left-top" />
+          {/* Desktop image - hidden on tablet and below */}
+          <img src={landFlowDesktop} alt="User flow design" className="hidden lg:block w-full h-full object-cover object-left-top" />
+          {/* Mobile/Tablet image - visible on tablet and below */}
+          <img src={landFlowMobile} alt="User flow design" className="block lg:hidden w-full h-full object-cover object-center" />
         </div>
 
         {/* Design System Section */}
