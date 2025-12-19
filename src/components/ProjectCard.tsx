@@ -13,7 +13,7 @@ interface ProjectCardProps {
 const ProjectCard = ({ title, description, category, image, link = "/project/1", tags = [] }: ProjectCardProps) => {
   return (
     <a href={link} className="group block">
-      <Card className="overflow-hidden bg-card border-border hover:border-primary/50 transition-all duration-300 hover:shadow-card h-full">
+      <Card className="overflow-hidden bg-card border-border hover:border-primary/50 transition-all duration-300 hover:shadow-card h-full min-h-[320px] md:min-h-[380px]">
         <div className="flex flex-col md:flex-row items-stretch h-full">
           {/* Content - Left Side */}
           <div className="flex-1 p-6 md:p-8 space-y-3 md:space-y-4 flex flex-col justify-between order-2 md:order-1">
@@ -59,7 +59,7 @@ const ProjectCard = ({ title, description, category, image, link = "/project/1",
               alt={title}
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
             />
-            <div className="absolute inset-0 bg-gradient-to-l from-transparent via-card/20 to-card/90 md:bg-gradient-to-l opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            
             
             {/* Hover Icon */}
             <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-primary flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
