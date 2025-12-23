@@ -16,6 +16,7 @@ import landPromoDesktop from "@/assets/land-promo-desktop-2.png";
 import landPromoMobile from "@/assets/land-promo-mobile.jpg";
 import landFlowDesktop from "@/assets/LandNetwork-Flow.jpg";
 import landFlowMobile from "@/assets/Land-Flow-mobile.jpg";
+import uiHidefGif from "@/assets/ui-hidef.gif";
 
 const RuralLandMarketplaceProject = () => {
   const [stickyHeader, setStickyHeader] = useState({
@@ -1102,6 +1103,20 @@ const RuralLandMarketplaceProject = () => {
               </div>
             </div>
           </div>
+        </section>
+
+        {/* Translating Wireframes to UI - Full Screen Image Section */}
+        <section className="relative w-full h-screen max-h-[900px]">
+          <div className="absolute top-0 left-0 right-0 z-20 px-6 pt-24">
+            <div className="container mx-auto max-w-[1440px]">
+              <h3 className="text-3xl md:text-4xl font-bold text-foreground">Translating Wireframes to UI</h3>
+            </div>
+          </div>
+          <img 
+            src={uiHidefGif} 
+            alt="Translating wireframes to high-fidelity UI" 
+            className="w-full h-full object-cover"
+          />
         </section>
 
         {/* Search Section - 05 */}
