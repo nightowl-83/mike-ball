@@ -16,7 +16,7 @@ import landPromoDesktop from "@/assets/land-promo-desktop-2.png";
 import landPromoMobile from "@/assets/land-promo-mobile.jpg";
 import landFlowDesktop from "@/assets/LandNetwork-Flow.jpg";
 import landFlowMobile from "@/assets/Land-Flow-mobile.jpg";
-import uiHidefGif from "@/assets/ui-hidef.gif";
+import uiWireframeVideo from "@/assets/ui-wireframe-hidef.webm";
 
 const RuralLandMarketplaceProject = () => {
   const [stickyHeader, setStickyHeader] = useState({
@@ -1112,9 +1112,12 @@ const RuralLandMarketplaceProject = () => {
               <h3 className="text-3xl md:text-4xl font-bold text-foreground">Translating Wireframes to UI</h3>
             </div>
           </div>
-          <img 
-            src={uiHidefGif} 
-            alt="Translating wireframes to high-fidelity UI" 
+          <video 
+            src={uiWireframeVideo} 
+            autoPlay 
+            loop 
+            muted 
+            playsInline
             className="w-full h-full object-cover"
           />
         </section>
