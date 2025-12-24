@@ -42,6 +42,7 @@ const RuralLandMarketplaceProject = () => {
   const userFlowRef = useRef<HTMLDivElement>(null);
   const designSystemRef = useRef<HTMLDivElement>(null);
   const deliveryRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   // Section navigation data
   const sections = [{
@@ -221,6 +222,21 @@ const RuralLandMarketplaceProject = () => {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [galleryOpen]);
+
+  // Seamless video loop - reset before browser triggers reload
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    
+    const handleTimeUpdate = () => {
+      if (video.duration - video.currentTime < 0.1) {
+        video.currentTime = 0;
+      }
+    };
+    
+    video.addEventListener('timeupdate', handleTimeUpdate);
+    return () => video.removeEventListener('timeupdate', handleTimeUpdate);
+  }, []);
 
   // Scroll animations for all sections
   const heroAnim = useScrollAnimation();
@@ -1122,13 +1138,14 @@ const RuralLandMarketplaceProject = () => {
             <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-background to-transparent z-10" />
             
             <video 
+              ref={videoRef}
               src={uiWireframeVideo} 
               autoPlay 
               loop 
               muted 
               playsInline
               preload="auto"
-              className="w-full h-full object-cover object-left lg:object-center"
+              className="w-full h-full object-cover object-[15%_center] lg:object-center"
             />
             
             {/* Bottom gradient fade */}
