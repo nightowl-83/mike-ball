@@ -230,7 +230,7 @@ const RuralLandMarketplaceProject = () => {
     if (!video) return;
     
     const handleTimeUpdate = () => {
-      if (video.duration - video.currentTime < 0.1) {
+      if (video.duration - video.currentTime < 0.4) {
         video.currentTime = 0;
       }
     };
@@ -1127,7 +1127,7 @@ const RuralLandMarketplaceProject = () => {
               <h3 className="text-3xl md:text-4xl font-bold text-foreground">Translating Wireframes to UI</h3>
             </div>
           </div>
-          <div className="relative w-full h-screen max-h-[600px] md:max-h-[900px] overflow-hidden">
+          <div className="relative w-full h-screen max-h-[600px] lg:max-h-[850px] overflow-hidden">
             <video 
               ref={videoRef}
               src={uiWireframeVideo} 
