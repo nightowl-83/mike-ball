@@ -1130,7 +1130,7 @@ const RuralLandMarketplaceProject = () => {
               <h3 className="text-3xl md:text-4xl font-bold text-foreground">Translating Wireframes to UI</h3>
             </div>
           </div>
-          <div className="relative w-full h-screen max-h-[900px] overflow-hidden">
+          <div className="relative w-full h-screen max-h-[85vh] md:max-h-[900px] overflow-hidden">
             {/* Top gradient fade */}
             <div className="hidden md:block absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-background to-transparent z-10" />
             
@@ -1142,7 +1142,7 @@ const RuralLandMarketplaceProject = () => {
               muted 
               playsInline
               preload="auto"
-              className="w-full h-full object-cover object-[14%_center] scale-[0.85] md:object-[20%_center] md:scale-100 lg:object-center lg:scale-95"
+              className="w-full h-full object-cover object-[14%_center] scale-75 md:object-[20%_center] md:scale-100 lg:object-center lg:scale-95"
             />
             
             {/* Bottom gradient fade */}
