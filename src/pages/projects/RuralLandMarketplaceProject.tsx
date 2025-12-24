@@ -1112,14 +1112,14 @@ const RuralLandMarketplaceProject = () => {
               <h3 className="text-3xl md:text-4xl font-bold text-foreground">Translating Wireframes to UI</h3>
             </div>
           </div>
-          <div className="w-full h-screen max-h-[900px]">
+          <div className="w-full h-screen max-h-[900px] overflow-hidden">
             <video 
               src={uiWireframeVideo} 
               autoPlay 
               loop 
               muted 
               playsInline
-              className="w-full h-full object-cover"
+              className="w-auto h-full object-cover -translate-x-[400px] lg:translate-x-0 lg:w-full"
             />
           </div>
         </section>
