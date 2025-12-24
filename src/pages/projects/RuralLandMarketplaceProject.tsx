@@ -238,6 +238,8 @@ const RuralLandMarketplaceProject = () => {
   const resultsAnim = useScrollAnimation();
   const showcaseAnim = useScrollAnimation();
   const navigationAnim = useScrollAnimation();
+  const { ref: wireframeRef, isVisible: wireframeVisible } = useScrollAnimation();
+  
   
   return <div className="min-h-screen bg-background">
       {/* Unified Sticky Header */}
@@ -1106,21 +1108,31 @@ const RuralLandMarketplaceProject = () => {
         </section>
 
         {/* Translating Wireframes to UI - Full Screen Image Section */}
-        <section className="w-full">
+        <section 
+          ref={wireframeRef} 
+          className={`w-full transition-all duration-700 ${wireframeVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+        >
           <div className="px-6 py-12 md:py-16">
             <div className="container mx-auto max-w-[1440px]">
               <h3 className="text-3xl md:text-4xl font-bold text-foreground">Translating Wireframes to UI</h3>
             </div>
           </div>
-          <div className="w-full h-screen max-h-[900px] overflow-hidden">
+          <div className="relative w-full h-screen max-h-[900px] overflow-hidden">
+            {/* Top gradient fade */}
+            <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-background to-transparent z-10" />
+            
             <video 
               src={uiWireframeVideo} 
               autoPlay 
               loop 
               muted 
               playsInline
-              className="w-auto h-full object-cover -translate-x-[400px] lg:translate-x-0 lg:w-full"
+              preload="auto"
+              className="w-full h-full object-cover object-left lg:object-center"
             />
+            
+            {/* Bottom gradient fade */}
+            <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent z-10" />
           </div>
         </section>
 
