@@ -1145,7 +1145,7 @@ const RuralLandMarketplaceProject = () => {
               muted 
               playsInline
               preload="auto"
-              className="w-full h-full object-cover object-[15%_center] lg:object-center"
+              className="w-full h-full object-cover object-[20%_center] scale-90 lg:scale-100 lg:object-center"
             />
             
             {/* Bottom gradient fade */}
