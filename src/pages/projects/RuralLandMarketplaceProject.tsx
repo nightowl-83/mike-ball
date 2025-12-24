@@ -29,7 +29,8 @@ const RuralLandMarketplaceProject = () => {
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [designLayout, setDesignLayout] = useState<1 | 2 | 3>(1);
-  const [videoLoaded, setVideoLoaded] = useState(false);
+  const [videoReady, setVideoReady] = useState(false);
+  const [videoBuffering, setVideoBuffering] = useState(true);
 
   // Refs for sections and subsections
   const heroRef = useRef<HTMLDivElement>(null);
@@ -225,19 +226,46 @@ const RuralLandMarketplaceProject = () => {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [galleryOpen]);
 
-  // Seamless video loop - reset before browser triggers reload
+  // Seamless video loop - reset before browser triggers reload with smooth transition
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
     
     const handleTimeUpdate = () => {
       if (video.duration - video.currentTime < 0.4) {
-        video.currentTime = 0;
+        setVideoBuffering(true);
+        video.currentTime = 0.01;
+        video.play();
       }
     };
     
+    const handleCanPlay = () => setVideoBuffering(false);
+    const handlePlaying = () => setVideoBuffering(false);
+    const handleWaiting = () => setVideoBuffering(true);
+    const handleSeeking = () => setVideoBuffering(true);
+    const handleSeeked = () => setVideoBuffering(false);
+    const handleLoadedData = () => {
+      setVideoReady(true);
+      setVideoBuffering(false);
+    };
+    
     video.addEventListener('timeupdate', handleTimeUpdate);
-    return () => video.removeEventListener('timeupdate', handleTimeUpdate);
+    video.addEventListener('canplay', handleCanPlay);
+    video.addEventListener('playing', handlePlaying);
+    video.addEventListener('waiting', handleWaiting);
+    video.addEventListener('seeking', handleSeeking);
+    video.addEventListener('seeked', handleSeeked);
+    video.addEventListener('loadeddata', handleLoadedData);
+    
+    return () => {
+      video.removeEventListener('timeupdate', handleTimeUpdate);
+      video.removeEventListener('canplay', handleCanPlay);
+      video.removeEventListener('playing', handlePlaying);
+      video.removeEventListener('waiting', handleWaiting);
+      video.removeEventListener('seeking', handleSeeking);
+      video.removeEventListener('seeked', handleSeeked);
+      video.removeEventListener('loadeddata', handleLoadedData);
+    };
   }, []);
 
   // Scroll animations for all sections
@@ -1128,7 +1156,7 @@ const RuralLandMarketplaceProject = () => {
               <h3 className="text-3xl md:text-4xl font-bold text-foreground">Translating Wireframes to UI</h3>
             </div>
           </div>
-          <div className="relative w-full h-screen max-h-[600px] lg:max-h-[680px] overflow-hidden">
+          <div className="relative w-full flex justify-center bg-background">
             <video 
               ref={videoRef}
               src={uiWireframeVideo} 
@@ -1137,8 +1165,12 @@ const RuralLandMarketplaceProject = () => {
               muted 
               playsInline
               preload="auto"
-              onLoadedData={() => setVideoLoaded(true)}
-              className={`w-full h-full object-cover object-[16%_center] scale-75 md:object-[20%_center] md:scale-100 lg:object-center lg:scale-95 transition-opacity duration-700 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
+              className={`w-full h-auto max-h-[600px] lg:max-h-[680px] object-cover object-[16%_center] scale-75 md:object-[20%_center] md:scale-100 lg:object-contain lg:scale-100 transition-opacity duration-500 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
+            />
+            
+            {/* Buffering overlay for smooth loop transitions */}
+            <div 
+              className={`absolute inset-0 bg-background/60 backdrop-blur-sm transition-opacity duration-300 pointer-events-none ${videoBuffering && videoReady ? 'opacity-100' : 'opacity-0'}`}
             />
             
             {/* Bottom gradient fade */}
