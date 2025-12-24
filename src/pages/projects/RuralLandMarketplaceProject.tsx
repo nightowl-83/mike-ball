@@ -29,6 +29,7 @@ const RuralLandMarketplaceProject = () => {
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [designLayout, setDesignLayout] = useState<1 | 2 | 3>(1);
+  const [videoLoaded, setVideoLoaded] = useState(false);
 
   // Refs for sections and subsections
   const heroRef = useRef<HTMLDivElement>(null);
@@ -1127,7 +1128,7 @@ const RuralLandMarketplaceProject = () => {
               <h3 className="text-3xl md:text-4xl font-bold text-foreground">Translating Wireframes to UI</h3>
             </div>
           </div>
-          <div className="relative w-full h-screen max-h-[600px] lg:max-h-[850px] overflow-hidden">
+          <div className="relative w-full h-screen max-h-[600px] lg:max-h-[680px] overflow-hidden">
             <video 
               ref={videoRef}
               src={uiWireframeVideo} 
@@ -1136,7 +1137,8 @@ const RuralLandMarketplaceProject = () => {
               muted 
               playsInline
               preload="auto"
-              className="w-full h-full object-cover object-[16%_center] scale-75 md:object-[20%_center] md:scale-100 lg:object-center lg:scale-95"
+              onLoadedData={() => setVideoLoaded(true)}
+              className={`w-full h-full object-cover object-[16%_center] scale-75 md:object-[20%_center] md:scale-100 lg:object-center lg:scale-95 transition-opacity duration-700 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
             />
             
             {/* Bottom gradient fade */}
