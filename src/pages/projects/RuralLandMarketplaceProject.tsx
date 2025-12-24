@@ -1125,7 +1125,7 @@ const RuralLandMarketplaceProject = () => {
 
         {/* Translating Wireframes to UI - Full Screen Image Section */}
         <section className="w-full">
-          <div className="px-6 py-12 md:py-16">
+          <div className="px-6 py-6 md:py-16">
             <div className="container mx-auto max-w-[1440px]">
               <h3 className="text-3xl md:text-4xl font-bold text-foreground">Translating Wireframes to UI</h3>
             </div>
@@ -1142,7 +1142,7 @@ const RuralLandMarketplaceProject = () => {
               muted 
               playsInline
               preload="auto"
-              className="w-full h-full object-cover object-[14%_center] scale-90 md:object-[20%_center] md:scale-100 lg:object-center lg:scale-95"
+              className="w-full h-full object-cover object-[14%_center] scale-[0.85] md:object-[20%_center] md:scale-100 lg:object-center lg:scale-95"
             />
             
             {/* Bottom gradient fade */}
