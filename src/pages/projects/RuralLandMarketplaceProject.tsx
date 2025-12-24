@@ -17,6 +17,7 @@ import landPromoMobile from "@/assets/land-promo-mobile.jpg";
 import landFlowDesktop from "@/assets/LandNetwork-Flow.jpg";
 import landFlowMobile from "@/assets/Land-Flow-mobile.jpg";
 import uiWireframeVideo from "@/assets/ui-wireframe-hidef.webm";
+import searchUiComp from "@/assets/search-ui-comp.jpg";
 
 const RuralLandMarketplaceProject = () => {
   const [stickyHeader, setStickyHeader] = useState({
@@ -1186,6 +1187,15 @@ const RuralLandMarketplaceProject = () => {
               </div>
             </div>
           </div>
+        </section>
+
+        {/* Full Bleed Search UI Image */}
+        <section className="w-full">
+          <img 
+            src={searchUiComp} 
+            alt="Search UI components showing filters, map layers, and property search interface" 
+            className="w-full h-auto"
+          />
         </section>
 
         {/* Results Section */}
