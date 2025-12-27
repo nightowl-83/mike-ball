@@ -1402,11 +1402,6 @@ const RuralLandMarketplaceProject = () => {
             {/* Search Subsections - Option C: Scroll-Driven Crossfade */}
             {searchDesignOption === 'C' && (
               <div className="mt-16 md:mt-24">
-                {/* Section subtitle */}
-                <p className="text-muted-foreground text-lg mb-8 text-center">
-                  Scroll through the search interface evolution — images and text transition smoothly as you scroll
-                </p>
-                
                 {/* Scroll-driven gallery container */}
                 <div 
                   ref={scrollGalleryRef}
@@ -1414,69 +1409,74 @@ const RuralLandMarketplaceProject = () => {
                   style={{ height: `${scrollGallerySlides.length * 100}vh` }}
                 >
                   {/* Sticky viewport */}
-                  <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden">
-                    {/* Navigation indicators */}
-                    <div className="absolute top-8 left-1/2 -translate-x-1/2 flex gap-3 z-20">
-                      {scrollGallerySlides.map((slide, index) => (
-                        <span
-                          key={index}
-                          className={cn(
-                            "px-4 py-2 rounded-full text-sm font-medium transition-all duration-500",
-                            activeSlide === index 
-                              ? "bg-primary text-primary-foreground shadow-lg scale-105" 
-                              : "bg-muted/60 text-muted-foreground"
-                          )}
-                        >
-                          {slide.title}
-                        </span>
-                      ))}
-                    </div>
-                    
-                    {/* Image container with crossfade */}
-                    <div className="relative w-full h-[70vh] mt-16">
-                      {scrollGallerySlides.map((slide, index) => (
-                        <div
-                          key={index}
-                          className={cn(
-                            "absolute inset-0 transition-all duration-700 ease-out",
-                            activeSlide === index 
-                              ? "opacity-100 scale-100" 
-                              : "opacity-0 scale-[0.98]"
-                          )}
-                        >
-                          <img 
-                            src={slide.src} 
-                            alt={slide.alt}
-                            className="w-full h-full object-contain"
+                  <div className="sticky top-0 h-screen flex items-center overflow-hidden py-8">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full h-full">
+                      {/* Left: Image (2/3) */}
+                      <div className="lg:col-span-2 relative h-full">
+                        {scrollGallerySlides.map((slide, index) => (
+                          <div
+                            key={index}
+                            className={cn(
+                              "absolute inset-0 transition-all duration-700 ease-out",
+                              activeSlide === index 
+                                ? "opacity-100 scale-100" 
+                                : "opacity-0 scale-[0.98]"
+                            )}
+                          >
+                            <img 
+                              src={slide.src} 
+                              alt={slide.alt}
+                              className="w-full h-full object-contain object-left"
+                            />
+                          </div>
+                        ))}
+                      </div>
+                      
+                      {/* Right: Controls and Text (1/3) */}
+                      <div className="lg:col-span-1 flex flex-col justify-center space-y-8">
+                        {/* Navigation indicators - stacked vertically */}
+                        <div className="flex flex-col gap-2">
+                          {scrollGallerySlides.map((slide, index) => (
+                            <span
+                              key={index}
+                              className={cn(
+                                "px-4 py-2 rounded-lg text-sm font-medium transition-all duration-500 text-left",
+                                activeSlide === index 
+                                  ? "bg-primary text-primary-foreground shadow-lg" 
+                                  : "bg-muted/40 text-muted-foreground"
+                              )}
+                            >
+                              {slide.title}
+                            </span>
+                          ))}
+                        </div>
+                        
+                        {/* Text content with slide animation */}
+                        <div className="relative min-h-[120px]">
+                          {scrollGallerySlides.map((slide, index) => (
+                            <div
+                              key={index}
+                              className={cn(
+                                "absolute inset-0 transition-all duration-500 ease-out",
+                                activeSlide === index 
+                                  ? "opacity-100 translate-y-0" 
+                                  : "opacity-0 translate-y-4 pointer-events-none"
+                              )}
+                            >
+                              <h3 className="text-2xl md:text-3xl font-bold mb-3">{slide.title}</h3>
+                              <p className="text-base md:text-lg text-muted-foreground">{slide.description}</p>
+                            </div>
+                          ))}
+                        </div>
+                        
+                        {/* Progress bar */}
+                        <div className="w-full h-1 bg-muted rounded-full overflow-hidden">
+                          <div 
+                            className="h-full bg-primary transition-all duration-300 ease-out rounded-full"
+                            style={{ width: `${((activeSlide + 1) / scrollGallerySlides.length) * 100}%` }}
                           />
                         </div>
-                      ))}
-                    </div>
-                    
-                    {/* Text content with slide animation */}
-                    <div className="absolute bottom-16 left-1/2 -translate-x-1/2 w-full max-w-2xl text-center px-6">
-                      {scrollGallerySlides.map((slide, index) => (
-                        <div
-                          key={index}
-                          className={cn(
-                            "absolute inset-0 transition-all duration-500 ease-out",
-                            activeSlide === index 
-                              ? "opacity-100 translate-y-0" 
-                              : "opacity-0 translate-y-8 pointer-events-none"
-                          )}
-                        >
-                          <h3 className="text-2xl md:text-3xl font-bold mb-3">{slide.title}</h3>
-                          <p className="text-base md:text-lg text-muted-foreground">{slide.description}</p>
-                        </div>
-                      ))}
-                    </div>
-                    
-                    {/* Progress bar */}
-                    <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-48 h-1 bg-muted rounded-full overflow-hidden">
-                      <div 
-                        className="h-full bg-primary transition-all duration-300 ease-out rounded-full"
-                        style={{ width: `${((activeSlide + 1) / scrollGallerySlides.length) * 100}%` }}
-                      />
+                      </div>
                     </div>
                   </div>
                 </div>
