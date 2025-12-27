@@ -1,4 +1,4 @@
-import { ArrowLeft, Layout, Columns2, X, ChevronLeft, ChevronRight, Home, Search, Bell, User, Settings, Heart, Star, Mail, Phone, Camera, MapPin, Calendar, Download, Upload, Trash2, Edit, Share2, Filter, Menu, Check, Plus, Minus } from "lucide-react";
+import { ArrowLeft, Layout, Columns2, X, ChevronLeft, ChevronRight, ChevronUp, ChevronDown, Home, Search, Bell, User, Settings, Heart, Star, Mail, Phone, Camera, MapPin, Calendar, Download, Upload, Trash2, Edit, Share2, Filter, Menu, Check, Plus, Minus } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
@@ -38,7 +38,7 @@ const RuralLandMarketplaceProject = () => {
   const [videoReady, setVideoReady] = useState(false);
   const [videoBuffering, setVideoBuffering] = useState(true);
   const [manualSlideOverride, setManualSlideOverride] = useState<number | null>(null);
-  
+  const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
   // Ref for scroll-driven gallery (Option C)
   const scrollGalleryRef = useRef<HTMLDivElement>(null);
   
@@ -260,6 +260,30 @@ const RuralLandMarketplaceProject = () => {
       topObserver.disconnect();
     };
   }, []);
+
+  // Track current section index for navigation arrows
+  useEffect(() => {
+    const handleScroll = () => {
+      const viewportMiddle = window.innerHeight / 2;
+      
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const ref = sections[i].ref;
+        if (ref.current) {
+          const rect = ref.current.getBoundingClientRect();
+          if (rect.top <= viewportMiddle) {
+            setCurrentSectionIndex(i);
+            return;
+          }
+        }
+      }
+      setCurrentSectionIndex(0);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Initial check
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [sections]);
   
   const openGallery = (index: number) => {
     setCurrentImageIndex(index);
@@ -1224,7 +1248,7 @@ const RuralLandMarketplaceProject = () => {
               muted 
               playsInline
               preload="auto"
-              className={`w-full h-auto max-h-[600px] lg:max-h-[680px] object-cover object-[16%_center] scale-75 md:object-[20%_center] md:scale-100 lg:object-contain lg:scale-100 transition-opacity duration-500 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
+              className={`w-full h-auto max-h-[600px] lg:max-h-[680px] object-cover object-[16%_center] scale-90 md:object-[20%_center] md:scale-100 lg:object-contain lg:scale-100 transition-opacity duration-500 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
             />
             
             {/* Buffering overlay for smooth loop transitions */}
@@ -1234,6 +1258,9 @@ const RuralLandMarketplaceProject = () => {
             
             {/* Bottom gradient fade */}
             <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent z-10" />
+            
+            {/* Right gradient fade */}
+            <div className="absolute top-0 right-0 bottom-0 w-32 md:w-48 bg-gradient-to-l from-background via-background/50 to-transparent z-10" />
           </div>
         </section>
 
@@ -1282,8 +1309,26 @@ const RuralLandMarketplaceProject = () => {
 
             {/* Search UI Gallery - Scroll-Driven Crossfade */}
             <div className="mt-16 md:mt-24">
-              {/* Section Title */}
-              <h3 className="text-2xl md:text-3xl font-bold mb-8">Search UI</h3>
+              {/* Section Title with Horizontal Navigation */}
+              <div className="mb-8">
+                <h3 className="text-2xl md:text-3xl font-bold mb-4">Search UI</h3>
+                <div className="flex flex-wrap gap-2">
+                  {scrollGallerySlides.map((slide, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setManualSlideOverride(index)}
+                      className={cn(
+                        "px-4 py-2 rounded-lg text-sm font-medium transition-all duration-500 cursor-pointer hover:bg-primary/20",
+                        currentSlide === index 
+                          ? "bg-primary text-primary-foreground shadow-lg" 
+                          : "bg-muted/40 text-muted-foreground"
+                      )}
+                    >
+                      {slide.title}
+                    </button>
+                  ))}
+                </div>
+              </div>
               
               {/* Scroll-driven gallery container */}
               <div 
@@ -1339,26 +1384,8 @@ const RuralLandMarketplaceProject = () => {
                       </div>
                     </div>
                     
-                    {/* Right: Controls and Text (1/3) */}
+                    {/* Right: Text Content (1/3) */}
                     <div className="lg:col-span-1 flex flex-col justify-center space-y-8">
-                      {/* Navigation indicators - stacked vertically, clickable */}
-                      <div className="flex flex-col gap-2">
-                        {scrollGallerySlides.map((slide, index) => (
-                          <button
-                            key={index}
-                            onClick={() => setManualSlideOverride(index)}
-                            className={cn(
-                              "px-4 py-2 rounded-lg text-sm font-medium transition-all duration-500 text-left cursor-pointer hover:bg-primary/20",
-                              currentSlide === index 
-                                ? "bg-primary text-primary-foreground shadow-lg" 
-                                : "bg-muted/40 text-muted-foreground"
-                            )}
-                          >
-                            {slide.title}
-                          </button>
-                        ))}
-                      </div>
-                      
                       {/* Text content with slide animation */}
                       <div className="relative min-h-[120px]">
                         {scrollGallerySlides.map((slide, index) => (
@@ -1515,6 +1542,34 @@ const RuralLandMarketplaceProject = () => {
           </div>
         </DialogContent>
       </Dialog>
+
+      {/* Sticky Section Navigation Arrows */}
+      <div className="fixed bottom-6 right-6 z-50 flex gap-2">
+        <button
+          onClick={() => {
+            const prevIndex = Math.max(0, currentSectionIndex - 1);
+            setCurrentSectionIndex(prevIndex);
+            sections[prevIndex]?.ref?.current?.scrollIntoView({ behavior: 'smooth' });
+          }}
+          disabled={currentSectionIndex === 0}
+          className="p-3 rounded-full bg-background/80 backdrop-blur-sm border border-border hover:bg-background transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+          aria-label="Previous section"
+        >
+          <ChevronUp className="w-5 h-5" />
+        </button>
+        <button
+          onClick={() => {
+            const nextIndex = Math.min(sections.length - 1, currentSectionIndex + 1);
+            setCurrentSectionIndex(nextIndex);
+            sections[nextIndex]?.ref?.current?.scrollIntoView({ behavior: 'smooth' });
+          }}
+          disabled={currentSectionIndex === sections.length - 1}
+          className="p-3 rounded-full bg-background/80 backdrop-blur-sm border border-border hover:bg-background transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+          aria-label="Next section"
+        >
+          <ChevronDown className="w-5 h-5" />
+        </button>
+      </div>
 
     </div>;
 };
