@@ -18,13 +18,11 @@ import landFlowDesktop from "@/assets/LandNetwork-Flow.jpg";
 import landFlowMobile from "@/assets/Land-Flow-mobile.jpg";
 import uiWireframeVideo from "@/assets/ui-wireframe-hidef.webm";
 import searchUiComp from "@/assets/search-ui-comp.jpg";
-import searchUiLocation from "@/assets/search-ui-location.jpg";
-import searchUiPrice from "@/assets/search-ui-price.jpg";
-import searchUiFilters from "@/assets/search-ui-filters.jpg";
-import searchUiDefault from "@/assets/search-ui-default.jpg";
-import searchUiLayers from "@/assets/search-ui-layers.jpg";
-import searchUiFiltersCarousel from "@/assets/search-ui-filters-carousel.jpg";
-import searchUiPriceCarousel from "@/assets/search-ui-price-carousel.jpg";
+import searchUiLocation from "@/assets/search-ui-location.png";
+import searchUiPrice from "@/assets/search-ui-price.png";
+import searchUiFilters from "@/assets/search-ui-filters.png";
+import searchUiDefault from "@/assets/search-ui-default.png";
+import searchUiLayers from "@/assets/search-ui-layers.png";
 
 const RuralLandMarketplaceProject = () => {
   const [stickyHeader, setStickyHeader] = useState({
@@ -1307,8 +1305,8 @@ const RuralLandMarketplaceProject = () => {
                   {[
                     { src: searchUiDefault, alt: "Search UI default view" },
                     { src: searchUiLayers, alt: "Search UI with map layers" },
-                    { src: searchUiFiltersCarousel, alt: "Search UI filters panel" },
-                    { src: searchUiPriceCarousel, alt: "Search UI price filter" }
+                    { src: searchUiFilters, alt: "Search UI filters panel" },
+                    { src: searchUiPrice, alt: "Search UI price filter" }
                   ].map((slide, index) => (
                     <div
                       key={index}
