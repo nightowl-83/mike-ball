@@ -37,8 +37,7 @@ const RuralLandMarketplaceProject = () => {
   const [designLayout, setDesignLayout] = useState<1 | 2 | 3>(1);
   const [videoReady, setVideoReady] = useState(false);
   const [videoBuffering, setVideoBuffering] = useState(true);
-  const [searchDesignOption, setSearchDesignOption] = useState<'A' | 'B' | 'C'>('A');
-  const [carouselSlide, setCarouselSlide] = useState(0);
+  const [manualSlideOverride, setManualSlideOverride] = useState<number | null>(null);
   
   // Ref for scroll-driven gallery (Option C)
   const scrollGalleryRef = useRef<HTMLDivElement>(null);
@@ -1271,217 +1270,117 @@ const RuralLandMarketplaceProject = () => {
               </div>
             </div>
 
-            {/* Search Subsections - Option A: 2/3 + 1/3 Grid Layout */}
-            {searchDesignOption === 'A' && (
-              <div className="mt-16 md:mt-24">
-                {/* Subsection 1: Geographical Search */}
-                <div className="h-[90vh] flex items-center">
-                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-12 items-center w-full">
-                    <div className="lg:col-span-2 rounded-2xl overflow-hidden">
-                      <img 
-                        src={searchUiLocation} 
-                        alt="Geographic search interface showing location autocomplete and map view" 
-                        className="w-full h-auto"
-                      />
-                    </div>
-                    <div className="lg:col-span-1 space-y-4 md:space-y-6">
-                      <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold">Geographical Search</h3>
-                      <p className="text-base md:text-lg text-muted-foreground">
-                        Geographic Search allows users to quickly search by state, city, counties, or multiple locations on the map.
-                      </p>
-                      <div className="space-y-2 text-base md:text-lg text-muted-foreground">
-                        <p><strong className="text-primary">Multi-location selection:</strong> Add multiple locations to refine search results</p>
-                        <p><strong className="text-primary">Smart autocomplete:</strong> Instant suggestions as users type</p>
+            {/* Search UI Gallery - Scroll-Driven Crossfade */}
+            <div className="mt-16 md:mt-24">
+              {/* Section Title */}
+              <h3 className="text-2xl md:text-3xl font-bold mb-8">Search UI</h3>
+              
+              {/* Scroll-driven gallery container */}
+              <div 
+                ref={scrollGalleryRef}
+                className="relative"
+                style={{ height: `${scrollGallerySlides.length * 100}vh` }}
+              >
+                {/* Sticky viewport */}
+                <div className="sticky top-0 h-screen flex items-center overflow-hidden py-8">
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full h-full">
+                    {/* Left: Image (2/3) */}
+                    <div className="lg:col-span-2 relative h-full">
+                      {scrollGallerySlides.map((slide, index) => (
+                        <div
+                          key={index}
+                          className={cn(
+                            "absolute inset-0 transition-all duration-700 ease-out",
+                            (manualSlideOverride !== null ? manualSlideOverride : activeSlide) === index 
+                              ? "opacity-100 scale-100" 
+                              : "opacity-0 scale-[0.98]"
+                          )}
+                        >
+                          <img 
+                            src={slide.src} 
+                            alt={slide.alt}
+                            className="w-full h-full object-contain object-left"
+                          />
+                        </div>
+                      ))}
+                      
+                      {/* Navigation arrows */}
+                      <div className="absolute bottom-4 left-4 flex gap-2">
+                        <button
+                          onClick={() => {
+                            const currentSlide = manualSlideOverride !== null ? manualSlideOverride : activeSlide;
+                            const prevSlide = (currentSlide - 1 + scrollGallerySlides.length) % scrollGallerySlides.length;
+                            setManualSlideOverride(prevSlide);
+                          }}
+                          className="p-3 rounded-full bg-background/80 backdrop-blur-sm border border-border hover:bg-background transition-all"
+                          aria-label="Previous slide"
+                        >
+                          <ChevronLeft className="w-5 h-5" />
+                        </button>
+                        <button
+                          onClick={() => {
+                            const currentSlide = manualSlideOverride !== null ? manualSlideOverride : activeSlide;
+                            const nextSlide = (currentSlide + 1) % scrollGallerySlides.length;
+                            setManualSlideOverride(nextSlide);
+                          }}
+                          className="p-3 rounded-full bg-background/80 backdrop-blur-sm border border-border hover:bg-background transition-all"
+                          aria-label="Next slide"
+                        >
+                          <ChevronRight className="w-5 h-5" />
+                        </button>
                       </div>
                     </div>
-                  </div>
-                </div>
-
-                {/* Subsection 2: Responsive Filters */}
-                <div className="h-[90vh] flex items-center">
-                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-12 items-center w-full">
-                    <div className="lg:col-span-2 rounded-2xl overflow-hidden">
-                      <img 
-                        src={searchUiPrice} 
-                        alt="Responsive price filter interface with quick select options" 
-                        className="w-full h-auto"
-                      />
-                    </div>
-                    <div className="lg:col-span-1 space-y-4 md:space-y-6">
-                      <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold">Responsive Filters</h3>
-                      <p className="text-base md:text-lg text-muted-foreground">
-                        Additive filters provide instant feedback as filters are added, instead of having to add multiple filters, run a search, and see no results.
-                      </p>
-                      <div className="space-y-2 text-base md:text-lg text-muted-foreground">
-                        <p><strong className="text-primary">Real-time updates:</strong> Results update instantly as filters change</p>
-                        <p><strong className="text-primary">Quick presets:</strong> Common price ranges available with one click</p>
+                    
+                    {/* Right: Controls and Text (1/3) */}
+                    <div className="lg:col-span-1 flex flex-col justify-center space-y-8">
+                      {/* Navigation indicators - stacked vertically, clickable */}
+                      <div className="flex flex-col gap-2">
+                        {scrollGallerySlides.map((slide, index) => (
+                          <button
+                            key={index}
+                            onClick={() => setManualSlideOverride(index)}
+                            className={cn(
+                              "px-4 py-2 rounded-lg text-sm font-medium transition-all duration-500 text-left cursor-pointer hover:bg-primary/20",
+                              (manualSlideOverride !== null ? manualSlideOverride : activeSlide) === index 
+                                ? "bg-primary text-primary-foreground shadow-lg" 
+                                : "bg-muted/40 text-muted-foreground"
+                            )}
+                          >
+                            {slide.title}
+                          </button>
+                        ))}
                       </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Subsection 3: Advanced Land Specific Filtering */}
-                <div className="h-[90vh] flex items-center">
-                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-12 items-center w-full">
-                    <div className="lg:col-span-2 rounded-2xl overflow-hidden">
-                      <img 
-                        src={searchUiFilters} 
-                        alt="Advanced filtering panel with property types, acreage, and land-specific options" 
-                        className="w-full h-auto"
-                      />
-                    </div>
-                    <div className="lg:col-span-1 space-y-4 md:space-y-6">
-                      <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold">Advanced Land Specific Filtering</h3>
-                      <p className="text-base md:text-lg text-muted-foreground">
-                        Purpose-built filters for rural land buyers including property types like Ranch, Homesite, Farms, Recreational, and more.
-                      </p>
-                      <div className="space-y-2 text-base md:text-lg text-muted-foreground">
-                        <p><strong className="text-primary">Property type icons:</strong> Visual categorization for quick scanning</p>
-                        <p><strong className="text-primary">Land-specific metrics:</strong> Acreage ranges, water features, terrain types</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* Search Subsections - Option B: Full-Screen Carousel */}
-            {searchDesignOption === 'B' && (
-              <div className="mt-16 md:mt-24">
-                {/* Section subtitle */}
-                <p className="text-muted-foreground text-lg mb-8 text-center">
-                  Interactive search interface with location-based filtering, price controls, and map layers
-                </p>
-                
-                {/* Carousel navigation buttons - above image */}
-                <div className="flex justify-center gap-3 mb-6">
-                  {['Default', 'Location', 'Price', 'Filters', 'Layers'].map((label, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCarouselSlide(index)}
-                      className={cn(
-                        "px-4 py-2 rounded-full text-sm font-medium transition-all duration-300",
-                        carouselSlide === index 
-                          ? "bg-primary text-primary-foreground shadow-lg" 
-                          : "bg-muted text-foreground hover:bg-muted/80"
-                      )}
-                    >
-                      {label}
-                    </button>
-                  ))}
-                </div>
-                
-                {/* Full-screen carousel section */}
-                <div className="relative w-full h-[95vh] overflow-hidden">
-                  {/* Carousel slides with fade animation */}
-                  {[
-                    { src: searchUiDefault, alt: "Search UI default view" },
-                    { src: searchUiLocation, alt: "Search UI location search" },
-                    { src: searchUiPrice, alt: "Search UI price filter" },
-                    { src: searchUiFilters, alt: "Search UI filters panel" },
-                    { src: searchUiLayers, alt: "Search UI with map layers" }
-                  ].map((slide, index) => (
-                    <div
-                      key={index}
-                      className={cn(
-                        "absolute inset-0 transition-opacity duration-500 ease-in-out",
-                        carouselSlide === index ? "opacity-100" : "opacity-0 pointer-events-none"
-                      )}
-                    >
-                      <img 
-                        src={slide.src} 
-                        alt={slide.alt}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Search Subsections - Option C: Scroll-Driven Crossfade */}
-            {searchDesignOption === 'C' && (
-              <div className="mt-16 md:mt-24">
-                {/* Scroll-driven gallery container */}
-                <div 
-                  ref={scrollGalleryRef}
-                  className="relative"
-                  style={{ height: `${scrollGallerySlides.length * 100}vh` }}
-                >
-                  {/* Sticky viewport */}
-                  <div className="sticky top-0 h-screen flex items-center overflow-hidden py-8">
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full h-full">
-                      {/* Left: Image (2/3) */}
-                      <div className="lg:col-span-2 relative h-full">
+                      
+                      {/* Text content with slide animation */}
+                      <div className="relative min-h-[120px]">
                         {scrollGallerySlides.map((slide, index) => (
                           <div
                             key={index}
                             className={cn(
-                              "absolute inset-0 transition-all duration-700 ease-out",
-                              activeSlide === index 
-                                ? "opacity-100 scale-100" 
-                                : "opacity-0 scale-[0.98]"
+                              "absolute inset-0 transition-all duration-500 ease-out",
+                              (manualSlideOverride !== null ? manualSlideOverride : activeSlide) === index 
+                                ? "opacity-100 translate-y-0" 
+                                : "opacity-0 translate-y-4 pointer-events-none"
                             )}
                           >
-                            <img 
-                              src={slide.src} 
-                              alt={slide.alt}
-                              className="w-full h-full object-contain object-left"
-                            />
+                            <h3 className="text-2xl md:text-3xl font-bold mb-3">{slide.title}</h3>
+                            <p className="text-base md:text-lg text-muted-foreground">{slide.description}</p>
                           </div>
                         ))}
                       </div>
                       
-                      {/* Right: Controls and Text (1/3) */}
-                      <div className="lg:col-span-1 flex flex-col justify-center space-y-8">
-                        {/* Navigation indicators - stacked vertically */}
-                        <div className="flex flex-col gap-2">
-                          {scrollGallerySlides.map((slide, index) => (
-                            <span
-                              key={index}
-                              className={cn(
-                                "px-4 py-2 rounded-lg text-sm font-medium transition-all duration-500 text-left",
-                                activeSlide === index 
-                                  ? "bg-primary text-primary-foreground shadow-lg" 
-                                  : "bg-muted/40 text-muted-foreground"
-                              )}
-                            >
-                              {slide.title}
-                            </span>
-                          ))}
-                        </div>
-                        
-                        {/* Text content with slide animation */}
-                        <div className="relative min-h-[120px]">
-                          {scrollGallerySlides.map((slide, index) => (
-                            <div
-                              key={index}
-                              className={cn(
-                                "absolute inset-0 transition-all duration-500 ease-out",
-                                activeSlide === index 
-                                  ? "opacity-100 translate-y-0" 
-                                  : "opacity-0 translate-y-4 pointer-events-none"
-                              )}
-                            >
-                              <h3 className="text-2xl md:text-3xl font-bold mb-3">{slide.title}</h3>
-                              <p className="text-base md:text-lg text-muted-foreground">{slide.description}</p>
-                            </div>
-                          ))}
-                        </div>
-                        
-                        {/* Progress bar */}
-                        <div className="w-full h-1 bg-muted rounded-full overflow-hidden">
-                          <div 
-                            className="h-full bg-primary transition-all duration-300 ease-out rounded-full"
-                            style={{ width: `${((activeSlide + 1) / scrollGallerySlides.length) * 100}%` }}
-                          />
-                        </div>
+                      {/* Progress bar */}
+                      <div className="w-full h-1 bg-muted rounded-full overflow-hidden">
+                        <div 
+                          className="h-full bg-primary transition-all duration-300 ease-out rounded-full"
+                          style={{ width: `${(((manualSlideOverride !== null ? manualSlideOverride : activeSlide) + 1) / scrollGallerySlides.length) * 100}%` }}
+                        />
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            )}
+            </div>
           </div>
         </section>
 
@@ -1609,42 +1508,6 @@ const RuralLandMarketplaceProject = () => {
         </DialogContent>
       </Dialog>
 
-      {/* A/B/C Testing Toggle */}
-      <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-background/90 backdrop-blur-md border border-border rounded-full px-2 py-1.5 shadow-lg">
-        <button
-          onClick={() => setSearchDesignOption('A')}
-          className={cn(
-            "px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300",
-            searchDesignOption === 'A' 
-              ? "bg-primary text-primary-foreground" 
-              : "text-muted-foreground hover:text-foreground"
-          )}
-        >
-          Option A
-        </button>
-        <button
-          onClick={() => setSearchDesignOption('B')}
-          className={cn(
-            "px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300",
-            searchDesignOption === 'B' 
-              ? "bg-primary text-primary-foreground" 
-              : "text-muted-foreground hover:text-foreground"
-          )}
-        >
-          Option B
-        </button>
-        <button
-          onClick={() => setSearchDesignOption('C')}
-          className={cn(
-            "px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300",
-            searchDesignOption === 'C' 
-              ? "bg-primary text-primary-foreground" 
-              : "text-muted-foreground hover:text-foreground"
-          )}
-        >
-          Option C
-        </button>
-      </div>
     </div>;
 };
 
