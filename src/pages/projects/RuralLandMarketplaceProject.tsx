@@ -1306,9 +1306,27 @@ const RuralLandMarketplaceProject = () => {
             {searchDesignOption === 'B' && (
               <div className="mt-16 md:mt-24">
                 {/* Section subtitle */}
-                <p className="text-muted-foreground text-lg mb-8">
+                <p className="text-muted-foreground text-lg mb-8 text-center">
                   Interactive search interface with location-based filtering, price controls, and map layers
                 </p>
+                
+                {/* Carousel navigation buttons - above image */}
+                <div className="flex justify-center gap-3 mb-6">
+                  {['Default', 'Location', 'Price', 'Filters', 'Layers'].map((label, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCarouselSlide(index)}
+                      className={cn(
+                        "px-4 py-2 rounded-full text-sm font-medium transition-all duration-300",
+                        carouselSlide === index 
+                          ? "bg-primary text-primary-foreground shadow-lg" 
+                          : "bg-muted text-foreground hover:bg-muted/80"
+                      )}
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
                 
                 {/* Full-screen carousel section */}
                 <div className="relative w-full h-[95vh] overflow-hidden">
@@ -1334,24 +1352,6 @@ const RuralLandMarketplaceProject = () => {
                       />
                     </div>
                   ))}
-                  
-                  {/* Carousel navigation buttons */}
-                  <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3">
-                    {['Default', 'Location', 'Price', 'Filters', 'Layers'].map((label, index) => (
-                      <button
-                        key={index}
-                        onClick={() => setCarouselSlide(index)}
-                        className={cn(
-                          "px-4 py-2 rounded-full text-sm font-medium transition-all duration-300",
-                          carouselSlide === index 
-                            ? "bg-primary text-primary-foreground shadow-lg" 
-                            : "bg-background/80 backdrop-blur-sm text-foreground hover:bg-background"
-                        )}
-                      >
-                        {label}
-                      </button>
-                    ))}
-                  </div>
                 </div>
               </div>
             )}
