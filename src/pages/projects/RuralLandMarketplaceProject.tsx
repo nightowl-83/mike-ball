@@ -1306,7 +1306,7 @@ const RuralLandMarketplaceProject = () => {
             {searchDesignOption === 'B' && (
               <div className="mt-16 md:mt-24">
                 {/* Full-screen carousel section */}
-                <div className="relative w-full h-[90vh] rounded-2xl overflow-hidden">
+                <div className="relative w-full h-screen overflow-hidden">
                   {/* Carousel slides with fade animation */}
                   {[
                     { src: searchUiDefault, alt: "Search UI default view" },
