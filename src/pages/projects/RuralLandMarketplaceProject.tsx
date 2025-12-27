@@ -18,7 +18,7 @@ import landFlowDesktop from "@/assets/LandNetwork-Flow.jpg";
 import landFlowMobile from "@/assets/Land-Flow-mobile.jpg";
 import uiWireframeVideo from "@/assets/ui-wireframe-hidef.webm";
 import searchUiComp from "@/assets/search-ui-comp.jpg";
-import searchUiLocation from "@/assets/search-ui-location.png";
+import searchUiLocation from "@/assets/search-ui-location-2.png";
 import searchUiPrice from "@/assets/search-ui-price.png";
 import searchUiFilters from "@/assets/search-ui-filters.png";
 import searchUiDefault from "@/assets/search-ui-default.png";
@@ -1305,14 +1305,20 @@ const RuralLandMarketplaceProject = () => {
             {/* Search Subsections - Option B: Full-Screen Carousel */}
             {searchDesignOption === 'B' && (
               <div className="mt-16 md:mt-24">
+                {/* Section subtitle */}
+                <p className="text-muted-foreground text-lg mb-8">
+                  Interactive search interface with location-based filtering, price controls, and map layers
+                </p>
+                
                 {/* Full-screen carousel section */}
-                <div className="relative w-full h-screen overflow-hidden">
+                <div className="relative w-full h-[81vh] overflow-hidden">
                   {/* Carousel slides with fade animation */}
                   {[
                     { src: searchUiDefault, alt: "Search UI default view" },
-                    { src: searchUiLayers, alt: "Search UI with map layers" },
+                    { src: searchUiLocation, alt: "Search UI location search" },
+                    { src: searchUiPrice, alt: "Search UI price filter" },
                     { src: searchUiFilters, alt: "Search UI filters panel" },
-                    { src: searchUiPrice, alt: "Search UI price filter" }
+                    { src: searchUiLayers, alt: "Search UI with map layers" }
                   ].map((slide, index) => (
                     <div
                       key={index}
@@ -1331,7 +1337,7 @@ const RuralLandMarketplaceProject = () => {
                   
                   {/* Carousel navigation buttons */}
                   <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3">
-                    {['Default', 'Layers', 'Filters', 'Price'].map((label, index) => (
+                    {['Default', 'Location', 'Price', 'Filters', 'Layers'].map((label, index) => (
                       <button
                         key={index}
                         onClick={() => setCarouselSlide(index)}
