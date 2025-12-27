@@ -1230,66 +1230,72 @@ const RuralLandMarketplaceProject = () => {
 
             {/* Search Subsections - Option A: 2/3 + 1/3 Grid Layout */}
             {searchDesignOption === 'A' && (
-              <div className="mt-16 md:mt-24 space-y-16 md:space-y-24">
+              <div className="mt-16 md:mt-24">
                 {/* Subsection 1: Geographical Search */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-12 items-center">
-                  <div className="lg:col-span-2 rounded-2xl overflow-hidden shadow-card">
-                    <img 
-                      src={searchUiLocation} 
-                      alt="Geographic search interface showing location autocomplete and map view" 
-                      className="w-full h-auto"
-                    />
-                  </div>
-                  <div className="lg:col-span-1 space-y-4 md:space-y-6">
-                    <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold">Geographical Search</h3>
-                    <p className="text-base md:text-lg text-muted-foreground">
-                      Geographic Search allows users to quickly search by state, city, counties, or multiple locations on the map.
-                    </p>
-                    <div className="space-y-2 text-base md:text-lg text-muted-foreground">
-                      <p><strong className="text-primary">Multi-location selection:</strong> Add multiple locations to refine search results</p>
-                      <p><strong className="text-primary">Smart autocomplete:</strong> Instant suggestions as users type</p>
+                <div className="h-[90vh] flex items-center">
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-12 items-center w-full">
+                    <div className="lg:col-span-2 rounded-2xl overflow-hidden">
+                      <img 
+                        src={searchUiLocation} 
+                        alt="Geographic search interface showing location autocomplete and map view" 
+                        className="w-full h-auto"
+                      />
+                    </div>
+                    <div className="lg:col-span-1 space-y-4 md:space-y-6">
+                      <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold">Geographical Search</h3>
+                      <p className="text-base md:text-lg text-muted-foreground">
+                        Geographic Search allows users to quickly search by state, city, counties, or multiple locations on the map.
+                      </p>
+                      <div className="space-y-2 text-base md:text-lg text-muted-foreground">
+                        <p><strong className="text-primary">Multi-location selection:</strong> Add multiple locations to refine search results</p>
+                        <p><strong className="text-primary">Smart autocomplete:</strong> Instant suggestions as users type</p>
+                      </div>
                     </div>
                   </div>
                 </div>
 
                 {/* Subsection 2: Responsive Filters */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-12 items-center">
-                  <div className="lg:col-span-2 rounded-2xl overflow-hidden shadow-card">
-                    <img 
-                      src={searchUiPrice} 
-                      alt="Responsive price filter interface with quick select options" 
-                      className="w-full h-auto"
-                    />
-                  </div>
-                  <div className="lg:col-span-1 space-y-4 md:space-y-6">
-                    <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold">Responsive Filters</h3>
-                    <p className="text-base md:text-lg text-muted-foreground">
-                      Additive filters provide instant feedback as filters are added, instead of having to add multiple filters, run a search, and see no results.
-                    </p>
-                    <div className="space-y-2 text-base md:text-lg text-muted-foreground">
-                      <p><strong className="text-primary">Real-time updates:</strong> Results update instantly as filters change</p>
-                      <p><strong className="text-primary">Quick presets:</strong> Common price ranges available with one click</p>
+                <div className="h-[90vh] flex items-center">
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-12 items-center w-full">
+                    <div className="lg:col-span-2 rounded-2xl overflow-hidden">
+                      <img 
+                        src={searchUiPrice} 
+                        alt="Responsive price filter interface with quick select options" 
+                        className="w-full h-auto"
+                      />
+                    </div>
+                    <div className="lg:col-span-1 space-y-4 md:space-y-6">
+                      <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold">Responsive Filters</h3>
+                      <p className="text-base md:text-lg text-muted-foreground">
+                        Additive filters provide instant feedback as filters are added, instead of having to add multiple filters, run a search, and see no results.
+                      </p>
+                      <div className="space-y-2 text-base md:text-lg text-muted-foreground">
+                        <p><strong className="text-primary">Real-time updates:</strong> Results update instantly as filters change</p>
+                        <p><strong className="text-primary">Quick presets:</strong> Common price ranges available with one click</p>
+                      </div>
                     </div>
                   </div>
                 </div>
 
                 {/* Subsection 3: Advanced Land Specific Filtering */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-12 items-center">
-                  <div className="lg:col-span-2 rounded-2xl overflow-hidden shadow-card">
-                    <img 
-                      src={searchUiFilters} 
-                      alt="Advanced filtering panel with property types, acreage, and land-specific options" 
-                      className="w-full h-auto"
-                    />
-                  </div>
-                  <div className="lg:col-span-1 space-y-4 md:space-y-6">
-                    <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold">Advanced Land Specific Filtering</h3>
-                    <p className="text-base md:text-lg text-muted-foreground">
-                      Purpose-built filters for rural land buyers including property types like Ranch, Homesite, Farms, Recreational, and more.
-                    </p>
-                    <div className="space-y-2 text-base md:text-lg text-muted-foreground">
-                      <p><strong className="text-primary">Property type icons:</strong> Visual categorization for quick scanning</p>
-                      <p><strong className="text-primary">Land-specific metrics:</strong> Acreage ranges, water features, terrain types</p>
+                <div className="h-[90vh] flex items-center">
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-12 items-center w-full">
+                    <div className="lg:col-span-2 rounded-2xl overflow-hidden">
+                      <img 
+                        src={searchUiFilters} 
+                        alt="Advanced filtering panel with property types, acreage, and land-specific options" 
+                        className="w-full h-auto"
+                      />
+                    </div>
+                    <div className="lg:col-span-1 space-y-4 md:space-y-6">
+                      <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold">Advanced Land Specific Filtering</h3>
+                      <p className="text-base md:text-lg text-muted-foreground">
+                        Purpose-built filters for rural land buyers including property types like Ranch, Homesite, Farms, Recreational, and more.
+                      </p>
+                      <div className="space-y-2 text-base md:text-lg text-muted-foreground">
+                        <p><strong className="text-primary">Property type icons:</strong> Visual categorization for quick scanning</p>
+                        <p><strong className="text-primary">Land-specific metrics:</strong> Acreage ranges, water features, terrain types</p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1300,7 +1306,7 @@ const RuralLandMarketplaceProject = () => {
             {searchDesignOption === 'B' && (
               <div className="mt-16 md:mt-24">
                 {/* Full-screen carousel section */}
-                <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden bg-muted">
+                <div className="relative w-full h-[90vh] rounded-2xl overflow-hidden">
                   {/* Carousel slides with fade animation */}
                   {[
                     { src: searchUiDefault, alt: "Search UI default view" },
