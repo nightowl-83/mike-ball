@@ -76,10 +76,20 @@ const RuralLandMarketplaceProject = () => {
     }
   ];
   
-  // Scroll progress for Option C
+  // Scroll progress for gallery
   const { activeSlide, isInView } = useScrollProgress(scrollGalleryRef, {
     slideCount: scrollGallerySlides.length,
   });
+  
+  // Reset manual override when scroll changes the active slide
+  useEffect(() => {
+    if (manualSlideOverride !== null) {
+      setManualSlideOverride(null);
+    }
+  }, [activeSlide]);
+  
+  // Current displayed slide (manual override or scroll-driven)
+  const currentSlide = manualSlideOverride ?? activeSlide;
 
   // Refs for sections and subsections
   const heroRef = useRef<HTMLDivElement>(null);
@@ -1291,7 +1301,7 @@ const RuralLandMarketplaceProject = () => {
                           key={index}
                           className={cn(
                             "absolute inset-0 transition-all duration-700 ease-out",
-                            (manualSlideOverride !== null ? manualSlideOverride : activeSlide) === index 
+                            currentSlide === index 
                               ? "opacity-100 scale-100" 
                               : "opacity-0 scale-[0.98]"
                           )}
@@ -1308,7 +1318,6 @@ const RuralLandMarketplaceProject = () => {
                       <div className="absolute bottom-4 left-4 flex gap-2">
                         <button
                           onClick={() => {
-                            const currentSlide = manualSlideOverride !== null ? manualSlideOverride : activeSlide;
                             const prevSlide = (currentSlide - 1 + scrollGallerySlides.length) % scrollGallerySlides.length;
                             setManualSlideOverride(prevSlide);
                           }}
@@ -1319,7 +1328,6 @@ const RuralLandMarketplaceProject = () => {
                         </button>
                         <button
                           onClick={() => {
-                            const currentSlide = manualSlideOverride !== null ? manualSlideOverride : activeSlide;
                             const nextSlide = (currentSlide + 1) % scrollGallerySlides.length;
                             setManualSlideOverride(nextSlide);
                           }}
@@ -1341,7 +1349,7 @@ const RuralLandMarketplaceProject = () => {
                             onClick={() => setManualSlideOverride(index)}
                             className={cn(
                               "px-4 py-2 rounded-lg text-sm font-medium transition-all duration-500 text-left cursor-pointer hover:bg-primary/20",
-                              (manualSlideOverride !== null ? manualSlideOverride : activeSlide) === index 
+                              currentSlide === index 
                                 ? "bg-primary text-primary-foreground shadow-lg" 
                                 : "bg-muted/40 text-muted-foreground"
                             )}
@@ -1358,7 +1366,7 @@ const RuralLandMarketplaceProject = () => {
                             key={index}
                             className={cn(
                               "absolute inset-0 transition-all duration-500 ease-out",
-                              (manualSlideOverride !== null ? manualSlideOverride : activeSlide) === index 
+                              currentSlide === index 
                                 ? "opacity-100 translate-y-0" 
                                 : "opacity-0 translate-y-4 pointer-events-none"
                             )}
@@ -1373,7 +1381,7 @@ const RuralLandMarketplaceProject = () => {
                       <div className="w-full h-1 bg-muted rounded-full overflow-hidden">
                         <div 
                           className="h-full bg-primary transition-all duration-300 ease-out rounded-full"
-                          style={{ width: `${(((manualSlideOverride !== null ? manualSlideOverride : activeSlide) + 1) / scrollGallerySlides.length) * 100}%` }}
+                          style={{ width: `${((currentSlide + 1) / scrollGallerySlides.length) * 100}%` }}
                         />
                       </div>
                     </div>
