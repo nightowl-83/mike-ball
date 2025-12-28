@@ -1340,7 +1340,7 @@ const RuralLandMarketplaceProject = () => {
                 <div className="sticky top-0 h-[80vh] overflow-hidden py-8">
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full">
                     {/* Left: Image (2/3) */}
-                    <div className="lg:col-span-2 relative h-[60vh]">
+                    <div className="lg:col-span-2 relative h-[70vh]">
                       {scrollGallerySlides.map((slide, index) => (
                         <div
                           key={index}
