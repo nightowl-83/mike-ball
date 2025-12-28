@@ -1309,35 +1309,35 @@ const RuralLandMarketplaceProject = () => {
 
             {/* Search UI Gallery - Scroll-Driven Crossfade */}
             <div className="mt-16 md:mt-24">
-              {/* Section Title with Horizontal Navigation */}
-              <div className="mb-8">
-                <h3 className="text-2xl md:text-3xl font-bold mb-4">Search UI</h3>
-                <div className="flex flex-wrap gap-2">
-                  {scrollGallerySlides.map((slide, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setManualSlideOverride(index)}
-                      className={cn(
-                        "px-4 py-2 rounded-lg text-sm font-medium transition-all duration-500 cursor-pointer hover:bg-primary/20",
-                        currentSlide === index 
-                          ? "bg-primary text-primary-foreground shadow-lg" 
-                          : "bg-muted/40 text-muted-foreground"
-                      )}
-                    >
-                      {slide.title}
-                    </button>
-                  ))}
-                </div>
-              </div>
-              
               {/* Scroll-driven gallery container */}
               <div 
                 ref={scrollGalleryRef}
                 className="relative"
-                style={{ height: `${scrollGallerySlides.length * 80}vh` }}
+                style={{ height: `${scrollGallerySlides.length * 100}vh` }}
               >
+                {/* Sticky header with title and navigation */}
+                <div className="sticky top-16 z-20 bg-background/95 backdrop-blur-sm py-4 mb-4">
+                  <h3 className="text-2xl md:text-3xl font-bold mb-4">Search UI</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {scrollGallerySlides.map((slide, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setManualSlideOverride(index)}
+                        className={cn(
+                          "px-4 py-2 rounded-lg text-sm font-medium transition-all duration-500 cursor-pointer hover:bg-primary/20",
+                          currentSlide === index 
+                            ? "bg-primary text-primary-foreground shadow-lg" 
+                            : "bg-muted/40 text-muted-foreground"
+                        )}
+                      >
+                        {slide.title}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                
                 {/* Sticky viewport */}
-                <div className="sticky top-0 h-[80vh] overflow-hidden py-8">
+                <div className="sticky top-36 h-[80vh] overflow-hidden py-4">
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full">
                     {/* Left: Image (2/3) */}
                     <div className="lg:col-span-2 relative h-[70vh]">
