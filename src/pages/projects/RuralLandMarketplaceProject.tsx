@@ -1,4 +1,4 @@
-import { ArrowLeft, Layout, Columns2, X, ChevronLeft, ChevronRight, ChevronUp, ChevronDown, Home, Search, Bell, User, Settings, Heart, Star, Mail, Phone, Camera, MapPin, Calendar, Download, Upload, Trash2, Edit, Share2, Filter, Menu, Check, Plus, Minus } from "lucide-react";
+import { ArrowLeft, ArrowRight, Layout, Columns2, X, ChevronLeft, ChevronRight, ChevronUp, ChevronDown, Home, Search, Bell, User, Settings, Heart, Star, Mail, Phone, Camera, MapPin, Calendar, Download, Upload, Trash2, Edit, Share2, Filter, Menu, Check, Plus, Minus } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
@@ -179,6 +179,12 @@ const RuralLandMarketplaceProject = () => {
     subsection: '',
     number: '/04',
     ref: deliveryRef
+  }, {
+    id: 'search',
+    section: 'Search',
+    subsection: '',
+    number: '/05',
+    ref: scrollGalleryRef
   }];
 
   // Array of gallery images (placeholder - to be replaced with actual images)
@@ -1335,12 +1341,13 @@ const RuralLandMarketplaceProject = () => {
                     ))}
                   </div>
                 </div>
+                <div className="h-6"></div>
                 
                 {/* Sticky viewport */}
                 <div className="sticky top-36 h-[80vh] overflow-hidden py-4">
-                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full">
-                    {/* Left: Image (2/3) */}
-                    <div className="lg:col-span-2 relative h-[70vh]">
+                  <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 w-full">
+                    {/* Left: Image (3/4) */}
+                    <div className="lg:col-span-3 relative h-[70vh]">
                       {scrollGallerySlides.map((slide, index) => (
                         <div
                           key={index}
@@ -1358,9 +1365,12 @@ const RuralLandMarketplaceProject = () => {
                           />
                         </div>
                       ))}
-                      
+                    </div>
+                    
+                    {/* Right: Text Content (1/4) */}
+                    <div className="lg:col-span-1 flex flex-col justify-center space-y-6">
                       {/* Navigation arrows */}
-                      <div className="absolute bottom-4 left-4 flex gap-2">
+                      <div className="flex gap-2">
                         <button
                           onClick={() => {
                             const prevSlide = (currentSlide - 1 + scrollGallerySlides.length) % scrollGallerySlides.length;
@@ -1369,7 +1379,7 @@ const RuralLandMarketplaceProject = () => {
                           className="p-3 rounded-full bg-background/80 backdrop-blur-sm border border-border hover:bg-background transition-all"
                           aria-label="Previous slide"
                         >
-                          <ChevronLeft className="w-5 h-5" />
+                          <ArrowLeft className="w-5 h-5" />
                         </button>
                         <button
                           onClick={() => {
@@ -1379,13 +1389,10 @@ const RuralLandMarketplaceProject = () => {
                           className="p-3 rounded-full bg-background/80 backdrop-blur-sm border border-border hover:bg-background transition-all"
                           aria-label="Next slide"
                         >
-                          <ChevronRight className="w-5 h-5" />
+                          <ArrowRight className="w-5 h-5" />
                         </button>
                       </div>
-                    </div>
-                    
-                    {/* Right: Text Content (1/3) */}
-                    <div className="lg:col-span-1 flex flex-col justify-center space-y-8">
+                      
                       {/* Text content with slide animation */}
                       <div className="relative min-h-[120px]">
                         {scrollGallerySlides.map((slide, index) => (
