@@ -1337,10 +1337,10 @@ const RuralLandMarketplaceProject = () => {
                 style={{ height: `${scrollGallerySlides.length * 80}vh` }}
               >
                 {/* Sticky viewport */}
-                <div className="sticky top-0 h-[80vh] flex items-center overflow-hidden py-8">
-                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full h-full">
+                <div className="sticky top-0 h-[80vh] overflow-hidden py-8">
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full">
                     {/* Left: Image (2/3) */}
-                    <div className="lg:col-span-2 relative h-full">
+                    <div className="lg:col-span-2 relative h-[60vh]">
                       {scrollGallerySlides.map((slide, index) => (
                         <div
                           key={index}
