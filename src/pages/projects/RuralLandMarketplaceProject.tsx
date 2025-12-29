@@ -105,6 +105,7 @@ const RuralLandMarketplaceProject = () => {
   const userFlowRef = useRef<HTMLDivElement>(null);
   const designSystemRef = useRef<HTMLDivElement>(null);
   const deliveryRef = useRef<HTMLDivElement>(null);
+  const designProcessRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   // Section navigation data
@@ -181,16 +182,22 @@ const RuralLandMarketplaceProject = () => {
     number: '/04',
     ref: deliveryRef
   }, {
-    id: 'search',
-    section: 'Search',
+    id: 'design-process',
+    section: 'Design Process',
     subsection: '',
+    number: '/05',
+    ref: designProcessRef
+  }, {
+    id: 'design-process-search',
+    section: 'Design Process',
+    subsection: 'Search',
     number: '/05',
     ref: scrollGalleryRef
   }, {
-    id: 'details-page',
-    section: 'Details Page',
-    subsection: '',
-    number: '/06',
+    id: 'design-process-details',
+    section: 'Design Process',
+    subsection: 'Details Page',
+    number: '/05',
     ref: detailsPageRef
   }];
 
@@ -1277,13 +1284,49 @@ const RuralLandMarketplaceProject = () => {
           </div>
         </section>
 
-        {/* Search Section - 05 */}
-        <section className="relative py-10 md:py-24 bg-background">
+        {/* Design Process Section - 05 */}
+        <section className="relative py-10 md:py-24 bg-card/30">
+          <div ref={designProcessRef} className="absolute top-0 left-0 w-full h-1" />
           <div className="container mx-auto max-w-[1440px]">
             <div className="flex items-baseline justify-between mb-4 md:mb-16">
-              <h2 className="text-3xl md:text-5xl lg:text-7xl xl:text-8xl font-bold flex-1">Search</h2>
+              <h2 className="text-3xl md:text-5xl lg:text-7xl xl:text-8xl font-bold flex-1">Design Process</h2>
               <span className="text-xl md:text-6xl lg:text-7xl font-bold font-mono opacity-20 text-right shrink-0">/05</span>
             </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-16">
+              {/* Left Column */}
+              <div className="space-y-4 md:space-y-12">
+                <h3 className="text-2xl md:text-3xl font-semibold">Key Components</h3>
+                <p className="text-base md:text-xl text-muted-foreground">
+                  The redesign focused on two critical user journeys: discovering properties through search and evaluating individual listings through detailed property pages.
+                </p>
+              </div>
+
+              {/* Right Column */}
+              <div className="space-y-4 md:space-y-12">
+                <div className="space-y-4 md:space-y-6 text-base md:text-lg text-muted-foreground">
+                  <p>
+                    <strong className="text-primary">Search Experience:</strong> A complete reimagining of how users find and filter properties, with map-first design and intuitive controls.
+                  </p>
+                  
+                  <p>
+                    <strong className="text-primary">Details Page:</strong> Comprehensive property information presented in a scannable, visually rich format that drives engagement and inquiries.
+                  </p>
+                  
+                  <div className="p-4 md:p-6 rounded-xl bg-card/50 border-2 border-primary/20">
+                    <h3 className="text-lg md:text-xl font-bold text-foreground mb-3 md:mb-4">Design Philosophy</h3>
+                    <p>Both components were designed mobile-first, prioritizing touch interactions and quick scanning.</p>
+                    <p className="mt-2">Visual hierarchy guides users from discovery through to inquiry with minimal friction.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Search Subsection */}
+        <section className="relative py-10 md:py-24 bg-background">
+          <div className="container mx-auto max-w-[1440px]">
+            <h3 className="text-2xl md:text-4xl font-bold mb-4 md:mb-8">Search</h3>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-16">
               {/* Left Column */}
               <div className="space-y-4 md:space-y-12">
@@ -1442,14 +1485,11 @@ const RuralLandMarketplaceProject = () => {
           />
         </section>
 
-        {/* Details Page Section - 06 */}
-        <section className="relative py-10 md:py-24">
+        {/* Details Page Subsection */}
+        <section className="relative py-10 md:py-24 bg-card/30">
           <div ref={detailsPageRef} className="absolute top-0 left-0 w-full h-1" />
           <div className="container mx-auto max-w-[1440px]">
-            <div className="flex items-baseline justify-between mb-4 md:mb-16">
-              <h2 className="text-3xl md:text-5xl lg:text-7xl xl:text-8xl font-bold flex-1">Details Page</h2>
-              <span className="text-xl md:text-6xl lg:text-7xl font-bold font-mono opacity-20 text-right shrink-0">/06</span>
-            </div>
+            <h3 className="text-2xl md:text-4xl font-bold mb-4 md:mb-8">Details Page</h3>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-16">
               {/* Left Column */}
               <div className="space-y-4 md:space-y-12">
