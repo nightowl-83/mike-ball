@@ -41,7 +41,8 @@ const RuralLandMarketplaceProject = () => {
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
   // Ref for scroll-driven gallery (Option C)
   const scrollGalleryRef = useRef<HTMLDivElement>(null);
-  
+  const detailsPageRef = useRef<HTMLDivElement>(null);
+
   // Scroll-driven gallery data
   const scrollGallerySlides = [
     { 
@@ -185,6 +186,12 @@ const RuralLandMarketplaceProject = () => {
     subsection: '',
     number: '/05',
     ref: scrollGalleryRef
+  }, {
+    id: 'details-page',
+    section: 'Details Page',
+    subsection: '',
+    number: '/06',
+    ref: detailsPageRef
   }];
 
   // Array of gallery images (placeholder - to be replaced with actual images)
@@ -1433,6 +1440,52 @@ const RuralLandMarketplaceProject = () => {
             alt="Search UI components showing filters, map layers, and property search interface" 
             className="w-full h-auto"
           />
+        </section>
+
+        {/* Details Page Section - 06 */}
+        <section className="relative py-10 md:py-24">
+          <div ref={detailsPageRef} className="absolute top-0 left-0 w-full h-1" />
+          <div className="container mx-auto max-w-[1440px]">
+            <div className="flex items-baseline justify-between mb-4 md:mb-16">
+              <h2 className="text-3xl md:text-5xl lg:text-7xl xl:text-8xl font-bold flex-1">Details Page</h2>
+              <span className="text-xl md:text-6xl lg:text-7xl font-bold font-mono opacity-20 text-right shrink-0">/06</span>
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-16">
+              {/* Left Column */}
+              <div className="space-y-4 md:space-y-12">
+                <p className="text-base md:text-xl text-muted-foreground">
+                  The property details page serves as the central hub for buyers to explore listings, view imagery, and make informed decisions about their land purchase.
+                </p>
+              </div>
+
+              {/* Right Column */}
+              <div className="space-y-4 md:space-y-12">
+                <div className="space-y-4 md:space-y-6 text-base md:text-lg text-muted-foreground">
+                  <p>
+                    <strong className="text-primary">Immersive Gallery:</strong> Full-screen photo galleries with satellite views, topographic maps, and drone footage to give buyers a complete picture of the property.
+                  </p>
+                  
+                  <p>
+                    <strong className="text-primary">Key Details at a Glance:</strong> Property size, zoning, utilities, road access, and terrain features displayed prominently for quick scanning.
+                  </p>
+                  
+                  <p>
+                    <strong className="text-primary">Interactive Maps:</strong> Boundary overlays, neighboring parcels, and distance to key amenities help buyers understand the property context.
+                  </p>
+                  
+                  <p>
+                    <strong className="text-primary">Contact & Inquiry:</strong> Streamlined contact forms and saved property features make it easy for interested buyers to take the next step.
+                  </p>
+                  
+                  <div className="p-4 md:p-6 rounded-xl bg-card/50 border-2 border-primary/20">
+                    <h3 className="text-lg md:text-xl font-bold text-foreground mb-3 md:mb-4">Design Focus</h3>
+                    <p>Prioritize visual storytelling while ensuring critical property information is always accessible.</p>
+                    <p className="mt-2">Balance comprehensive details with clean, scannable layouts optimized for mobile.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* Results Section */}
