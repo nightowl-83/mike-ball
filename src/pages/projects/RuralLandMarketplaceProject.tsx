@@ -24,6 +24,10 @@ import searchUiPrice from "@/assets/search-ui-price.png";
 import searchUiFilters from "@/assets/search-ui-filters.png";
 import searchUiDefault from "@/assets/search-ui-default.png";
 import searchUiLayers from "@/assets/search-ui-layers.png";
+import ldpMobile from "@/assets/LDP-Mobile.png";
+import ldpMobileGallery from "@/assets/LDP-Mobile-Gallery.png";
+import ldpMobileHighlights from "@/assets/LDP-Mobile-Highlights.png";
+import ldpMobileSent from "@/assets/LDP-Mobile-Sent.png";
 
 const RuralLandMarketplaceProject = () => {
   const [stickyHeader, setStickyHeader] = useState({
@@ -1524,6 +1528,61 @@ const RuralLandMarketplaceProject = () => {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Details Page Mobile UI Gallery */}
+        <section className="w-full py-12 md:py-20">
+          <div className="container mx-auto max-w-[1440px]">
+            {/* Desktop: Show all images in a row */}
+            <div className="hidden lg:grid lg:grid-cols-4 gap-6">
+              {[
+                { src: ldpMobile, alt: "Property details main view" },
+                { src: ldpMobileGallery, alt: "Property photo gallery" },
+                { src: ldpMobileHighlights, alt: "Property highlights" },
+                { src: ldpMobileSent, alt: "Message sent confirmation" }
+              ].map((img, index) => (
+                <div key={index} className="rounded-2xl overflow-hidden shadow-card bg-card">
+                  <img 
+                    src={img.src} 
+                    alt={img.alt} 
+                    className="w-full h-auto object-contain"
+                  />
+                </div>
+              ))}
+            </div>
+            
+            {/* Tablet/Mobile: Carousel with navigation */}
+            <div className="lg:hidden">
+              <Carousel 
+                opts={{ 
+                  align: 'start', 
+                  loop: true,
+                }}
+                className="w-full"
+              >
+                <CarouselContent className="-ml-4">
+                  {[
+                    { src: ldpMobile, alt: "Property details main view" },
+                    { src: ldpMobileGallery, alt: "Property photo gallery" },
+                    { src: ldpMobileHighlights, alt: "Property highlights" },
+                    { src: ldpMobileSent, alt: "Message sent confirmation" }
+                  ].map((img, index) => (
+                    <CarouselItem key={index} className="pl-4 basis-full md:basis-1/2">
+                      <div className="rounded-2xl overflow-hidden shadow-card bg-card">
+                        <img 
+                          src={img.src} 
+                          alt={img.alt} 
+                          className="w-full h-auto object-contain"
+                        />
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="left-2 md:left-4" />
+                <CarouselNext className="right-2 md:right-4" />
+              </Carousel>
             </div>
           </div>
         </section>
