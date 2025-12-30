@@ -11,7 +11,7 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useScrollProgress } from "@/hooks/useScrollProgress";
 import { StickyNavHeader } from "@/components/StickyNavHeader";
 import { cn } from "@/lib/utils";
-import ruralLandHero from "@/assets/rural-land-marketplace.jpg";
+import ruralLandHero from "@/assets/Land-LDP-mobile.png";
 import personaHeadshot from "@/assets/persona-headshot.jpg";
 import landPromoDesktop from "@/assets/land-promo-desktop-2.png";
 import landPromoMobile from "@/assets/land-promo-mobile.jpg";
