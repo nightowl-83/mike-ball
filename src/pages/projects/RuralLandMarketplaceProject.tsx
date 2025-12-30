@@ -1534,9 +1534,9 @@ const RuralLandMarketplaceProject = () => {
 
         {/* Details Page Mobile UI Gallery */}
         <section className="w-full py-12 md:py-20">
-          <div className="container mx-auto max-w-[1440px]">
-            {/* Desktop: Show all images in a row */}
-            <div className="hidden lg:grid lg:grid-cols-4 gap-6">
+          <div className="container mx-auto max-w-[90%] lg:max-w-[1440px]">
+            {/* Desktop: Show all images in a row at 90% scale */}
+            <div className="hidden lg:grid lg:grid-cols-4 gap-6 scale-[0.9] origin-center">
               {[
                 { src: ldpMobile, alt: "Property details main view" },
                 { src: ldpMobileGallery, alt: "Property photo gallery" },
@@ -1553,14 +1553,14 @@ const RuralLandMarketplaceProject = () => {
               ))}
             </div>
             
-            {/* Tablet/Mobile: Carousel with navigation */}
-            <div className="lg:hidden">
+            {/* Tablet/Mobile: Carousel with navigation below */}
+            <div className="lg:hidden flex flex-col items-center">
               <Carousel 
                 opts={{ 
                   align: 'start', 
                   loop: true,
                 }}
-                className="w-full"
+                className="w-full max-h-[75vh] md:max-h-none"
               >
                 <CarouselContent className="-ml-4">
                   {[
@@ -1570,18 +1570,21 @@ const RuralLandMarketplaceProject = () => {
                     { src: ldpMobileSent, alt: "Message sent confirmation" }
                   ].map((img, index) => (
                     <CarouselItem key={index} className="pl-4 basis-full md:basis-1/2">
-                      <div className="rounded-2xl overflow-hidden shadow-card bg-card">
+                      <div className="rounded-2xl overflow-hidden shadow-card bg-card max-h-[70vh] md:max-h-none">
                         <img 
                           src={img.src} 
                           alt={img.alt} 
-                          className="w-full h-auto object-contain"
+                          className="w-full h-auto object-contain max-h-[70vh] md:max-h-none"
                         />
                       </div>
                     </CarouselItem>
                   ))}
                 </CarouselContent>
-                <CarouselPrevious className="left-2 md:left-4" />
-                <CarouselNext className="right-2 md:right-4" />
+                {/* Arrow controls below carousel */}
+                <div className="flex items-center justify-center gap-4 mt-6 w-full">
+                  <CarouselPrevious className="static translate-y-0 h-10 w-10" />
+                  <CarouselNext className="static translate-y-0 h-10 w-10" />
+                </div>
               </Carousel>
             </div>
           </div>
