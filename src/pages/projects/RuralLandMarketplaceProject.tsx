@@ -444,7 +444,7 @@ const RuralLandMarketplaceProject = () => {
 
           {/* Right: Image - 50vw width on desktop, full on mobile */}
           <div className="w-full md:w-1/2 h-64 md:h-full relative">
-            <img src={ruralLandHero} alt="Rural Land Marketplace Dashboard" className="w-[90%] h-[90%] object-contain mx-auto my-auto" />
+            <img src={ruralLandHero} alt="Rural Land Marketplace Dashboard" className="w-[95%] h-[95%] object-contain mx-auto my-auto" />
           </div>
         </div>
       </section>
