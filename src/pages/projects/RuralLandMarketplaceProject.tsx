@@ -1474,6 +1474,16 @@ const RuralLandMarketplaceProject = () => {
                       </div>
                     </div>
                   </div>
+                  
+                  {/* Scroll Indicator - fades in when in Search UI section */}
+                  <div className={cn(
+                    "absolute bottom-8 left-1/2 -translate-x-1/2 transition-opacity duration-300",
+                    isInView ? "opacity-100" : "opacity-0"
+                  )}>
+                    <div className="w-6 h-10 rounded-full border-2 border-primary/50 flex items-start justify-center p-2 animate-bounce">
+                      <div className="w-1.5 h-3 rounded-full bg-primary animate-pulse" />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1535,20 +1545,29 @@ const RuralLandMarketplaceProject = () => {
         {/* Details Page Mobile UI Gallery */}
         <section className="w-full py-12 md:py-20">
           <div className="container mx-auto max-w-[90%] lg:max-w-[1440px]">
-            {/* Desktop: Show all images in a row at 90% scale */}
-            <div className="hidden lg:grid lg:grid-cols-4 gap-6 scale-[0.9] origin-center">
+            {/* Section Subtitle */}
+            <p className="text-lg md:text-xl text-muted-foreground mb-8 text-center">
+              Mobile UI Showcase — Property details experience across key user touchpoints
+            </p>
+            
+            {/* Desktop: Show all images in a row at 90% scale with increased spacing */}
+            <div className="hidden lg:grid lg:grid-cols-4 gap-[60px] scale-[0.9] origin-center">
               {[
-                { src: ldpMobile, alt: "Property details main view" },
-                { src: ldpMobileGallery, alt: "Property photo gallery" },
-                { src: ldpMobileHighlights, alt: "Property highlights" },
-                { src: ldpMobileSent, alt: "Message sent confirmation" }
+                { src: ldpMobile, alt: "Property details main view", caption: "Property Overview — Main property details with hero image and key information" },
+                { src: ldpMobileGallery, alt: "Property photo gallery", caption: "Photo Gallery — Full-screen immersive property photography" },
+                { src: ldpMobileHighlights, alt: "Property highlights", caption: "Property Highlights — Key features and land characteristics" },
+                { src: ldpMobileSent, alt: "Message sent confirmation", caption: "Inquiry Confirmation — Streamlined contact flow completion" }
               ].map((img, index) => (
-                <div key={index} className="rounded-2xl overflow-hidden shadow-card bg-card">
+                <div 
+                  key={index} 
+                  className="rounded-2xl overflow-hidden shadow-card bg-card transition-transform duration-300 ease-out lg:hover:scale-105 cursor-pointer"
+                >
                   <img 
                     src={img.src} 
                     alt={img.alt} 
                     className="w-full h-auto object-contain"
                   />
+                  <p className="text-sm text-muted-foreground text-center py-4 px-3">{img.caption}</p>
                 </div>
               ))}
             </div>
@@ -1564,10 +1583,10 @@ const RuralLandMarketplaceProject = () => {
               >
                 <CarouselContent className="-ml-4">
                   {[
-                    { src: ldpMobile, alt: "Property details main view" },
-                    { src: ldpMobileGallery, alt: "Property photo gallery" },
-                    { src: ldpMobileHighlights, alt: "Property highlights" },
-                    { src: ldpMobileSent, alt: "Message sent confirmation" }
+                    { src: ldpMobile, alt: "Property details main view", caption: "Property Overview — Main property details with hero image and key information" },
+                    { src: ldpMobileGallery, alt: "Property photo gallery", caption: "Photo Gallery — Full-screen immersive property photography" },
+                    { src: ldpMobileHighlights, alt: "Property highlights", caption: "Property Highlights — Key features and land characteristics" },
+                    { src: ldpMobileSent, alt: "Message sent confirmation", caption: "Inquiry Confirmation — Streamlined contact flow completion" }
                   ].map((img, index) => (
                     <CarouselItem key={index} className="pl-4 basis-full md:basis-1/2">
                       <div className="rounded-2xl overflow-hidden shadow-card bg-card max-h-[70vh] md:max-h-none">
@@ -1576,6 +1595,7 @@ const RuralLandMarketplaceProject = () => {
                           alt={img.alt} 
                           className="w-full h-auto object-contain max-h-[70vh] md:max-h-none"
                         />
+                        <p className="text-sm text-muted-foreground text-center py-4 px-3">{img.caption}</p>
                       </div>
                     </CarouselItem>
                   ))}
