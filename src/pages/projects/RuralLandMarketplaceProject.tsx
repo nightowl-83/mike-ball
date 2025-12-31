@@ -1377,11 +1377,11 @@ const RuralLandMarketplaceProject = () => {
                 
                 {/* Sticky viewport */}
                 <div className="sticky top-36 h-[80vh] overflow-hidden pt-16 pb-4 relative">
-                  {/* Background texture with scroll-based fade */}
+                  {/* Background texture with scroll-based fade - full viewport width */}
                   <div 
                     className={cn(
-                      "absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-700 pointer-events-none",
-                      isInView ? "opacity-10" : "opacity-0"
+                      "absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-screen bg-cover bg-center bg-no-repeat transition-opacity duration-700 pointer-events-none",
+                      isInView ? "opacity-[0.08]" : "opacity-0"
                     )}
                     style={{ backgroundImage: `url(${mapTexture})` }}
                   />
