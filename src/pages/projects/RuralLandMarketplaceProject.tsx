@@ -1421,7 +1421,7 @@ const RuralLandMarketplaceProject = () => {
                   
                   {/* Scroll Indicator - fades in when in Search UI section */}
                   <div className={cn("absolute bottom-8 left-1/2 -translate-x-1/2 transition-opacity duration-300", isInView ? "opacity-100" : "opacity-0")}>
-                    <div className="w-6 h-10 rounded-full border-2 border-primary/50 flex items-start justify-center p-2 animate-bounce">
+                    <div className="w-6 h-10 rounded-full border-2 flex items-start justify-center p-2 animate-bounce border-gray-50">
                       <div className="w-1.5 h-3 rounded-full bg-primary animate-pulse" />
                     </div>
                   </div>
