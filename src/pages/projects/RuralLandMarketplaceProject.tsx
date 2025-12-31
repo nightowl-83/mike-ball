@@ -28,7 +28,7 @@ import ldpMobile from "@/assets/LDP-Mobile.png";
 import ldpMobileGallery from "@/assets/LDP-Mobile-Gallery.png";
 import ldpMobileHighlights from "@/assets/LDP-Mobile-Highlights.png";
 import ldpMobileSent from "@/assets/LDP-Mobile-Sent.png";
-import mapTexture from "@/assets/map-texture.png";
+import topoTexture from "@/assets/topo-1.svg";
 const RuralLandMarketplaceProject = () => {
   const [stickyHeader, setStickyHeader] = useState({
     visible: false,
@@ -1383,7 +1383,7 @@ const RuralLandMarketplaceProject = () => {
                       "absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-screen bg-cover bg-center bg-no-repeat transition-opacity duration-700 pointer-events-none",
                       isInView ? "opacity-[0.08]" : "opacity-0"
                     )}
-                    style={{ backgroundImage: `url(${mapTexture})` }}
+                    style={{ backgroundImage: `url(${topoTexture})` }}
                   />
                   <div className="relative grid grid-cols-1 lg:grid-cols-3 gap-8 w-full">
                     {/* Left: Image (2/3) */}
