@@ -1560,7 +1560,7 @@ const RuralLandMarketplaceProject = () => {
               ].map((img, index) => (
                 <div 
                   key={index} 
-                  className="rounded-2xl overflow-hidden shadow-card bg-card transition-transform duration-300 ease-out lg:hover:scale-105 cursor-pointer"
+                  className="transition-transform duration-300 ease-out lg:hover:scale-105 cursor-pointer"
                 >
                   <img 
                     src={img.src} 
