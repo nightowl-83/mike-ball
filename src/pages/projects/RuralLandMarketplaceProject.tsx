@@ -1319,15 +1319,7 @@ const RuralLandMarketplaceProject = () => {
         </section>
 
         {/* Search Subsection */}
-        <section className="relative py-10 md:py-24 bg-background overflow-hidden">
-          {/* Background texture with scroll-based fade */}
-          <div 
-            className={cn(
-              "absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-700 pointer-events-none",
-              isInView ? "opacity-10" : "opacity-0"
-            )}
-            style={{ backgroundImage: `url(${mapTexture})` }}
-          />
+        <section className="relative py-10 md:py-24 bg-background">
           <div className="container mx-auto max-w-[1440px]">
             <h3 className="text-2xl md:text-4xl font-bold mb-4 md:mb-8">Search</h3>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-16">
@@ -1384,8 +1376,16 @@ const RuralLandMarketplaceProject = () => {
                 <div className="h-6"></div>
                 
                 {/* Sticky viewport */}
-                <div className="sticky top-36 h-[80vh] overflow-hidden pt-16 pb-4">
-                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full">
+                <div className="sticky top-36 h-[80vh] overflow-hidden pt-16 pb-4 relative">
+                  {/* Background texture with scroll-based fade */}
+                  <div 
+                    className={cn(
+                      "absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-700 pointer-events-none",
+                      isInView ? "opacity-10" : "opacity-0"
+                    )}
+                    style={{ backgroundImage: `url(${mapTexture})` }}
+                  />
+                  <div className="relative grid grid-cols-1 lg:grid-cols-3 gap-8 w-full">
                     {/* Left: Image (2/3) */}
                     <div className="lg:col-span-2 relative h-[80vh]">
                       {scrollGallerySlides.map((slide, index) => <div key={index} className={cn("absolute inset-0 transition-all duration-700 ease-out", currentSlide === index ? "opacity-100 scale-100" : "opacity-0 scale-[0.98]")}>
