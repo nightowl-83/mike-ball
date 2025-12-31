@@ -1266,7 +1266,7 @@ const RuralLandMarketplaceProject = () => {
             </div>
           </div>
           <div className="relative w-full flex justify-center bg-background">
-            <video ref={videoRef} src={uiWireframeVideo} autoPlay loop muted playsInline preload="auto" className={`w-full h-auto max-h-[600px] lg:max-h-[680px] object-cover object-[16%_center] scale-90 md:object-[20%_center] md:scale-100 lg:object-contain lg:scale-100 transition-opacity duration-500 ${videoReady ? 'opacity-100' : 'opacity-0'}`} />
+            <video ref={videoRef} src={uiWireframeVideo} autoPlay loop muted playsInline preload="auto" className={`w-full h-[75vh] md:h-auto max-h-[75vh] md:max-h-[600px] lg:max-h-[680px] object-cover object-[16%_center] scale-90 md:object-[20%_center] md:scale-100 lg:object-contain lg:scale-100 transition-opacity duration-500 ${videoReady ? 'opacity-100' : 'opacity-0'}`} />
             
             {/* Buffering overlay for smooth loop transitions */}
             <div className={`absolute inset-0 bg-background/60 backdrop-blur-sm transition-opacity duration-300 pointer-events-none ${videoBuffering && videoReady ? 'opacity-100' : 'opacity-0'}`} />
@@ -1364,11 +1364,12 @@ const RuralLandMarketplaceProject = () => {
               <div ref={scrollGalleryRef} className="relative" style={{
               height: `${scrollGallerySlides.length * 100}vh`
             }}>
-                {/* Sticky header with title and navigation */}
-                <div className="sticky top-16 z-20 bg-background/95 backdrop-blur-sm py-4 mb-4">
-                  <h3 className="text-2xl md:text-3xl font-bold mb-4">Search UI</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {scrollGallerySlides.map((slide, index) => <button key={index} onClick={() => setManualSlideOverride(index)} className={cn("px-4 py-2 rounded-lg text-sm font-medium transition-all duration-500 cursor-pointer hover:bg-primary/20", currentSlide === index ? "bg-primary text-primary-foreground shadow-lg" : "bg-muted/40 text-muted-foreground")}>
+                {/* Sticky header with title and navigation - optimized for mobile */}
+                <div className="sticky top-16 z-20 bg-background/95 backdrop-blur-sm py-3 md:py-4 mb-4">
+                  <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-3 md:mb-4">Search UI</h3>
+                  {/* Mobile: horizontal scroll, Desktop: wrap */}
+                  <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0 md:flex-wrap scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0">
+                    {scrollGallerySlides.map((slide, index) => <button key={index} onClick={() => setManualSlideOverride(index)} className={cn("px-3 md:px-4 py-1.5 md:py-2 rounded-lg text-xs md:text-sm font-medium transition-all duration-500 cursor-pointer hover:bg-primary/20 whitespace-nowrap flex-shrink-0", currentSlide === index ? "bg-primary text-primary-foreground shadow-lg" : "bg-muted/40 text-muted-foreground")}>
                         {slide.title}
                       </button>)}
                   </div>
@@ -1377,13 +1378,18 @@ const RuralLandMarketplaceProject = () => {
                 
                 {/* Sticky viewport */}
                 <div className="sticky top-36 h-[80vh] overflow-hidden pt-16 pb-4 relative">
-                  {/* Background texture with scroll-based fade - full viewport width */}
+                {/* Background texture with scroll-based fade - full viewport width, starts below nav */}
                   <div 
                     className={cn(
-                      "absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-screen bg-cover bg-center bg-no-repeat transition-opacity duration-700 pointer-events-none",
-                      isInView ? "opacity-[0.08]" : "opacity-0"
+                      "fixed left-0 right-0 w-screen bg-cover bg-center bg-no-repeat transition-opacity duration-700 pointer-events-none z-0",
+                      isInView ? "opacity-[0.10]" : "opacity-0"
                     )}
-                    style={{ backgroundImage: `url(${topoTexture})` }}
+                    style={{ 
+                      backgroundImage: `url(${topoTexture})`,
+                      top: '140px', // Below the sticky nav header
+                      bottom: 0,
+                      height: 'calc(100vh - 140px)'
+                    }}
                   />
                   <div className="relative grid grid-cols-1 lg:grid-cols-3 gap-8 w-full">
                     {/* Left: Image (2/3) */}
