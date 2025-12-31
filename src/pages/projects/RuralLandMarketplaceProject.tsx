@@ -28,7 +28,6 @@ import ldpMobile from "@/assets/LDP-Mobile.png";
 import ldpMobileGallery from "@/assets/LDP-Mobile-Gallery.png";
 import ldpMobileHighlights from "@/assets/LDP-Mobile-Highlights.png";
 import ldpMobileSent from "@/assets/LDP-Mobile-Sent.png";
-
 const RuralLandMarketplaceProject = () => {
   const [stickyHeader, setStickyHeader] = useState({
     visible: false,
@@ -48,51 +47,48 @@ const RuralLandMarketplaceProject = () => {
   const detailsPageRef = useRef<HTMLDivElement>(null);
 
   // Scroll-driven gallery data
-  const scrollGallerySlides = [
-    { 
-      src: searchUiDefault, 
-      alt: "Search UI default view",
-      title: "Default View",
-      description: "Clean, intuitive search interface with map integration and essential filters readily accessible."
-    },
-    { 
-      src: searchUiLocation, 
-      alt: "Search UI location search",
-      title: "Location Search",
-      description: "Geographic search with multi-location selection, smart autocomplete, and region-based browsing."
-    },
-    { 
-      src: searchUiPrice, 
-      alt: "Search UI price filter",
-      title: "Price Filters",
-      description: "Responsive price controls with quick presets and real-time result updates as you adjust ranges."
-    },
-    { 
-      src: searchUiFilters, 
-      alt: "Search UI filters panel",
-      title: "Advanced Filters",
-      description: "Land-specific filtering with property types, acreage ranges, water features, and terrain options."
-    },
-    { 
-      src: searchUiLayers, 
-      alt: "Search UI with map layers",
-      title: "Map Layers",
-      description: "Toggle between satellite, terrain, and custom overlays to visualize property boundaries and features."
-    }
-  ];
-  
+  const scrollGallerySlides = [{
+    src: searchUiDefault,
+    alt: "Search UI default view",
+    title: "Default View",
+    description: "Clean, intuitive search interface with map integration and essential filters readily accessible."
+  }, {
+    src: searchUiLocation,
+    alt: "Search UI location search",
+    title: "Location Search",
+    description: "Geographic search with multi-location selection, smart autocomplete, and region-based browsing."
+  }, {
+    src: searchUiPrice,
+    alt: "Search UI price filter",
+    title: "Price Filters",
+    description: "Responsive price controls with quick presets and real-time result updates as you adjust ranges."
+  }, {
+    src: searchUiFilters,
+    alt: "Search UI filters panel",
+    title: "Advanced Filters",
+    description: "Land-specific filtering with property types, acreage ranges, water features, and terrain options."
+  }, {
+    src: searchUiLayers,
+    alt: "Search UI with map layers",
+    title: "Map Layers",
+    description: "Toggle between satellite, terrain, and custom overlays to visualize property boundaries and features."
+  }];
+
   // Scroll progress for gallery
-  const { activeSlide, isInView } = useScrollProgress(scrollGalleryRef, {
-    slideCount: scrollGallerySlides.length,
+  const {
+    activeSlide,
+    isInView
+  } = useScrollProgress(scrollGalleryRef, {
+    slideCount: scrollGallerySlides.length
   });
-  
+
   // Reset manual override when scroll changes the active slide
   useEffect(() => {
     if (manualSlideOverride !== null) {
       setManualSlideOverride(null);
     }
   }, [activeSlide]);
-  
+
   // Current displayed slide (manual override or scroll-driven)
   const currentSlide = manualSlideOverride ?? activeSlide;
 
@@ -289,7 +285,6 @@ const RuralLandMarketplaceProject = () => {
   useEffect(() => {
     const handleScroll = () => {
       const viewportMiddle = window.innerHeight / 2;
-      
       for (let i = sections.length - 1; i >= 0; i--) {
         const ref = sections[i].ref;
         if (ref.current) {
@@ -302,26 +297,23 @@ const RuralLandMarketplaceProject = () => {
       }
       setCurrentSectionIndex(0);
     };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('scroll', handleScroll, {
+      passive: true
+    });
     handleScroll(); // Initial check
-    
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, [sections]);
-  
   const openGallery = (index: number) => {
     setCurrentImageIndex(index);
     setGalleryOpen(true);
   };
-  
   const nextImage = () => {
     setCurrentImageIndex(prev => (prev + 1) % galleryImages.length);
   };
-  
   const previousImage = () => {
     setCurrentImageIndex(prev => (prev - 1 + galleryImages.length) % galleryImages.length);
   };
-  
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!galleryOpen) return;
@@ -337,7 +329,6 @@ const RuralLandMarketplaceProject = () => {
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
-    
     const handleTimeUpdate = () => {
       if (video.duration - video.currentTime < 0.4) {
         setVideoBuffering(true);
@@ -345,7 +336,6 @@ const RuralLandMarketplaceProject = () => {
         video.play();
       }
     };
-    
     const handleCanPlay = () => setVideoBuffering(false);
     const handlePlaying = () => setVideoBuffering(false);
     const handleWaiting = () => setVideoBuffering(true);
@@ -355,7 +345,6 @@ const RuralLandMarketplaceProject = () => {
       setVideoReady(true);
       setVideoBuffering(false);
     };
-    
     video.addEventListener('timeupdate', handleTimeUpdate);
     video.addEventListener('canplay', handleCanPlay);
     video.addEventListener('playing', handlePlaying);
@@ -363,7 +352,6 @@ const RuralLandMarketplaceProject = () => {
     video.addEventListener('seeking', handleSeeking);
     video.addEventListener('seeked', handleSeeked);
     video.addEventListener('loadeddata', handleLoadedData);
-    
     return () => {
       video.removeEventListener('timeupdate', handleTimeUpdate);
       video.removeEventListener('canplay', handleCanPlay);
@@ -391,9 +379,10 @@ const RuralLandMarketplaceProject = () => {
   const resultsAnim = useScrollAnimation();
   const showcaseAnim = useScrollAnimation();
   const navigationAnim = useScrollAnimation();
-  const { ref: wireframeRef, isVisible: wireframeVisible } = useScrollAnimation();
-  
-  
+  const {
+    ref: wireframeRef,
+    isVisible: wireframeVisible
+  } = useScrollAnimation();
   return <div className="min-h-screen bg-background">
       {/* Unified Sticky Header */}
       <StickyNavHeader visible={stickyHeader.visible} currentSection={stickyHeader.section} currentSubsection={stickyHeader.subsection} currentNumber={stickyHeader.number} sections={sections} />
@@ -1264,21 +1253,10 @@ const RuralLandMarketplaceProject = () => {
             </div>
           </div>
           <div className="relative w-full flex justify-center bg-background">
-            <video 
-              ref={videoRef}
-              src={uiWireframeVideo} 
-              autoPlay 
-              loop 
-              muted 
-              playsInline
-              preload="auto"
-              className={`w-full h-auto max-h-[600px] lg:max-h-[680px] object-cover object-[16%_center] scale-90 md:object-[20%_center] md:scale-100 lg:object-contain lg:scale-100 transition-opacity duration-500 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
-            />
+            <video ref={videoRef} src={uiWireframeVideo} autoPlay loop muted playsInline preload="auto" className={`w-full h-auto max-h-[600px] lg:max-h-[680px] object-cover object-[16%_center] scale-90 md:object-[20%_center] md:scale-100 lg:object-contain lg:scale-100 transition-opacity duration-500 ${videoReady ? 'opacity-100' : 'opacity-0'}`} />
             
             {/* Buffering overlay for smooth loop transitions */}
-            <div 
-              className={`absolute inset-0 bg-background/60 backdrop-blur-sm transition-opacity duration-300 pointer-events-none ${videoBuffering && videoReady ? 'opacity-100' : 'opacity-0'}`}
-            />
+            <div className={`absolute inset-0 bg-background/60 backdrop-blur-sm transition-opacity duration-300 pointer-events-none ${videoBuffering && videoReady ? 'opacity-100' : 'opacity-0'}`} />
             
             {/* Bottom gradient fade */}
             <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent z-10" />
@@ -1293,7 +1271,7 @@ const RuralLandMarketplaceProject = () => {
           <div ref={designProcessRef} className="absolute top-0 left-0 w-full h-1" />
           <div className="container mx-auto max-w-[1440px]">
             <div className="flex items-baseline justify-between mb-4 md:mb-16">
-              <h2 className="text-3xl md:text-5xl lg:text-7xl xl:text-8xl font-bold flex-1">Design Process</h2>
+              <h2 className="text-3xl md:text-5xl lg:text-7xl xl:text-8xl font-bold flex-1">Key Components </h2>
               <span className="text-xl md:text-6xl lg:text-7xl font-bold font-mono opacity-20 text-right shrink-0">/05</span>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-16">
@@ -1370,29 +1348,16 @@ const RuralLandMarketplaceProject = () => {
             {/* Search UI Gallery - Scroll-Driven Crossfade */}
             <div className="mt-16 md:mt-24">
               {/* Scroll-driven gallery container */}
-              <div 
-                ref={scrollGalleryRef}
-                className="relative"
-                style={{ height: `${scrollGallerySlides.length * 100}vh` }}
-              >
+              <div ref={scrollGalleryRef} className="relative" style={{
+              height: `${scrollGallerySlides.length * 100}vh`
+            }}>
                 {/* Sticky header with title and navigation */}
                 <div className="sticky top-16 z-20 bg-background/95 backdrop-blur-sm py-4 mb-4">
                   <h3 className="text-2xl md:text-3xl font-bold mb-4">Search UI</h3>
                   <div className="flex flex-wrap gap-2">
-                    {scrollGallerySlides.map((slide, index) => (
-                      <button
-                        key={index}
-                        onClick={() => setManualSlideOverride(index)}
-                        className={cn(
-                          "px-4 py-2 rounded-lg text-sm font-medium transition-all duration-500 cursor-pointer hover:bg-primary/20",
-                          currentSlide === index 
-                            ? "bg-primary text-primary-foreground shadow-lg" 
-                            : "bg-muted/40 text-muted-foreground"
-                        )}
-                      >
+                    {scrollGallerySlides.map((slide, index) => <button key={index} onClick={() => setManualSlideOverride(index)} className={cn("px-4 py-2 rounded-lg text-sm font-medium transition-all duration-500 cursor-pointer hover:bg-primary/20", currentSlide === index ? "bg-primary text-primary-foreground shadow-lg" : "bg-muted/40 text-muted-foreground")}>
                         {slide.title}
-                      </button>
-                    ))}
+                      </button>)}
                   </div>
                 </div>
                 <div className="h-6"></div>
@@ -1402,84 +1367,48 @@ const RuralLandMarketplaceProject = () => {
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full">
                     {/* Left: Image (2/3) */}
                     <div className="lg:col-span-2 relative h-[80vh]">
-                      {scrollGallerySlides.map((slide, index) => (
-                        <div
-                          key={index}
-                          className={cn(
-                            "absolute inset-0 transition-all duration-700 ease-out",
-                            currentSlide === index 
-                              ? "opacity-100 scale-100" 
-                              : "opacity-0 scale-[0.98]"
-                          )}
-                        >
-                          <img 
-                            src={slide.src} 
-                            alt={slide.alt}
-                            className="w-full h-full object-contain object-left"
-                          />
-                        </div>
-                      ))}
+                      {scrollGallerySlides.map((slide, index) => <div key={index} className={cn("absolute inset-0 transition-all duration-700 ease-out", currentSlide === index ? "opacity-100 scale-100" : "opacity-0 scale-[0.98]")}>
+                          <img src={slide.src} alt={slide.alt} className="w-full h-full object-contain object-left" />
+                        </div>)}
                     </div>
                     
                     {/* Right: Text Content (1/3) */}
                     <div className="lg:col-span-1 flex flex-col justify-center space-y-6">
                       {/* Navigation arrows */}
                       <div className="flex gap-2">
-                        <button
-                          onClick={() => {
-                            const prevSlide = (currentSlide - 1 + scrollGallerySlides.length) % scrollGallerySlides.length;
-                            setManualSlideOverride(prevSlide);
-                          }}
-                          className="p-3 rounded-full bg-background/80 backdrop-blur-sm border border-border hover:bg-background transition-all"
-                          aria-label="Previous slide"
-                        >
+                        <button onClick={() => {
+                        const prevSlide = (currentSlide - 1 + scrollGallerySlides.length) % scrollGallerySlides.length;
+                        setManualSlideOverride(prevSlide);
+                      }} className="p-3 rounded-full bg-background/80 backdrop-blur-sm border border-border hover:bg-background transition-all" aria-label="Previous slide">
                           <ArrowLeft className="w-5 h-5" />
                         </button>
-                        <button
-                          onClick={() => {
-                            const nextSlide = (currentSlide + 1) % scrollGallerySlides.length;
-                            setManualSlideOverride(nextSlide);
-                          }}
-                          className="p-3 rounded-full bg-background/80 backdrop-blur-sm border border-border hover:bg-background transition-all"
-                          aria-label="Next slide"
-                        >
+                        <button onClick={() => {
+                        const nextSlide = (currentSlide + 1) % scrollGallerySlides.length;
+                        setManualSlideOverride(nextSlide);
+                      }} className="p-3 rounded-full bg-background/80 backdrop-blur-sm border border-border hover:bg-background transition-all" aria-label="Next slide">
                           <ArrowRight className="w-5 h-5" />
                         </button>
                       </div>
                       
                       {/* Text content with slide animation */}
                       <div className="relative min-h-[120px]">
-                        {scrollGallerySlides.map((slide, index) => (
-                          <div
-                            key={index}
-                            className={cn(
-                              "absolute inset-0 transition-all duration-500 ease-out",
-                              currentSlide === index 
-                                ? "opacity-100 translate-y-0" 
-                                : "opacity-0 translate-y-4 pointer-events-none"
-                            )}
-                          >
+                        {scrollGallerySlides.map((slide, index) => <div key={index} className={cn("absolute inset-0 transition-all duration-500 ease-out", currentSlide === index ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none")}>
                             <h3 className="text-2xl md:text-3xl font-bold mb-3">{slide.title}</h3>
                             <p className="text-base md:text-lg text-muted-foreground">{slide.description}</p>
-                          </div>
-                        ))}
+                          </div>)}
                       </div>
                       
                       {/* Progress bar */}
                       <div className="w-full h-1 bg-muted rounded-full overflow-hidden">
-                        <div 
-                          className="h-full bg-primary transition-all duration-300 ease-out rounded-full"
-                          style={{ width: `${((currentSlide + 1) / scrollGallerySlides.length) * 100}%` }}
-                        />
+                        <div className="h-full bg-primary transition-all duration-300 ease-out rounded-full" style={{
+                        width: `${(currentSlide + 1) / scrollGallerySlides.length * 100}%`
+                      }} />
                       </div>
                     </div>
                   </div>
                   
                   {/* Scroll Indicator - fades in when in Search UI section */}
-                  <div className={cn(
-                    "absolute bottom-8 left-1/2 -translate-x-1/2 transition-opacity duration-300",
-                    isInView ? "opacity-100" : "opacity-0"
-                  )}>
+                  <div className={cn("absolute bottom-8 left-1/2 -translate-x-1/2 transition-opacity duration-300", isInView ? "opacity-100" : "opacity-0")}>
                     <div className="w-6 h-10 rounded-full border-2 border-primary/50 flex items-start justify-center p-2 animate-bounce">
                       <div className="w-1.5 h-3 rounded-full bg-primary animate-pulse" />
                     </div>
@@ -1492,11 +1421,7 @@ const RuralLandMarketplaceProject = () => {
 
         {/* Full Bleed Search UI Image */}
         <section className="w-full">
-          <img 
-            src={searchUiComp} 
-            alt="Search UI components showing filters, map layers, and property search interface" 
-            className="w-full h-auto"
-          />
+          <img src={searchUiComp} alt="Search UI components showing filters, map layers, and property search interface" className="w-full h-auto" />
         </section>
 
         {/* Details Page Subsection */}
@@ -1552,53 +1477,57 @@ const RuralLandMarketplaceProject = () => {
             
             {/* Desktop: Show all images in a row at 90% scale with increased spacing */}
             <div className="hidden lg:grid lg:grid-cols-4 gap-[60px] scale-[0.9] origin-center">
-              {[
-                { src: ldpMobile, alt: "Property details main view", caption: "Property Overview — Main property details with hero image and key information" },
-                { src: ldpMobileGallery, alt: "Property photo gallery", caption: "Photo Gallery — Full-screen immersive property photography" },
-                { src: ldpMobileHighlights, alt: "Property highlights", caption: "Property Highlights — Key features and land characteristics" },
-                { src: ldpMobileSent, alt: "Message sent confirmation", caption: "Inquiry Confirmation — Streamlined contact flow completion" }
-              ].map((img, index) => (
-                <div 
-                  key={index} 
-                  className="transition-transform duration-300 ease-out lg:hover:scale-105 cursor-pointer"
-                >
-                  <img 
-                    src={img.src} 
-                    alt={img.alt} 
-                    className="w-full h-auto object-contain"
-                  />
+              {[{
+              src: ldpMobile,
+              alt: "Property details main view",
+              caption: "Property Overview — Main property details with hero image and key information"
+            }, {
+              src: ldpMobileGallery,
+              alt: "Property photo gallery",
+              caption: "Photo Gallery — Full-screen immersive property photography"
+            }, {
+              src: ldpMobileHighlights,
+              alt: "Property highlights",
+              caption: "Property Highlights — Key features and land characteristics"
+            }, {
+              src: ldpMobileSent,
+              alt: "Message sent confirmation",
+              caption: "Inquiry Confirmation — Streamlined contact flow completion"
+            }].map((img, index) => <div key={index} className="transition-transform duration-300 ease-out lg:hover:scale-105 cursor-pointer">
+                  <img src={img.src} alt={img.alt} className="w-full h-auto object-contain" />
                   <p className="text-sm text-muted-foreground text-center py-4 px-3">{img.caption}</p>
-                </div>
-              ))}
+                </div>)}
             </div>
             
             {/* Tablet/Mobile: Carousel with navigation below */}
             <div className="lg:hidden flex flex-col items-center">
-              <Carousel 
-                opts={{ 
-                  align: 'start', 
-                  loop: true,
-                }}
-                className="w-full max-h-[75vh] md:max-h-none"
-              >
+              <Carousel opts={{
+              align: 'start',
+              loop: true
+            }} className="w-full max-h-[75vh] md:max-h-none">
                 <CarouselContent className="-ml-4">
-                  {[
-                    { src: ldpMobile, alt: "Property details main view", caption: "Property Overview — Main property details with hero image and key information" },
-                    { src: ldpMobileGallery, alt: "Property photo gallery", caption: "Photo Gallery — Full-screen immersive property photography" },
-                    { src: ldpMobileHighlights, alt: "Property highlights", caption: "Property Highlights — Key features and land characteristics" },
-                    { src: ldpMobileSent, alt: "Message sent confirmation", caption: "Inquiry Confirmation — Streamlined contact flow completion" }
-                  ].map((img, index) => (
-                    <CarouselItem key={index} className="pl-4 basis-full md:basis-1/2">
+                  {[{
+                  src: ldpMobile,
+                  alt: "Property details main view",
+                  caption: "Property Overview — Main property details with hero image and key information"
+                }, {
+                  src: ldpMobileGallery,
+                  alt: "Property photo gallery",
+                  caption: "Photo Gallery — Full-screen immersive property photography"
+                }, {
+                  src: ldpMobileHighlights,
+                  alt: "Property highlights",
+                  caption: "Property Highlights — Key features and land characteristics"
+                }, {
+                  src: ldpMobileSent,
+                  alt: "Message sent confirmation",
+                  caption: "Inquiry Confirmation — Streamlined contact flow completion"
+                }].map((img, index) => <CarouselItem key={index} className="pl-4 basis-full md:basis-1/2">
                       <div className="rounded-2xl overflow-hidden shadow-card bg-card max-h-[70vh] md:max-h-none">
-                        <img 
-                          src={img.src} 
-                          alt={img.alt} 
-                          className="w-full h-auto object-contain max-h-[70vh] md:max-h-none"
-                        />
+                        <img src={img.src} alt={img.alt} className="w-full h-auto object-contain max-h-[70vh] md:max-h-none" />
                         <p className="text-sm text-muted-foreground text-center py-4 px-3">{img.caption}</p>
                       </div>
-                    </CarouselItem>
-                  ))}
+                    </CarouselItem>)}
                 </CarouselContent>
                 {/* Arrow controls below carousel */}
                 <div className="flex items-center justify-center gap-4 mt-6 w-full">
@@ -1727,33 +1656,26 @@ const RuralLandMarketplaceProject = () => {
 
       {/* Sticky Section Navigation Arrows */}
       <div className="fixed bottom-6 right-6 z-50 flex gap-2">
-        <button
-          onClick={() => {
-            const prevIndex = Math.max(0, currentSectionIndex - 1);
-            setCurrentSectionIndex(prevIndex);
-            sections[prevIndex]?.ref?.current?.scrollIntoView({ behavior: 'smooth' });
-          }}
-          disabled={currentSectionIndex === 0}
-          className="p-3 rounded-full bg-background/80 backdrop-blur-sm border border-border hover:bg-background transition-all disabled:opacity-30 disabled:cursor-not-allowed"
-          aria-label="Previous section"
-        >
+        <button onClick={() => {
+        const prevIndex = Math.max(0, currentSectionIndex - 1);
+        setCurrentSectionIndex(prevIndex);
+        sections[prevIndex]?.ref?.current?.scrollIntoView({
+          behavior: 'smooth'
+        });
+      }} disabled={currentSectionIndex === 0} className="p-3 rounded-full bg-background/80 backdrop-blur-sm border border-border hover:bg-background transition-all disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Previous section">
           <ChevronUp className="w-5 h-5" />
         </button>
-        <button
-          onClick={() => {
-            const nextIndex = Math.min(sections.length - 1, currentSectionIndex + 1);
-            setCurrentSectionIndex(nextIndex);
-            sections[nextIndex]?.ref?.current?.scrollIntoView({ behavior: 'smooth' });
-          }}
-          disabled={currentSectionIndex === sections.length - 1}
-          className="p-3 rounded-full bg-background/80 backdrop-blur-sm border border-border hover:bg-background transition-all disabled:opacity-30 disabled:cursor-not-allowed"
-          aria-label="Next section"
-        >
+        <button onClick={() => {
+        const nextIndex = Math.min(sections.length - 1, currentSectionIndex + 1);
+        setCurrentSectionIndex(nextIndex);
+        sections[nextIndex]?.ref?.current?.scrollIntoView({
+          behavior: 'smooth'
+        });
+      }} disabled={currentSectionIndex === sections.length - 1} className="p-3 rounded-full bg-background/80 backdrop-blur-sm border border-border hover:bg-background transition-all disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Next section">
           <ChevronDown className="w-5 h-5" />
         </button>
       </div>
 
     </div>;
 };
-
 export default RuralLandMarketplaceProject;
