@@ -1277,7 +1277,7 @@ const RuralLandMarketplaceProject = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-16">
               {/* Left Column */}
               <div className="space-y-4 md:space-y-12">
-                <h3 className="text-2xl md:text-3xl font-semibold">Key Components</h3>
+                
                 <p className="text-base md:text-xl text-muted-foreground">
                   The redesign focused on two critical user journeys: discovering properties through search and evaluating individual listings through detailed property pages.
                 </p>
