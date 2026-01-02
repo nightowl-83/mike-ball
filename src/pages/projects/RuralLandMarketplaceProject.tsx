@@ -34,6 +34,10 @@ import mapBrainstorm from "@/assets/map-brainstorm.png";
 import detailsBrainstorm from "@/assets/details-brainstorm.png";
 import wireframeFlow from "@/assets/wireframe-flow.png";
 import tabletMobileMock from "@/assets/PD-Tablet-Mobile-Mock.png";
+import homeTabletMock from "@/assets/Home-Tablet-Mock.jpg";
+import landDetails3up from "@/assets/Land-Details-3up.png";
+import multiLocation from "@/assets/Multi-Location.jpg";
+import landUiMobile from "@/assets/Land-UI-Mobile.jpg";
 const RuralLandMarketplaceProject = () => {
   const [stickyHeader, setStickyHeader] = useState({
     visible: false,
@@ -1655,15 +1659,18 @@ const RuralLandMarketplaceProject = () => {
         <section ref={showcaseAnim.ref} className={`min-h-screen flex items-center justify-center py-12 md:py-24 bg-card/30 transition-all duration-700 ${showcaseAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="container mx-auto max-w-[1600px] space-y-6 md:space-y-12">
             <div className="w-full aspect-video rounded-xl md:rounded-2xl overflow-hidden shadow-glow">
-              <img src="/placeholder.svg" alt="Final showcase 1" className="w-full h-full object-cover" />
+              <img src={multiLocation} alt="Multi-location search interface" className="w-full h-full object-cover" />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
               <div className="w-full aspect-square rounded-xl md:rounded-2xl overflow-hidden shadow-card">
-                <img src="/placeholder.svg" alt="Final showcase 2" className="w-full h-full object-cover" />
+                <img src={homeTabletMock} alt="Home page tablet mockup" className="w-full h-full object-cover" />
               </div>
               <div className="w-full aspect-square rounded-xl md:rounded-2xl overflow-hidden shadow-card">
-                <img src="/placeholder.svg" alt="Final showcase 3" className="w-full h-full object-cover" />
+                <img src={landUiMobile} alt="Mobile UI showcase" className="w-full h-full object-cover" />
               </div>
+            </div>
+            <div className="w-full rounded-xl md:rounded-2xl overflow-hidden shadow-glow">
+              <img src={landDetails3up} alt="Property details page on multiple devices" className="w-full h-full object-cover" />
             </div>
           </div>
         </section>
