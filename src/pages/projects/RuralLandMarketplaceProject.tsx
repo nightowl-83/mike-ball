@@ -33,6 +33,7 @@ import filteringBrainstorm from "@/assets/filtering-brainstorm.png";
 import mapBrainstorm from "@/assets/map-brainstorm.png";
 import detailsBrainstorm from "@/assets/details-brainstorm.png";
 import wireframeFlow from "@/assets/wireframe-flow.png";
+import tabletMobileMock from "@/assets/PD-Tablet-Mobile-Mock.png";
 const RuralLandMarketplaceProject = () => {
   const [stickyHeader, setStickyHeader] = useState({
     visible: false,
@@ -1532,6 +1533,58 @@ const RuralLandMarketplaceProject = () => {
                   <CarouselNext className="static translate-y-0 h-10 w-10" />
                 </div>
               </Carousel>
+            </div>
+          </div>
+        </section>
+
+        {/* Responsive Layout Section - Two Column */}
+        <section className="w-full py-16 md:py-24">
+          <div className="container mx-auto max-w-[90%] lg:max-w-[1440px]">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+              {/* Left: Image */}
+              <div className="order-2 lg:order-1">
+                <img 
+                  src={tabletMobileMock} 
+                  alt="Property details page on tablet and mobile devices" 
+                  className="w-full h-auto object-contain"
+                />
+              </div>
+              
+              {/* Right: Text Content */}
+              <div className="order-1 lg:order-2 space-y-6">
+                <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground">
+                  Responsive Layout
+                </h3>
+                <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                  The property details experience was designed to adapt seamlessly across all device sizes. From tablet to mobile, every interaction remains intuitive and accessible.
+                </p>
+                <ul className="space-y-4 text-muted-foreground">
+                  <li className="flex items-start gap-3">
+                    <span className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Check className="w-4 h-4 text-primary" />
+                    </span>
+                    <span><strong className="text-foreground">Adaptive Gallery</strong> — Full-screen image carousel optimized for touch gestures on mobile devices</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Check className="w-4 h-4 text-primary" />
+                    </span>
+                    <span><strong className="text-foreground">Responsive Typography</strong> — Content hierarchy adjusts for optimal readability across screen sizes</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Check className="w-4 h-4 text-primary" />
+                    </span>
+                    <span><strong className="text-foreground">Contact Integration</strong> — Streamlined inquiry flow with persistent agent contact options</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Check className="w-4 h-4 text-primary" />
+                    </span>
+                    <span><strong className="text-foreground">Feature Parity</strong> — All desktop functionality preserved in mobile-friendly formats</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </section>
