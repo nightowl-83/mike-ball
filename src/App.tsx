@@ -10,6 +10,7 @@ import EcommerceProject from "./pages/projects/EcommerceProject";
 import AnalyticsDashboardProject from "./pages/projects/AnalyticsDashboardProject";
 import ColorSystem from "./pages/ColorSystem";
 import NotFound from "./pages/NotFound";
+import ThemeToggle from "./components/ThemeToggle";
 
 const queryClient = new QueryClient();
 
@@ -18,6 +19,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+      <ThemeToggle />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
