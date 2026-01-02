@@ -1,16 +1,76 @@
-const ColorSwatch = ({ name, cssVar, description }: { name: string; cssVar: string; description: string }) => (
-  <div className="flex items-center gap-4 p-4 rounded-lg bg-card/50 border border-border">
-    <div 
-      className="w-16 h-16 rounded-lg border border-border shadow-md flex-shrink-0"
-      style={{ backgroundColor: `hsl(var(${cssVar}))` }}
-    />
-    <div className="flex-1 min-w-0">
-      <p className="font-mono text-sm text-primary">{cssVar}</p>
-      <p className="text-foreground font-medium">{name}</p>
-      <p className="text-muted-foreground text-sm">{description}</p>
+// Color definitions with HSL values from index.css
+const colorData: Record<string, { h: number; s: number; l: number }> = {
+  '--background': { h: 220, s: 25, l: 8 },
+  '--foreground': { h: 210, s: 40, l: 98 },
+  '--card': { h: 220, s: 20, l: 12 },
+  '--card-foreground': { h: 210, s: 40, l: 98 },
+  '--popover': { h: 220, s: 20, l: 12 },
+  '--popover-foreground': { h: 210, s: 40, l: 98 },
+  '--primary': { h: 263, s: 70, l: 65 },
+  '--primary-foreground': { h: 210, s: 40, l: 98 },
+  '--secondary': { h: 220, s: 15, l: 20 },
+  '--secondary-foreground': { h: 210, s: 40, l: 98 },
+  '--muted': { h: 220, s: 15, l: 20 },
+  '--muted-foreground': { h: 215, s: 15, l: 65 },
+  '--accent': { h: 263, s: 70, l: 65 },
+  '--accent-foreground': { h: 210, s: 40, l: 98 },
+  '--destructive': { h: 0, s: 84.2, l: 60.2 },
+  '--destructive-foreground': { h: 210, s: 40, l: 98 },
+  '--border': { h: 220, s: 15, l: 20 },
+  '--input': { h: 220, s: 15, l: 20 },
+  '--ring': { h: 263, s: 70, l: 65 },
+  '--sidebar-background': { h: 220, s: 25, l: 8 },
+  '--sidebar-foreground': { h: 210, s: 40, l: 98 },
+  '--sidebar-primary': { h: 263, s: 70, l: 65 },
+  '--sidebar-accent': { h: 220, s: 15, l: 20 },
+  '--sidebar-border': { h: 220, s: 15, l: 20 },
+};
+
+// Convert HSL to RGB
+const hslToRgb = (h: number, s: number, l: number): { r: number; g: number; b: number } => {
+  s /= 100;
+  l /= 100;
+  const k = (n: number) => (n + h / 30) % 12;
+  const a = s * Math.min(l, 1 - l);
+  const f = (n: number) => l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
+  return {
+    r: Math.round(255 * f(0)),
+    g: Math.round(255 * f(8)),
+    b: Math.round(255 * f(4)),
+  };
+};
+
+// Convert RGB to HEX
+const rgbToHex = (r: number, g: number, b: number): string => {
+  return '#' + [r, g, b].map(x => x.toString(16).padStart(2, '0')).join('').toUpperCase();
+};
+
+const ColorSwatch = ({ name, cssVar, description }: { name: string; cssVar: string; description: string }) => {
+  const hsl = colorData[cssVar];
+  const rgb = hsl ? hslToRgb(hsl.h, hsl.s, hsl.l) : { r: 0, g: 0, b: 0 };
+  const hex = hsl ? rgbToHex(rgb.r, rgb.g, rgb.b) : '#000000';
+  
+  return (
+    <div className="flex items-start gap-4 p-4 rounded-lg bg-card/50 border border-border">
+      <div 
+        className="w-16 h-16 rounded-lg border border-border shadow-md flex-shrink-0"
+        style={{ backgroundColor: `hsl(var(${cssVar}))` }}
+      />
+      <div className="flex-1 min-w-0">
+        <p className="font-mono text-sm text-primary">{cssVar}</p>
+        <p className="text-foreground font-medium">{name}</p>
+        <p className="text-muted-foreground text-sm mb-2">{description}</p>
+        {hsl && (
+          <div className="flex flex-wrap gap-2 text-xs font-mono">
+            <span className="bg-secondary px-2 py-1 rounded">HSL: {hsl.h} {hsl.s}% {hsl.l}%</span>
+            <span className="bg-secondary px-2 py-1 rounded">RGB: {rgb.r}, {rgb.g}, {rgb.b}</span>
+            <span className="bg-secondary px-2 py-1 rounded">HEX: {hex}</span>
+          </div>
+        )}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const GradientSwatch = ({ name, cssVar, description }: { name: string; cssVar: string; description: string }) => (
   <div className="flex items-center gap-4 p-4 rounded-lg bg-card/50 border border-border">
