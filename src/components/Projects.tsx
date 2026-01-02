@@ -1,7 +1,33 @@
-import ProjectCard from "./ProjectCard";
 import { projectsData } from "@/data/projectsData";
+import { 
+  HeroAccentCard, 
+  HeroCenteredCard, 
+  TwoColumnCard, 
+  MinimalCenteredCard 
+} from "./ProjectCardVariants";
 
 const Projects = () => {
+  const renderProjectCard = (project: typeof projectsData[0], index: number) => {
+    const animationDelay = `${0.1 * index}s`;
+    
+    const CardComponent = {
+      "hero-accent": HeroAccentCard,
+      "hero-centered": HeroCenteredCard,
+      "two-column": TwoColumnCard,
+      "minimal-centered": MinimalCenteredCard,
+    }[project.layoutVariant];
+
+    return (
+      <div 
+        key={project.id} 
+        className="animate-scale-in"
+        style={{ animationDelay }}
+      >
+        <CardComponent project={project} />
+      </div>
+    );
+  };
+
   return (
     <section className="py-12 md:py-24 px-4 md:px-6">
       <div className="container mx-auto max-w-7xl">
@@ -16,23 +42,8 @@ const Projects = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className="flex flex-col gap-6 md:gap-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-          {projectsData.map((project, index) => (
-            <div 
-              key={project.id} 
-              className="animate-scale-in"
-              style={{ animationDelay: `${0.1 * index}s` }}
-            >
-              <ProjectCard 
-                title={project.title}
-                description={project.description}
-                category={project.category}
-                image={project.image}
-                link={project.route}
-                tags={project.tags}
-              />
-            </div>
-          ))}
+        <div className="flex flex-col gap-8 md:gap-10 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+          {projectsData.map((project, index) => renderProjectCard(project, index))}
         </div>
       </div>
     </section>
