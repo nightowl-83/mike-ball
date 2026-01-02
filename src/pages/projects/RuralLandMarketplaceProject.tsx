@@ -188,20 +188,20 @@ const RuralLandMarketplaceProject = () => {
     number: '/04',
     ref: deliveryRef
   }, {
-    id: 'design-process',
-    section: 'Design Process',
+    id: 'key-components',
+    section: 'Key Components',
     subsection: '',
     number: '/05',
     ref: designProcessRef
   }, {
-    id: 'design-process-search',
-    section: 'Design Process',
+    id: 'key-components-search',
+    section: 'Key Components',
     subsection: 'Search',
     number: '/05',
     ref: scrollGalleryRef
   }, {
-    id: 'design-process-details',
-    section: 'Design Process',
+    id: 'key-components-details',
+    section: 'Key Components',
     subsection: 'Details Page',
     number: '/05',
     ref: detailsPageRef
@@ -1596,12 +1596,12 @@ const RuralLandMarketplaceProject = () => {
             <p className="text-base text-muted-foreground mb-8 md:mb-16">
               After the relaunch, the Rural Land Marketplace saw significant improvements across all key metrics.
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               <div className="bg-card rounded-2xl p-8 shadow-sm space-y-3 md:space-y-4 text-left">
                 <div className="text-lg md:text-xl font-bold text-muted-foreground mb-2">01</div>
                 <h3 className="text-xl md:text-2xl font-bold mb-2">Property Views</h3>
                 <p className="text-sm md:text-base text-muted-foreground mb-4">
-                  Significant increase in property views and engagement.
+                  Significant increase in property detail page views.
                 </p>
                 <div className="text-4xl md:text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent">
                   +45%
@@ -1609,6 +1609,26 @@ const RuralLandMarketplaceProject = () => {
               </div>
               <div className="bg-card rounded-2xl p-8 shadow-sm space-y-3 md:space-y-4 text-left">
                 <div className="text-lg md:text-xl font-bold text-muted-foreground mb-2">02</div>
+                <h3 className="text-xl md:text-2xl font-bold mb-2">Property Saves</h3>
+                <p className="text-sm md:text-base text-muted-foreground mb-4">
+                  More users saving properties to their favorites list.
+                </p>
+                <div className="text-4xl md:text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+                  +78%
+                </div>
+              </div>
+              <div className="bg-card rounded-2xl p-8 shadow-sm space-y-3 md:space-y-4 text-left">
+                <div className="text-lg md:text-xl font-bold text-muted-foreground mb-2">03</div>
+                <h3 className="text-xl md:text-2xl font-bold mb-2">Leads Sent</h3>
+                <p className="text-sm md:text-base text-muted-foreground mb-4">
+                  Increase in contact inquiries sent to agents.
+                </p>
+                <div className="text-4xl md:text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+                  +52%
+                </div>
+              </div>
+              <div className="bg-card rounded-2xl p-8 shadow-sm space-y-3 md:space-y-4 text-left">
+                <div className="text-lg md:text-xl font-bold text-muted-foreground mb-2">04</div>
                 <h3 className="text-xl md:text-2xl font-bold mb-2">Mobile Engagement</h3>
                 <p className="text-sm md:text-base text-muted-foreground mb-4">
                   Mobile users spending more time browsing properties.
@@ -1618,7 +1638,7 @@ const RuralLandMarketplaceProject = () => {
                 </div>
               </div>
               <div className="bg-card rounded-2xl p-8 shadow-sm space-y-3 md:space-y-4 text-left">
-                <div className="text-lg md:text-xl font-bold text-muted-foreground mb-2">03</div>
+                <div className="text-lg md:text-xl font-bold text-muted-foreground mb-2">05</div>
                 <h3 className="text-xl md:text-2xl font-bold mb-2">User Satisfaction</h3>
                 <p className="text-sm md:text-base text-muted-foreground mb-4">
                   Post-launch user satisfaction score.
