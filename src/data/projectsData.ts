@@ -3,6 +3,8 @@ import ruralLandMarketplace from "@/assets/land-ui-mobile.jpg";
 import project2 from "@/assets/project-2.jpg";
 import project3 from "@/assets/project-3.jpg";
 
+export type LayoutVariant = "hero-accent" | "hero-centered" | "two-column" | "minimal-centered";
+
 export interface ProjectData {
   id: string;
   title: string;
@@ -11,9 +13,26 @@ export interface ProjectData {
   image: string;
   route: string;
   tags: string[];
+  layoutVariant: LayoutVariant;
+  accentGradient?: string;
+  company?: string;
+  metrics?: string;
 }
 
 export const projectsData: ProjectData[] = [
+  {
+    id: "rural-land-marketplace",
+    title: "Rural Land Marketplace",
+    description: "A complete relaunch of Costar's Rural Land Marketplace with modern design, intuitive search, and enhanced map functionality.",
+    category: "Web Design",
+    image: ruralLandMarketplace,
+    route: "/projects/rural-land-marketplace",
+    tags: ["Lead Designer", "User Testing", "UI Design", "Mobile Design"],
+    layoutVariant: "hero-accent",
+    accentGradient: "from-violet-600 via-purple-600 to-indigo-700",
+    company: "CoStar Group",
+    metrics: "+45% Engagement"
+  },
   {
     id: "mobile-banking",
     title: "Marketing Hub CMS",
@@ -22,15 +41,9 @@ export const projectsData: ProjectData[] = [
     image: marketingHubDashboard,
     route: "/projects/mobile-banking",
     tags: ["UX Research", "UI Design", "Prototyping", "User Testing"],
-  },
-  {
-    id: "rural-land-marketplace",
-    title: "Rural Land Marketplace",
-    description: "A complete relaunch of Costar's Rural Land Marketplace with modern design, intuitive search, and enhanced map functionality.",
-    category: "Web Design",
-    image: ruralLandMarketplace,
-    route: "/projects/rural-land-marketplace",
-    tags: ["Lead Designer", "User Testing", "UI Design", "Mobile & Responsive Design", "Search & Map Redesign"],
+    layoutVariant: "hero-centered",
+    accentGradient: "from-rose-100 via-purple-100 to-indigo-100",
+    company: "Enterprise SaaS"
   },
   {
     id: "ecommerce-platform",
@@ -39,7 +52,9 @@ export const projectsData: ProjectData[] = [
     category: "Web Design",
     image: project2,
     route: "/projects/ecommerce-platform",
-    tags: ["Conversion Optimization", "A/B Testing", "Responsive Design", "Brand Identity"],
+    tags: ["Conversion Optimization", "A/B Testing", "Responsive Design"],
+    layoutVariant: "two-column",
+    company: "Retail Tech"
   },
   {
     id: "analytics-dashboard",
@@ -48,6 +63,8 @@ export const projectsData: ProjectData[] = [
     category: "SaaS Product",
     image: project3,
     route: "/projects/analytics-dashboard",
-    tags: ["Data Visualization", "Dashboard Design", "User Research", "Interaction Design"],
+    tags: ["Data Visualization", "Dashboard Design", "Interaction Design"],
+    layoutVariant: "minimal-centered",
+    metrics: "10k+ Users"
   },
 ];
