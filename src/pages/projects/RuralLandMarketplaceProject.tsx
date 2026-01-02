@@ -29,6 +29,10 @@ import ldpMobileGallery from "@/assets/LDP-Mobile-Gallery.png";
 import ldpMobileHighlights from "@/assets/LDP-Mobile-Highlights.png";
 import ldpMobileSent from "@/assets/LDP-Mobile-Sent.png";
 import topoTexture from "@/assets/topo-1.svg";
+import filteringBrainstorm from "@/assets/filtering-brainstorm.png";
+import mapBrainstorm from "@/assets/map-brainstorm.png";
+import detailsBrainstorm from "@/assets/details-brainstorm.png";
+import wireframeFlow from "@/assets/wireframe-flow.png";
 const RuralLandMarketplaceProject = () => {
   const [stickyHeader, setStickyHeader] = useState({
     visible: false,
@@ -202,28 +206,19 @@ const RuralLandMarketplaceProject = () => {
     ref: detailsPageRef
   }];
 
-  // Array of gallery images (placeholder - to be replaced with actual images)
+  // Array of gallery images - Discovery brainstorm sessions
   const galleryImages = [{
-    src: "/placeholder.svg",
-    alt: "Rural Land Marketplace - Research session"
+    src: filteringBrainstorm,
+    alt: "Filtering brainstorm session"
   }, {
-    src: "/placeholder.svg",
-    alt: "Design exploration session"
+    src: mapBrainstorm,
+    alt: "Map feature brainstorm session"
   }, {
-    src: "/placeholder.svg",
-    alt: "Brainstorm whiteboard - Feature planning"
+    src: detailsBrainstorm,
+    alt: "Details page brainstorm session"
   }, {
-    src: "/placeholder.svg",
-    alt: "Team brainstorm session"
-  }, {
-    src: "/placeholder.svg",
-    alt: "Brainstorm overview - Full board"
-  }, {
-    src: "/placeholder.svg",
-    alt: "Rural Land Marketplace mission and goals"
-  }, {
-    src: "/placeholder.svg",
-    alt: "Presentation session"
+    src: wireframeFlow,
+    alt: "Wireframe user flow"
   }];
 
   // Sticky header tracking
@@ -639,53 +634,32 @@ const RuralLandMarketplaceProject = () => {
                   </button>)}
               </div>
               
-              {/* Tablet/Desktop: Bento Grid */}
+              {/* Tablet/Desktop: Bento Grid - 4 images */}
               <div className="hidden md:grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4 auto-rows-[150px] md:auto-rows-[200px]">
                 {/* Image 1 - Large */}
                 <button onClick={() => openGallery(0)} className="col-span-2 md:col-span-4 lg:col-span-3 row-span-2 rounded-xl md:rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer">
                   <img src={galleryImages[0].src} alt={galleryImages[0].alt} className="w-full h-full object-cover" />
                 </button>
                 
-                {/* Image 2 - Tall */}
+                {/* Image 2 - Large */}
                 <button onClick={() => openGallery(1)} className="col-span-2 md:col-span-4 lg:col-span-3 row-span-2 rounded-xl md:rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{
                 animationDelay: '0.05s'
               }}>
                   <img src={galleryImages[1].src} alt={galleryImages[1].alt} className="w-full h-full object-cover" />
                 </button>
                 
-                {/* Image 3 - Medium */}
-                <button onClick={() => openGallery(2)} className="col-span-1 md:col-span-2 row-span-1 rounded-xl md:rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{
+                {/* Image 3 - Large */}
+                <button onClick={() => openGallery(2)} className="col-span-2 md:col-span-4 lg:col-span-3 row-span-2 rounded-xl md:rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{
                 animationDelay: '0.1s'
               }}>
                   <img src={galleryImages[2].src} alt={galleryImages[2].alt} className="w-full h-full object-cover" />
                 </button>
                 
-                {/* Image 4 - Medium */}
-                <button onClick={() => openGallery(3)} className="col-span-1 md:col-span-2 row-span-1 rounded-xl md:rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{
+                {/* Image 4 - Large */}
+                <button onClick={() => openGallery(3)} className="col-span-2 md:col-span-4 lg:col-span-3 row-span-2 rounded-xl md:rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{
                 animationDelay: '0.15s'
               }}>
                   <img src={galleryImages[3].src} alt={galleryImages[3].alt} className="w-full h-full object-cover" />
-                </button>
-                
-                {/* Image 5 - Wide */}
-                <button onClick={() => openGallery(4)} className="col-span-2 md:col-span-4 lg:col-span-2 row-span-1 rounded-xl md:rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{
-                animationDelay: '0.2s'
-              }}>
-                  <img src={galleryImages[4].src} alt={galleryImages[4].alt} className="w-full h-full object-cover" />
-                </button>
-                
-                {/* Image 6 - Full Height */}
-                <button onClick={() => openGallery(5)} className="col-span-1 md:col-span-2 row-span-2 rounded-xl md:rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{
-                animationDelay: '0.25s'
-              }}>
-                  <img src={galleryImages[5].src} alt={galleryImages[5].alt} className="w-full h-full object-cover" />
-                </button>
-                
-                {/* Image 7 - Large */}
-                <button onClick={() => openGallery(6)} className="col-span-2 md:col-span-4 row-span-2 rounded-xl md:rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{
-                animationDelay: '0.3s'
-              }}>
-                  <img src={galleryImages[6].src} alt={galleryImages[6].alt} className="w-full h-full object-cover" />
                 </button>
               </div>
             </div>
