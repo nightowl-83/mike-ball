@@ -54,6 +54,24 @@ All colors MUST be HSL.
     --sidebar-border: 220 15% 20%;
     --sidebar-ring: 263 70% 65%;
   }
+
+  /* Red Theme with Complementary Green */
+  .theme-red {
+    --primary: 9 85% 58%;
+    --accent: 9 85% 58%;
+    --ring: 9 85% 58%;
+
+    /* Complementary green for secondary elements */
+    --secondary: 160 55% 35%;
+    --secondary-foreground: 210 40% 98%;
+
+    /* Updated gradients and shadows for red theme */
+    --gradient-primary: linear-gradient(135deg, hsl(9 85% 58%), hsl(25 90% 55%));
+    --shadow-glow: 0 0 40px hsl(9 85% 58% / 0.3);
+
+    --sidebar-primary: 9 85% 58%;
+    --sidebar-ring: 9 85% 58%;
+  }
 }
 
 @layer base {
