@@ -8,6 +8,7 @@ import MobileBankingProject from "./pages/projects/MobileBankingProject";
 import RuralLandMarketplaceProject from "./pages/projects/RuralLandMarketplaceProject";
 import EcommerceProject from "./pages/projects/EcommerceProject";
 import AnalyticsDashboardProject from "./pages/projects/AnalyticsDashboardProject";
+import ColorSystem from "./pages/ColorSystem";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/projects/rural-land-marketplace" element={<RuralLandMarketplaceProject />} />
           <Route path="/projects/ecommerce-platform" element={<EcommerceProject />} />
           <Route path="/projects/analytics-dashboard" element={<AnalyticsDashboardProject />} />
+          <Route path="/color-system" element={<ColorSystem />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
