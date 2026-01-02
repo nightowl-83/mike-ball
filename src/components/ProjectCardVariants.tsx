@@ -10,7 +10,7 @@ interface ProjectCardProps {
 export const HeroAccentCard = ({ project }: ProjectCardProps) => {
   return (
     <a href={project.route} className="group block">
-      <div className={`relative overflow-hidden rounded-2xl bg-gradient-to-br ${project.accentGradient} p-8 md:p-12 min-h-[500px] md:min-h-[600px] transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/20`}>
+      <div className="relative overflow-hidden rounded-2xl p-8 md:p-12 min-h-[500px] md:min-h-[600px] transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20" style={{ background: 'var(--gradient-accent)' }}>
         {/* Background pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 right-0 w-96 h-96 bg-white/20 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2" />
@@ -67,7 +67,7 @@ export const HeroAccentCard = ({ project }: ProjectCardProps) => {
 export const HeroCenteredCard = ({ project }: ProjectCardProps) => {
   return (
     <a href={project.route} className="group block">
-      <div className={`relative overflow-hidden rounded-2xl bg-gradient-to-br ${project.accentGradient || "from-slate-100 to-slate-50"} p-8 md:p-12 min-h-[500px] md:min-h-[600px] transition-all duration-500 hover:shadow-2xl`}>
+      <div className="relative overflow-hidden rounded-2xl p-8 md:p-12 min-h-[500px] md:min-h-[600px] transition-all duration-500 hover:shadow-2xl" style={{ background: project.accentGradient ? 'var(--gradient-accent)' : 'linear-gradient(to bottom right, hsl(220 15% 90%), hsl(220 15% 95%))' }}>
         <div className="relative z-10 flex flex-col items-center text-center h-full">
           {/* Content */}
           <div className="space-y-4 mb-8 max-w-2xl">
