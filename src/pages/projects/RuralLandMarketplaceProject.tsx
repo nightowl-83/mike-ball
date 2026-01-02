@@ -625,8 +625,10 @@ const RuralLandMarketplaceProject = () => {
               </div>
             </div>
 
-            {/* Bento Grid Layout - 7 Images */}
+            {/* Bento Grid Layout */}
             <div ref={defineGalleryRef} className="mt-8 md:mt-32">
+              <h3 className="text-lg md:text-xl text-muted-foreground mb-6 md:mb-8">Brainstorming, Competitor Analysis, Pain Points</h3>
+              
               {/* Mobile: Horizontal Scroll Gallery */}
               <div className="flex md:hidden overflow-x-scroll snap-x snap-mandatory gap-3 pb-4 -mx-2 px-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                 {galleryImages.map((img, idx) => <button key={idx} onClick={() => openGallery(idx)} className="min-w-[calc(100vw-48px)] h-[400px] snap-center rounded-xl overflow-hidden shadow-card hover:scale-[1.02] transition-transform flex-shrink-0">
@@ -634,31 +636,25 @@ const RuralLandMarketplaceProject = () => {
                   </button>)}
               </div>
               
-              {/* Tablet/Desktop: Bento Grid - 4 images */}
-              <div className="hidden md:grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4 auto-rows-[150px] md:auto-rows-[200px]">
-                {/* Image 1 - Large */}
-                <button onClick={() => openGallery(0)} className="col-span-2 md:col-span-4 lg:col-span-3 row-span-2 rounded-xl md:rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer">
+              {/* Tablet/Desktop: Asymmetric Bento Grid */}
+              <div className="hidden md:grid grid-cols-12 gap-4 auto-rows-[140px] lg:auto-rows-[180px]">
+                {/* Image 1 - Large hero spanning left */}
+                <button onClick={() => openGallery(0)} className="col-span-7 row-span-2 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer">
                   <img src={galleryImages[0].src} alt={galleryImages[0].alt} className="w-full h-full object-cover" />
                 </button>
                 
-                {/* Image 2 - Large */}
-                <button onClick={() => openGallery(1)} className="col-span-2 md:col-span-4 lg:col-span-3 row-span-2 rounded-xl md:rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{
-                animationDelay: '0.05s'
-              }}>
+                {/* Image 2 - Tall vertical right */}
+                <button onClick={() => openGallery(1)} className="col-span-5 row-span-3 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{ animationDelay: '0.05s' }}>
                   <img src={galleryImages[1].src} alt={galleryImages[1].alt} className="w-full h-full object-cover" />
                 </button>
                 
-                {/* Image 3 - Large */}
-                <button onClick={() => openGallery(2)} className="col-span-2 md:col-span-4 lg:col-span-3 row-span-2 rounded-xl md:rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{
-                animationDelay: '0.1s'
-              }}>
+                {/* Image 3 - Small bottom left */}
+                <button onClick={() => openGallery(2)} className="col-span-4 row-span-1 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{ animationDelay: '0.1s' }}>
                   <img src={galleryImages[2].src} alt={galleryImages[2].alt} className="w-full h-full object-cover" />
                 </button>
                 
-                {/* Image 4 - Large */}
-                <button onClick={() => openGallery(3)} className="col-span-2 md:col-span-4 lg:col-span-3 row-span-2 rounded-xl md:rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{
-                animationDelay: '0.15s'
-              }}>
+                {/* Image 4 - Medium bottom center */}
+                <button onClick={() => openGallery(3)} className="col-span-3 row-span-1 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{ animationDelay: '0.15s' }}>
                   <img src={galleryImages[3].src} alt={galleryImages[3].alt} className="w-full h-full object-cover" />
                 </button>
               </div>
