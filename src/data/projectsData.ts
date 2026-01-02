@@ -41,8 +41,7 @@ export const projectsData: ProjectData[] = [
     image: marketingHubDashboard,
     route: "/projects/mobile-banking",
     tags: ["UX Research", "UI Design", "Prototyping", "User Testing"],
-    layoutVariant: "hero-centered",
-    accentGradient: "from-rose-100 via-purple-100 to-indigo-100",
+    layoutVariant: "minimal-centered",
     company: "Enterprise SaaS"
   },
   {
