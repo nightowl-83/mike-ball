@@ -1249,7 +1249,7 @@ const RuralLandMarketplaceProject = () => {
             </div>
           </div>
           <div className="relative w-full flex justify-center bg-background">
-            <video ref={videoRef} src={uiWireframeVideo} autoPlay loop muted playsInline preload="auto" className={`w-full h-[75vh] md:h-auto max-h-[75vh] md:max-h-[600px] lg:max-h-[680px] object-cover object-[16%_center] scale-90 md:object-[20%_center] md:scale-100 lg:object-contain lg:scale-100 transition-opacity duration-500 ${videoReady ? 'opacity-100' : 'opacity-0'}`} />
+            <video ref={videoRef} src={uiWireframeVideo} autoPlay loop muted playsInline preload="auto" className={`w-full h-[75vh] md:h-auto max-h-[75vh] md:max-h-[600px] lg:max-h-[680px] lg:w-auto object-cover object-[16%_center] scale-90 md:object-[20%_center] md:scale-100 lg:object-contain lg:scale-100 lg:mx-auto transition-opacity duration-500 ${videoReady ? 'opacity-100' : 'opacity-0'}`} />
             
             {/* Buffering overlay for smooth loop transitions */}
             <div className={`absolute inset-0 bg-background/60 backdrop-blur-sm transition-opacity duration-300 pointer-events-none ${videoBuffering && videoReady ? 'opacity-100' : 'opacity-0'}`} />
@@ -1257,8 +1257,8 @@ const RuralLandMarketplaceProject = () => {
             {/* Bottom gradient fade */}
             <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent z-10" />
             
-            {/* Right gradient fade */}
-            <div className="absolute top-0 right-0 bottom-0 w-32 md:w-48 bg-gradient-to-l from-background via-background/50 to-transparent z-10" />
+            {/* Right gradient fade - 24px on desktop only */}
+            <div className="hidden lg:block absolute top-0 right-0 bottom-0 w-6 bg-gradient-to-l from-background to-transparent z-10" />
           </div>
         </section>
 
@@ -1484,7 +1484,7 @@ const RuralLandMarketplaceProject = () => {
           <div ref={callout1Ref} className="relative z-30 pb-8 md:pb-12 overflow-visible">
             <div className="container mx-auto max-w-[1440px] px-4 md:px-6 lg:px-8">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 lg:gap-4 items-center">
-                {/* Image Column (Left) with callout */}
+                {/* Image Column (Left) with callout - 2/3 width */}
                 <div className={`lg:col-span-8 order-1 flex justify-center lg:justify-end items-center transition-all duration-700 ease-out ${callout1Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                   <img 
                     src={ldpCallout1} 
@@ -1498,9 +1498,9 @@ const RuralLandMarketplaceProject = () => {
                   </div>
                 </div>
                 
-                {/* Text Column (Right) */}
+                {/* Text Column (Right) - 1/3 width */}
                 <div className={`lg:col-span-4 order-2 flex items-center transition-all duration-700 delay-200 ease-out ${callout1Visible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
-                  <div className="lg:pl-4 p-4 lg:p-0 rounded-lg bg-background/80 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none">
+                  <div className="lg:pl-4 p-4 lg:p-0 rounded-lg bg-background/80 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none max-w-sm">
                     <p className="text-sm text-muted-foreground uppercase tracking-wide mb-2">Mobile UI Showcase</p>
                     <h4 className="text-xl md:text-2xl font-bold text-foreground mb-2">Property Overview</h4>
                     <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
@@ -1516,9 +1516,9 @@ const RuralLandMarketplaceProject = () => {
           <div ref={callout2Ref} className="relative z-20 -mt-16 md:-mt-24 lg:-mt-56 pt-4 pb-8 md:pt-8 md:pb-12 overflow-visible">
             <div className="container mx-auto max-w-[1440px] px-4 md:px-6 lg:px-8">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 lg:gap-4 items-center">
-                {/* Text Column (Left) */}
+                {/* Text Column (Left) - 1/3 width */}
                 <div className={`lg:col-span-4 order-2 lg:order-1 flex items-center justify-end transition-all duration-700 delay-200 ease-out ${callout2Visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
-                  <div className="lg:pr-4 lg:text-right p-4 lg:p-0 rounded-lg bg-background/80 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none">
+                  <div className="lg:pr-4 lg:text-right p-4 lg:p-0 rounded-lg bg-background/80 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none max-w-sm">
                     <h4 className="text-xl md:text-2xl font-bold text-foreground mb-2">Photo Gallery</h4>
                     <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
                       Immersive photo gallery with content-type tabs for Photos, 3D Tour, Video, and Property documents
@@ -1526,7 +1526,7 @@ const RuralLandMarketplaceProject = () => {
                   </div>
                 </div>
                 
-                {/* Image Column (Right) with callout */}
+                {/* Image Column (Right) with callout - 2/3 width */}
                 <div className={`lg:col-span-8 order-1 lg:order-2 flex justify-center lg:justify-start items-center transition-all duration-700 ease-out ${callout2Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                   {/* Callout connector on image side - overlaps image edge */}
                   <div className="hidden lg:flex items-center -mr-6 relative z-10">
@@ -1547,7 +1547,7 @@ const RuralLandMarketplaceProject = () => {
           <div ref={callout3Ref} className="relative z-10 -mt-16 md:-mt-24 lg:-mt-56 pt-8 md:pt-12 lg:pt-32 pb-8 md:pb-12 overflow-visible">
             <div className="container mx-auto max-w-[1440px] px-4 md:px-6 lg:px-8">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 lg:gap-4 items-center">
-                {/* Image Column (Left) with callout */}
+                {/* Image Column (Left) with callout - 2/3 width */}
                 <div className={`lg:col-span-8 order-1 flex justify-center lg:justify-end items-center transition-all duration-700 ease-out ${callout3Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                   <img 
                     src={ldpCallout3} 
@@ -1561,9 +1561,9 @@ const RuralLandMarketplaceProject = () => {
                   </div>
                 </div>
                 
-                {/* Text Column (Right) */}
+                {/* Text Column (Right) - 1/3 width */}
                 <div className={`lg:col-span-4 order-2 flex items-center transition-all duration-700 delay-200 ease-out ${callout3Visible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
-                  <div className="lg:pl-4 p-4 lg:p-0 rounded-lg bg-background/80 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none">
+                  <div className="lg:pl-4 p-4 lg:p-0 rounded-lg bg-background/80 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none max-w-sm">
                     <h4 className="text-xl md:text-2xl font-bold text-foreground mb-2">Property Highlights</h4>
                     <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
                       Comprehensive property information with structured highlights, making key details scannable at a glance
