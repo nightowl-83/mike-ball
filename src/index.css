@@ -95,11 +95,13 @@ All colors MUST be HSL.
 
   /* Reusable callout section styling */
   .callout-section .callout-dot {
-    @apply w-3 h-3 rounded-full bg-primary shrink-0;
-    box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.4), 0 0 20px hsl(var(--primary) / 0.5);
+    @apply w-3 h-3 rounded-full shrink-0;
+    background: hsl(var(--primary));
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.3), 0 0 24px hsl(var(--primary) / 0.7);
   }
 
   .callout-section .callout-line {
-    @apply h-[2px] bg-white;
+    @apply h-px;
+    background: rgba(255, 255, 255, 0.3);
   }
 }

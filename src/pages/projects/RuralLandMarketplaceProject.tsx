@@ -1482,25 +1482,25 @@ const RuralLandMarketplaceProject = () => {
           </div>
 
           {/* Subsection 1: Image Left, Text Right */}
-          <div className="relative pt-4 pb-4 md:pt-8 md:pb-8 bg-card/20">
+          <div className="relative pt-4 pb-4 md:pt-8 md:pb-8 bg-card/20 overflow-visible">
             <div className="container mx-auto max-w-[1440px]">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 lg:gap-4 items-center">
-                {/* Image Column (Left) */}
-                <div className="lg:col-span-7 order-1 flex justify-center lg:justify-end">
+                {/* Image Column (Left) with callout */}
+                <div className="lg:col-span-7 order-1 flex justify-center lg:justify-end items-center">
                   <img 
                     src={ldpCallout1} 
                     alt="Property overview with hero imagery" 
-                    className="h-[500px] md:h-[600px] lg:h-[750px] w-auto object-contain"
+                    className="h-auto max-h-[500px] md:max-h-[600px] lg:max-h-[750px] w-auto object-contain"
                   />
+                  {/* Callout connector on image side */}
+                  <div className="hidden lg:flex items-center ml-2">
+                    <div className="callout-dot" />
+                    <div className="callout-line w-12 xl:w-20" />
+                  </div>
                 </div>
                 
                 {/* Text Column (Right) */}
-                <div className="lg:col-span-5 order-2 flex items-center relative">
-                  {/* Callout connector - absolutely positioned to touch image */}
-                  <div className="hidden lg:flex items-center absolute right-full mr-2">
-                    <div className="callout-line w-12 xl:w-20" />
-                    <div className="callout-dot" />
-                  </div>
+                <div className="lg:col-span-5 order-2 flex items-center">
                   <div className="lg:pl-4">
                     <h4 className="text-xl md:text-2xl font-bold text-foreground mb-2">Property Overview</h4>
                     <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
@@ -1513,16 +1513,11 @@ const RuralLandMarketplaceProject = () => {
           </div>
 
           {/* Subsection 2: Image Right, Text Left */}
-          <div className="relative -mt-32 md:-mt-48 lg:-mt-56 pt-4 pb-4 md:pt-8 md:pb-8 bg-background">
+          <div className="relative -mt-32 md:-mt-48 lg:-mt-56 pt-4 pb-4 md:pt-8 md:pb-8 bg-background overflow-visible">
             <div className="container mx-auto max-w-[1440px]">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 lg:gap-4 items-center">
                 {/* Text Column (Left) */}
-                <div className="lg:col-span-5 order-2 lg:order-1 flex items-center justify-end relative">
-                  {/* Callout connector - absolutely positioned to touch image */}
-                  <div className="hidden lg:flex items-center absolute left-full ml-2">
-                    <div className="callout-dot" />
-                    <div className="callout-line w-12 xl:w-20" />
-                  </div>
+                <div className="lg:col-span-5 order-2 lg:order-1 flex items-center justify-end">
                   <div className="lg:pr-4 lg:text-right">
                     <h4 className="text-xl md:text-2xl font-bold text-foreground mb-2">Photo Gallery</h4>
                     <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
@@ -1531,12 +1526,17 @@ const RuralLandMarketplaceProject = () => {
                   </div>
                 </div>
                 
-                {/* Image Column (Right) */}
-                <div className="lg:col-span-7 order-1 lg:order-2 flex justify-center lg:justify-start">
+                {/* Image Column (Right) with callout */}
+                <div className="lg:col-span-7 order-1 lg:order-2 flex justify-center lg:justify-start items-center">
+                  {/* Callout connector on image side */}
+                  <div className="hidden lg:flex items-center mr-2">
+                    <div className="callout-line w-12 xl:w-20" />
+                    <div className="callout-dot" />
+                  </div>
                   <img 
                     src={ldpCallout2} 
                     alt="Photo gallery with content tabs" 
-                    className="h-[500px] md:h-[600px] lg:h-[750px] w-auto object-contain"
+                    className="h-auto max-h-[500px] md:max-h-[600px] lg:max-h-[750px] w-auto object-contain"
                   />
                 </div>
               </div>
@@ -1544,25 +1544,25 @@ const RuralLandMarketplaceProject = () => {
           </div>
 
           {/* Subsection 3: Image Left, Text Right */}
-          <div className="relative -mt-32 md:-mt-48 lg:-mt-56 pt-4 pb-4 md:pt-8 md:pb-8 bg-card/20">
+          <div className="relative -mt-32 md:-mt-48 lg:-mt-56 pt-4 pb-4 md:pt-8 md:pb-8 bg-card/20 overflow-visible">
             <div className="container mx-auto max-w-[1440px]">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 lg:gap-4 items-center">
-                {/* Image Column (Left) */}
-                <div className="lg:col-span-7 order-1 flex justify-center lg:justify-end">
+                {/* Image Column (Left) with callout */}
+                <div className="lg:col-span-7 order-1 flex justify-center lg:justify-end items-center">
                   <img 
                     src={ldpCallout3} 
                     alt="Property highlights and key features" 
-                    className="h-[500px] md:h-[600px] lg:h-[750px] w-auto object-contain"
+                    className="h-auto max-h-[500px] md:max-h-[600px] lg:max-h-[750px] w-auto object-contain"
                   />
+                  {/* Callout connector on image side */}
+                  <div className="hidden lg:flex items-center ml-2">
+                    <div className="callout-dot" />
+                    <div className="callout-line w-12 xl:w-20" />
+                  </div>
                 </div>
                 
                 {/* Text Column (Right) */}
-                <div className="lg:col-span-5 order-2 flex items-center relative">
-                  {/* Callout connector - absolutely positioned to touch image */}
-                  <div className="hidden lg:flex items-center absolute right-full mr-2">
-                    <div className="callout-line w-12 xl:w-20" />
-                    <div className="callout-dot" />
-                  </div>
+                <div className="lg:col-span-5 order-2 flex items-center">
                   <div className="lg:pl-4">
                     <h4 className="text-xl md:text-2xl font-bold text-foreground mb-2">Property Highlights</h4>
                     <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
