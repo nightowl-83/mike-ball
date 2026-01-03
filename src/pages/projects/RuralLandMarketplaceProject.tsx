@@ -980,10 +980,10 @@ const RuralLandMarketplaceProject = () => {
         {/* Full Viewport Design Image */}
         <div className="viewport-image-section">
           <div ref={userFlowRef} className="absolute top-0 left-0 w-full h-1" />
-          <div className="absolute top-0 left-0 right-0 z-20 px-6 pt-24">
+          <div className="absolute top-0 left-0 right-0 z-20 px-6 pt-24 md:pt-24">
             <div className="container mx-auto max-w-[1440px]">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-                <div>
+                <div className="-mt-4 md:mt-0">
                   <h3 className="text-4xl font-bold text-foreground">User Flow</h3>
                 </div>
                 <div className="text-right">
@@ -1248,8 +1248,8 @@ const RuralLandMarketplaceProject = () => {
               <h3 className="text-3xl md:text-4xl font-bold text-foreground">Translating Wireframes to UI</h3>
             </div>
           </div>
-          <div className="relative w-full flex justify-center bg-background">
-            <video ref={videoRef} src={uiWireframeVideo} autoPlay loop muted playsInline preload="auto" className={`w-full h-[75vh] md:h-auto max-h-[75vh] md:max-h-[600px] lg:max-h-[680px] lg:w-auto object-cover object-[16%_center] scale-90 md:object-[20%_center] md:scale-100 lg:object-contain lg:scale-100 lg:mx-auto transition-opacity duration-500 ${videoReady ? 'opacity-100' : 'opacity-0'}`} />
+          <div className="relative w-full flex justify-center bg-background overflow-hidden">
+            <video ref={videoRef} src={uiWireframeVideo} autoPlay loop muted playsInline preload="auto" className={`w-full h-[75vh] md:h-auto max-h-[75vh] md:max-h-[600px] lg:max-h-[680px] lg:w-auto object-cover object-[16%_center] scale-[0.8] md:object-[20%_center] md:scale-100 lg:object-contain lg:scale-100 lg:mx-auto transition-opacity duration-500 ${videoReady ? 'opacity-100' : 'opacity-0'}`} />
             
             {/* Buffering overlay for smooth loop transitions */}
             <div className={`absolute inset-0 bg-background/60 backdrop-blur-sm transition-opacity duration-300 pointer-events-none ${videoBuffering && videoReady ? 'opacity-100' : 'opacity-0'}`} />
@@ -1257,8 +1257,8 @@ const RuralLandMarketplaceProject = () => {
             {/* Bottom gradient fade */}
             <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent z-10" />
             
-            {/* Right gradient fade - 24px on desktop only */}
-            <div className="hidden lg:block absolute top-0 right-0 bottom-0 w-6 bg-gradient-to-l from-background to-transparent z-10" />
+            {/* Right gradient fade - 24px on desktop only, positioned over the video */}
+            <div className="hidden lg:block absolute top-0 right-0 bottom-0 w-6 z-20" style={{ background: 'linear-gradient(to left, hsl(var(--background)) 0%, transparent 100%)' }} />
           </div>
         </section>
 
@@ -1350,8 +1350,8 @@ const RuralLandMarketplaceProject = () => {
                 {/* Sticky header with title and navigation - optimized for mobile */}
                 <div className="sticky top-16 z-20 bg-background/95 backdrop-blur-sm py-3 md:py-4 mb-4">
                   <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-3 md:mb-4">Search UI</h3>
-                  {/* Mobile: horizontal scroll, Desktop: wrap */}
-                  <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0 md:flex-wrap scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0">
+                  {/* Mobile: horizontal scroll with hidden scrollbar, Desktop: wrap */}
+                  <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0 md:flex-wrap -mx-4 px-4 md:mx-0 md:px-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                     {scrollGallerySlides.map((slide, index) => <button key={index} onClick={() => setManualSlideOverride(index)} className={cn("px-3 md:px-4 py-1.5 md:py-2 rounded-lg text-xs md:text-sm font-medium transition-all duration-500 cursor-pointer hover:bg-primary/20 whitespace-nowrap flex-shrink-0", currentSlide === index ? "bg-primary text-primary-foreground shadow-lg" : "bg-muted/40 text-muted-foreground")}>
                         {slide.title}
                       </button>)}
@@ -1500,7 +1500,7 @@ const RuralLandMarketplaceProject = () => {
                 
                 {/* Text Column (Right) - 1/3 width */}
                 <div className={`lg:col-span-4 order-2 flex items-center transition-all duration-700 delay-200 ease-out ${callout1Visible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
-                  <div className="lg:pl-4 p-4 lg:p-0 rounded-lg bg-background/80 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none max-w-sm">
+                  <div className="lg:pl-4 p-4 lg:p-0 rounded-lg bg-background/80 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none max-w-md">
                     <p className="text-sm text-muted-foreground uppercase tracking-wide mb-2">Mobile UI Showcase</p>
                     <h4 className="text-xl md:text-2xl font-bold text-foreground mb-2">Property Overview</h4>
                     <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
@@ -1513,12 +1513,12 @@ const RuralLandMarketplaceProject = () => {
           </div>
 
           {/* Subsection 2: Image Right, Text Left */}
-          <div ref={callout2Ref} className="relative z-20 -mt-16 md:-mt-24 lg:-mt-56 pt-4 pb-8 md:pt-8 md:pb-12 overflow-visible">
+          <div ref={callout2Ref} className="relative z-20 -mt-24 md:-mt-32 lg:-mt-64 pt-4 pb-8 md:pt-8 md:pb-12 overflow-visible">
             <div className="container mx-auto max-w-[1440px] px-4 md:px-6 lg:px-8">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 lg:gap-4 items-center">
                 {/* Text Column (Left) - 1/3 width */}
                 <div className={`lg:col-span-4 order-2 lg:order-1 flex items-center justify-end transition-all duration-700 delay-200 ease-out ${callout2Visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
-                  <div className="lg:pr-4 lg:text-right p-4 lg:p-0 rounded-lg bg-background/80 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none max-w-sm">
+                  <div className="lg:pr-4 lg:text-right p-4 lg:p-0 rounded-lg bg-background/80 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none max-w-md">
                     <h4 className="text-xl md:text-2xl font-bold text-foreground mb-2">Photo Gallery</h4>
                     <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
                       Immersive photo gallery with content-type tabs for Photos, 3D Tour, Video, and Property documents
@@ -1544,7 +1544,7 @@ const RuralLandMarketplaceProject = () => {
           </div>
 
           {/* Subsection 3: Image Left, Text Right */}
-          <div ref={callout3Ref} className="relative z-10 -mt-16 md:-mt-24 lg:-mt-56 pt-8 md:pt-12 lg:pt-32 pb-8 md:pb-12 overflow-visible">
+          <div ref={callout3Ref} className="relative z-10 -mt-24 md:-mt-32 lg:-mt-64 pt-8 md:pt-12 lg:pt-32 pb-8 md:pb-12 overflow-visible">
             <div className="container mx-auto max-w-[1440px] px-4 md:px-6 lg:px-8">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 lg:gap-4 items-center">
                 {/* Image Column (Left) with callout - 2/3 width */}
@@ -1563,7 +1563,7 @@ const RuralLandMarketplaceProject = () => {
                 
                 {/* Text Column (Right) - 1/3 width */}
                 <div className={`lg:col-span-4 order-2 flex items-center transition-all duration-700 delay-200 ease-out ${callout3Visible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
-                  <div className="lg:pl-4 p-4 lg:p-0 rounded-lg bg-background/80 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none max-w-sm">
+                  <div className="lg:pl-4 p-4 lg:p-0 rounded-lg bg-background/80 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none max-w-md">
                     <h4 className="text-xl md:text-2xl font-bold text-foreground mb-2">Property Highlights</h4>
                     <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
                       Comprehensive property information with structured highlights, making key details scannable at a glance

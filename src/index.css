@@ -102,9 +102,9 @@ All colors MUST be HSL.
   .callout-section .callout-dot::before {
     content: '';
     @apply absolute rounded-full;
-    inset: -8px;
+    inset: -6px;
     background: hsl(var(--primary) / 0.5);
-    box-shadow: 0 0 20px hsl(var(--primary) / 0.6);
+    box-shadow: 0 0 16px hsl(var(--primary) / 0.6);
     z-index: -1;
   }
 
