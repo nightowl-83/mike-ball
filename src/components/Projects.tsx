@@ -30,7 +30,7 @@ const Projects = () => {
 
   return (
     <section className="py-12 md:py-24 px-4 md:px-6">
-      <div className="container mx-auto max-w-7xl">
+      <div className="container mx-auto max-w-[1080px]">
         {/* Section Header */}
         <div className="text-center space-y-3 md:space-y-4 mb-12 md:mb-16 animate-fade-in">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
