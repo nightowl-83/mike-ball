@@ -1474,19 +1474,13 @@ const RuralLandMarketplaceProject = () => {
 
         {/* Details Page Mobile UI Gallery - Alternating 2-Column Layout with Overlapping Images */}
         <section className="callout-section relative w-full overflow-visible">
-          {/* Section Header */}
-          <div className="container mx-auto max-w-[1440px] pt-12 md:pt-20 pb-4">
-            <p className="text-lg md:text-xl text-muted-foreground text-center">
-              Mobile UI Showcase — Property details experience across key user touchpoints
-            </p>
-          </div>
 
           {/* Subsection 1: Image Left, Text Right */}
-          <div className="relative z-30 pt-4 pb-4 md:pt-8 md:pb-8 bg-card/20 overflow-visible">
+          <div className="relative z-30 pt-12 md:pt-20 pb-4 md:pb-8 overflow-visible">
             <div className="container mx-auto max-w-[1440px]">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 lg:gap-4 items-center">
                 {/* Image Column (Left) with callout */}
-                <div className="lg:col-span-7 order-1 flex justify-center lg:justify-end items-center">
+                <div className="lg:col-span-8 order-1 flex justify-center lg:justify-end items-center">
                   <img 
                     src={ldpCallout1} 
                     alt="Property overview with hero imagery" 
@@ -1500,8 +1494,9 @@ const RuralLandMarketplaceProject = () => {
                 </div>
                 
                 {/* Text Column (Right) */}
-                <div className="lg:col-span-5 order-2 flex items-center">
+                <div className="lg:col-span-4 order-2 flex items-center">
                   <div className="lg:pl-4">
+                    <p className="text-sm text-muted-foreground uppercase tracking-wide mb-2">Mobile UI Showcase</p>
                     <h4 className="text-xl md:text-2xl font-bold text-foreground mb-2">Property Overview</h4>
                     <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
                       Full-screen hero imagery with quick-access photo count and action buttons for saving and sharing
@@ -1513,11 +1508,11 @@ const RuralLandMarketplaceProject = () => {
           </div>
 
           {/* Subsection 2: Image Right, Text Left */}
-          <div className="relative z-20 -mt-32 md:-mt-48 lg:-mt-56 pt-4 pb-4 md:pt-8 md:pb-8 bg-background overflow-visible">
+          <div className="relative z-20 -mt-32 md:-mt-48 lg:-mt-56 pt-4 pb-4 md:pt-8 md:pb-8 overflow-visible">
             <div className="container mx-auto max-w-[1440px]">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 lg:gap-4 items-center">
                 {/* Text Column (Left) */}
-                <div className="lg:col-span-5 order-2 lg:order-1 flex items-center justify-end">
+                <div className="lg:col-span-4 order-2 lg:order-1 flex items-center justify-end">
                   <div className="lg:pr-4 lg:text-right">
                     <h4 className="text-xl md:text-2xl font-bold text-foreground mb-2">Photo Gallery</h4>
                     <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
@@ -1527,7 +1522,7 @@ const RuralLandMarketplaceProject = () => {
                 </div>
                 
                 {/* Image Column (Right) with callout */}
-                <div className="lg:col-span-7 order-1 lg:order-2 flex justify-center lg:justify-start items-center">
+                <div className="lg:col-span-8 order-1 lg:order-2 flex justify-center lg:justify-start items-center">
                   {/* Callout connector on image side */}
                   <div className="hidden lg:flex items-center mr-2">
                     <div className="callout-line w-12 xl:w-20" />
@@ -1544,11 +1539,11 @@ const RuralLandMarketplaceProject = () => {
           </div>
 
           {/* Subsection 3: Image Left, Text Right */}
-          <div className="relative z-10 -mt-32 md:-mt-48 lg:-mt-56 pt-4 pb-4 md:pt-8 md:pb-8 bg-card/20 overflow-visible">
+          <div className="relative z-10 -mt-32 md:-mt-48 lg:-mt-56 pt-16 md:pt-24 lg:pt-32 pb-4 md:pb-8 overflow-visible">
             <div className="container mx-auto max-w-[1440px]">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 lg:gap-4 items-center">
                 {/* Image Column (Left) with callout */}
-                <div className="lg:col-span-7 order-1 flex justify-center lg:justify-end items-center">
+                <div className="lg:col-span-8 order-1 flex justify-center lg:justify-end items-center">
                   <img 
                     src={ldpCallout3} 
                     alt="Property highlights and key features" 
@@ -1562,7 +1557,7 @@ const RuralLandMarketplaceProject = () => {
                 </div>
                 
                 {/* Text Column (Right) */}
-                <div className="lg:col-span-5 order-2 flex items-center">
+                <div className="lg:col-span-4 order-2 flex items-center">
                   <div className="lg:pl-4">
                     <h4 className="text-xl md:text-2xl font-bold text-foreground mb-2">Property Highlights</h4>
                     <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
