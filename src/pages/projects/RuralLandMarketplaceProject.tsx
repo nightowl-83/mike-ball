@@ -29,6 +29,9 @@ import ldpMobileGallery from "@/assets/LDP-Mobile-Gallery.png";
 import ldpMobileHighlights from "@/assets/LDP-Mobile-Highlights.png";
 import ldpMobileSent from "@/assets/LDP-Mobile-Sent.png";
 import topoTexture from "@/assets/topo-1.svg";
+import ldpCallout1 from "@/assets/LDP-Callout-1.png";
+import ldpCallout2 from "@/assets/LDP-Callout-2.png";
+import ldpCallout3 from "@/assets/LDP-Callout-3.png";
 import filteringBrainstorm from "@/assets/filtering-brainstorm.png";
 import mapBrainstorm from "@/assets/map-brainstorm.png";
 import detailsBrainstorm from "@/assets/details-brainstorm.png";
@@ -1469,74 +1472,117 @@ const RuralLandMarketplaceProject = () => {
           </div>
         </section>
 
-        {/* Details Page Mobile UI Gallery */}
-        <section className="w-full py-12 md:py-20">
-          <div className="container mx-auto max-w-[90%] lg:max-w-[1440px]">
-            {/* Section Subtitle */}
-            <p className="text-lg md:text-xl text-muted-foreground mb-8 text-center">
+        {/* Details Page Mobile UI Gallery - Alternating 2-Column Layout with Overlapping Images */}
+        <section className="w-full overflow-hidden">
+          {/* Section Header */}
+          <div className="container mx-auto max-w-[1440px] pt-12 md:pt-20 pb-8">
+            <p className="text-lg md:text-xl text-muted-foreground text-center">
               Mobile UI Showcase — Property details experience across key user touchpoints
             </p>
-            
-            {/* Desktop: Show all images in a row at 90% scale with increased spacing */}
-            <div className="hidden lg:grid lg:grid-cols-4 gap-[60px] scale-[0.9] origin-center">
-              {[{
-              src: ldpMobile,
-              alt: "Property details main view",
-              caption: "Property Overview — Main property details with hero image and key information"
-            }, {
-              src: ldpMobileGallery,
-              alt: "Property photo gallery",
-              caption: "Photo Gallery — Full-screen immersive property photography"
-            }, {
-              src: ldpMobileHighlights,
-              alt: "Property highlights",
-              caption: "Property Highlights — Key features and land characteristics"
-            }, {
-              src: ldpMobileSent,
-              alt: "Message sent confirmation",
-              caption: "Inquiry Confirmation — Streamlined contact flow completion"
-            }].map((img, index) => <div key={index} className="transition-transform duration-300 ease-out lg:hover:scale-105 cursor-pointer">
-                  <img src={img.src} alt={img.alt} className="w-full h-auto object-contain" />
-                  <p className="text-sm text-muted-foreground text-center py-4 px-3">{img.caption}</p>
-                </div>)}
-            </div>
-            
-            {/* Tablet/Mobile: Carousel with navigation below */}
-            <div className="lg:hidden flex flex-col items-center">
-              <Carousel opts={{
-              align: 'start',
-              loop: true
-            }} className="w-full max-h-[75vh] md:max-h-none">
-                <CarouselContent className="-ml-4">
-                  {[{
-                  src: ldpMobile,
-                  alt: "Property details main view",
-                  caption: "Property Overview — Main property details with hero image and key information"
-                }, {
-                  src: ldpMobileGallery,
-                  alt: "Property photo gallery",
-                  caption: "Photo Gallery — Full-screen immersive property photography"
-                }, {
-                  src: ldpMobileHighlights,
-                  alt: "Property highlights",
-                  caption: "Property Highlights — Key features and land characteristics"
-                }, {
-                  src: ldpMobileSent,
-                  alt: "Message sent confirmation",
-                  caption: "Inquiry Confirmation — Streamlined contact flow completion"
-                }].map((img, index) => <CarouselItem key={index} className="pl-4 basis-full md:basis-1/2">
-                      <div className="rounded-2xl overflow-hidden shadow-card bg-card max-h-[70vh] md:max-h-none">
-                        <img src={img.src} alt={img.alt} className="w-full h-auto object-contain max-h-[70vh] md:max-h-none" />
-                        <p className="text-sm text-muted-foreground text-center py-4 px-3">{img.caption}</p>
-                      </div>
-                    </CarouselItem>)}
-                </CarouselContent>
-                {/* Arrow controls below carousel */}
-                <div className="flex items-center justify-center gap-4 mt-6 w-full">
-                  <CarouselPrevious className="static translate-y-0 h-10 w-10" />
-                  <CarouselNext className="static translate-y-0 h-10 w-10" />
+          </div>
+
+          {/* Subsection 1: Image Left, Text Right */}
+          <div className="relative pt-8 pb-24 md:pt-16 md:pb-32 bg-card/20">
+            <div className="container mx-auto max-w-[1440px]">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
+                {/* Image Column (Left) */}
+                <div className="lg:col-span-7 order-1">
+                  <img 
+                    src={ldpCallout1} 
+                    alt="Property overview with hero imagery" 
+                    className="w-full h-auto object-contain lg:translate-y-8"
+                  />
                 </div>
-              </Carousel>
+                
+                {/* Text Column (Right) */}
+                <div className="lg:col-span-5 order-2 flex items-center">
+                  <div className="space-y-4">
+                    {/* Callout Line */}
+                    <div className="flex items-center gap-4">
+                      <div className="hidden lg:flex items-center">
+                        <div className="w-3 h-3 rounded-full bg-primary" />
+                        <div className="w-16 h-[2px] bg-primary" />
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="text-xl md:text-2xl font-bold text-foreground mb-2">Property Overview</h4>
+                        <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                          Full-screen hero imagery with quick-access photo count and action buttons for saving and sharing
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Subsection 2: Image Right, Text Left */}
+          <div className="relative -mt-16 md:-mt-24 pt-8 pb-24 md:pt-16 md:pb-32 bg-background">
+            <div className="container mx-auto max-w-[1440px]">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
+                {/* Text Column (Left) */}
+                <div className="lg:col-span-5 order-2 lg:order-1 flex items-center justify-end">
+                  <div className="space-y-4">
+                    {/* Callout Line */}
+                    <div className="flex items-center gap-4 lg:flex-row-reverse">
+                      <div className="hidden lg:flex items-center">
+                        <div className="w-16 h-[2px] bg-primary" />
+                        <div className="w-3 h-3 rounded-full bg-primary" />
+                      </div>
+                      <div className="flex-1 lg:text-right">
+                        <h4 className="text-xl md:text-2xl font-bold text-foreground mb-2">Photo Gallery</h4>
+                        <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                          Immersive photo gallery with content-type tabs for Photos, 3D Tour, Video, and Property documents
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Image Column (Right) */}
+                <div className="lg:col-span-7 order-1 lg:order-2">
+                  <img 
+                    src={ldpCallout2} 
+                    alt="Photo gallery with content tabs" 
+                    className="w-full h-auto object-contain lg:translate-y-8"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Subsection 3: Image Left, Text Right */}
+          <div className="relative -mt-16 md:-mt-24 pt-8 pb-12 md:pt-16 md:pb-20 bg-card/20">
+            <div className="container mx-auto max-w-[1440px]">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
+                {/* Image Column (Left) */}
+                <div className="lg:col-span-7 order-1">
+                  <img 
+                    src={ldpCallout3} 
+                    alt="Property highlights and key features" 
+                    className="w-full h-auto object-contain lg:translate-y-8"
+                  />
+                </div>
+                
+                {/* Text Column (Right) */}
+                <div className="lg:col-span-5 order-2 flex items-center">
+                  <div className="space-y-4">
+                    {/* Callout Line */}
+                    <div className="flex items-center gap-4">
+                      <div className="hidden lg:flex items-center">
+                        <div className="w-3 h-3 rounded-full bg-primary" />
+                        <div className="w-16 h-[2px] bg-primary" />
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="text-xl md:text-2xl font-bold text-foreground mb-2">Property Highlights</h4>
+                        <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                          Comprehensive property information with structured highlights, making key details scannable at a glance
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
