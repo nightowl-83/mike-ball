@@ -1473,7 +1473,7 @@ const RuralLandMarketplaceProject = () => {
         </section>
 
         {/* Details Page Mobile UI Gallery - Alternating 2-Column Layout with Overlapping Images */}
-        <section className="callout-section w-full overflow-hidden">
+        <section className="callout-section relative w-full overflow-visible">
           {/* Section Header */}
           <div className="container mx-auto max-w-[1440px] pt-12 md:pt-20 pb-4">
             <p className="text-lg md:text-xl text-muted-foreground text-center">
@@ -1482,7 +1482,7 @@ const RuralLandMarketplaceProject = () => {
           </div>
 
           {/* Subsection 1: Image Left, Text Right */}
-          <div className="relative pt-4 pb-4 md:pt-8 md:pb-8 bg-card/20 overflow-visible">
+          <div className="relative z-30 pt-4 pb-4 md:pt-8 md:pb-8 bg-card/20 overflow-visible">
             <div className="container mx-auto max-w-[1440px]">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 lg:gap-4 items-center">
                 {/* Image Column (Left) with callout */}
@@ -1513,7 +1513,7 @@ const RuralLandMarketplaceProject = () => {
           </div>
 
           {/* Subsection 2: Image Right, Text Left */}
-          <div className="relative -mt-32 md:-mt-48 lg:-mt-56 pt-4 pb-4 md:pt-8 md:pb-8 bg-background overflow-visible">
+          <div className="relative z-20 -mt-32 md:-mt-48 lg:-mt-56 pt-4 pb-4 md:pt-8 md:pb-8 bg-background overflow-visible">
             <div className="container mx-auto max-w-[1440px]">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 lg:gap-4 items-center">
                 {/* Text Column (Left) */}
@@ -1544,7 +1544,7 @@ const RuralLandMarketplaceProject = () => {
           </div>
 
           {/* Subsection 3: Image Left, Text Right */}
-          <div className="relative -mt-32 md:-mt-48 lg:-mt-56 pt-4 pb-4 md:pt-8 md:pb-8 bg-card/20 overflow-visible">
+          <div className="relative z-10 -mt-32 md:-mt-48 lg:-mt-56 pt-4 pb-4 md:pt-8 md:pb-8 bg-card/20 overflow-visible">
             <div className="container mx-auto max-w-[1440px]">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 lg:gap-4 items-center">
                 {/* Image Column (Left) with callout */}
