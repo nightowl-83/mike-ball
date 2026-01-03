@@ -92,4 +92,14 @@ All colors MUST be HSL.
   .viewport-image-section {
     @apply relative h-[90vh] w-screen -mx-[50vw] left-[50%] right-[50%] mt-24 border-t border-b border-border;
   }
+
+  /* Reusable callout section styling */
+  .callout-section .callout-dot {
+    @apply w-3 h-3 rounded-full bg-primary shrink-0;
+    box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.4), 0 0 20px hsl(var(--primary) / 0.5);
+  }
+
+  .callout-section .callout-line {
+    @apply h-[2px] bg-white;
+  }
 }

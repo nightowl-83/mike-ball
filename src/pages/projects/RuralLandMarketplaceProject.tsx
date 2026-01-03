@@ -1473,24 +1473,24 @@ const RuralLandMarketplaceProject = () => {
         </section>
 
         {/* Details Page Mobile UI Gallery - Alternating 2-Column Layout with Overlapping Images */}
-        <section className="w-full overflow-hidden">
+        <section className="callout-section w-full overflow-hidden">
           {/* Section Header */}
-          <div className="container mx-auto max-w-[1440px] pt-12 md:pt-20 pb-8">
+          <div className="container mx-auto max-w-[1440px] pt-12 md:pt-20 pb-4">
             <p className="text-lg md:text-xl text-muted-foreground text-center">
               Mobile UI Showcase — Property details experience across key user touchpoints
             </p>
           </div>
 
           {/* Subsection 1: Image Left, Text Right */}
-          <div className="relative pt-8 pb-24 md:pt-16 md:pb-32 bg-card/20">
+          <div className="relative pt-4 pb-8 md:pt-8 md:pb-12 bg-card/20">
             <div className="container mx-auto max-w-[1440px]">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-center">
                 {/* Image Column (Left) */}
-                <div className="lg:col-span-7 order-1">
+                <div className="lg:col-span-7 order-1 flex justify-center lg:justify-end">
                   <img 
                     src={ldpCallout1} 
                     alt="Property overview with hero imagery" 
-                    className="w-full h-auto object-contain lg:translate-y-8"
+                    className="w-full max-w-[400px] lg:max-w-[500px] h-auto object-contain"
                   />
                 </div>
                 
@@ -1498,10 +1498,10 @@ const RuralLandMarketplaceProject = () => {
                 <div className="lg:col-span-5 order-2 flex items-center">
                   <div className="space-y-4">
                     {/* Callout Line */}
-                    <div className="flex items-center gap-4">
-                      <div className="hidden lg:flex items-center">
-                        <div className="w-3 h-3 rounded-full bg-primary" />
-                        <div className="w-16 h-[2px] bg-primary" />
+                    <div className="flex items-center gap-0">
+                      <div className="hidden lg:flex items-center -mr-6">
+                        <div className="callout-dot" />
+                        <div className="callout-line w-20 lg:w-28" />
                       </div>
                       <div className="flex-1">
                         <h4 className="text-xl md:text-2xl font-bold text-foreground mb-2">Property Overview</h4>
@@ -1517,17 +1517,17 @@ const RuralLandMarketplaceProject = () => {
           </div>
 
           {/* Subsection 2: Image Right, Text Left */}
-          <div className="relative -mt-16 md:-mt-24 pt-8 pb-24 md:pt-16 md:pb-32 bg-background">
+          <div className="relative -mt-24 md:-mt-32 lg:-mt-40 pt-4 pb-8 md:pt-8 md:pb-12 bg-background">
             <div className="container mx-auto max-w-[1440px]">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-center">
                 {/* Text Column (Left) */}
                 <div className="lg:col-span-5 order-2 lg:order-1 flex items-center justify-end">
                   <div className="space-y-4">
                     {/* Callout Line */}
-                    <div className="flex items-center gap-4 lg:flex-row-reverse">
-                      <div className="hidden lg:flex items-center">
-                        <div className="w-16 h-[2px] bg-primary" />
-                        <div className="w-3 h-3 rounded-full bg-primary" />
+                    <div className="flex items-center gap-0 lg:flex-row-reverse">
+                      <div className="hidden lg:flex items-center -ml-6">
+                        <div className="callout-line w-20 lg:w-28" />
+                        <div className="callout-dot" />
                       </div>
                       <div className="flex-1 lg:text-right">
                         <h4 className="text-xl md:text-2xl font-bold text-foreground mb-2">Photo Gallery</h4>
@@ -1540,11 +1540,11 @@ const RuralLandMarketplaceProject = () => {
                 </div>
                 
                 {/* Image Column (Right) */}
-                <div className="lg:col-span-7 order-1 lg:order-2">
+                <div className="lg:col-span-7 order-1 lg:order-2 flex justify-center lg:justify-start">
                   <img 
                     src={ldpCallout2} 
                     alt="Photo gallery with content tabs" 
-                    className="w-full h-auto object-contain lg:translate-y-8"
+                    className="w-full max-w-[400px] lg:max-w-[500px] h-auto object-contain"
                   />
                 </div>
               </div>
@@ -1552,15 +1552,15 @@ const RuralLandMarketplaceProject = () => {
           </div>
 
           {/* Subsection 3: Image Left, Text Right */}
-          <div className="relative -mt-16 md:-mt-24 pt-8 pb-12 md:pt-16 md:pb-20 bg-card/20">
+          <div className="relative -mt-24 md:-mt-32 lg:-mt-40 pt-4 pb-8 md:pt-8 md:pb-12 bg-card/20">
             <div className="container mx-auto max-w-[1440px]">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-center">
                 {/* Image Column (Left) */}
-                <div className="lg:col-span-7 order-1">
+                <div className="lg:col-span-7 order-1 flex justify-center lg:justify-end">
                   <img 
                     src={ldpCallout3} 
                     alt="Property highlights and key features" 
-                    className="w-full h-auto object-contain lg:translate-y-8"
+                    className="w-full max-w-[400px] lg:max-w-[500px] h-auto object-contain"
                   />
                 </div>
                 
@@ -1568,10 +1568,10 @@ const RuralLandMarketplaceProject = () => {
                 <div className="lg:col-span-5 order-2 flex items-center">
                   <div className="space-y-4">
                     {/* Callout Line */}
-                    <div className="flex items-center gap-4">
-                      <div className="hidden lg:flex items-center">
-                        <div className="w-3 h-3 rounded-full bg-primary" />
-                        <div className="w-16 h-[2px] bg-primary" />
+                    <div className="flex items-center gap-0">
+                      <div className="hidden lg:flex items-center -mr-6">
+                        <div className="callout-dot" />
+                        <div className="callout-line w-20 lg:w-28" />
                       </div>
                       <div className="flex-1">
                         <h4 className="text-xl md:text-2xl font-bold text-foreground mb-2">Property Highlights</h4>
