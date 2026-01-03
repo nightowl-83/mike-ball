@@ -1482,34 +1482,30 @@ const RuralLandMarketplaceProject = () => {
           </div>
 
           {/* Subsection 1: Image Left, Text Right */}
-          <div className="relative pt-4 pb-8 md:pt-8 md:pb-12 bg-card/20">
+          <div className="relative pt-4 pb-4 md:pt-8 md:pb-8 bg-card/20">
             <div className="container mx-auto max-w-[1440px]">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-center">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 lg:gap-4 items-center">
                 {/* Image Column (Left) */}
                 <div className="lg:col-span-7 order-1 flex justify-center lg:justify-end">
                   <img 
                     src={ldpCallout1} 
                     alt="Property overview with hero imagery" 
-                    className="w-full max-w-[400px] lg:max-w-[500px] h-auto object-contain"
+                    className="h-[500px] md:h-[600px] lg:h-[750px] w-auto object-contain"
                   />
                 </div>
                 
                 {/* Text Column (Right) */}
-                <div className="lg:col-span-5 order-2 flex items-center">
-                  <div className="space-y-4">
-                    {/* Callout Line */}
-                    <div className="flex items-center gap-0">
-                      <div className="hidden lg:flex items-center -mr-6">
-                        <div className="callout-dot" />
-                        <div className="callout-line w-20 lg:w-28" />
-                      </div>
-                      <div className="flex-1">
-                        <h4 className="text-xl md:text-2xl font-bold text-foreground mb-2">Property Overview</h4>
-                        <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                          Full-screen hero imagery with quick-access photo count and action buttons for saving and sharing
-                        </p>
-                      </div>
-                    </div>
+                <div className="lg:col-span-5 order-2 flex items-center relative">
+                  {/* Callout connector - absolutely positioned to touch image */}
+                  <div className="hidden lg:flex items-center absolute right-full mr-2">
+                    <div className="callout-line w-12 xl:w-20" />
+                    <div className="callout-dot" />
+                  </div>
+                  <div className="lg:pl-4">
+                    <h4 className="text-xl md:text-2xl font-bold text-foreground mb-2">Property Overview</h4>
+                    <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                      Full-screen hero imagery with quick-access photo count and action buttons for saving and sharing
+                    </p>
                   </div>
                 </div>
               </div>
@@ -1517,25 +1513,21 @@ const RuralLandMarketplaceProject = () => {
           </div>
 
           {/* Subsection 2: Image Right, Text Left */}
-          <div className="relative -mt-24 md:-mt-32 lg:-mt-40 pt-4 pb-8 md:pt-8 md:pb-12 bg-background">
+          <div className="relative -mt-32 md:-mt-48 lg:-mt-56 pt-4 pb-4 md:pt-8 md:pb-8 bg-background">
             <div className="container mx-auto max-w-[1440px]">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-center">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 lg:gap-4 items-center">
                 {/* Text Column (Left) */}
-                <div className="lg:col-span-5 order-2 lg:order-1 flex items-center justify-end">
-                  <div className="space-y-4">
-                    {/* Callout Line */}
-                    <div className="flex items-center gap-0 lg:flex-row-reverse">
-                      <div className="hidden lg:flex items-center -ml-6">
-                        <div className="callout-line w-20 lg:w-28" />
-                        <div className="callout-dot" />
-                      </div>
-                      <div className="flex-1 lg:text-right">
-                        <h4 className="text-xl md:text-2xl font-bold text-foreground mb-2">Photo Gallery</h4>
-                        <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                          Immersive photo gallery with content-type tabs for Photos, 3D Tour, Video, and Property documents
-                        </p>
-                      </div>
-                    </div>
+                <div className="lg:col-span-5 order-2 lg:order-1 flex items-center justify-end relative">
+                  {/* Callout connector - absolutely positioned to touch image */}
+                  <div className="hidden lg:flex items-center absolute left-full ml-2">
+                    <div className="callout-dot" />
+                    <div className="callout-line w-12 xl:w-20" />
+                  </div>
+                  <div className="lg:pr-4 lg:text-right">
+                    <h4 className="text-xl md:text-2xl font-bold text-foreground mb-2">Photo Gallery</h4>
+                    <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                      Immersive photo gallery with content-type tabs for Photos, 3D Tour, Video, and Property documents
+                    </p>
                   </div>
                 </div>
                 
@@ -1544,7 +1536,7 @@ const RuralLandMarketplaceProject = () => {
                   <img 
                     src={ldpCallout2} 
                     alt="Photo gallery with content tabs" 
-                    className="w-full max-w-[400px] lg:max-w-[500px] h-auto object-contain"
+                    className="h-[500px] md:h-[600px] lg:h-[750px] w-auto object-contain"
                   />
                 </div>
               </div>
@@ -1552,34 +1544,30 @@ const RuralLandMarketplaceProject = () => {
           </div>
 
           {/* Subsection 3: Image Left, Text Right */}
-          <div className="relative -mt-24 md:-mt-32 lg:-mt-40 pt-4 pb-8 md:pt-8 md:pb-12 bg-card/20">
+          <div className="relative -mt-32 md:-mt-48 lg:-mt-56 pt-4 pb-4 md:pt-8 md:pb-8 bg-card/20">
             <div className="container mx-auto max-w-[1440px]">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-center">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 lg:gap-4 items-center">
                 {/* Image Column (Left) */}
                 <div className="lg:col-span-7 order-1 flex justify-center lg:justify-end">
                   <img 
                     src={ldpCallout3} 
                     alt="Property highlights and key features" 
-                    className="w-full max-w-[400px] lg:max-w-[500px] h-auto object-contain"
+                    className="h-[500px] md:h-[600px] lg:h-[750px] w-auto object-contain"
                   />
                 </div>
                 
                 {/* Text Column (Right) */}
-                <div className="lg:col-span-5 order-2 flex items-center">
-                  <div className="space-y-4">
-                    {/* Callout Line */}
-                    <div className="flex items-center gap-0">
-                      <div className="hidden lg:flex items-center -mr-6">
-                        <div className="callout-dot" />
-                        <div className="callout-line w-20 lg:w-28" />
-                      </div>
-                      <div className="flex-1">
-                        <h4 className="text-xl md:text-2xl font-bold text-foreground mb-2">Property Highlights</h4>
-                        <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                          Comprehensive property information with structured highlights, making key details scannable at a glance
-                        </p>
-                      </div>
-                    </div>
+                <div className="lg:col-span-5 order-2 flex items-center relative">
+                  {/* Callout connector - absolutely positioned to touch image */}
+                  <div className="hidden lg:flex items-center absolute right-full mr-2">
+                    <div className="callout-line w-12 xl:w-20" />
+                    <div className="callout-dot" />
+                  </div>
+                  <div className="lg:pl-4">
+                    <h4 className="text-xl md:text-2xl font-bold text-foreground mb-2">Property Highlights</h4>
+                    <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                      Comprehensive property information with structured highlights, making key details scannable at a glance
+                    </p>
                   </div>
                 </div>
               </div>
