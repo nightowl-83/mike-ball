@@ -1484,21 +1484,22 @@ const RuralLandMarketplaceProject = () => {
           <div ref={callout1Ref} className="relative z-30 pb-8 md:pb-12 overflow-visible">
             <div className="container mx-auto max-w-[1440px] px-4 md:px-6 lg:px-8">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 lg:gap-0 items-center">
-                {/* Image Column (Left) - 7 cols */}
+                {/* Image Column (Left) with dot - 7 cols */}
                 <div className={`lg:col-span-7 order-1 flex justify-center lg:justify-end items-center transition-all duration-700 ease-out ${callout1Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                   <img 
                     src={ldpCallout1} 
                     alt="Property overview with hero imagery" 
                     className="h-auto max-h-[400px] md:max-h-[500px] lg:max-h-[750px] w-auto object-contain"
                   />
+                  {/* Dot overlapping image edge */}
+                  <div className="hidden lg:block -ml-3 shrink-0">
+                    <div className="callout-dot" />
+                  </div>
                 </div>
                 
-                {/* Callout Connector Column - 1 col */}
-                <div className="hidden lg:flex lg:col-span-1 items-center justify-center">
-                  <div className="flex items-center w-full">
-                    <div className="callout-dot shrink-0 -ml-3" />
-                    <div className="callout-line flex-1" />
-                  </div>
+                {/* Callout Line Column - 1 col */}
+                <div className="hidden lg:flex lg:col-span-1 items-center">
+                  <div className="callout-line w-full" />
                 </div>
                 
                 {/* Text Column (Right) - 4 cols */}
@@ -1553,21 +1554,22 @@ const RuralLandMarketplaceProject = () => {
           <div ref={callout3Ref} className="relative z-10 -mt-24 md:-mt-32 lg:-mt-64 pt-8 md:pt-12 lg:pt-32 pb-8 md:pb-12 overflow-visible">
             <div className="container mx-auto max-w-[1440px] px-4 md:px-6 lg:px-8">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 lg:gap-0 items-center">
-                {/* Image Column (Left) - 7 cols */}
+                {/* Image Column (Left) with dot - 7 cols */}
                 <div className={`lg:col-span-7 order-1 flex justify-center lg:justify-end items-center transition-all duration-700 ease-out ${callout3Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                   <img 
                     src={ldpCallout3} 
                     alt="Property highlights and key features" 
                     className="h-auto max-h-[400px] md:max-h-[500px] lg:max-h-[750px] w-auto object-contain"
                   />
+                  {/* Dot overlapping image edge */}
+                  <div className="hidden lg:block -ml-3 shrink-0">
+                    <div className="callout-dot" />
+                  </div>
                 </div>
                 
-                {/* Callout Connector Column - 1 col */}
-                <div className="hidden lg:flex lg:col-span-1 items-center justify-center">
-                  <div className="flex items-center w-full">
-                    <div className="callout-dot shrink-0 -ml-3" />
-                    <div className="callout-line flex-1" />
-                  </div>
+                {/* Callout Line Column - 1 col */}
+                <div className="hidden lg:flex lg:col-span-1 items-center">
+                  <div className="callout-line w-full" />
                 </div>
                 
                 {/* Text Column (Right) - 4 cols */}
