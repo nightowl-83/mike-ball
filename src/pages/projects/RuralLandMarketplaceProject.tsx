@@ -1492,9 +1492,9 @@ const RuralLandMarketplaceProject = () => {
                     className="h-auto max-h-[400px] md:max-h-[500px] lg:max-h-[750px] w-auto object-contain"
                   />
                   {/* Callout connector on image side - overlaps image edge */}
-                  <div className="hidden lg:flex items-center -ml-6 relative z-10">
-                    <div className="callout-dot" />
-                    <div className="callout-line w-12 xl:w-20" />
+                  <div className="hidden lg:flex items-center -ml-6 relative z-10 flex-1 min-w-[80px]">
+                    <div className="callout-dot shrink-0" />
+                    <div className="callout-line flex-1" />
                   </div>
                 </div>
                 
@@ -1529,9 +1529,9 @@ const RuralLandMarketplaceProject = () => {
                 {/* Image Column (Right) with callout - 2/3 width */}
                 <div className={`lg:col-span-8 order-1 lg:order-2 flex justify-center lg:justify-start items-center transition-all duration-700 ease-out ${callout2Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                   {/* Callout connector on image side - overlaps image edge */}
-                  <div className="hidden lg:flex items-center -mr-6 relative z-10">
-                    <div className="callout-line w-12 xl:w-20" />
-                    <div className="callout-dot" />
+                  <div className="hidden lg:flex items-center -mr-6 relative z-10 flex-1 min-w-[80px]">
+                    <div className="callout-line flex-1" />
+                    <div className="callout-dot shrink-0" />
                   </div>
                   <img 
                     src={ldpCallout2} 
@@ -1555,9 +1555,9 @@ const RuralLandMarketplaceProject = () => {
                     className="h-auto max-h-[400px] md:max-h-[500px] lg:max-h-[750px] w-auto object-contain"
                   />
                   {/* Callout connector on image side - overlaps image edge */}
-                  <div className="hidden lg:flex items-center -ml-6 relative z-10">
-                    <div className="callout-dot" />
-                    <div className="callout-line w-12 xl:w-20" />
+                  <div className="hidden lg:flex items-center -ml-6 relative z-10 flex-1 min-w-[80px]">
+                    <div className="callout-dot shrink-0" />
+                    <div className="callout-line flex-1" />
                   </div>
                 </div>
                 
