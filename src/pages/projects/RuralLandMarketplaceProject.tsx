@@ -1483,23 +1483,22 @@ const RuralLandMarketplaceProject = () => {
           {/* Subsection 1: Image Left, Text Right */}
           <div ref={callout1Ref} className="relative z-30 pb-8 md:pb-12 overflow-visible">
             <div className="container mx-auto max-w-[1440px] px-4 md:px-6 lg:px-8">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 lg:gap-0 items-center">
-                {/* Image Column (Left) with dot - 7 cols */}
-                <div className={`lg:col-span-7 order-1 flex justify-center lg:justify-end items-center transition-all duration-700 ease-out ${callout1Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                  <img 
-                    src={ldpCallout1} 
-                    alt="Property overview with hero imagery" 
-                    className="h-auto max-h-[400px] md:max-h-[500px] lg:max-h-[750px] w-auto object-contain"
-                  />
-                  {/* Dot overlapping image edge */}
-                  <div className="hidden lg:block -ml-3 shrink-0">
-                    <div className="callout-dot" />
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 items-center">
+                {/* Image Column (Left) - 8 cols */}
+                <div className={`lg:col-span-8 order-1 flex justify-center lg:justify-end items-center transition-all duration-700 ease-out ${callout1Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                  {/* Wrapper for image + absolute connector */}
+                  <div className="relative">
+                    <img 
+                      src={ldpCallout1} 
+                      alt="Property overview with hero imagery" 
+                      className="h-auto max-h-[400px] md:max-h-[500px] lg:max-h-[750px] w-auto object-contain"
+                    />
+                    {/* Absolute connector extending from image edge */}
+                    <div className="hidden lg:flex items-center absolute top-1/2 -translate-y-1/2 left-full -ml-3">
+                      <div className="callout-dot shrink-0" />
+                      <div className="callout-line w-24 xl:w-32" />
+                    </div>
                   </div>
-                </div>
-                
-                {/* Callout Line Column - 1 col */}
-                <div className="hidden lg:flex lg:col-span-1 items-center">
-                  <div className="callout-line w-full" />
                 </div>
                 
                 {/* Text Column (Right) - 4 cols */}
@@ -1519,7 +1518,7 @@ const RuralLandMarketplaceProject = () => {
           {/* Subsection 2: Image Right, Text Left */}
           <div ref={callout2Ref} className="relative z-20 -mt-24 md:-mt-32 lg:-mt-64 pt-4 pb-8 md:pt-8 md:pb-12 overflow-visible">
             <div className="container mx-auto max-w-[1440px] px-4 md:px-6 lg:px-8">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 lg:gap-0 items-center">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 items-center">
                 {/* Text Column (Left) - 4 cols */}
                 <div className={`lg:col-span-4 order-2 lg:order-1 flex items-center justify-end transition-all duration-700 delay-200 ease-out ${callout2Visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
                   <div className="lg:text-right p-4 lg:p-0 rounded-lg bg-background/80 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none max-w-md">
@@ -1530,21 +1529,21 @@ const RuralLandMarketplaceProject = () => {
                   </div>
                 </div>
                 
-                {/* Callout Connector Column - 1 col */}
-                <div className="hidden lg:flex lg:col-span-1 order-2 items-center justify-center">
-                  <div className="flex items-center w-full">
-                    <div className="callout-line flex-1" />
-                    <div className="callout-dot shrink-0 -mr-3" />
+                {/* Image Column (Right) - 8 cols */}
+                <div className={`lg:col-span-8 order-1 lg:order-2 flex justify-center lg:justify-start items-center transition-all duration-700 ease-out ${callout2Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                  {/* Wrapper for image + absolute connector */}
+                  <div className="relative">
+                    {/* Absolute connector extending from image edge */}
+                    <div className="hidden lg:flex items-center absolute top-1/2 -translate-y-1/2 right-full -mr-3">
+                      <div className="callout-line w-24 xl:w-32" />
+                      <div className="callout-dot shrink-0" />
+                    </div>
+                    <img 
+                      src={ldpCallout2} 
+                      alt="Photo gallery with content tabs" 
+                      className="h-auto max-h-[400px] md:max-h-[500px] lg:max-h-[750px] w-auto object-contain"
+                    />
                   </div>
-                </div>
-                
-                {/* Image Column (Right) - 7 cols */}
-                <div className={`lg:col-span-7 order-1 lg:order-3 flex justify-center lg:justify-start items-center transition-all duration-700 ease-out ${callout2Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                  <img 
-                    src={ldpCallout2} 
-                    alt="Photo gallery with content tabs" 
-                    className="h-auto max-h-[400px] md:max-h-[500px] lg:max-h-[750px] w-auto object-contain"
-                  />
                 </div>
               </div>
             </div>
@@ -1553,23 +1552,22 @@ const RuralLandMarketplaceProject = () => {
           {/* Subsection 3: Image Left, Text Right */}
           <div ref={callout3Ref} className="relative z-10 -mt-24 md:-mt-32 lg:-mt-64 pt-8 md:pt-12 lg:pt-32 pb-8 md:pb-12 overflow-visible">
             <div className="container mx-auto max-w-[1440px] px-4 md:px-6 lg:px-8">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 lg:gap-0 items-center">
-                {/* Image Column (Left) with dot - 7 cols */}
-                <div className={`lg:col-span-7 order-1 flex justify-center lg:justify-end items-center transition-all duration-700 ease-out ${callout3Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                  <img 
-                    src={ldpCallout3} 
-                    alt="Property highlights and key features" 
-                    className="h-auto max-h-[400px] md:max-h-[500px] lg:max-h-[750px] w-auto object-contain"
-                  />
-                  {/* Dot overlapping image edge */}
-                  <div className="hidden lg:block -ml-3 shrink-0">
-                    <div className="callout-dot" />
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 items-center">
+                {/* Image Column (Left) - 8 cols */}
+                <div className={`lg:col-span-8 order-1 flex justify-center lg:justify-end items-center transition-all duration-700 ease-out ${callout3Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                  {/* Wrapper for image + absolute connector */}
+                  <div className="relative">
+                    <img 
+                      src={ldpCallout3} 
+                      alt="Property highlights and key features" 
+                      className="h-auto max-h-[400px] md:max-h-[500px] lg:max-h-[750px] w-auto object-contain"
+                    />
+                    {/* Absolute connector extending from image edge */}
+                    <div className="hidden lg:flex items-center absolute top-1/2 -translate-y-1/2 left-full -ml-3">
+                      <div className="callout-dot shrink-0" />
+                      <div className="callout-line w-24 xl:w-32" />
+                    </div>
                   </div>
-                </div>
-                
-                {/* Callout Line Column - 1 col */}
-                <div className="hidden lg:flex lg:col-span-1 items-center">
-                  <div className="callout-line w-full" />
                 </div>
                 
                 {/* Text Column (Right) - 4 cols */}
