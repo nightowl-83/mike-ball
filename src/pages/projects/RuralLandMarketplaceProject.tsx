@@ -1482,24 +1482,24 @@ const RuralLandMarketplaceProject = () => {
 
           {/* Subsection 1: Image Left, Text Right */}
           <div ref={callout1Ref} className="relative z-30 pb-8 md:pb-12 overflow-visible">
-            <div className="container mx-auto max-w-[1080px] px-4 md:px-6 lg:px-8">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-4 items-center">
-                {/* Image Column (Left) with callout - 1/2 width */}
-                <div className={`order-1 flex justify-center lg:justify-end items-center transition-all duration-700 ease-out ${callout1Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <div className="container mx-auto max-w-[1440px] px-4 md:px-6 lg:px-8">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 lg:gap-4 items-center">
+                {/* Image Column (Left) with callout - 2/3 width */}
+                <div className={`lg:col-span-8 order-1 flex justify-center lg:justify-end items-center transition-all duration-700 ease-out ${callout1Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                   <img 
                     src={ldpCallout1} 
                     alt="Property overview with hero imagery" 
                     className="h-auto max-h-[400px] md:max-h-[500px] lg:max-h-[750px] w-auto object-contain"
                   />
-                  {/* Callout connector on image side - line extends to center of image */}
-                  <div className="hidden lg:flex items-center relative z-10">
-                    <div className="callout-dot -ml-[50%]" />
-                    <div className="callout-line w-[50%] min-w-[150px]" />
+                  {/* Callout connector on image side - overlaps image edge */}
+                  <div className="hidden lg:flex items-center -ml-6 relative z-10">
+                    <div className="callout-dot" />
+                    <div className="callout-line w-12 xl:w-20" />
                   </div>
                 </div>
                 
-                {/* Text Column (Right) - 1/2 width */}
-                <div className={`order-2 flex items-center transition-all duration-700 delay-200 ease-out ${callout1Visible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
+                {/* Text Column (Right) - 1/3 width */}
+                <div className={`lg:col-span-4 order-2 flex items-center transition-all duration-700 delay-200 ease-out ${callout1Visible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
                   <div className="lg:pl-4 p-4 lg:p-0 rounded-lg bg-background/80 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none max-w-md">
                     <p className="text-sm text-muted-foreground uppercase tracking-wide mb-2">Mobile UI Showcase</p>
                     <h4 className="text-xl md:text-2xl font-bold text-foreground mb-2">Property Overview</h4>
@@ -1514,10 +1514,10 @@ const RuralLandMarketplaceProject = () => {
 
           {/* Subsection 2: Image Right, Text Left */}
           <div ref={callout2Ref} className="relative z-20 -mt-24 md:-mt-32 lg:-mt-64 pt-4 pb-8 md:pt-8 md:pb-12 overflow-visible">
-            <div className="container mx-auto max-w-[1080px] px-4 md:px-6 lg:px-8">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-4 items-center">
-                {/* Text Column (Left) - 1/2 width */}
-                <div className={`order-2 lg:order-1 flex items-center justify-end transition-all duration-700 delay-200 ease-out ${callout2Visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
+            <div className="container mx-auto max-w-[1440px] px-4 md:px-6 lg:px-8">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 lg:gap-4 items-center">
+                {/* Text Column (Left) - 1/3 width */}
+                <div className={`lg:col-span-4 order-2 lg:order-1 flex items-center justify-end transition-all duration-700 delay-200 ease-out ${callout2Visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
                   <div className="lg:pr-4 lg:text-right p-4 lg:p-0 rounded-lg bg-background/80 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none max-w-md">
                     <h4 className="text-xl md:text-2xl font-bold text-foreground mb-2">Photo Gallery</h4>
                     <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
@@ -1526,12 +1526,12 @@ const RuralLandMarketplaceProject = () => {
                   </div>
                 </div>
                 
-                {/* Image Column (Right) with callout - 1/2 width */}
-                <div className={`order-1 lg:order-2 flex justify-center lg:justify-start items-center transition-all duration-700 ease-out ${callout2Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                  {/* Callout connector on image side - line extends to center of image */}
-                  <div className="hidden lg:flex items-center relative z-10">
-                    <div className="callout-line w-[50%] min-w-[150px]" />
-                    <div className="callout-dot -mr-[50%]" />
+                {/* Image Column (Right) with callout - 2/3 width */}
+                <div className={`lg:col-span-8 order-1 lg:order-2 flex justify-center lg:justify-start items-center transition-all duration-700 ease-out ${callout2Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                  {/* Callout connector on image side - overlaps image edge */}
+                  <div className="hidden lg:flex items-center -mr-6 relative z-10">
+                    <div className="callout-line w-12 xl:w-20" />
+                    <div className="callout-dot" />
                   </div>
                   <img 
                     src={ldpCallout2} 
@@ -1545,24 +1545,24 @@ const RuralLandMarketplaceProject = () => {
 
           {/* Subsection 3: Image Left, Text Right */}
           <div ref={callout3Ref} className="relative z-10 -mt-24 md:-mt-32 lg:-mt-64 pt-8 md:pt-12 lg:pt-32 pb-8 md:pb-12 overflow-visible">
-            <div className="container mx-auto max-w-[1080px] px-4 md:px-6 lg:px-8">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-4 items-center">
-                {/* Image Column (Left) with callout - 1/2 width */}
-                <div className={`order-1 flex justify-center lg:justify-end items-center transition-all duration-700 ease-out ${callout3Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <div className="container mx-auto max-w-[1440px] px-4 md:px-6 lg:px-8">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 lg:gap-4 items-center">
+                {/* Image Column (Left) with callout - 2/3 width */}
+                <div className={`lg:col-span-8 order-1 flex justify-center lg:justify-end items-center transition-all duration-700 ease-out ${callout3Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                   <img 
                     src={ldpCallout3} 
                     alt="Property highlights and key features" 
                     className="h-auto max-h-[400px] md:max-h-[500px] lg:max-h-[750px] w-auto object-contain"
                   />
-                  {/* Callout connector on image side - line extends to center of image */}
-                  <div className="hidden lg:flex items-center relative z-10">
-                    <div className="callout-dot -ml-[50%]" />
-                    <div className="callout-line w-[50%] min-w-[150px]" />
+                  {/* Callout connector on image side - overlaps image edge */}
+                  <div className="hidden lg:flex items-center -ml-6 relative z-10">
+                    <div className="callout-dot" />
+                    <div className="callout-line w-12 xl:w-20" />
                   </div>
                 </div>
                 
-                {/* Text Column (Right) - 1/2 width */}
-                <div className={`order-2 flex items-center transition-all duration-700 delay-200 ease-out ${callout3Visible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
+                {/* Text Column (Right) - 1/3 width */}
+                <div className={`lg:col-span-4 order-2 flex items-center transition-all duration-700 delay-200 ease-out ${callout3Visible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
                   <div className="lg:pl-4 p-4 lg:p-0 rounded-lg bg-background/80 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none max-w-md">
                     <h4 className="text-xl md:text-2xl font-bold text-foreground mb-2">Property Highlights</h4>
                     <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
