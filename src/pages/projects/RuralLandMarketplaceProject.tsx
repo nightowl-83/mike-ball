@@ -119,6 +119,7 @@ const RuralLandMarketplaceProject = () => {
   const designSystemRef = useRef<HTMLDivElement>(null);
   const deliveryRef = useRef<HTMLDivElement>(null);
   const designProcessRef = useRef<HTMLDivElement>(null);
+  const resultsRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   // Scroll animations for callout sections
@@ -217,6 +218,12 @@ const RuralLandMarketplaceProject = () => {
     subsection: 'Details Page',
     number: '/05',
     ref: detailsPageRef
+  }, {
+    id: 'results',
+    section: 'Results',
+    subsection: '',
+    number: '/06',
+    ref: resultsRef
   }];
 
   // Array of gallery images - Discovery brainstorm sessions
@@ -979,12 +986,12 @@ const RuralLandMarketplaceProject = () => {
 
         {/* Full Viewport Design Image */}
         <div className="viewport-image-section">
-          <div ref={userFlowRef} className="absolute top-0 left-0 w-full h-1" />
-          <div className="absolute top-0 left-0 right-0 z-20 px-6 pt-24 md:pt-24">
+        <div ref={userFlowRef} className="absolute top-0 left-0 w-full h-1" />
+          <div className="absolute top-4 left-4 md:top-0 md:left-0 md:right-0 z-20 md:px-6 md:pt-24">
             <div className="container mx-auto max-w-[1440px]">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-                <div className="-mt-4 md:mt-0">
-                  <h3 className="text-4xl font-bold text-foreground">User Flow</h3>
+                <div>
+                  <h3 className="text-2xl md:text-4xl font-bold text-foreground">User Flow</h3>
                 </div>
                 <div className="text-right">
                   
@@ -1484,8 +1491,19 @@ const RuralLandMarketplaceProject = () => {
           <div ref={callout1Ref} className="relative z-30 pb-8 md:pb-12 overflow-visible">
             <div className="container mx-auto max-w-[1440px] px-4 md:px-6 lg:px-8">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 lg:gap-4 items-center">
-                {/* Image Column (Left) with callout - 2/3 width */}
-                <div className={`lg:col-span-8 order-1 flex justify-center lg:justify-end items-center transition-all duration-700 ease-out ${callout1Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                {/* Text Column - 1/3 width - First on mobile */}
+                <div className={`lg:col-span-4 order-1 lg:order-2 flex items-center transition-all duration-700 delay-200 ease-out ${callout1Visible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
+                  <div className="lg:pl-4 p-4 lg:p-0 rounded-lg bg-background/80 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none max-w-md">
+                    <p className="text-sm text-muted-foreground uppercase tracking-wide mb-2">Mobile UI Showcase</p>
+                    <h4 className="text-xl md:text-2xl font-bold text-foreground mb-2">Property Overview</h4>
+                    <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                      Full-screen hero imagery with quick-access photo count and action buttons for saving and sharing
+                    </p>
+                  </div>
+                </div>
+                
+                {/* Image Column (Left) with callout - 2/3 width - Second on mobile */}
+                <div className={`lg:col-span-8 order-2 lg:order-1 flex justify-center lg:justify-end items-center transition-all duration-700 ease-out ${callout1Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                   <img 
                     src={ldpCallout1} 
                     alt="Property overview with hero imagery" 
@@ -1497,17 +1515,6 @@ const RuralLandMarketplaceProject = () => {
                     <div className="callout-line w-12 xl:w-20" />
                   </div>
                 </div>
-                
-                {/* Text Column (Right) - 1/3 width */}
-                <div className={`lg:col-span-4 order-2 flex items-center transition-all duration-700 delay-200 ease-out ${callout1Visible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
-                  <div className="lg:pl-4 p-4 lg:p-0 rounded-lg bg-background/80 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none max-w-md">
-                    <p className="text-sm text-muted-foreground uppercase tracking-wide mb-2">Mobile UI Showcase</p>
-                    <h4 className="text-xl md:text-2xl font-bold text-foreground mb-2">Property Overview</h4>
-                    <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                      Full-screen hero imagery with quick-access photo count and action buttons for saving and sharing
-                    </p>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -1516,8 +1523,8 @@ const RuralLandMarketplaceProject = () => {
           <div ref={callout2Ref} className="relative z-20 -mt-24 md:-mt-32 lg:-mt-64 pt-4 pb-8 md:pt-8 md:pb-12 overflow-visible">
             <div className="container mx-auto max-w-[1440px] px-4 md:px-6 lg:px-8">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 lg:gap-4 items-center">
-                {/* Text Column (Left) - 1/3 width */}
-                <div className={`lg:col-span-4 order-2 lg:order-1 flex items-center justify-end transition-all duration-700 delay-200 ease-out ${callout2Visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
+                {/* Text Column (Left) - 1/3 width - First on mobile */}
+                <div className={`lg:col-span-4 order-1 flex items-center lg:justify-end transition-all duration-700 delay-200 ease-out ${callout2Visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
                   <div className="lg:pr-4 lg:text-right p-4 lg:p-0 rounded-lg bg-background/80 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none max-w-md">
                     <h4 className="text-xl md:text-2xl font-bold text-foreground mb-2">Photo Gallery</h4>
                     <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
@@ -1526,8 +1533,8 @@ const RuralLandMarketplaceProject = () => {
                   </div>
                 </div>
                 
-                {/* Image Column (Right) with callout - 2/3 width */}
-                <div className={`lg:col-span-8 order-1 lg:order-2 flex justify-center lg:justify-start items-center transition-all duration-700 ease-out ${callout2Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                {/* Image Column (Right) with callout - 2/3 width - Second on mobile */}
+                <div className={`lg:col-span-8 order-2 flex justify-center lg:justify-start items-center transition-all duration-700 ease-out ${callout2Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                   {/* Callout connector on image side - overlaps image edge */}
                   <div className="hidden lg:flex items-center -mr-6 relative z-10">
                     <div className="callout-line w-12 xl:w-20" />
@@ -1547,8 +1554,18 @@ const RuralLandMarketplaceProject = () => {
           <div ref={callout3Ref} className="relative z-10 -mt-24 md:-mt-32 lg:-mt-64 pt-8 md:pt-12 lg:pt-32 pb-8 md:pb-12 overflow-visible">
             <div className="container mx-auto max-w-[1440px] px-4 md:px-6 lg:px-8">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 lg:gap-4 items-center">
-                {/* Image Column (Left) with callout - 2/3 width */}
-                <div className={`lg:col-span-8 order-1 flex justify-center lg:justify-end items-center transition-all duration-700 ease-out ${callout3Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                {/* Text Column (Right) - 1/3 width - First on mobile */}
+                <div className={`lg:col-span-4 order-1 lg:order-2 flex items-center transition-all duration-700 delay-200 ease-out ${callout3Visible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
+                  <div className="lg:pl-4 p-4 lg:p-0 rounded-lg bg-background/80 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none max-w-md">
+                    <h4 className="text-xl md:text-2xl font-bold text-foreground mb-2">Property Highlights</h4>
+                    <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                      Comprehensive property information with structured highlights, making key details scannable at a glance
+                    </p>
+                  </div>
+                </div>
+                
+                {/* Image Column (Left) with callout - 2/3 width - Second on mobile */}
+                <div className={`lg:col-span-8 order-2 lg:order-1 flex justify-center lg:justify-end items-center transition-all duration-700 ease-out ${callout3Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                   <img 
                     src={ldpCallout3} 
                     alt="Property highlights and key features" 
@@ -1558,16 +1575,6 @@ const RuralLandMarketplaceProject = () => {
                   <div className="hidden lg:flex items-center -ml-6 relative z-10">
                     <div className="callout-dot" />
                     <div className="callout-line w-12 xl:w-20" />
-                  </div>
-                </div>
-                
-                {/* Text Column (Right) - 1/3 width */}
-                <div className={`lg:col-span-4 order-2 flex items-center transition-all duration-700 delay-200 ease-out ${callout3Visible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
-                  <div className="lg:pl-4 p-4 lg:p-0 rounded-lg bg-background/80 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none max-w-md">
-                    <h4 className="text-xl md:text-2xl font-bold text-foreground mb-2">Property Highlights</h4>
-                    <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                      Comprehensive property information with structured highlights, making key details scannable at a glance
-                    </p>
                   </div>
                 </div>
               </div>
@@ -1628,8 +1635,8 @@ const RuralLandMarketplaceProject = () => {
         </section>
 
         {/* Results Section */}
-        <section ref={resultsAnim.ref} className={`min-h-screen flex items-center justify-center py-10 md:py-24 transition-all duration-700 ${resultsAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="container mx-auto max-w-[1440px] text-left">
+        <section ref={resultsRef} className={`min-h-screen flex items-center justify-center py-10 md:py-24 transition-all duration-700 ${resultsAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div ref={resultsAnim.ref as React.RefObject<HTMLDivElement>} className="container mx-auto max-w-[1440px] text-left">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Outcomes</h2>
             <p className="text-base text-muted-foreground mb-8 md:mb-16">
               After the relaunch, the Rural Land Marketplace saw significant improvements across all key metrics.
