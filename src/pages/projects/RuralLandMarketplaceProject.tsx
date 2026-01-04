@@ -1491,10 +1491,10 @@ const RuralLandMarketplaceProject = () => {
                     alt="Property overview with hero imagery" 
                     className="h-auto max-h-[400px] md:max-h-[500px] lg:max-h-[750px] w-auto object-contain"
                   />
-                  {/* Callout connector on image side - extends to center of image */}
-                  <div className="hidden lg:flex items-center -ml-[33%] relative z-10">
-                    <div className="callout-dot" />
-                    <div className="callout-line flex-1 min-w-[100px]" />
+                  {/* Callout connector on image side - line extends to center of image */}
+                  <div className="hidden lg:flex items-center relative z-10">
+                    <div className="callout-dot -ml-[50%]" />
+                    <div className="callout-line w-[50%] min-w-[150px]" />
                   </div>
                 </div>
                 
@@ -1528,10 +1528,10 @@ const RuralLandMarketplaceProject = () => {
                 
                 {/* Image Column (Right) with callout - 2/3 width */}
                 <div className={`lg:col-span-8 order-1 lg:order-2 flex justify-center lg:justify-start items-center transition-all duration-700 ease-out ${callout2Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                  {/* Callout connector on image side - extends to center of image */}
-                  <div className="hidden lg:flex items-center -mr-[33%] relative z-10">
-                    <div className="callout-line flex-1 min-w-[100px]" />
-                    <div className="callout-dot" />
+                  {/* Callout connector on image side - line extends to center of image */}
+                  <div className="hidden lg:flex items-center relative z-10">
+                    <div className="callout-line w-[50%] min-w-[150px]" />
+                    <div className="callout-dot -mr-[50%]" />
                   </div>
                   <img 
                     src={ldpCallout2} 
@@ -1554,10 +1554,10 @@ const RuralLandMarketplaceProject = () => {
                     alt="Property highlights and key features" 
                     className="h-auto max-h-[400px] md:max-h-[500px] lg:max-h-[750px] w-auto object-contain"
                   />
-                  {/* Callout connector on image side - extends to center of image */}
-                  <div className="hidden lg:flex items-center -ml-[33%] relative z-10">
-                    <div className="callout-dot" />
-                    <div className="callout-line flex-1 min-w-[100px]" />
+                  {/* Callout connector on image side - line extends to center of image */}
+                  <div className="hidden lg:flex items-center relative z-10">
+                    <div className="callout-dot -ml-[50%]" />
+                    <div className="callout-line w-[50%] min-w-[150px]" />
                   </div>
                 </div>
                 
