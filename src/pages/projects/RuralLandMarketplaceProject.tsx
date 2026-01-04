@@ -1482,7 +1482,7 @@ const RuralLandMarketplaceProject = () => {
 
           {/* Subsection 1: Image Left, Text Right */}
           <div ref={callout1Ref} className="relative z-30 pb-8 md:pb-12 overflow-visible">
-            <div className="container mx-auto max-w-[1280px] px-4 md:px-6 lg:px-8">
+            <div className="container mx-auto max-w-[1080px] px-4 md:px-6 lg:px-8">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-4 items-center">
                 {/* Image Column (Left) with callout - 1/2 width */}
                 <div className={`order-1 flex justify-center lg:justify-end items-center transition-all duration-700 ease-out ${callout1Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
@@ -1514,7 +1514,7 @@ const RuralLandMarketplaceProject = () => {
 
           {/* Subsection 2: Image Right, Text Left */}
           <div ref={callout2Ref} className="relative z-20 -mt-24 md:-mt-32 lg:-mt-64 pt-4 pb-8 md:pt-8 md:pb-12 overflow-visible">
-            <div className="container mx-auto max-w-[1280px] px-4 md:px-6 lg:px-8">
+            <div className="container mx-auto max-w-[1080px] px-4 md:px-6 lg:px-8">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-4 items-center">
                 {/* Text Column (Left) - 1/2 width */}
                 <div className={`order-2 lg:order-1 flex items-center justify-end transition-all duration-700 delay-200 ease-out ${callout2Visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
@@ -1545,7 +1545,7 @@ const RuralLandMarketplaceProject = () => {
 
           {/* Subsection 3: Image Left, Text Right */}
           <div ref={callout3Ref} className="relative z-10 -mt-24 md:-mt-32 lg:-mt-64 pt-8 md:pt-12 lg:pt-32 pb-8 md:pb-12 overflow-visible">
-            <div className="container mx-auto max-w-[1280px] px-4 md:px-6 lg:px-8">
+            <div className="container mx-auto max-w-[1080px] px-4 md:px-6 lg:px-8">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-4 items-center">
                 {/* Image Column (Left) with callout - 1/2 width */}
                 <div className={`order-1 flex justify-center lg:justify-end items-center transition-all duration-700 ease-out ${callout3Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
