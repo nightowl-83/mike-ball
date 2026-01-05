@@ -47,6 +47,7 @@ import homeTabletMock from "@/assets/Home-Tablet-Mock.jpg";
 import landDetails3up from "@/assets/Land-Details-3up.png";
 import multiLocation from "@/assets/Multi-Location.jpg";
 import landUiMobile from "@/assets/Land-UI-Mobile.jpg";
+import imageCarouselHome from "@/assets/Image-Carousel-Home.png";
 import { useIsMobile } from "@/hooks/use-mobile";
 const RuralLandMarketplaceProject = () => {
   const [stickyHeader, setStickyHeader] = useState({
@@ -1712,6 +1713,9 @@ const RuralLandMarketplaceProject = () => {
         {/* Final Showcase */}
         <section ref={showcaseAnim.ref} className={`min-h-screen flex items-center justify-center py-12 md:py-24 bg-card/30 transition-all duration-700 ${showcaseAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="container mx-auto max-w-[1600px] space-y-6 md:space-y-12">
+            <div className="w-full rounded-xl md:rounded-2xl overflow-hidden shadow-glow">
+              <img src={imageCarouselHome} alt="Home page with image carousel" className="w-full h-full object-cover" />
+            </div>
             <div className="w-full aspect-video rounded-xl md:rounded-2xl overflow-hidden shadow-glow">
               <img src={multiLocation} alt="Multi-location search interface" className="w-full h-full object-cover" />
             </div>
