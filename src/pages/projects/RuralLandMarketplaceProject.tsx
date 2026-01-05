@@ -59,31 +59,31 @@ const RuralLandMarketplaceProject = () => {
   const scrollGalleryRef = useRef<HTMLDivElement>(null);
   const detailsPageRef = useRef<HTMLDivElement>(null);
 
-  // Scroll-driven gallery data
+  // Scroll-driven gallery data - ordered: Default, then ascending (1-4)
   const scrollGallerySlides = [{
     src: searchUiDefault,
     alt: "Search UI default view",
-    title: "Default View",
+    title: "Default",
     description: "Clean, intuitive search interface with map integration and essential filters readily accessible."
   }, {
     src: searchUiLocation,
     alt: "Search UI location search",
-    title: "Location Search",
+    title: "1. Location",
     description: "Geographic search with multi-location selection, smart autocomplete, and region-based browsing."
-  }, {
-    src: searchUiPrice,
-    alt: "Search UI price filter",
-    title: "Price Filters",
-    description: "Responsive price controls with quick presets and real-time result updates as you adjust ranges."
   }, {
     src: searchUiFilters,
     alt: "Search UI filters panel",
-    title: "Advanced Filters",
+    title: "2. Filters",
     description: "Land-specific filtering with property types, acreage ranges, water features, and terrain options."
+  }, {
+    src: searchUiPrice,
+    alt: "Search UI price filter",
+    title: "3. Price",
+    description: "Responsive price controls with quick presets and real-time result updates as you adjust ranges."
   }, {
     src: searchUiLayers,
     alt: "Search UI with map layers",
-    title: "Map Layers",
+    title: "4. Layers",
     description: "Toggle between satellite, terrain, and custom overlays to visualize property boundaries and features."
   }];
 
