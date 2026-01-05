@@ -136,9 +136,24 @@ const RuralLandMarketplaceProject = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   // Scroll animations for callout sections
-  const { ref: callout1Ref, isVisible: callout1Visible } = useScrollAnimation({ threshold: 0.2 });
-  const { ref: callout2Ref, isVisible: callout2Visible } = useScrollAnimation({ threshold: 0.2 });
-  const { ref: callout3Ref, isVisible: callout3Visible } = useScrollAnimation({ threshold: 0.2 });
+  const {
+    ref: callout1Ref,
+    isVisible: callout1Visible
+  } = useScrollAnimation({
+    threshold: 0.2
+  });
+  const {
+    ref: callout2Ref,
+    isVisible: callout2Visible
+  } = useScrollAnimation({
+    threshold: 0.2
+  });
+  const {
+    ref: callout3Ref,
+    isVisible: callout3Visible
+  } = useScrollAnimation({
+    threshold: 0.2
+  });
 
   // Section navigation data
   const sections = [{
@@ -677,17 +692,23 @@ const RuralLandMarketplaceProject = () => {
                 </button>
                 
                 {/* Image 2 - Tall vertical right */}
-                <button onClick={() => openGallery(1)} className="col-span-5 row-span-3 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{ animationDelay: '0.05s' }}>
+                <button onClick={() => openGallery(1)} className="col-span-5 row-span-3 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{
+                animationDelay: '0.05s'
+              }}>
                   <img src={galleryImages[1].src} alt={galleryImages[1].alt} className="w-full h-full object-cover" />
                 </button>
                 
                 {/* Image 3 - Small bottom left */}
-                <button onClick={() => openGallery(2)} className="col-span-4 row-span-1 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{ animationDelay: '0.1s' }}>
+                <button onClick={() => openGallery(2)} className="col-span-4 row-span-1 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{
+                animationDelay: '0.1s'
+              }}>
                   <img src={galleryImages[2].src} alt={galleryImages[2].alt} className="w-full h-full object-cover" />
                 </button>
                 
                 {/* Image 4 - Medium bottom center */}
-                <button onClick={() => openGallery(3)} className="col-span-3 row-span-1 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{ animationDelay: '0.15s' }}>
+                <button onClick={() => openGallery(3)} className="col-span-3 row-span-1 rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{
+                animationDelay: '0.15s'
+              }}>
                   <img src={galleryImages[3].src} alt={galleryImages[3].alt} className="w-full h-full object-cover" />
                 </button>
               </div>
@@ -1278,7 +1299,9 @@ const RuralLandMarketplaceProject = () => {
             <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent z-10" />
             
             {/* Right gradient fade - 24px on desktop only, positioned over the video */}
-            <div className="hidden lg:block absolute top-0 right-0 bottom-0 w-6 z-20" style={{ background: 'linear-gradient(to left, hsl(var(--background)) 0%, transparent 100%)' }} />
+            <div className="hidden lg:block absolute top-0 right-0 bottom-0 w-6 z-20" style={{
+            background: 'linear-gradient(to left, hsl(var(--background)) 0%, transparent 100%)'
+          }} />
           </div>
         </section>
 
@@ -1380,20 +1403,15 @@ const RuralLandMarketplaceProject = () => {
                 <div className="h-6"></div>
                 
                 {/* Sticky viewport */}
-                <div className="sticky top-36 h-[80vh] overflow-hidden pt-16 pb-4 relative">
+                <div className="sticky top-10 h-[80vh] overflow-hidden pt-16 pb-4 relative">
                 {/* Background texture with scroll-based fade - full viewport width, starts below nav */}
-                  <div 
-                    className={cn(
-                      "fixed left-0 right-0 w-screen bg-cover bg-center bg-no-repeat transition-opacity duration-700 pointer-events-none z-0",
-                      isInView ? "opacity-[0.10]" : "opacity-0"
-                    )}
-                    style={{ 
-                      backgroundImage: `url(${topoTexture})`,
-                      top: '140px', // Below the sticky nav header
-                      bottom: 0,
-                      height: 'calc(100vh - 140px)'
-                    }}
-                  />
+                  <div className={cn("fixed left-0 right-0 w-screen bg-cover bg-center bg-no-repeat transition-opacity duration-700 pointer-events-none z-0", isInView ? "opacity-[0.10]" : "opacity-0")} style={{
+                  backgroundImage: `url(${topoTexture})`,
+                  top: '140px',
+                  // Below the sticky nav header
+                  bottom: 0,
+                  height: 'calc(100vh - 140px)'
+                }} />
                   <div className="relative grid grid-cols-1 lg:grid-cols-3 gap-8 w-full">
                     {/* Left: Image (2/3) */}
                     <div className="lg:col-span-2 relative h-[80vh]">
@@ -1517,11 +1535,7 @@ const RuralLandMarketplaceProject = () => {
                 
                 {/* Image Column (Left) with callout - 2/3 width - Second on mobile */}
                 <div className={`lg:col-span-8 order-2 lg:order-1 flex justify-center lg:justify-end items-center transition-all duration-700 ease-out ${callout1Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                  <img 
-                    src={ldpCallout1} 
-                    alt="Property overview with hero imagery" 
-                    className="h-auto max-h-[400px] md:max-h-[500px] lg:max-h-[750px] w-auto object-contain"
-                  />
+                  <img src={ldpCallout1} alt="Property overview with hero imagery" className="h-auto max-h-[400px] md:max-h-[500px] lg:max-h-[750px] w-auto object-contain" />
                   {/* Callout connector on image side - overlaps image edge */}
                   <div className="hidden lg:flex items-center -ml-6 relative z-10">
                     <div className="callout-dot" />
@@ -1553,11 +1567,7 @@ const RuralLandMarketplaceProject = () => {
                     <div className="callout-line w-12 xl:w-20" />
                     <div className="callout-dot" />
                   </div>
-                  <img 
-                    src={ldpCallout2} 
-                    alt="Photo gallery with content tabs" 
-                    className="h-auto max-h-[400px] md:max-h-[500px] lg:max-h-[750px] w-auto object-contain"
-                  />
+                  <img src={ldpCallout2} alt="Photo gallery with content tabs" className="h-auto max-h-[400px] md:max-h-[500px] lg:max-h-[750px] w-auto object-contain" />
                 </div>
               </div>
             </div>
@@ -1579,11 +1589,7 @@ const RuralLandMarketplaceProject = () => {
                 
                 {/* Image Column (Left) with callout - 2/3 width - Second on mobile */}
                 <div className={`lg:col-span-8 order-2 lg:order-1 flex justify-center lg:justify-end items-center transition-all duration-700 ease-out ${callout3Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                  <img 
-                    src={ldpCallout3} 
-                    alt="Property highlights and key features" 
-                    className="h-auto max-h-[400px] md:max-h-[500px] lg:max-h-[750px] w-auto object-contain"
-                  />
+                  <img src={ldpCallout3} alt="Property highlights and key features" className="h-auto max-h-[400px] md:max-h-[500px] lg:max-h-[750px] w-auto object-contain" />
                   {/* Callout connector on image side - overlaps image edge */}
                   <div className="hidden lg:flex items-center -ml-6 relative z-10">
                     <div className="callout-dot" />
@@ -1601,11 +1607,7 @@ const RuralLandMarketplaceProject = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
               {/* Left: Image */}
               <div className="order-2 lg:order-1">
-                <img 
-                  src={tabletMobileMock} 
-                  alt="Property details page on tablet and mobile devices" 
-                  className="w-full h-auto object-contain"
-                />
+                <img src={tabletMobileMock} alt="Property details page on tablet and mobile devices" className="w-full h-auto object-contain" />
               </div>
               
               {/* Right: Text Content */}
