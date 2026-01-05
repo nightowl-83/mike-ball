@@ -970,19 +970,19 @@ const RuralLandMarketplaceProject = () => {
                 
                 <div className="space-y-4 md:space-y-6 text-base md:text-lg text-muted-foreground">
                   <p>
-                    <strong className="text-foreground">Map-First Interface:</strong> Redesigned the entire experience around the map view, making it the primary way users discover and explore properties.
+                    <strong className="text-primary">Map-First Interface:</strong> Redesigned the entire experience around the map view, making it the primary way users discover and explore properties.
                   </p>
                   
                   <p>
-                    <strong className="text-foreground">Simplified Search:</strong> Streamlined filters with smart defaults and progressive disclosure, reducing cognitive load while maintaining power user capabilities.
+                    <strong className="text-primary">Simplified Search:</strong> Streamlined filters with smart defaults and progressive disclosure, reducing cognitive load while maintaining power user capabilities.
                   </p>
                   
                   <p>
-                    <strong className="text-foreground">Responsive Design:</strong> Built mobile-first with touch-optimized controls and adaptive layouts that work seamlessly across all devices.
+                    <strong className="text-primary">Responsive Design:</strong> Built mobile-first with touch-optimized controls and adaptive layouts that work seamlessly across all devices.
                   </p>
                   
                   <p>
-                    <strong className="text-foreground">Visual Refinement:</strong> Modern, clean aesthetic with improved typography, spacing, and visual hierarchy for better scannability.
+                    <strong className="text-primary">Visual Refinement:</strong> Modern, clean aesthetic with improved typography, spacing, and visual hierarchy for better scannability.
                   </p>
                   
                   <div className="p-6 rounded-xl bg-card/50 border-2 border-primary/20">
@@ -1234,19 +1234,19 @@ const RuralLandMarketplaceProject = () => {
                 
                 <div className="space-y-4 md:space-y-6 text-base md:text-lg text-muted-foreground">
                   <p>
-                    <strong className="text-foreground">Design System:</strong> Created a comprehensive design system with reusable components, ensuring consistency across the entire platform.
+                    <strong className="text-primary">Design System:</strong> Created a comprehensive design system with reusable components, ensuring consistency across the entire platform.
                   </p>
                   
                   <p>
-                    <strong className="text-foreground">Developer Handoff:</strong> Provided detailed Figma files with design specs, component libraries, and interactive prototypes for smooth implementation.
+                    <strong className="text-primary">Developer Handoff:</strong> Provided detailed Figma files with design specs, component libraries, and interactive prototypes for smooth implementation.
                   </p>
                   
                   <p>
-                    <strong className="text-foreground">Quality Assurance:</strong> Conducted extensive testing across devices, browsers, and screen sizes to ensure flawless execution.
+                    <strong className="text-primary">Quality Assurance:</strong> Conducted extensive testing across devices, browsers, and screen sizes to ensure flawless execution.
                   </p>
                   
                   <p>
-                    <strong className="text-foreground">Launch Support:</strong> Worked closely with the development team during the rollout to address edge cases and refine interactions.
+                    <strong className="text-primary">Launch Support:</strong> Worked closely with the development team during the rollout to address edge cases and refine interactions.
                   </p>
                   
                   <div className="p-6 rounded-xl bg-card/50 border-2 border-primary/20">
