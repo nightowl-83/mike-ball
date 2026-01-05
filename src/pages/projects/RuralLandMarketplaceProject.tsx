@@ -24,6 +24,12 @@ import searchUiPrice from "@/assets/search-ui-price.png";
 import searchUiFilters from "@/assets/search-ui-filters.png";
 import searchUiDefault from "@/assets/search-ui-default.png";
 import searchUiLayers from "@/assets/search-ui-layers.png";
+// Mobile-specific search UI images
+import searchUiDefaultMobile from "@/assets/Mobile-Search-Default-2.png";
+import searchUiLocationMobile from "@/assets/Mobile-Search-1-2.png";
+import searchUiPriceMobile from "@/assets/Mobile-Search-2-2.png";
+import searchUiFiltersMobile from "@/assets/Mobile-Search-3-2.png";
+import searchUiLayersMobile from "@/assets/Mobile-Search-4-2.png";
 import ldpMobile from "@/assets/LDP-Mobile.png";
 import ldpMobileGallery from "@/assets/LDP-Mobile-Gallery.png";
 import ldpMobileHighlights from "@/assets/LDP-Mobile-Highlights.png";
@@ -41,6 +47,7 @@ import homeTabletMock from "@/assets/Home-Tablet-Mock.jpg";
 import landDetails3up from "@/assets/Land-Details-3up.png";
 import multiLocation from "@/assets/Multi-Location.jpg";
 import landUiMobile from "@/assets/Land-UI-Mobile.jpg";
+import { useIsMobile } from "@/hooks/use-mobile";
 const RuralLandMarketplaceProject = () => {
   const [stickyHeader, setStickyHeader] = useState({
     visible: false,
@@ -55,33 +62,39 @@ const RuralLandMarketplaceProject = () => {
   const [videoBuffering, setVideoBuffering] = useState(true);
   const [manualSlideOverride, setManualSlideOverride] = useState<number | null>(null);
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
+  const isMobile = useIsMobile();
   // Ref for scroll-driven gallery (Option C)
   const scrollGalleryRef = useRef<HTMLDivElement>(null);
   const detailsPageRef = useRef<HTMLDivElement>(null);
 
-  // Scroll-driven gallery data
+  // Scroll-driven gallery data with mobile-specific images
   const scrollGallerySlides = [{
     src: searchUiDefault,
+    srcMobile: searchUiDefaultMobile,
     alt: "Search UI default view",
     title: "Default View",
     description: "Clean, intuitive search interface with map integration and essential filters readily accessible."
   }, {
     src: searchUiLocation,
+    srcMobile: searchUiLocationMobile,
     alt: "Search UI location search",
     title: "Location Search",
     description: "Geographic search with multi-location selection, smart autocomplete, and region-based browsing."
   }, {
     src: searchUiPrice,
+    srcMobile: searchUiPriceMobile,
     alt: "Search UI price filter",
     title: "Price Filters",
     description: "Responsive price controls with quick presets and real-time result updates as you adjust ranges."
   }, {
     src: searchUiFilters,
+    srcMobile: searchUiFiltersMobile,
     alt: "Search UI filters panel",
     title: "Advanced Filters",
     description: "Land-specific filtering with property types, acreage ranges, water features, and terrain options."
   }, {
     src: searchUiLayers,
+    srcMobile: searchUiLayersMobile,
     alt: "Search UI with map layers",
     title: "Map Layers",
     description: "Toggle between satellite, terrain, and custom overlays to visualize property boundaries and features."
@@ -1385,7 +1398,7 @@ const RuralLandMarketplaceProject = () => {
                     {/* Left: Image (2/3) */}
                     <div className="lg:col-span-2 relative h-[80vh]">
                       {scrollGallerySlides.map((slide, index) => <div key={index} className={cn("absolute inset-0 transition-all duration-700 ease-out", currentSlide === index ? "opacity-100 scale-100" : "opacity-0 scale-[0.98]")}>
-                          <img src={slide.src} alt={slide.alt} className="w-full h-full object-contain object-left" />
+                          <img src={isMobile ? slide.srcMobile : slide.src} alt={slide.alt} className="w-full h-full object-contain object-left" />
                         </div>)}
                     </div>
                     
