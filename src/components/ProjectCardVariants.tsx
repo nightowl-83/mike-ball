@@ -10,43 +10,34 @@ interface ProjectCardProps {
 export const HeroAccentCard = ({ project }: ProjectCardProps) => {
   return (
     <a href={project.route} className="group block">
-      <div className="relative overflow-hidden rounded-2xl p-8 md:p-12 min-h-[500px] md:min-h-[600px] transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20" style={{ background: 'var(--gradient-accent)' }}>
+      <div className="relative overflow-hidden rounded-2xl p-6 md:p-8 lg:p-12 min-h-[500px] md:min-h-[600px] transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 flex flex-col" style={{ background: 'var(--gradient-accent)' }}>
         {/* Background pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 right-0 w-96 h-96 bg-white/20 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2" />
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-2xl transform -translate-x-1/2 translate-y-1/2" />
         </div>
         
-        <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center gap-8 h-full">
-          {/* Content */}
-          <div className="flex-1 space-y-6 text-white">
-            <div className="space-y-4">
-              <span className="inline-block text-sm font-medium text-white/80 uppercase tracking-wider">
-                {project.category}
-              </span>
-              <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                {project.title}
-              </h3>
-              <p className="text-lg md:text-xl text-white/80 max-w-xl leading-relaxed">
-                {project.description}
-              </p>
-            </div>
-            
-            <ProjectCardFooter 
-              tags={project.tags} 
-              company={project.company}
-              metrics={project.metrics}
-              variant="dark"
-            />
+        <div className="relative z-10 flex flex-col h-full flex-1">
+          {/* Content - Stacked */}
+          <div className="space-y-4 md:space-y-6 text-white mb-6 md:mb-8">
+            <span className="inline-block text-sm font-medium text-white/80 uppercase tracking-wider">
+              {project.category}
+            </span>
+            <h3 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight">
+              {project.title}
+            </h3>
+            <p className="text-base md:text-lg lg:text-xl text-white/80 max-w-2xl leading-relaxed">
+              {project.description}
+            </p>
           </div>
           
           {/* Image */}
-          <div className="relative w-full md:w-1/2 flex-shrink-0">
-            <div className="relative overflow-hidden rounded-xl shadow-2xl transform group-hover:scale-[1.02] transition-transform duration-500">
+          <div className="relative w-full flex-1 min-h-[200px] md:min-h-[300px]">
+            <div className="relative overflow-hidden rounded-xl shadow-2xl transform group-hover:scale-[1.02] transition-transform duration-500 h-full">
               <img 
                 src={project.image} 
                 alt={project.title}
-                className="w-full h-auto object-cover"
+                className="w-full h-full object-cover"
               />
               {/* Hover overlay */}
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
@@ -56,6 +47,16 @@ export const HeroAccentCard = ({ project }: ProjectCardProps) => {
             <div className="absolute -top-4 -right-4 w-12 h-12 rounded-full bg-white flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 shadow-lg">
               <ArrowUpRight className="h-5 w-5 text-primary" />
             </div>
+          </div>
+          
+          {/* Footer - Pinned to bottom */}
+          <div className="mt-6 md:mt-8">
+            <ProjectCardFooter 
+              tags={project.tags} 
+              company={project.company}
+              metrics={project.metrics}
+              variant="dark"
+            />
           </div>
         </div>
       </div>
