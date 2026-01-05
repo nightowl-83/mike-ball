@@ -1380,7 +1380,7 @@ const RuralLandMarketplaceProject = () => {
                 <div className="h-6"></div>
                 
                 {/* Sticky viewport */}
-                <div className="sticky top-36 h-[80vh] overflow-hidden pt-16 pb-4 relative">
+                <div className="sticky top-12 md:top-36 h-[80vh] overflow-hidden pt-16 pb-4 relative">
                 {/* Background texture with scroll-based fade - full viewport width, starts below nav */}
                   <div 
                     className={cn(
