@@ -1516,7 +1516,7 @@ const RuralLandMarketplaceProject = () => {
                 </div>
                 
                 {/* Image Column (Left) with callout - 2/3 width - Second on mobile */}
-                <div className={`lg:col-span-8 order-2 lg:order-1 flex justify-center lg:justify-end items-center transition-all duration-700 ease-out ${callout1Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                <div className={`lg:col-span-8 order-2 lg:order-1 flex justify-center lg:justify-end items-center pb-4 lg:pb-0 transition-all duration-700 ease-out ${callout1Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                   <img 
                     src={ldpCallout1} 
                     alt="Property overview with hero imagery" 
@@ -1547,7 +1547,7 @@ const RuralLandMarketplaceProject = () => {
                 </div>
                 
                 {/* Image Column (Right) with callout - 2/3 width - Second on mobile */}
-                <div className={`lg:col-span-8 order-2 flex justify-center lg:justify-start items-center transition-all duration-700 ease-out ${callout2Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                <div className={`lg:col-span-8 order-2 flex justify-center lg:justify-start items-center pb-4 lg:pb-0 transition-all duration-700 ease-out ${callout2Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                   {/* Callout connector on image side - overlaps image edge */}
                   <div className="hidden lg:flex items-center -mr-6 relative z-10">
                     <div className="callout-line w-12 xl:w-20" />
@@ -1578,7 +1578,7 @@ const RuralLandMarketplaceProject = () => {
                 </div>
                 
                 {/* Image Column (Left) with callout - 2/3 width - Second on mobile */}
-                <div className={`lg:col-span-8 order-2 lg:order-1 flex justify-center lg:justify-end items-center transition-all duration-700 ease-out ${callout3Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                <div className={`lg:col-span-8 order-2 lg:order-1 flex justify-center lg:justify-end items-center pb-4 lg:pb-0 transition-all duration-700 ease-out ${callout3Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                   <img 
                     src={ldpCallout3} 
                     alt="Property highlights and key features" 
