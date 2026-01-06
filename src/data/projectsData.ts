@@ -1,5 +1,5 @@
 import marketingHubDashboard from "@/assets/marketing-hub-dashboard.webp";
-import ruralLandMarketplace from "@/assets/Land-Home-Sidephone.png";
+import ruralLandMarketplace from "@/assets/Land-Home-Sidephone-nobg.png";
 import project2 from "@/assets/project-2.jpg";
 import project3 from "@/assets/project-3.jpg";
 

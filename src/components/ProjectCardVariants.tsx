@@ -32,19 +32,17 @@ export const HeroAccentCard = ({ project }: ProjectCardProps) => {
           </div>
           
           {/* Image */}
-          <div className="relative w-full flex-1 min-h-[200px] md:min-h-[300px]">
-            <div className="relative overflow-hidden rounded-xl shadow-2xl transform group-hover:scale-[1.02] transition-transform duration-500 h-full">
+          <div className="relative w-full flex-1 min-h-[200px] md:min-h-[300px] pt-8 md:pt-12 flex items-center justify-center">
+            <div className="relative transform group-hover:scale-[1.02] transition-transform duration-500 w-[85%] max-w-3xl">
               <img 
                 src={project.image} 
                 alt={project.title}
-                className="w-full h-full object-cover"
+                className="w-full h-auto object-contain drop-shadow-2xl"
               />
-              {/* Hover overlay */}
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
             </div>
             
             {/* Floating arrow */}
-            <div className="absolute -top-4 -right-4 w-12 h-12 rounded-full bg-white flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 shadow-lg">
+            <div className="absolute top-4 right-0 w-12 h-12 rounded-full bg-white flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 shadow-lg">
               <ArrowUpRight className="h-5 w-5 text-primary" />
             </div>
           </div>
