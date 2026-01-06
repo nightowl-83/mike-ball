@@ -37,7 +37,7 @@ export const HeroAccentCard = ({ project }: ProjectCardProps) => {
               <img 
                 src={project.image} 
                 alt={project.title}
-                className="w-full h-auto object-contain drop-shadow-2xl"
+                className="w-full h-auto object-contain"
               />
             </div>
             
