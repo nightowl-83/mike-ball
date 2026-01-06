@@ -56,24 +56,68 @@ All colors MUST be HSL.
     --sidebar-ring: 263 70% 65%;
   }
 
-  /* Red Theme with Neutral Secondary */
+  /* Red/Coral Theme */
   .theme-red {
     --primary: 9 85% 58%;
     --accent: 9 85% 58%;
     --ring: 9 85% 58%;
-
-    /* Neutral secondary */
     --secondary: 220 10% 25%;
     --secondary-foreground: 210 40% 98%;
-
-    /* Red gradients and shadows */
     --gradient-primary: linear-gradient(135deg, hsl(9 85% 58%), hsl(0 75% 50%));
     --gradient-card: linear-gradient(180deg, hsl(220 20% 12%), hsl(0 20% 8%));
     --gradient-accent: linear-gradient(135deg, hsl(9 85% 50%), hsl(15 80% 55%), hsl(0 70% 45%));
     --shadow-glow: 0 0 40px hsl(9 85% 58% / 0.3);
-
     --sidebar-primary: 9 85% 58%;
     --sidebar-ring: 9 85% 58%;
+  }
+
+  /* Teal Theme */
+  .theme-teal {
+    --primary: 175 70% 45%;
+    --accent: 175 70% 45%;
+    --ring: 175 70% 45%;
+    --secondary: 180 10% 22%;
+    --secondary-foreground: 210 40% 98%;
+    --gradient-primary: linear-gradient(135deg, hsl(175 70% 45%), hsl(190 75% 50%));
+    --gradient-card: linear-gradient(180deg, hsl(220 20% 12%), hsl(180 15% 8%));
+    --gradient-accent: linear-gradient(135deg, hsl(175 70% 40%), hsl(185 70% 50%), hsl(165 60% 45%));
+    --shadow-glow: 0 0 40px hsl(175 70% 45% / 0.3);
+    --sidebar-primary: 175 70% 45%;
+    --sidebar-ring: 175 70% 45%;
+  }
+
+  /* Light Mode */
+  .theme-light {
+    --background: 0 0% 98%;
+    --foreground: 220 25% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 25% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 25% 10%;
+    --primary: 263 70% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 15% 92%;
+    --secondary-foreground: 220 25% 10%;
+    --muted: 220 15% 92%;
+    --muted-foreground: 220 10% 40%;
+    --accent: 263 70% 50%;
+    --accent-foreground: 0 0% 100%;
+    --border: 220 15% 85%;
+    --input: 220 15% 90%;
+    --ring: 263 70% 50%;
+    --gradient-primary: linear-gradient(135deg, hsl(263 70% 50%), hsl(220 85% 55%));
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(220 15% 97%));
+    --gradient-accent: linear-gradient(135deg, hsl(263 70% 45%), hsl(280 70% 50%), hsl(240 70% 50%));
+    --shadow-glow: 0 0 40px hsl(263 70% 50% / 0.2);
+    --shadow-card: 0 10px 30px -10px hsl(220 25% 0% / 0.1);
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 220 25% 10%;
+    --sidebar-primary: 263 70% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 15% 92%;
+    --sidebar-accent-foreground: 220 25% 10%;
+    --sidebar-border: 220 15% 85%;
+    --sidebar-ring: 263 70% 50%;
   }
 }
 
