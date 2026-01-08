@@ -32,8 +32,8 @@ export const HeroAccentCard = ({ project }: ProjectCardProps) => {
           </div>
           
           {/* Image */}
-          <div className="relative w-full flex-1 min-h-[200px] md:min-h-[300px] pt-8 md:pt-12 flex items-center justify-center bg-transparent">
-            <div className="relative transform group-hover:scale-[1.02] transition-transform duration-500 w-[85%] max-w-3xl bg-transparent">
+          <div className="relative w-full flex-1 min-h-[200px] md:min-h-[300px] pt-8 md:pt-12 flex items-center justify-center">
+            <div className="relative transform group-hover:scale-[1.02] transition-transform duration-500 w-[85%] max-w-3xl">
               <img 
                 src={project.image} 
                 alt={project.title}
