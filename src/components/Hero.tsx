@@ -1,93 +1,79 @@
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
-import heroImage from "@/assets/hero-bg.jpg";
+import { Code, Sparkles, Bot, Figma, Pen } from "lucide-react";
+import SkillIcon from "./SkillIcon";
+import Navbar from "./Navbar";
 
 const Hero = () => {
+  const skills = [
+    { name: "Illustrator", abbreviation: "Ai", bgColor: "#FF9A00", textColor: "#000" },
+    { name: "Photoshop", abbreviation: "Ps", bgColor: "#001E36", textColor: "#31A8FF" },
+    { name: "InDesign", abbreviation: "Id", bgColor: "#49021F", textColor: "#FF3366" },
+    { name: "After Effects", abbreviation: "Ae", bgColor: "#00005B", textColor: "#9999FF" },
+    { name: "Figma", abbreviation: "", bgColor: "#1E1E1E", textColor: "#fff", icon: <Figma className="w-6 h-6 text-white" /> },
+    { name: "Cursor", abbreviation: "", bgColor: "#1E1E1E", textColor: "#fff", icon: <Sparkles className="w-6 h-6 text-orange-500" /> },
+    { name: "Code", abbreviation: "", bgColor: "#1E1E1E", textColor: "#fff", icon: <Code className="w-6 h-6 text-white" /> },
+    { name: "AI Tools", abbreviation: "", bgColor: "#1E1E1E", textColor: "#fff", icon: <Bot className="w-6 h-6 text-white" /> },
+  ];
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center">
-      {/* Background Image with Overlay */}
-      <div 
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: `url(${heroImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      >
-        <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" />
-      </div>
+    <>
+      <Navbar />
+      <section className="relative min-h-screen flex items-center justify-center bg-background">
+        {/* Subtle texture overlay */}
+        <div 
+          className="absolute inset-0 z-0 opacity-[0.03]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          }}
+        />
 
-      {/* Content */}
-      <div className="relative z-10 container mx-auto px-6 py-32 text-center animate-fade-in">
-        <div className="max-w-4xl mx-auto space-y-8">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/50 border border-border backdrop-blur-sm">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-            </span>
-            <span className="text-sm text-muted-foreground">Available for freelance work</span>
-          </div>
+        {/* Content */}
+        <div className="relative z-10 container mx-auto px-6 pt-32 pb-20 text-center animate-fade-in">
+          <div className="max-w-4xl mx-auto space-y-12">
+            {/* Main Heading */}
+            <div className="space-y-6">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight">
+                Hello, I'm Mike<span className="text-primary">.</span>
+              </h1>
 
-          {/* Main Heading */}
-          <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight">
-            Crafting Digital
-            <span className="block bg-gradient-primary bg-clip-text text-transparent">
-              Experiences
-            </span>
-          </h1>
+              {/* Tagline */}
+              <p className="text-xl md:text-2xl lg:text-3xl text-foreground/80 max-w-2xl mx-auto leading-relaxed font-medium">
+                A Product Designer that uses<br />
+                AI, UX, design, & code to<br />
+                tackle hard problems.
+              </p>
+            </div>
 
-          {/* Description */}
-          <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            UI/UX & Product Designer specializing in creating beautiful, intuitive interfaces that users love.
-          </p>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 pt-4">
-            <Button size="lg" className="group bg-gradient-primary hover:shadow-glow transition-all duration-300">
-              View My Work
-              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button size="lg" variant="outline" className="border-border hover:bg-secondary">
-              Get In Touch
-            </Button>
-          </div>
-
-          {/* Social Links */}
-          <div className="flex items-center justify-center gap-4 pt-8">
-            <a 
-              href="#" 
-              className="p-3 rounded-full bg-secondary hover:bg-primary hover:shadow-glow transition-all duration-300"
-              aria-label="LinkedIn"
-            >
-              <Linkedin className="h-5 w-5" />
-            </a>
-            <a 
-              href="#" 
-              className="p-3 rounded-full bg-secondary hover:bg-primary hover:shadow-glow transition-all duration-300"
-              aria-label="GitHub"
-            >
-              <Github className="h-5 w-5" />
-            </a>
-            <a 
-              href="#" 
-              className="p-3 rounded-full bg-secondary hover:bg-primary hover:shadow-glow transition-all duration-300"
-              aria-label="Email"
-            >
-              <Mail className="h-5 w-5" />
-            </a>
+            {/* Skills Section */}
+            <div className="pt-8 space-y-6">
+              <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                Skills
+              </h2>
+              
+              <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
+                {skills.map((skill) => (
+                  <SkillIcon
+                    key={skill.name}
+                    name={skill.name}
+                    abbreviation={skill.abbreviation}
+                    bgColor={skill.bgColor}
+                    textColor={skill.textColor}
+                    icon={skill.icon}
+                  />
+                ))}
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 animate-bounce">
-        <div className="w-6 h-10 rounded-full border-2 border-primary/50 flex items-start justify-center p-2">
-          <div className="w-1.5 h-3 rounded-full bg-primary animate-pulse" />
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 animate-bounce">
+          <div className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex items-start justify-center p-2">
+            <div className="w-1.5 h-3 rounded-full bg-muted-foreground/50 animate-pulse" />
+          </div>
+          <span className="text-xs text-muted-foreground uppercase tracking-widest">scroll</span>
         </div>
-        <span className="text-xs text-muted-foreground uppercase tracking-widest">scroll</span>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 
