@@ -3,7 +3,9 @@ import {
   HeroAccentCard, 
   HeroCenteredCard, 
   TwoColumnCard, 
-  MinimalCenteredCard 
+  MinimalCenteredCard,
+  LockedCard,
+  SideProjectCard
 } from "./ProjectCardVariants";
 
 const Projects = () => {
@@ -15,6 +17,8 @@ const Projects = () => {
       "hero-centered": HeroCenteredCard,
       "two-column": TwoColumnCard,
       "minimal-centered": MinimalCenteredCard,
+      "locked": LockedCard,
+      "side-project": SideProjectCard,
     }[project.layoutVariant];
 
     return (

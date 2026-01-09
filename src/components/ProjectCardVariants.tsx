@@ -1,6 +1,6 @@
 import { ProjectData } from "@/data/projectsData";
 import ProjectCardFooter from "./ProjectCardFooter";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Lock } from "lucide-react";
 
 interface ProjectCardProps {
   project: ProjectData;
@@ -197,5 +197,92 @@ export const MinimalCenteredCard = ({ project }: ProjectCardProps) => {
         </div>
       </div>
     </a>
+  );
+};
+
+// Locked Card - Project that cannot be viewed
+export const LockedCard = ({ project }: ProjectCardProps) => {
+  return (
+    <div className="group block cursor-not-allowed">
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-muted/80 to-muted/40 border border-border/50 p-8 md:p-10 min-h-[300px] transition-all duration-500">
+        <div className="flex flex-col items-center text-center h-full justify-center">
+          {/* Lock Icon */}
+          <div className="relative mb-6">
+            <div className="w-16 h-16 rounded-full bg-muted-foreground/10 flex items-center justify-center">
+              <Lock className="w-8 h-8 text-muted-foreground/50" />
+            </div>
+          </div>
+          
+          {/* Content */}
+          <div className="space-y-3 max-w-lg">
+            <span className="inline-block text-sm font-medium text-muted-foreground/60 uppercase tracking-wider">
+              {project.category}
+            </span>
+            <h3 className="text-2xl md:text-3xl font-bold text-muted-foreground/70">
+              {project.title}
+            </h3>
+            <p className="text-muted-foreground/50 leading-relaxed">
+              {project.description}
+            </p>
+            <div className="pt-4">
+              <span className="inline-flex items-center gap-2 text-sm text-muted-foreground/40 bg-muted-foreground/5 px-4 py-2 rounded-full">
+                <Lock className="w-4 h-4" />
+                Project Under NDA
+              </span>
+            </div>
+          </div>
+          
+          {/* Footer */}
+          <div className="w-full mt-6 opacity-50">
+            <ProjectCardFooter 
+              tags={project.tags} 
+              company={project.company}
+              variant="light"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Side Project Card - For personal/creative projects
+export const SideProjectCard = ({ project }: ProjectCardProps) => {
+  return (
+    <div className="group block">
+      <div className="relative overflow-hidden rounded-2xl bg-card border border-border hover:border-primary/30 p-8 md:p-10 min-h-[300px] transition-all duration-500 hover:shadow-lg">
+        <div className="flex flex-col md:flex-row items-center gap-8 h-full">
+          {/* Image/Logo */}
+          <div className="relative w-32 h-32 md:w-40 md:h-40 flex-shrink-0">
+            <div className="relative overflow-hidden rounded-2xl bg-foreground p-6 transform group-hover:scale-105 transition-transform duration-500 flex items-center justify-center h-full">
+              <img 
+                src={project.image} 
+                alt={project.title}
+                className="w-full h-auto object-contain invert dark:invert-0"
+              />
+            </div>
+          </div>
+          
+          {/* Content */}
+          <div className="flex-1 space-y-3 text-center md:text-left">
+            <span className="inline-block text-sm font-medium text-primary uppercase tracking-wider">
+              {project.category}
+            </span>
+            <h3 className="text-2xl md:text-3xl font-bold text-foreground group-hover:text-primary transition-colors">
+              {project.title}
+            </h3>
+            <p className="text-muted-foreground leading-relaxed">
+              {project.description}
+            </p>
+            
+            <ProjectCardFooter 
+              tags={project.tags} 
+              company={project.company}
+              variant="light"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
