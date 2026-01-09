@@ -1,19 +1,6 @@
-import { Code, Sparkles, Bot, Figma, Pen } from "lucide-react";
-import SkillIcon from "./SkillIcon";
 import Navbar from "./Navbar";
 
 const Hero = () => {
-  const skills = [
-    { name: "Illustrator", abbreviation: "Ai", bgColor: "#FF9A00", textColor: "#000" },
-    { name: "Photoshop", abbreviation: "Ps", bgColor: "#001E36", textColor: "#31A8FF" },
-    { name: "InDesign", abbreviation: "Id", bgColor: "#49021F", textColor: "#FF3366" },
-    { name: "After Effects", abbreviation: "Ae", bgColor: "#00005B", textColor: "#9999FF" },
-    { name: "Figma", abbreviation: "", bgColor: "#1E1E1E", textColor: "#fff", icon: <Figma className="w-6 h-6 text-white" /> },
-    { name: "Cursor", abbreviation: "", bgColor: "#1E1E1E", textColor: "#fff", icon: <Sparkles className="w-6 h-6 text-orange-500" /> },
-    { name: "Code", abbreviation: "", bgColor: "#1E1E1E", textColor: "#fff", icon: <Code className="w-6 h-6 text-white" /> },
-    { name: "AI Tools", abbreviation: "", bgColor: "#1E1E1E", textColor: "#fff", icon: <Bot className="w-6 h-6 text-white" /> },
-  ];
-
   return (
     <>
       <Navbar />
@@ -41,26 +28,6 @@ const Hero = () => {
                 AI, UX, design, & code to<br />
                 tackle hard problems.
               </p>
-            </div>
-
-            {/* Skills Section */}
-            <div className="pt-8 space-y-6">
-              <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-                Skills
-              </h2>
-              
-              <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
-                {skills.map((skill) => (
-                  <SkillIcon
-                    key={skill.name}
-                    name={skill.name}
-                    abbreviation={skill.abbreviation}
-                    bgColor={skill.bgColor}
-                    textColor={skill.textColor}
-                    icon={skill.icon}
-                  />
-                ))}
-              </div>
             </div>
           </div>
         </div>
