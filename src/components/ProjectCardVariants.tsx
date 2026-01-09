@@ -17,16 +17,21 @@ export const HeroAccentCard = ({ project }: ProjectCardProps) => {
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-2xl transform -translate-x-1/2 translate-y-1/2" />
         </div>
         
+        {/* Floating arrow - top right corner */}
+        <div className="absolute top-6 right-6 md:top-8 md:right-8 lg:top-12 lg:right-12 z-20 w-12 h-12 rounded-full bg-white flex items-center justify-center opacity-0 group-hover:opacity-100 -translate-y-2 group-hover:translate-y-0 transition-all duration-300 shadow-lg">
+          <ArrowUpRight className="h-5 w-5 text-primary" />
+        </div>
+        
         <div className="relative z-10 flex flex-col h-full flex-1">
-          {/* Content - Stacked */}
-          <div className="space-y-4 md:space-y-6 text-white mb-6 md:mb-8">
+          {/* Content - Centered */}
+          <div className="space-y-4 md:space-y-6 text-white mb-6 md:mb-8 text-center">
             <span className="inline-block text-sm font-medium text-white/80 uppercase tracking-wider">
               {project.category}
             </span>
             <h3 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight">
               {project.title}
             </h3>
-            <p className="text-base md:text-lg lg:text-xl text-white/80 max-w-2xl leading-relaxed">
+            <p className="text-base md:text-lg lg:text-xl text-white/80 max-w-2xl leading-relaxed mx-auto">
               {project.description}
             </p>
           </div>
@@ -39,11 +44,6 @@ export const HeroAccentCard = ({ project }: ProjectCardProps) => {
                 alt={project.title}
                 className="w-full h-auto object-contain"
               />
-            </div>
-            
-            {/* Floating arrow */}
-            <div className="absolute top-4 right-0 w-12 h-12 rounded-full bg-white flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 shadow-lg">
-              <ArrowUpRight className="h-5 w-5 text-primary" />
             </div>
           </div>
           
