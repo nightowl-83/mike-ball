@@ -3,7 +3,7 @@ import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
+    <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-3rem)] max-w-[1080px] bg-background/70 backdrop-blur-md border border-border/50 rounded-full">
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
         <a href="/" className="text-lg font-semibold tracking-tight">
           Mike<span className="text-primary">.</span>
