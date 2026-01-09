@@ -1,9 +1,8 @@
 import { Button } from "@/components/ui/button";
-import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
   return (
-    <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-3rem)] max-w-[1080px] bg-background/70 backdrop-blur-md border border-border/50 rounded-full">
+    <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-3rem)] max-w-[880px] bg-background/70 backdrop-blur-md border border-border/50 rounded-full">
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
         <a href="/" className="text-lg font-semibold tracking-tight">
           Mike<span className="text-primary">.</span>
@@ -22,7 +21,6 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center gap-3">
-          <ThemeToggle />
           <Button size="sm" variant="outline" className="hidden sm:flex">
             Get In Touch
           </Button>
