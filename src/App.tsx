@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
+import About from "./pages/About";
 import MobileBankingProject from "./pages/projects/MobileBankingProject";
 import RuralLandMarketplaceProject from "./pages/projects/RuralLandMarketplaceProject";
 import ColorSystem from "./pages/ColorSystem";
@@ -21,6 +22,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/about" element={<About />} />
           <Route path="/projects/mobile-banking" element={<MobileBankingProject />} />
           <Route path="/projects/rural-land-marketplace" element={<RuralLandMarketplaceProject />} />
           <Route path="/color-system" element={<ColorSystem />} />
