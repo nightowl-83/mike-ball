@@ -1,9 +1,8 @@
 import marketingHubDashboard from "@/assets/marketing-hub-dashboard.webp";
 import ruralLandMarketplace from "@/assets/land-flat-homepage.png";
-import project2 from "@/assets/project-2.jpg";
-import project3 from "@/assets/project-3.jpg";
+import nightOwlLogo from "@/assets/night-owl-logo-notxt.png";
 
-export type LayoutVariant = "hero-accent" | "hero-centered" | "two-column" | "minimal-centered";
+export type LayoutVariant = "hero-accent" | "hero-centered" | "two-column" | "minimal-centered" | "locked" | "side-project";
 
 export interface ProjectData {
   id: string;
@@ -17,6 +16,7 @@ export interface ProjectData {
   accentGradient?: string;
   company?: string;
   metrics?: string;
+  isLocked?: boolean;
 }
 
 export const projectsData: ProjectData[] = [
@@ -45,25 +45,25 @@ export const projectsData: ProjectData[] = [
     company: "Enterprise SaaS"
   },
   {
-    id: "ecommerce-platform",
-    title: "E-Commerce Platform",
-    description: "Complete redesign of an online shopping experience focusing on conversion optimization and user engagement.",
+    id: "gaming-news-site",
+    title: "Gaming News Site Redesign",
+    description: "Complete redesign of a major gaming news publication for CBS Interactive, focusing on modern UI patterns and improved content discovery.",
     category: "Web Design",
-    image: project2,
-    route: "/projects/ecommerce-platform",
-    tags: ["Conversion Optimization", "A/B Testing", "Responsive Design"],
-    layoutVariant: "two-column",
-    company: "Retail Tech"
+    image: "",
+    route: "#",
+    tags: ["Visual Design", "Content Strategy", "Responsive Design"],
+    layoutVariant: "locked",
+    company: "CBS Interactive",
+    isLocked: true
   },
   {
-    id: "analytics-dashboard",
-    title: "Analytics Dashboard",
-    description: "Data visualization platform helping teams make informed decisions with real-time insights and beautiful charts.",
-    category: "SaaS Product",
-    image: project3,
-    route: "/projects/analytics-dashboard",
-    tags: ["Data Visualization", "Dashboard Design", "Interaction Design"],
-    layoutVariant: "minimal-centered",
-    metrics: "10k+ Users"
+    id: "night-owl-studio",
+    title: "Night Owl Studio",
+    description: "Personal illustration and poster design projects exploring bold visual styles and creative experimentation.",
+    category: "Side Projects",
+    image: nightOwlLogo,
+    route: "#",
+    tags: ["Illustration", "Poster Design", "Brand Identity"],
+    layoutVariant: "side-project"
   },
 ];
