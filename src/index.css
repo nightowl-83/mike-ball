@@ -132,6 +132,15 @@ All colors MUST be HSL.
 }
 
 @layer components {
+  /* Hide scrollbar for horizontal scroll containers */
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
   /* Full-width viewport image with borders */
   .viewport-image-section {
     @apply relative h-[90vh] w-screen -mx-[50vw] left-[50%] right-[50%] mt-24 border-t border-b border-border;

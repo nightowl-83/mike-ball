@@ -1408,10 +1408,11 @@ const RuralLandMarketplaceProject = () => {
                   <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-3 md:mb-4">Search UI</h3>
                 {/* Mobile: horizontal scroll, Desktop: wrap */}
                   <div 
-                    className="flex gap-2 pb-2 md:pb-0 md:flex-wrap -mx-4 px-4 md:mx-0 md:px-0 md:overflow-visible overflow-x-auto overscroll-x-contain cursor-grab active:cursor-grabbing"
+                    className="flex gap-2 pb-2 md:pb-0 md:flex-wrap -mx-4 px-4 md:mx-0 md:px-0 md:overflow-visible overflow-x-auto overscroll-x-contain cursor-grab active:cursor-grabbing hide-scrollbar"
                     style={{ 
                       WebkitOverflowScrolling: 'touch',
-                      scrollbarWidth: 'thin',
+                      scrollbarWidth: 'none',
+                      msOverflowStyle: 'none',
                       scrollBehavior: 'smooth'
                     }}
                   >
@@ -1431,10 +1432,10 @@ const RuralLandMarketplaceProject = () => {
                     ))}
                   </div>
                 </div>
-                <div className="h-6"></div>
+                <div className="h-1"></div>
                 
                 {/* Sticky viewport */}
-                <div className="sticky top-12 md:top-36 h-[80vh] overflow-hidden pt-16 pb-4 relative">
+                <div className="sticky top-12 md:top-36 h-[80vh] overflow-hidden pt-4 md:pt-8 pb-4 relative">
                 {/* Background texture with scroll-based fade - full viewport width, starts below nav */}
                   <div 
                     className={cn(
