@@ -50,6 +50,7 @@ import multiLocation from "@/assets/Multi-Location.jpg";
 import landUiMobile from "@/assets/Land-UI-Mobile.jpg";
 import imageCarouselHome from "@/assets/Image-Carousel-Home.png";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useHorizontalDragScroll } from "@/hooks/useHorizontalDragScroll";
 const RuralLandMarketplaceProject = () => {
   const [stickyHeader, setStickyHeader] = useState({
     visible: false,
@@ -65,6 +66,7 @@ const RuralLandMarketplaceProject = () => {
   const [manualSlideOverride, setManualSlideOverride] = useState<number | null>(null);
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
   const isMobile = useIsMobile();
+  const searchNavDrag = useHorizontalDragScroll<HTMLDivElement>();
   // Ref for scroll-driven gallery (Option C)
   const scrollGalleryRef = useRef<HTMLDivElement>(null);
   const detailsPageRef = useRef<HTMLDivElement>(null);
@@ -1408,12 +1410,19 @@ const RuralLandMarketplaceProject = () => {
                   <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-3 md:mb-4">Search UI</h3>
                 {/* Mobile: horizontal scroll, Desktop: wrap */}
                   <div 
-                    className="flex gap-2 pb-2 md:pb-0 md:flex-wrap -mx-4 px-4 md:mx-0 md:px-0 md:overflow-visible overflow-x-auto overscroll-x-contain cursor-grab active:cursor-grabbing hide-scrollbar"
+                    ref={searchNavDrag.ref}
+                    onPointerDown={searchNavDrag.onPointerDown}
+                    onPointerMove={searchNavDrag.onPointerMove}
+                    onPointerUp={searchNavDrag.onPointerUp}
+                    onPointerCancel={searchNavDrag.onPointerCancel}
+                    onPointerLeave={searchNavDrag.onPointerLeave}
+                    className="flex gap-2 pb-2 md:pb-0 md:flex-wrap -mx-4 px-4 md:mx-0 md:px-0 md:overflow-visible overflow-x-auto overscroll-x-contain cursor-grab active:cursor-grabbing select-none hide-scrollbar"
                     style={{ 
                       WebkitOverflowScrolling: 'touch',
                       scrollbarWidth: 'none',
                       msOverflowStyle: 'none',
-                      scrollBehavior: 'smooth'
+                      scrollBehavior: 'smooth',
+                      touchAction: 'pan-y'
                     }}
                   >
                     {scrollGallerySlides.map((slide, index) => (
@@ -1432,10 +1441,10 @@ const RuralLandMarketplaceProject = () => {
                     ))}
                   </div>
                 </div>
-                <div className="h-1"></div>
+                <div className="h-3"></div>
                 
                 {/* Sticky viewport */}
-                <div className="sticky top-12 md:top-36 h-[80vh] overflow-hidden pt-4 md:pt-8 pb-4 relative">
+                <div className="sticky top-12 md:top-36 h-[80vh] overflow-hidden pt-12 md:pt-24 pb-4 relative">
                 {/* Background texture with scroll-based fade - full viewport width, starts below nav */}
                   <div 
                     className={cn(
