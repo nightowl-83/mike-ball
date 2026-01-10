@@ -9,6 +9,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { useState, useEffect, useRef } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { StickyNavHeader } from "@/components/StickyNavHeader";
+import ProjectSectionNav from "@/components/ProjectSectionNav";
 import { cn } from "@/lib/utils";
 import userFlowImage from "@/assets/user-flow.jpg";
 import locateListingImage from "@/assets/locate-listing-new.png";
@@ -40,6 +41,7 @@ const MobileBankingProject = () => {
   const [designLayout, setDesignLayout] = useState<1 | 2 | 3>(1);
   const [currentAnalyticsSlide, setCurrentAnalyticsSlide] = useState(0);
   const [analyticsApi, setAnalyticsApi] = useState<CarouselApi>();
+  const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
 
   // Refs for sections and subsections
   const heroRef = useRef<HTMLDivElement>(null);
@@ -1715,6 +1717,13 @@ const MobileBankingProject = () => {
           </div>
         </DialogContent>
       </Dialog>
+
+      {/* Sticky Section Navigation Arrows */}
+      <ProjectSectionNav 
+        sections={sections}
+        currentSectionIndex={currentSectionIndex}
+        setCurrentSectionIndex={setCurrentSectionIndex}
+      />
     </div>;
 };
 export default MobileBankingProject;
