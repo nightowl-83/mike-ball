@@ -55,7 +55,9 @@ const MobileBankingProject = () => {
   const listingProcessRef = useRef<HTMLDivElement>(null);
   const leadsRef = useRef<HTMLDivElement>(null);
   const analyticsRef = useRef<HTMLDivElement>(null);
-
+  const resultsRef = useRef<HTMLDivElement>(null);
+  const showcaseRef = useRef<HTMLDivElement>(null);
+  const nextProjectRef = useRef<HTMLDivElement>(null);
   // Section navigation data
   const sections = [{
     id: 'hero',
@@ -153,6 +155,24 @@ const MobileBankingProject = () => {
     subsection: 'Listing Analytics',
     number: '/04',
     ref: analyticsRef
+  }, {
+    id: 'outcomes',
+    section: 'Outcomes',
+    subsection: '',
+    number: '/05',
+    ref: resultsRef
+  }, {
+    id: 'showcase',
+    section: 'Showcase',
+    subsection: '',
+    number: '/06',
+    ref: showcaseRef
+  }, {
+    id: 'next-project',
+    section: 'Next Project',
+    subsection: '',
+    number: '',
+    ref: nextProjectRef
   }];
 
   // Use the unified navigation hook
@@ -1245,7 +1265,7 @@ const MobileBankingProject = () => {
 
             {/* Full Width GIF Row - Full width on mobile */}
             <div className="w-full mt-4 md:mt-12 -mx-2 md:mx-0">
-              <div className="w-full md:max-w-[85%] md:mx-auto md:rounded-2xl overflow-hidden shadow-card">
+              <div className="w-full md:max-w-[85%] md:mx-auto md:rounded-2xl overflow-hidden shadow-card ring-2 ring-inset ring-background">
                 <img src={leadsGif} alt="Lead management interface demonstration" className="w-full h-full object-contain" />
               </div>
             </div>
@@ -1404,7 +1424,8 @@ const MobileBankingProject = () => {
         
 
         {/* Results Section */}
-        <section ref={resultsAnim.ref} className={`min-h-screen flex items-center justify-center py-10 md:py-24 transition-all duration-700 ${resultsAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <section ref={resultsAnim.ref} className={`relative min-h-screen flex items-center justify-center py-10 md:py-24 transition-all duration-700 ${resultsAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div ref={resultsRef} className="absolute top-0 left-0 w-full h-1" />
           <div className="container mx-auto max-w-[1440px] text-left">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Outcomes</h2>
             <p className="text-base text-muted-foreground mb-8 md:mb-16">
@@ -1446,7 +1467,8 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Final Showcase */}
-        <section ref={showcaseAnim.ref} className={`min-h-screen flex items-center justify-center py-12 md:py-24 bg-card/30 transition-all duration-700 ${showcaseAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <section ref={showcaseAnim.ref} className={`relative min-h-screen flex items-center justify-center py-12 md:py-24 bg-card/30 transition-all duration-700 ${showcaseAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div ref={showcaseRef} className="absolute top-0 left-0 w-full h-1" />
           <div className="container mx-auto max-w-[1600px] space-y-6 md:space-y-12">
             <div className="w-full aspect-video rounded-xl md:rounded-2xl overflow-hidden shadow-glow">
               <img src="/placeholder.svg" alt="Final showcase 1" className="w-full h-full object-cover" />
@@ -1463,7 +1485,8 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Navigation to Next Project */}
-        <section ref={navigationAnim.ref} className={`py-24 border-t border-border transition-all duration-700 ${navigationAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <section ref={navigationAnim.ref} className={`relative py-24 border-t border-border transition-all duration-700 ${navigationAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div ref={nextProjectRef} className="absolute top-0 left-0 w-full h-1" />
           <div className="container mx-auto max-w-[1440px]">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div className="space-y-2">
