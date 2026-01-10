@@ -669,27 +669,24 @@ const RuralLandMarketplaceProject = () => {
             <div ref={defineGalleryRef} className="mt-8 md:mt-32">
               <h3 className="text-lg md:text-xl text-muted-foreground mb-6 md:mb-8">Brainstorming, Competitor Analysis, Pain Points</h3>
               
-              {/* Mobile: Stacked Vertical Scroll Gallery */}
-              <div className="md:hidden relative space-y-4">
-                {galleryImages.map((img, idx) => (
-                  <button 
-                    key={idx} 
-                    onClick={() => openGallery(idx)} 
-                    className="w-full rounded-xl overflow-hidden shadow-card hover:scale-[1.01] transition-transform"
-                  >
-                    <img 
-                      src={img.src} 
-                      alt={img.alt} 
-                      className="w-full h-auto object-contain" 
-                    />
-                  </button>
-                ))}
+              {/* Mobile: Single Image that launches gallery */}
+              <div className="md:hidden relative">
+                <button 
+                  onClick={() => openGallery(0)} 
+                  className="w-full aspect-video rounded-xl overflow-hidden shadow-card hover:scale-[1.01] transition-transform"
+                >
+                  <img 
+                    src={galleryImages[0].src} 
+                    alt={galleryImages[0].alt} 
+                    className="w-full h-full object-cover" 
+                  />
+                </button>
                 {/* Mobile CTA to open gallery */}
                 <button 
                   onClick={() => openGallery(0)} 
-                  className="w-full mt-2 py-3 px-4 flex items-center justify-center gap-2 text-sm font-medium text-primary bg-transparent border border-primary/30 rounded-lg hover:bg-primary/10 transition-colors"
+                  className="w-full mt-4 py-3 px-4 flex items-center justify-center gap-2 text-sm font-medium text-primary bg-transparent border border-primary/30 rounded-lg hover:bg-primary/10 transition-colors"
                 >
-                  <span>View Full Gallery</span>
+                  <span>View Gallery ({galleryImages.length} images)</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
@@ -1799,7 +1796,7 @@ const RuralLandMarketplaceProject = () => {
 
       {/* Fullscreen Gallery Modal */}
       <Dialog open={galleryOpen} onOpenChange={setGalleryOpen}>
-        <DialogContent className="max-w-[100vw] max-h-[100vh] w-screen h-screen p-0 bg-background/98 backdrop-blur-xl border-none">
+        <DialogContent hideCloseButton className="max-w-[100vw] max-h-[100vh] w-screen h-screen p-0 bg-background/98 backdrop-blur-xl border-none">
           <div className="relative w-full h-full flex items-center justify-center">
             {/* Close Button */}
             <Button variant="ghost" size="icon" onClick={() => setGalleryOpen(false)} className="absolute top-6 right-6 z-50 bg-background/20 backdrop-blur-md hover:bg-background/40 text-foreground">
