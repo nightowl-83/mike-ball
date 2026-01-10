@@ -1450,91 +1450,143 @@ const MobileBankingProject = () => {
           </div>
         </section>
 
-        {/* Listing Analytics Section */}
+        {/* Listing Analytics Section - Stacked Callouts */}
         <section className="relative py-10 md:py-24 bg-card/30">
           <div ref={analyticsRef} className="absolute top-0 left-0 w-full h-1" />
           <div className="container mx-auto max-w-[1440px] px-6">
             {/* Section Header */}
-            <div className="mb-8 md:mb-12">
+            <div className="mb-8 md:mb-16">
               <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4">Listing Analytics</h3>
               <p className="text-base md:text-lg text-muted-foreground">Comprehensive insights and performance tracking for your property listings</p>
             </div>
-            
-            {/* Two Column Layout */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-          {/* Left Column - Text Content */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
-                {[{
-                title: "Overview Dashboard",
-                description: "Track views, clicks, and leads in one place."
-              }, {
-                title: "Traffic Sources",
-                description: "See where your listing traffic is coming from."
-              }, {
-                title: "Lead Insights",
-                description: "Monitor inquiries and engagement over time."
-              }, {
-                title: "Compare Listings",
-                description: "Benchmark performance against similar listings."
-              }, {
-                title: "Interest by Location",
-                description: "Visualize buyer activity with heat-maps."
-              }, {
-                title: "Performance Suggestions",
-                description: "Get tips to improve your listing results."
-              }, {
-                title: "Export Reports",
-                description: "Download or schedule performance summaries."
-              }, {
-                title: "Ad Performance",
-                description: "Track ROI from featured listings and campaigns."
-              }, {
-                title: "Custom Filters",
-                description: "View data by custom date ranges."
-              }, {
-                title: "Mobile-Ready",
-                description: "Access insights anytime, anywhere."
-              }].map((feature, index) => <div key={index} className="flex items-start gap-3">
-                    <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-                    <div>
-                      <h4 className="font-semibold text-base md:text-lg">{feature.title}</h4>
-                      <p className="text-sm md:text-base text-muted-foreground mt-1">{feature.description}</p>
+
+            {/* Callout 1: Core Metrics & Monitoring */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-12 md:mb-20">
+              <div className="space-y-6">
+                <div className="inline-block px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs md:text-sm font-medium">
+                  Core Metrics
+                </div>
+                <h4 className="text-xl md:text-2xl lg:text-3xl font-bold">Track Performance at a Glance</h4>
+                <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                  Monitor your listings with powerful dashboards that surface the most important metrics—views, clicks, leads, and traffic sources—all in one centralized hub.
+                </p>
+                <div className="space-y-4 pt-4">
+                  {[
+                    { title: "Overview Dashboard", description: "Track views, clicks, and leads in one place." },
+                    { title: "Traffic Sources", description: "See where your listing traffic is coming from." },
+                    { title: "Lead Insights", description: "Monitor inquiries and engagement over time." }
+                  ].map((feature, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+                      <div>
+                        <h5 className="font-semibold text-base md:text-lg">{feature.title}</h5>
+                        <p className="text-sm md:text-base text-muted-foreground mt-1">{feature.description}</p>
+                      </div>
                     </div>
-                  </div>)}
+                  ))}
+                </div>
               </div>
-              
-          {/* Right Column - Image Carousel */}
-          <div className="flex items-center">
-            <Carousel className="w-full" setApi={setAnalyticsApi} opts={{
-                loop: true
-              }}>
-                  <CarouselContent>
-                    {analyticsImages.map((image, index) => <CarouselItem key={index}>
-                        <Dialog>
-                          <DialogTrigger asChild>
-                            <button className="relative w-full cursor-pointer group">
-                              <img src={image.src} alt={image.alt} className="w-full h-auto rounded-lg shadow-lg border border-border transition-transform duration-300 group-hover:scale-[1.02]" />
-                              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 rounded-lg transition-colors duration-300" />
-                            </button>
-                          </DialogTrigger>
-                          <DialogContent className="max-w-[95vw] max-h-[95vh] p-0 bg-black/95">
-                            <div className="relative w-full h-full flex items-center justify-center p-4">
-                              <img src={image.src} alt={image.alt} className="max-w-full max-h-[90vh] object-contain" />
-                            </div>
-                          </DialogContent>
-                        </Dialog>
-                      </CarouselItem>)}
-                  </CarouselContent>
-                  
-                  {/* Carousel Navigation Arrows */}
-                  <CarouselPrevious className="left-2 lg:-left-12" />
-                  <CarouselNext className="right-2 lg:-right-12" />
-                  
-                  {/* Slide Indicators */}
-                  <div className="flex justify-center gap-2 mt-4">
-                    {analyticsImages.map((_, index) => <button key={index} onClick={() => analyticsApi?.scrollTo(index)} className={cn("w-2 h-2 rounded-full transition-all duration-300", currentAnalyticsSlide === index ? "bg-primary w-8" : "bg-muted hover:bg-primary/50")} aria-label={`Go to slide ${index + 1}`} />)}
-                  </div>
-                </Carousel>
+              <div className="flex items-center justify-center">
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <button className="relative w-full cursor-pointer group">
+                      <img src={analyticsTable1} alt="Analytics dashboard showing listing exposure and metrics" className="w-full h-auto rounded-lg shadow-lg border border-border transition-transform duration-300 group-hover:scale-[1.02]" />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 rounded-lg transition-colors duration-300" />
+                    </button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-[95vw] max-h-[95vh] p-0 bg-black/95">
+                    <div className="relative w-full h-full flex items-center justify-center p-4">
+                      <img src={analyticsTable1} alt="Analytics dashboard showing listing exposure and metrics" className="max-w-full max-h-[90vh] object-contain" />
+                    </div>
+                  </DialogContent>
+                </Dialog>
+              </div>
+            </div>
+
+            {/* Callout 2: Advanced Analysis (Reversed Layout) */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-12 md:mb-20">
+              <div className="flex items-center justify-center order-2 lg:order-1">
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <button className="relative w-full cursor-pointer group">
+                      <img src={analyticsTable2} alt="Analytics chart displaying listing exposure over time" className="w-full h-auto rounded-lg shadow-lg border border-border transition-transform duration-300 group-hover:scale-[1.02]" />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 rounded-lg transition-colors duration-300" />
+                    </button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-[95vw] max-h-[95vh] p-0 bg-black/95">
+                    <div className="relative w-full h-full flex items-center justify-center p-4">
+                      <img src={analyticsTable2} alt="Analytics chart displaying listing exposure over time" className="max-w-full max-h-[90vh] object-contain" />
+                    </div>
+                  </DialogContent>
+                </Dialog>
+              </div>
+              <div className="space-y-6 order-1 lg:order-2">
+                <div className="inline-block px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs md:text-sm font-medium">
+                  Advanced Analysis
+                </div>
+                <h4 className="text-xl md:text-2xl lg:text-3xl font-bold">Benchmark & Compare</h4>
+                <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                  Go beyond basic metrics with comparison tools, geographic insights, and AI-powered recommendations to optimize your listings for maximum visibility.
+                </p>
+                <div className="space-y-4 pt-4">
+                  {[
+                    { title: "Compare Listings", description: "Benchmark performance against similar listings." },
+                    { title: "Interest by Location", description: "Visualize buyer activity with heat-maps." },
+                    { title: "Performance Suggestions", description: "Get tips to improve your listing results." },
+                    { title: "Ad Performance", description: "Track ROI from featured listings and campaigns." }
+                  ].map((feature, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+                      <div>
+                        <h5 className="font-semibold text-base md:text-lg">{feature.title}</h5>
+                        <p className="text-sm md:text-base text-muted-foreground mt-1">{feature.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Callout 3: Flexibility & Access */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+              <div className="space-y-6">
+                <div className="inline-block px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs md:text-sm font-medium">
+                  Flexibility & Access
+                </div>
+                <h4 className="text-xl md:text-2xl lg:text-3xl font-bold">Your Data, Your Way</h4>
+                <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                  Customize your analytics experience with flexible date ranges, exportable reports, and full mobile access—giving you insights whenever and wherever you need them.
+                </p>
+                <div className="space-y-4 pt-4">
+                  {[
+                    { title: "Custom Filters", description: "View data by custom date ranges." },
+                    { title: "Export Reports", description: "Download or schedule performance summaries." },
+                    { title: "Mobile-Ready", description: "Access insights anytime, anywhere." }
+                  ].map((feature, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+                      <div>
+                        <h5 className="font-semibold text-base md:text-lg">{feature.title}</h5>
+                        <p className="text-sm md:text-base text-muted-foreground mt-1">{feature.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="flex items-center justify-center">
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <button className="relative w-full cursor-pointer group">
+                      <img src={analyticsTable3} alt="Analytics overview with interaction metrics and location map" className="w-full h-auto rounded-lg shadow-lg border border-border transition-transform duration-300 group-hover:scale-[1.02]" />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 rounded-lg transition-colors duration-300" />
+                    </button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-[95vw] max-h-[95vh] p-0 bg-black/95">
+                    <div className="relative w-full h-full flex items-center justify-center p-4">
+                      <img src={analyticsTable3} alt="Analytics overview with interaction metrics and location map" className="max-w-full max-h-[90vh] object-contain" />
+                    </div>
+                  </DialogContent>
+                </Dialog>
               </div>
             </div>
           </div>
