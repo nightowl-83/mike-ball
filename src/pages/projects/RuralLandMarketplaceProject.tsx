@@ -1394,11 +1394,11 @@ const RuralLandMarketplaceProject = () => {
                   <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-3 md:mb-4">Search UI</h3>
                 {/* Mobile: horizontal scroll, Desktop: wrap */}
                   <div 
-                    className="flex gap-2 pb-2 md:pb-0 md:flex-wrap -mx-4 px-4 md:mx-0 md:px-0 md:overflow-visible overflow-x-scroll overscroll-x-contain"
+                    className="flex gap-2 pb-2 md:pb-0 md:flex-wrap -mx-4 px-4 md:mx-0 md:px-0 md:overflow-visible overflow-x-auto overscroll-x-contain cursor-grab active:cursor-grabbing"
                     style={{ 
                       WebkitOverflowScrolling: 'touch',
-                      scrollbarWidth: 'none',
-                      msOverflowStyle: 'none'
+                      scrollbarWidth: 'thin',
+                      scrollBehavior: 'smooth'
                     }}
                   >
                     {scrollGallerySlides.map((slide, index) => (
