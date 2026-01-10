@@ -144,13 +144,13 @@ const RuralLandMarketplaceProject = () => {
   // Section navigation data
   const sections = [{
     id: 'hero',
-    section: 'Hero',
+    section: 'Overview',
     subsection: '',
     number: '',
     ref: heroRef
   }, {
     id: 'overview',
-    section: 'Overview',
+    section: 'Background',
     subsection: '',
     number: '',
     ref: overviewRef
@@ -467,7 +467,12 @@ const RuralLandMarketplaceProject = () => {
 
           {/* Right: Image - 50vw width on desktop, full on mobile */}
           <div className="w-full md:w-1/2 h-64 md:h-full relative">
-            <img src={ruralLandHero} alt="Rural Land Marketplace Dashboard" className="w-[95%] h-[95%] object-contain mx-auto my-auto" />
+            <img 
+              src={ruralLandHero} 
+              alt="Rural Land Marketplace Dashboard" 
+              className="w-[95%] h-[95%] object-contain mx-auto my-auto animate-fade-in"
+              style={{ animationDuration: '0.8s' }}
+            />
           </div>
         </div>
       </section>
@@ -663,11 +668,21 @@ const RuralLandMarketplaceProject = () => {
             <div ref={defineGalleryRef} className="mt-8 md:mt-32">
               <h3 className="text-lg md:text-xl text-muted-foreground mb-6 md:mb-8">Brainstorming, Competitor Analysis, Pain Points</h3>
               
-              {/* Mobile: Horizontal Scroll Gallery */}
-              <div className="flex md:hidden overflow-x-scroll snap-x snap-mandatory gap-3 pb-4 -mx-2 px-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-                {galleryImages.map((img, idx) => <button key={idx} onClick={() => openGallery(idx)} className="min-w-[calc(100vw-48px)] h-[400px] snap-center rounded-xl overflow-hidden shadow-card hover:scale-[1.02] transition-transform flex-shrink-0">
-                    <img src={img.src} alt={img.alt} className="w-full h-full object-cover" />
-                  </button>)}
+              {/* Mobile: Horizontal Scroll Gallery with CTA */}
+              <div className="md:hidden relative">
+                <div className="flex overflow-x-scroll snap-x snap-mandatory gap-3 pb-4 -mx-2 px-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                  {galleryImages.map((img, idx) => <button key={idx} onClick={() => openGallery(idx)} className="min-w-[calc(100vw-48px)] h-[400px] snap-center rounded-xl overflow-hidden shadow-card hover:scale-[1.02] transition-transform flex-shrink-0">
+                      <img src={img.src} alt={img.alt} className="w-full h-full object-cover" />
+                    </button>)}
+                </div>
+                {/* Mobile CTA to open gallery */}
+                <button 
+                  onClick={() => openGallery(0)} 
+                  className="w-full mt-2 py-3 px-4 flex items-center justify-center gap-2 text-sm font-medium text-primary bg-transparent border border-primary/30 rounded-lg hover:bg-primary/10 transition-colors"
+                >
+                  <span>Tap to view full gallery</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
               </div>
               
               {/* Tablet/Desktop: Asymmetric Bento Grid */}
@@ -1264,13 +1279,13 @@ const RuralLandMarketplaceProject = () => {
 
         {/* Translating Wireframes to UI - Full Screen Image Section */}
         <section className="w-full">
-          <div className="px-6 py-6 md:py-16">
+          <div className="px-6 py-0 md:py-16">
             <div className="container mx-auto max-w-[1440px]">
               <h3 className="text-3xl md:text-4xl font-bold text-foreground">Translating Wireframes to UI</h3>
             </div>
           </div>
           <div className="relative w-full flex justify-center bg-background overflow-hidden">
-            <video ref={videoRef} src={uiWireframeVideo} autoPlay loop muted playsInline preload="auto" className={`w-full h-[75vh] md:h-auto max-h-[75vh] md:max-h-[600px] lg:max-h-[680px] lg:w-auto object-cover object-[16%_center] scale-[0.8] md:object-[20%_center] md:scale-100 lg:object-contain lg:scale-100 lg:mx-auto transition-opacity duration-500 ${videoReady ? 'opacity-100' : 'opacity-0'}`} />
+            <video ref={videoRef} src={uiWireframeVideo} autoPlay loop muted playsInline preload="auto" className={`w-full h-[75vh] md:h-auto max-h-[75vh] md:max-h-[600px] lg:max-h-[680px] lg:w-auto object-cover object-[16%_center] scale-[0.8] md:object-[20%_center] md:scale-100 lg:object-contain lg:scale-100 lg:mx-auto p-0 md:p-4 transition-opacity duration-500 ${videoReady ? 'opacity-100' : 'opacity-0'}`} />
             
             {/* Buffering overlay for smooth loop transitions */}
             <div className={`absolute inset-0 bg-background/60 backdrop-blur-sm transition-opacity duration-300 pointer-events-none ${videoBuffering && videoReady ? 'opacity-100' : 'opacity-0'}`} />
@@ -1371,8 +1386,8 @@ const RuralLandMarketplaceProject = () => {
                 {/* Sticky header with title and navigation - optimized for mobile */}
                 <div className="sticky top-16 z-20 bg-background/95 backdrop-blur-sm py-3 md:py-4 mb-4">
                   <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-3 md:mb-4">Search UI</h3>
-                  {/* Mobile: horizontal scroll with hidden scrollbar, Desktop: wrap */}
-                  <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0 md:flex-wrap -mx-4 px-4 md:mx-0 md:px-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                {/* Mobile: horizontal scroll with drag support, Desktop: wrap */}
+                  <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0 md:flex-wrap -mx-4 px-4 md:mx-0 md:px-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] cursor-grab active:cursor-grabbing touch-pan-x">
                     {scrollGallerySlides.map((slide, index) => <button key={index} onClick={() => setManualSlideOverride(index)} className={cn("px-3 md:px-4 py-1.5 md:py-2 rounded-lg text-xs md:text-sm font-medium transition-all duration-500 cursor-pointer hover:bg-primary/20 whitespace-nowrap flex-shrink-0", currentSlide === index ? "bg-primary text-primary-foreground shadow-lg" : "bg-muted/40 text-muted-foreground")}>
                         {slide.title}
                       </button>)}
