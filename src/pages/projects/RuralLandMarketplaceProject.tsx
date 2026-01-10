@@ -1727,7 +1727,10 @@ const RuralLandMarketplaceProject = () => {
                 <p className="text-sm text-muted-foreground">Next Project</p>
                 <h3 className="text-2xl font-bold">Marketing Hub CMS</h3>
               </div>
-              <Link to="/projects/mobile-banking">
+              <Link 
+                to="/projects/mobile-banking"
+                onClick={() => window.scrollTo({ top: 0, behavior: 'instant' })}
+              >
                 <Button variant="outline" className="gap-2 w-full md:w-auto">
                   View Project
                   <ArrowLeft className="h-4 w-4 rotate-180" />

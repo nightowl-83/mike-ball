@@ -12,7 +12,8 @@ import { useProjectNavigation } from "@/hooks/useProjectNavigation";
 import { StickyNavHeader } from "@/components/StickyNavHeader";
 import ProjectSectionNav from "@/components/ProjectSectionNav";
 import { cn } from "@/lib/utils";
-import userFlowImage from "@/assets/Network-Flow-mobile.jpg";
+import userFlowDesktop from "@/assets/NetworkFlow.jpg";
+import userFlowMobile from "@/assets/Network-Flow-mobile-2.jpg";
 import locateListingImage from "@/assets/locate-listing-new.png";
 import addListingLocationGif from "@/assets/add-listing-location.gif";
 import addListingFullGif from "@/assets/add-listing-full.gif";
@@ -35,8 +36,10 @@ import HubPromo2 from "@/assets/Hub-Promo-2.png";
 import AnalyticsCore2 from "@/assets/Analytics-Core-2.png";
 import AnalyticsSuggestPort from "@/assets/Analytics-Suggest-Port.png";
 import HubMobileTablet from "@/assets/Hub-Mobile-Tablet.png";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const MobileBankingProject = () => {
+  const isMobile = useIsMobile();
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [designLayout, setDesignLayout] = useState<1 | 2 | 3>(1);
@@ -268,6 +271,10 @@ const MobileBankingProject = () => {
   const resultsAnim = useScrollAnimation();
   const showcaseAnim = useScrollAnimation();
   const navigationAnim = useScrollAnimation();
+  // Analytics callout animations
+  const analyticsCallout1Anim = useScrollAnimation({ threshold: 0.2 });
+  const analyticsCallout2Anim = useScrollAnimation({ threshold: 0.2 });
+  const analyticsCallout3Anim = useScrollAnimation({ threshold: 0.2 });
   return <div className="min-h-screen bg-background">
       {/* Unified Sticky Header */}
       <StickyNavHeader visible={stickyHeader.visible} currentSection={stickyHeader.section} currentSubsection={stickyHeader.subsection} currentNumber={stickyHeader.number} sections={sections} />
@@ -888,11 +895,11 @@ const MobileBankingProject = () => {
         {/* Full Viewport Design Image */}
         <div className="viewport-image-section">
           <div ref={userFlowRef} className="absolute top-0 left-0 w-full h-1" />
-          <div className="absolute top-0 left-0 right-0 z-20 px-6 pt-24">
+          <div className="absolute top-4 left-4 md:top-0 md:left-0 md:right-0 z-20 md:px-6 md:pt-24">
             <div className="container mx-auto max-w-[1440px]">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
                 <div>
-                  <h3 className="text-4xl font-bold text-foreground">User Flow</h3>
+                  <h3 className="text-2xl md:text-4xl font-bold text-foreground">User Flow</h3>
                 </div>
                 <div className="text-right">
                   
@@ -900,7 +907,10 @@ const MobileBankingProject = () => {
               </div>
             </div>
           </div>
-          <img src={userFlowImage} alt="User flow design" className="w-full h-full object-cover object-left-top" />
+          {/* Desktop/Tablet image - hidden on mobile */}
+          <img src={userFlowDesktop} alt="User flow design" className="hidden md:block w-full h-full object-cover object-left-top" />
+          {/* Mobile image - visible on mobile only */}
+          <img src={userFlowMobile} alt="User flow design" className="block md:hidden w-full h-full object-cover object-center" />
         </div>
 
         {/* Design System Section */}
@@ -1288,7 +1298,10 @@ const MobileBankingProject = () => {
             </div>
 
             {/* Callout 1: Core Metrics & Monitoring */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-12 md:mb-20">
+            <div 
+              ref={analyticsCallout1Anim.ref}
+              className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-12 md:mb-20 transition-all duration-700 ${analyticsCallout1Anim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+            >
               <div className="space-y-6">
                 <div className="inline-block px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs md:text-sm font-medium">
                   Core Metrics
@@ -1321,7 +1334,10 @@ const MobileBankingProject = () => {
             </div>
 
             {/* Callout 2: Advanced Analysis (Reversed Layout) */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-12 md:mb-20">
+            <div 
+              ref={analyticsCallout2Anim.ref}
+              className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-12 md:mb-20 transition-all duration-700 ${analyticsCallout2Anim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+            >
               <div className="flex items-center justify-center order-2 lg:order-1">
                 <Dialog>
                   <DialogTrigger asChild>
@@ -1355,7 +1371,10 @@ const MobileBankingProject = () => {
             </div>
 
             {/* Callout 3: Flexibility & Access */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+            <div 
+              ref={analyticsCallout3Anim.ref}
+              className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 transition-all duration-700 ${analyticsCallout3Anim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+            >
               <div className="space-y-6">
                 <div className="inline-block px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs md:text-sm font-medium">
                   Flexibility & Access
@@ -1468,7 +1487,10 @@ const MobileBankingProject = () => {
                 <p className="text-sm text-muted-foreground">Next Project</p>
                 <h3 className="text-2xl font-bold">Rural Land Marketplace</h3>
               </div>
-              <Link to="/projects/rural-land-marketplace">
+              <Link 
+                to="/projects/rural-land-marketplace"
+                onClick={() => window.scrollTo({ top: 0, behavior: 'instant' })}
+              >
                 <Button variant="outline" className="gap-2 w-full md:w-auto">
                   View Project
                   <ArrowLeft className="h-4 w-4 rotate-180" />
