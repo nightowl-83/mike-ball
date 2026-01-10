@@ -687,19 +687,19 @@ const MobileBankingProject = () => {
 
             {/* Bento Grid Layout - 7 Images */}
             <div ref={defineGalleryRef} className="mt-8 md:mt-32">
-              {/* Mobile: Horizontal Scroll Gallery with CTA */}
+              {/* Mobile: 2-Column Grid Gallery */}
               <div className="md:hidden relative">
-                <div className="flex overflow-x-scroll snap-x snap-mandatory gap-3 pb-4 -mx-2 px-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-                  {galleryImages.map((img, idx) => <button key={idx} onClick={() => openGallery(idx)} className="min-w-[calc(100vw-48px)] h-[400px] snap-center rounded-xl overflow-hidden shadow-card hover:scale-[1.02] transition-transform flex-shrink-0">
+                <div className="grid grid-cols-2 gap-3">
+                  {galleryImages.map((img, idx) => <button key={idx} onClick={() => openGallery(idx)} className="aspect-video rounded-xl overflow-hidden shadow-card hover:scale-[1.02] transition-transform">
                       <img src={img.src} alt={img.alt} className="w-full h-full object-cover" />
                     </button>)}
                 </div>
                 {/* Mobile CTA to open gallery */}
                 <button 
                   onClick={() => openGallery(0)} 
-                  className="w-full mt-2 py-3 px-4 flex items-center justify-center gap-2 text-sm font-medium text-primary bg-transparent border border-primary/30 rounded-lg hover:bg-primary/10 transition-colors"
+                  className="w-full mt-4 py-3 px-4 flex items-center justify-center gap-2 text-sm font-medium text-primary bg-transparent border border-primary/30 rounded-lg hover:bg-primary/10 transition-colors"
                 >
-                  <span>Tap to view full gallery</span>
+                  <span>View</span>
                   <ArrowLeft className="w-4 h-4 rotate-180" />
                 </button>
               </div>
