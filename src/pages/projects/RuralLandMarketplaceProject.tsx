@@ -669,19 +669,27 @@ const RuralLandMarketplaceProject = () => {
             <div ref={defineGalleryRef} className="mt-8 md:mt-32">
               <h3 className="text-lg md:text-xl text-muted-foreground mb-6 md:mb-8">Brainstorming, Competitor Analysis, Pain Points</h3>
               
-              {/* Mobile: 2-Column Grid Gallery */}
-              <div className="md:hidden relative">
-                <div className="grid grid-cols-2 gap-3">
-                  {galleryImages.map((img, idx) => <button key={idx} onClick={() => openGallery(idx)} className="aspect-video rounded-xl overflow-hidden shadow-card hover:scale-[1.02] transition-transform">
-                      <img src={img.src} alt={img.alt} className="w-full h-full object-cover" />
-                    </button>)}
-                </div>
+              {/* Mobile: Stacked Vertical Scroll Gallery */}
+              <div className="md:hidden relative space-y-4">
+                {galleryImages.map((img, idx) => (
+                  <button 
+                    key={idx} 
+                    onClick={() => openGallery(idx)} 
+                    className="w-full rounded-xl overflow-hidden shadow-card hover:scale-[1.01] transition-transform"
+                  >
+                    <img 
+                      src={img.src} 
+                      alt={img.alt} 
+                      className="w-full h-auto object-contain" 
+                    />
+                  </button>
+                ))}
                 {/* Mobile CTA to open gallery */}
                 <button 
                   onClick={() => openGallery(0)} 
-                  className="w-full mt-4 py-3 px-4 flex items-center justify-center gap-2 text-sm font-medium text-primary bg-transparent border border-primary/30 rounded-lg hover:bg-primary/10 transition-colors"
+                  className="w-full mt-2 py-3 px-4 flex items-center justify-center gap-2 text-sm font-medium text-primary bg-transparent border border-primary/30 rounded-lg hover:bg-primary/10 transition-colors"
                 >
-                  <span>View</span>
+                  <span>View Full Gallery</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
@@ -1388,10 +1396,28 @@ const RuralLandMarketplaceProject = () => {
                 <div className="sticky top-16 z-20 bg-background/95 backdrop-blur-sm py-3 md:py-4 mb-4">
                   <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-3 md:mb-4">Search UI</h3>
                 {/* Mobile: horizontal scroll, Desktop: wrap */}
-                  <div className="flex gap-2 overflow-x-scroll pb-2 md:pb-0 md:flex-wrap -mx-4 px-4 md:mx-0 md:px-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] overscroll-x-contain" style={{ touchAction: 'pan-x' }}>
-                    {scrollGallerySlides.map((slide, index) => <button key={index} onClick={() => setManualSlideOverride(index)} className={cn("px-3 md:px-4 py-1.5 md:py-2 rounded-lg text-xs md:text-sm font-medium transition-all duration-500 cursor-pointer hover:bg-primary/20 whitespace-nowrap flex-shrink-0", currentSlide === index ? "bg-primary text-primary-foreground shadow-lg" : "bg-muted/40 text-muted-foreground")}>
+                  <div 
+                    className="flex gap-2 pb-2 md:pb-0 md:flex-wrap -mx-4 px-4 md:mx-0 md:px-0 md:overflow-visible overflow-x-scroll overscroll-x-contain"
+                    style={{ 
+                      WebkitOverflowScrolling: 'touch',
+                      scrollbarWidth: 'none',
+                      msOverflowStyle: 'none'
+                    }}
+                  >
+                    {scrollGallerySlides.map((slide, index) => (
+                      <button 
+                        key={index} 
+                        onClick={() => setManualSlideOverride(index)} 
+                        className={cn(
+                          "px-3 md:px-4 py-1.5 md:py-2 rounded-lg text-xs md:text-sm font-medium transition-all duration-500 cursor-pointer hover:bg-primary/20 whitespace-nowrap flex-shrink-0", 
+                          currentSlide === index 
+                            ? "bg-primary text-primary-foreground shadow-lg" 
+                            : "bg-muted/40 text-muted-foreground"
+                        )}
+                      >
                         {slide.title}
-                      </button>)}
+                      </button>
+                    ))}
                   </div>
                 </div>
                 <div className="h-6"></div>
@@ -1454,8 +1480,11 @@ const RuralLandMarketplaceProject = () => {
                     </div>
                   </div>
                   
-                  {/* Scroll Indicator - fades in when in Search UI section */}
-                  <div className={cn("absolute bottom-8 left-1/2 -translate-x-1/2 transition-opacity duration-300", isInView ? "opacity-100" : "opacity-0")}>
+                  {/* Scroll Indicator - fixed to bottom of viewport on mobile */}
+                  <div className={cn(
+                    "fixed md:absolute bottom-20 md:bottom-8 left-1/2 -translate-x-1/2 transition-opacity duration-300 z-40", 
+                    isInView ? "opacity-100" : "opacity-0 pointer-events-none"
+                  )}>
                     <div className="w-6 h-10 rounded-full border-2 flex items-start justify-center p-2 animate-bounce border-gray-50">
                       <div className="w-1.5 h-3 rounded-full animate-pulse bg-slate-50" />
                     </div>
