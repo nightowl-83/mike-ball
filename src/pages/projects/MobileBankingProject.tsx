@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from "@/components/ui/carousel";
 import { useState, useEffect, useRef } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useProjectNavigation } from "@/hooks/useProjectNavigation";
 import { StickyNavHeader } from "@/components/StickyNavHeader";
 import ProjectSectionNav from "@/components/ProjectSectionNav";
 import { cn } from "@/lib/utils";
@@ -29,19 +30,13 @@ import analyticsTable1 from "@/assets/analytics-table-1.webp";
 import analyticsTable2 from "@/assets/analytics-table-2.webp";
 import analyticsTable3 from "@/assets/analytics-table-3.webp";
 import analyticsTable4 from "@/assets/analytics-table-4.webp";
+
 const MobileBankingProject = () => {
-  const [stickyHeader, setStickyHeader] = useState({
-    visible: false,
-    section: '',
-    subsection: '',
-    number: ''
-  });
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [designLayout, setDesignLayout] = useState<1 | 2 | 3>(1);
   const [currentAnalyticsSlide, setCurrentAnalyticsSlide] = useState(0);
   const [analyticsApi, setAnalyticsApi] = useState<CarouselApi>();
-  const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
 
   // Refs for sections and subsections
   const heroRef = useRef<HTMLDivElement>(null);
@@ -160,6 +155,9 @@ const MobileBankingProject = () => {
     ref: analyticsRef
   }];
 
+  // Use the unified navigation hook
+  const { currentSectionIndex, setCurrentSectionIndex, stickyHeader } = useProjectNavigation(sections);
+
   // Array of gallery images
   const galleryImages = [{
     src: audit1,
@@ -183,204 +181,6 @@ const MobileBankingProject = () => {
     src: brainstorm8,
     alt: "Presentation session"
   }];
-
-  // Sticky header tracking
-  useEffect(() => {
-    const observerOptions = {
-      threshold: 0.5,
-      rootMargin: '-100px 0px -50% 0px'
-    };
-    const createObserver = (ref: React.RefObject<HTMLDivElement>, data: {
-      section: string;
-      subsection: string;
-      number: string;
-    }) => {
-      return new IntersectionObserver(([entry]) => {
-        if (entry.isIntersecting) {
-          setStickyHeader({
-            visible: true,
-            ...data
-          });
-        }
-      }, observerOptions);
-    };
-    const observers: IntersectionObserver[] = [];
-
-    // Hero section observer
-    if (heroRef.current) {
-      observers.push(createObserver(heroRef, {
-        section: 'Hero',
-        subsection: '',
-        number: ''
-      }));
-      observers[observers.length - 1].observe(heroRef.current);
-    }
-
-    // Overview section observer
-    if (overviewRef.current) {
-      observers.push(createObserver(overviewRef, {
-        section: 'Overview',
-        subsection: '',
-        number: ''
-      }));
-      observers[observers.length - 1].observe(overviewRef.current);
-    }
-
-    // Process section observer
-    if (processRef.current) {
-      observers.push(createObserver(processRef, {
-        section: 'Process',
-        subsection: '',
-        number: ''
-      }));
-      observers[observers.length - 1].observe(processRef.current);
-    }
-
-    // Define section observers
-    if (defineRef.current) {
-      observers.push(createObserver(defineRef, {
-        section: 'Define',
-        subsection: '',
-        number: '/01'
-      }));
-      observers[observers.length - 1].observe(defineRef.current);
-    }
-    if (defineGalleryRef.current) {
-      observers.push(createObserver(defineGalleryRef, {
-        section: 'Define',
-        subsection: 'Gallery',
-        number: '/01'
-      }));
-      observers[observers.length - 1].observe(defineGalleryRef.current);
-    }
-
-    // Discovery section observers
-    if (discoveryRef.current) {
-      observers.push(createObserver(discoveryRef, {
-        section: 'Discovery',
-        subsection: '',
-        number: '/02'
-      }));
-      observers[observers.length - 1].observe(discoveryRef.current);
-    }
-    if (discoveryInterviewsRef.current) {
-      observers.push(createObserver(discoveryInterviewsRef, {
-        section: 'Discovery',
-        subsection: 'User Interviews',
-        number: '/02'
-      }));
-      observers[observers.length - 1].observe(discoveryInterviewsRef.current);
-    }
-    if (discoveryPersonaRef.current) {
-      observers.push(createObserver(discoveryPersonaRef, {
-        section: 'Discovery',
-        subsection: 'User Persona',
-        number: '/02'
-      }));
-      observers[observers.length - 1].observe(discoveryPersonaRef.current);
-    }
-
-    // Design section observer
-    if (designRef.current) {
-      observers.push(createObserver(designRef, {
-        section: 'Design',
-        subsection: '',
-        number: '/03'
-      }));
-      observers[observers.length - 1].observe(designRef.current);
-    }
-
-    // User Flow subsection observer
-    if (userFlowRef.current) {
-      observers.push(createObserver(userFlowRef, {
-        section: 'Design',
-        subsection: 'User Flow',
-        number: '/03'
-      }));
-      observers[observers.length - 1].observe(userFlowRef.current);
-    }
-
-    // Design System subsection observer
-    if (designSystemRef.current) {
-      observers.push(createObserver(designSystemRef, {
-        section: 'Design',
-        subsection: 'Design System',
-        number: '/03'
-      }));
-      observers[observers.length - 1].observe(designSystemRef.current);
-    }
-
-    // Delivery section observer
-    if (deliveryRef.current) {
-      observers.push(createObserver(deliveryRef, {
-        section: 'Delivery',
-        subsection: '',
-        number: '/04'
-      }));
-      observers[observers.length - 1].observe(deliveryRef.current);
-    }
-
-    // Add & Edit Listing observer
-    if (addEditListingRef.current) {
-      observers.push(createObserver(addEditListingRef, {
-        section: 'Delivery',
-        subsection: 'Add & Edit a Listing',
-        number: '/04'
-      }));
-      observers[observers.length - 1].observe(addEditListingRef.current);
-    }
-
-    // Listing Creation Process observer
-    if (listingProcessRef.current) {
-      observers.push(createObserver(listingProcessRef, {
-        section: 'Delivery',
-        subsection: 'Listing Creation Process',
-        number: '/04'
-      }));
-      observers[observers.length - 1].observe(listingProcessRef.current);
-    }
-
-    // Managing Leads observer
-    if (leadsRef.current) {
-      observers.push(createObserver(leadsRef, {
-        section: 'Delivery',
-        subsection: 'Managing Leads',
-        number: '/04'
-      }));
-      observers[observers.length - 1].observe(leadsRef.current);
-    }
-
-    // Listing Analytics observer
-    if (analyticsRef.current) {
-      observers.push(createObserver(analyticsRef, {
-        section: 'Delivery',
-        subsection: 'Listing Analytics',
-        number: '/04'
-      }));
-      observers[observers.length - 1].observe(analyticsRef.current);
-    }
-
-    // Hide sticky header when at top (hero is visible)
-    const topObserver = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        setStickyHeader({
-          visible: false,
-          section: '',
-          subsection: '',
-          number: ''
-        });
-      }
-    }, {
-      threshold: 0.1
-    });
-    if (heroRef.current) {
-      topObserver.observe(heroRef.current);
-    }
-    return () => {
-      observers.forEach(obs => obs.disconnect());
-      topObserver.disconnect();
-    };
-  }, []);
   const openGallery = (index: number) => {
     setCurrentImageIndex(index);
     setGalleryOpen(true);
