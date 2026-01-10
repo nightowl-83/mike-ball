@@ -30,6 +30,8 @@ import analyticsTable1 from "@/assets/analytics-table-1.webp";
 import analyticsTable2 from "@/assets/analytics-table-2.webp";
 import analyticsTable3 from "@/assets/analytics-table-3.webp";
 import analyticsTable4 from "@/assets/analytics-table-4.webp";
+import HubPromo1 from "@/assets/Hub-Promo-1.png";
+import HubPromo2 from "@/assets/Hub-Promo-2.png";
 
 const MobileBankingProject = () => {
   const [galleryOpen, setGalleryOpen] = useState(false);
@@ -377,10 +379,10 @@ const MobileBankingProject = () => {
           <div className="container mx-auto max-w-[1440px]">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-card">
-                <img src="/placeholder.svg" alt="Product shot 1" className="w-full h-full object-cover" />
+                <img src={HubPromo1} alt="Marketing Hub Dashboard" className="w-full h-full object-cover" />
               </div>
               <div className="w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-card">
-                <img src="/placeholder.svg" alt="Product shot 2" className="w-full h-full object-cover" />
+                <img src={HubPromo2} alt="Marketing Hub Map View" className="w-full h-full object-cover" />
               </div>
             </div>
           </div>
