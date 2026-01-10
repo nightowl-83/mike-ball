@@ -32,6 +32,9 @@ import analyticsTable3 from "@/assets/analytics-table-3.webp";
 import analyticsTable4 from "@/assets/analytics-table-4.webp";
 import HubPromo1 from "@/assets/Hub-Promo-1.png";
 import HubPromo2 from "@/assets/Hub-Promo-2.png";
+import HubCompareInsitu from "@/assets/Hub_Compare-Insitu.jpg";
+import AnalyticsSuggestPort from "@/assets/Analytics-Suggest-Port.png";
+import HubMobileTablet from "@/assets/Hub-Mobile-Tablet.png";
 
 const MobileBankingProject = () => {
   const [galleryOpen, setGalleryOpen] = useState(false);
@@ -1292,35 +1295,25 @@ const MobileBankingProject = () => {
                 </div>
                 <h4 className="text-xl md:text-2xl lg:text-3xl font-bold">Track Performance at a Glance</h4>
                 <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                  Monitor your listings with powerful dashboards that surface the most important metrics—views, clicks, leads, and traffic sources—all in one centralized hub.
+                  The analytics dashboard consolidates every critical metric into a single view. Users can instantly see how many times their listing has appeared in search results, how many visitors clicked through to the details page, and how those numbers trend over time. By surfacing key performance indicators like lead volume and traffic sources upfront, users spend less time hunting for data and more time acting on insights that drive results.
                 </p>
-                <div className="space-y-4 pt-4">
-                  {[
-                    { title: "Overview Dashboard", description: "Track views, clicks, and leads in one place." },
-                    { title: "Traffic Sources", description: "See where your listing traffic is coming from." },
-                    { title: "Lead Insights", description: "Monitor inquiries and engagement over time." }
-                  ].map((feature, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-                      <div>
-                        <h5 className="font-semibold text-base md:text-lg">{feature.title}</h5>
-                        <p className="text-sm md:text-base text-muted-foreground mt-1">{feature.description}</p>
-                      </div>
-                    </div>
-                  ))}
+                <div className="flex flex-wrap gap-2 pt-4">
+                  <span className="px-3 py-1.5 rounded-full bg-muted text-muted-foreground text-xs md:text-sm font-medium">View Dashboard</span>
+                  <span className="px-3 py-1.5 rounded-full bg-muted text-muted-foreground text-xs md:text-sm font-medium">Track Leads</span>
+                  <span className="px-3 py-1.5 rounded-full bg-muted text-muted-foreground text-xs md:text-sm font-medium">Analyze Traffic</span>
                 </div>
               </div>
               <div className="flex items-center justify-center">
                 <Dialog>
                   <DialogTrigger asChild>
                     <button className="relative w-full cursor-pointer group">
-                      <img src={analyticsTable1} alt="Analytics dashboard showing listing exposure and metrics" className="w-full h-auto rounded-lg shadow-lg border border-border transition-transform duration-300 group-hover:scale-[1.02]" />
+                      <img src={HubCompareInsitu} alt="Analytics dashboard showing listing exposure and metrics" className="w-full h-auto rounded-lg shadow-lg border border-border transition-transform duration-300 group-hover:scale-[1.02]" />
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 rounded-lg transition-colors duration-300" />
                     </button>
                   </DialogTrigger>
                   <DialogContent className="max-w-[95vw] max-h-[95vh] p-0 bg-black/95">
                     <div className="relative w-full h-full flex items-center justify-center p-4">
-                      <img src={analyticsTable1} alt="Analytics dashboard showing listing exposure and metrics" className="max-w-full max-h-[90vh] object-contain" />
+                      <img src={HubCompareInsitu} alt="Analytics dashboard showing listing exposure and metrics" className="max-w-full max-h-[90vh] object-contain" />
                     </div>
                   </DialogContent>
                 </Dialog>
@@ -1333,13 +1326,13 @@ const MobileBankingProject = () => {
                 <Dialog>
                   <DialogTrigger asChild>
                     <button className="relative w-full cursor-pointer group">
-                      <img src={analyticsTable2} alt="Analytics chart displaying listing exposure over time" className="w-full h-auto rounded-lg shadow-lg border border-border transition-transform duration-300 group-hover:scale-[1.02]" />
+                      <img src={AnalyticsSuggestPort} alt="Analytics chart displaying listing exposure over time" className="w-full h-auto rounded-lg shadow-lg border border-border transition-transform duration-300 group-hover:scale-[1.02]" />
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 rounded-lg transition-colors duration-300" />
                     </button>
                   </DialogTrigger>
                   <DialogContent className="max-w-[95vw] max-h-[95vh] p-0 bg-black/95">
                     <div className="relative w-full h-full flex items-center justify-center p-4">
-                      <img src={analyticsTable2} alt="Analytics chart displaying listing exposure over time" className="max-w-full max-h-[90vh] object-contain" />
+                      <img src={AnalyticsSuggestPort} alt="Analytics chart displaying listing exposure over time" className="max-w-full max-h-[90vh] object-contain" />
                     </div>
                   </DialogContent>
                 </Dialog>
@@ -1350,23 +1343,13 @@ const MobileBankingProject = () => {
                 </div>
                 <h4 className="text-xl md:text-2xl lg:text-3xl font-bold">Benchmark & Compare</h4>
                 <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                  Go beyond basic metrics with comparison tools, geographic insights, and AI-powered recommendations to optimize your listings for maximum visibility.
+                  Understanding performance in isolation only tells part of the story. The advanced analysis tools let users benchmark their listings against comparable properties, revealing where they stand in the market. A geographic heat-map visualizes buyer interest by region, while AI-powered suggestions offer actionable recommendations—like adding more photos or adjusting pricing—to improve visibility and engagement.
                 </p>
-                <div className="space-y-4 pt-4">
-                  {[
-                    { title: "Compare Listings", description: "Benchmark performance against similar listings." },
-                    { title: "Interest by Location", description: "Visualize buyer activity with heat-maps." },
-                    { title: "Performance Suggestions", description: "Get tips to improve your listing results." },
-                    { title: "Ad Performance", description: "Track ROI from featured listings and campaigns." }
-                  ].map((feature, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-                      <div>
-                        <h5 className="font-semibold text-base md:text-lg">{feature.title}</h5>
-                        <p className="text-sm md:text-base text-muted-foreground mt-1">{feature.description}</p>
-                      </div>
-                    </div>
-                  ))}
+                <div className="flex flex-wrap gap-2 pt-4">
+                  <span className="px-3 py-1.5 rounded-full bg-muted text-muted-foreground text-xs md:text-sm font-medium">Compare Listings</span>
+                  <span className="px-3 py-1.5 rounded-full bg-muted text-muted-foreground text-xs md:text-sm font-medium">View Heat-Map</span>
+                  <span className="px-3 py-1.5 rounded-full bg-muted text-muted-foreground text-xs md:text-sm font-medium">Get Suggestions</span>
+                  <span className="px-3 py-1.5 rounded-full bg-muted text-muted-foreground text-xs md:text-sm font-medium">Track Ad ROI</span>
                 </div>
               </div>
             </div>
@@ -1379,35 +1362,25 @@ const MobileBankingProject = () => {
                 </div>
                 <h4 className="text-xl md:text-2xl lg:text-3xl font-bold">Your Data, Your Way</h4>
                 <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                  Customize your analytics experience with flexible date ranges, exportable reports, and full mobile access—giving you insights whenever and wherever you need them.
+                  Real estate professionals are rarely at a desk, so the analytics experience was designed for flexibility from the start. Users can filter data by custom date ranges to focus on the periods that matter most, export polished reports to share with clients or stakeholders, and access the full dashboard on mobile devices. Whether reviewing performance in the field or preparing for a client meeting, insights are always within reach.
                 </p>
-                <div className="space-y-4 pt-4">
-                  {[
-                    { title: "Custom Filters", description: "View data by custom date ranges." },
-                    { title: "Export Reports", description: "Download or schedule performance summaries." },
-                    { title: "Mobile-Ready", description: "Access insights anytime, anywhere." }
-                  ].map((feature, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-                      <div>
-                        <h5 className="font-semibold text-base md:text-lg">{feature.title}</h5>
-                        <p className="text-sm md:text-base text-muted-foreground mt-1">{feature.description}</p>
-                      </div>
-                    </div>
-                  ))}
+                <div className="flex flex-wrap gap-2 pt-4">
+                  <span className="px-3 py-1.5 rounded-full bg-muted text-muted-foreground text-xs md:text-sm font-medium">Set Date Range</span>
+                  <span className="px-3 py-1.5 rounded-full bg-muted text-muted-foreground text-xs md:text-sm font-medium">Export Report</span>
+                  <span className="px-3 py-1.5 rounded-full bg-muted text-muted-foreground text-xs md:text-sm font-medium">Mobile Access</span>
                 </div>
               </div>
               <div className="flex items-center justify-center">
                 <Dialog>
                   <DialogTrigger asChild>
                     <button className="relative w-full cursor-pointer group">
-                      <img src={analyticsTable3} alt="Analytics overview with interaction metrics and location map" className="w-full h-auto rounded-lg shadow-lg border border-border transition-transform duration-300 group-hover:scale-[1.02]" />
+                      <img src={HubMobileTablet} alt="Analytics overview with interaction metrics and location map" className="w-full h-auto rounded-lg shadow-lg border border-border transition-transform duration-300 group-hover:scale-[1.02]" />
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 rounded-lg transition-colors duration-300" />
                     </button>
                   </DialogTrigger>
                   <DialogContent className="max-w-[95vw] max-h-[95vh] p-0 bg-black/95">
                     <div className="relative w-full h-full flex items-center justify-center p-4">
-                      <img src={analyticsTable3} alt="Analytics overview with interaction metrics and location map" className="max-w-full max-h-[90vh] object-contain" />
+                      <img src={HubMobileTablet} alt="Analytics overview with interaction metrics and location map" className="max-w-full max-h-[90vh] object-contain" />
                     </div>
                   </DialogContent>
                 </Dialog>
