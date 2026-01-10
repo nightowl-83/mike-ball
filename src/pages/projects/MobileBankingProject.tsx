@@ -330,7 +330,7 @@ const MobileBankingProject = () => {
       {/* Main Content Container */}
       <div className="relative -mt-[10vh] z-10 bg-background">
         {/* Background Section */}
-        <section ref={overviewAnim.ref} className={`min-h-[60vh] flex items-center justify-center py-10 md:py-16 transition-all duration-700 ${overviewAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <section ref={overviewAnim.ref} className={`relative min-h-[60vh] flex items-center justify-center py-10 md:py-16 transition-all duration-700 ${overviewAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div ref={overviewRef} className="absolute top-0 left-0 w-full h-1" />
           <div className="container mx-auto max-w-[1440px]">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-start">
@@ -387,7 +387,7 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Design Process */}
-        <section ref={processAnim.ref} className={`min-h-screen flex items-center justify-center py-10 md:py-24 bg-card/30 transition-all duration-700 ${processAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <section ref={processAnim.ref} className={`relative min-h-screen flex items-center justify-center py-10 md:py-24 bg-card/30 transition-all duration-700 ${processAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div ref={processRef} className="absolute top-0 left-0 w-full h-1" />
           <div className="container mx-auto max-w-[1440px]">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-start">
@@ -1215,7 +1215,7 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Mobile Process GIFs Section */}
-        <section className="py-10 md:py-24 border-t border-b border-border/50">
+        <section className="relative py-10 md:py-24 border-t border-b border-border/50">
           <div ref={listingProcessRef} className="absolute top-0 left-0 w-full h-1" />
           <div className="container mx-auto max-w-[1440px]">
             <div className="mb-8 md:mb-12 text-center">
