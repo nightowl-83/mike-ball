@@ -32,7 +32,7 @@ import analyticsTable3 from "@/assets/analytics-table-3.webp";
 import analyticsTable4 from "@/assets/analytics-table-4.webp";
 import HubPromo1 from "@/assets/Hub-Promo-1.png";
 import HubPromo2 from "@/assets/Hub-Promo-2.png";
-import HubCompareInsitu from "@/assets/Hub_Compare-Insitu.jpg";
+import AnalyticsCore2 from "@/assets/Analytics-Core-2.png";
 import AnalyticsSuggestPort from "@/assets/Analytics-Suggest-Port.png";
 import HubMobileTablet from "@/assets/Hub-Mobile-Tablet.png";
 
@@ -1307,13 +1307,13 @@ const MobileBankingProject = () => {
                 <Dialog>
                   <DialogTrigger asChild>
                     <button className="relative w-full cursor-pointer group">
-                      <img src={HubCompareInsitu} alt="Analytics dashboard showing listing exposure and metrics" className="w-full h-auto max-h-[50vh] object-contain rounded-lg transition-transform duration-300 group-hover:scale-[1.02]" />
+                      <img src={AnalyticsCore2} alt="Analytics dashboard showing listing exposure and metrics" className="w-full h-auto max-h-[50vh] object-contain rounded-lg transition-transform duration-300 group-hover:scale-[1.02]" />
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 rounded-lg transition-colors duration-300" />
                     </button>
                   </DialogTrigger>
                   <DialogContent className="max-w-[95vw] max-h-[95vh] p-0 bg-black/95">
                     <div className="relative w-full h-full flex items-center justify-center p-4">
-                      <img src={HubCompareInsitu} alt="Analytics dashboard showing listing exposure and metrics" className="max-w-full max-h-[90vh] object-contain" />
+                      <img src={AnalyticsCore2} alt="Analytics dashboard showing listing exposure and metrics" className="max-w-full max-h-[90vh] object-contain" />
                     </div>
                   </DialogContent>
                 </Dialog>
