@@ -14,6 +14,7 @@ import { cn } from "@/lib/utils";
 import ruralLandHero from "@/assets/Land-LDP-mobile.png";
 import personaHeadshot from "@/assets/persona-headshot.jpg";
 import landPromoDesktop from "@/assets/land-promo-desktop-2.png";
+import landPromo3 from "@/assets/Land-Promo-3.png";
 import landPromoMobile from "@/assets/land-promo-mobile.jpg";
 import landFlowDesktop from "@/assets/LandNetwork-Flow.jpg";
 import landFlowMobile from "@/assets/Land-Flow-mobile.jpg";
@@ -526,7 +527,7 @@ const RuralLandMarketplaceProject = () => {
           <div className="container mx-auto max-w-[1440px]">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-card">
-                <img src={landPromoDesktop} alt="Land.com Find Your Open Space promotional banner" className="w-full h-full object-cover" />
+                <img src={landPromo3} alt="Land.com Find Your Open Space promotional banner" className="w-full h-full object-cover" />
               </div>
               <div className="w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-card">
                 <img src={landPromoMobile} alt="Land.com mobile app interface" className="w-full h-full object-cover" />
@@ -668,19 +669,19 @@ const RuralLandMarketplaceProject = () => {
             <div ref={defineGalleryRef} className="mt-8 md:mt-32">
               <h3 className="text-lg md:text-xl text-muted-foreground mb-6 md:mb-8">Brainstorming, Competitor Analysis, Pain Points</h3>
               
-              {/* Mobile: Horizontal Scroll Gallery with CTA */}
+              {/* Mobile: 2-Column Grid Gallery */}
               <div className="md:hidden relative">
-                <div className="flex overflow-x-scroll snap-x snap-mandatory gap-3 pb-4 -mx-2 px-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-                  {galleryImages.map((img, idx) => <button key={idx} onClick={() => openGallery(idx)} className="min-w-[calc(100vw-48px)] h-[400px] snap-center rounded-xl overflow-hidden shadow-card hover:scale-[1.02] transition-transform flex-shrink-0">
+                <div className="grid grid-cols-2 gap-3">
+                  {galleryImages.map((img, idx) => <button key={idx} onClick={() => openGallery(idx)} className="aspect-video rounded-xl overflow-hidden shadow-card hover:scale-[1.02] transition-transform">
                       <img src={img.src} alt={img.alt} className="w-full h-full object-cover" />
                     </button>)}
                 </div>
                 {/* Mobile CTA to open gallery */}
                 <button 
                   onClick={() => openGallery(0)} 
-                  className="w-full mt-2 py-3 px-4 flex items-center justify-center gap-2 text-sm font-medium text-primary bg-transparent border border-primary/30 rounded-lg hover:bg-primary/10 transition-colors"
+                  className="w-full mt-4 py-3 px-4 flex items-center justify-center gap-2 text-sm font-medium text-primary bg-transparent border border-primary/30 rounded-lg hover:bg-primary/10 transition-colors"
                 >
-                  <span>Tap to view full gallery</span>
+                  <span>View</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
@@ -1386,8 +1387,8 @@ const RuralLandMarketplaceProject = () => {
                 {/* Sticky header with title and navigation - optimized for mobile */}
                 <div className="sticky top-16 z-20 bg-background/95 backdrop-blur-sm py-3 md:py-4 mb-4">
                   <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-3 md:mb-4">Search UI</h3>
-                {/* Mobile: horizontal scroll with drag support, Desktop: wrap */}
-                  <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0 md:flex-wrap -mx-4 px-4 md:mx-0 md:px-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] cursor-grab active:cursor-grabbing touch-pan-x">
+                {/* Mobile: horizontal scroll, Desktop: wrap */}
+                  <div className="flex gap-2 overflow-x-scroll pb-2 md:pb-0 md:flex-wrap -mx-4 px-4 md:mx-0 md:px-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] overscroll-x-contain" style={{ touchAction: 'pan-x' }}>
                     {scrollGallerySlides.map((slide, index) => <button key={index} onClick={() => setManualSlideOverride(index)} className={cn("px-3 md:px-4 py-1.5 md:py-2 rounded-lg text-xs md:text-sm font-medium transition-all duration-500 cursor-pointer hover:bg-primary/20 whitespace-nowrap flex-shrink-0", currentSlide === index ? "bg-primary text-primary-foreground shadow-lg" : "bg-muted/40 text-muted-foreground")}>
                         {slide.title}
                       </button>)}
