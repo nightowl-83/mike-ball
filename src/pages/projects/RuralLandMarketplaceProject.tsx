@@ -9,7 +9,9 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { useState, useEffect, useRef } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useScrollProgress } from "@/hooks/useScrollProgress";
+import { useProjectNavigation } from "@/hooks/useProjectNavigation";
 import { StickyNavHeader } from "@/components/StickyNavHeader";
+import ProjectSectionNav from "@/components/ProjectSectionNav";
 import { cn } from "@/lib/utils";
 import ruralLandHero from "@/assets/Land-LDP-mobile.png";
 import personaHeadshot from "@/assets/persona-headshot.jpg";
@@ -52,19 +54,12 @@ import imageCarouselHome from "@/assets/Image-Carousel-Home.png";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useHorizontalDragScroll } from "@/hooks/useHorizontalDragScroll";
 const RuralLandMarketplaceProject = () => {
-  const [stickyHeader, setStickyHeader] = useState({
-    visible: false,
-    section: '',
-    subsection: '',
-    number: ''
-  });
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [designLayout, setDesignLayout] = useState<1 | 2 | 3>(1);
   const [videoReady, setVideoReady] = useState(false);
   const [videoBuffering, setVideoBuffering] = useState(true);
   const [manualSlideOverride, setManualSlideOverride] = useState<number | null>(null);
-  const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
   const isMobile = useIsMobile();
   const searchNavDrag = useHorizontalDragScroll<HTMLDivElement>();
   // Ref for scroll-driven gallery (Option C)
@@ -257,6 +252,9 @@ const RuralLandMarketplaceProject = () => {
     ref: nextProjectRef
   }];
 
+  // Use the unified navigation hook
+  const { currentSectionIndex, setCurrentSectionIndex, stickyHeader } = useProjectNavigation(sections);
+
   // Array of gallery images - Discovery brainstorm sessions
   const galleryImages = [{
     src: filteringBrainstorm,
@@ -271,86 +269,6 @@ const RuralLandMarketplaceProject = () => {
     src: wireframeFlow,
     alt: "Wireframe user flow"
   }];
-
-  // Sticky header tracking
-  useEffect(() => {
-    const observerOptions = {
-      threshold: 0.5,
-      rootMargin: '-100px 0px -50% 0px'
-    };
-    const createObserver = (ref: React.RefObject<HTMLDivElement>, data: {
-      section: string;
-      subsection: string;
-      number: string;
-    }) => {
-      return new IntersectionObserver(([entry]) => {
-        if (entry.isIntersecting) {
-          setStickyHeader({
-            visible: true,
-            ...data
-          });
-        }
-      }, observerOptions);
-    };
-    const observers: IntersectionObserver[] = [];
-
-    // Create observers for all sections
-    sections.forEach(section => {
-      if (section.ref.current) {
-        observers.push(createObserver(section.ref, {
-          section: section.section,
-          subsection: section.subsection,
-          number: section.number
-        }));
-        observers[observers.length - 1].observe(section.ref.current);
-      }
-    });
-
-    // Hide sticky header when at top (hero is visible)
-    const topObserver = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        setStickyHeader({
-          visible: false,
-          section: '',
-          subsection: '',
-          number: ''
-        });
-      }
-    }, {
-      threshold: 0.1
-    });
-    if (heroRef.current) {
-      topObserver.observe(heroRef.current);
-    }
-    return () => {
-      observers.forEach(obs => obs.disconnect());
-      topObserver.disconnect();
-    };
-  }, []);
-
-  // Track current section index for navigation arrows
-  useEffect(() => {
-    const handleScroll = () => {
-      const viewportMiddle = window.innerHeight / 2;
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const ref = sections[i].ref;
-        if (ref.current) {
-          const rect = ref.current.getBoundingClientRect();
-          if (rect.top <= viewportMiddle) {
-            setCurrentSectionIndex(i);
-            return;
-          }
-        }
-      }
-      setCurrentSectionIndex(0);
-    };
-    window.addEventListener('scroll', handleScroll, {
-      passive: true
-    });
-    handleScroll(); // Initial check
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [sections]);
   const openGallery = (index: number) => {
     setCurrentImageIndex(index);
     setGalleryOpen(true);
@@ -1858,26 +1776,11 @@ const RuralLandMarketplaceProject = () => {
       </Dialog>
 
       {/* Sticky Section Navigation Arrows */}
-      <div className="fixed bottom-6 right-6 z-50 flex gap-2">
-        <button onClick={() => {
-        const prevIndex = Math.max(0, currentSectionIndex - 1);
-        setCurrentSectionIndex(prevIndex);
-        sections[prevIndex]?.ref?.current?.scrollIntoView({
-          behavior: 'smooth'
-        });
-      }} disabled={currentSectionIndex === 0} className="p-3 rounded-full bg-background/80 backdrop-blur-sm border border-border hover:bg-background transition-all disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Previous section">
-          <ChevronUp className="w-5 h-5" />
-        </button>
-        <button onClick={() => {
-        const nextIndex = Math.min(sections.length - 1, currentSectionIndex + 1);
-        setCurrentSectionIndex(nextIndex);
-        sections[nextIndex]?.ref?.current?.scrollIntoView({
-          behavior: 'smooth'
-        });
-      }} disabled={currentSectionIndex === sections.length - 1} className="p-3 rounded-full bg-background/80 backdrop-blur-sm border border-border hover:bg-background transition-all disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Next section">
-          <ChevronDown className="w-5 h-5" />
-        </button>
-      </div>
+      <ProjectSectionNav 
+        sections={sections}
+        currentSectionIndex={currentSectionIndex}
+        setCurrentSectionIndex={setCurrentSectionIndex}
+      />
 
     </div>;
 };
