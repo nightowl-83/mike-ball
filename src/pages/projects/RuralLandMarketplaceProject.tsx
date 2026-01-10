@@ -135,6 +135,8 @@ const RuralLandMarketplaceProject = () => {
   const deliveryRef = useRef<HTMLDivElement>(null);
   const designProcessRef = useRef<HTMLDivElement>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
+  const showcaseRef = useRef<HTMLDivElement>(null);
+  const nextProjectRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   // Scroll animations for callout sections
@@ -239,6 +241,18 @@ const RuralLandMarketplaceProject = () => {
     subsection: '',
     number: '/06',
     ref: resultsRef
+  }, {
+    id: 'showcase',
+    section: 'Showcase',
+    subsection: '',
+    number: '/07',
+    ref: showcaseRef
+  }, {
+    id: 'next-project',
+    section: 'Next Project',
+    subsection: '',
+    number: '',
+    ref: nextProjectRef
   }];
 
   // Array of gallery images - Discovery brainstorm sessions
@@ -1754,6 +1768,7 @@ const RuralLandMarketplaceProject = () => {
 
         {/* Final Showcase */}
         <section ref={showcaseAnim.ref} className={`min-h-screen flex items-center justify-center py-12 md:py-24 bg-card/30 transition-all duration-700 ${showcaseAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div ref={showcaseRef} className="absolute top-0 left-0 w-full h-1" />
           <div className="container mx-auto max-w-[1600px] space-y-6 md:space-y-12">
             <div className="w-full rounded-xl md:rounded-2xl overflow-hidden py-6">
               <img src={imageCarouselHome} alt="Home page with image carousel" className="w-full h-full object-cover" />
@@ -1776,7 +1791,8 @@ const RuralLandMarketplaceProject = () => {
         </section>
 
         {/* Navigation to Next Project */}
-        <section ref={navigationAnim.ref} className={`py-24 border-t border-border transition-all duration-700 ${navigationAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <section ref={navigationAnim.ref} className={`relative py-24 border-t border-border transition-all duration-700 ${navigationAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div ref={nextProjectRef} className="absolute top-0 left-0 w-full h-1" />
           <div className="container mx-auto max-w-[1440px]">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div className="space-y-2">
