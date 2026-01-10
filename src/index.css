@@ -133,12 +133,16 @@ All colors MUST be HSL.
 
 @layer components {
   /* Hide scrollbar for horizontal scroll containers */
-  .hide-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
   .hide-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+    -ms-overflow-style: none; /* IE/old Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+  .hide-scrollbar::-webkit-scrollbar-thumb {
+    background: transparent;
   }
 
   /* Full-width viewport image with borders */
