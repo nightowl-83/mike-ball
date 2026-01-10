@@ -12,7 +12,7 @@ import { useProjectNavigation } from "@/hooks/useProjectNavigation";
 import { StickyNavHeader } from "@/components/StickyNavHeader";
 import ProjectSectionNav from "@/components/ProjectSectionNav";
 import { cn } from "@/lib/utils";
-import userFlowImage from "@/assets/user-flow.jpg";
+import userFlowImage from "@/assets/Network-Flow-mobile.jpg";
 import locateListingImage from "@/assets/locate-listing-new.png";
 import addListingLocationGif from "@/assets/add-listing-location.gif";
 import addListingFullGif from "@/assets/add-listing-full.gif";
@@ -1307,8 +1307,8 @@ const MobileBankingProject = () => {
                 <Dialog>
                   <DialogTrigger asChild>
                     <button className="relative w-full cursor-pointer group">
-                      <img src={HubCompareInsitu} alt="Analytics dashboard showing listing exposure and metrics" className="w-full h-auto rounded-lg shadow-lg border border-border transition-transform duration-300 group-hover:scale-[1.02]" />
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 rounded-lg transition-colors duration-300" />
+                      <img src={HubCompareInsitu} alt="Analytics dashboard showing listing exposure and metrics" className="w-full h-auto max-h-[50vh] object-contain rounded-lg transition-transform duration-300 group-hover:scale-[1.02]" />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 rounded-lg transition-colors duration-300" />
                     </button>
                   </DialogTrigger>
                   <DialogContent className="max-w-[95vw] max-h-[95vh] p-0 bg-black/95">
@@ -1326,8 +1326,8 @@ const MobileBankingProject = () => {
                 <Dialog>
                   <DialogTrigger asChild>
                     <button className="relative w-full cursor-pointer group">
-                      <img src={AnalyticsSuggestPort} alt="Analytics chart displaying listing exposure over time" className="w-full h-auto rounded-lg shadow-lg border border-border transition-transform duration-300 group-hover:scale-[1.02]" />
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 rounded-lg transition-colors duration-300" />
+                      <img src={AnalyticsSuggestPort} alt="Analytics chart displaying listing exposure over time" className="w-full h-auto max-h-[50vh] object-contain rounded-lg transition-transform duration-300 group-hover:scale-[1.02]" />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 rounded-lg transition-colors duration-300" />
                     </button>
                   </DialogTrigger>
                   <DialogContent className="max-w-[95vw] max-h-[95vh] p-0 bg-black/95">
@@ -1374,8 +1374,8 @@ const MobileBankingProject = () => {
                 <Dialog>
                   <DialogTrigger asChild>
                     <button className="relative w-full cursor-pointer group">
-                      <img src={HubMobileTablet} alt="Analytics overview with interaction metrics and location map" className="w-full h-auto rounded-lg shadow-lg border border-border transition-transform duration-300 group-hover:scale-[1.02]" />
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 rounded-lg transition-colors duration-300" />
+                      <img src={HubMobileTablet} alt="Analytics overview with interaction metrics and location map" className="w-full h-auto max-h-[50vh] object-contain rounded-lg transition-transform duration-300 group-hover:scale-[1.02]" />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 rounded-lg transition-colors duration-300" />
                     </button>
                   </DialogTrigger>
                   <DialogContent className="max-w-[95vw] max-h-[95vh] p-0 bg-black/95">
