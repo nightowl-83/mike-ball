@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import {
   DropdownMenu,
@@ -7,6 +6,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 interface Section {
   id: string;
@@ -103,17 +103,17 @@ export const StickyNavHeader = ({
                   <DropdownMenuItem
                     key={section.id}
                     onClick={() => scrollToSection(section.ref)}
-                    className={
+                    className={cn(
                       section.section === currentSection &&
                       section.subsection === currentSubsection
                         ? "bg-muted font-medium"
-                        : ""
-                    }
+                        : "",
+                      section.subsection ? "pl-6" : ""
+                    )}
                   >
                     {section.subsection
-                      ? `${section.section}: ${section.subsection}`
-                      : section.section}{" "}
-                    {section.number}
+                      ? section.subsection
+                      : `${section.section} ${section.number}`.trim()}
                 </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
