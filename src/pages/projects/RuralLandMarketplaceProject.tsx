@@ -1736,13 +1736,13 @@ const RuralLandMarketplaceProject = () => {
         {/* Navigation to Next Project */}
         <section ref={navigationAnim.ref} className={`py-24 border-t border-border transition-all duration-700 ${navigationAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="container mx-auto max-w-[1440px]">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div className="space-y-2">
                 <p className="text-sm text-muted-foreground">Next Project</p>
-                <h3 className="text-2xl font-bold">E-Commerce Platform</h3>
+                <h3 className="text-2xl font-bold">Marketing Hub CMS</h3>
               </div>
-              <Link to="/projects/ecommerce-platform">
-                <Button variant="outline" className="gap-2">
+              <Link to="/projects/mobile-banking">
+                <Button variant="outline" className="gap-2 w-full md:w-auto">
                   View Project
                   <ArrowLeft className="h-4 w-4 rotate-180" />
                 </Button>
