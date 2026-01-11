@@ -1,4 +1,4 @@
-import { Code, Bot, Figma, Lightbulb, Pencil, Users, FlaskConical } from "lucide-react";
+import { Bot, Figma, Lightbulb, Pencil, Users, FlaskConical } from "lucide-react";
 import SkillIcon from "./SkillIcon";
 import SkillIconMuted from "./SkillIconMuted";
 
@@ -37,14 +37,6 @@ const Skills = ({ variant = "colored" }: SkillsProps) => {
       iconColored: <Lightbulb className="w-6 h-6 text-yellow-300" />
     },
     { 
-      name: "Vibe Coding", 
-      abbreviation: "", 
-      bgColor: "#1E1E1E", 
-      textColor: "#fff", 
-      icon: <Code className="w-6 h-6" />,
-      iconColored: <Code className="w-6 h-6 text-emerald-400" />
-    },
-    { 
       name: "User Testing", 
       abbreviation: "", 
       bgColor: "#0891B2", 
@@ -78,7 +70,7 @@ const Skills = ({ variant = "colored" }: SkillsProps) => {
             Skills
           </h2>
           
-          <div className="grid grid-cols-4 md:flex md:flex-wrap items-center justify-center gap-6 md:gap-6">
+          <div className="grid grid-cols-5 gap-4 items-center justify-center max-w-fit mx-auto">
             {variant === "colored" ? (
               skills.map((skill) => (
                 <SkillIcon
