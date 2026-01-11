@@ -37,7 +37,6 @@ const Hero = () => {
           <div className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex items-start justify-center p-2">
             <div className="w-1.5 h-3 rounded-full bg-muted-foreground/50 animate-pulse" />
           </div>
-          <span className="text-xs text-muted-foreground uppercase tracking-widest">scroll</span>
         </div>
       </section>
     </>
