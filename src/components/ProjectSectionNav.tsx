@@ -63,36 +63,52 @@ const ProjectSectionNav = ({
     sections[index]?.ref?.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const goToPrevious = () => {
-    let prevIndex = Math.max(0, currentSectionIndex - 1);
+  // Helper: Check if a section is a "major" section (no subsection)
+  const isMajorSection = (index: number) => !sections[index]?.subsection;
 
-    // When crossing between numbered sections (/02 -> /01), scroll to the *start* of the previous number block.
-    const currentNumber = sections[currentSectionIndex]?.number;
-    const prevNumber = sections[prevIndex]?.number;
-    if (currentNumber && prevNumber && currentNumber !== prevNumber) {
-      // Find the start of the prevNumber block
-      while (prevIndex > 0 && sections[prevIndex - 1]?.number === prevNumber) {
-        prevIndex--;
-      }
-
-      // Prefer the block entry that represents the main section (no subsection)
-      for (let i = prevIndex; i < sections.length && sections[i]?.number === prevNumber; i++) {
-        if (!sections[i]?.subsection) {
-          prevIndex = i;
-          break;
-        }
-      }
+  // Helper: Find the major section index for the current position
+  const getCurrentMajorIndex = () => {
+    // Walk backward from currentSectionIndex to find the major section we're "in"
+    for (let i = currentSectionIndex; i >= 0; i--) {
+      if (isMajorSection(i)) return i;
     }
+    return 0;
+  };
 
-    setCurrentSectionIndex(prevIndex);
-    scrollToSectionIndex(prevIndex);
+  // Helper: Find the previous major section index
+  const findPrevMajorIndex = (fromMajorIndex: number) => {
+    for (let i = fromMajorIndex - 1; i >= 0; i--) {
+      if (isMajorSection(i)) return i;
+    }
+    return 0; // Return hero/top
+  };
+
+  // Helper: Find the next major section index
+  const findNextMajorIndex = (fromMajorIndex: number) => {
+    for (let i = fromMajorIndex + 1; i < sections.length; i++) {
+      if (isMajorSection(i)) return i;
+    }
+    return fromMajorIndex; // No next major, stay put
+  };
+
+  const goToPrevious = () => {
+    const currentMajor = getCurrentMajorIndex();
+    const prevMajor = findPrevMajorIndex(currentMajor);
+    setCurrentSectionIndex(prevMajor);
+    scrollToSectionIndex(prevMajor);
   };
 
   const goToNext = () => {
-    const nextIndex = Math.min(sections.length - 1, currentSectionIndex + 1);
-    setCurrentSectionIndex(nextIndex);
-    scrollToSectionIndex(nextIndex);
+    const currentMajor = getCurrentMajorIndex();
+    const nextMajor = findNextMajorIndex(currentMajor);
+    setCurrentSectionIndex(nextMajor);
+    scrollToSectionIndex(nextMajor);
   };
+
+  // Check if there's a previous/next major section for disabled states
+  const currentMajor = getCurrentMajorIndex();
+  const hasPrevMajor = currentMajor > 0;
+  const hasNextMajor = findNextMajorIndex(currentMajor) !== currentMajor;
 
   const goToTop = () => {
     setCurrentSectionIndex(0);
@@ -112,7 +128,7 @@ const ProjectSectionNav = ({
       )}
       <button
         onClick={goToPrevious}
-        disabled={currentSectionIndex === 0}
+        disabled={!hasPrevMajor}
         className="p-3 rounded-full bg-background/80 backdrop-blur-sm border border-border hover:bg-background transition-all disabled:opacity-30 disabled:cursor-not-allowed"
         aria-label="Previous section"
       >
@@ -120,7 +136,7 @@ const ProjectSectionNav = ({
       </button>
       <button
         onClick={goToNext}
-        disabled={currentSectionIndex === sections.length - 1}
+        disabled={!hasNextMajor}
         className="p-3 rounded-full bg-background/80 backdrop-blur-sm border border-border hover:bg-background transition-all disabled:opacity-30 disabled:cursor-not-allowed"
         aria-label="Next section"
       >
