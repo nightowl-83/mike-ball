@@ -37,6 +37,12 @@ export const useProjectNavigation = (sections: Section[]) => {
   // Track current section index for arrow navigation
   useEffect(() => {
     const handleScroll = () => {
+      // If near top of page, always set to first section
+      if (window.scrollY < 100) {
+        setCurrentSectionIndex(0);
+        return;
+      }
+      
       const viewportMiddle = window.innerHeight / 2;
       for (let i = sections.length - 1; i >= 0; i--) {
         const ref = sections[i].ref;
