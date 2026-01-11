@@ -34,12 +34,12 @@ export const projectsData: ProjectData[] = [
     metrics: "+45% Engagement"
   },
   {
-    id: "mobile-banking",
+    id: "marketing-hub",
     title: "Marketing Hub CMS",
     description: "A comprehensive content management system designed to streamline marketing operations with powerful analytics and intuitive workflows.",
     category: "Dashboard",
     image: marketingHubDashboard,
-    route: "/projects/mobile-banking",
+    route: "/projects/marketing-hub",
     tags: ["UX Research", "UI Design", "Prototyping", "User Testing"],
     layoutVariant: "minimal-centered",
     company: "Enterprise SaaS"
