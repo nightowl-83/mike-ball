@@ -38,7 +38,7 @@ import AnalyticsSuggestPort from "@/assets/Analytics-Suggest-Port.png";
 import HubMobileTablet from "@/assets/Hub-Mobile-Tablet.png";
 import HubPromo2phone from "@/assets/Hub-Promo-2phone.png";
 import AnalyticsCore2Full from "@/assets/Analytics-Core-2-2.png";
-import MHShowcaseLaptop from "@/assets/MH-Showcase-Laptopmulti.png";
+import MHShowcaseLaptop from "@/assets/MH-Showcase-Laptopmulti-2.png";
 import MHShowcase2 from "@/assets/MH-showcase-2.png";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -1468,17 +1468,17 @@ const MobileBankingProject = () => {
         <section ref={showcaseAnim.ref} className={`relative min-h-screen flex items-center justify-center py-12 md:py-24 transition-all duration-700 ${showcaseAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div ref={showcaseRef} className="absolute top-0 left-0 w-full h-1" />
           <div className="container mx-auto max-w-[1600px] space-y-6 md:space-y-12">
-            <div className="w-full overflow-hidden">
+            <div className="w-full overflow-hidden rounded-xl md:rounded-2xl">
               <img src={MHShowcaseLaptop} alt="Marketing Hub comprehensive view showing multiple screens and features" className="w-full h-auto object-contain" />
             </div>
-            <div className="w-full overflow-hidden">
+            <div className="w-full overflow-hidden rounded-xl md:rounded-2xl">
               <img src={MHShowcase2} alt="Marketing Hub mobile screens showing location, analytics, and leads management" className="w-full h-auto object-contain" />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
-              <div className="w-full overflow-hidden flex items-center justify-center">
+              <div className="w-full overflow-hidden rounded-xl md:rounded-2xl flex items-center justify-center">
                 <img src={HubPromo2phone} alt="Mobile app showing location confirmation and property photos" className="w-full h-auto object-contain" />
               </div>
-              <div className="w-full overflow-hidden flex items-center justify-center">
+              <div className="w-full overflow-hidden rounded-xl md:rounded-2xl flex items-center justify-center">
                 <img src={AnalyticsCore2Full} alt="Analytics dashboard with listing exposure metrics" className="w-full h-auto object-contain" />
               </div>
             </div>
