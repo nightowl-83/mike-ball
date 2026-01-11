@@ -7,7 +7,7 @@ import Index from "./pages/Index";
 import About from "./pages/About";
 import MobileBankingProject from "./pages/projects/MobileBankingProject";
 import RuralLandMarketplaceProject from "./pages/projects/RuralLandMarketplaceProject";
-import ColorSystem from "./pages/ColorSystem";
+import StyleGuide from "./pages/StyleGuide";
 import NotFound from "./pages/NotFound";
 import ThemeToggle from "./components/ThemeToggle";
 
@@ -25,7 +25,7 @@ const App = () => (
           <Route path="/about" element={<About />} />
           <Route path="/projects/mobile-banking" element={<MobileBankingProject />} />
           <Route path="/projects/rural-land-marketplace" element={<RuralLandMarketplaceProject />} />
-          <Route path="/color-system" element={<ColorSystem />} />
+          <Route path="/style-guide" element={<StyleGuide />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
