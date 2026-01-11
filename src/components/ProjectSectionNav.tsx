@@ -41,9 +41,14 @@ const ProjectSectionNav = ({
   const goToPrevious = () => {
     const prevIndex = Math.max(0, currentSectionIndex - 1);
     setCurrentSectionIndex(prevIndex);
-    sections[prevIndex]?.ref?.current?.scrollIntoView({
-      behavior: 'smooth'
-    });
+    // If going to first section (hero), scroll to top of page
+    if (prevIndex === 0) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      sections[prevIndex]?.ref?.current?.scrollIntoView({
+        behavior: 'smooth'
+      });
+    }
   };
 
   const goToNext = () => {
