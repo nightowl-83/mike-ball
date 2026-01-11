@@ -1,5 +1,13 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useNavigate, useLocation } from "react-router-dom";
+import { Menu, X } from "lucide-react";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetClose,
+} from "@/components/ui/sheet";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -65,6 +73,60 @@ const Navbar = () => {
           >
             Get In Touch
           </Button>
+
+          {/* Mobile Menu */}
+          <Sheet>
+            <SheetTrigger asChild className="md:hidden">
+              <Button variant="ghost" size="icon" className="h-9 w-9">
+                <Menu className="h-5 w-5" />
+                <span className="sr-only">Toggle menu</span>
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-[280px] pt-12">
+              <nav className="flex flex-col gap-4">
+                <SheetClose asChild>
+                  <a 
+                    href="#work" 
+                    onClick={(e) => handleNavClick(e, "work")}
+                    className="text-lg font-medium text-foreground hover:text-primary transition-colors py-2"
+                  >
+                    Work
+                  </a>
+                </SheetClose>
+                <SheetClose asChild>
+                  <a 
+                    href="/about" 
+                    className="text-lg font-medium text-foreground hover:text-primary transition-colors py-2"
+                  >
+                    About
+                  </a>
+                </SheetClose>
+                <SheetClose asChild>
+                  <a 
+                    href="#contact" 
+                    onClick={(e) => handleNavClick(e, "contact")}
+                    className="text-lg font-medium text-foreground hover:text-primary transition-colors py-2"
+                  >
+                    Contact
+                  </a>
+                </SheetClose>
+                <SheetClose asChild>
+                  <Button 
+                    className="mt-4 w-full"
+                    onClick={() => {
+                      if (location.pathname !== "/") {
+                        navigate("/#contact");
+                      } else {
+                        document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+                      }
+                    }}
+                  >
+                    Get In Touch
+                  </Button>
+                </SheetClose>
+              </nav>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
     </nav>
