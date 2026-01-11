@@ -1464,17 +1464,17 @@ const MobileBankingProject = () => {
         </section>
 
         {/* Final Showcase */}
-        <section ref={showcaseAnim.ref} className={`relative min-h-screen flex items-center justify-center py-12 md:py-24 bg-card/30 transition-all duration-700 ${showcaseAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <section ref={showcaseAnim.ref} className={`relative min-h-screen flex items-center justify-center py-12 md:py-24 transition-all duration-700 ${showcaseAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div ref={showcaseRef} className="absolute top-0 left-0 w-full h-1" />
           <div className="container mx-auto max-w-[1600px] space-y-6 md:space-y-12">
-            <div className="w-full rounded-xl md:rounded-2xl overflow-hidden shadow-glow">
+            <div className="w-full overflow-hidden">
               <img src={HubLaptopMylistings} alt="Marketing Hub laptop view showing listings management" className="w-full h-auto object-contain" />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
-              <div className="w-full rounded-xl md:rounded-2xl overflow-hidden shadow-card flex items-center justify-center">
+              <div className="w-full overflow-hidden flex items-center justify-center">
                 <img src={HubPromo2phone} alt="Mobile app showing location confirmation and property photos" className="w-full h-auto object-contain" />
               </div>
-              <div className="w-full rounded-xl md:rounded-2xl overflow-hidden shadow-card flex items-center justify-center">
+              <div className="w-full overflow-hidden flex items-center justify-center">
                 <img src={AnalyticsCore2Full} alt="Analytics dashboard with listing exposure metrics" className="w-full h-auto object-contain" />
               </div>
             </div>
