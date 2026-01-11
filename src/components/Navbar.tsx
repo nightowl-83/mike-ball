@@ -82,13 +82,13 @@ const Navbar = () => {
                 <span className="sr-only">Toggle menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[280px] pt-12">
-              <nav className="flex flex-col gap-4">
+            <SheetContent side="right" className="w-full h-full max-w-full pt-20 flex flex-col items-center justify-center">
+              <nav className="flex flex-col items-center gap-8">
                 <SheetClose asChild>
                   <a 
                     href="#work" 
                     onClick={(e) => handleNavClick(e, "work")}
-                    className="text-lg font-medium text-foreground hover:text-primary transition-colors py-2"
+                    className="text-2xl font-medium text-foreground hover:text-primary transition-colors py-2"
                   >
                     Work
                   </a>
@@ -96,7 +96,7 @@ const Navbar = () => {
                 <SheetClose asChild>
                   <a 
                     href="/about" 
-                    className="text-lg font-medium text-foreground hover:text-primary transition-colors py-2"
+                    className="text-2xl font-medium text-foreground hover:text-primary transition-colors py-2"
                   >
                     About
                   </a>
@@ -105,14 +105,15 @@ const Navbar = () => {
                   <a 
                     href="#contact" 
                     onClick={(e) => handleNavClick(e, "contact")}
-                    className="text-lg font-medium text-foreground hover:text-primary transition-colors py-2"
+                    className="text-2xl font-medium text-foreground hover:text-primary transition-colors py-2"
                   >
                     Contact
                   </a>
                 </SheetClose>
                 <SheetClose asChild>
                   <Button 
-                    className="mt-4 w-full"
+                    size="lg"
+                    className="mt-8"
                     onClick={() => {
                       if (location.pathname !== "/") {
                         navigate("/#contact");

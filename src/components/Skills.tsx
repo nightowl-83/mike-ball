@@ -1,4 +1,4 @@
-import { Code, Sparkles, Bot, Figma } from "lucide-react";
+import { Code, Bot, Figma, Lightbulb, Pencil, Users, FlaskConical } from "lucide-react";
 import SkillIcon from "./SkillIcon";
 import SkillIconMuted from "./SkillIconMuted";
 
@@ -21,20 +21,44 @@ const Skills = ({ variant = "colored" }: SkillsProps) => {
       iconColored: <Figma className="w-6 h-6 text-white" />
     },
     { 
-      name: "Cursor", 
+      name: "Illustration", 
       abbreviation: "", 
-      bgColor: "#1E1E1E", 
+      bgColor: "#E91E63", 
       textColor: "#fff", 
-      icon: <Sparkles className="w-6 h-6" />,
-      iconColored: <Sparkles className="w-6 h-6 text-orange-500" />
+      icon: <Pencil className="w-6 h-6" />,
+      iconColored: <Pencil className="w-6 h-6 text-white" />
     },
     { 
-      name: "Code", 
+      name: "Prompt Engineering", 
+      abbreviation: "", 
+      bgColor: "#7C3AED", 
+      textColor: "#fff", 
+      icon: <Lightbulb className="w-6 h-6" />,
+      iconColored: <Lightbulb className="w-6 h-6 text-yellow-300" />
+    },
+    { 
+      name: "Vibe Coding", 
       abbreviation: "", 
       bgColor: "#1E1E1E", 
       textColor: "#fff", 
       icon: <Code className="w-6 h-6" />,
-      iconColored: <Code className="w-6 h-6 text-white" />
+      iconColored: <Code className="w-6 h-6 text-emerald-400" />
+    },
+    { 
+      name: "User Testing", 
+      abbreviation: "", 
+      bgColor: "#0891B2", 
+      textColor: "#fff", 
+      icon: <FlaskConical className="w-6 h-6" />,
+      iconColored: <FlaskConical className="w-6 h-6 text-white" />
+    },
+    { 
+      name: "User Research", 
+      abbreviation: "", 
+      bgColor: "#059669", 
+      textColor: "#fff", 
+      icon: <Users className="w-6 h-6" />,
+      iconColored: <Users className="w-6 h-6 text-white" />
     },
     { 
       name: "AI Tools", 
@@ -54,7 +78,7 @@ const Skills = ({ variant = "colored" }: SkillsProps) => {
             Skills
           </h2>
           
-          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
+          <div className="grid grid-cols-4 md:flex md:flex-wrap items-center justify-center gap-6 md:gap-6">
             {variant === "colored" ? (
               skills.map((skill) => (
                 <SkillIcon
