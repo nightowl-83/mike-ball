@@ -21,11 +21,11 @@ export const HeroAccentCard = ({
   project
 }: ProjectCardProps) => {
   return <a href={project.route} className="group block">
-      <div className="relative overflow-hidden rounded-2xl p-3 md:p-12 lg:p-[72px] min-h-[500px] md:min-h-[600px] transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 flex flex-col" style={{
+      <div className="relative overflow-hidden rounded-2xl pt-[18px] px-3 pb-3 md:p-12 lg:p-[72px] min-h-[500px] md:min-h-[600px] transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 flex flex-col" style={{
       background: 'var(--gradient-accent)'
     }}>
         {/* Background pattern */}
-        <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0 opacity-5">
           <div className="absolute top-0 right-0 w-96 h-96 bg-white/20 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2" />
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-2xl transform -translate-x-1/2 translate-y-1/2" />
         </div>
