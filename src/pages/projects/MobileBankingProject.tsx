@@ -36,6 +36,9 @@ import HubPromo2 from "@/assets/Hub-Promo-2.png";
 import AnalyticsCore2 from "@/assets/Analytics-Core-2.png";
 import AnalyticsSuggestPort from "@/assets/Analytics-Suggest-Port.png";
 import HubMobileTablet from "@/assets/Hub-Mobile-Tablet.png";
+import HubLaptopMylistings from "@/assets/Hub_Laptop-Mylistings.png";
+import HubPromo2phone from "@/assets/Hub-Promo-2phone.png";
+import AnalyticsCore2Full from "@/assets/Analytics-Core-2-2.png";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const MobileBankingProject = () => {
@@ -1464,15 +1467,15 @@ const MobileBankingProject = () => {
         <section ref={showcaseAnim.ref} className={`relative min-h-screen flex items-center justify-center py-12 md:py-24 bg-card/30 transition-all duration-700 ${showcaseAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div ref={showcaseRef} className="absolute top-0 left-0 w-full h-1" />
           <div className="container mx-auto max-w-[1600px] space-y-6 md:space-y-12">
-            <div className="w-full aspect-video rounded-xl md:rounded-2xl overflow-hidden shadow-glow">
-              <img src="/placeholder.svg" alt="Final showcase 1" className="w-full h-full object-cover" />
+            <div className="w-full rounded-xl md:rounded-2xl overflow-hidden shadow-glow">
+              <img src={HubLaptopMylistings} alt="Marketing Hub laptop view showing listings management" className="w-full h-auto object-contain" />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
-              <div className="w-full aspect-square rounded-xl md:rounded-2xl overflow-hidden shadow-card">
-                <img src="/placeholder.svg" alt="Final showcase 2" className="w-full h-full object-cover" />
+              <div className="w-full rounded-xl md:rounded-2xl overflow-hidden shadow-card flex items-center justify-center">
+                <img src={HubPromo2phone} alt="Mobile app showing location confirmation and property photos" className="w-full h-auto object-contain" />
               </div>
-              <div className="w-full aspect-square rounded-xl md:rounded-2xl overflow-hidden shadow-card">
-                <img src="/placeholder.svg" alt="Final showcase 3" className="w-full h-full object-cover" />
+              <div className="w-full rounded-xl md:rounded-2xl overflow-hidden shadow-card flex items-center justify-center">
+                <img src={AnalyticsCore2Full} alt="Analytics dashboard with listing exposure metrics" className="w-full h-auto object-contain" />
               </div>
             </div>
           </div>
