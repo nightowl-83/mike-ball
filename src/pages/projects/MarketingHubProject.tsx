@@ -42,7 +42,7 @@ import MHShowcaseLaptop from "@/assets/MH-Showcase-Laptopmulti-2.png";
 import MHShowcase2 from "@/assets/MH-showcase-2.png";
 import { useIsMobile } from "@/hooks/use-mobile";
 
-const MobileBankingProject = () => {
+const MarketingHubProject = () => {
   const isMobile = useIsMobile();
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -1552,4 +1552,4 @@ const MobileBankingProject = () => {
       />
     </div>;
 };
-export default MobileBankingProject;
+export default MarketingHubProject;
