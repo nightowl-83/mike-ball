@@ -157,7 +157,7 @@ export const MinimalCenteredCard = ({ project }: ProjectCardProps) => {
         <div className="flex flex-col items-center text-center h-full">
           {/* Image */}
           <div className="relative w-full max-w-md mb-8">
-            <div className="relative overflow-hidden rounded-xl shadow-lg transform group-hover:scale-105 group-hover:-rotate-1 transition-all duration-500">
+            <div className="relative overflow-hidden rounded-xl shadow-lg">
               <img 
                 src={project.image} 
                 alt={project.title}
