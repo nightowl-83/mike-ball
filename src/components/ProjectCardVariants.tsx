@@ -1,16 +1,18 @@
 import { ProjectData } from "@/data/projectsData";
 import ProjectCardFooter from "./ProjectCardFooter";
 import { ArrowUpRight, Lock } from "lucide-react";
-
 interface ProjectCardProps {
   project: ProjectData;
 }
 
 // Hero Accent Card - Full width with gradient background
-export const HeroAccentCard = ({ project }: ProjectCardProps) => {
-  return (
-    <a href={project.route} className="group block">
-      <div className="relative overflow-hidden rounded-2xl p-6 md:p-8 lg:p-12 min-h-[500px] md:min-h-[600px] transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 flex flex-col" style={{ background: 'var(--gradient-accent)' }}>
+export const HeroAccentCard = ({
+  project
+}: ProjectCardProps) => {
+  return <a href={project.route} className="group block">
+      <div className="relative overflow-hidden rounded-2xl p-6 md:p-8 lg:p-12 min-h-[500px] md:min-h-[600px] transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 flex flex-col" style={{
+      background: 'var(--gradient-accent)'
+    }}>
         {/* Background pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 right-0 w-96 h-96 bg-white/20 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2" />
@@ -37,36 +39,29 @@ export const HeroAccentCard = ({ project }: ProjectCardProps) => {
           </div>
           
           {/* Image */}
-          <div className="relative w-full flex-1 min-h-[200px] md:min-h-[300px] flex items-center justify-center">
+          <div className="relative w-full flex-1 min-h-[200px] md:min-h-[300px] sm:min-h-[20px] flex items-center justify-center">
             <div className="relative transform group-hover:scale-[1.02] transition-transform duration-500 w-[85%] max-w-3xl">
-              <img 
-                src={project.image} 
-                alt={project.title}
-                className="w-full h-auto object-contain"
-              />
+              <img src={project.image} alt={project.title} className="w-full h-auto object-contain" />
             </div>
           </div>
           
           {/* Footer - Pinned to bottom */}
           <div>
-            <ProjectCardFooter 
-              tags={project.tags} 
-              company={project.company}
-              metrics={project.metrics}
-              variant="dark"
-            />
+            <ProjectCardFooter tags={project.tags} company={project.company} metrics={project.metrics} variant="dark" />
           </div>
         </div>
       </div>
-    </a>
-  );
+    </a>;
 };
 
 // Hero Centered Card - Light gradient with centered content
-export const HeroCenteredCard = ({ project }: ProjectCardProps) => {
-  return (
-    <a href={project.route} className="group block">
-      <div className="relative overflow-hidden rounded-2xl p-8 md:p-12 min-h-[500px] md:min-h-[600px] transition-all duration-500 hover:shadow-2xl" style={{ background: project.accentGradient ? 'var(--gradient-accent)' : 'linear-gradient(to bottom right, hsl(220 15% 90%), hsl(220 15% 95%))' }}>
+export const HeroCenteredCard = ({
+  project
+}: ProjectCardProps) => {
+  return <a href={project.route} className="group block">
+      <div className="relative overflow-hidden rounded-2xl p-8 md:p-12 min-h-[500px] md:min-h-[600px] transition-all duration-500 hover:shadow-2xl" style={{
+      background: project.accentGradient ? 'var(--gradient-accent)' : 'linear-gradient(to bottom right, hsl(220 15% 90%), hsl(220 15% 95%))'
+    }}>
         <div className="relative z-10 flex flex-col items-center text-center h-full">
           {/* Content */}
           <div className="space-y-4 mb-8 max-w-2xl">
@@ -84,43 +79,30 @@ export const HeroCenteredCard = ({ project }: ProjectCardProps) => {
           {/* Image */}
           <div className="relative w-full max-w-4xl flex-1">
             <div className="relative overflow-hidden rounded-xl shadow-2xl transform group-hover:scale-[1.02] group-hover:-translate-y-2 transition-all duration-500">
-              <img 
-                src={project.image} 
-                alt={project.title}
-                className="w-full h-auto object-cover"
-              />
+              <img src={project.image} alt={project.title} className="w-full h-auto object-cover" />
             </div>
           </div>
           
           {/* Footer */}
           <div className="w-full max-w-4xl mt-8">
-            <ProjectCardFooter 
-              tags={project.tags} 
-              company={project.company}
-              metrics={project.metrics}
-              variant="light"
-            />
+            <ProjectCardFooter tags={project.tags} company={project.company} metrics={project.metrics} variant="light" />
           </div>
         </div>
       </div>
-    </a>
-  );
+    </a>;
 };
 
 // Two Column Card - Dark card with device mockup
-export const TwoColumnCard = ({ project }: ProjectCardProps) => {
-  return (
-    <a href={project.route} className="group block">
+export const TwoColumnCard = ({
+  project
+}: ProjectCardProps) => {
+  return <a href={project.route} className="group block">
       <div className="relative overflow-hidden rounded-2xl bg-card border border-border hover:border-primary/30 p-8 md:p-10 min-h-[400px] transition-all duration-500 hover:shadow-xl">
         <div className="flex flex-col md:flex-row items-center gap-8 h-full">
           {/* Image */}
           <div className="relative w-full md:w-2/5 flex-shrink-0">
             <div className="relative overflow-hidden rounded-xl transform group-hover:scale-105 transition-transform duration-500">
-              <img 
-                src={project.image} 
-                alt={project.title}
-                className="w-full h-auto object-cover aspect-[4/3]"
-              />
+              <img src={project.image} alt={project.title} className="w-full h-auto object-cover aspect-[4/3]" />
             </div>
           </div>
           
@@ -136,41 +118,30 @@ export const TwoColumnCard = ({ project }: ProjectCardProps) => {
               {project.description}
             </p>
             
-            <ProjectCardFooter 
-              tags={project.tags} 
-              company={project.company}
-              metrics={project.metrics}
-              variant="light"
-            />
+            <ProjectCardFooter tags={project.tags} company={project.company} metrics={project.metrics} variant="light" />
           </div>
         </div>
       </div>
-    </a>
-  );
+    </a>;
 };
 
 // Minimal Centered Card - Clean with subtle styling
-export const MinimalCenteredCard = ({ project }: ProjectCardProps) => {
-  return (
-    <a href={project.route} className="group block">
+export const MinimalCenteredCard = ({
+  project
+}: ProjectCardProps) => {
+  return <a href={project.route} className="group block">
       <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-muted/50 to-muted/20 border border-border/50 hover:border-primary/30 p-8 md:p-10 min-h-[400px] transition-all duration-500 hover:shadow-lg">
         <div className="flex flex-col items-center text-center h-full">
           {/* Image */}
           <div className="relative w-full max-w-md mb-8">
-            <div className="relative overflow-hidden rounded-xl shadow-lg">
-              <img 
-                src={project.image} 
-                alt={project.title}
-                className="w-full h-auto object-cover aspect-[16/10]"
-              />
+            <div className="relative overflow-hidden rounded-xl shadow-lg transform group-hover:scale-105 group-hover:-rotate-1 transition-all duration-500">
+              <img src={project.image} alt={project.title} className="w-full h-auto object-cover aspect-[16/10]" />
             </div>
             
             {/* Floating badge */}
-            {project.metrics && (
-              <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-primary text-primary-foreground text-sm font-medium shadow-lg">
+            {project.metrics && <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-primary text-primary-foreground text-sm font-medium shadow-lg">
                 {project.metrics}
-              </div>
-            )}
+              </div>}
           </div>
           
           {/* Content */}
@@ -188,22 +159,18 @@ export const MinimalCenteredCard = ({ project }: ProjectCardProps) => {
           
           {/* Footer */}
           <div className="w-full mt-6">
-            <ProjectCardFooter 
-              tags={project.tags} 
-              company={project.company}
-              variant="light"
-            />
+            <ProjectCardFooter tags={project.tags} company={project.company} variant="light" />
           </div>
         </div>
       </div>
-    </a>
-  );
+    </a>;
 };
 
 // Locked Card - Project that cannot be viewed
-export const LockedCard = ({ project }: ProjectCardProps) => {
-  return (
-    <div className="group block cursor-not-allowed">
+export const LockedCard = ({
+  project
+}: ProjectCardProps) => {
+  return <div className="group block cursor-not-allowed">
       <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-muted/80 to-muted/40 border border-border/50 p-8 md:p-10 min-h-[300px] transition-all duration-500">
         <div className="flex flex-col items-center text-center h-full justify-center">
           {/* Lock Icon */}
@@ -234,32 +201,24 @@ export const LockedCard = ({ project }: ProjectCardProps) => {
           
           {/* Footer */}
           <div className="w-full mt-6 opacity-50">
-            <ProjectCardFooter 
-              tags={project.tags} 
-              company={project.company}
-              variant="light"
-            />
+            <ProjectCardFooter tags={project.tags} company={project.company} variant="light" />
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
 
 // Side Project Card - For personal/creative projects
-export const SideProjectCard = ({ project }: ProjectCardProps) => {
-  return (
-    <div className="group block">
+export const SideProjectCard = ({
+  project
+}: ProjectCardProps) => {
+  return <div className="group block">
       <div className="relative overflow-hidden rounded-2xl bg-card border border-border hover:border-primary/30 p-8 md:p-10 min-h-[300px] transition-all duration-500 hover:shadow-lg">
         <div className="flex flex-col md:flex-row items-center gap-8 h-full">
           {/* Image/Logo */}
           <div className="relative w-32 h-32 md:w-40 md:h-40 flex-shrink-0">
             <div className="relative overflow-hidden rounded-2xl bg-foreground p-6 transform group-hover:scale-105 transition-transform duration-500 flex items-center justify-center h-full">
-              <img 
-                src={project.image} 
-                alt={project.title}
-                className="w-full h-auto object-contain invert dark:invert-0"
-              />
+              <img src={project.image} alt={project.title} className="w-full h-auto object-contain invert dark:invert-0" />
             </div>
           </div>
           
@@ -275,14 +234,9 @@ export const SideProjectCard = ({ project }: ProjectCardProps) => {
               {project.description}
             </p>
             
-            <ProjectCardFooter 
-              tags={project.tags} 
-              company={project.company}
-              variant="light"
-            />
+            <ProjectCardFooter tags={project.tags} company={project.company} variant="light" />
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
