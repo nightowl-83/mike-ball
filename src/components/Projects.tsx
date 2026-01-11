@@ -5,7 +5,9 @@ import {
   TwoColumnCard, 
   MinimalCenteredCard,
   LockedCard,
-  SideProjectCard
+  SideProjectCard,
+  PasswordProtectedCard,
+  ComingSoonCard
 } from "./ProjectCardVariants";
 
 const Projects = () => {
@@ -19,6 +21,8 @@ const Projects = () => {
       "minimal-centered": MinimalCenteredCard,
       "locked": LockedCard,
       "side-project": SideProjectCard,
+      "password-protected": PasswordProtectedCard,
+      "coming-soon": ComingSoonCard,
     }[project.layoutVariant];
 
     return (

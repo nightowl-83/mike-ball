@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import About from "./pages/About";
 import MarketingHubProject from "./pages/projects/MarketingHubProject";
 import RuralLandMarketplaceProject from "./pages/projects/RuralLandMarketplaceProject";
+import GamingNewsSiteProject from "./pages/projects/GamingNewsSiteProject";
 import StyleGuide from "./pages/StyleGuide";
 import NotFound from "./pages/NotFound";
 import ThemeToggle from "./components/ThemeToggle";
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/about" element={<About />} />
           <Route path="/projects/marketing-hub" element={<MarketingHubProject />} />
           <Route path="/projects/rural-land-marketplace" element={<RuralLandMarketplaceProject />} />
+          <Route path="/projects/gaming-news-site" element={<GamingNewsSiteProject />} />
           <Route path="/style-guide" element={<StyleGuide />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

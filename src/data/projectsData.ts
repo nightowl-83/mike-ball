@@ -2,7 +2,7 @@ import marketingHubDashboard from "@/assets/marketing-hub-dashboard.webp";
 import ruralLandMarketplace from "@/assets/land-flat-homepage.png";
 import nightOwlLogo from "@/assets/night-owl-logo-notxt.png";
 
-export type LayoutVariant = "hero-accent" | "hero-centered" | "two-column" | "minimal-centered" | "locked" | "side-project";
+export type LayoutVariant = "hero-accent" | "hero-centered" | "two-column" | "minimal-centered" | "locked" | "side-project" | "password-protected" | "coming-soon";
 
 export interface ProjectData {
   id: string;
@@ -50,11 +50,21 @@ export const projectsData: ProjectData[] = [
     description: "Complete redesign of a major gaming news publication for CBS Interactive, focusing on modern UI patterns and improved content discovery.",
     category: "Web Design",
     image: "",
-    route: "#",
+    route: "/projects/gaming-news-site",
     tags: ["Visual Design", "Content Strategy", "Responsive Design"],
-    layoutVariant: "locked",
-    company: "CBS Interactive",
-    isLocked: true
+    layoutVariant: "password-protected",
+    company: "CBS Interactive"
+  },
+  {
+    id: "ar-travel-companion",
+    title: "AR Travel Companion",
+    description: "Augmented reality UI design for an immersive travel companion app, blending real-world exploration with digital guidance.",
+    category: "Coming Soon",
+    image: "",
+    route: "#",
+    tags: ["AR Design", "Mobile UI", "Prototype"],
+    layoutVariant: "coming-soon",
+    company: "Personal Project"
   },
   {
     id: "night-owl-studio",
