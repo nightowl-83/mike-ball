@@ -22,9 +22,9 @@ export const HeroAccentCard = ({ project }: ProjectCardProps) => {
           <ArrowUpRight className="h-5 w-5 text-primary" />
         </div>
         
-        <div className="relative z-10 flex flex-col h-full flex-1">
+        <div className="relative z-10 flex flex-col h-full flex-1 gap-6">
           {/* Content - Centered */}
-          <div className="space-y-4 md:space-y-6 text-white mb-6 md:mb-8 text-center">
+          <div className="space-y-4 md:space-y-6 text-white text-center">
             <span className="inline-block text-sm font-medium text-white/80 uppercase tracking-wider">
               {project.category}
             </span>
@@ -37,7 +37,7 @@ export const HeroAccentCard = ({ project }: ProjectCardProps) => {
           </div>
           
           {/* Image */}
-          <div className="relative w-full flex-1 min-h-[200px] md:min-h-[300px] pt-8 md:pt-12 flex items-center justify-center">
+          <div className="relative w-full flex-1 min-h-[200px] md:min-h-[300px] flex items-center justify-center">
             <div className="relative transform group-hover:scale-[1.02] transition-transform duration-500 w-[85%] max-w-3xl">
               <img 
                 src={project.image} 
@@ -48,7 +48,7 @@ export const HeroAccentCard = ({ project }: ProjectCardProps) => {
           </div>
           
           {/* Footer - Pinned to bottom */}
-          <div className="mt-6 md:mt-8">
+          <div>
             <ProjectCardFooter 
               tags={project.tags} 
               company={project.company}
