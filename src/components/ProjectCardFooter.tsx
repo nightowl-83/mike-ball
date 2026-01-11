@@ -5,9 +5,10 @@ interface ProjectCardFooterProps {
   company?: string;
   metrics?: string;
   variant?: "light" | "dark";
+  ctaText?: string;
 }
 
-const ProjectCardFooter = ({ tags, company, metrics, variant = "dark" }: ProjectCardFooterProps) => {
+const ProjectCardFooter = ({ tags, company, metrics, variant = "dark", ctaText = "View Case Study" }: ProjectCardFooterProps) => {
   const isDark = variant === "dark";
   
   return (
@@ -49,7 +50,7 @@ const ProjectCardFooter = ({ tags, company, metrics, variant = "dark" }: Project
           <span className={`inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium group-hover:gap-2 sm:group-hover:gap-3 transition-all duration-300 ${
             isDark ? "text-white" : "text-foreground"
           }`}>
-            View Case Study
+            {ctaText}
             <ArrowUpRight className="h-3 w-3 sm:h-4 sm:w-4" />
           </span>
         </div>

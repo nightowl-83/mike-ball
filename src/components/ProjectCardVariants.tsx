@@ -1,6 +1,17 @@
 import { ProjectData } from "@/data/projectsData";
 import ProjectCardFooter from "./ProjectCardFooter";
-import { ArrowUpRight, Lock } from "lucide-react";
+import { ArrowUpRight, Lock, Clock, Sparkles } from "lucide-react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+
 interface ProjectCardProps {
   project: ProjectData;
 }
@@ -10,7 +21,7 @@ export const HeroAccentCard = ({
   project
 }: ProjectCardProps) => {
   return <a href={project.route} className="group block">
-      <div className="relative overflow-hidden rounded-2xl p-6 md:p-8 lg:p-12 min-h-[500px] md:min-h-[600px] transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 flex flex-col" style={{
+      <div className="relative overflow-hidden rounded-2xl p-9 md:p-12 lg:p-[72px] min-h-[500px] md:min-h-[600px] transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 flex flex-col" style={{
       background: 'var(--gradient-accent)'
     }}>
         {/* Background pattern */}
@@ -20,7 +31,7 @@ export const HeroAccentCard = ({
         </div>
         
         {/* Floating arrow - top right corner */}
-        <div className="absolute top-6 right-6 md:top-8 md:right-8 lg:top-12 lg:right-12 z-20 w-12 h-12 rounded-full bg-white flex items-center justify-center opacity-0 group-hover:opacity-100 -translate-y-2 group-hover:translate-y-0 transition-all duration-300 shadow-lg">
+        <div className="absolute top-9 right-9 md:top-12 md:right-12 lg:top-[72px] lg:right-[72px] z-20 w-12 h-12 rounded-full bg-white flex items-center justify-center opacity-0 group-hover:opacity-100 -translate-y-2 group-hover:translate-y-0 transition-all duration-300 shadow-lg">
           <ArrowUpRight className="h-5 w-5 text-primary" />
         </div>
         
@@ -39,7 +50,7 @@ export const HeroAccentCard = ({
           </div>
           
           {/* Image */}
-          <div className="relative w-full flex-1 min-h-[200px] md:min-h-[300px] sm:max-h-[20px] flex items-center justify-center">
+          <div className="relative w-full flex-1 md:min-h-[300px] flex items-center justify-center">
             <div className="relative transform group-hover:scale-[1.02] transition-transform duration-500 w-[85%] max-w-3xl">
               <img src={project.image} alt={project.title} className="w-full h-auto object-contain" />
             </div>
@@ -59,7 +70,7 @@ export const HeroCenteredCard = ({
   project
 }: ProjectCardProps) => {
   return <a href={project.route} className="group block">
-      <div className="relative overflow-hidden rounded-2xl p-8 md:p-12 min-h-[500px] md:min-h-[600px] transition-all duration-500 hover:shadow-2xl" style={{
+      <div className="relative overflow-hidden rounded-2xl p-12 md:p-[72px] min-h-[500px] md:min-h-[600px] transition-all duration-500 hover:shadow-2xl" style={{
       background: project.accentGradient ? 'var(--gradient-accent)' : 'linear-gradient(to bottom right, hsl(220 15% 90%), hsl(220 15% 95%))'
     }}>
         <div className="relative z-10 flex flex-col items-center text-center h-full">
@@ -97,7 +108,7 @@ export const TwoColumnCard = ({
   project
 }: ProjectCardProps) => {
   return <a href={project.route} className="group block">
-      <div className="relative overflow-hidden rounded-2xl bg-card border border-border hover:border-primary/30 p-8 md:p-10 min-h-[400px] transition-all duration-500 hover:shadow-xl">
+      <div className="relative overflow-hidden rounded-2xl bg-card border border-border hover:border-primary/30 p-12 md:p-[60px] min-h-[400px] transition-all duration-500 hover:shadow-xl">
         <div className="flex flex-col md:flex-row items-center gap-8 h-full">
           {/* Image */}
           <div className="relative w-full md:w-2/5 flex-shrink-0">
@@ -130,11 +141,11 @@ export const MinimalCenteredCard = ({
   project
 }: ProjectCardProps) => {
   return <a href={project.route} className="group block">
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-muted/50 to-muted/20 border border-border/50 hover:border-primary/30 p-8 md:p-10 min-h-[400px] transition-all duration-500 hover:shadow-lg">
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-muted/50 to-muted/20 border border-border/50 hover:border-primary/30 p-12 md:p-[60px] min-h-[400px] transition-all duration-500 hover:shadow-lg">
         <div className="flex flex-col items-center text-center h-full">
           {/* Image */}
           <div className="relative w-full max-w-md mb-8">
-            <div className="relative overflow-hidden rounded-xl shadow-lg transform group-hover:scale-105 group-hover:-rotate-1 transition-all duration-500">
+            <div className="relative overflow-hidden rounded-xl shadow-lg transition-all duration-500">
               <img src={project.image} alt={project.title} className="w-full h-auto object-cover aspect-[16/10]" />
             </div>
             
@@ -166,12 +177,113 @@ export const MinimalCenteredCard = ({
     </a>;
 };
 
-// Locked Card - Project that cannot be viewed
+// Password Protected Card - Project requires password to access
+export const PasswordProtectedCard = ({
+  project
+}: ProjectCardProps) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
+  const navigate = useNavigate();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password === "Friend2026") {
+      sessionStorage.setItem(`project-access-${project.id}`, "true");
+      setIsOpen(false);
+      navigate(project.route);
+    } else {
+      setError(true);
+      setPassword("");
+    }
+  };
+
+  return (
+    <>
+      <div 
+        className="group block cursor-pointer"
+        onClick={() => setIsOpen(true)}
+      >
+        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-muted/80 to-muted/40 border border-border/50 hover:border-primary/30 p-12 md:p-[60px] min-h-[400px] transition-all duration-500 hover:shadow-lg">
+          <div className="flex flex-col items-center text-center h-full">
+            {/* Image Placeholder */}
+            <div className="relative w-full max-w-md mb-8">
+              <div className="relative overflow-hidden rounded-xl bg-muted-foreground/10 aspect-[16/10] flex items-center justify-center">
+                <Lock className="w-12 h-12 text-muted-foreground/30" />
+              </div>
+            </div>
+            
+            {/* Content */}
+            <div className="space-y-3 max-w-lg">
+              <span className="inline-block text-sm font-medium text-muted-foreground/60 uppercase tracking-wider">
+                {project.category}
+              </span>
+              <h3 className="text-2xl md:text-3xl font-bold text-foreground/80 group-hover:text-primary transition-colors">
+                {project.title}
+              </h3>
+              <p className="text-muted-foreground/70 leading-relaxed">
+                {project.description}
+              </p>
+              <div className="pt-4">
+                <span className="inline-flex items-center gap-2 text-sm text-primary bg-primary/10 px-4 py-2 rounded-full">
+                  <Lock className="w-4 h-4" />
+                  Password Protected
+                </span>
+              </div>
+            </div>
+            
+            {/* Footer */}
+            <div className="w-full mt-6">
+              <ProjectCardFooter tags={project.tags} company={project.company} variant="light" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <Dialog open={isOpen} onOpenChange={setIsOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Enter Password</DialogTitle>
+          </DialogHeader>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="space-y-2">
+              <Input
+                type="password"
+                placeholder="Enter password to view project"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  setError(false);
+                }}
+                className={error ? "border-destructive" : ""}
+              />
+              {error && (
+                <p className="text-sm text-destructive">
+                  Incorrect password. Please try again.
+                </p>
+              )}
+            </div>
+            <div className="flex justify-end gap-3">
+              <Button type="button" variant="outline" onClick={() => setIsOpen(false)}>
+                Cancel
+              </Button>
+              <Button type="submit">
+                Submit
+              </Button>
+            </div>
+          </form>
+        </DialogContent>
+      </Dialog>
+    </>
+  );
+};
+
+// Locked Card - Project that cannot be viewed (kept for backward compatibility)
 export const LockedCard = ({
   project
 }: ProjectCardProps) => {
   return <div className="group block cursor-not-allowed">
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-muted/80 to-muted/40 border border-border/50 p-8 md:p-10 min-h-[300px] transition-all duration-500">
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-muted/80 to-muted/40 border border-border/50 p-12 md:p-[60px] min-h-[300px] transition-all duration-500">
         <div className="flex flex-col items-center text-center h-full justify-center">
           {/* Lock Icon */}
           <div className="relative mb-6">
@@ -208,17 +320,59 @@ export const LockedCard = ({
     </div>;
 };
 
+// Coming Soon Card - For future projects
+export const ComingSoonCard = ({
+  project
+}: ProjectCardProps) => {
+  return <div className="group block">
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-muted/60 to-muted/30 border border-border/50 p-12 md:p-[60px] min-h-[300px] transition-all duration-500">
+        <div className="flex flex-col items-center text-center h-full justify-center">
+          {/* Icon */}
+          <div className="relative mb-6">
+            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
+              <Sparkles className="w-8 h-8 text-primary/60" />
+            </div>
+          </div>
+          
+          {/* Content */}
+          <div className="space-y-3 max-w-lg">
+            <span className="inline-block text-sm font-medium text-muted-foreground/60 uppercase tracking-wider">
+              {project.category}
+            </span>
+            <h3 className="text-2xl md:text-3xl font-bold text-foreground/70">
+              {project.title}
+            </h3>
+            <p className="text-muted-foreground/60 leading-relaxed">
+              {project.description}
+            </p>
+            <div className="pt-4">
+              <span className="inline-flex items-center gap-2 text-sm text-primary bg-primary/10 px-4 py-2 rounded-full">
+                <Clock className="w-4 h-4" />
+                Coming Soon
+              </span>
+            </div>
+          </div>
+          
+          {/* Footer */}
+          <div className="w-full mt-6 opacity-60">
+            <ProjectCardFooter tags={project.tags} company={project.company} variant="light" />
+          </div>
+        </div>
+      </div>
+    </div>;
+};
+
 // Side Project Card - For personal/creative projects
 export const SideProjectCard = ({
   project
 }: ProjectCardProps) => {
   return <div className="group block">
-      <div className="relative overflow-hidden rounded-2xl bg-card border border-border hover:border-primary/30 p-8 md:p-10 min-h-[300px] transition-all duration-500 hover:shadow-lg">
+      <div className="relative overflow-hidden rounded-2xl bg-card border border-border hover:border-primary/30 p-12 md:p-[60px] min-h-[300px] transition-all duration-500 hover:shadow-lg">
         <div className="flex flex-col md:flex-row items-center gap-8 h-full">
           {/* Image/Logo */}
           <div className="relative w-32 h-32 md:w-40 md:h-40 flex-shrink-0">
-            <div className="relative overflow-hidden rounded-2xl bg-foreground p-6 transform group-hover:scale-105 transition-transform duration-500 flex items-center justify-center h-full">
-              <img src={project.image} alt={project.title} className="w-full h-auto object-contain invert dark:invert-0" />
+            <div className="relative overflow-hidden rounded-2xl transform group-hover:scale-105 transition-transform duration-500 flex items-center justify-center h-full">
+              <img src={project.image} alt={project.title} className="w-full h-auto object-contain" />
             </div>
           </div>
           
@@ -234,7 +388,7 @@ export const SideProjectCard = ({
               {project.description}
             </p>
             
-            <ProjectCardFooter tags={project.tags} company={project.company} variant="light" />
+            <ProjectCardFooter tags={project.tags} company={project.company} variant="light" ctaText="View Etsy Shop" />
           </div>
         </div>
       </div>
