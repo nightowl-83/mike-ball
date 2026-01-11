@@ -39,7 +39,7 @@ export const HeroAccentCard = ({
           </div>
           
           {/* Image */}
-          <div className="relative w-full flex-1 min-h-[200px] md:min-h-[300px] sm:min-h-[20px] flex items-center justify-center">
+          <div className="relative w-full flex-1 min-h-[200px] md:min-h-[300px] sm:max-h-[20px] flex items-center justify-center">
             <div className="relative transform group-hover:scale-[1.02] transition-transform duration-500 w-[85%] max-w-3xl">
               <img src={project.image} alt={project.title} className="w-full h-auto object-contain" />
             </div>
