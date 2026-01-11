@@ -50,7 +50,7 @@ const Projects = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className="flex flex-col gap-8 md:gap-10 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+        <div className="flex flex-col gap-2 md:gap-10 animate-fade-in" style={{ animationDelay: '0.2s' }}>
           {projectsData.map((project, index) => renderProjectCard(project, index))}
         </div>
       </div>

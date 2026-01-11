@@ -21,7 +21,7 @@ export const HeroAccentCard = ({
   project
 }: ProjectCardProps) => {
   return <a href={project.route} className="group block">
-      <div className="relative overflow-hidden rounded-2xl p-9 md:p-12 lg:p-[72px] min-h-[500px] md:min-h-[600px] transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 flex flex-col" style={{
+      <div className="relative overflow-hidden rounded-2xl p-3 md:p-12 lg:p-[72px] min-h-[500px] md:min-h-[600px] transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 flex flex-col" style={{
       background: 'var(--gradient-accent)'
     }}>
         {/* Background pattern */}
@@ -141,7 +141,7 @@ export const MinimalCenteredCard = ({
   project
 }: ProjectCardProps) => {
   return <a href={project.route} className="group block">
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-muted/50 to-muted/20 border border-border/50 hover:border-primary/30 p-12 md:p-[60px] min-h-[400px] transition-all duration-500 hover:shadow-lg">
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-muted/50 to-muted/20 border border-border/50 hover:border-primary/30 p-3 md:p-[60px] min-h-[400px] transition-all duration-500 hover:shadow-lg">
         <div className="flex flex-col items-center text-center h-full">
           {/* Image */}
           <div className="relative w-full max-w-md mb-8">
@@ -204,7 +204,7 @@ export const PasswordProtectedCard = ({
         className="group block cursor-pointer"
         onClick={() => setIsOpen(true)}
       >
-        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-muted/80 to-muted/40 border border-border/50 hover:border-primary/30 p-12 md:p-[60px] min-h-[400px] transition-all duration-500 hover:shadow-lg">
+        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-muted/80 to-muted/40 border border-border/50 hover:border-primary/30 p-3 md:p-[60px] min-h-[400px] transition-all duration-500 hover:shadow-lg">
           <div className="flex flex-col items-center text-center h-full">
             {/* Image Placeholder */}
             <div className="relative w-full max-w-md mb-8">
@@ -283,7 +283,7 @@ export const LockedCard = ({
   project
 }: ProjectCardProps) => {
   return <div className="group block cursor-not-allowed">
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-muted/80 to-muted/40 border border-border/50 p-12 md:p-[60px] min-h-[300px] transition-all duration-500">
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-muted/80 to-muted/40 border border-border/50 p-3 md:p-[60px] min-h-[300px] transition-all duration-500">
         <div className="flex flex-col items-center text-center h-full justify-center">
           {/* Lock Icon */}
           <div className="relative mb-6">
@@ -325,12 +325,12 @@ export const ComingSoonCard = ({
   project
 }: ProjectCardProps) => {
   return <div className="group block">
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-muted/60 to-muted/30 border border-border/50 p-12 md:p-[60px] min-h-[300px] transition-all duration-500">
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-muted/60 to-muted/30 border border-border/50 p-3 md:p-[60px] min-h-[300px] transition-all duration-500">
         <div className="flex flex-col items-center text-center h-full justify-center">
-          {/* Icon */}
-          <div className="relative mb-6">
-            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
-              <Sparkles className="w-8 h-8 text-primary/60" />
+          {/* Image Placeholder */}
+          <div className="relative w-full max-w-md mb-6">
+            <div className="relative overflow-hidden rounded-xl bg-primary/5 aspect-[16/10] flex items-center justify-center border border-primary/10">
+              <Sparkles className="w-12 h-12 text-primary/30" />
             </div>
           </div>
           
@@ -367,7 +367,7 @@ export const SideProjectCard = ({
   project
 }: ProjectCardProps) => {
   return <div className="group block">
-      <div className="relative overflow-hidden rounded-2xl bg-card border border-border hover:border-primary/30 p-12 md:p-[60px] min-h-[300px] transition-all duration-500 hover:shadow-lg">
+      <div className="relative overflow-hidden rounded-2xl bg-card border border-border hover:border-primary/30 p-3 md:p-[60px] min-h-[300px] transition-all duration-500 hover:shadow-lg">
         <div className="flex flex-col md:flex-row items-center gap-8 h-full">
           {/* Image/Logo */}
           <div className="relative w-32 h-32 md:w-40 md:h-40 flex-shrink-0">
