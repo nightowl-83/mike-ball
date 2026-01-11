@@ -33,12 +33,12 @@ const Projects = () => {
   };
 
   return (
-    <section id="work" className="py-12 md:py-24 px-4 md:px-6 scroll-mt-24">
+    <section id="work" className="py-12 md:py-24 px-2 md:px-6 scroll-mt-24">
       <div className="container mx-auto max-w-[1080px]">
         {/* Section Header */}
         <div className="text-center space-y-3 md:space-y-4 mb-12 md:mb-16 animate-fade-in">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
-            Featured <span className="text-primary">Projects</span>
+            Featured Projects
           </h2>
           <p className="text-base md:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto">
             A selection of my recent work in UI/UX design and product development

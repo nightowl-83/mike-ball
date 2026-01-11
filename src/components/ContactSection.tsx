@@ -85,13 +85,13 @@ const ContactSection = () => {
                 <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
                   <Mail className="w-5 h-5 text-primary" />
                 </div>
-                <span>hello@mikedesigns.com</span>
+                <span>mcball83@gmail.com</span>
               </div>
               <div className="flex items-center gap-4 text-muted-foreground">
                 <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
                   <MapPin className="w-5 h-5 text-primary" />
                 </div>
-                <span>San Francisco, CA</span>
+                <span>Austin, TX</span>
               </div>
             </div>
           </div>
