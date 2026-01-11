@@ -573,15 +573,15 @@ const MobileBankingProject = () => {
                   <img src={galleryImages[4].src} alt={galleryImages[4].alt} className="w-full h-full object-cover" />
                 </button>
                 
-                {/* Image 6 - Full Height */}
-                <button onClick={() => openGallery(5)} className="col-span-1 md:col-span-2 row-span-2 rounded-xl md:rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{
+                {/* Image 6 - On tablet: share row with Image 7 */}
+                <button onClick={() => openGallery(5)} className="col-span-1 md:col-span-2 lg:col-span-3 row-span-2 md:row-span-1 lg:row-span-2 rounded-xl md:rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{
                 animationDelay: '0.25s'
               }}>
                   <img src={galleryImages[5].src} alt={galleryImages[5].alt} className="w-full h-full object-cover" />
                 </button>
                 
-                {/* Image 7 - Large */}
-                <button onClick={() => openGallery(6)} className="col-span-2 md:col-span-4 row-span-2 rounded-xl md:rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{
+                {/* Image 7 - On tablet: share row with Image 6 */}
+                <button onClick={() => openGallery(6)} className="col-span-2 md:col-span-2 lg:col-span-3 row-span-2 md:row-span-1 lg:row-span-2 rounded-xl md:rounded-2xl overflow-hidden shadow-card animate-fade-in hover:scale-[1.02] transition-transform cursor-pointer" style={{
                 animationDelay: '0.3s'
               }}>
                   <img src={galleryImages[6].src} alt={galleryImages[6].alt} className="w-full h-full object-cover" />
@@ -1266,22 +1266,19 @@ const MobileBankingProject = () => {
         <section className="relative py-10 md:py-24">
           <div ref={leadsRef} className="absolute top-0 left-0 w-full h-1" />
           <div className="container mx-auto max-w-[1440px]">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16">
-              {/* Left Column - Text Content */}
-              <div className="space-y-3 md:space-y-6">
-                <h3 className="text-xl md:text-3xl lg:text-4xl font-bold mb-2">Managing Leads</h3>
-                <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                  The Leads section is designed with a focused, streamlined approach—helping users concentrate on one task at a time. Whether reviewing new inquiries, checking contact details, or tracking engagement history, the layout guides you step by step so nothing gets lost in the shuffle.
-                </p>
-                <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                  It's a clear, actionable space to manage your pipeline without distractions.
-                </p>
-              </div>
-
-              {/* Right Column - Section Number */}
-              <div className="flex items-start justify-center lg:justify-end hidden md:flex">
-                <p className="text-3xl md:text-6xl lg:text-7xl font-bold text-muted-foreground/20">/04</p>
-              </div>
+          {/* Section Header - Title and Number on same row for tablet+ */}
+            <div className="flex items-baseline justify-between gap-4 mb-4 md:mb-8">
+              <h3 className="text-xl md:text-3xl lg:text-4xl font-bold">Managing Leads</h3>
+              <span className="text-xl md:text-6xl lg:text-7xl font-bold font-mono opacity-20 hidden md:block">/04</span>
+            </div>
+            
+            <div className="max-w-3xl">
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-3 md:mb-6">
+                The Leads section is designed with a focused, streamlined approach—helping users concentrate on one task at a time. Whether reviewing new inquiries, checking contact details, or tracking engagement history, the layout guides you step by step so nothing gets lost in the shuffle.
+              </p>
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                It's a clear, actionable space to manage your pipeline without distractions.
+              </p>
             </div>
 
             {/* Full Width GIF Row - Full width on mobile */}
