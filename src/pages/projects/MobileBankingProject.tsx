@@ -479,13 +479,9 @@ const MobileBankingProject = () => {
           <div ref={defineRef} className="absolute top-0 left-0 w-full h-1" />
 
           <div className="container mx-auto max-w-[1440px]">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-16 mb-4 md:mb-16">
-              <div className="order-1 lg:order-1">
-                <h2 className="text-3xl md:text-5xl lg:text-7xl xl:text-8xl font-bold">Define</h2>
-              </div>
-              <div className="order-2 lg:order-2 text-center lg:text-right hidden md:block">
-                <span className="text-3xl md:text-6xl lg:text-7xl font-bold font-mono opacity-20">/01</span>
-              </div>
+            <div className="flex items-baseline justify-between gap-4 mb-4 md:mb-16">
+              <h2 className="text-3xl md:text-5xl lg:text-7xl xl:text-8xl font-bold">Define</h2>
+              <span className="text-3xl md:text-6xl lg:text-7xl font-bold font-mono opacity-20 hidden md:block">/01</span>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-16">
               {/* Left Column */}
@@ -600,10 +596,15 @@ const MobileBankingProject = () => {
         <section className="relative py-10 md:py-24 bg-card/30">
           <div ref={discoveryRef} className="absolute top-0 left-0 w-full h-1" />
           <div className="container mx-auto max-w-[1440px]">
+            {/* Section Header - Title and Number on same row for tablet+ */}
+            <div className="flex items-baseline justify-between gap-4 mb-8 md:mb-16">
+              <h2 className="text-3xl md:text-7xl lg:text-8xl font-bold">Discovery</h2>
+              <span className="text-3xl md:text-6xl lg:text-7xl font-bold font-mono opacity-20 hidden md:block">/02</span>
+            </div>
+            
             <div ref={discoveryInterviewsRef} className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-16 mb-8 md:mb-32 items-stretch">
               {/* Left Column - User Interviews (1 column) */}
               <div className="flex flex-col justify-between h-full">
-                <h2 className="text-3xl md:text-7xl lg:text-8xl font-bold">Discovery</h2>
                 <div>
                   <h3 className="text-2xl font-semibold mb-6">User Interviews</h3>
                   <p className="text-xl text-muted-foreground leading-relaxed">
@@ -614,9 +615,6 @@ const MobileBankingProject = () => {
 
               {/* Right Columns - Charts (2 columns) */}
               <div ref={discoveryStatsAnim.ref} className={`lg:col-span-2 space-y-4 md:space-y-8 transition-all duration-700 ${discoveryStatsAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                <div className="text-center lg:text-right hidden md:block">
-                  <span className="text-3xl md:text-6xl lg:text-7xl font-bold font-mono opacity-20">/02</span>
-                </div>
                 {/* Statistics */}
                 <div className="flex flex-col md:grid md:grid-cols-3 gap-6 md:gap-8 pt-4 md:pt-8 items-center">
                   {/* 36% Satisfaction */}
@@ -852,10 +850,15 @@ const MobileBankingProject = () => {
         <section ref={designContentAnim.ref} className={`relative py-10 md:py-24 transition-all duration-700 ${designContentAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div ref={designRef} className="absolute top-0 left-0 w-full h-1" />
           <div className="container mx-auto max-w-[1440px]">
+            {/* Section Header - Title and Number on same row for tablet+ */}
+            <div className="flex items-baseline justify-between gap-4 mb-4 md:mb-8">
+              <h2 className="text-3xl md:text-7xl lg:text-8xl font-bold">Design</h2>
+              <span className="text-3xl md:text-6xl lg:text-7xl font-bold font-mono opacity-20 hidden md:block">/03</span>
+            </div>
+            
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-16">
               {/* Left Column */}
               <div className="space-y-4 md:space-y-12">
-                <h2 className="text-3xl md:text-7xl lg:text-8xl font-bold">Design</h2>
                 <p className="text-xl text-muted-foreground">
                   Creating an intuitive, modern interface that streamlines workflows and enhances user experience.
                 </p>
@@ -863,9 +866,6 @@ const MobileBankingProject = () => {
 
               {/* Right Column */}
               <div className="space-y-4 md:space-y-12">
-                <div className="text-center lg:text-right hidden md:block">
-                  <span className="text-3xl md:text-6xl lg:text-7xl font-bold font-mono opacity-20">/03</span>
-                </div>
                 
                 <div className="space-y-4 md:space-y-6 text-base md:text-lg text-muted-foreground">
                   <p>
@@ -1137,10 +1137,15 @@ const MobileBankingProject = () => {
         <section ref={deliveryContentAnim.ref} className={`relative py-10 md:py-24 bg-card/30 transition-all duration-700 ${deliveryContentAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div ref={deliveryRef} className="absolute top-0 left-0 w-full h-1" />
           <div className="container mx-auto max-w-[1440px]">
+            {/* Section Header - Title and Number on same row for tablet+ */}
+            <div className="flex items-baseline justify-between gap-4 mb-4 md:mb-8">
+              <h2 className="text-3xl md:text-7xl lg:text-8xl font-bold">Delivery</h2>
+              <span className="text-3xl md:text-6xl lg:text-7xl font-bold font-mono opacity-20 hidden md:block">/04</span>
+            </div>
+            
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-16">
               {/* Left Column */}
               <div className="space-y-4 md:space-y-12">
-                <h2 className="text-3xl md:text-7xl lg:text-8xl font-bold">Delivery</h2>
                 <p className="text-xl text-muted-foreground">
                   Implementing a comprehensive design system and ensuring seamless handoff to development teams.
                 </p>
@@ -1148,9 +1153,6 @@ const MobileBankingProject = () => {
 
               {/* Right Column */}
               <div className="space-y-4 md:space-y-12">
-                <div className="text-center lg:text-right hidden md:block">
-                  <span className="text-3xl md:text-6xl lg:text-7xl font-bold font-mono opacity-20">/04</span>
-                </div>
                 
                 <div className="space-y-4 md:space-y-6 text-base md:text-lg text-muted-foreground">
                   <p>
@@ -1422,7 +1424,7 @@ const MobileBankingProject = () => {
         
 
         {/* Results Section */}
-        <section ref={resultsAnim.ref} className={`relative min-h-screen flex items-center justify-center py-10 md:py-24 transition-all duration-700 ${resultsAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <section ref={resultsAnim.ref} className={`relative min-h-screen flex items-center justify-center py-6 md:py-16 transition-all duration-700 ${resultsAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div ref={resultsRef} className="absolute top-0 left-0 w-full h-1" />
           <div className="container mx-auto max-w-[1440px] text-left">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Outcomes</h2>
