@@ -39,8 +39,8 @@ const About = () => {
             {/* Main Content */}
             <div className="md:col-span-2 space-y-6">
               <div className="prose prose-lg dark:prose-invert max-w-none">
-                <p className="text-muted-foreground leading-relaxed">
-                  With over 8 years of experience in product design, I've had the privilege 
+              <p className="text-muted-foreground leading-relaxed">
+                  With over 12 years of experience in product design, I've had the privilege 
                   of working with startups and enterprise companies alike, helping them 
                   transform complex problems into elegant solutions.
                 </p>
@@ -51,9 +51,9 @@ const About = () => {
                   experiences that resonate with users and drive measurable results.
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
-                  When I'm not designing, you can find me exploring new coffee shops, 
-                  hiking local trails, or experimenting with illustration and motion design 
-                  in my personal projects.
+                  When I'm not designing, you can find me traveling, gaming, gardening, 
+                  walking my two yellow labs, studying Japanese, or experimenting with 
+                  illustration and motion design in my personal projects.
                 </p>
               </div>
               
@@ -62,19 +62,24 @@ const About = () => {
                 <h2 className="text-2xl font-bold">Experience</h2>
                 <div className="space-y-6">
                   <div className="border-l-2 border-primary/30 pl-6 space-y-1">
-                    <h3 className="font-semibold">Senior Product Designer</h3>
+                    <h3 className="font-semibold">Lead Product Designer</h3>
                     <p className="text-primary">CoStar Group</p>
-                    <p className="text-sm text-muted-foreground">2021 - Present</p>
+                    <p className="text-sm text-muted-foreground">2018 - Present</p>
                   </div>
                   <div className="border-l-2 border-border pl-6 space-y-1">
-                    <h3 className="font-semibold">Product Designer</h3>
-                    <p className="text-muted-foreground">Enterprise SaaS</p>
-                    <p className="text-sm text-muted-foreground">2018 - 2021</p>
+                    <h3 className="font-semibold">Senior UI/UX Designer</h3>
+                    <p className="text-muted-foreground">CBS Interactive</p>
+                    <p className="text-sm text-muted-foreground">2017 - 2018</p>
+                  </div>
+                  <div className="border-l-2 border-border pl-6 space-y-1">
+                    <h3 className="font-semibold">Senior Product Designer</h3>
+                    <p className="text-muted-foreground">CoStar Group</p>
+                    <p className="text-sm text-muted-foreground">2013 - 2017</p>
                   </div>
                   <div className="border-l-2 border-border pl-6 space-y-1">
                     <h3 className="font-semibold">UI/UX Designer</h3>
-                    <p className="text-muted-foreground">CBS Interactive</p>
-                    <p className="text-sm text-muted-foreground">2016 - 2018</p>
+                    <p className="text-muted-foreground">Tapsense</p>
+                    <p className="text-sm text-muted-foreground">2012 - 2013</p>
                   </div>
                 </div>
               </div>
@@ -85,7 +90,7 @@ const About = () => {
               <div className="bg-muted/30 rounded-2xl p-6 space-y-4">
                 <h3 className="font-semibold">Skills</h3>
                 <div className="flex flex-wrap gap-2">
-                  {["UI Design", "UX Research", "Prototyping", "Design Systems", "Mobile Design", "User Testing", "Figma", "Framer"].map((skill) => (
+                  {["Adobe Creative Suite", "Motion Graphics", "Illustration", "Vibe Coding", "Prompt Engineering", "HTML/CSS"].map((skill) => (
                     <span 
                       key={skill}
                       className="px-3 py-1 text-sm bg-background border border-border rounded-full"
@@ -99,9 +104,18 @@ const About = () => {
               <div className="bg-muted/30 rounded-2xl p-6 space-y-4">
                 <h3 className="font-semibold">Education</h3>
                 <div className="space-y-1">
-                  <p className="font-medium">BFA in Graphic Design</p>
-                  <p className="text-sm text-muted-foreground">California College of the Arts</p>
-                  <p className="text-sm text-muted-foreground">2012 - 2016</p>
+                  <p className="font-medium">BS Visual Communications</p>
+                  <p className="text-sm text-muted-foreground">San Francisco State University</p>
+                  <p className="text-sm text-muted-foreground">2009 - 2011</p>
+                </div>
+              </div>
+
+              <div className="bg-muted/30 rounded-2xl p-6 space-y-4">
+                <h3 className="font-semibold">Certifications</h3>
+                <div className="space-y-1">
+                  <p className="font-medium">UI/UX Design for AI Products</p>
+                  <p className="text-sm text-muted-foreground">Stanford University</p>
+                  <p className="text-sm text-muted-foreground">2025</p>
                 </div>
               </div>
               
