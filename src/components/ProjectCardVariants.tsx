@@ -22,7 +22,7 @@ export const HeroAccentCard = ({
 }: ProjectCardProps) => {
   return <a href={project.route} className="group block">
       <div className="relative overflow-hidden rounded-2xl pt-[18px] px-3 pb-3 md:p-12 lg:p-[72px] min-h-[500px] md:min-h-[600px] transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 flex flex-col" style={{
-      background: 'var(--gradient-accent)'
+      background: 'radial-gradient(ellipse at top center, hsl(263 70% 25% / 0.4) 0%, hsl(220 25% 6%) 70%)'
     }}>
         {/* Background pattern */}
         <div className="absolute inset-0 opacity-5">
