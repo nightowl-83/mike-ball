@@ -376,11 +376,11 @@ export const SideProjectCard = ({
       rel="noopener noreferrer"
       className="group block"
     >
-      <div className="relative overflow-hidden rounded-2xl bg-card border border-border hover:border-primary/30 p-3 md:p-[60px] min-h-[300px] transition-all duration-500 hover:shadow-lg">
+      <div className="relative overflow-hidden rounded-2xl bg-[hsl(220_15%_10%)] border border-border hover:border-primary/30 p-3 md:p-[60px] min-h-[300px] transition-all duration-500 hover:shadow-lg">
         <div className="flex flex-col md:flex-row items-center gap-8 h-full">
           {/* Image/Logo */}
           <div className="relative w-32 h-32 md:w-40 md:h-40 flex-shrink-0">
-            <div className="relative overflow-hidden rounded-2xl transform group-hover:scale-105 transition-transform duration-500 flex items-center justify-center h-full bg-primary/10 p-4">
+            <div className="relative overflow-hidden rounded-2xl transform group-hover:scale-105 transition-transform duration-500 flex items-center justify-center h-full">
               <img src={project.image} alt={project.title} className="w-full h-auto object-contain" />
             </div>
           </div>
