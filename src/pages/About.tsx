@@ -38,8 +38,8 @@ const About = () => {
           <div className="grid md:grid-cols-3 gap-12 md:gap-16">
             {/* Main Content */}
             <div className="md:col-span-2 space-y-6">
-              <div className="prose prose-lg dark:prose-invert max-w-none">
-              <p className="text-muted-foreground leading-relaxed">
+              <div className="space-y-4">
+                <p className="text-muted-foreground leading-relaxed">
                   With over 12 years of experience in product design, I've had the privilege 
                   of working with startups and enterprise companies alike, helping them 
                   transform complex problems into elegant solutions.
@@ -90,7 +90,7 @@ const About = () => {
               <div className="bg-muted/30 rounded-2xl p-6 space-y-4">
                 <h3 className="font-semibold">Skills</h3>
                 <div className="flex flex-wrap gap-2">
-                  {["Adobe Creative Suite", "Motion Graphics", "Illustration", "Vibe Coding", "Prompt Engineering", "HTML/CSS"].map((skill) => (
+                  {["User Research & Testing", "UI Design", "Responsive & Mobile Design", "AI Design", "Prototyping", "Figma", "Sketch", "Adobe Creative Suite", "Motion Graphics", "Illustration", "Vibe Coding", "Prompt Engineering", "HTML/CSS"].map((skill) => (
                     <span 
                       key={skill}
                       className="px-3 py-1 text-sm bg-background border border-border rounded-full"
