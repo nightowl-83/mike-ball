@@ -204,13 +204,13 @@ export const PasswordProtectedCard = ({
         className="group block cursor-pointer"
         onClick={() => setIsOpen(true)}
       >
-        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-muted/80 to-muted/40 border border-border/50 hover:border-primary/30 p-3 md:p-[60px] min-h-[400px] transition-all duration-500 hover:shadow-lg">
+        <div className="relative overflow-hidden rounded-2xl bg-[hsl(220_15%_12%)] border border-border/50 hover:border-primary/30 p-3 md:p-[60px] min-h-[400px] transition-all duration-500 hover:shadow-lg">
           <div className="flex flex-col items-center text-center h-full">
             {/* Image */}
-            <div className="relative w-full max-w-md mb-8">
-              <div className="relative overflow-hidden rounded-xl bg-muted-foreground/10 aspect-[16/10] flex items-center justify-center">
+            <div className="relative w-full max-w-[32rem] mb-8">
+              <div className="relative overflow-hidden rounded-xl aspect-[16/10] flex items-center justify-center">
                 {project.image ? (
-                  <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                  <img src={project.image} alt={project.title} className="w-[125%] h-auto object-cover" />
                 ) : (
                   <Lock className="w-12 h-12 text-muted-foreground/30" />
                 )}
