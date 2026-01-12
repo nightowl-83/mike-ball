@@ -29,7 +29,7 @@ const Skills = ({ variant = "colored" }: SkillsProps) => {
       iconColored: <Pencil className="w-6 h-6 text-white" />
     },
     { 
-      name: "Prompt Engineering", 
+      name: "AI Prompting", 
       abbreviation: "", 
       bgColor: "#7C3AED", 
       textColor: "#fff", 
