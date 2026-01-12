@@ -1,6 +1,7 @@
 import marketingHubDashboard from "@/assets/marketing-hub-dashboard.webp";
 import ruralLandMarketplace from "@/assets/land-flat-homepage.png";
-import nightOwlLogo from "@/assets/night-owl-logo-notxt.png";
+import nightOwlLogo from "@/assets/night-owl-logo.svg";
+import gamereaderPreview from "@/assets/gamereader-preview.jpg";
 
 export type LayoutVariant = "hero-accent" | "hero-centered" | "two-column" | "minimal-centered" | "locked" | "side-project" | "password-protected" | "coming-soon";
 
@@ -49,7 +50,7 @@ export const projectsData: ProjectData[] = [
     title: "Gaming News Site Redesign",
     description: "Complete redesign of a major gaming news publication for CBS Interactive, focusing on modern UI patterns and improved content discovery.",
     category: "Web Design",
-    image: "",
+    image: gamereaderPreview,
     route: "/projects/gaming-news-site",
     tags: ["Visual Design", "Content Strategy", "Responsive Design"],
     layoutVariant: "password-protected",

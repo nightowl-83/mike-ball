@@ -206,10 +206,14 @@ export const PasswordProtectedCard = ({
       >
         <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-muted/80 to-muted/40 border border-border/50 hover:border-primary/30 p-3 md:p-[60px] min-h-[400px] transition-all duration-500 hover:shadow-lg">
           <div className="flex flex-col items-center text-center h-full">
-            {/* Image Placeholder */}
+            {/* Image */}
             <div className="relative w-full max-w-md mb-8">
               <div className="relative overflow-hidden rounded-xl bg-muted-foreground/10 aspect-[16/10] flex items-center justify-center">
-                <Lock className="w-12 h-12 text-muted-foreground/30" />
+                {project.image ? (
+                  <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                ) : (
+                  <Lock className="w-12 h-12 text-muted-foreground/30" />
+                )}
               </div>
             </div>
             
@@ -227,7 +231,7 @@ export const PasswordProtectedCard = ({
               <div className="pt-4">
                 <span className="inline-flex items-center gap-2 text-sm text-primary bg-primary/10 px-4 py-2 rounded-full">
                   <Lock className="w-4 h-4" />
-                  Password Protected
+                  Under NDA
                 </span>
               </div>
             </div>
@@ -366,12 +370,17 @@ export const ComingSoonCard = ({
 export const SideProjectCard = ({
   project
 }: ProjectCardProps) => {
-  return <div className="group block">
+  return <a 
+      href="https://www.etsy.com/shop/NightOwlStudioUS" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className="group block"
+    >
       <div className="relative overflow-hidden rounded-2xl bg-card border border-border hover:border-primary/30 p-3 md:p-[60px] min-h-[300px] transition-all duration-500 hover:shadow-lg">
         <div className="flex flex-col md:flex-row items-center gap-8 h-full">
           {/* Image/Logo */}
           <div className="relative w-32 h-32 md:w-40 md:h-40 flex-shrink-0">
-            <div className="relative overflow-hidden rounded-2xl transform group-hover:scale-105 transition-transform duration-500 flex items-center justify-center h-full">
+            <div className="relative overflow-hidden rounded-2xl transform group-hover:scale-105 transition-transform duration-500 flex items-center justify-center h-full bg-primary/10 p-4">
               <img src={project.image} alt={project.title} className="w-full h-auto object-contain" />
             </div>
           </div>
@@ -392,5 +401,5 @@ export const SideProjectCard = ({
           </div>
         </div>
       </div>
-    </div>;
+    </a>;
 };
