@@ -70,7 +70,7 @@ const Skills = ({ variant = "colored" }: SkillsProps) => {
             Skills
           </h2>
           
-          <div className="grid grid-cols-3 md:grid-cols-5 gap-4 items-center justify-center max-w-fit mx-auto">
+          <div className="grid grid-cols-3 md:grid-cols-5 gap-3 md:gap-4 items-center justify-center max-w-fit mx-auto [&>*:last-child]:col-start-2 md:[&>*:last-child]:col-start-auto">
             {variant === "colored" ? (
               skills.map((skill) => (
                 <SkillIcon

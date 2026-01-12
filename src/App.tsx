@@ -10,7 +10,7 @@ import RuralLandMarketplaceProject from "./pages/projects/RuralLandMarketplacePr
 import GamingNewsSiteProject from "./pages/projects/GamingNewsSiteProject";
 import StyleGuide from "./pages/StyleGuide";
 import NotFound from "./pages/NotFound";
-import ThemeToggle from "./components/ThemeToggle";
+
 
 const queryClient = new QueryClient();
 
@@ -19,7 +19,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <ThemeToggle />
+      
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
