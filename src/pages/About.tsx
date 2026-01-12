@@ -90,7 +90,7 @@ const About = () => {
               <div className="bg-muted/30 rounded-2xl p-6 space-y-4">
                 <h3 className="font-semibold">Skills</h3>
                 <div className="flex flex-wrap gap-2">
-                  {["User Research & Testing", "UI Design", "Responsive & Mobile Design", "AI Design", "Prototyping", "Figma", "Sketch", "Adobe Creative Suite", "Motion Graphics", "Illustration", "Vibe Coding", "Prompt Engineering", "HTML/CSS"].map((skill) => (
+                  {["User Research & Testing", "UI Design", "Responsive Design", "Mobile Design", "AI Design", "Prototyping", "Figma", "Sketch", "Adobe Creative Suite", "Motion Graphics", "Illustration", "Vibe Coding", "Prompt Engineering", "HTML/CSS"].map((skill) => (
                     <span 
                       key={skill}
                       className="px-3 py-1 text-sm bg-background border border-border rounded-full"
@@ -119,10 +119,12 @@ const About = () => {
                 </div>
               </div>
               
+              {/* Hidden for now - uncomment to restore
               <Button variant="outline" className="w-full">
                 <Download className="w-4 h-4 mr-2" />
                 Download Resume
               </Button>
+              */}
             </div>
           </div>
         </div>
