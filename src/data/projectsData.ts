@@ -48,7 +48,7 @@ export const projectsData: ProjectData[] = [
   {
     id: "gaming-news-site",
     title: "Gaming News Site Redesign",
-    description: "Complete redesign of a major gaming news publication for CBS Interactive, focusing on modern UI patterns and improved content discovery.",
+    description: "Complete redesign of a major gaming news publication for CBS Interactive, featuring in-depth user research, modern UI patterns, and improved content discovery.",
     category: "Web Design",
     image: gamereaderPreview,
     route: "/projects/gaming-news-site",
