@@ -9,6 +9,7 @@ import MarketingHubProject from "./pages/projects/MarketingHubProject";
 import RuralLandMarketplaceProject from "./pages/projects/RuralLandMarketplaceProject";
 import GamingNewsSiteProject from "./pages/projects/GamingNewsSiteProject";
 import StyleGuide from "./pages/StyleGuide";
+import CardPlayground from "./pages/CardPlayground";
 import NotFound from "./pages/NotFound";
 
 
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/projects/rural-land-marketplace" element={<RuralLandMarketplaceProject />} />
           <Route path="/projects/gaming-news-site" element={<GamingNewsSiteProject />} />
           <Route path="/style-guide" element={<StyleGuide />} />
+          <Route path="/playground" element={<CardPlayground />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
