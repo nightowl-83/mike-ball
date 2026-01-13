@@ -1,6 +1,7 @@
 import { ProjectData } from "@/data/projectsData";
 import ProjectCardFooter from "./ProjectCardFooter";
 import { ArrowUpRight, Lock, Clock, Sparkles } from "lucide-react";
+import arTravelVideo from "@/assets/ar-travel-companion.webm";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -331,10 +332,17 @@ export const ComingSoonCard = ({
   return <div className="group block">
       <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-muted/60 to-muted/30 border border-border/50 p-3 md:p-[60px] min-h-[300px] transition-all duration-500">
         <div className="flex flex-col items-center text-center h-full justify-center">
-          {/* Image Placeholder */}
+          {/* Video */}
           <div className="relative w-full max-w-md mb-6">
-            <div className="relative overflow-hidden rounded-xl bg-primary/5 aspect-[16/10] flex items-center justify-center border border-primary/10">
-              <Sparkles className="w-12 h-12 text-primary/30" />
+            <div className="relative overflow-hidden rounded-xl aspect-[16/10] border border-primary/10">
+              <video 
+                src={arTravelVideo} 
+                autoPlay 
+                loop 
+                muted 
+                playsInline
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
           
