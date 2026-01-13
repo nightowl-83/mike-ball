@@ -333,7 +333,7 @@ export const ComingSoonCard = ({
       <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-muted/60 to-muted/30 border border-border/50 p-3 md:p-[60px] min-h-[300px] transition-all duration-500">
         <div className="flex flex-col items-center text-center h-full justify-center">
           {/* Video */}
-          <div className="relative w-full mb-6">
+          <div className="relative w-full max-w-3xl mb-6">
             <div className="relative overflow-hidden rounded-xl border border-primary/10">
               <video 
                 src={arTravelVideo} 
