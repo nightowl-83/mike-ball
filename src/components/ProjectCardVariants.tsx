@@ -334,14 +334,14 @@ export const ComingSoonCard = ({
         <div className="flex flex-col items-center text-center h-full justify-center">
           {/* Video */}
           <div className="relative w-full mb-6">
-            <div className="relative overflow-hidden rounded-xl aspect-[16/10] border border-primary/10">
+            <div className="relative overflow-hidden rounded-xl border border-primary/10">
               <video 
                 src={arTravelVideo} 
                 autoPlay 
                 loop 
                 muted 
                 playsInline
-                className="w-full h-full object-cover"
+                className="w-full object-contain"
               />
             </div>
           </div>
