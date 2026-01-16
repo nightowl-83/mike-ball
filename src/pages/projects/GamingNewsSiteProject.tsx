@@ -580,6 +580,236 @@ const GamingNewsSiteProject = () => {
                 </div>
               </div>
             </div>
+
+            {/* User Persona 2 - Elena */}
+            <div className="mt-12 md:mt-20">
+              <h3 className="text-xl md:text-3xl font-semibold mb-4 md:mb-12 max-w-6xl mx-auto">User Persona: The Immersionist</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6 max-w-6xl mx-auto">
+                {/* Top Left - Photo & Bio */}
+                <div className="bg-card rounded-2xl overflow-hidden shadow-sm">
+                  <div className="aspect-[4/3] bg-muted flex items-center justify-center">
+                    <div className="text-center">
+                      <span className="text-6xl">🎭</span>
+                      <p className="text-muted-foreground text-sm mt-4">Persona photo placeholder</p>
+                    </div>
+                  </div>
+                  <div className="p-8">
+                    <h3 className="text-3xl font-bold mb-2">Elena R.</h3>
+                    <p className="text-lg text-muted-foreground">34 years old, Story-Driven Gamer</p>
+                  </div>
+                </div>
+
+                {/* Top Right - User Goals */}
+                <div className="bg-card rounded-2xl p-10 shadow-sm flex flex-col justify-center">
+                  <h3 className="text-3xl font-bold mb-8">User Goals</h3>
+                  <div className="space-y-6 mb-8">
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                        <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <span className="text-xl">Complete spoiler protection</span>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                        <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <span className="text-xl">Curated narrative game coverage</span>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                        <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <span className="text-xl">Premium reading experience</span>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                        <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <span className="text-xl">Editorial-quality content</span>
+                    </div>
+                  </div>
+                  <p className="text-base text-muted-foreground leading-relaxed">
+                    Elena values narrative experiences above all and needs a platform that respects her desire to discover stories organically.
+                  </p>
+                </div>
+
+                {/* Bottom Left - Personality */}
+                <div className="bg-card rounded-2xl p-8 shadow-sm">
+                  <h3 className="text-2xl font-bold mb-8">Personality</h3>
+                  <div className="space-y-6">
+                    <div>
+                      <div className="flex justify-between text-sm mb-2">
+                        <span>Speed-Focused</span>
+                        <span>Story-Focused</span>
+                      </div>
+                      <div className="h-3 bg-muted rounded-full overflow-hidden relative">
+                        <div className="h-full bg-primary rounded-full absolute left-0 top-0" style={{
+                          width: discoveryStatsAnim.isVisible ? '95%' : '0%',
+                          transition: 'width 2.5s cubic-bezier(0.4, 0, 0.2, 1)',
+                          transitionDelay: '0.6s'
+                        }}></div>
+                      </div>
+                    </div>
+                    <div>
+                      <div className="flex justify-between text-sm mb-2">
+                        <span>Casual</span>
+                        <span>Dedicated</span>
+                      </div>
+                      <div className="h-3 bg-muted rounded-full overflow-hidden relative">
+                        <div className="h-full bg-primary rounded-full absolute left-0 top-0" style={{
+                          width: discoveryStatsAnim.isVisible ? '80%' : '0%',
+                          transition: 'width 2.5s cubic-bezier(0.4, 0, 0.2, 1)',
+                          transitionDelay: '0.8s'
+                        }}></div>
+                      </div>
+                    </div>
+                    <div>
+                      <div className="flex justify-between text-sm mb-2">
+                        <span>Skimmer</span>
+                        <span>Deep Reader</span>
+                      </div>
+                      <div className="h-3 bg-muted rounded-full overflow-hidden relative">
+                        <div className="h-full bg-primary rounded-full absolute left-0 top-0" style={{
+                          width: discoveryStatsAnim.isVisible ? '88%' : '0%',
+                          transition: 'width 2.5s cubic-bezier(0.4, 0, 0.2, 1)',
+                          transitionDelay: '1s'
+                        }}></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bottom Right - Quote */}
+                <div className="bg-card rounded-2xl p-8 shadow-sm flex items-center">
+                  <p className="text-xl text-muted-foreground leading-relaxed italic">
+                    "A headline spoiled the ending of a game I'd been playing for 40 hours. I literally stopped reading gaming news after that."
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* User Persona 3 - Kenji */}
+            <div className="mt-12 md:mt-20">
+              <h3 className="text-xl md:text-3xl font-semibold mb-4 md:mb-12 max-w-6xl mx-auto">User Persona: The Enthusiast</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6 max-w-6xl mx-auto">
+                {/* Top Left - Photo & Bio */}
+                <div className="bg-card rounded-2xl overflow-hidden shadow-sm">
+                  <div className="aspect-[4/3] bg-muted flex items-center justify-center">
+                    <div className="text-center">
+                      <span className="text-6xl">🎮</span>
+                      <p className="text-muted-foreground text-sm mt-4">Persona photo placeholder</p>
+                    </div>
+                  </div>
+                  <div className="p-8">
+                    <h3 className="text-3xl font-bold mb-2">Kenji M.</h3>
+                    <p className="text-lg text-muted-foreground">22 years old, Gaming Enthusiast</p>
+                  </div>
+                </div>
+
+                {/* Top Right - User Goals */}
+                <div className="bg-card rounded-2xl p-10 shadow-sm flex flex-col justify-center">
+                  <h3 className="text-3xl font-bold mb-8">User Goals</h3>
+                  <div className="space-y-6 mb-8">
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                        <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <span className="text-xl">Second-screen guide support</span>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                        <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <span className="text-xl">Screen stays awake while gaming</span>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                        <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <span className="text-xl">Quick daily gaming digest</span>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                        <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <span className="text-xl">Ad-free reading experience</span>
+                    </div>
+                  </div>
+                  <p className="text-base text-muted-foreground leading-relaxed">
+                    Kenji uses his phone as a companion device while gaming and needs features that accommodate multitasking.
+                  </p>
+                </div>
+
+                {/* Bottom Left - Personality */}
+                <div className="bg-card rounded-2xl p-8 shadow-sm">
+                  <h3 className="text-2xl font-bold mb-8">Personality</h3>
+                  <div className="space-y-6">
+                    <div>
+                      <div className="flex justify-between text-sm mb-2">
+                        <span>Single-Tasker</span>
+                        <span>Multi-Tasker</span>
+                      </div>
+                      <div className="h-3 bg-muted rounded-full overflow-hidden relative">
+                        <div className="h-full bg-primary rounded-full absolute left-0 top-0" style={{
+                          width: discoveryStatsAnim.isVisible ? '92%' : '0%',
+                          transition: 'width 2.5s cubic-bezier(0.4, 0, 0.2, 1)',
+                          transitionDelay: '1.2s'
+                        }}></div>
+                      </div>
+                    </div>
+                    <div>
+                      <div className="flex justify-between text-sm mb-2">
+                        <span>Weekend Gamer</span>
+                        <span>Daily Gamer</span>
+                      </div>
+                      <div className="h-3 bg-muted rounded-full overflow-hidden relative">
+                        <div className="h-full bg-primary rounded-full absolute left-0 top-0" style={{
+                          width: discoveryStatsAnim.isVisible ? '85%' : '0%',
+                          transition: 'width 2.5s cubic-bezier(0.4, 0, 0.2, 1)',
+                          transitionDelay: '1.4s'
+                        }}></div>
+                      </div>
+                    </div>
+                    <div>
+                      <div className="flex justify-between text-sm mb-2">
+                        <span>Desktop</span>
+                        <span>Mobile-First</span>
+                      </div>
+                      <div className="h-3 bg-muted rounded-full overflow-hidden relative">
+                        <div className="h-full bg-primary rounded-full absolute left-0 top-0" style={{
+                          width: discoveryStatsAnim.isVisible ? '90%' : '0%',
+                          transition: 'width 2.5s cubic-bezier(0.4, 0, 0.2, 1)',
+                          transitionDelay: '1.6s'
+                        }}></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bottom Right - Quote */}
+                <div className="bg-card rounded-2xl p-8 shadow-sm flex items-center">
+                  <p className="text-xl text-muted-foreground leading-relaxed italic">
+                    "I use guides while playing, but my phone screen keeps turning off. Why isn't there a simple way to keep it on?"
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
