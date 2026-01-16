@@ -43,6 +43,69 @@ const GamingNewsSiteProject = () => {
   const deliveryAnim = useScrollAnimation();
   const outcomesAnim = useScrollAnimation();
 
+  // Persona data
+  const personas = [
+    {
+      name: "The Optimizer",
+      character: "Marcus",
+      focus: "Competitive efficiency and Meta.",
+      wants: "Instant access to patch notes, server status, and \"Just the Facts\" summaries. Hates scrolling through fluff.",
+    },
+    {
+      name: "The Immersionist",
+      character: "Elena",
+      focus: "Narrative and Discovery.",
+      wants: "Deep-dive guides and walkthroughs, but requires strict spoiler protection and a \"Second Screen\" reading experience.",
+    },
+    {
+      name: "The Enthusiast",
+      character: "Kenji",
+      focus: "Industry Culture and Business.",
+      wants: "A curated \"Daily Brief\" of top stories to read during a commute. Values a clean, magazine-style layout over data density.",
+    },
+  ];
+
+  // Color system data
+  const colorSystem = [
+    {
+      name: "Deep Charcoal",
+      hex: "#121217",
+      description: "A softer alternative to pure black to reduce OLED smear and contrast vibration.",
+    },
+    {
+      name: "Nordic Steel",
+      hex: "#8B9AAD",
+      description: "Crisp, slate-blue neutrals for maximum legibility.",
+    },
+    {
+      name: "Industrial Orange",
+      hex: "#FF6B35",
+      description: "A high-visibility accent used strictly for utility actions and tools.",
+    },
+  ];
+
+  // Features data
+  const features = [
+    {
+      number: "01",
+      title: "The Spoiler Curtain",
+      caption: "Narrative Protection",
+      description: "A global \"Active Playing\" setting automatically detects and blurs images or headlines for specific titles, allowing users to browse news without fear of ruining plot twists.",
+    },
+    {
+      number: "02",
+      title: "The \"Caffeine\" Toggle",
+      caption: "Native Second-Screen Support",
+      description: "A \"Wake Lock\" utility integrated directly into the reading view. This keeps the phone screen active while users play on their TV.",
+    },
+    {
+      number: "03",
+      title: "Progressive Accordions",
+      caption: "Fluff-Free Reading",
+      description: "Long-form guides are broken into collapsible steps. This prevents \"scrolling fatigue\" and ensures players don't accidentally read solutions for puzzles they haven't reached yet.",
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       {/* Unified Sticky Header */}
@@ -57,7 +120,7 @@ const GamingNewsSiteProject = () => {
       {/* Hero Section */}
       <section 
         ref={heroAnim.ref} 
-        className={`relative min-h-[70vh] w-full overflow-hidden border-b border-border transition-all duration-700 ${heroAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+        className={`relative min-h-[85vh] w-full overflow-hidden border-b border-border transition-all duration-700 ${heroAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
       >
         <div ref={heroRef} className="absolute top-0 left-0 w-full h-1" />
         
@@ -72,52 +135,61 @@ const GamingNewsSiteProject = () => {
           </Link>
         </div>
 
-        <div className="container mx-auto max-w-[1440px] px-6 md:px-12 py-24 md:py-32">
-          <div className="max-w-3xl mx-auto text-center space-y-6">
-            <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">
-              Web Design
-            </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">
-              Gaming News Site Redesign
+        <div className="container mx-auto max-w-[1440px] px-6 md:px-12 py-32 md:py-40 flex flex-col items-center justify-center min-h-[85vh]">
+          <div className="max-w-4xl mx-auto text-center space-y-8">
+            {/* Main Headline */}
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-foreground tracking-tight">
+              Signal, Not Noise.
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground">
-              Complete redesign of a major gaming news publication for CBS Interactive, 
-              focusing on modern UI patterns and improved content discovery.
+            
+            {/* Subhead */}
+            <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              A utility-first mobile companion that filters clickbait, protects narrative spoilers, and respects the gamer's time.
             </p>
-            <div className="flex flex-wrap justify-center gap-6 pt-4">
-              <div>
-                <span className="text-sm text-muted-foreground">Role</span>
-                <p className="font-semibold">Visual Designer</p>
-              </div>
-              <div>
-                <span className="text-sm text-muted-foreground">Company</span>
-                <p className="font-semibold">CBS Interactive</p>
-              </div>
-              <div>
-                <span className="text-sm text-muted-foreground">Timeline</span>
-                <p className="font-semibold">4 months</p>
-              </div>
+            
+            {/* Tags */}
+            <div className="flex flex-wrap justify-center gap-3 pt-4">
+              <span className="px-4 py-2 rounded-full bg-muted text-muted-foreground text-sm font-medium">
+                Product Strategy
+              </span>
+              <span className="px-4 py-2 rounded-full bg-muted text-muted-foreground text-sm font-medium">
+                UX/UI Design
+              </span>
+              <span className="px-4 py-2 rounded-full bg-muted text-muted-foreground text-sm font-medium">
+                6 months
+              </span>
+              <span className="px-4 py-2 rounded-full bg-muted text-muted-foreground text-sm font-medium">
+                User Research
+              </span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Background Section */}
+      {/* Background Section - Two Column */}
       <section 
         ref={overviewAnim.ref} 
-        className={`py-16 md:py-24 transition-all duration-700 ${overviewAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+        className={`py-20 md:py-32 transition-all duration-700 ${overviewAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
       >
         <div ref={overviewRef} className="absolute top-0 left-0 w-full h-1" />
         <div className="container mx-auto max-w-[1440px] px-6 md:px-12">
-          <div className="max-w-3xl">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Background</h2>
-            <p className="text-lg text-muted-foreground leading-relaxed mb-4">
-              This section will contain details about the project background, challenges, 
-              and the initial discovery phase.
-            </p>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Content coming soon...
-            </p>
+          <div className="grid md:grid-cols-2 gap-12 md:gap-20">
+            {/* Left - Title */}
+            <div>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+                The Problem
+              </h2>
+              <p className="text-xl md:text-2xl text-primary font-medium">
+                The "Firehose" Effect
+              </p>
+            </div>
+            
+            {/* Right - Content */}
+            <div>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Mobile gaming journalism is currently a hostile user experience. Players are bombarded with aggressive ads, auto-play videos, and irrelevant content. Worse, headlines often contain spoilers that ruin the narrative experience before the game is even played. We needed to pivot from "content consumption" to "user utility."
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -125,16 +197,64 @@ const GamingNewsSiteProject = () => {
       {/* Process Section */}
       <section 
         ref={processAnim.ref} 
-        className={`py-16 md:py-24 bg-muted/30 transition-all duration-700 ${processAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+        className={`py-20 md:py-32 bg-muted/30 transition-all duration-700 ${processAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
       >
         <div ref={processRef} className="absolute top-0 left-0 w-full h-1" />
         <div className="container mx-auto max-w-[1440px] px-6 md:px-12">
-          <div className="max-w-3xl">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Process</h2>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Details about the design process, research methodology, and iterations 
-              will be added here.
+          {/* Strategy Intro - Two Column */}
+          <div className="grid md:grid-cols-2 gap-12 md:gap-20 mb-20 md:mb-32">
+            <div>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+                The Strategy
+              </h2>
+              <p className="text-xl md:text-2xl text-primary font-medium">
+                Utility Over Impressions
+              </p>
+            </div>
+            <div>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                We moved away from a generic news feed to a "Game Hub" architecture. By onboarding users based on their behavior, we tailored the interface to solve specific friction points rather than maximizing ad views.
+              </p>
+            </div>
+          </div>
+
+          {/* Personas Section */}
+          <div className="mb-8">
+            <h3 className="text-xl md:text-2xl font-semibold text-foreground mb-2">
+              The Personas & Wants
+            </h3>
+            <p className="text-muted-foreground mb-12">
+              We designed for three distinct behaviors to ensure the UI could adapt to conflicting needs:
             </p>
+          </div>
+
+          {/* Persona Cards - 3 Column Grid */}
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+            {personas.map((persona, index) => (
+              <div 
+                key={index}
+                className="bg-card border border-border rounded-2xl p-6 md:p-8 space-y-4"
+              >
+                <div>
+                  <h4 className="text-lg md:text-xl font-bold text-foreground">
+                    {persona.name}
+                  </h4>
+                  <p className="text-primary font-medium">
+                    ({persona.character})
+                  </p>
+                </div>
+                <div className="space-y-3">
+                  <div>
+                    <span className="text-sm text-muted-foreground uppercase tracking-wide">Focus</span>
+                    <p className="text-foreground">{persona.focus}</p>
+                  </div>
+                  <div>
+                    <span className="text-sm text-muted-foreground uppercase tracking-wide">Wants</span>
+                    <p className="text-foreground">{persona.wants}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -142,16 +262,62 @@ const GamingNewsSiteProject = () => {
       {/* Design Section */}
       <section 
         ref={designAnim.ref} 
-        className={`py-16 md:py-24 transition-all duration-700 ${designAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+        className={`py-20 md:py-32 transition-all duration-700 ${designAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
       >
         <div ref={designRef} className="absolute top-0 left-0 w-full h-1" />
         <div className="container mx-auto max-w-[1440px] px-6 md:px-12">
-          <div className="max-w-3xl">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Design</h2>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Visual design explorations, wireframes, and high-fidelity mockups 
-              will be showcased in this section.
-            </p>
+          {/* Philosophy Intro - Two Column */}
+          <div className="grid md:grid-cols-2 gap-12 md:gap-20 mb-20 md:mb-32">
+            <div>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+                Visual Language
+              </h2>
+              <p className="text-xl md:text-2xl text-primary font-medium">
+                "Digital Zen"
+              </p>
+            </div>
+            <div>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                To reduce eye strain during late-night gaming sessions, we abandoned the industry-standard "Aggressive Gamer Red" for a premium, editorial dark mode.
+              </p>
+            </div>
+          </div>
+
+          {/* Color System - The System */}
+          <div className="mb-8">
+            <h3 className="text-xl md:text-2xl font-semibold text-foreground mb-8">
+              The System
+            </h3>
+          </div>
+
+          {/* Color Swatches - 3 Column Grid */}
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+            {colorSystem.map((color, index) => (
+              <div 
+                key={index}
+                className="space-y-4"
+              >
+                {/* Color Swatch */}
+                <div 
+                  className="w-full aspect-square rounded-2xl border border-border"
+                  style={{ backgroundColor: color.hex }}
+                />
+                {/* Color Info */}
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <h4 className="text-lg font-semibold text-foreground">
+                      {color.name}
+                    </h4>
+                    <code className="text-sm text-muted-foreground font-mono">
+                      {color.hex}
+                    </code>
+                  </div>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    {color.description}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -159,16 +325,44 @@ const GamingNewsSiteProject = () => {
       {/* Delivery Section */}
       <section 
         ref={deliveryAnim.ref} 
-        className={`py-16 md:py-24 bg-muted/30 transition-all duration-700 ${deliveryAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+        className={`py-20 md:py-32 bg-muted/30 transition-all duration-700 ${deliveryAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
       >
         <div ref={deliveryRef} className="absolute top-0 left-0 w-full h-1" />
         <div className="container mx-auto max-w-[1440px] px-6 md:px-12">
-          <div className="max-w-3xl">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Delivery</h2>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Final deliverables, design handoff, and implementation details 
-              will be documented here.
-            </p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-12 md:mb-16">
+            Key Features
+          </h2>
+
+          {/* Feature Cards - Stacked */}
+          <div className="space-y-8 md:space-y-12">
+            {features.map((feature, index) => (
+              <div 
+                key={index}
+                className="bg-card border border-border rounded-2xl p-8 md:p-12"
+              >
+                <div className="grid md:grid-cols-[auto_1fr] gap-6 md:gap-12">
+                  {/* Feature Number */}
+                  <div className="text-5xl md:text-6xl font-bold text-primary/20">
+                    /{feature.number}
+                  </div>
+                  
+                  {/* Feature Content */}
+                  <div className="space-y-4">
+                    <div>
+                      <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2">
+                        {feature.title}
+                      </h3>
+                      <p className="text-primary font-medium italic">
+                        {feature.caption}
+                      </p>
+                    </div>
+                    <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
+                      {feature.description}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -176,14 +370,16 @@ const GamingNewsSiteProject = () => {
       {/* Outcomes Section */}
       <section 
         ref={outcomesAnim.ref} 
-        className={`py-16 md:py-24 transition-all duration-700 ${outcomesAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+        className={`py-20 md:py-32 transition-all duration-700 ${outcomesAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
       >
         <div ref={outcomesRef} className="absolute top-0 left-0 w-full h-1" />
         <div className="container mx-auto max-w-[1440px] px-6 md:px-12">
-          <div className="max-w-3xl">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Outcomes</h2>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Project results, metrics, and learnings will be shared in this section.
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-8">
+              The Takeaway
+            </h2>
+            <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
+              Transforms the gaming news experience from a cluttered distraction into a precision tool, proving that respecting user agency is the ultimate engagement strategy. By solving for "Utility" (what the user is doing while reading), we unlocked features that traditional news sites miss entirely.
             </p>
           </div>
         </div>
