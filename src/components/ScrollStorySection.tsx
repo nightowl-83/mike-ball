@@ -1,0 +1,195 @@
+import { useRef } from 'react';
+import { useScrollProgress } from '@/hooks/useScrollProgress';
+import { cn } from '@/lib/utils';
+
+export interface StoryItem {
+  text: string;
+  image: string;
+  imageAlt: string;
+}
+
+interface ScrollStorySectionProps {
+  /** Array of story items with text and image */
+  stories: StoryItem[];
+  /** Swap image/text column positions */
+  reversed?: boolean;
+  /** Optional section title */
+  sectionTitle?: string;
+  /** Optional section number (e.g., "/04") */
+  sectionNumber?: string;
+  /** Show progress indicator */
+  showProgressIndicator?: boolean;
+  /** Progress indicator style */
+  progressStyle?: 'dots' | 'line';
+  /** Additional class names */
+  className?: string;
+}
+
+/**
+ * ScrollStorySection - A scroll-driven storytelling component
+ * 
+ * Layout name: "story-reveal"
+ * 
+ * Usage:
+ * - Default: <ScrollStorySection stories={[...]} />
+ * - Reversed: <ScrollStorySection stories={[...]} reversed />
+ * - With header: <ScrollStorySection stories={[...]} sectionTitle="Features" sectionNumber="/04" />
+ * - Line progress: <ScrollStorySection stories={[...]} progressStyle="line" />
+ */
+export const ScrollStorySection = ({
+  stories,
+  reversed = false,
+  sectionTitle,
+  sectionNumber,
+  showProgressIndicator = true,
+  progressStyle = 'dots',
+  className,
+}: ScrollStorySectionProps) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  const { activeSlide, slideProgress, isInView } = useScrollProgress(containerRef, {
+    slideCount: stories.length,
+    offset: 0,
+  });
+
+  // Calculate height based on number of stories (100vh per story)
+  const containerHeight = `${stories.length * 100}vh`;
+
+  return (
+    <section
+      ref={containerRef}
+      className={cn('relative', className)}
+      style={{ height: containerHeight }}
+    >
+      {/* Sticky container that holds both columns */}
+      <div className="sticky top-0 h-screen overflow-hidden">
+        {/* Optional Section Header */}
+        {(sectionTitle || sectionNumber) && (
+          <div className="absolute top-0 left-0 right-0 z-10 pt-6 md:pt-10">
+            <div className="container mx-auto max-w-[1440px]">
+              <div className="flex items-baseline justify-between">
+                {sectionTitle && (
+                  <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground">
+                    {sectionTitle}
+                  </h2>
+                )}
+                {sectionNumber && (
+                  <span className="text-xl md:text-4xl font-bold font-mono opacity-20">
+                    {sectionNumber}
+                  </span>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Main Two-Column Layout */}
+        <div className={cn(
+          'h-full flex flex-col md:flex-row',
+          reversed ? 'md:flex-row-reverse' : ''
+        )}>
+          {/* Text Column */}
+          <div className="w-full md:w-1/2 h-1/2 md:h-full flex flex-col justify-center px-6 md:px-12 lg:px-20 relative">
+            {/* Progress Indicator */}
+            {showProgressIndicator && (
+              <div className={cn(
+                'absolute left-6 md:left-12 lg:left-20',
+                sectionTitle ? 'top-24 md:top-32' : 'top-8 md:top-16'
+              )}>
+                {progressStyle === 'dots' ? (
+                  <div className="flex flex-col gap-2">
+                    {stories.map((_, index) => (
+                      <div
+                        key={index}
+                        className={cn(
+                          'w-2 h-2 rounded-full transition-all duration-300',
+                          index === activeSlide
+                            ? 'bg-primary scale-125'
+                            : index < activeSlide
+                            ? 'bg-primary/50'
+                            : 'bg-muted-foreground/30'
+                        )}
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <div className="w-1 h-24 bg-muted-foreground/20 rounded-full overflow-hidden">
+                    <div
+                      className="w-full bg-primary rounded-full transition-all duration-300"
+                      style={{
+                        height: `${((activeSlide + slideProgress) / stories.length) * 100}%`,
+                      }}
+                    />
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Text Items */}
+            <div className="relative max-w-xl ml-8 md:ml-12">
+              {stories.map((story, index) => {
+                const isActive = index === activeSlide;
+                const isPast = index < activeSlide;
+                
+                return (
+                  <div
+                    key={index}
+                    className={cn(
+                      'absolute inset-0 flex items-center transition-all duration-500',
+                      isActive ? 'opacity-100 translate-y-0' : 'opacity-0',
+                      isPast ? '-translate-y-8' : 'translate-y-8'
+                    )}
+                    style={{ pointerEvents: isActive ? 'auto' : 'none' }}
+                  >
+                    <p
+                      className={cn(
+                        'text-lg md:text-xl lg:text-2xl leading-relaxed transition-colors duration-500',
+                        isActive ? 'text-foreground' : 'text-muted-foreground'
+                      )}
+                    >
+                      {story.text}
+                    </p>
+                  </div>
+                );
+              })}
+              {/* Spacer for layout */}
+              <p className="text-lg md:text-xl lg:text-2xl leading-relaxed opacity-0 pointer-events-none">
+                {stories[0]?.text}
+              </p>
+            </div>
+          </div>
+
+          {/* Image Column */}
+          <div className="w-full md:w-1/2 h-1/2 md:h-full relative bg-muted/30 overflow-hidden">
+            {stories.map((story, index) => {
+              const isActive = index === activeSlide;
+              const scale = isActive ? 1 : 0.98;
+              
+              return (
+                <div
+                  key={index}
+                  className={cn(
+                    'absolute inset-0 transition-all duration-700 ease-out',
+                    isActive ? 'opacity-100 z-10' : 'opacity-0 z-0'
+                  )}
+                  style={{
+                    transform: `scale(${scale})`,
+                  }}
+                >
+                  <img
+                    src={story.image}
+                    alt={story.imageAlt}
+                    className="w-full h-full object-cover object-center"
+                    loading="lazy"
+                  />
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default ScrollStorySection;

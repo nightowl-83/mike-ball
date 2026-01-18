@@ -6,7 +6,18 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useProjectNavigation } from "@/hooks/useProjectNavigation";
 import { StickyNavHeader } from "@/components/StickyNavHeader";
 import ProjectSectionNav from "@/components/ProjectSectionNav";
+import { ScrollStorySection } from "@/components/ScrollStorySection";
 
+// Image imports
+import gnsHeroMockup from "@/assets/gns-hero-mockup.webp";
+import gnsProductShot1 from "@/assets/gns-product-shot-1.webp";
+import gnsProductShot2 from "@/assets/gns-product-shot-2.webp";
+import gnsFeatureSpoiler from "@/assets/gns-feature-spoiler.webp";
+import gnsFeatureCaffeine from "@/assets/gns-feature-caffeine.webp";
+import gnsFeatureAccordion from "@/assets/gns-feature-accordion.webp";
+import gnsPersonaMarcus from "@/assets/gns-persona-marcus.webp";
+import gnsPersonaElena from "@/assets/gns-persona-elena.webp";
+import gnsPersonaKenji from "@/assets/gns-persona-kenji.webp";
 const GamingNewsSiteProject = () => {
   // Check if user has access
   const hasAccess = sessionStorage.getItem("project-access-gaming-news-site") === "true";
@@ -136,16 +147,13 @@ const GamingNewsSiteProject = () => {
             </div>
           </div>
 
-          {/* Right: Image Placeholder */}
+          {/* Right: Hero Image */}
           <div className="w-full md:w-1/2 h-64 md:h-full relative bg-muted/50">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center space-y-4 p-8">
-                <div className="w-24 h-24 mx-auto rounded-2xl bg-primary/10 flex items-center justify-center">
-                  <span className="text-4xl">🎮</span>
-                </div>
-                <p className="text-muted-foreground text-sm">Hero mockup coming soon</p>
-              </div>
-            </div>
+            <img 
+              src={gnsHeroMockup} 
+              alt="Gaming News Site Game Hub interface mockup" 
+              className="w-full h-full object-cover object-center"
+            />
           </div>
         </div>
       </section>
@@ -201,11 +209,19 @@ const GamingNewsSiteProject = () => {
         <section ref={productShotsAnim.ref} className={`py-24 transition-all duration-700 ${productShotsAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="container mx-auto max-w-[1440px]">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-card bg-muted/30 border border-border flex items-center justify-center">
-                <p className="text-muted-foreground text-sm">Product shot placeholder</p>
+              <div className="w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-card bg-muted/30 border border-border">
+                <img 
+                  src={gnsProductShot1} 
+                  alt="Gaming news feed with spoiler warnings and content filters" 
+                  className="w-full h-full object-cover"
+                />
               </div>
-              <div className="w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-card bg-muted/30 border border-border flex items-center justify-center">
-                <p className="text-muted-foreground text-sm">Product shot placeholder</p>
+              <div className="w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-card bg-muted/30 border border-border">
+                <img 
+                  src={gnsProductShot2} 
+                  alt="Article reading view with Caffeine Mode active" 
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
           </div>
@@ -1008,7 +1024,7 @@ const GamingNewsSiteProject = () => {
               <h2 className="text-3xl md:text-5xl lg:text-7xl xl:text-8xl font-bold flex-1">Delivery</h2>
               <span className="text-xl md:text-6xl lg:text-7xl font-bold font-mono opacity-20 text-right shrink-0">/04</span>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-16 mb-16">
               {/* Left Column */}
               <div className="space-y-4 md:space-y-12">
                 <p className="text-xl text-muted-foreground">
@@ -1034,15 +1050,44 @@ const GamingNewsSiteProject = () => {
                   <p>
                     <strong className="text-primary">Daily Brief Mode:</strong> A curated morning digest that surfaces the top 5 stories based on user preferences—readable in under 5 minutes during a commute.
                   </p>
-                  
-                  <div className="p-6 rounded-xl bg-card/50 border-2 border-primary/20">
-                    <h3 className="text-xl font-bold text-foreground mb-4">Deliverables</h3>
-                    <p>Complete design system with 40+ components optimized for dark mode.</p>
-                    <p className="mt-2">High-fidelity prototypes for iOS and Android with gesture interactions.</p>
-                    <p className="mt-2">User testing sessions validating spoiler protection and guide usability.</p>
-                  </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Feature Showcase - ScrollStorySection */}
+        <ScrollStorySection
+          stories={[
+            {
+              text: "The Spoiler Curtain protects users from unwanted story reveals. Using intelligent content filtering, it detects and hides plot-sensitive information until you're ready to see it. A global 'Active Playing' setting lets users mark games they're currently experiencing.",
+              image: gnsFeatureSpoiler,
+              imageAlt: "Spoiler Curtain feature interface showing blurred content with reveal button"
+            },
+            {
+              text: "The Caffeine Toggle enables second-screen support for late-night gaming sessions. With a single tap, the interface keeps the screen active while users reference guides on their TV—no more fumbling to unlock your phone mid-boss fight.",
+              image: gnsFeatureCaffeine,
+              imageAlt: "Caffeine Toggle dark mode feature with Keep Screen On active"
+            },
+            {
+              text: "Progressive Accordions eliminate content bloat for fluff-free reading. Long-form guides are broken into collapsible steps, preventing scrolling fatigue and ensuring players don't accidentally read solutions for puzzles they haven't reached yet.",
+              image: gnsFeatureAccordion,
+              imageAlt: "Progressive Accordion content feature showing expandable guide sections"
+            }
+          ]}
+          sectionTitle="Key Features"
+          sectionNumber="/04"
+          progressStyle="dots"
+        />
+
+        {/* Deliverables Box */}
+        <section className="py-10 md:py-16 bg-card/30">
+          <div className="container mx-auto max-w-[1440px]">
+            <div className="p-6 md:p-8 rounded-xl bg-card/50 border-2 border-primary/20 max-w-2xl">
+              <h3 className="text-xl font-bold text-foreground mb-4">Deliverables</h3>
+              <p className="text-muted-foreground">Complete design system with 40+ components optimized for dark mode.</p>
+              <p className="text-muted-foreground mt-2">High-fidelity prototypes for iOS and Android with gesture interactions.</p>
+              <p className="text-muted-foreground mt-2">User testing sessions validating spoiler protection and guide usability.</p>
             </div>
           </div>
         </section>
