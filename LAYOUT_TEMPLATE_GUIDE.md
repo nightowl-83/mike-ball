@@ -252,6 +252,77 @@ const contentAnim = useScrollAnimation();
 
 ---
 
+## Scroll Story Section (story-reveal)
+
+**Component:** `ScrollStorySection`
+**Command:** "Create a scroll story section with [N] stories"
+
+**Use case:** Narrative-driven feature showcases, step-by-step explanations, scroll-driven storytelling
+
+**Structure:**
+- Two-column layout with sticky positioning
+- Text segments fade as user scrolls
+- Images crossfade with subtle scale transition
+- Progress indicator (dots or line) showing current position
+- Dynamic height based on story count (each story = 100vh scroll space)
+- Mobile responsive (stacks vertically on smaller screens)
+
+**Props:**
+- `stories` - Array of `{ text, image, imageAlt }` objects
+- `reversed` - Boolean to swap image/text column positions (default: false)
+- `sectionTitle` - Optional header title
+- `sectionNumber` - Optional section number (e.g., "/04")
+- `showProgressIndicator` - Show dots/line progress (default: true)
+- `progressStyle` - `'dots'` or `'line'` (default: 'dots')
+
+**Usage Examples:**
+```tsx
+// Default usage
+<ScrollStorySection stories={[...]} />
+
+// Reversed (image on left)
+<ScrollStorySection stories={[...]} reversed />
+
+// With header
+<ScrollStorySection 
+  stories={[...]} 
+  sectionTitle="Key Features" 
+  sectionNumber="/04" 
+/>
+
+// Line progress style
+<ScrollStorySection stories={[...]} progressStyle="line" />
+```
+
+**Example Implementation:**
+```tsx
+import { ScrollStorySection } from "@/components/ScrollStorySection";
+import featureImage1 from "@/assets/feature-1.webp";
+import featureImage2 from "@/assets/feature-2.webp";
+
+const features = [
+  {
+    text: "First feature description with compelling narrative.",
+    image: featureImage1,
+    imageAlt: "Feature 1 interface mockup"
+  },
+  {
+    text: "Second feature description with user benefit.",
+    image: featureImage2,
+    imageAlt: "Feature 2 interface mockup"
+  }
+];
+
+<ScrollStorySection
+  stories={features}
+  sectionTitle="Product Features"
+  sectionNumber="/03"
+  progressStyle="dots"
+/>
+```
+
+---
+
 ## Plain English Examples
 
 **Example 1:** "Create a standard two-column section called 'Research' with section number /02 and a light background"
@@ -261,3 +332,5 @@ const contentAnim = useScrollAnimation();
 **Example 3:** "Create a metrics section with 4 cards showing engagement stats"
 
 **Example 4:** "Add a bento grid gallery with 7 images after the Define section"
+
+**Example 5:** "Create a scroll story section with 3 features showing the product capabilities"
