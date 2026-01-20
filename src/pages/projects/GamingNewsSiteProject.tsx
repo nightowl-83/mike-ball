@@ -16,9 +16,9 @@ import gnsProductShot2 from "@/assets/gns-product-shot-2.webp";
 import gnsFeatureSpoiler from "@/assets/gns-feature-spoiler.webp";
 import gnsFeatureCaffeine from "@/assets/gns-feature-caffeine.webp";
 import gnsFeatureAccordion from "@/assets/gns-feature-accordion.webp";
-import gnsPersonaMarcus from "@/assets/gns-persona-marcus.webp";
-import gnsPersonaElena from "@/assets/gns-persona-elena.webp";
-import gnsPersonaKenji from "@/assets/gns-persona-kenji.webp";
+import gnsPersonaMarcus from "@/assets/gns-persona-marcus.png";
+import gnsPersonaElena from "@/assets/gns-persona-elena.png";
+import gnsPersonaKenji from "@/assets/gns-persona-kenji.png";
 const GamingNewsSiteProject = () => {
   // Check if user has access
   const hasAccess = sessionStorage.getItem("project-access-gaming-news-site") === "true";
@@ -512,15 +512,15 @@ const GamingNewsSiteProject = () => {
                   quote="I don't have time to scroll through clickbait. Just tell me if the patch changed my main character and I'm good."
                 />
 
-                {/* Elena - The Immersionist */}
+                {/* Elena - The Enthusiast */}
                 <GamePersonaCard
                   name="Elena R."
-                  classTitle="The Immersionist"
+                  classTitle="The Enthusiast"
                   age={34}
                   playerType="Story-Driven Gamer"
                   avatar={gnsPersonaElena}
                   level={87}
-                  classIcon="immersionist"
+                  classIcon="enthusiast"
                   isVisible={personaAnim.isVisible}
                   stats={[
                     { subject: 'Story Focus', value: 95, fullMark: 100 },
