@@ -60,15 +60,10 @@ export const GamePersonaCard = ({
       
       {/* Header */}
       <div className="relative flex items-center justify-between p-4 border-b border-border/50 bg-muted/30">
-        {/* Left: Class Icon + Name */}
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center border border-primary/30">
-            <IconComponent className="w-5 h-5 text-primary" />
-          </div>
-          <div>
-            <h3 className="text-lg md:text-xl font-bold text-foreground">{name}</h3>
-            <p className="text-sm text-primary font-medium tracking-wide uppercase">{classTitle}</p>
-          </div>
+        {/* Left: Name */}
+        <div>
+          <h3 className="text-lg md:text-xl font-bold text-foreground">{name}</h3>
+          <p className="text-sm text-muted-foreground font-medium tracking-wide uppercase">{classTitle}</p>
         </div>
         
         {/* Right: Level Badge */}
@@ -82,14 +77,13 @@ export const GamePersonaCard = ({
       <div className="flex flex-col lg:flex-row gap-4 p-4">
         {/* Left: Avatar with grayscale transition */}
         <div className="lg:w-2/5 flex-shrink-0">
-          <div className="relative aspect-[3/4] rounded-xl overflow-hidden bg-muted border border-border/50">
+          <div className="relative aspect-[3/5] rounded-xl overflow-hidden bg-muted border border-border/50">
             <img 
               src={avatar} 
               alt={`${name} persona`} 
+              style={{ filter: isVisible ? 'grayscale(0%)' : 'grayscale(100%)' }}
               className={cn(
-                "w-full h-full object-cover transition-all duration-1000 ease-out",
-                "md:grayscale",
-                isVisible && "md:grayscale-0"
+                "w-full h-full object-cover object-top transition-all duration-1000 ease-out"
               )}
             />
             {/* Overlay gradient */}
@@ -99,7 +93,7 @@ export const GamePersonaCard = ({
               <span className="px-2 py-1 rounded-md bg-background/80 backdrop-blur-sm text-xs font-medium border border-border/50">
                 {age} years old
               </span>
-              <span className="px-2 py-1 rounded-md bg-primary/20 backdrop-blur-sm text-xs font-medium text-primary border border-primary/30">
+              <span className="px-2 py-1 rounded-md bg-muted/80 backdrop-blur-sm text-xs font-medium text-muted-foreground border border-border/50">
                 {playerType}
               </span>
             </div>
