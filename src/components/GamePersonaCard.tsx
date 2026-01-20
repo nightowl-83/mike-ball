@@ -49,7 +49,7 @@ export const GamePersonaCard = ({
   quote,
   level = 99,
   classIcon = "strategist",
-  isVisible = true,
+  isVisible = false,
 }: GamePersonaCardProps) => {
   const IconComponent = classIcons[classIcon];
 
@@ -59,7 +59,7 @@ export const GamePersonaCard = ({
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       
       {/* Header */}
-      <div className="relative flex items-center justify-between p-4 border-b border-border/50 bg-muted/30">
+      <div className="relative flex items-center justify-between p-3 border-b border-border/50 bg-muted/30">
         {/* Left: Name */}
         <div>
           <h3 className="text-lg md:text-xl font-bold text-foreground">{name}</h3>
@@ -74,26 +74,24 @@ export const GamePersonaCard = ({
       </div>
 
       {/* Main Content - Horizontal Layout */}
-      <div className="flex flex-col lg:flex-row gap-4 p-4">
+      <div className="flex flex-col lg:flex-row gap-3 p-3">
         {/* Left: Avatar with grayscale transition */}
         <div className="lg:w-2/5 flex-shrink-0">
-          <div className="relative aspect-[3/5] rounded-xl overflow-hidden bg-muted border border-border/50">
+          <div className="relative aspect-[4/5] rounded-xl overflow-hidden bg-muted border border-border/50">
             <img 
               src={avatar} 
               alt={`${name} persona`} 
               style={{ filter: isVisible ? 'grayscale(0%)' : 'grayscale(100%)' }}
-              className={cn(
-                "w-full h-full object-cover object-top transition-all duration-1000 ease-out"
-              )}
+              className="w-full h-full object-cover object-top transition-all duration-1000 ease-out"
             />
             {/* Overlay gradient */}
             <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
             {/* Age + Type badges */}
-            <div className="absolute bottom-3 left-3 right-3 flex flex-wrap gap-2">
-              <span className="px-2 py-1 rounded-md bg-background/80 backdrop-blur-sm text-xs font-medium border border-border/50">
+            <div className="absolute bottom-2 left-2 right-2 flex flex-wrap gap-1.5">
+              <span className="px-2 py-0.5 rounded-md bg-background/80 backdrop-blur-sm text-xs font-medium border border-border/50">
                 {age} years old
               </span>
-              <span className="px-2 py-1 rounded-md bg-muted/80 backdrop-blur-sm text-xs font-medium text-muted-foreground border border-border/50">
+              <span className="px-2 py-0.5 rounded-md bg-muted/80 backdrop-blur-sm text-xs font-medium text-muted-foreground border border-border/50">
                 {playerType}
               </span>
             </div>
@@ -101,18 +99,18 @@ export const GamePersonaCard = ({
         </div>
 
         {/* Right: 2x2 Grid */}
-        <div className="lg:w-3/5 grid grid-cols-2 gap-3">
+        <div className="lg:w-3/5 grid grid-cols-2 gap-2">
           {/* Top-Left: Attributes */}
-          <div className="p-3 rounded-xl bg-muted/30 border border-border/50">
-            <h4 className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold mb-2">Attributes</h4>
+          <div className="p-2 rounded-xl bg-muted/30 border border-border/50">
+            <h4 className="text-xs uppercase tracking-wider text-muted-foreground font-semibold mb-2">Attributes</h4>
             <div className="space-y-2">
               {stats.slice(0, 3).map((stat, index) => (
                 <div key={stat.subject}>
-                  <div className="flex justify-between text-[10px] mb-0.5">
+                  <div className="flex justify-between text-xs mb-0.5">
                     <span className="text-muted-foreground truncate mr-1">{stat.subject}</span>
                     <span className="text-primary font-mono">{stat.value}</span>
                   </div>
-                  <div className="h-1.5 bg-muted rounded-full overflow-hidden relative">
+                  <div className="h-2 bg-muted rounded-full overflow-hidden relative">
                     <div 
                       className="h-full bg-gradient-to-r from-primary/80 to-primary rounded-full"
                       style={{
@@ -128,11 +126,11 @@ export const GamePersonaCard = ({
           </div>
 
           {/* Top-Right: Skill Radar */}
-          <div className="p-3 rounded-xl bg-muted/30 border border-border/50">
-            <h4 className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold mb-1">Skill Radar</h4>
-            <div className="h-[100px] md:h-[110px]">
+          <div className="p-2 rounded-xl bg-muted/30 border border-border/50">
+            <h4 className="text-xs uppercase tracking-wider text-muted-foreground font-semibold mb-1">Skill Radar</h4>
+            <div className="h-[120px] md:h-[140px]">
               <ResponsiveContainer width="100%" height="100%">
-                <RadarChart data={stats} cx="50%" cy="50%" outerRadius="65%">
+                <RadarChart data={stats} cx="50%" cy="50%" outerRadius="70%">
                   <PolarGrid 
                     stroke="hsl(var(--border))" 
                     strokeOpacity={0.5}
@@ -141,7 +139,7 @@ export const GamePersonaCard = ({
                     dataKey="subject" 
                     tick={{ 
                       fill: 'hsl(var(--muted-foreground))', 
-                      fontSize: 7,
+                      fontSize: 9,
                     }}
                     tickLine={false}
                   />
@@ -159,15 +157,15 @@ export const GamePersonaCard = ({
           </div>
 
           {/* Bottom-Left: Objectives */}
-          <div className="p-3 rounded-xl bg-muted/30 border border-border/50">
-            <h4 className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold mb-2">Objectives</h4>
+          <div className="p-2 rounded-xl bg-muted/30 border border-border/50">
+            <h4 className="text-xs uppercase tracking-wider text-muted-foreground font-semibold mb-2">Objectives</h4>
             <div className="space-y-1.5">
               {goals.slice(0, 4).map((goal, index) => (
                 <div 
                   key={index} 
-                  className="flex items-start gap-1.5 text-[11px]"
+                  className="flex items-start gap-1.5 text-xs"
                 >
-                  <Target className="w-3 h-3 text-primary flex-shrink-0 mt-0.5" />
+                  <Target className="w-3.5 h-3.5 text-primary flex-shrink-0 mt-0.5" />
                   <span className="text-foreground/90 leading-tight">{goal.text}</span>
                 </div>
               ))}
@@ -175,8 +173,8 @@ export const GamePersonaCard = ({
           </div>
 
           {/* Bottom-Right: Quote */}
-          <div className="p-3 rounded-xl bg-muted/30 border border-border/50 flex items-center">
-            <p className="text-[11px] text-muted-foreground italic leading-relaxed">
+          <div className="p-2 rounded-xl bg-muted/30 border border-border/50 flex items-center">
+            <p className="text-sm text-muted-foreground italic leading-relaxed">
               "{quote}"
             </p>
           </div>
