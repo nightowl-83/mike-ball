@@ -172,19 +172,19 @@ export const GamePersonaCard = ({
           </div>
         </div>
 
-        {/* 2x2 Grid - Compact */}
-        <div className="grid grid-cols-2 gap-1.5 p-2">
+        {/* 2x2 Grid - Enlarged */}
+        <div className="grid grid-cols-2 gap-2 p-3">
           {/* Attributes */}
-          <div className="p-1.5 bg-muted/30 rounded-lg border border-border/30">
-            <h4 className="text-[9px] font-semibold text-muted-foreground uppercase tracking-wider mb-1.5">Stats</h4>
-            <div className="space-y-1">
-              {stats.slice(0, 3).map((stat, idx) => (
+          <div className="p-3 bg-muted/30 rounded-lg border border-border/30">
+            <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Stats</h4>
+            <div className="space-y-2">
+              {stats.slice(0, 4).map((stat, idx) => (
                 <div key={idx}>
-                  <div className="flex justify-between items-center mb-0.5">
-                    <span className="text-[8px] text-muted-foreground truncate">{stat.subject}</span>
-                    <span className="text-[8px] font-medium text-primary font-mono">{stat.value}</span>
+                  <div className="flex justify-between items-center mb-1">
+                    <span className="text-xs text-muted-foreground">{stat.subject}</span>
+                    <span className="text-xs font-semibold text-primary font-mono">{stat.value}</span>
                   </div>
-                  <div className="h-1 bg-muted/50 rounded-full overflow-hidden">
+                  <div className="h-2 bg-muted/50 rounded-full overflow-hidden">
                     <div
                       className="h-full bg-gradient-to-r from-primary/80 to-primary rounded-full"
                       style={{ 
@@ -200,18 +200,23 @@ export const GamePersonaCard = ({
           </div>
 
           {/* Radar */}
-          <div className="p-1.5 bg-muted/30 rounded-lg border border-border/30">
-            <h4 className="text-[9px] font-semibold text-muted-foreground uppercase tracking-wider mb-0.5">Skills</h4>
-            <div className="h-[55px]">
+          <div className="p-3 bg-muted/30 rounded-lg border border-border/30">
+            <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">Skills</h4>
+            <div className="h-[100px]">
               <ResponsiveContainer width="100%" height="100%">
-                <RadarChart data={stats} outerRadius="65%">
+                <RadarChart data={stats} outerRadius="75%">
                   <PolarGrid stroke="hsl(var(--border))" strokeOpacity={0.4} />
+                  <PolarAngleAxis 
+                    dataKey="subject" 
+                    tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 8 }}
+                    tickLine={false}
+                  />
                   <Radar
                     dataKey="value"
                     stroke="hsl(var(--primary))"
                     fill="hsl(var(--primary))"
                     fillOpacity={0.3}
-                    strokeWidth={1}
+                    strokeWidth={1.5}
                   />
                 </RadarChart>
               </ResponsiveContainer>
@@ -219,21 +224,21 @@ export const GamePersonaCard = ({
           </div>
 
           {/* Goals */}
-          <div className="p-1.5 bg-muted/30 rounded-lg border border-border/30">
-            <h4 className="text-[9px] font-semibold text-muted-foreground uppercase tracking-wider mb-1">Goals</h4>
-            <ul className="space-y-0.5">
-              {goals.slice(0, 2).map((goal, idx) => (
-                <li key={idx} className="flex items-start gap-1">
-                  <Target className="w-2.5 h-2.5 text-primary flex-shrink-0 mt-0.5" />
-                  <span className="text-[8px] text-foreground/80 leading-tight line-clamp-1">{goal.text}</span>
+          <div className="p-3 bg-muted/30 rounded-lg border border-border/30">
+            <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Goals</h4>
+            <ul className="space-y-1.5">
+              {goals.slice(0, 3).map((goal, idx) => (
+                <li key={idx} className="flex items-start gap-1.5">
+                  <Target className="w-3.5 h-3.5 text-primary flex-shrink-0 mt-0.5" />
+                  <span className="text-xs text-foreground/80 leading-snug">{goal.text}</span>
                 </li>
               ))}
             </ul>
           </div>
 
           {/* Quote */}
-          <div className="p-1.5 bg-muted/30 rounded-lg border border-border/30 flex items-center">
-            <p className="text-[8px] text-muted-foreground italic leading-tight line-clamp-3">"{quote}"</p>
+          <div className="p-3 bg-muted/30 rounded-lg border border-border/30 flex items-center">
+            <p className="text-sm text-muted-foreground italic leading-relaxed">"{quote}"</p>
           </div>
         </div>
       </div>
