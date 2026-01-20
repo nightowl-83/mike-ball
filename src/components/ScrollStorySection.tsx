@@ -131,23 +131,44 @@ export const ScrollStorySection = ({
                 const isActive = index === activeSlide;
                 const isPast = index < activeSlide;
                 
+                // Split text into words for staggered animation
+                const words = story.text.split(' ');
+                
                 return (
                   <div
                     key={index}
                     className={cn(
-                      'absolute inset-0 flex items-center transition-all duration-500',
+                      'absolute inset-0 flex items-center transition-all duration-700 ease-out',
                       isActive ? 'opacity-100 translate-y-0' : 'opacity-0',
-                      isPast ? '-translate-y-8' : 'translate-y-8'
+                      isPast ? '-translate-y-12' : 'translate-y-12'
                     )}
                     style={{ pointerEvents: isActive ? 'auto' : 'none' }}
                   >
-                    <p
-                      className={cn(
-                        'text-lg md:text-xl lg:text-2xl leading-relaxed transition-colors duration-500',
-                        isActive ? 'text-foreground' : 'text-muted-foreground'
-                      )}
-                    >
-                      {story.text}
+                    <p className="text-lg md:text-xl lg:text-2xl leading-relaxed">
+                      {words.map((word, wordIndex) => (
+                        <span
+                          key={wordIndex}
+                          className={cn(
+                            'inline-block mr-[0.3em] transition-all ease-out',
+                            isActive 
+                              ? 'opacity-100 translate-y-0 blur-0' 
+                              : 'opacity-0 translate-y-4 blur-sm'
+                          )}
+                          style={{
+                            transitionDuration: '600ms',
+                            transitionDelay: isActive ? `${wordIndex * 30}ms` : '0ms',
+                          }}
+                        >
+                          <span
+                            className={cn(
+                              'transition-colors duration-500',
+                              isActive ? 'text-foreground' : 'text-muted-foreground'
+                            )}
+                          >
+                            {word}
+                          </span>
+                        </span>
+                      ))}
                     </p>
                   </div>
                 );
