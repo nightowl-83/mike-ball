@@ -1,14 +1,14 @@
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Link, Navigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useProjectNavigation } from "@/hooks/useProjectNavigation";
 import { StickyNavHeader } from "@/components/StickyNavHeader";
 import ProjectSectionNav from "@/components/ProjectSectionNav";
 import { ScrollStorySection } from "@/components/ScrollStorySection";
 import { GamePersonaCard } from "@/components/GamePersonaCard";
-
+import { PersonaLayoutToggle } from "@/components/PersonaLayoutToggle";
 // Image imports
 import gnsHeroMockup from "@/assets/gns-hero-mockup.webp";
 import gnsProductShot1 from "@/assets/gns-product-shot-1.webp";
@@ -22,6 +22,9 @@ import gnsPersonaKenji from "@/assets/gns-persona-kenji.png";
 const GamingNewsSiteProject = () => {
   // Check if user has access
   const hasAccess = sessionStorage.getItem("project-access-gaming-news-site") === "true";
+  
+  // Persona layout state
+  const [personaLayout, setPersonaLayout] = useState<1 | 2 | 3 | 4>(1);
   
   if (!hasAccess) {
     return <Navigate to="/" replace />;
@@ -483,88 +486,351 @@ const GamingNewsSiteProject = () => {
 
             {/* User Persona Section - Game Character Cards */}
             <div ref={discoveryPersonaRef} className="mt-12 md:mt-20">
-              <div ref={personaAnim.ref} className={`space-y-8 md:space-y-12 transition-all duration-700 ${personaAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+              {/* Layout Toggle */}
+              <div className="flex justify-end mb-4">
+                <PersonaLayoutToggle 
+                  activeLayout={personaLayout} 
+                  onLayoutChange={setPersonaLayout} 
+                />
+              </div>
+              
+              <div ref={personaAnim.ref} className={`transition-all duration-700 ${personaAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                 
-                {/* Marcus - The Strategist */}
-                <GamePersonaCard
-                  name="Marcus T."
-                  classTitle="The Strategist"
-                  age={28}
-                  playerType="Competitive Gamer"
-                  avatar={gnsPersonaMarcus}
-                  level={99}
-                  classIcon="strategist"
-                  isVisible={personaAnim.isVisible}
-                  stats={[
-                    { subject: 'Focus', value: 85, fullMark: 100 },
-                    { subject: 'Speed', value: 95, fullMark: 100 },
-                    { subject: 'Efficiency', value: 90, fullMark: 100 },
-                    { subject: 'Meta Knowledge', value: 88, fullMark: 100 },
-                    { subject: 'Patience', value: 15, fullMark: 100 },
-                    { subject: 'Dedication', value: 90, fullMark: 100 },
-                  ]}
-                  goals={[
-                    { text: 'Instant access to patch notes' },
-                    { text: 'Real-time server status' },
-                    { text: '"Just the Facts" summaries' },
-                    { text: 'Zero scrolling through fluff' },
-                  ]}
-                  quote="I don't have time to scroll through clickbait. Just tell me if the patch changed my main character and I'm good."
-                />
+                {/* V1: Default - Stacked vertically */}
+                {personaLayout === 1 && (
+                  <div className="space-y-8 md:space-y-12">
+                    <GamePersonaCard
+                      name="Marcus T."
+                      classTitle="The Strategist"
+                      age={28}
+                      playerType="Competitive Gamer"
+                      avatar={gnsPersonaMarcus}
+                      level={99}
+                      classIcon="strategist"
+                      isVisible={personaAnim.isVisible}
+                      variant="default"
+                      stats={[
+                        { subject: 'Focus', value: 85, fullMark: 100 },
+                        { subject: 'Speed', value: 95, fullMark: 100 },
+                        { subject: 'Efficiency', value: 90, fullMark: 100 },
+                        { subject: 'Meta Knowledge', value: 88, fullMark: 100 },
+                        { subject: 'Patience', value: 15, fullMark: 100 },
+                        { subject: 'Dedication', value: 90, fullMark: 100 },
+                      ]}
+                      goals={[
+                        { text: 'Instant access to patch notes' },
+                        { text: 'Real-time server status' },
+                        { text: '"Just the Facts" summaries' },
+                        { text: 'Zero scrolling through fluff' },
+                      ]}
+                      quote="I don't have time to scroll through clickbait. Just tell me if the patch changed my main character and I'm good."
+                    />
+                    <GamePersonaCard
+                      name="Elena R."
+                      classTitle="The Enthusiast"
+                      age={34}
+                      playerType="Story-Driven Gamer"
+                      avatar={gnsPersonaElena}
+                      level={87}
+                      classIcon="enthusiast"
+                      isVisible={personaAnim.isVisible}
+                      variant="default"
+                      stats={[
+                        { subject: 'Story Focus', value: 95, fullMark: 100 },
+                        { subject: 'Patience', value: 90, fullMark: 100 },
+                        { subject: 'Dedication', value: 80, fullMark: 100 },
+                        { subject: 'Immersion', value: 95, fullMark: 100 },
+                        { subject: 'Reading Depth', value: 88, fullMark: 100 },
+                        { subject: 'Spoiler Aversion', value: 100, fullMark: 100 },
+                      ]}
+                      goals={[
+                        { text: 'Complete spoiler protection' },
+                        { text: 'Curated narrative game coverage' },
+                        { text: 'Premium reading experience' },
+                        { text: 'Editorial-quality content' },
+                      ]}
+                      quote="A headline spoiled the ending of a game I'd been playing for 40 hours. I literally stopped reading gaming news after that."
+                    />
+                    <GamePersonaCard
+                      name="Kenji M."
+                      classTitle="The Explorer"
+                      age={22}
+                      playerType="Gaming Enthusiast"
+                      avatar={gnsPersonaKenji}
+                      level={72}
+                      classIcon="explorer"
+                      isVisible={personaAnim.isVisible}
+                      variant="default"
+                      stats={[
+                        { subject: 'Multitasking', value: 92, fullMark: 100 },
+                        { subject: 'Daily Gaming', value: 85, fullMark: 100 },
+                        { subject: 'Mobile Usage', value: 90, fullMark: 100 },
+                        { subject: 'Curiosity', value: 88, fullMark: 100 },
+                        { subject: 'Adaptability', value: 85, fullMark: 100 },
+                        { subject: 'Enthusiasm', value: 95, fullMark: 100 },
+                      ]}
+                      goals={[
+                        { text: 'Second-screen guide support' },
+                        { text: 'Screen stays awake while gaming' },
+                        { text: 'Quick daily gaming digest' },
+                        { text: 'Ad-free reading experience' },
+                      ]}
+                      quote="I use guides while playing, but my phone screen keeps turning off. Why isn't there a simple way to keep it on?"
+                    />
+                  </div>
+                )}
 
-                {/* Elena - The Enthusiast */}
-                <GamePersonaCard
-                  name="Elena R."
-                  classTitle="The Enthusiast"
-                  age={34}
-                  playerType="Story-Driven Gamer"
-                  avatar={gnsPersonaElena}
-                  level={87}
-                  classIcon="enthusiast"
-                  isVisible={personaAnim.isVisible}
-                  stats={[
-                    { subject: 'Story Focus', value: 95, fullMark: 100 },
-                    { subject: 'Patience', value: 90, fullMark: 100 },
-                    { subject: 'Dedication', value: 80, fullMark: 100 },
-                    { subject: 'Immersion', value: 95, fullMark: 100 },
-                    { subject: 'Reading Depth', value: 88, fullMark: 100 },
-                    { subject: 'Spoiler Aversion', value: 100, fullMark: 100 },
-                  ]}
-                  goals={[
-                    { text: 'Complete spoiler protection' },
-                    { text: 'Curated narrative game coverage' },
-                    { text: 'Premium reading experience' },
-                    { text: 'Editorial-quality content' },
-                  ]}
-                  quote="A headline spoiled the ending of a game I'd been playing for 40 hours. I literally stopped reading gaming news after that."
-                />
+                {/* V2: Compact - 50vh max height per card */}
+                {personaLayout === 2 && (
+                  <div className="space-y-6">
+                    <GamePersonaCard
+                      name="Marcus T."
+                      classTitle="The Strategist"
+                      age={28}
+                      playerType="Competitive Gamer"
+                      avatar={gnsPersonaMarcus}
+                      level={99}
+                      classIcon="strategist"
+                      isVisible={personaAnim.isVisible}
+                      variant="compact"
+                      stats={[
+                        { subject: 'Focus', value: 85, fullMark: 100 },
+                        { subject: 'Speed', value: 95, fullMark: 100 },
+                        { subject: 'Efficiency', value: 90, fullMark: 100 },
+                        { subject: 'Meta Knowledge', value: 88, fullMark: 100 },
+                        { subject: 'Patience', value: 15, fullMark: 100 },
+                        { subject: 'Dedication', value: 90, fullMark: 100 },
+                      ]}
+                      goals={[
+                        { text: 'Instant access to patch notes' },
+                        { text: 'Real-time server status' },
+                        { text: '"Just the Facts" summaries' },
+                        { text: 'Zero scrolling through fluff' },
+                      ]}
+                      quote="I don't have time to scroll through clickbait. Just tell me if the patch changed my main character and I'm good."
+                    />
+                    <GamePersonaCard
+                      name="Elena R."
+                      classTitle="The Enthusiast"
+                      age={34}
+                      playerType="Story-Driven Gamer"
+                      avatar={gnsPersonaElena}
+                      level={87}
+                      classIcon="enthusiast"
+                      isVisible={personaAnim.isVisible}
+                      variant="compact"
+                      stats={[
+                        { subject: 'Story Focus', value: 95, fullMark: 100 },
+                        { subject: 'Patience', value: 90, fullMark: 100 },
+                        { subject: 'Dedication', value: 80, fullMark: 100 },
+                        { subject: 'Immersion', value: 95, fullMark: 100 },
+                        { subject: 'Reading Depth', value: 88, fullMark: 100 },
+                        { subject: 'Spoiler Aversion', value: 100, fullMark: 100 },
+                      ]}
+                      goals={[
+                        { text: 'Complete spoiler protection' },
+                        { text: 'Curated narrative game coverage' },
+                        { text: 'Premium reading experience' },
+                        { text: 'Editorial-quality content' },
+                      ]}
+                      quote="A headline spoiled the ending of a game I'd been playing for 40 hours. I literally stopped reading gaming news after that."
+                    />
+                    <GamePersonaCard
+                      name="Kenji M."
+                      classTitle="The Explorer"
+                      age={22}
+                      playerType="Gaming Enthusiast"
+                      avatar={gnsPersonaKenji}
+                      level={72}
+                      classIcon="explorer"
+                      isVisible={personaAnim.isVisible}
+                      variant="compact"
+                      stats={[
+                        { subject: 'Multitasking', value: 92, fullMark: 100 },
+                        { subject: 'Daily Gaming', value: 85, fullMark: 100 },
+                        { subject: 'Mobile Usage', value: 90, fullMark: 100 },
+                        { subject: 'Curiosity', value: 88, fullMark: 100 },
+                        { subject: 'Adaptability', value: 85, fullMark: 100 },
+                        { subject: 'Enthusiasm', value: 95, fullMark: 100 },
+                      ]}
+                      goals={[
+                        { text: 'Second-screen guide support' },
+                        { text: 'Screen stays awake while gaming' },
+                        { text: 'Quick daily gaming digest' },
+                        { text: 'Ad-free reading experience' },
+                      ]}
+                      quote="I use guides while playing, but my phone screen keeps turning off. Why isn't there a simple way to keep it on?"
+                    />
+                  </div>
+                )}
 
-                {/* Kenji - The Explorer */}
-                <GamePersonaCard
-                  name="Kenji M."
-                  classTitle="The Explorer"
-                  age={22}
-                  playerType="Gaming Enthusiast"
-                  avatar={gnsPersonaKenji}
-                  level={72}
-                  classIcon="explorer"
-                  isVisible={personaAnim.isVisible}
-                  stats={[
-                    { subject: 'Multitasking', value: 92, fullMark: 100 },
-                    { subject: 'Daily Gaming', value: 85, fullMark: 100 },
-                    { subject: 'Mobile Usage', value: 90, fullMark: 100 },
-                    { subject: 'Curiosity', value: 88, fullMark: 100 },
-                    { subject: 'Adaptability', value: 85, fullMark: 100 },
-                    { subject: 'Enthusiasm', value: 95, fullMark: 100 },
-                  ]}
-                  goals={[
-                    { text: 'Second-screen guide support' },
-                    { text: 'Screen stays awake while gaming' },
-                    { text: 'Quick daily gaming digest' },
-                    { text: 'Ad-free reading experience' },
-                  ]}
-                  quote="I use guides while playing, but my phone screen keeps turning off. Why isn't there a simple way to keep it on?"
-                />
+                {/* V3: 3-Column Grid - Vertical cards side by side */}
+                {personaLayout === 3 && (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <GamePersonaCard
+                      name="Marcus T."
+                      classTitle="The Strategist"
+                      age={28}
+                      playerType="Competitive Gamer"
+                      avatar={gnsPersonaMarcus}
+                      level={99}
+                      classIcon="strategist"
+                      isVisible={personaAnim.isVisible}
+                      variant="vertical"
+                      stats={[
+                        { subject: 'Focus', value: 85, fullMark: 100 },
+                        { subject: 'Speed', value: 95, fullMark: 100 },
+                        { subject: 'Efficiency', value: 90, fullMark: 100 },
+                        { subject: 'Meta Knowledge', value: 88, fullMark: 100 },
+                        { subject: 'Patience', value: 15, fullMark: 100 },
+                        { subject: 'Dedication', value: 90, fullMark: 100 },
+                      ]}
+                      goals={[
+                        { text: 'Instant access to patch notes' },
+                        { text: 'Real-time server status' },
+                        { text: '"Just the Facts" summaries' },
+                        { text: 'Zero scrolling through fluff' },
+                      ]}
+                      quote="I don't have time to scroll through clickbait. Just tell me if the patch changed my main character and I'm good."
+                    />
+                    <GamePersonaCard
+                      name="Elena R."
+                      classTitle="The Enthusiast"
+                      age={34}
+                      playerType="Story-Driven Gamer"
+                      avatar={gnsPersonaElena}
+                      level={87}
+                      classIcon="enthusiast"
+                      isVisible={personaAnim.isVisible}
+                      variant="vertical"
+                      stats={[
+                        { subject: 'Story Focus', value: 95, fullMark: 100 },
+                        { subject: 'Patience', value: 90, fullMark: 100 },
+                        { subject: 'Dedication', value: 80, fullMark: 100 },
+                        { subject: 'Immersion', value: 95, fullMark: 100 },
+                        { subject: 'Reading Depth', value: 88, fullMark: 100 },
+                        { subject: 'Spoiler Aversion', value: 100, fullMark: 100 },
+                      ]}
+                      goals={[
+                        { text: 'Complete spoiler protection' },
+                        { text: 'Curated narrative game coverage' },
+                        { text: 'Premium reading experience' },
+                        { text: 'Editorial-quality content' },
+                      ]}
+                      quote="A headline spoiled the ending of a game I'd been playing for 40 hours. I literally stopped reading gaming news after that."
+                    />
+                    <GamePersonaCard
+                      name="Kenji M."
+                      classTitle="The Explorer"
+                      age={22}
+                      playerType="Gaming Enthusiast"
+                      avatar={gnsPersonaKenji}
+                      level={72}
+                      classIcon="explorer"
+                      isVisible={personaAnim.isVisible}
+                      variant="vertical"
+                      stats={[
+                        { subject: 'Multitasking', value: 92, fullMark: 100 },
+                        { subject: 'Daily Gaming', value: 85, fullMark: 100 },
+                        { subject: 'Mobile Usage', value: 90, fullMark: 100 },
+                        { subject: 'Curiosity', value: 88, fullMark: 100 },
+                        { subject: 'Adaptability', value: 85, fullMark: 100 },
+                        { subject: 'Enthusiasm', value: 95, fullMark: 100 },
+                      ]}
+                      goals={[
+                        { text: 'Second-screen guide support' },
+                        { text: 'Screen stays awake while gaming' },
+                        { text: 'Quick daily gaming digest' },
+                        { text: 'Ad-free reading experience' },
+                      ]}
+                      quote="I use guides while playing, but my phone screen keeps turning off. Why isn't there a simple way to keep it on?"
+                    />
+                  </div>
+                )}
+
+                {/* V4: Strip - Condensed horizontal rows */}
+                {personaLayout === 4 && (
+                  <div className="space-y-3">
+                    <GamePersonaCard
+                      name="Marcus T."
+                      classTitle="The Strategist"
+                      age={28}
+                      playerType="Competitive Gamer"
+                      avatar={gnsPersonaMarcus}
+                      level={99}
+                      classIcon="strategist"
+                      isVisible={personaAnim.isVisible}
+                      variant="strip"
+                      stats={[
+                        { subject: 'Focus', value: 85, fullMark: 100 },
+                        { subject: 'Speed', value: 95, fullMark: 100 },
+                        { subject: 'Efficiency', value: 90, fullMark: 100 },
+                        { subject: 'Meta Knowledge', value: 88, fullMark: 100 },
+                        { subject: 'Patience', value: 15, fullMark: 100 },
+                        { subject: 'Dedication', value: 90, fullMark: 100 },
+                      ]}
+                      goals={[
+                        { text: 'Instant access to patch notes' },
+                        { text: 'Real-time server status' },
+                        { text: '"Just the Facts" summaries' },
+                        { text: 'Zero scrolling through fluff' },
+                      ]}
+                      quote="I don't have time to scroll through clickbait. Just tell me if the patch changed my main character and I'm good."
+                    />
+                    <GamePersonaCard
+                      name="Elena R."
+                      classTitle="The Enthusiast"
+                      age={34}
+                      playerType="Story-Driven Gamer"
+                      avatar={gnsPersonaElena}
+                      level={87}
+                      classIcon="enthusiast"
+                      isVisible={personaAnim.isVisible}
+                      variant="strip"
+                      stats={[
+                        { subject: 'Story Focus', value: 95, fullMark: 100 },
+                        { subject: 'Patience', value: 90, fullMark: 100 },
+                        { subject: 'Dedication', value: 80, fullMark: 100 },
+                        { subject: 'Immersion', value: 95, fullMark: 100 },
+                        { subject: 'Reading Depth', value: 88, fullMark: 100 },
+                        { subject: 'Spoiler Aversion', value: 100, fullMark: 100 },
+                      ]}
+                      goals={[
+                        { text: 'Complete spoiler protection' },
+                        { text: 'Curated narrative game coverage' },
+                        { text: 'Premium reading experience' },
+                        { text: 'Editorial-quality content' },
+                      ]}
+                      quote="A headline spoiled the ending of a game I'd been playing for 40 hours. I literally stopped reading gaming news after that."
+                    />
+                    <GamePersonaCard
+                      name="Kenji M."
+                      classTitle="The Explorer"
+                      age={22}
+                      playerType="Gaming Enthusiast"
+                      avatar={gnsPersonaKenji}
+                      level={72}
+                      classIcon="explorer"
+                      isVisible={personaAnim.isVisible}
+                      variant="strip"
+                      stats={[
+                        { subject: 'Multitasking', value: 92, fullMark: 100 },
+                        { subject: 'Daily Gaming', value: 85, fullMark: 100 },
+                        { subject: 'Mobile Usage', value: 90, fullMark: 100 },
+                        { subject: 'Curiosity', value: 88, fullMark: 100 },
+                        { subject: 'Adaptability', value: 85, fullMark: 100 },
+                        { subject: 'Enthusiasm', value: 95, fullMark: 100 },
+                      ]}
+                      goals={[
+                        { text: 'Second-screen guide support' },
+                        { text: 'Screen stays awake while gaming' },
+                        { text: 'Quick daily gaming digest' },
+                        { text: 'Ad-free reading experience' },
+                      ]}
+                      quote="I use guides while playing, but my phone screen keeps turning off. Why isn't there a simple way to keep it on?"
+                    />
+                  </div>
+                )}
               </div>
             </div>
           </div>
