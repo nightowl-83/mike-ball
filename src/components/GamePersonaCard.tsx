@@ -55,6 +55,13 @@ export const GamePersonaCard = ({
 }: GamePersonaCardProps) => {
   const IconComponent = classIcons[classIcon];
 
+  // Helper function for color-coded stat bars based on value
+  const getStatColor = (value: number) => {
+    if (value >= 80) return 'from-emerald-500/80 to-emerald-400';
+    if (value >= 50) return 'from-primary/80 to-primary';
+    return 'from-amber-500/80 to-amber-400';
+  };
+
   // ============================================
   // VARIANT: Strip - Highly condensed horizontal
   // ============================================
@@ -97,7 +104,7 @@ export const GamePersonaCard = ({
                   </div>
                   <div className="h-1 bg-muted/50 rounded-full overflow-hidden">
                     <div
-                      className="h-full bg-gradient-to-r from-primary/80 to-primary rounded-full"
+                      className={`h-full bg-gradient-to-r ${getStatColor(stat.value)} rounded-full`}
                       style={{ 
                         width: isVisible ? `${stat.value}%` : '0%',
                         transition: 'width 2.5s cubic-bezier(0.4, 0, 0.2, 1)',
@@ -173,20 +180,20 @@ export const GamePersonaCard = ({
         </div>
 
         {/* 2x2 Grid - Enlarged */}
-        <div className="grid grid-cols-2 gap-2 p-3">
+        <div className="grid grid-cols-2 gap-3 p-4">
           {/* Attributes */}
-          <div className="p-3 bg-muted/30 rounded-lg border border-border/30">
-            <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Stats</h4>
-            <div className="space-y-2">
+          <div className="p-4 bg-muted/30 rounded-lg border border-border/30">
+            <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">Stats</h4>
+            <div className="space-y-3">
               {stats.slice(0, 4).map((stat, idx) => (
                 <div key={idx}>
-                  <div className="flex justify-between items-center mb-1">
-                    <span className="text-xs text-muted-foreground">{stat.subject}</span>
-                    <span className="text-xs font-semibold text-primary font-mono">{stat.value}</span>
+                  <div className="flex justify-between items-center mb-1.5">
+                    <span className="text-sm text-muted-foreground">{stat.subject}</span>
+                    <span className="text-sm font-semibold text-primary font-mono">{stat.value}</span>
                   </div>
-                  <div className="h-2 bg-muted/50 rounded-full overflow-hidden">
+                  <div className="h-2.5 bg-muted/50 rounded-full overflow-hidden">
                     <div
-                      className="h-full bg-gradient-to-r from-primary/80 to-primary rounded-full"
+                      className={`h-full bg-gradient-to-r ${getStatColor(stat.value)} rounded-full`}
                       style={{ 
                         width: isVisible ? `${stat.value}%` : '0%',
                         transition: 'width 2.5s cubic-bezier(0.4, 0, 0.2, 1)',
@@ -200,15 +207,15 @@ export const GamePersonaCard = ({
           </div>
 
           {/* Radar */}
-          <div className="p-3 bg-muted/30 rounded-lg border border-border/30">
-            <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">Skills</h4>
-            <div className="h-[100px]">
+          <div className="p-4 bg-muted/30 rounded-lg border border-border/30">
+            <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2">Skills</h4>
+            <div className="h-[140px]">
               <ResponsiveContainer width="100%" height="100%">
                 <RadarChart data={stats} outerRadius="75%">
                   <PolarGrid stroke="hsl(var(--border))" strokeOpacity={0.4} />
                   <PolarAngleAxis 
                     dataKey="subject" 
-                    tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 8 }}
+                    tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 10 }}
                     tickLine={false}
                   />
                   <Radar
@@ -224,21 +231,21 @@ export const GamePersonaCard = ({
           </div>
 
           {/* Goals */}
-          <div className="p-3 bg-muted/30 rounded-lg border border-border/30">
-            <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Goals</h4>
-            <ul className="space-y-1.5">
-              {goals.slice(0, 3).map((goal, idx) => (
-                <li key={idx} className="flex items-start gap-1.5">
-                  <Target className="w-3.5 h-3.5 text-primary flex-shrink-0 mt-0.5" />
-                  <span className="text-xs text-foreground/80 leading-snug">{goal.text}</span>
+          <div className="p-4 bg-muted/30 rounded-lg border border-border/30">
+            <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">Goals</h4>
+            <ul className="space-y-2.5">
+              {goals.slice(0, 4).map((goal, idx) => (
+                <li key={idx} className="flex items-start gap-2">
+                  <Target className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                  <span className="text-sm text-foreground/80 leading-snug">{goal.text}</span>
                 </li>
               ))}
             </ul>
           </div>
 
           {/* Quote */}
-          <div className="p-3 bg-muted/30 rounded-lg border border-border/30 flex items-center">
-            <p className="text-sm text-muted-foreground italic leading-relaxed">"{quote}"</p>
+          <div className="p-4 bg-muted/30 rounded-lg border border-border/30 flex items-center">
+            <p className="text-base text-muted-foreground italic leading-relaxed">"{quote}"</p>
           </div>
         </div>
       </div>
@@ -290,20 +297,20 @@ export const GamePersonaCard = ({
           </div>
 
           {/* Right: 2x2 Grid - Compact */}
-          <div className="lg:w-2/3 grid grid-cols-2 gap-1.5">
+          <div className="lg:w-2/3 grid grid-cols-2 gap-2">
             {/* Attributes */}
-            <div className="p-1.5 rounded-lg bg-muted/30 border border-border/50">
-              <h4 className="text-[9px] uppercase tracking-wider text-muted-foreground font-semibold mb-1">Attributes</h4>
-              <div className="space-y-1">
-                {stats.slice(0, 3).map((stat, index) => (
+            <div className="p-2.5 rounded-lg bg-muted/30 border border-border/50">
+              <h4 className="text-xs uppercase tracking-wider text-muted-foreground font-semibold mb-1.5">Attributes</h4>
+              <div className="space-y-1.5">
+                {stats.slice(0, 4).map((stat, index) => (
                   <div key={stat.subject}>
-                    <div className="flex justify-between text-[9px] mb-0.5">
+                    <div className="flex justify-between text-xs mb-0.5">
                       <span className="text-muted-foreground truncate mr-1">{stat.subject}</span>
                       <span className="text-primary font-mono">{stat.value}</span>
                     </div>
-                    <div className="h-1 bg-muted rounded-full overflow-hidden">
+                    <div className="h-1.5 bg-muted rounded-full overflow-hidden">
                       <div 
-                        className="h-full bg-gradient-to-r from-primary/80 to-primary rounded-full"
+                        className={`h-full bg-gradient-to-r ${getStatColor(stat.value)} rounded-full`}
                         style={{
                           width: isVisible ? `${stat.value}%` : '0%',
                           transition: 'width 2.5s cubic-bezier(0.4, 0, 0.2, 1)',
@@ -317,15 +324,15 @@ export const GamePersonaCard = ({
             </div>
 
             {/* Skill Radar */}
-            <div className="p-1.5 rounded-lg bg-muted/30 border border-border/50">
-              <h4 className="text-[9px] uppercase tracking-wider text-muted-foreground font-semibold mb-0.5">Skill Radar</h4>
-              <div className="h-[70px]">
+            <div className="p-2.5 rounded-lg bg-muted/30 border border-border/50">
+              <h4 className="text-xs uppercase tracking-wider text-muted-foreground font-semibold mb-1">Skill Radar</h4>
+              <div className="h-[90px]">
                 <ResponsiveContainer width="100%" height="100%">
                   <RadarChart data={stats} cx="50%" cy="50%" outerRadius="65%">
                     <PolarGrid stroke="hsl(var(--border))" strokeOpacity={0.5} />
                     <PolarAngleAxis 
                       dataKey="subject" 
-                      tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 7 }}
+                      tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 8 }}
                       tickLine={false}
                     />
                     <Radar
@@ -342,12 +349,12 @@ export const GamePersonaCard = ({
             </div>
 
             {/* Objectives */}
-            <div className="p-1.5 rounded-lg bg-muted/30 border border-border/50">
-              <h4 className="text-[9px] uppercase tracking-wider text-muted-foreground font-semibold mb-1">Objectives</h4>
-              <div className="space-y-0.5">
+            <div className="p-2.5 rounded-lg bg-muted/30 border border-border/50">
+              <h4 className="text-xs uppercase tracking-wider text-muted-foreground font-semibold mb-1.5">Objectives</h4>
+              <div className="space-y-1">
                 {goals.slice(0, 3).map((goal, index) => (
-                  <div key={index} className="flex items-start gap-1 text-[9px]">
-                    <Target className="w-2.5 h-2.5 text-primary flex-shrink-0 mt-0.5" />
+                  <div key={index} className="flex items-start gap-1.5 text-xs">
+                    <Target className="w-3 h-3 text-primary flex-shrink-0 mt-0.5" />
                     <span className="text-foreground/90 leading-tight line-clamp-1">{goal.text}</span>
                   </div>
                 ))}
@@ -355,8 +362,8 @@ export const GamePersonaCard = ({
             </div>
 
             {/* Quote */}
-            <div className="p-1.5 rounded-lg bg-muted/30 border border-border/50 flex items-center">
-              <p className="text-[9px] text-muted-foreground italic leading-relaxed line-clamp-3">
+            <div className="p-2.5 rounded-lg bg-muted/30 border border-border/50 flex items-center">
+              <p className="text-xs text-muted-foreground italic leading-relaxed line-clamp-3">
                 "{quote}"
               </p>
             </div>
@@ -415,20 +422,20 @@ export const GamePersonaCard = ({
         </div>
 
         {/* Right: 2x2 Grid */}
-        <div className="lg:w-3/5 grid grid-cols-2 gap-2">
+        <div className="lg:w-3/5 grid grid-cols-2 gap-3">
           {/* Top-Left: Attributes */}
-          <div className="p-2 rounded-xl bg-muted/30 border border-border/50">
-            <h4 className="text-xs uppercase tracking-wider text-muted-foreground font-semibold mb-2">Attributes</h4>
-            <div className="space-y-2">
-              {stats.slice(0, 3).map((stat, index) => (
+          <div className="p-3 rounded-xl bg-muted/30 border border-border/50">
+            <h4 className="text-sm uppercase tracking-wider text-muted-foreground font-semibold mb-3">Attributes</h4>
+            <div className="space-y-2.5">
+              {stats.slice(0, 4).map((stat, index) => (
                 <div key={stat.subject}>
-                  <div className="flex justify-between text-xs mb-0.5">
+                  <div className="flex justify-between text-sm mb-1">
                     <span className="text-muted-foreground truncate mr-1">{stat.subject}</span>
                     <span className="text-primary font-mono">{stat.value}</span>
                   </div>
-                  <div className="h-2 bg-muted rounded-full overflow-hidden relative">
+                  <div className="h-2.5 bg-muted rounded-full overflow-hidden relative">
                     <div 
-                      className="h-full bg-gradient-to-r from-primary/80 to-primary rounded-full"
+                      className={`h-full bg-gradient-to-r ${getStatColor(stat.value)} rounded-full`}
                       style={{
                         width: isVisible ? `${stat.value}%` : '0%',
                         transition: 'width 2.5s cubic-bezier(0.4, 0, 0.2, 1)',
@@ -442,9 +449,9 @@ export const GamePersonaCard = ({
           </div>
 
           {/* Top-Right: Skill Radar */}
-          <div className="p-2 rounded-xl bg-muted/30 border border-border/50">
-            <h4 className="text-xs uppercase tracking-wider text-muted-foreground font-semibold mb-1">Skill Radar</h4>
-            <div className="h-[120px] md:h-[140px]">
+          <div className="p-3 rounded-xl bg-muted/30 border border-border/50">
+            <h4 className="text-sm uppercase tracking-wider text-muted-foreground font-semibold mb-2">Skill Radar</h4>
+            <div className="h-[150px] md:h-[170px]">
               <ResponsiveContainer width="100%" height="100%">
                 <RadarChart data={stats} cx="50%" cy="50%" outerRadius="70%">
                   <PolarGrid 
@@ -455,7 +462,7 @@ export const GamePersonaCard = ({
                     dataKey="subject" 
                     tick={{ 
                       fill: 'hsl(var(--muted-foreground))', 
-                      fontSize: 9,
+                      fontSize: 10,
                     }}
                     tickLine={false}
                   />
@@ -473,15 +480,15 @@ export const GamePersonaCard = ({
           </div>
 
           {/* Bottom-Left: Objectives */}
-          <div className="p-2 rounded-xl bg-muted/30 border border-border/50">
-            <h4 className="text-xs uppercase tracking-wider text-muted-foreground font-semibold mb-2">Objectives</h4>
-            <div className="space-y-1.5">
+          <div className="p-3 rounded-xl bg-muted/30 border border-border/50">
+            <h4 className="text-sm uppercase tracking-wider text-muted-foreground font-semibold mb-3">Objectives</h4>
+            <div className="space-y-2">
               {goals.slice(0, 4).map((goal, index) => (
                 <div 
                   key={index} 
-                  className="flex items-start gap-1.5 text-xs"
+                  className="flex items-start gap-2 text-sm"
                 >
-                  <Target className="w-3.5 h-3.5 text-primary flex-shrink-0 mt-0.5" />
+                  <Target className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
                   <span className="text-foreground/90 leading-tight">{goal.text}</span>
                 </div>
               ))}
@@ -489,8 +496,8 @@ export const GamePersonaCard = ({
           </div>
 
           {/* Bottom-Right: Quote */}
-          <div className="p-2 rounded-xl bg-muted/30 border border-border/50 flex items-center">
-            <p className="text-sm text-muted-foreground italic leading-relaxed">
+          <div className="p-3 rounded-xl bg-muted/30 border border-border/50 flex items-center">
+            <p className="text-base text-muted-foreground italic leading-relaxed">
               "{quote}"
             </p>
           </div>
