@@ -146,24 +146,18 @@ export const GamePersonaCard = ({
   // VARIANT: Vertical - Mobile-style stacked
   // ============================================
   if (variant === "vertical") {
+    // Animated radar data - values animate from 0 when visible
+    const animatedStats = stats.map(stat => ({
+      ...stat,
+      value: isVisible ? stat.value : 0
+    }));
+
     return (
-      <div className="relative bg-card/80 backdrop-blur-sm border border-border/50 rounded-xl overflow-hidden hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 group max-h-[600px]">
+      <div className="relative bg-card/80 backdrop-blur-sm border border-border/50 rounded-xl overflow-hidden hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 group min-h-[580px] flex flex-col">
         {/* Subtle glow effect */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         
-        {/* Header */}
-        <div className="relative flex items-center justify-between p-3 border-b border-border/30 bg-muted/30">
-          <div>
-            <h3 className="text-base font-bold text-foreground">{name}</h3>
-            <p className="text-xs text-muted-foreground uppercase tracking-wide">{classTitle}</p>
-          </div>
-          <div className="flex flex-col items-center">
-            <span className="text-[9px] text-muted-foreground uppercase">Lv</span>
-            <span className="text-xl font-bold font-mono text-primary">{level}</span>
-          </div>
-        </div>
-
-        {/* Avatar */}
+        {/* Avatar with Header Overlay */}
         <div className="relative aspect-[4/3] overflow-hidden">
           <img
             src={avatar}
@@ -171,20 +165,36 @@ export const GamePersonaCard = ({
             className="w-full h-full object-cover object-top transition-all duration-[2500ms] ease-out"
             style={{ filter: isVisible ? 'grayscale(0%)' : 'grayscale(100%)' }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
-          <div className="absolute bottom-2 left-2 flex gap-1">
-            <span className="text-xs px-2 py-1 bg-background/80 backdrop-blur-sm rounded text-muted-foreground border border-border/30">
+          <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent" />
+          
+          {/* Header overlay on image */}
+          <div className="absolute bottom-0 left-0 right-0 p-3 bg-black/50 backdrop-blur-sm">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-base font-bold text-white">{name}</h3>
+                <p className="text-xs text-white/70 uppercase tracking-wide">{classTitle}</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <span className="text-[9px] text-white/60 uppercase">Lv</span>
+                <span className="text-xl font-bold font-mono text-primary">{level}</span>
+              </div>
+            </div>
+          </div>
+          
+          {/* Age/Type badge */}
+          <div className="absolute top-2 left-2 flex gap-1">
+            <span className="text-xs px-2 py-1 bg-black/60 backdrop-blur-sm rounded text-white/80 border border-white/20">
               {age}y • {playerType}
             </span>
           </div>
         </div>
 
-        {/* Skills - Full Width Row */}
-        <div className="p-4 bg-muted/30 border-t border-border/30">
+        {/* Skills - Full Width Row with Animated Radar */}
+        <div className="p-4 bg-muted/30 border-t border-border/30 flex-1">
           <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3 text-left">Skills</h4>
           <div className="h-[180px]">
             <ResponsiveContainer width="100%" height="100%">
-              <RadarChart data={stats} outerRadius="85%">
+              <RadarChart data={animatedStats} outerRadius="85%">
                 <PolarGrid stroke="hsl(var(--border))" strokeOpacity={0.4} />
                 <PolarAngleAxis 
                   dataKey="subject" 
@@ -197,6 +207,9 @@ export const GamePersonaCard = ({
                   fill="hsl(var(--primary))"
                   fillOpacity={0.3}
                   strokeWidth={1.5}
+                  style={{
+                    transition: 'all 2.5s cubic-bezier(0.4, 0, 0.2, 1)'
+                  }}
                 />
               </RadarChart>
             </ResponsiveContainer>
