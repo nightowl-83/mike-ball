@@ -147,19 +147,19 @@ export const GamePersonaCard = ({
   // ============================================
   if (variant === "vertical") {
     return (
-      <div className="relative bg-card/80 backdrop-blur-sm border border-border/50 rounded-xl overflow-hidden hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 group">
+      <div className="relative bg-card/80 backdrop-blur-sm border border-border/50 rounded-xl overflow-hidden hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 group max-h-[600px]">
         {/* Subtle glow effect */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         
         {/* Header */}
-        <div className="relative flex items-center justify-between p-2 border-b border-border/30 bg-muted/30">
+        <div className="relative flex items-center justify-between p-3 border-b border-border/30 bg-muted/30">
           <div>
-            <h3 className="text-sm font-bold text-foreground">{name}</h3>
-            <p className="text-[10px] text-muted-foreground uppercase tracking-wide">{classTitle}</p>
+            <h3 className="text-base font-bold text-foreground">{name}</h3>
+            <p className="text-xs text-muted-foreground uppercase tracking-wide">{classTitle}</p>
           </div>
           <div className="flex flex-col items-center">
-            <span className="text-[8px] text-muted-foreground uppercase">Lv</span>
-            <span className="text-lg font-bold font-mono text-primary">{level}</span>
+            <span className="text-[9px] text-muted-foreground uppercase">Lv</span>
+            <span className="text-xl font-bold font-mono text-primary">{level}</span>
           </div>
         </div>
 
@@ -172,81 +172,53 @@ export const GamePersonaCard = ({
             style={{ filter: isVisible ? 'grayscale(0%)' : 'grayscale(100%)' }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
-          <div className="absolute bottom-1.5 left-1.5 flex gap-1">
-            <span className="text-[9px] px-1.5 py-0.5 bg-background/80 backdrop-blur-sm rounded text-muted-foreground border border-border/30">
+          <div className="absolute bottom-2 left-2 flex gap-1">
+            <span className="text-xs px-2 py-1 bg-background/80 backdrop-blur-sm rounded text-muted-foreground border border-border/30">
               {age}y • {playerType}
             </span>
           </div>
         </div>
 
-        {/* 2x2 Grid - Enlarged */}
-        <div className="grid grid-cols-2 gap-3 p-4">
-          {/* Attributes */}
-          <div className="p-4 bg-muted/30 rounded-lg border border-border/30">
-            <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">Stats</h4>
-            <div className="space-y-3">
-              {stats.slice(0, 4).map((stat, idx) => (
-                <div key={idx}>
-                  <div className="flex justify-between items-center mb-1.5">
-                    <span className="text-sm text-muted-foreground">{stat.subject}</span>
-                    <span className="text-sm font-semibold text-primary font-mono">{stat.value}</span>
-                  </div>
-                  <div className="h-2.5 bg-muted/50 rounded-full overflow-hidden">
-                    <div
-                      className={`h-full bg-gradient-to-r ${getStatColor(stat.value)} rounded-full`}
-                      style={{ 
-                        width: isVisible ? `${stat.value}%` : '0%',
-                        transition: 'width 2.5s cubic-bezier(0.4, 0, 0.2, 1)',
-                        transitionDelay: `${idx * 0.15}s`
-                      }}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
+        {/* Skills - Full Width Row */}
+        <div className="p-4 bg-muted/30 border-t border-border/30">
+          <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3 text-left">Skills</h4>
+          <div className="h-[180px]">
+            <ResponsiveContainer width="100%" height="100%">
+              <RadarChart data={stats} outerRadius="85%">
+                <PolarGrid stroke="hsl(var(--border))" strokeOpacity={0.4} />
+                <PolarAngleAxis 
+                  dataKey="subject" 
+                  tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 11 }}
+                  tickLine={false}
+                />
+                <Radar
+                  dataKey="value"
+                  stroke="hsl(var(--primary))"
+                  fill="hsl(var(--primary))"
+                  fillOpacity={0.3}
+                  strokeWidth={1.5}
+                />
+              </RadarChart>
+            </ResponsiveContainer>
           </div>
+        </div>
 
-          {/* Radar */}
-          <div className="p-4 bg-muted/30 rounded-lg border border-border/30">
-            <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2">Skills</h4>
-            <div className="h-[140px]">
-              <ResponsiveContainer width="100%" height="100%">
-                <RadarChart data={stats} outerRadius="75%">
-                  <PolarGrid stroke="hsl(var(--border))" strokeOpacity={0.4} />
-                  <PolarAngleAxis 
-                    dataKey="subject" 
-                    tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 10 }}
-                    tickLine={false}
-                  />
-                  <Radar
-                    dataKey="value"
-                    stroke="hsl(var(--primary))"
-                    fill="hsl(var(--primary))"
-                    fillOpacity={0.3}
-                    strokeWidth={1.5}
-                  />
-                </RadarChart>
-              </ResponsiveContainer>
-            </div>
+        {/* Goals - 2-Row Layout */}
+        <div className="p-4 bg-muted/30 border-t border-border/30">
+          <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3 text-left">Goals</h4>
+          <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+            {goals.slice(0, 4).map((goal, idx) => (
+              <div key={idx} className="flex items-start gap-2">
+                <Target className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                <span className="text-sm text-foreground/80 leading-snug">{goal.text}</span>
+              </div>
+            ))}
           </div>
+        </div>
 
-          {/* Goals */}
-          <div className="p-4 bg-muted/30 rounded-lg border border-border/30">
-            <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">Goals</h4>
-            <ul className="space-y-2.5">
-              {goals.slice(0, 4).map((goal, idx) => (
-                <li key={idx} className="flex items-start gap-2">
-                  <Target className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-foreground/80 leading-snug">{goal.text}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Quote */}
-          <div className="p-4 bg-muted/30 rounded-lg border border-border/30 flex items-center">
-            <p className="text-base text-muted-foreground italic leading-relaxed">"{quote}"</p>
-          </div>
+        {/* Quote - Full Width, Left Aligned */}
+        <div className="p-4 bg-muted/30 border-t border-border/30">
+          <p className="text-sm italic text-muted-foreground text-left leading-relaxed">"{quote}"</p>
         </div>
       </div>
     );
