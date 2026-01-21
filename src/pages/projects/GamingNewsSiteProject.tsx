@@ -682,7 +682,7 @@ const GamingNewsSiteProject = () => {
 
                 {/* V3: 3-Column Grid - Vertical cards side by side */}
                 {personaLayout === 3 && (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
                     <div ref={persona1Anim.ref}>
                       <GamePersonaCard
                         name="Marcus T."
