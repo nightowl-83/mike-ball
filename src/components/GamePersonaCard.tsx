@@ -143,39 +143,31 @@ export const GamePersonaCard = ({
   }
 
   // ============================================
-  // VARIANT: Vertical - Mobile-style stacked
+  // VARIANT: Vertical - Image background with overlay content
   // ============================================
   if (variant === "vertical") {
     // Find top skill for highlighting
     const topSkill = stats.reduce((max, stat) => stat.value > max.value ? stat : max, stats[0]);
-    
-    // Animated radar data - values animate from 0 when visible
-    const animatedStats = stats.map(stat => ({
-      ...stat,
-      value: isVisible ? stat.value : 0,
-      isTop: stat.subject === topSkill.subject
-    }));
 
     return (
-      <div className="relative bg-card/80 backdrop-blur-sm border border-border/50 rounded-xl overflow-hidden hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 group min-h-[580px] flex flex-col">
-        {/* Subtle glow effect */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-        
-        {/* Avatar with Header Overlay */}
-        <div className="relative aspect-[4/3] overflow-hidden">
+      <div className="relative border border-border/50 rounded-xl overflow-hidden hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 group min-h-[580px] flex flex-col">
+        {/* Background Image with grayscale hover effect */}
+        <div className="absolute inset-0">
           <img
             src={avatar}
             alt={name}
-            className="w-full h-full object-cover object-top transition-all duration-[2500ms] ease-out"
-            style={{ filter: isVisible ? 'grayscale(0%)' : 'grayscale(100%)' }}
+            className="w-full h-full object-cover object-top transition-all duration-500 ease-out grayscale group-hover:grayscale-0"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent" />
-          
-          {/* Header overlay on image */}
-          <div className="absolute bottom-0 left-0 right-0 p-3 bg-black/50 backdrop-blur-sm">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black/40" />
+        </div>
+        
+        {/* Content Container - Semi-transparent overlay */}
+        <div className="relative z-10 flex flex-col flex-1">
+          {/* Header with Name, Title, Level */}
+          <div className="p-4 bg-black/50 backdrop-blur-sm">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="text-base font-bold text-white">{name}</h3>
+                <h3 className="text-lg font-bold text-white">{name}</h3>
                 <p className="text-xs text-white/70 uppercase tracking-wide">{classTitle}</p>
               </div>
               <div className="flex flex-col items-center">
@@ -183,79 +175,74 @@ export const GamePersonaCard = ({
                 <span className="text-xl font-bold font-mono text-primary">{level}</span>
               </div>
             </div>
+            {/* Age/Type badge */}
+            <div className="mt-2">
+              <span className="text-xs px-2 py-1 bg-white/10 backdrop-blur-sm rounded text-white/80 border border-white/20">
+                {age}y • {playerType}
+              </span>
+            </div>
           </div>
-          
-          {/* Age/Type badge */}
-          <div className="absolute top-2 left-2 flex gap-1">
-            <span className="text-xs px-2 py-1 bg-black/60 backdrop-blur-sm rounded text-white/80 border border-white/20">
-              {age}y • {playerType}
-            </span>
-          </div>
-        </div>
 
-        {/* Skills - Full Width Row with Animated Radar */}
-        <div className="p-4 bg-muted/30 border-t border-border/30 flex-1">
-          <div className="flex items-center justify-between mb-3">
-            <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider text-left">Skills</h4>
-            <span className="text-xs px-2 py-1 bg-primary/20 text-primary rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              Top: {topSkill.subject}
-            </span>
+          {/* Skills - Full Width Row with Radar */}
+          <div className="p-4 bg-black/40 backdrop-blur-sm border-t border-white/10 flex-1">
+            <div className="flex items-center justify-between mb-3">
+              <h4 className="text-sm font-semibold text-white/70 uppercase tracking-wider text-left">Skills</h4>
+              <span className="text-xs px-2 py-1 bg-primary/20 text-primary rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                Top: {topSkill.subject}
+              </span>
+            </div>
+            <div className="h-[180px] transition-transform duration-300 group-hover:scale-105">
+              <ResponsiveContainer width="100%" height="100%">
+                <RadarChart data={stats} outerRadius="85%">
+                  <PolarGrid stroke="rgba(255,255,255,0.2)" strokeOpacity={0.4} />
+                  <PolarAngleAxis 
+                    dataKey="subject" 
+                    tick={({ x, y, payload }) => {
+                      const isTopSkill = payload.value === topSkill.subject;
+                      return (
+                        <text 
+                          x={x} 
+                          y={y} 
+                          textAnchor="middle" 
+                          fill={isTopSkill ? 'hsl(var(--primary))' : 'rgba(255,255,255,0.6)'}
+                          fontSize={isTopSkill ? 12 : 11}
+                          fontWeight={isTopSkill ? 600 : 400}
+                          className="transition-all duration-300"
+                        >
+                          {payload.value}
+                        </text>
+                      );
+                    }}
+                    tickLine={false}
+                  />
+                  <Radar
+                    dataKey="value"
+                    stroke="hsl(var(--primary))"
+                    fill="hsl(var(--primary))"
+                    fillOpacity={0.4}
+                    strokeWidth={2}
+                  />
+                </RadarChart>
+              </ResponsiveContainer>
+            </div>
           </div>
-          <div className="h-[180px] transition-transform duration-300 group-hover:scale-105">
-            <ResponsiveContainer width="100%" height="100%">
-              <RadarChart data={animatedStats} outerRadius="85%">
-                <PolarGrid stroke="hsl(var(--border))" strokeOpacity={0.4} />
-                <PolarAngleAxis 
-                  dataKey="subject" 
-                  tick={({ x, y, payload }) => {
-                    const isTopSkill = payload.value === topSkill.subject;
-                    return (
-                      <text 
-                        x={x} 
-                        y={y} 
-                        textAnchor="middle" 
-                        fill={isTopSkill ? 'hsl(var(--primary))' : 'hsl(var(--muted-foreground))'}
-                        fontSize={isTopSkill ? 12 : 11}
-                        fontWeight={isTopSkill ? 600 : 400}
-                        className="transition-all duration-300"
-                      >
-                        {payload.value}
-                      </text>
-                    );
-                  }}
-                  tickLine={false}
-                />
-                <Radar
-                  dataKey="value"
-                  stroke="hsl(var(--primary))"
-                  fill="hsl(var(--primary))"
-                  fillOpacity={0.3}
-                  strokeWidth={1.5}
-                  style={{
-                    transition: 'all 2.5s cubic-bezier(0.4, 0, 0.2, 1)'
-                  }}
-                />
-              </RadarChart>
-            </ResponsiveContainer>
-          </div>
-        </div>
 
-        {/* Goals - 2-Row Layout */}
-        <div className="p-4 bg-muted/30 border-t border-border/30">
-          <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3 text-left">Goals</h4>
-          <div className="grid grid-cols-2 gap-x-4 gap-y-2">
-            {goals.slice(0, 4).map((goal, idx) => (
-              <div key={idx} className="flex items-start gap-2">
-                <Target className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                <span className="text-sm text-foreground/80 leading-snug">{goal.text}</span>
-              </div>
-            ))}
+          {/* Goals - 2-Row Layout without icons */}
+          <div className="p-4 bg-black/40 backdrop-blur-sm border-t border-white/10">
+            <h4 className="text-sm font-semibold text-white/70 uppercase tracking-wider mb-3 text-left">Goals</h4>
+            <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+              {goals.slice(0, 4).map((goal, idx) => (
+                <div key={idx} className="flex items-start">
+                  <span className="text-sm text-white/80 leading-snug">• {goal.text}</span>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
 
-        {/* Quote - Full Width, Left Aligned */}
-        <div className="p-4 bg-muted/30 border-t border-border/30">
-          <p className="text-sm italic text-muted-foreground text-left leading-relaxed">"{quote}"</p>
+          {/* Quote - Full Width, Left Aligned */}
+          <div className="p-4 bg-black/40 backdrop-blur-sm border-t border-white/10">
+            <p className="text-sm italic text-white/60 text-left leading-relaxed">"{quote}"</p>
+          </div>
         </div>
       </div>
     );
