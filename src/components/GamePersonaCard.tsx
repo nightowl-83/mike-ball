@@ -146,10 +146,14 @@ export const GamePersonaCard = ({
   // VARIANT: Vertical - Mobile-style stacked
   // ============================================
   if (variant === "vertical") {
+    // Find top skill for highlighting
+    const topSkill = stats.reduce((max, stat) => stat.value > max.value ? stat : max, stats[0]);
+    
     // Animated radar data - values animate from 0 when visible
     const animatedStats = stats.map(stat => ({
       ...stat,
-      value: isVisible ? stat.value : 0
+      value: isVisible ? stat.value : 0,
+      isTop: stat.subject === topSkill.subject
     }));
 
     return (
@@ -191,14 +195,34 @@ export const GamePersonaCard = ({
 
         {/* Skills - Full Width Row with Animated Radar */}
         <div className="p-4 bg-muted/30 border-t border-border/30 flex-1">
-          <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3 text-left">Skills</h4>
-          <div className="h-[180px]">
+          <div className="flex items-center justify-between mb-3">
+            <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider text-left">Skills</h4>
+            <span className="text-xs px-2 py-1 bg-primary/20 text-primary rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              Top: {topSkill.subject}
+            </span>
+          </div>
+          <div className="h-[180px] transition-transform duration-300 group-hover:scale-105">
             <ResponsiveContainer width="100%" height="100%">
               <RadarChart data={animatedStats} outerRadius="85%">
                 <PolarGrid stroke="hsl(var(--border))" strokeOpacity={0.4} />
                 <PolarAngleAxis 
                   dataKey="subject" 
-                  tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 11 }}
+                  tick={({ x, y, payload }) => {
+                    const isTopSkill = payload.value === topSkill.subject;
+                    return (
+                      <text 
+                        x={x} 
+                        y={y} 
+                        textAnchor="middle" 
+                        fill={isTopSkill ? 'hsl(var(--primary))' : 'hsl(var(--muted-foreground))'}
+                        fontSize={isTopSkill ? 12 : 11}
+                        fontWeight={isTopSkill ? 600 : 400}
+                        className="transition-all duration-300"
+                      >
+                        {payload.value}
+                      </text>
+                    );
+                  }}
                   tickLine={false}
                 />
                 <Radar
