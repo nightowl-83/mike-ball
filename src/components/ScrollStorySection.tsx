@@ -63,11 +63,11 @@ export const ScrollStorySection = ({
     >
       {/* Sticky container that holds both columns */}
       <div className="sticky top-0 h-screen overflow-hidden">
-        {/* Optional Section Header */}
+        {/* Optional Section Header with Progress Indicator */}
         {(sectionTitle || sectionNumber) && (
           <div className="absolute top-0 left-0 right-0 z-10 pt-20 md:pt-24">
-            <div className="container mx-auto max-w-[1440px]">
-              <div className="flex items-baseline justify-between">
+            <div className="container mx-auto max-w-[1440px] px-6 md:px-12 lg:px-20">
+              <div className="flex items-baseline justify-between mb-6">
                 {sectionTitle && (
                   <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground">
                     {sectionTitle}
@@ -79,6 +79,37 @@ export const ScrollStorySection = ({
                   </span>
                 )}
               </div>
+              {/* Progress Indicator - Now under title */}
+              {showProgressIndicator && (
+                <div className="flex items-center gap-2">
+                  {progressStyle === 'dots' ? (
+                    <div className="flex gap-2">
+                      {stories.map((_, index) => (
+                        <div
+                          key={index}
+                          className={cn(
+                            'w-2 h-2 rounded-full transition-all duration-300',
+                            index === activeSlide
+                              ? 'bg-primary scale-125'
+                              : index < activeSlide
+                              ? 'bg-primary/50'
+                              : 'bg-muted-foreground/30'
+                          )}
+                        />
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="w-24 h-1 bg-muted-foreground/20 rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-primary rounded-full transition-all duration-300"
+                        style={{
+                          width: `${((activeSlide + slideProgress) / stories.length) * 100}%`,
+                        }}
+                      />
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         )}
@@ -90,41 +121,6 @@ export const ScrollStorySection = ({
         )}>
           {/* Text Column */}
           <div className="w-full md:w-1/2 h-1/2 md:h-full flex flex-col justify-center px-6 md:px-12 lg:px-20 relative">
-            {/* Progress Indicator */}
-            {showProgressIndicator && (
-              <div className={cn(
-                'absolute left-6 md:left-12 lg:left-20',
-                sectionTitle ? 'top-24 md:top-32' : 'top-8 md:top-16'
-              )}>
-                {progressStyle === 'dots' ? (
-                  <div className="flex flex-col gap-2">
-                    {stories.map((_, index) => (
-                      <div
-                        key={index}
-                        className={cn(
-                          'w-2 h-2 rounded-full transition-all duration-300',
-                          index === activeSlide
-                            ? 'bg-primary scale-125'
-                            : index < activeSlide
-                            ? 'bg-primary/50'
-                            : 'bg-muted-foreground/30'
-                        )}
-                      />
-                    ))}
-                  </div>
-                ) : (
-                  <div className="w-1 h-24 bg-muted-foreground/20 rounded-full overflow-hidden">
-                    <div
-                      className="w-full bg-primary rounded-full transition-all duration-300"
-                      style={{
-                        height: `${((activeSlide + slideProgress) / stories.length) * 100}%`,
-                      }}
-                    />
-                  </div>
-                )}
-              </div>
-            )}
-
             {/* Text Items */}
             <div className="relative max-w-xl ml-8 md:ml-12">
               {stories.map((story, index) => {
