@@ -1,6 +1,7 @@
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Link, Navigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
 import { useRef, useState } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useProjectNavigation } from "@/hooks/useProjectNavigation";
@@ -25,6 +26,9 @@ const GamingNewsSiteProject = () => {
 
   // Persona layout state
   const [personaLayout, setPersonaLayout] = useState<1 | 2 | 3 | 4>(1);
+  
+  // Project theme toggle state
+  const [projectTheme, setProjectTheme] = useState(false);
   if (!hasAccess) {
     return <Navigate to="/" replace />;
   }
@@ -149,7 +153,33 @@ const GamingNewsSiteProject = () => {
   const deliveryAnim = useScrollAnimation();
   const outcomesAnim = useScrollAnimation();
   const nextProjectAnim = useScrollAnimation();
-  return <div className="min-h-screen bg-background">
+  // Color palette data for the design system
+  const colorPalette = [
+    { name: 'Snow', hex: '#FAFBFD', hsl: '220, 43%, 99%', isDark: false },
+    { name: 'Midnight', hex: '#2D2D3A', hsl: '240, 14%, 20%', isDark: true },
+    { name: 'Mt Dew', hex: '#CCFF00', hsl: '72, 100%, 50%', isDark: false },
+    { name: 'Red Bull', hex: '#F43B3E', hsl: '359, 90%, 59%', isDark: true },
+    { name: 'Powder', hex: '#DCE3EA', hsl: '210, 25%, 89%', isDark: false },
+    { name: 'Surface', hex: '#1E1E24', hsl: '240, 12%, 13%', isDark: true },
+    { name: 'Custard', hex: '#F0FFB2', hsl: '72, 100%, 85%', isDark: false },
+    { name: 'Sugarfree', hex: '#FF7675', hsl: '0, 100%, 73%', isDark: false },
+    { name: 'Slate', hex: '#8899A6', hsl: '206, 14%, 59%', isDark: false },
+    { name: 'Void', hex: '#121217', hsl: '240, 12%, 8%', isDark: true },
+    { name: 'LED', hex: '#F1F8D6', hsl: '72, 73%, 91%', isDark: false },
+    { name: 'Rust', hex: '#FF5E1A', hsl: '18, 100%, 55%', isDark: true },
+  ];
+
+  return <div className={`min-h-screen bg-background ${projectTheme ? 'theme-gns' : ''}`}>
+      {/* Theme Toggle - Fixed Position */}
+      <div className="fixed top-20 right-4 z-50 flex items-center gap-2 bg-card/80 backdrop-blur-sm rounded-full px-3 py-2 border border-border shadow-lg">
+        <span className={`text-xs ${!projectTheme ? 'text-foreground' : 'text-muted-foreground'}`}>Portfolio</span>
+        <Switch 
+          checked={projectTheme} 
+          onCheckedChange={setProjectTheme}
+        />
+        <span className={`text-xs ${projectTheme ? 'text-foreground' : 'text-muted-foreground'}`}>Project</span>
+      </div>
+
       {/* Unified Sticky Header */}
       <StickyNavHeader visible={stickyHeader.visible} currentSection={stickyHeader.section} currentSubsection={stickyHeader.subsection} currentNumber={stickyHeader.number} sections={sections} />
 
@@ -1086,85 +1116,27 @@ const GamingNewsSiteProject = () => {
 
               {/* Right Column */}
               <div className="flex flex-col gap-4 md:gap-6">
-                {/* Colors Card */}
-                <div className="bg-card border border-border rounded-lg p-4 md:p-6 flex-1">
+                {/* Colors Card - Full Height */}
+                <div className="bg-card border border-border rounded-lg p-4 md:p-6">
                   <h3 className="text-lg md:text-xl font-bold mb-4 md:mb-6">Colors</h3>
-                  <div className="grid grid-cols-2 gap-2 md:gap-3 flex-1">
-                    <div className="rounded-lg p-4 flex items-end row-span-2" style={{
-                    backgroundColor: '#121217'
-                  }}>
-                      <div className="text-white">
-                        <p className="font-semibold text-base mb-1">Deep Charcoal</p>
-                        <p className="text-xs opacity-80">#121217</p>
-                        <p className="text-xs opacity-60 mt-1">Primary Dark</p>
+                  <div className="grid grid-cols-4 gap-2 md:gap-3">
+                    {colorPalette.map((color) => (
+                      <div 
+                        key={color.name}
+                        className="rounded-lg p-3 md:p-4 flex flex-col justify-end aspect-square"
+                        style={{ backgroundColor: color.hex }}
+                      >
+                        <p className={`font-semibold text-xs md:text-sm uppercase ${color.isDark ? 'text-white' : 'text-gray-900'}`}>
+                          {color.name}
+                        </p>
+                        <p className={`text-[10px] md:text-xs ${color.isDark ? 'text-white/80' : 'text-gray-900/80'}`}>
+                          {color.hex}
+                        </p>
+                        <p className={`text-[10px] md:text-xs ${color.isDark ? 'text-white/60' : 'text-gray-900/60'}`}>
+                          {color.hsl}
+                        </p>
                       </div>
-                    </div>
-                    <div className="rounded-lg p-4 flex items-end" style={{
-                    backgroundColor: '#8B9AAD'
-                  }}>
-                      <div className="text-white">
-                        <p className="font-semibold text-xs">Nordic Steel</p>
-                        <p className="text-xs opacity-80">#8B9AAD</p>
-                      </div>
-                    </div>
-                    <div className="rounded-lg p-4 flex items-end" style={{
-                    backgroundColor: '#FF6B35'
-                  }}>
-                      <div className="text-white">
-                        <p className="font-semibold text-xs">Industrial Orange</p>
-                        <p className="text-xs opacity-80">#FF6B35</p>
-                      </div>
-                    </div>
-                    <div className="rounded-lg p-4 flex items-end" style={{
-                    backgroundColor: '#1E1E24'
-                  }}>
-                      <div className="text-white">
-                        <p className="font-semibold text-xs">Card Dark</p>
-                        <p className="text-xs opacity-80">#1E1E24</p>
-                      </div>
-                    </div>
-                    <div className="rounded-lg p-4 flex items-end" style={{
-                    backgroundColor: '#2D5A4A'
-                  }}>
-                      <div className="text-white">
-                        <p className="font-semibold text-xs">Success Green</p>
-                        <p className="text-xs opacity-80">#2D5A4A</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Spacing/Components Card */}
-                <div className="bg-card border border-border rounded-lg p-4 md:p-6 flex-1">
-                  <h3 className="text-lg md:text-xl font-bold mb-4 md:mb-6">Key Components</h3>
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
-                        <span className="text-xl">🛡️</span>
-                      </div>
-                      <div>
-                        <p className="font-semibold">Spoiler Shield</p>
-                        <p className="text-xs text-muted-foreground">Content blur with reveal tap</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
-                        <span className="text-xl">☕</span>
-                      </div>
-                      <div>
-                        <p className="font-semibold">Wake Lock Toggle</p>
-                        <p className="text-xs text-muted-foreground">Keep screen active for guides</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
-                        <span className="text-xl">📖</span>
-                      </div>
-                      <div>
-                        <p className="font-semibold">Progressive Accordion</p>
-                        <p className="text-xs text-muted-foreground">Step-by-step guide expansion</p>
-                      </div>
-                    </div>
+                    ))}
                   </div>
                 </div>
               </div>

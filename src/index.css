@@ -119,6 +119,41 @@ All colors MUST be HSL.
     --sidebar-border: 220 15% 85%;
     --sidebar-ring: 263 70% 50%;
   }
+
+  /* Gaming News Site Project Theme */
+  .theme-gns {
+    --background: 240 12% 8%;
+    --foreground: 220 43% 99%;
+    
+    --card: 240 14% 20%;
+    --card-foreground: 220 43% 99%;
+    
+    --popover: 240 14% 20%;
+    --popover-foreground: 220 43% 99%;
+    
+    --primary: 72 100% 50%;
+    --primary-foreground: 240 12% 8%;
+    
+    --secondary: 240 14% 20%;
+    --secondary-foreground: 220 43% 99%;
+    
+    --muted: 240 14% 20%;
+    --muted-foreground: 206 14% 59%;
+    
+    --accent: 18 100% 55%;
+    --accent-foreground: 220 43% 99%;
+    
+    --destructive: 359 90% 59%;
+    --destructive-foreground: 220 43% 99%;
+    
+    --border: 240 14% 25%;
+    --input: 240 14% 25%;
+    --ring: 72 100% 50%;
+    
+    --gradient-primary: linear-gradient(135deg, hsl(72 100% 50%), hsl(18 100% 55%));
+    --gradient-card: linear-gradient(180deg, hsl(240 14% 20%), hsl(240 12% 8%));
+    --shadow-glow: 0 0 40px hsl(72 100% 50% / 0.3);
+  }
 }
 
 @layer base {
