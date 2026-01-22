@@ -65,7 +65,7 @@ export const ScrollStorySection = ({
       <div className="sticky top-0 h-screen overflow-hidden">
         {/* Optional Section Header */}
         {(sectionTitle || sectionNumber) && (
-          <div className="absolute top-0 left-0 right-0 z-10 pt-6 md:pt-10">
+          <div className="absolute top-0 left-0 right-0 z-10 pt-20 md:pt-24">
             <div className="container mx-auto max-w-[1440px]">
               <div className="flex items-baseline justify-between">
                 {sectionTitle && (

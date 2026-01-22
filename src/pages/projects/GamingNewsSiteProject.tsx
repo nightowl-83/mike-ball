@@ -14,9 +14,8 @@ import { PersonaLayoutToggle } from "@/components/PersonaLayoutToggle";
 import gnsHeroPhone from "@/assets/gns-hero-phone.jpg";
 import gnsWalkthroughPhone from "@/assets/gns-walkthrough-phone.png";
 import gnsHomePhoneShowcase from "@/assets/gns-home-phone-showcase.png";
-import gnsFeatureSpoiler from "@/assets/gns-feature-spoiler.webp";
-import gnsFeatureCaffeine from "@/assets/gns-feature-caffeine.webp";
-import gnsFeatureAccordion from "@/assets/gns-feature-accordion.webp";
+import gnsCarouselSpoiler from "@/assets/gns-carousel-spoiler.jpg";
+import gnsCarouselCoffee from "@/assets/gns-carousel-coffee.jpg";
 import gnsPersonaMarcus from "@/assets/gns-persona-marcus.png";
 import gnsPersonaElena from "@/assets/gns-persona-elena.png";
 import gnsPersonaKenji from "@/assets/gns-persona-kenji.png";
@@ -1187,16 +1186,12 @@ const GamingNewsSiteProject = () => {
         {/* Feature Showcase - ScrollStorySection */}
         <ScrollStorySection stories={[{
         text: "The Spoiler Curtain protects users from unwanted story reveals. Using intelligent content filtering, it detects and hides plot-sensitive information until you're ready to see it. A global 'Active Playing' setting lets users mark games they're currently experiencing.",
-        image: gnsFeatureSpoiler,
+        image: gnsCarouselSpoiler,
         imageAlt: "Spoiler Curtain feature interface showing blurred content with reveal button"
       }, {
         text: "The Caffeine Toggle enables second-screen support for late-night gaming sessions. With a single tap, the interface keeps the screen active while users reference guides on their TV—no more fumbling to unlock your phone mid-boss fight.",
-        image: gnsFeatureCaffeine,
+        image: gnsCarouselCoffee,
         imageAlt: "Caffeine Toggle dark mode feature with Keep Screen On active"
-      }, {
-        text: "Progressive Accordions eliminate content bloat for fluff-free reading. Long-form guides are broken into collapsible steps, preventing scrolling fatigue and ensuring players don't accidentally read solutions for puzzles they haven't reached yet.",
-        image: gnsFeatureAccordion,
-        imageAlt: "Progressive Accordion content feature showing expandable guide sections"
       }]} sectionTitle="Key Features" sectionNumber="/04" progressStyle="dots" />
 
         {/* Deliverables Box */}
