@@ -1186,16 +1186,12 @@ const GamingNewsSiteProject = () => {
         {/* Feature Showcase - ScrollStorySection */}
         <ScrollStorySection stories={[{
         text: "The Spoiler Curtain protects users from unwanted story reveals. Using intelligent content filtering, it detects and hides plot-sensitive information until you're ready to see it. A global 'Active Playing' setting lets users mark games they're currently experiencing.",
-        image: gnsFeatureSpoiler,
+        image: gnsCarouselSpoiler,
         imageAlt: "Spoiler Curtain feature interface showing blurred content with reveal button"
       }, {
         text: "The Caffeine Toggle enables second-screen support for late-night gaming sessions. With a single tap, the interface keeps the screen active while users reference guides on their TV—no more fumbling to unlock your phone mid-boss fight.",
-        image: gnsFeatureCaffeine,
+        image: gnsCarouselCoffee,
         imageAlt: "Caffeine Toggle dark mode feature with Keep Screen On active"
-      }, {
-        text: "Progressive Accordions eliminate content bloat for fluff-free reading. Long-form guides are broken into collapsible steps, preventing scrolling fatigue and ensuring players don't accidentally read solutions for puzzles they haven't reached yet.",
-        image: gnsFeatureAccordion,
-        imageAlt: "Progressive Accordion content feature showing expandable guide sections"
       }]} sectionTitle="Key Features" sectionNumber="/04" progressStyle="dots" />
 
         {/* Deliverables Box */}
