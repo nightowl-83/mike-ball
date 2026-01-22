@@ -10,9 +10,9 @@ import { ScrollStorySection } from "@/components/ScrollStorySection";
 import { GamePersonaCard } from "@/components/GamePersonaCard";
 import { PersonaLayoutToggle } from "@/components/PersonaLayoutToggle";
 // Image imports
-import gnsHeroMockup from "@/assets/gns-hero-mockup.webp";
-import gnsProductShot1 from "@/assets/gns-product-shot-1.webp";
-import gnsProductShot2 from "@/assets/gns-product-shot-2.webp";
+import gnsHeroPhone from "@/assets/gns-hero-phone.jpg";
+import gnsWalkthroughPhone from "@/assets/gns-walkthrough-phone.png";
+import gnsHomePhoneShowcase from "@/assets/gns-home-phone-showcase.png";
 import gnsFeatureSpoiler from "@/assets/gns-feature-spoiler.webp";
 import gnsFeatureCaffeine from "@/assets/gns-feature-caffeine.webp";
 import gnsFeatureAccordion from "@/assets/gns-feature-accordion.webp";
@@ -158,7 +158,7 @@ const GamingNewsSiteProject = () => {
           {/* Right: Hero Image */}
           <div className="w-full md:w-1/2 h-64 md:h-full relative bg-muted/50">
             <img 
-              src={gnsHeroMockup} 
+              src={gnsHeroPhone} 
               alt="Gaming News Site Game Hub interface mockup" 
               className="w-full h-full object-cover object-center"
             />
@@ -217,18 +217,18 @@ const GamingNewsSiteProject = () => {
         <section ref={productShotsAnim.ref} className={`py-24 transition-all duration-700 ${productShotsAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="container mx-auto max-w-[1440px]">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-card bg-muted/30 border border-border">
+              <div className="w-full aspect-[3/4] rounded-2xl overflow-hidden shadow-card bg-muted/30 border border-border flex items-end justify-center">
                 <img 
-                  src={gnsProductShot1} 
-                  alt="Gaming news feed with spoiler warnings and content filters" 
-                  className="w-full h-full object-cover"
+                  src={gnsWalkthroughPhone} 
+                  alt="Game walkthrough guide view with Chrono Trigger article" 
+                  className="w-auto h-full object-contain object-bottom"
                 />
               </div>
-              <div className="w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-card bg-muted/30 border border-border">
+              <div className="w-full aspect-[3/4] rounded-2xl overflow-hidden shadow-card bg-muted/30 border border-border flex items-end justify-center">
                 <img 
-                  src={gnsProductShot2} 
-                  alt="Article reading view with Caffeine Mode active" 
-                  className="w-full h-full object-cover"
+                  src={gnsHomePhoneShowcase} 
+                  alt="Home screen with Daily Brief and current games" 
+                  className="w-auto h-full object-contain object-bottom"
                 />
               </div>
             </div>
