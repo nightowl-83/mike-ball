@@ -16,6 +16,7 @@ import gnsWalkthroughPhone from "@/assets/gns-walkthrough-phone.png";
 import gnsHomePhoneShowcase from "@/assets/gns-home-phone-showcase.png";
 import gnsCarouselSpoiler from "@/assets/gns-carousel-spoiler.jpg";
 import gnsCarouselCoffee from "@/assets/gns-carousel-coffee.jpg";
+import gnsCarouselDrawer from "@/assets/gns-carousel-drawer.jpg";
 import gnsPersonaMarcus from "@/assets/gns-persona-marcus.png";
 import gnsPersonaElena from "@/assets/gns-persona-elena.png";
 import gnsPersonaKenji from "@/assets/gns-persona-kenji.png";
@@ -1192,6 +1193,10 @@ const GamingNewsSiteProject = () => {
         text: "The Caffeine Toggle enables second-screen support for late-night gaming sessions. With a single tap, the interface keeps the screen active while users reference guides on their TV—no more fumbling to unlock your phone mid-boss fight.",
         image: gnsCarouselCoffee,
         imageAlt: "Caffeine Toggle dark mode feature with Keep Screen On active"
+      }, {
+        text: "Progressive Drawers eliminate content bloat for fluff-free reading. Long-form guides are broken into collapsible chapters, preventing scrolling fatigue and ensuring players don't accidentally read solutions for puzzles they haven't reached yet.",
+        image: gnsCarouselDrawer,
+        imageAlt: "Progressive Drawer feature showing expandable guide chapters"
       }]} sectionTitle="Key Features" sectionNumber="/04" progressStyle="dots" />
 
         {/* Deliverables Box */}
