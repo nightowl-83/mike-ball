@@ -143,53 +143,54 @@ export const GamePersonaCard = ({
   }
 
   // ============================================
-  // VARIANT: Vertical - Image background with overlay content
+  // VARIANT: Vertical - Portrait card with header/footer overlays
   // ============================================
   if (variant === "vertical") {
     // Find top skill for highlighting
     const topSkill = stats.reduce((max, stat) => stat.value > max.value ? stat : max, stats[0]);
 
     return (
-      <div className="relative border border-border/50 rounded-xl overflow-hidden hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 group min-h-[580px] flex flex-col">
+      <div className="relative border border-border/50 rounded-xl overflow-hidden hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 group min-h-[640px] flex flex-col">
         {/* Background Image - full card */}
         <div className="absolute inset-0">
           <img
             src={avatar}
             alt={name}
-            className="w-full h-full object-cover object-top transition-all duration-500 ease-out grayscale group-hover:grayscale-0"
+            className="w-full h-full object-cover object-top transition-all duration-500 ease-out"
+            style={{ filter: isVisible ? 'grayscale(0%)' : 'grayscale(100%)' }}
           />
         </div>
         
-        {/* Content Container - positioned to leave top half clear */}
+        {/* Content Container */}
         <div className="relative z-10 flex flex-col flex-1">
-          {/* Clear Image Area - Top 50% with no overlay */}
-          <div className="h-[50%] flex-shrink-0" />
-          
-          {/* Content with overlay - Bottom 50% */}
-          <div className="flex-1 flex flex-col bg-gradient-to-t from-black/90 via-black/80 to-black/60 backdrop-blur-sm">
-            {/* Identity Row - Name, Title, Age + Type */}
-            <div className="p-4 flex items-center justify-between border-b border-white/10">
-              <div>
-                <h3 className="text-lg font-bold text-white leading-tight">{name}</h3>
-                <p className="text-xs text-white/70 uppercase tracking-wide mt-0.5">{classTitle}</p>
-              </div>
-              {/* Combined age + playerType in single box */}
-              <div className="inline-flex items-center gap-2 px-2.5 py-1.5 bg-white/10 backdrop-blur-sm rounded border border-white/20">
-                <span className="text-xs text-white/80">{age}y</span>
-                <span className="text-white/40">•</span>
-                <span className="text-xs text-white/80">{playerType}</span>
-              </div>
+          {/* TOP: Identity Header with blur overlay */}
+          <div className="p-4 flex items-center justify-between bg-black/60 backdrop-blur-sm border-b border-white/10">
+            <div>
+              <h3 className="text-lg font-bold text-white leading-tight">{name}</h3>
+              <p className="text-xs text-white/70 uppercase tracking-wide mt-0.5">{classTitle}</p>
             </div>
-
-            {/* Skills Radar - Full Width */}
-            <div className="p-4">
+            {/* Combined age + playerType in single box */}
+            <div className="inline-flex items-center gap-2 px-2.5 py-1.5 bg-white/10 backdrop-blur-sm rounded border border-white/20">
+              <span className="text-xs text-white/80">{age}y</span>
+              <span className="text-white/40">•</span>
+              <span className="text-xs text-white/80">{playerType}</span>
+            </div>
+          </div>
+          
+          {/* MIDDLE: Clear image zone - NO overlay */}
+          <div className="flex-1 min-h-[180px]" />
+          
+          {/* BOTTOM: Content sections with blur overlay */}
+          <div className="bg-gradient-to-t from-black/90 via-black/80 to-black/60 backdrop-blur-sm">
+            {/* Skills Radar */}
+            <div className="p-4 border-b border-white/10">
               <div className="flex items-center justify-between mb-1">
                 <h4 className="text-xs font-semibold text-white/70 uppercase tracking-wider">Skills</h4>
                 <span className="text-[10px] px-1.5 py-0.5 bg-primary/20 text-primary rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   Top: {topSkill.subject}
                 </span>
               </div>
-              <div className="h-[140px] transition-transform duration-300 group-hover:scale-105">
+              <div className="h-[130px] transition-transform duration-300 group-hover:scale-105">
                 <ResponsiveContainer width="100%" height="100%">
                   <RadarChart data={stats} outerRadius="80%">
                     <PolarGrid stroke="rgba(255,255,255,0.2)" strokeOpacity={0.4} />
@@ -225,9 +226,8 @@ export const GamePersonaCard = ({
               </div>
             </div>
 
-            {/* Goals - 2-Row Layout without icons */}
-            <div className="p-4 border-t border-white/10 flex-1">
-              <h4 className="text-sm font-semibold text-white/70 uppercase tracking-wider mb-3 text-left">Goals</h4>
+            {/* Goals - 2 column bullet list */}
+            <div className="p-4 border-b border-white/10">
               <div className="grid grid-cols-2 gap-x-4 gap-y-2">
                 {goals.slice(0, 4).map((goal, idx) => (
                   <div key={idx} className="flex items-start">
@@ -237,8 +237,8 @@ export const GamePersonaCard = ({
               </div>
             </div>
 
-            {/* Quote - Full Width, Left Aligned */}
-            <div className="p-4 border-t border-white/10">
+            {/* Quote */}
+            <div className="p-4">
               <p className="text-sm italic text-white/60 text-left leading-relaxed">"{quote}"</p>
             </div>
           </div>

@@ -1,7 +1,6 @@
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Link, Navigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Switch } from "@/components/ui/switch";
 import { useRef, useState } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useProjectNavigation } from "@/hooks/useProjectNavigation";
@@ -10,6 +9,9 @@ import ProjectSectionNav from "@/components/ProjectSectionNav";
 import { ScrollStorySection } from "@/components/ScrollStorySection";
 import { GamePersonaCard } from "@/components/GamePersonaCard";
 import { PersonaLayoutToggle } from "@/components/PersonaLayoutToggle";
+import { DesignSystemIcons } from "@/components/DesignSystemIcons";
+import { DesignSystemUIComponents } from "@/components/DesignSystemUIComponents";
+import { OnboardingCallout } from "@/components/OnboardingCallout";
 // Image imports
 import gnsHeroPhone from "@/assets/gns-hero-phone.jpg";
 import gnsWalkthroughPhone from "@/assets/gns-walkthrough-phone.png";
@@ -20,15 +22,14 @@ import gnsCarouselDrawer from "@/assets/gns-carousel-drawers.jpg";
 import gnsPersonaMarcus from "@/assets/gns-persona-marcus.png";
 import gnsPersonaElena from "@/assets/gns-persona-elena.png";
 import gnsPersonaKenji from "@/assets/gns-persona-kenji.png";
+
 const GamingNewsSiteProject = () => {
   // Check if user has access
   const hasAccess = sessionStorage.getItem("project-access-gaming-news-site") === "true";
 
   // Persona layout state
-  const [personaLayout, setPersonaLayout] = useState<1 | 2 | 3 | 4>(1);
+  const [personaLayout, setPersonaLayout] = useState<1 | 2 | 3 | 4>(3);
   
-  // Project theme toggle state
-  const [projectTheme, setProjectTheme] = useState(false);
   if (!hasAccess) {
     return <Navigate to="/" replace />;
   }
@@ -153,12 +154,16 @@ const GamingNewsSiteProject = () => {
   const deliveryAnim = useScrollAnimation();
   const outcomesAnim = useScrollAnimation();
   const nextProjectAnim = useScrollAnimation();
-  // Color palette data for the design system
-  const colorPalette = [
-    { name: 'Snow', hex: '#FAFBFD', hsl: '220, 43%, 99%', isDark: false },
-    { name: 'Midnight', hex: '#2D2D3A', hsl: '240, 14%, 20%', isDark: true },
+  // Color palette data for the design system - Primary colors
+  const primaryColors = [
     { name: 'Mt Dew', hex: '#CCFF00', hsl: '72, 100%, 50%', isDark: false },
+    { name: 'Midnight', hex: '#2D2D3A', hsl: '240, 14%, 20%', isDark: true },
+    { name: 'Snow', hex: '#FAFBFD', hsl: '220, 43%, 99%', isDark: false },
     { name: 'Red Bull', hex: '#F43B3E', hsl: '359, 90%, 59%', isDark: true },
+  ];
+  
+  // Secondary/Tertiary colors
+  const secondaryColors = [
     { name: 'Powder', hex: '#DCE3EA', hsl: '210, 25%, 89%', isDark: false },
     { name: 'Surface', hex: '#1E1E24', hsl: '240, 12%, 13%', isDark: true },
     { name: 'Custard', hex: '#F0FFB2', hsl: '72, 100%, 85%', isDark: false },
@@ -169,16 +174,7 @@ const GamingNewsSiteProject = () => {
     { name: 'Rust', hex: '#FF5E1A', hsl: '18, 100%, 55%', isDark: true },
   ];
 
-  return <div className={`min-h-screen bg-background ${projectTheme ? 'theme-gns' : ''}`}>
-      {/* Theme Toggle - Fixed Position */}
-      <div className="fixed top-20 right-4 z-50 flex items-center gap-2 bg-card/80 backdrop-blur-sm rounded-full px-3 py-2 border border-border shadow-lg">
-        <span className={`text-xs ${!projectTheme ? 'text-foreground' : 'text-muted-foreground'}`}>Portfolio</span>
-        <Switch 
-          checked={projectTheme} 
-          onCheckedChange={setProjectTheme}
-        />
-        <span className={`text-xs ${projectTheme ? 'text-foreground' : 'text-muted-foreground'}`}>Project</span>
-      </div>
+  return <div className="min-h-screen bg-background theme-gns">
 
       {/* Unified Sticky Header */}
       <StickyNavHeader visible={stickyHeader.visible} currentSection={stickyHeader.section} currentSubsection={stickyHeader.subsection} currentNumber={stickyHeader.number} sections={sections} />
@@ -1116,30 +1112,56 @@ const GamingNewsSiteProject = () => {
 
               {/* Right Column */}
               <div className="flex flex-col gap-4 md:gap-6">
-                {/* Colors Card - Full Height */}
+                {/* Colors Card */}
                 <div className="bg-card border border-border rounded-lg p-4 md:p-6">
                   <h3 className="text-lg md:text-xl font-bold mb-4 md:mb-6">Colors</h3>
-                  <div className="grid grid-cols-4 gap-2 md:gap-3">
-                    {colorPalette.map((color) => (
-                      <div 
-                        key={color.name}
-                        className="rounded-lg p-3 md:p-4 flex flex-col justify-end aspect-square"
-                        style={{ backgroundColor: color.hex }}
-                      >
-                        <p className={`font-semibold text-xs md:text-sm uppercase ${color.isDark ? 'text-white' : 'text-gray-900'}`}>
-                          {color.name}
-                        </p>
-                        <p className={`text-[10px] md:text-xs ${color.isDark ? 'text-white/80' : 'text-gray-900/80'}`}>
-                          {color.hex}
-                        </p>
-                        <p className={`text-[10px] md:text-xs ${color.isDark ? 'text-white/60' : 'text-gray-900/60'}`}>
-                          {color.hsl}
-                        </p>
-                      </div>
-                    ))}
+                  
+                  {/* Primary Colors - Larger, More Prominent */}
+                  <div className="mb-4 md:mb-6">
+                    <p className="text-xs uppercase tracking-wider text-muted-foreground font-semibold mb-3">Primary</p>
+                    <div className="grid grid-cols-4 gap-2 md:gap-3">
+                      {primaryColors.map((color) => (
+                        <div 
+                          key={color.name}
+                          className="rounded-lg p-3 md:p-4 flex flex-col justify-end aspect-[3/2]"
+                          style={{ backgroundColor: color.hex }}
+                        >
+                          <p className={`font-bold text-sm md:text-base uppercase ${color.isDark ? 'text-white' : 'text-gray-900'}`}>
+                            {color.name}
+                          </p>
+                          <p className={`text-xs ${color.isDark ? 'text-white/80' : 'text-gray-900/80'}`}>
+                            {color.hex}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  {/* Secondary Colors - Smaller, Less Prominent */}
+                  <div>
+                    <p className="text-xs uppercase tracking-wider text-muted-foreground/60 font-semibold mb-2">Secondary & Tertiary</p>
+                    <div className="grid grid-cols-4 gap-1.5 md:gap-2">
+                      {secondaryColors.map((color) => (
+                        <div 
+                          key={color.name}
+                          className="rounded-md p-2 flex flex-col justify-end aspect-square"
+                          style={{ backgroundColor: color.hex }}
+                        >
+                          <p className={`font-medium text-[10px] uppercase ${color.isDark ? 'text-white/80' : 'text-gray-900/80'}`}>
+                            {color.name}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
+            </div>
+            
+            {/* Icons and UI Components - Full Width Row */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
+              <DesignSystemIcons />
+              <DesignSystemUIComponents />
             </div>
           </div>
         </section>
@@ -1181,6 +1203,57 @@ const GamingNewsSiteProject = () => {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* Onboarding Subsection */}
+        <section className="py-12 md:py-20 bg-background border-t border-border/50">
+          <div className="container mx-auto max-w-[1440px]">
+            <div className="mb-8 md:mb-12">
+              <h3 className="text-2xl md:text-3xl font-bold mb-4">Onboarding Flow</h3>
+              <p className="text-lg text-muted-foreground max-w-2xl">
+                A persona-driven setup process that tailors the experience from the first interaction.
+              </p>
+            </div>
+            
+            {/* Section 1: Vibe Check */}
+            <OnboardingCallout
+              title="Identity Segmentation"
+              description="The user self-identifies their 'Gamer Type,' which radically alters the Home Screen layout and information density."
+              personaMappings={[
+                { persona: "Marcus", description: "Selects 'Strategist' (Triggers Data-Dense View)" },
+                { persona: "Elena", description: "Selects 'Explorer' (Triggers Spoiler Protections)" },
+                { persona: "Kenji", description: "Selects 'Enthusiast' (Triggers Magazine/Briefing View)" },
+              ]}
+              imagePlaceholder="Vibe Check Screen (Coming Soon)"
+              reversed={false}
+              className="border-b border-border/30"
+            />
+            
+            {/* Section 2: Active Duty */}
+            <OnboardingCallout
+              title="Context Setup"
+              description="Users select currently playing titles to initialize the 'Spoiler Curtain' firewall and 'Patch Tracker' subscriptions."
+              personaMappings={[
+                { persona: "Elena", description: "Essential for identifying which plotlines to protect" },
+                { persona: "Marcus", description: "Essential for filtering 'Patch Notes' notifications" },
+              ]}
+              imagePlaceholder="Active Duty Screen (Coming Soon)"
+              reversed={true}
+              className="border-b border-border/30"
+            />
+            
+            {/* Section 3: Granular Permissions */}
+            <OnboardingCallout
+              title="Respecting Boundaries"
+              description="Users choose when we interrupt them, ensuring high trust and low uninstall rates."
+              personaMappings={[
+                { persona: "Marcus", description: "Opts into 'Patch Drops'" },
+                { persona: "Kenji", description: "Opts into 'Daily Briefing'" },
+              ]}
+              imagePlaceholder="Permissions Screen (Coming Soon)"
+              reversed={false}
+            />
           </div>
         </section>
 
