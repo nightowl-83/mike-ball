@@ -151,100 +151,99 @@ export const GamePersonaCard = ({
 
     return (
       <div className="relative border border-border/50 rounded-xl overflow-hidden hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 group min-h-[580px] flex flex-col">
-        {/* Background Image with grayscale hover effect */}
+        {/* Background Image - full card */}
         <div className="absolute inset-0">
           <img
             src={avatar}
             alt={name}
             className="w-full h-full object-cover object-top transition-all duration-500 ease-out grayscale group-hover:grayscale-0"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black/40" />
         </div>
         
-        {/* Content Container - Semi-transparent overlay */}
+        {/* Content Container - positioned to leave top 1/3 clear */}
         <div className="relative z-10 flex flex-col flex-1">
-          {/* Combined Info + Skills Row - 1/3 info, 2/3 radar */}
-          <div className="p-4 bg-black/50 backdrop-blur-sm flex gap-4">
-            {/* Left Column - 1/3: Name, Title, Tags, Level */}
-            <div className="w-1/3 flex flex-col justify-center space-y-2">
-              <div>
-                <h3 className="text-lg font-bold text-white leading-tight">{name}</h3>
-                <p className="text-xs text-white/70 uppercase tracking-wide mt-0.5">{classTitle}</p>
-              </div>
-              <div className="flex flex-wrap gap-1.5">
-                <span className="text-xs px-2 py-1 bg-white/10 backdrop-blur-sm rounded text-white/80 border border-white/20">
-                  {age}y
-                </span>
-                <span className="text-xs px-2 py-1 bg-white/10 backdrop-blur-sm rounded text-white/80 border border-white/20">
-                  {playerType}
-                </span>
-              </div>
-              <div className="flex items-center gap-2 pt-1">
-                <span className="text-[9px] text-white/60 uppercase">Level</span>
-                <span className="text-xl font-bold font-mono text-primary">{level}</span>
-              </div>
-            </div>
-
-            {/* Right Column - 2/3: Skills Radar */}
-            <div className="w-2/3 flex flex-col">
-              <div className="flex items-center justify-between mb-1">
-                <h4 className="text-xs font-semibold text-white/70 uppercase tracking-wider">Skills</h4>
-                <span className="text-[10px] px-1.5 py-0.5 bg-primary/20 text-primary rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  Top: {topSkill.subject}
-                </span>
-              </div>
-              <div className="h-[160px] transition-transform duration-300 group-hover:scale-105">
-                <ResponsiveContainer width="100%" height="100%">
-                  <RadarChart data={stats} outerRadius="80%">
-                    <PolarGrid stroke="rgba(255,255,255,0.2)" strokeOpacity={0.4} />
-                    <PolarAngleAxis 
-                      dataKey="subject" 
-                      tick={({ x, y, payload }) => {
-                        const isTopSkill = payload.value === topSkill.subject;
-                        return (
-                          <text 
-                            x={x} 
-                            y={y} 
-                            textAnchor="middle" 
-                            fill={isTopSkill ? 'hsl(var(--primary))' : 'rgba(255,255,255,0.6)'}
-                            fontSize={isTopSkill ? 11 : 10}
-                            fontWeight={isTopSkill ? 600 : 400}
-                            className="transition-all duration-300"
-                          >
-                            {payload.value}
-                          </text>
-                        );
-                      }}
-                      tickLine={false}
-                    />
-                    <Radar
-                      dataKey="value"
-                      stroke="hsl(var(--primary))"
-                      fill="hsl(var(--primary))"
-                      fillOpacity={0.4}
-                      strokeWidth={2}
-                    />
-                  </RadarChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
-          </div>
-
-          {/* Goals - 2-Row Layout without icons */}
-          <div className="p-4 bg-black/40 backdrop-blur-sm border-t border-white/10 flex-1">
-            <h4 className="text-sm font-semibold text-white/70 uppercase tracking-wider mb-3 text-left">Goals</h4>
-            <div className="grid grid-cols-2 gap-x-4 gap-y-2">
-              {goals.slice(0, 4).map((goal, idx) => (
-                <div key={idx} className="flex items-start">
-                  <span className="text-sm text-white/80 leading-snug">• {goal.text}</span>
+          {/* Clear Image Area - Top 1/3 with no overlay */}
+          <div className="h-[33%] flex-shrink-0" />
+          
+          {/* Content with overlay - Bottom 2/3 */}
+          <div className="flex-1 flex flex-col bg-gradient-to-t from-black/90 via-black/80 to-black/60 backdrop-blur-sm">
+            {/* Combined Info + Skills Row - 1/3 info, 2/3 radar */}
+            <div className="p-4 flex gap-4">
+              {/* Left Column - 1/3: Name, Title, Tags */}
+              <div className="w-1/3 flex flex-col justify-center space-y-2">
+                <div>
+                  <h3 className="text-lg font-bold text-white leading-tight">{name}</h3>
+                  <p className="text-xs text-white/70 uppercase tracking-wide mt-0.5">{classTitle}</p>
                 </div>
-              ))}
-            </div>
-          </div>
+                {/* Combined age + playerType in single box */}
+                <div className="inline-flex items-center gap-2 px-2 py-1.5 bg-white/10 backdrop-blur-sm rounded border border-white/20 w-fit">
+                  <span className="text-xs text-white/80">{age}y</span>
+                  <span className="text-white/40">•</span>
+                  <span className="text-xs text-white/80">{playerType}</span>
+                </div>
+              </div>
 
-          {/* Quote - Full Width, Left Aligned */}
-          <div className="p-4 bg-black/40 backdrop-blur-sm border-t border-white/10">
-            <p className="text-sm italic text-white/60 text-left leading-relaxed">"{quote}"</p>
+              {/* Right Column - 2/3: Skills Radar */}
+              <div className="w-2/3 flex flex-col">
+                <div className="flex items-center justify-between mb-1">
+                  <h4 className="text-xs font-semibold text-white/70 uppercase tracking-wider">Skills</h4>
+                  <span className="text-[10px] px-1.5 py-0.5 bg-primary/20 text-primary rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    Top: {topSkill.subject}
+                  </span>
+                </div>
+                <div className="h-[160px] transition-transform duration-300 group-hover:scale-105">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <RadarChart data={stats} outerRadius="80%">
+                      <PolarGrid stroke="rgba(255,255,255,0.2)" strokeOpacity={0.4} />
+                      <PolarAngleAxis 
+                        dataKey="subject" 
+                        tick={({ x, y, payload }) => {
+                          const isTopSkill = payload.value === topSkill.subject;
+                          return (
+                            <text 
+                              x={x} 
+                              y={y} 
+                              textAnchor="middle" 
+                              fill={isTopSkill ? 'hsl(var(--primary))' : 'rgba(255,255,255,0.6)'}
+                              fontSize={isTopSkill ? 11 : 10}
+                              fontWeight={isTopSkill ? 600 : 400}
+                              className="transition-all duration-300"
+                            >
+                              {payload.value}
+                            </text>
+                          );
+                        }}
+                        tickLine={false}
+                      />
+                      <Radar
+                        dataKey="value"
+                        stroke="hsl(var(--primary))"
+                        fill="hsl(var(--primary))"
+                        fillOpacity={0.4}
+                        strokeWidth={2}
+                      />
+                    </RadarChart>
+                  </ResponsiveContainer>
+                </div>
+              </div>
+            </div>
+
+            {/* Goals - 2-Row Layout without icons */}
+            <div className="p-4 border-t border-white/10 flex-1">
+              <h4 className="text-sm font-semibold text-white/70 uppercase tracking-wider mb-3 text-left">Goals</h4>
+              <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+                {goals.slice(0, 4).map((goal, idx) => (
+                  <div key={idx} className="flex items-start">
+                    <span className="text-sm text-white/80 leading-snug">• {goal.text}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Quote - Full Width, Left Aligned */}
+            <div className="p-4 border-t border-white/10">
+              <p className="text-sm italic text-white/60 text-left leading-relaxed">"{quote}"</p>
+            </div>
           </div>
         </div>
       </div>
