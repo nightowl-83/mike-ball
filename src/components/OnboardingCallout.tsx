@@ -3,93 +3,130 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 interface PersonaMapping {
   persona: string;
-  description: string;
+  action: string;
 }
 
 interface OnboardingCalloutProps {
   title: string;
+  subtitle?: string;
   description: string;
-  personaMappings: PersonaMapping[];
-  image?: string;
-  imageAlt?: string;
-  imagePlaceholder?: string;
+  image: string;
+  personaMappings?: PersonaMapping[];
   reversed?: boolean;
-  className?: string;
 }
 
 export const OnboardingCallout = ({
   title,
+  subtitle,
   description,
-  personaMappings,
   image,
-  imageAlt = "Onboarding screen",
-  imagePlaceholder = "Image Coming Soon",
+  personaMappings = [],
   reversed = false,
-  className,
 }: OnboardingCalloutProps) => {
-  const anim = useScrollAnimation();
+  const anim = useScrollAnimation({ threshold: 0.2 });
 
   return (
-    <div
+    <div 
       ref={anim.ref}
-      className={cn(
-        "grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center py-12 md:py-16 transition-all duration-700",
-        anim.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
-        className
-      )}
+      className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center py-12 lg:py-16"
     >
       {/* Image Column */}
-      <div
+      <div 
         className={cn(
-          "lg:col-span-7 aspect-[4/3] rounded-xl overflow-hidden bg-muted/30 border border-border",
-          reversed ? "lg:order-2" : "lg:order-1"
+          "lg:col-span-7",
+          reversed ? "lg:order-2" : "lg:order-1",
+          "transition-all duration-700 ease-out",
+          anim.isVisible 
+            ? "opacity-100 translate-x-0" 
+            : reversed 
+              ? "opacity-0 translate-x-12" 
+              : "opacity-0 -translate-x-12"
         )}
+        style={{ transitionDelay: "100ms" }}
       >
-        {image ? (
-          <img
-            src={image}
-            alt={imageAlt}
-            className="w-full h-full object-cover object-center"
+        <div className="relative rounded-xl overflow-hidden border border-[#2D2D3A] bg-[#1E1E24]">
+          <img 
+            src={image} 
+            alt={title}
+            className="w-full h-auto object-cover"
           />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center">
-            <span className="text-muted-foreground text-lg">{imagePlaceholder}</span>
-          </div>
-        )}
+        </div>
       </div>
 
       {/* Text Column */}
-      <div
+      <div 
         className={cn(
-          "lg:col-span-5 space-y-6",
+          "lg:col-span-5",
           reversed ? "lg:order-1" : "lg:order-2"
         )}
       >
-        <div className="space-y-4">
-          <h3 className="text-2xl md:text-3xl font-bold text-foreground">{title}</h3>
-          <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-            {description}
-          </p>
-        </div>
+        {subtitle && (
+          <span 
+            className={cn(
+              "text-xs uppercase tracking-wider text-[#CCFF00] font-medium block mb-2",
+              "transition-all duration-500 ease-out",
+              anim.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            )}
+            style={{ transitionDelay: "200ms" }}
+          >
+            {subtitle}
+          </span>
+        )}
 
-        {/* Persona Mappings */}
-        <div className="space-y-3 pt-4 border-t border-border/50">
-          <p className="text-xs uppercase tracking-wider text-muted-foreground font-semibold">
-            Persona Mapping
-          </p>
-          <div className="space-y-2">
-            {personaMappings.map((mapping, idx) => (
-              <div key={idx} className="flex items-start gap-3">
-                <span className="text-primary font-semibold text-sm flex-shrink-0">
+        <h3 
+          className={cn(
+            "text-2xl lg:text-3xl font-bold text-white mb-4",
+            "transition-all duration-500 ease-out",
+            anim.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          )}
+          style={{ transitionDelay: "300ms" }}
+        >
+          {title}
+        </h3>
+
+        <p 
+          className={cn(
+            "text-base text-white/70 leading-relaxed mb-6",
+            "transition-all duration-500 ease-out",
+            anim.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          )}
+          style={{ transitionDelay: "400ms" }}
+        >
+          {description}
+        </p>
+
+        {personaMappings.length > 0 && (
+          <div className="space-y-3">
+            <span 
+              className={cn(
+                "text-xs uppercase tracking-wider text-white/50 font-medium block",
+                "transition-all duration-500 ease-out",
+                anim.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              )}
+              style={{ transitionDelay: "500ms" }}
+            >
+              Persona Mapping
+            </span>
+            {personaMappings.map((mapping, index) => (
+              <div 
+                key={index}
+                className={cn(
+                  "flex items-start gap-3 p-3 rounded-lg bg-[#1E1E24] border border-[#2D2D3A]",
+                  "transition-all duration-500 ease-out",
+                  anim.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                )}
+                style={{ transitionDelay: `${550 + index * 100}ms` }}
+              >
+                <span className="text-[#CCFF00] font-semibold text-sm shrink-0">
                   {mapping.persona}:
                 </span>
-                <span className="text-sm text-muted-foreground">
-                  {mapping.description}
+                <span className="text-white/70 text-sm">
+                  {mapping.action}
                 </span>
               </div>
             ))}
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
