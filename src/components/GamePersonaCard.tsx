@@ -180,17 +180,17 @@ export const GamePersonaCard = ({
           
           {/* BOTTOM: Content sections with blur overlay - fixed min-height for alignment */}
           <div className="bg-gradient-to-t from-black/90 via-black/80 to-black/60 backdrop-blur-sm min-h-[340px]">
-            {/* Skills Radar */}
-            <div className="p-4 border-b border-white/10">
+            {/* Skills Radar - Fixed height for alignment */}
+            <div className="p-4 border-b border-white/10 min-h-[180px]">
               <div className="flex items-center justify-between mb-1">
                 <h4 className="text-xs font-semibold text-white/70 uppercase tracking-wider">Skills</h4>
                 <span className="text-[10px] px-1.5 py-0.5 bg-primary/20 text-primary rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   Top: {topSkill.subject}
                 </span>
               </div>
-              <div className="h-[120px] transition-transform duration-300 group-hover:scale-105">
+              <div className="h-[140px] transition-transform duration-300 group-hover:scale-105">
                 <ResponsiveContainer width="100%" height="100%">
-                  <RadarChart data={stats} outerRadius="60%">
+                  <RadarChart data={stats} outerRadius="75%">
                     <PolarGrid stroke="rgba(255,255,255,0.2)" strokeOpacity={0.4} />
                     <PolarAngleAxis 
                       dataKey="subject" 
@@ -202,7 +202,7 @@ export const GamePersonaCard = ({
                             y={y} 
                             textAnchor="middle" 
                             fill={isTopSkill ? 'hsl(var(--primary))' : 'rgba(255,255,255,0.6)'}
-                            fontSize={isTopSkill ? 9 : 8}
+                            fontSize={isTopSkill ? 11 : 10}
                             fontWeight={isTopSkill ? 600 : 400}
                             className="transition-all duration-300"
                           >
@@ -224,8 +224,8 @@ export const GamePersonaCard = ({
               </div>
             </div>
 
-            {/* Goals - 2 column bullet list with fixed height */}
-            <div className="p-4 border-b border-white/10 min-h-[80px]">
+            {/* Goals - 2 column bullet list - Fixed height for alignment */}
+            <div className="p-4 border-b border-white/10 min-h-[100px]">
               <div className="grid grid-cols-2 gap-x-4 gap-y-2">
                 {goals.slice(0, 4).map((goal, idx) => (
                   <div key={idx} className="flex items-start">
@@ -235,8 +235,8 @@ export const GamePersonaCard = ({
               </div>
             </div>
 
-            {/* Quote */}
-            <div className="p-4">
+            {/* Quote - Fixed height for alignment */}
+            <div className="p-4 min-h-[80px]">
               <p className="text-sm italic text-white/60 text-left leading-relaxed">"{quote}"</p>
             </div>
           </div>
