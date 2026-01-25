@@ -12,6 +12,13 @@ import { PersonaLayoutToggle } from "@/components/PersonaLayoutToggle";
 import { DesignSystemIcons } from "@/components/DesignSystemIcons";
 import { DesignSystemUIComponents } from "@/components/DesignSystemUIComponents";
 import { OnboardingCallout } from "@/components/OnboardingCallout";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 // Image imports
 import gnsHeroPhone from "@/assets/gns-hero-phone.jpg";
 import gnsWalkthroughPhone from "@/assets/gns-walkthrough-phone.png";
@@ -22,6 +29,11 @@ import gnsCarouselDrawer from "@/assets/gns-carousel-drawers.jpg";
 import gnsPersonaMarcus from "@/assets/gns-persona-marcus.png";
 import gnsPersonaElena from "@/assets/gns-persona-elena.png";
 import gnsPersonaKenji from "@/assets/gns-persona-kenji.png";
+// Onboarding images
+import onboardTitle from "@/assets/onboard-title.jpg";
+import onboardVibeCheck from "@/assets/onboard-vibe-check.png";
+import onboardActiveDuty from "@/assets/onboard-active-duty.png";
+import onboardPermissions from "@/assets/onboard-permissions.png";
 
 const GamingNewsSiteProject = () => {
   // Check if user has access
@@ -156,10 +168,10 @@ const GamingNewsSiteProject = () => {
   const nextProjectAnim = useScrollAnimation();
   // Color palette data for the design system - Primary colors
   const primaryColors = [
-    { name: 'Mt Dew', hex: '#CCFF00', hsl: '72, 100%, 50%', isDark: false },
-    { name: 'Midnight', hex: '#2D2D3A', hsl: '240, 14%, 20%', isDark: true },
-    { name: 'Snow', hex: '#FAFBFD', hsl: '220, 43%, 99%', isDark: false },
-    { name: 'Red Bull', hex: '#F43B3E', hsl: '359, 90%, 59%', isDark: true },
+    { name: 'Mt Dew', hex: '#CCFF00', hsl: '72, 100%, 50%', rgb: '204, 255, 0', isDark: false },
+    { name: 'Midnight', hex: '#2D2D3A', hsl: '240, 14%, 20%', rgb: '45, 45, 58', isDark: true },
+    { name: 'Snow', hex: '#FAFBFD', hsl: '220, 43%, 99%', rgb: '250, 251, 253', isDark: false },
+    { name: 'Red Bull', hex: '#F43B3E', hsl: '359, 90%, 59%', rgb: '244, 59, 62', isDark: true },
   ];
   
   // Secondary/Tertiary colors
@@ -440,12 +452,13 @@ const GamingNewsSiteProject = () => {
                 {/* Statistics */}
                 <div className="flex flex-col md:grid md:grid-cols-3 gap-6 md:gap-8 pt-4 md:pt-8 items-center">
                   {/* 73% Frustrated */}
+                  {/* 73% Frustrated - Mt Dew */}
                   <div className="text-center">
                     <svg className="w-32 h-32 md:w-40 md:h-40 mx-auto mb-6 transition-all duration-700 hover:scale-110" viewBox="0 0 160 160">
                       <defs>
                         <linearGradient id="gradient1-gaming" x1="0%" y1="0%" x2="100%" y2="0%">
-                          <stop offset="0%" stopColor="hsl(220 100% 65%)" />
-                          <stop offset="100%" stopColor="hsl(220 100% 80%)" />
+                          <stop offset="0%" stopColor="#CCFF00" />
+                          <stop offset="100%" stopColor="#E6FF80" />
                         </linearGradient>
                         <filter id="glow1-gaming">
                           <feGaussianBlur stdDeviation="2" result="coloredBlur" />
@@ -463,13 +476,13 @@ const GamingNewsSiteProject = () => {
                     <p className="text-sm text-muted-foreground max-w-[200px] mx-auto">Users frustrated with current gaming news sites</p>
                   </div>
 
-                  {/* 89% Mobile */}
+                  {/* 89% Mobile - Red Bull */}
                   <div className="text-center">
                     <svg className="w-32 h-32 md:w-40 md:h-40 mx-auto mb-6 transition-all duration-700 hover:scale-110" viewBox="0 0 160 160">
                       <defs>
                         <linearGradient id="gradient2-gaming" x1="0%" y1="0%" x2="100%" y2="0%">
-                          <stop offset="0%" stopColor="hsl(280 100% 70%)" />
-                          <stop offset="100%" stopColor="hsl(280 100% 85%)" />
+                          <stop offset="0%" stopColor="#F43B3E" />
+                          <stop offset="100%" stopColor="#FF7675" />
                         </linearGradient>
                         <filter id="glow2-gaming">
                           <feGaussianBlur stdDeviation="2" result="coloredBlur" />
@@ -487,13 +500,13 @@ const GamingNewsSiteProject = () => {
                     <p className="text-sm text-muted-foreground max-w-[200px] mx-auto">Users reading gaming news on mobile devices</p>
                   </div>
 
-                  {/* 61% Spoiled */}
+                  {/* 61% Spoiled - Midnight/Slate gradient */}
                   <div className="text-center">
                     <svg className="w-32 h-32 md:w-40 md:h-40 mx-auto mb-6 transition-all duration-700 hover:scale-110" viewBox="0 0 160 160">
                       <defs>
                         <linearGradient id="gradient3-gaming" x1="0%" y1="0%" x2="100%" y2="0%">
-                          <stop offset="0%" stopColor="hsl(340 100% 65%)" />
-                          <stop offset="100%" stopColor="hsl(340 100% 80%)" />
+                          <stop offset="0%" stopColor="#6C7A89" />
+                          <stop offset="100%" stopColor="#9DAAB5" />
                         </linearGradient>
                         <filter id="glow3-gaming">
                           <feGaussianBlur stdDeviation="2" result="coloredBlur" />
@@ -779,114 +792,242 @@ const GamingNewsSiteProject = () => {
                     </div>
                   </div>}
 
-                {/* V3: 3-Column Grid - Vertical cards side by side */}
-                {personaLayout === 3 && <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-                    <div ref={persona1Anim.ref}>
-                      <GamePersonaCard name="Marcus T." classTitle="The Strategist" age={28} playerType="Competitive Gamer" avatar={gnsPersonaMarcus} level={99} classIcon="strategist" isVisible={persona1Anim.isVisible} variant="vertical" stats={[{
-                    subject: 'Focus',
-                    value: 85,
-                    fullMark: 100
-                  }, {
-                    subject: 'Speed',
-                    value: 98,
-                    fullMark: 100
-                  }, {
-                    subject: 'Efficiency',
-                    value: 92,
-                    fullMark: 100
-                  }, {
-                    subject: 'Meta Knowledge',
-                    value: 95,
-                    fullMark: 100
-                  }, {
-                    subject: 'Patience',
-                    value: 15,
-                    fullMark: 100
-                  }, {
-                    subject: 'Dedication',
-                    value: 45,
-                    fullMark: 100
-                  }]} goals={[{
-                    text: 'Instant access to patch notes'
-                  }, {
-                    text: 'Real-time server status'
-                  }, {
-                    text: '"Just the Facts" summaries'
-                  }, {
-                    text: 'Zero scrolling through fluff'
-                  }]} quote="I don't have time to scroll through clickbait. Just tell me if the patch changed my main character and I'm good." />
+                {/* V3: 3-Column Grid - Vertical cards side by side (Desktop) / Carousel (Mobile/Tablet) */}
+                {personaLayout === 3 && (
+                  <>
+                    {/* Mobile/Tablet Carousel */}
+                    <div className="lg:hidden">
+                      <Carousel className="w-full">
+                        <CarouselContent>
+                          <CarouselItem>
+                            <div ref={persona1Anim.ref}>
+                              <GamePersonaCard name="Marcus T." classTitle="The Strategist" age={28} playerType="Competitive Gamer" avatar={gnsPersonaMarcus} level={99} classIcon="strategist" isVisible={persona1Anim.isVisible} variant="vertical" stats={[{
+                                subject: 'Focus',
+                                value: 85,
+                                fullMark: 100
+                              }, {
+                                subject: 'Speed',
+                                value: 98,
+                                fullMark: 100
+                              }, {
+                                subject: 'Efficiency',
+                                value: 92,
+                                fullMark: 100
+                              }, {
+                                subject: 'Meta',
+                                value: 95,
+                                fullMark: 100
+                              }, {
+                                subject: 'Patience',
+                                value: 15,
+                                fullMark: 100
+                              }, {
+                                subject: 'Dedication',
+                                value: 45,
+                                fullMark: 100
+                              }]} goals={[{
+                                text: 'Instant access to patch notes'
+                              }, {
+                                text: 'Real-time server status'
+                              }, {
+                                text: '"Just the Facts" summaries'
+                              }, {
+                                text: 'Zero scrolling through fluff'
+                              }]} quote="I don't have time to scroll through clickbait. Just tell me if the patch changed my main character and I'm good." />
+                            </div>
+                          </CarouselItem>
+                          <CarouselItem>
+                            <div ref={persona2Anim.ref}>
+                              <GamePersonaCard name="Elena R." classTitle="The Enthusiast" age={34} playerType="Story-Driven Gamer" avatar={gnsPersonaElena} level={87} classIcon="enthusiast" isVisible={persona2Anim.isVisible} variant="vertical" stats={[{
+                                subject: 'Story',
+                                value: 98,
+                                fullMark: 100
+                              }, {
+                                subject: 'Patience',
+                                value: 92,
+                                fullMark: 100
+                              }, {
+                                subject: 'Dedication',
+                                value: 75,
+                                fullMark: 100
+                              }, {
+                                subject: 'Immersion',
+                                value: 100,
+                                fullMark: 100
+                              }, {
+                                subject: 'Depth',
+                                value: 55,
+                                fullMark: 100
+                              }, {
+                                subject: 'Spoiler',
+                                value: 100,
+                                fullMark: 100
+                              }]} goals={[{
+                                text: 'Complete spoiler protection'
+                              }, {
+                                text: 'Curated narrative game coverage'
+                              }, {
+                                text: 'Premium reading experience'
+                              }, {
+                                text: 'Editorial-quality content'
+                              }]} quote="A headline spoiled the ending of a game I'd been playing for 40 hours. I literally stopped reading gaming news after that." />
+                            </div>
+                          </CarouselItem>
+                          <CarouselItem>
+                            <div ref={persona3Anim.ref}>
+                              <GamePersonaCard name="Kenji M." classTitle="The Explorer" age={22} playerType="Gaming Enthusiast" avatar={gnsPersonaKenji} level={72} classIcon="explorer" isVisible={persona3Anim.isVisible} variant="vertical" stats={[{
+                                subject: 'Multi',
+                                value: 88,
+                                fullMark: 100
+                              }, {
+                                subject: 'Gaming',
+                                value: 42,
+                                fullMark: 100
+                              }, {
+                                subject: 'Mobile',
+                                value: 95,
+                                fullMark: 100
+                              }, {
+                                subject: 'Curiosity',
+                                value: 90,
+                                fullMark: 100
+                              }, {
+                                subject: 'Adapt',
+                                value: 68,
+                                fullMark: 100
+                              }, {
+                                subject: 'Enthuse',
+                                value: 85,
+                                fullMark: 100
+                              }]} goals={[{
+                                text: 'Second-screen guide support'
+                              }, {
+                                text: 'Screen stays awake while gaming'
+                              }, {
+                                text: 'Quick daily gaming digest'
+                              }, {
+                                text: 'Ad-free reading experience'
+                              }]} quote="I use guides while playing, but my phone screen keeps turning off. Why isn't there a simple way to keep it on?" />
+                            </div>
+                          </CarouselItem>
+                        </CarouselContent>
+                        <div className="flex justify-center gap-2 mt-6">
+                          <CarouselPrevious className="relative inset-auto translate-y-0 bg-primary/10 border-primary/30 hover:bg-primary/20 text-primary" />
+                          <CarouselNext className="relative inset-auto translate-y-0 bg-primary/10 border-primary/30 hover:bg-primary/20 text-primary" />
+                        </div>
+                      </Carousel>
                     </div>
-                    <div ref={persona2Anim.ref}>
-                      <GamePersonaCard name="Elena R." classTitle="The Enthusiast" age={34} playerType="Story-Driven Gamer" avatar={gnsPersonaElena} level={87} classIcon="enthusiast" isVisible={persona2Anim.isVisible} variant="vertical" stats={[{
-                    subject: 'Story Focus',
-                    value: 98,
-                    fullMark: 100
-                  }, {
-                    subject: 'Patience',
-                    value: 92,
-                    fullMark: 100
-                  }, {
-                    subject: 'Dedication',
-                    value: 75,
-                    fullMark: 100
-                  }, {
-                    subject: 'Immersion',
-                    value: 100,
-                    fullMark: 100
-                  }, {
-                    subject: 'Reading Depth',
-                    value: 55,
-                    fullMark: 100
-                  }, {
-                    subject: 'Spoiler Aversion',
-                    value: 100,
-                    fullMark: 100
-                  }]} goals={[{
-                    text: 'Complete spoiler protection'
-                  }, {
-                    text: 'Curated narrative game coverage'
-                  }, {
-                    text: 'Premium reading experience'
-                  }, {
-                    text: 'Editorial-quality content'
-                  }]} quote="A headline spoiled the ending of a game I'd been playing for 40 hours. I literally stopped reading gaming news after that." />
+
+                    {/* Desktop Grid */}
+                    <div className="hidden lg:grid lg:grid-cols-3 gap-6 lg:gap-8">
+                      <div ref={persona1Anim.ref}>
+                        <GamePersonaCard name="Marcus T." classTitle="The Strategist" age={28} playerType="Competitive Gamer" avatar={gnsPersonaMarcus} level={99} classIcon="strategist" isVisible={persona1Anim.isVisible} variant="vertical" stats={[{
+                          subject: 'Focus',
+                          value: 85,
+                          fullMark: 100
+                        }, {
+                          subject: 'Speed',
+                          value: 98,
+                          fullMark: 100
+                        }, {
+                          subject: 'Efficiency',
+                          value: 92,
+                          fullMark: 100
+                        }, {
+                          subject: 'Meta',
+                          value: 95,
+                          fullMark: 100
+                        }, {
+                          subject: 'Patience',
+                          value: 15,
+                          fullMark: 100
+                        }, {
+                          subject: 'Dedication',
+                          value: 45,
+                          fullMark: 100
+                        }]} goals={[{
+                          text: 'Instant access to patch notes'
+                        }, {
+                          text: 'Real-time server status'
+                        }, {
+                          text: '"Just the Facts" summaries'
+                        }, {
+                          text: 'Zero scrolling through fluff'
+                        }]} quote="I don't have time to scroll through clickbait. Just tell me if the patch changed my main character and I'm good." />
+                      </div>
+                      <div ref={persona2Anim.ref}>
+                        <GamePersonaCard name="Elena R." classTitle="The Enthusiast" age={34} playerType="Story-Driven Gamer" avatar={gnsPersonaElena} level={87} classIcon="enthusiast" isVisible={persona2Anim.isVisible} variant="vertical" stats={[{
+                          subject: 'Story',
+                          value: 98,
+                          fullMark: 100
+                        }, {
+                          subject: 'Patience',
+                          value: 92,
+                          fullMark: 100
+                        }, {
+                          subject: 'Dedication',
+                          value: 75,
+                          fullMark: 100
+                        }, {
+                          subject: 'Immersion',
+                          value: 100,
+                          fullMark: 100
+                        }, {
+                          subject: 'Depth',
+                          value: 55,
+                          fullMark: 100
+                        }, {
+                          subject: 'Spoiler',
+                          value: 100,
+                          fullMark: 100
+                        }]} goals={[{
+                          text: 'Complete spoiler protection'
+                        }, {
+                          text: 'Curated narrative game coverage'
+                        }, {
+                          text: 'Premium reading experience'
+                        }, {
+                          text: 'Editorial-quality content'
+                        }]} quote="A headline spoiled the ending of a game I'd been playing for 40 hours. I literally stopped reading gaming news after that." />
+                      </div>
+                      <div ref={persona3Anim.ref}>
+                        <GamePersonaCard name="Kenji M." classTitle="The Explorer" age={22} playerType="Gaming Enthusiast" avatar={gnsPersonaKenji} level={72} classIcon="explorer" isVisible={persona3Anim.isVisible} variant="vertical" stats={[{
+                          subject: 'Multi',
+                          value: 88,
+                          fullMark: 100
+                        }, {
+                          subject: 'Gaming',
+                          value: 42,
+                          fullMark: 100
+                        }, {
+                          subject: 'Mobile',
+                          value: 95,
+                          fullMark: 100
+                        }, {
+                          subject: 'Curiosity',
+                          value: 90,
+                          fullMark: 100
+                        }, {
+                          subject: 'Adapt',
+                          value: 68,
+                          fullMark: 100
+                        }, {
+                          subject: 'Enthuse',
+                          value: 85,
+                          fullMark: 100
+                        }]} goals={[{
+                          text: 'Second-screen guide support'
+                        }, {
+                          text: 'Screen stays awake while gaming'
+                        }, {
+                          text: 'Quick daily gaming digest'
+                        }, {
+                          text: 'Ad-free reading experience'
+                        }]} quote="I use guides while playing, but my phone screen keeps turning off. Why isn't there a simple way to keep it on?" />
+                      </div>
                     </div>
-                    <div ref={persona3Anim.ref}>
-                      <GamePersonaCard name="Kenji M." classTitle="The Explorer" age={22} playerType="Gaming Enthusiast" avatar={gnsPersonaKenji} level={72} classIcon="explorer" isVisible={persona3Anim.isVisible} variant="vertical" stats={[{
-                    subject: 'Multitasking',
-                    value: 88,
-                    fullMark: 100
-                  }, {
-                    subject: 'Daily Gaming',
-                    value: 42,
-                    fullMark: 100
-                  }, {
-                    subject: 'Mobile Usage',
-                    value: 95,
-                    fullMark: 100
-                  }, {
-                    subject: 'Curiosity',
-                    value: 90,
-                    fullMark: 100
-                  }, {
-                    subject: 'Adaptability',
-                    value: 68,
-                    fullMark: 100
-                  }, {
-                    subject: 'Enthusiasm',
-                    value: 85,
-                    fullMark: 100
-                  }]} goals={[{
-                    text: 'Second-screen guide support'
-                  }, {
-                    text: 'Screen stays awake while gaming'
-                  }, {
-                    text: 'Quick daily gaming digest'
-                  }, {
-                    text: 'Ad-free reading experience'
-                  }]} quote="I use guides while playing, but my phone screen keeps turning off. Why isn't there a simple way to keep it on?" />
-                    </div>
-                  </div>}
+                  </>
+                )}
 
                 {/* V4: Strip - Condensed horizontal rows */}
                 {personaLayout === 4 && <div className="space-y-3">
@@ -1112,42 +1253,54 @@ const GamingNewsSiteProject = () => {
 
               {/* Right Column */}
               <div className="flex flex-col gap-4 md:gap-6">
-                {/* Colors Card */}
+                {/* Colors Card - Reference Image Layout */}
                 <div className="bg-card border border-border rounded-lg p-4 md:p-6">
                   <h3 className="text-lg md:text-xl font-bold mb-4 md:mb-6">Colors</h3>
                   
-                  {/* Primary Colors - Larger, More Prominent */}
-                  <div className="mb-4 md:mb-6">
+                  {/* Primary Colors - Horizontal Cards with Specs */}
+                  <div className="mb-6">
                     <p className="text-xs uppercase tracking-wider text-muted-foreground font-semibold mb-3">Primary</p>
-                    <div className="grid grid-cols-4 gap-2 md:gap-3">
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
                       {primaryColors.map((color) => (
                         <div 
                           key={color.name}
-                          className="rounded-lg p-3 md:p-4 flex flex-col justify-end aspect-[3/2]"
-                          style={{ backgroundColor: color.hex }}
+                          className="flex rounded-lg overflow-hidden border border-border/50"
                         >
-                          <p className={`font-bold text-sm md:text-base uppercase ${color.isDark ? 'text-white' : 'text-gray-900'}`}>
-                            {color.name}
-                          </p>
-                          <p className={`text-xs ${color.isDark ? 'text-white/80' : 'text-gray-900/80'}`}>
-                            {color.hex}
-                          </p>
+                          {/* Color Swatch */}
+                          <div 
+                            className="w-16 md:w-20 flex-shrink-0 flex items-end p-2"
+                            style={{ backgroundColor: color.hex }}
+                          >
+                            <p className={`font-bold text-xs uppercase ${color.isDark ? 'text-white' : 'text-gray-900'}`}>
+                              {color.name}
+                            </p>
+                          </div>
+                          {/* Specs */}
+                          <div className="flex-1 p-2 bg-[#1E1E24] text-[10px] space-y-1">
+                            <p className="text-white font-mono">{color.hex}</p>
+                            <p className="text-white/60">
+                              <span className="text-white/40">HSL</span> {color.hsl || '—'}
+                            </p>
+                            <p className="text-white/60">
+                              <span className="text-white/40">RGB</span> {color.rgb || '—'}
+                            </p>
+                          </div>
                         </div>
                       ))}
                     </div>
                   </div>
                   
-                  {/* Secondary Colors - Smaller, Less Prominent */}
+                  {/* Secondary Colors - Smaller Grid */}
                   <div>
                     <p className="text-xs uppercase tracking-wider text-muted-foreground/60 font-semibold mb-2">Secondary & Tertiary</p>
-                    <div className="grid grid-cols-4 gap-1.5 md:gap-2">
+                    <div className="grid grid-cols-4 md:grid-cols-8 gap-1.5 md:gap-2">
                       {secondaryColors.map((color) => (
                         <div 
                           key={color.name}
                           className="rounded-md p-2 flex flex-col justify-end aspect-square"
                           style={{ backgroundColor: color.hex }}
                         >
-                          <p className={`font-medium text-[10px] uppercase ${color.isDark ? 'text-white/80' : 'text-gray-900/80'}`}>
+                          <p className={`font-medium text-[9px] uppercase ${color.isDark ? 'text-white/70' : 'text-gray-900/70'}`}>
                             {color.name}
                           </p>
                         </div>
@@ -1216,43 +1369,54 @@ const GamingNewsSiteProject = () => {
               </p>
             </div>
             
+            {/* Intro Section: Frictionless Account Creation */}
+            <OnboardingCallout
+              subtitle="The Strategy"
+              title="Frictionless Account Creation"
+              description="Using onboarding as an opportunity to get users to create accounts without the traditional annoying signup flow. By delivering immediate value through personalization, users opt into accounts organically as they configure their experience—creating engagement before asking for commitment."
+              image={onboardTitle}
+              personaMappings={[]}
+              reversed={false}
+            />
+            
             {/* Section 1: Vibe Check */}
             <OnboardingCallout
+              subtitle="Step 1"
               title="Identity Segmentation"
               description="The user self-identifies their 'Gamer Type,' which radically alters the Home Screen layout and information density."
+              image={onboardVibeCheck}
               personaMappings={[
-                { persona: "Marcus", description: "Selects 'Strategist' (Triggers Data-Dense View)" },
-                { persona: "Elena", description: "Selects 'Explorer' (Triggers Spoiler Protections)" },
-                { persona: "Kenji", description: "Selects 'Enthusiast' (Triggers Magazine/Briefing View)" },
+                { persona: "Marcus", action: "Selects 'Strategist' (Triggers Data-Dense View)" },
+                { persona: "Elena", action: "Selects 'Explorer' (Triggers Spoiler Protections)" },
+                { persona: "Kenji", action: "Selects 'Enthusiast' (Triggers Magazine/Briefing View)" },
               ]}
-              imagePlaceholder="Vibe Check Screen (Coming Soon)"
-              reversed={false}
-              className="border-b border-border/30"
+              reversed={true}
             />
             
             {/* Section 2: Active Duty */}
             <OnboardingCallout
+              subtitle="Step 2"
               title="Context Setup"
               description="Users select currently playing titles to initialize the 'Spoiler Curtain' firewall and 'Patch Tracker' subscriptions."
+              image={onboardActiveDuty}
               personaMappings={[
-                { persona: "Elena", description: "Essential for identifying which plotlines to protect" },
-                { persona: "Marcus", description: "Essential for filtering 'Patch Notes' notifications" },
+                { persona: "Elena", action: "Essential for identifying which plotlines to protect" },
+                { persona: "Marcus", action: "Essential for filtering 'Patch Notes' notifications" },
               ]}
-              imagePlaceholder="Active Duty Screen (Coming Soon)"
-              reversed={true}
-              className="border-b border-border/30"
+              reversed={false}
             />
             
             {/* Section 3: Granular Permissions */}
             <OnboardingCallout
+              subtitle="Step 3"
               title="Respecting Boundaries"
               description="Users choose when we interrupt them, ensuring high trust and low uninstall rates."
+              image={onboardPermissions}
               personaMappings={[
-                { persona: "Marcus", description: "Opts into 'Patch Drops'" },
-                { persona: "Kenji", description: "Opts into 'Daily Briefing'" },
+                { persona: "Marcus", action: "Opts into 'Patch Drops'" },
+                { persona: "Kenji", action: "Opts into 'Daily Briefing'" },
               ]}
-              imagePlaceholder="Permissions Screen (Coming Soon)"
-              reversed={false}
+              reversed={true}
             />
           </div>
         </section>

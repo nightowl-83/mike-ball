@@ -151,13 +151,12 @@ export const GamePersonaCard = ({
 
     return (
       <div className="relative border border-border/50 rounded-xl overflow-hidden hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 group min-h-[640px] flex flex-col">
-        {/* Background Image - full card */}
+        {/* Background Image - full card, grayscale by default, color on hover */}
         <div className="absolute inset-0">
           <img
             src={avatar}
             alt={name}
-            className="w-full h-full object-cover object-top transition-all duration-500 ease-out"
-            style={{ filter: isVisible ? 'grayscale(0%)' : 'grayscale(100%)' }}
+            className="w-full h-full object-cover object-top transition-all duration-700 ease-out grayscale group-hover:grayscale-0"
           />
         </div>
         
@@ -169,19 +168,18 @@ export const GamePersonaCard = ({
               <h3 className="text-lg font-bold text-white leading-tight">{name}</h3>
               <p className="text-xs text-white/70 uppercase tracking-wide mt-0.5">{classTitle}</p>
             </div>
-            {/* Combined age + playerType in single box */}
-            <div className="inline-flex items-center gap-2 px-2.5 py-1.5 bg-white/10 backdrop-blur-sm rounded border border-white/20">
+            {/* Age + playerType stacked on separate lines, no box */}
+            <div className="flex flex-col items-end text-right">
               <span className="text-xs text-white/80">{age}y</span>
-              <span className="text-white/40">•</span>
-              <span className="text-xs text-white/80">{playerType}</span>
+              <span className="text-xs text-white/60">{playerType}</span>
             </div>
           </div>
           
           {/* MIDDLE: Clear image zone - NO overlay */}
           <div className="flex-1 min-h-[180px]" />
           
-          {/* BOTTOM: Content sections with blur overlay */}
-          <div className="bg-gradient-to-t from-black/90 via-black/80 to-black/60 backdrop-blur-sm">
+          {/* BOTTOM: Content sections with blur overlay - fixed min-height for alignment */}
+          <div className="bg-gradient-to-t from-black/90 via-black/80 to-black/60 backdrop-blur-sm min-h-[340px]">
             {/* Skills Radar */}
             <div className="p-4 border-b border-white/10">
               <div className="flex items-center justify-between mb-1">
@@ -190,9 +188,9 @@ export const GamePersonaCard = ({
                   Top: {topSkill.subject}
                 </span>
               </div>
-              <div className="h-[130px] transition-transform duration-300 group-hover:scale-105">
+              <div className="h-[120px] transition-transform duration-300 group-hover:scale-105">
                 <ResponsiveContainer width="100%" height="100%">
-                  <RadarChart data={stats} outerRadius="80%">
+                  <RadarChart data={stats} outerRadius="60%">
                     <PolarGrid stroke="rgba(255,255,255,0.2)" strokeOpacity={0.4} />
                     <PolarAngleAxis 
                       dataKey="subject" 
@@ -204,7 +202,7 @@ export const GamePersonaCard = ({
                             y={y} 
                             textAnchor="middle" 
                             fill={isTopSkill ? 'hsl(var(--primary))' : 'rgba(255,255,255,0.6)'}
-                            fontSize={isTopSkill ? 11 : 10}
+                            fontSize={isTopSkill ? 9 : 8}
                             fontWeight={isTopSkill ? 600 : 400}
                             className="transition-all duration-300"
                           >
@@ -226,8 +224,8 @@ export const GamePersonaCard = ({
               </div>
             </div>
 
-            {/* Goals - 2 column bullet list */}
-            <div className="p-4 border-b border-white/10">
+            {/* Goals - 2 column bullet list with fixed height */}
+            <div className="p-4 border-b border-white/10 min-h-[80px]">
               <div className="grid grid-cols-2 gap-x-4 gap-y-2">
                 {goals.slice(0, 4).map((goal, idx) => (
                   <div key={idx} className="flex items-start">
