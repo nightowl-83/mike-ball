@@ -166,24 +166,32 @@ const GamingNewsSiteProject = () => {
   const deliveryAnim = useScrollAnimation();
   const outcomesAnim = useScrollAnimation();
   const nextProjectAnim = useScrollAnimation();
-  // Color palette data for the design system - Primary colors
-  const primaryColors = [
-    { name: 'Mt Dew', hex: '#CCFF00', hsl: '72, 100%, 50%', rgb: '204, 255, 0', isDark: false },
-    { name: 'Midnight', hex: '#2D2D3A', hsl: '240, 14%, 20%', rgb: '45, 45, 58', isDark: true },
-    { name: 'Snow', hex: '#FAFBFD', hsl: '220, 43%, 99%', rgb: '250, 251, 253', isDark: false },
-    { name: 'Red Bull', hex: '#F43B3E', hsl: '359, 90%, 59%', rgb: '244, 59, 62', isDark: true },
-  ];
-  
-  // Secondary/Tertiary colors
-  const secondaryColors = [
-    { name: 'Powder', hex: '#DCE3EA', hsl: '210, 25%, 89%', isDark: false },
-    { name: 'Surface', hex: '#1E1E24', hsl: '240, 12%, 13%', isDark: true },
-    { name: 'Custard', hex: '#F0FFB2', hsl: '72, 100%, 85%', isDark: false },
-    { name: 'Sugarfree', hex: '#FF7675', hsl: '0, 100%, 73%', isDark: false },
-    { name: 'Slate', hex: '#8899A6', hsl: '206, 14%, 59%', isDark: false },
-    { name: 'Void', hex: '#121217', hsl: '240, 12%, 8%', isDark: true },
-    { name: 'LED', hex: '#F1F8D6', hsl: '72, 73%, 91%', isDark: false },
-    { name: 'Rust', hex: '#FF5E1A', hsl: '18, 100%, 55%', isDark: true },
+  // Color palette data for the design system - organized by family columns
+  const colorColumns = [
+    // Neutrals Column
+    [
+      { name: 'Snow', hex: '#FAFBFD', hsl: '220, 43%, 99%', rgb: '250, 251, 253', isDark: false, isPrimary: true },
+      { name: 'Powder', hex: '#DCE3EA', hsl: '210, 25%, 89%', rgb: '220, 227, 234', isDark: false, isPrimary: false },
+      { name: 'Slate', hex: '#8899A6', hsl: '206, 14%, 59%', rgb: '136, 153, 166', isDark: false, isPrimary: false },
+    ],
+    // Darks Column
+    [
+      { name: 'Midnight', hex: '#2D2D3A', hsl: '240, 14%, 20%', rgb: '45, 45, 58', isDark: true, isPrimary: true },
+      { name: 'Surface', hex: '#1E1E24', hsl: '240, 12%, 13%', rgb: '30, 30, 36', isDark: true, isPrimary: false },
+      { name: 'Void', hex: '#121217', hsl: '240, 12%, 8%', rgb: '18, 18, 23', isDark: true, isPrimary: false },
+    ],
+    // Greens Column
+    [
+      { name: 'Mt Dew', hex: '#CCFF00', hsl: '72, 100%, 50%', rgb: '204, 255, 0', isDark: false, isPrimary: true },
+      { name: 'Custard', hex: '#F0FFB2', hsl: '72, 100%, 85%', rgb: '240, 255, 178', isDark: false, isPrimary: false },
+      { name: 'LED', hex: '#F1F8D6', hsl: '72, 73%, 91%', rgb: '241, 248, 214', isDark: false, isPrimary: false },
+    ],
+    // Reds Column
+    [
+      { name: 'Red Bull', hex: '#F43B3E', hsl: '359, 90%, 59%', rgb: '244, 59, 62', isDark: true, isPrimary: true },
+      { name: 'Sugarfree', hex: '#FF7675', hsl: '0, 100%, 73%', rgb: '255, 118, 117', isDark: false, isPrimary: false },
+      { name: 'Rust', hex: '#FF5E1A', hsl: '18, 100%, 55%', rgb: '255, 94, 26', isDark: true, isPrimary: false },
+    ],
   ];
 
   return <div className="min-h-screen bg-background theme-gns">
@@ -1253,59 +1261,49 @@ const GamingNewsSiteProject = () => {
 
               {/* Right Column */}
               <div className="flex flex-col gap-4 md:gap-6">
-                {/* Colors Card - Reference Image Layout */}
+                {/* Colors Card - 4x3 Grid by Color Family */}
                 <div className="bg-card border border-border rounded-lg p-4 md:p-6">
                   <h3 className="text-lg md:text-xl font-bold mb-4 md:mb-6">Colors</h3>
                   
-                  {/* Primary Colors - Horizontal Cards with Specs */}
-                  <div className="mb-6">
-                    <p className="text-xs uppercase tracking-wider text-muted-foreground font-semibold mb-3">Primary</p>
-                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-                      {primaryColors.map((color) => (
-                        <div 
-                          key={color.name}
-                          className="flex rounded-lg overflow-hidden border border-border/50"
-                        >
-                          {/* Color Swatch */}
+                  {/* 4-Column Grid by Color Family */}
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    {colorColumns.map((column, colIdx) => (
+                      <div key={colIdx} className="space-y-2">
+                        {/* Column Label */}
+                        <p className="text-[10px] uppercase tracking-wider text-muted-foreground/60 font-semibold mb-1">
+                          {colIdx === 0 ? 'Neutrals' : colIdx === 1 ? 'Darks' : colIdx === 2 ? 'Greens' : 'Reds'}
+                        </p>
+                        
+                        {column.map((color, rowIdx) => (
                           <div 
-                            className="w-16 md:w-20 flex-shrink-0 flex items-end p-2"
-                            style={{ backgroundColor: color.hex }}
+                            key={color.name}
+                            className={`flex rounded-lg overflow-hidden border border-border/50 ${rowIdx === 0 ? 'min-h-[80px]' : 'min-h-[50px]'}`}
                           >
-                            <p className={`font-bold text-xs uppercase ${color.isDark ? 'text-white' : 'text-gray-900'}`}>
-                              {color.name}
-                            </p>
+                            {/* Color Swatch */}
+                            <div 
+                              className={`flex-shrink-0 flex items-end p-2 ${rowIdx === 0 ? 'w-14 md:w-16' : 'w-10 md:w-12'}`}
+                              style={{ backgroundColor: color.hex }}
+                            >
+                              <p className={`font-bold uppercase ${rowIdx === 0 ? 'text-[10px]' : 'text-[8px]'} ${color.isDark ? 'text-white' : 'text-gray-900'}`}>
+                                {color.name}
+                              </p>
+                            </div>
+                            {/* Specs */}
+                            <div className="flex-1 p-1.5 md:p-2 bg-[#1E1E24] text-[9px] space-y-0.5">
+                              <p className="text-white font-mono">{color.hex}</p>
+                              <p className="text-white/60">
+                                <span className="text-white/40">HSL </span>{color.hsl}
+                              </p>
+                              {rowIdx === 0 && color.rgb && (
+                                <p className="text-white/60">
+                                  <span className="text-white/40">RGB </span>{color.rgb}
+                                </p>
+                              )}
+                            </div>
                           </div>
-                          {/* Specs */}
-                          <div className="flex-1 p-2 bg-[#1E1E24] text-[10px] space-y-1">
-                            <p className="text-white font-mono">{color.hex}</p>
-                            <p className="text-white/60">
-                              <span className="text-white/40">HSL</span> {color.hsl || '—'}
-                            </p>
-                            <p className="text-white/60">
-                              <span className="text-white/40">RGB</span> {color.rgb || '—'}
-                            </p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                  
-                  {/* Secondary Colors - Smaller Grid */}
-                  <div>
-                    <p className="text-xs uppercase tracking-wider text-muted-foreground/60 font-semibold mb-2">Secondary & Tertiary</p>
-                    <div className="grid grid-cols-4 md:grid-cols-8 gap-1.5 md:gap-2">
-                      {secondaryColors.map((color) => (
-                        <div 
-                          key={color.name}
-                          className="rounded-md p-2 flex flex-col justify-end aspect-square"
-                          style={{ backgroundColor: color.hex }}
-                        >
-                          <p className={`font-medium text-[9px] uppercase ${color.isDark ? 'text-white/70' : 'text-gray-900/70'}`}>
-                            {color.name}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
+                        ))}
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>

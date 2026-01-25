@@ -11,6 +11,30 @@ import {
   Share2,
   Play,
   Pause,
+  Trophy,
+  Gamepad2,
+  Clock,
+  Calendar,
+  Filter,
+  Layers,
+  Eye,
+  EyeOff,
+  AlertCircle,
+  CheckCircle,
+  Info,
+  MessageSquare,
+  Download,
+  Upload,
+  Trash2,
+  Edit,
+  Copy,
+  ExternalLink,
+  ChevronDown,
+  ChevronRight,
+  ArrowLeft,
+  ArrowRight,
+  RefreshCw,
+  X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -19,18 +43,48 @@ interface IconShowcaseProps {
 }
 
 const icons = [
+  // Row 1
   { name: "Home", Icon: Home },
   { name: "Search", Icon: Search },
   { name: "Settings", Icon: Settings },
   { name: "Bell", Icon: Bell },
   { name: "User", Icon: User },
   { name: "Menu", Icon: Menu },
+  // Row 2
   { name: "Star", Icon: Star },
   { name: "Heart", Icon: Heart },
   { name: "Bookmark", Icon: Bookmark },
   { name: "Share", Icon: Share2 },
   { name: "Play", Icon: Play },
   { name: "Pause", Icon: Pause },
+  // Row 3
+  { name: "Trophy", Icon: Trophy },
+  { name: "Gamepad", Icon: Gamepad2 },
+  { name: "Clock", Icon: Clock },
+  { name: "Calendar", Icon: Calendar },
+  { name: "Filter", Icon: Filter },
+  { name: "Layers", Icon: Layers },
+  // Row 4
+  { name: "Eye", Icon: Eye },
+  { name: "EyeOff", Icon: EyeOff },
+  { name: "Alert", Icon: AlertCircle },
+  { name: "Check", Icon: CheckCircle },
+  { name: "Info", Icon: Info },
+  { name: "Message", Icon: MessageSquare },
+  // Row 5
+  { name: "Download", Icon: Download },
+  { name: "Upload", Icon: Upload },
+  { name: "Trash", Icon: Trash2 },
+  { name: "Edit", Icon: Edit },
+  { name: "Copy", Icon: Copy },
+  { name: "External", Icon: ExternalLink },
+  // Row 6
+  { name: "Down", Icon: ChevronDown },
+  { name: "Right", Icon: ChevronRight },
+  { name: "Back", Icon: ArrowLeft },
+  { name: "Forward", Icon: ArrowRight },
+  { name: "Refresh", Icon: RefreshCw },
+  { name: "Close", Icon: X },
 ];
 
 export const DesignSystemIcons = ({ className }: IconShowcaseProps) => {
