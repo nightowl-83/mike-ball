@@ -163,72 +163,75 @@ export const GamePersonaCard = ({
         
         {/* Content Container - Semi-transparent overlay */}
         <div className="relative z-10 flex flex-col flex-1">
-          {/* Header with Name, Title, Level */}
-          <div className="p-4 bg-black/50 backdrop-blur-sm">
-            <div className="flex items-center justify-between">
+          {/* Combined Info + Skills Row - 1/3 info, 2/3 radar */}
+          <div className="p-4 bg-black/50 backdrop-blur-sm flex gap-4">
+            {/* Left Column - 1/3: Name, Title, Tags, Level */}
+            <div className="w-1/3 flex flex-col justify-center space-y-2">
               <div>
-                <h3 className="text-lg font-bold text-white">{name}</h3>
-                <p className="text-xs text-white/70 uppercase tracking-wide">{classTitle}</p>
+                <h3 className="text-lg font-bold text-white leading-tight">{name}</h3>
+                <p className="text-xs text-white/70 uppercase tracking-wide mt-0.5">{classTitle}</p>
               </div>
-              <div className="flex flex-col items-center">
-                <span className="text-[9px] text-white/60 uppercase">Lv</span>
+              <div className="flex flex-wrap gap-1.5">
+                <span className="text-xs px-2 py-1 bg-white/10 backdrop-blur-sm rounded text-white/80 border border-white/20">
+                  {age}y
+                </span>
+                <span className="text-xs px-2 py-1 bg-white/10 backdrop-blur-sm rounded text-white/80 border border-white/20">
+                  {playerType}
+                </span>
+              </div>
+              <div className="flex items-center gap-2 pt-1">
+                <span className="text-[9px] text-white/60 uppercase">Level</span>
                 <span className="text-xl font-bold font-mono text-primary">{level}</span>
               </div>
             </div>
-            {/* Age/Type badge */}
-            <div className="mt-2">
-              <span className="text-xs px-2 py-1 bg-white/10 backdrop-blur-sm rounded text-white/80 border border-white/20">
-                {age}y • {playerType}
-              </span>
-            </div>
-          </div>
 
-          {/* Skills - Full Width Row with Radar */}
-          <div className="p-4 bg-black/40 backdrop-blur-sm border-t border-white/10 flex-1">
-            <div className="flex items-center justify-between mb-3">
-              <h4 className="text-sm font-semibold text-white/70 uppercase tracking-wider text-left">Skills</h4>
-              <span className="text-xs px-2 py-1 bg-primary/20 text-primary rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                Top: {topSkill.subject}
-              </span>
-            </div>
-            <div className="h-[180px] transition-transform duration-300 group-hover:scale-105">
-              <ResponsiveContainer width="100%" height="100%">
-                <RadarChart data={stats} outerRadius="85%">
-                  <PolarGrid stroke="rgba(255,255,255,0.2)" strokeOpacity={0.4} />
-                  <PolarAngleAxis 
-                    dataKey="subject" 
-                    tick={({ x, y, payload }) => {
-                      const isTopSkill = payload.value === topSkill.subject;
-                      return (
-                        <text 
-                          x={x} 
-                          y={y} 
-                          textAnchor="middle" 
-                          fill={isTopSkill ? 'hsl(var(--primary))' : 'rgba(255,255,255,0.6)'}
-                          fontSize={isTopSkill ? 12 : 11}
-                          fontWeight={isTopSkill ? 600 : 400}
-                          className="transition-all duration-300"
-                        >
-                          {payload.value}
-                        </text>
-                      );
-                    }}
-                    tickLine={false}
-                  />
-                  <Radar
-                    dataKey="value"
-                    stroke="hsl(var(--primary))"
-                    fill="hsl(var(--primary))"
-                    fillOpacity={0.4}
-                    strokeWidth={2}
-                  />
-                </RadarChart>
-              </ResponsiveContainer>
+            {/* Right Column - 2/3: Skills Radar */}
+            <div className="w-2/3 flex flex-col">
+              <div className="flex items-center justify-between mb-1">
+                <h4 className="text-xs font-semibold text-white/70 uppercase tracking-wider">Skills</h4>
+                <span className="text-[10px] px-1.5 py-0.5 bg-primary/20 text-primary rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  Top: {topSkill.subject}
+                </span>
+              </div>
+              <div className="h-[160px] transition-transform duration-300 group-hover:scale-105">
+                <ResponsiveContainer width="100%" height="100%">
+                  <RadarChart data={stats} outerRadius="80%">
+                    <PolarGrid stroke="rgba(255,255,255,0.2)" strokeOpacity={0.4} />
+                    <PolarAngleAxis 
+                      dataKey="subject" 
+                      tick={({ x, y, payload }) => {
+                        const isTopSkill = payload.value === topSkill.subject;
+                        return (
+                          <text 
+                            x={x} 
+                            y={y} 
+                            textAnchor="middle" 
+                            fill={isTopSkill ? 'hsl(var(--primary))' : 'rgba(255,255,255,0.6)'}
+                            fontSize={isTopSkill ? 11 : 10}
+                            fontWeight={isTopSkill ? 600 : 400}
+                            className="transition-all duration-300"
+                          >
+                            {payload.value}
+                          </text>
+                        );
+                      }}
+                      tickLine={false}
+                    />
+                    <Radar
+                      dataKey="value"
+                      stroke="hsl(var(--primary))"
+                      fill="hsl(var(--primary))"
+                      fillOpacity={0.4}
+                      strokeWidth={2}
+                    />
+                  </RadarChart>
+                </ResponsiveContainer>
+              </div>
             </div>
           </div>
 
           {/* Goals - 2-Row Layout without icons */}
-          <div className="p-4 bg-black/40 backdrop-blur-sm border-t border-white/10">
+          <div className="p-4 bg-black/40 backdrop-blur-sm border-t border-white/10 flex-1">
             <h4 className="text-sm font-semibold text-white/70 uppercase tracking-wider mb-3 text-left">Goals</h4>
             <div className="grid grid-cols-2 gap-x-4 gap-y-2">
               {goals.slice(0, 4).map((goal, idx) => (
