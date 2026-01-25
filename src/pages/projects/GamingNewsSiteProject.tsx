@@ -394,19 +394,19 @@ const GamingNewsSiteProject = () => {
               <div className="space-y-4 md:space-y-12">
                 <div className="space-y-4 md:space-y-6 text-base md:text-lg text-muted-foreground">
                   <p>
-                    <strong className="text-primary">Game Hub Architecture:</strong> Instead of a firehose of content, users organize their experience around specific games they're playing or following.
+                    <strong className="text-foreground font-semibold">Game Hub Architecture:</strong> Instead of a firehose of content, users organize their experience around specific games they're playing or following.
                   </p>
                   
                   <p>
-                    <strong className="text-primary">Behavior-Based Onboarding:</strong> New users select their gaming style (competitive, narrative, casual) to receive a tailored experience from day one.
+                    <strong className="text-foreground font-semibold">Behavior-Based Onboarding:</strong> New users select their gaming style (competitive, narrative, casual) to receive a tailored experience from day one.
                   </p>
                   
                   <p>
-                    <strong className="text-primary">Utility Over Impressions:</strong> Every feature was evaluated on user value, not engagement metrics. Features that drove "time on site" without utility were rejected.
+                    <strong className="text-foreground font-semibold">Utility Over Impressions:</strong> Every feature was evaluated on user value, not engagement metrics. Features that drove "time on site" without utility were rejected.
                   </p>
                   
                   <p>
-                    <strong className="text-primary">Friction Point Solutions:</strong> Identified and solved key pain points: spoilers, irrelevant content, aggressive advertising, and poor second-screen support.
+                    <strong className="text-foreground font-semibold">Friction Point Solutions:</strong> Identified and solved key pain points: spoilers, irrelevant content, aggressive advertising, and poor second-screen support.
                   </p>
                   
                   <div className="p-4 md:p-6 rounded-xl bg-card/50 border-2 border-primary/20">
