@@ -14,6 +14,8 @@ interface OnboardingCalloutProps {
   personaMappings?: PersonaMapping[];
   reversed?: boolean;
   showDivider?: boolean;
+  noPadding?: boolean;
+  noImageBackground?: boolean;
 }
 
 export const OnboardingCallout = ({
@@ -24,6 +26,8 @@ export const OnboardingCallout = ({
   personaMappings = [],
   reversed = false,
   showDivider = false,
+  noPadding = false,
+  noImageBackground = false,
 }: OnboardingCalloutProps) => {
   const anim = useScrollAnimation({ threshold: 0.2 });
 
@@ -31,7 +35,8 @@ export const OnboardingCallout = ({
     <div 
       ref={anim.ref}
       className={cn(
-        "grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center py-12 lg:py-16",
+        "grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center",
+        noPadding ? "py-0 lg:py-0 pb-0" : "py-12 lg:py-16",
         showDivider && "border-b border-border/50"
       )}
     >
