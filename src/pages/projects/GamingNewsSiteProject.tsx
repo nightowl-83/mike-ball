@@ -1276,11 +1276,16 @@ const GamingNewsSiteProject = () => {
             
             {/* Row 1: Typography - 2 Column */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6">
-              {/* Left: Font Display */}
-              <div className="bg-card border border-border rounded-lg p-6 md:p-8">
-                <h3 className="text-lg md:text-xl font-bold mb-4">Typography</h3>
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-2">Inter</h1>
-                <p className="text-sm md:text-base text-muted-foreground">Font Family</p>
+              {/* Left: Font Display - Inverse (Powder background) */}
+              <div className="bg-[#D0E8F2] rounded-lg p-6 md:p-8 flex flex-col">
+                <h3 className="text-lg md:text-xl font-bold mb-4 text-[#121212]">Typography</h3>
+                <div className="flex-1 flex items-center justify-center">
+                  <h1 className="text-7xl md:text-8xl lg:text-9xl font-bold text-[#121212]">Inter</h1>
+                </div>
+                <div className="flex justify-between items-center text-[#2D2D3A]">
+                  <p className="text-sm md:text-base">Font Family</p>
+                  <p className="text-sm md:text-base text-right">Bold, Semi Bold, Medium, Regular</p>
+                </div>
               </div>
               
               {/* Right: Type Styles */}
@@ -1341,9 +1346,9 @@ const GamingNewsSiteProject = () => {
                       {colIdx === 0 ? 'Neutrals' : colIdx === 1 ? 'Darks' : colIdx === 2 ? 'Greens' : 'Reds'}
                     </p>
                     
-                    {column.map((color, rowIdx) => <div key={color.name} className={`flex rounded-lg overflow-hidden border border-border/50 ${rowIdx === 0 ? 'min-h-[80px]' : 'min-h-[50px]'}`}>
-                        {/* Color Swatch */}
-                        <div className={`flex-shrink-0 flex items-end p-2 ${rowIdx === 0 ? 'w-14 md:w-16' : 'w-10 md:w-12'}`} style={{
+                    {column.map((color, rowIdx) => <div key={color.name} className={`flex rounded-lg overflow-hidden border border-border/50 ${rowIdx === 0 ? 'h-[185px]' : 'h-[100px]'}`}>
+                        {/* Color Swatch - 50% width for first column */}
+                        <div className={`flex-shrink-0 flex items-end p-2 w-1/2`} style={{
                     backgroundColor: color.hex
                   }}>
                           <p className={`font-bold uppercase ${rowIdx === 0 ? 'text-[10px]' : 'text-[8px]'} ${color.isDark ? 'text-white' : 'text-gray-900'}`}>
@@ -1421,7 +1426,7 @@ const GamingNewsSiteProject = () => {
             </div>
             
             {/* Intro Section: Frictionless Account Creation */}
-            <OnboardingCallout subtitle="The Strategy" title="Frictionless Account Creation" description="Using onboarding as an opportunity to get users to create accounts without the traditional annoying signup flow. By delivering immediate value through personalization, users opt into accounts organically as they configure their experience—creating engagement before asking for commitment." image={onboardTitleCut} personaMappings={[]} reversed={false} showDivider={true} />
+            <OnboardingCallout subtitle="The Strategy" title="Frictionless Account Creation" description="Using onboarding as an opportunity to get users to create accounts without the traditional annoying signup flow. By delivering immediate value through personalization, users opt into accounts organically as they configure their experience—creating engagement before asking for commitment." image={onboardTitleCut} personaMappings={[]} reversed={false} showDivider={true} noPadding={true} noImageBackground={true} />
             
             {/* Section 1: Vibe Check */}
             <OnboardingCallout subtitle="Step 1" title="Identity Segmentation" description="The user self-identifies their 'Gamer Type,' which radically alters the Home Screen layout and information density." image={onboardVibeCheck} personaMappings={[{
