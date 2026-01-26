@@ -1271,9 +1271,9 @@ const GamingNewsSiteProject = () => {
             <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-12">Design System</h2>
             
             {/* Row 1: Typography - 2 Column */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6 min-h-[400px]">
               {/* Left: Font Display - Inverse (Powder background) */}
-              <div className="rounded-lg p-6 md:p-8 flex flex-col bg-[#fbfcfe] px-[32px] py-[32px]">
+              <div className="h-full rounded-lg p-6 md:p-8 flex flex-col bg-[#fbfcfe] px-[32px] py-[32px]">
                 <h3 className="text-lg md:text-xl font-bold mb-4 text-[#2c2c3a]">Typography</h3>
                 <div className="flex-1 flex items-center justify-center">
                   <h1 className="text-7xl md:text-8xl lg:text-9xl font-bold text-[#121217]">Inter</h1>
@@ -1285,8 +1285,8 @@ const GamingNewsSiteProject = () => {
               </div>
               
               {/* Right: Type Styles */}
-              <div className="bg-card border border-border rounded-lg p-6 md:p-8">
-                <div className="grid grid-cols-2 gap-6 md:gap-8">
+              <div className="h-full bg-card border border-border rounded-lg p-6 md:p-8 flex flex-col">
+                <div className="flex-1 grid grid-cols-2 gap-6 md:gap-8">
                   {/* First Column */}
                   <div className="space-y-3 md:space-y-4">
                     <div>
