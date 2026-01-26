@@ -13,6 +13,7 @@ interface OnboardingCalloutProps {
   image: string;
   personaMappings?: PersonaMapping[];
   reversed?: boolean;
+  showDivider?: boolean;
 }
 
 export const OnboardingCallout = ({
@@ -22,13 +23,17 @@ export const OnboardingCallout = ({
   image,
   personaMappings = [],
   reversed = false,
+  showDivider = false,
 }: OnboardingCalloutProps) => {
   const anim = useScrollAnimation({ threshold: 0.2 });
 
   return (
     <div 
       ref={anim.ref}
-      className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center py-12 lg:py-16"
+      className={cn(
+        "grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center py-12 lg:py-16",
+        showDivider && "border-b border-border/50"
+      )}
     >
       {/* Image Column */}
       <div 

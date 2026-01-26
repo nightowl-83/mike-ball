@@ -10,7 +10,6 @@ import { ScrollStorySection } from "@/components/ScrollStorySection";
 import { GamePersonaCard } from "@/components/GamePersonaCard";
 import { PersonaLayoutToggle } from "@/components/PersonaLayoutToggle";
 import { DesignSystemIcons } from "@/components/DesignSystemIcons";
-import { DesignSystemUIComponents } from "@/components/DesignSystemUIComponents";
 import { OnboardingCallout } from "@/components/OnboardingCallout";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 // Image imports
@@ -24,10 +23,11 @@ import gnsPersonaMarcus from "@/assets/gns-persona-marcus.png";
 import gnsPersonaElena from "@/assets/gns-persona-elena.png";
 import gnsPersonaKenji from "@/assets/gns-persona-kenji.png";
 // Onboarding images
-import onboardTitle from "@/assets/onboard-title.jpg";
+import onboardTitleCut from "@/assets/onboard-title-cut.png";
 import onboardVibeCheck from "@/assets/onboard-vibe-check.png";
 import onboardActiveDuty from "@/assets/onboard-active-duty.png";
 import onboardPermissions from "@/assets/onboard-permissions.png";
+import happyPathWireframe from "@/assets/happy-path-grn.png";
 const GamingNewsSiteProject = () => {
   // Check if user has access
   const hasAccess = sessionStorage.getItem("project-access-gaming-news-site") === "true";
@@ -1206,7 +1206,22 @@ const GamingNewsSiteProject = () => {
           </div>
         </section>
 
-        {/* Design Section - 03 */}
+        {/* Happy Path Wireframe Subsection */}
+        <section className="relative py-8 md:py-16 bg-background">
+          <div className="container mx-auto max-w-[1440px]">
+            <div className="space-y-4">
+              <img 
+                src={happyPathWireframe} 
+                alt="Happy path user flow wireframe" 
+                className="w-full h-auto rounded-xl"
+              />
+              <p className="text-sm text-muted-foreground text-center max-w-2xl mx-auto">
+                Early wireframe mapping the happy path user flow from discovery to engagement—visualizing how each persona navigates the core experience.
+              </p>
+            </div>
+          </div>
+        </section>
+
         <section ref={designAnim.ref} className={`relative py-10 md:py-24 transition-all duration-700 ${designAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div ref={designRef} className="absolute top-0 left-0 w-full h-1" />
           <div className="container mx-auto max-w-[1440px]">
@@ -1259,107 +1274,99 @@ const GamingNewsSiteProject = () => {
           <div className="container mx-auto max-w-[1440px]">
             <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-12">Design System</h2>
             
-            {/* Bento Box Layout */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 pb-8 md:pb-12">
-              {/* Large Typography Card */}
-              <div className="bg-card border border-border rounded-lg p-6 md:p-8 flex flex-col">
-                <h3 className="text-lg md:text-xl font-bold mb-6 md:mb-8">Typography</h3>
-                <div className="flex-1 flex flex-col justify-center">
-                  <div className="mb-6 md:mb-8">
-                    <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-2">Inter</h1>
-                    <p className="text-sm md:text-base text-muted-foreground">Font Family</p>
-                  </div>
-                  
-                  {/* Two Column Layout for Text Styles */}
-                  <div className="grid grid-cols-2 gap-6 md:gap-8">
-                    {/* First Column */}
-                    <div className="space-y-3 md:space-y-4">
-                      <div>
-                        <p className="text-3xl md:text-4xl font-semibold">H1</p>
-                        <p className="text-sm text-muted-foreground">32px Semi Bold</p>
-                      </div>
-                      <div>
-                        <p className="text-2xl md:text-3xl font-semibold">H2</p>
-                        <p className="text-sm text-muted-foreground">26px Semi Bold</p>
-                      </div>
-                      <div>
-                        <p className="text-xl md:text-2xl font-medium">H3</p>
-                        <p className="text-sm text-muted-foreground">22px Medium</p>
-                      </div>
-                      <div>
-                        <p className="text-lg md:text-xl font-medium">H4</p>
-                        <p className="text-sm text-muted-foreground">18px Medium</p>
-                      </div>
-                    </div>
-                    
-                    {/* Second Column */}
-                    <div className="space-y-3 md:space-y-4">
-                      <div>
-                        <p className="text-base md:text-lg font-semibold">Subtitle</p>
-                        <p className="text-sm text-muted-foreground">16px Semi Bold</p>
-                      </div>
-                      <div>
-                        <p className="text-base md:text-lg">Body</p>
-                        <p className="text-sm text-muted-foreground">15px Regular</p>
-                      </div>
-                      <div>
-                        <p className="text-sm md:text-base font-medium">Caption</p>
-                        <p className="text-sm text-muted-foreground">13px Medium</p>
-                      </div>
-                      <div>
-                        <p className="text-sm md:text-base">Small</p>
-                        <p className="text-sm text-muted-foreground">11px Regular</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+            {/* Row 1: Typography - 2 Column */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6">
+              {/* Left: Font Display */}
+              <div className="bg-card border border-border rounded-lg p-6 md:p-8">
+                <h3 className="text-lg md:text-xl font-bold mb-4">Typography</h3>
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-2">Inter</h1>
+                <p className="text-sm md:text-base text-muted-foreground">Font Family</p>
               </div>
-
-              {/* Right Column */}
-              <div className="flex flex-col gap-4 md:gap-6">
-                {/* Colors Card - 4x3 Grid by Color Family */}
-                <div className="bg-card border border-border rounded-lg p-4 md:p-6">
-                  <h3 className="text-lg md:text-xl font-bold mb-4 md:mb-6">Colors</h3>
+              
+              {/* Right: Type Styles */}
+              <div className="bg-card border border-border rounded-lg p-6 md:p-8">
+                <div className="grid grid-cols-2 gap-6 md:gap-8">
+                  {/* First Column */}
+                  <div className="space-y-3 md:space-y-4">
+                    <div>
+                      <p className="text-3xl md:text-4xl font-semibold">H1</p>
+                      <p className="text-sm text-muted-foreground">32px Semi Bold</p>
+                    </div>
+                    <div>
+                      <p className="text-2xl md:text-3xl font-semibold">H2</p>
+                      <p className="text-sm text-muted-foreground">26px Semi Bold</p>
+                    </div>
+                    <div>
+                      <p className="text-xl md:text-2xl font-medium">H3</p>
+                      <p className="text-sm text-muted-foreground">22px Medium</p>
+                    </div>
+                    <div>
+                      <p className="text-lg md:text-xl font-medium">H4</p>
+                      <p className="text-sm text-muted-foreground">18px Medium</p>
+                    </div>
+                  </div>
                   
-                  {/* 4-Column Grid by Color Family */}
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                    {colorColumns.map((column, colIdx) => <div key={colIdx} className="space-y-2">
-                        {/* Column Label */}
-                        <p className="text-[10px] uppercase tracking-wider text-muted-foreground/60 font-semibold mb-1">
-                          {colIdx === 0 ? 'Neutrals' : colIdx === 1 ? 'Darks' : colIdx === 2 ? 'Greens' : 'Reds'}
-                        </p>
-                        
-                        {column.map((color, rowIdx) => <div key={color.name} className={`flex rounded-lg overflow-hidden border border-border/50 ${rowIdx === 0 ? 'min-h-[80px]' : 'min-h-[50px]'}`}>
-                            {/* Color Swatch */}
-                            <div className={`flex-shrink-0 flex items-end p-2 ${rowIdx === 0 ? 'w-14 md:w-16' : 'w-10 md:w-12'}`} style={{
-                        backgroundColor: color.hex
-                      }}>
-                              <p className={`font-bold uppercase ${rowIdx === 0 ? 'text-[10px]' : 'text-[8px]'} ${color.isDark ? 'text-white' : 'text-gray-900'}`}>
-                                {color.name}
-                              </p>
-                            </div>
-                            {/* Specs */}
-                            <div className="flex-1 p-1.5 md:p-2 bg-[#1E1E24] text-[9px] space-y-0.5">
-                              <p className="text-white font-mono">{color.hex}</p>
-                              <p className="text-white/60">
-                                <span className="text-white/40">HSL </span>{color.hsl}
-                              </p>
-                              {rowIdx === 0 && color.rgb && <p className="text-white/60">
-                                  <span className="text-white/40">RGB </span>{color.rgb}
-                                </p>}
-                            </div>
-                          </div>)}
-                      </div>)}
+                  {/* Second Column */}
+                  <div className="space-y-3 md:space-y-4">
+                    <div>
+                      <p className="text-base md:text-lg font-semibold">Subtitle</p>
+                      <p className="text-sm text-muted-foreground">16px Semi Bold</p>
+                    </div>
+                    <div>
+                      <p className="text-base md:text-lg">Body</p>
+                      <p className="text-sm text-muted-foreground">15px Regular</p>
+                    </div>
+                    <div>
+                      <p className="text-sm md:text-base font-medium">Caption</p>
+                      <p className="text-sm text-muted-foreground">13px Medium</p>
+                    </div>
+                    <div>
+                      <p className="text-sm md:text-base">Small</p>
+                      <p className="text-sm text-muted-foreground">11px Regular</p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
             
-            {/* Icons and UI Components - Full Width Row */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
-              <DesignSystemIcons />
-              <DesignSystemUIComponents />
+            {/* Row 2: Colors - Full Width */}
+            <div className="bg-card border border-border rounded-lg p-4 md:p-6 mb-4 md:mb-6">
+              <h3 className="text-lg md:text-xl font-bold mb-4 md:mb-6">Colors</h3>
+              
+              {/* 4-Column Grid by Color Family */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                {colorColumns.map((column, colIdx) => <div key={colIdx} className="space-y-2">
+                    {/* Column Label */}
+                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground/60 font-semibold mb-1">
+                      {colIdx === 0 ? 'Neutrals' : colIdx === 1 ? 'Darks' : colIdx === 2 ? 'Greens' : 'Reds'}
+                    </p>
+                    
+                    {column.map((color, rowIdx) => <div key={color.name} className={`flex rounded-lg overflow-hidden border border-border/50 ${rowIdx === 0 ? 'min-h-[80px]' : 'min-h-[50px]'}`}>
+                        {/* Color Swatch */}
+                        <div className={`flex-shrink-0 flex items-end p-2 ${rowIdx === 0 ? 'w-14 md:w-16' : 'w-10 md:w-12'}`} style={{
+                    backgroundColor: color.hex
+                  }}>
+                          <p className={`font-bold uppercase ${rowIdx === 0 ? 'text-[10px]' : 'text-[8px]'} ${color.isDark ? 'text-white' : 'text-gray-900'}`}>
+                            {color.name}
+                          </p>
+                        </div>
+                        {/* Specs */}
+                        <div className="flex-1 p-1.5 md:p-2 bg-[#1E1E24] text-[9px] space-y-0.5">
+                          <p className="text-white font-mono">{color.hex}</p>
+                          <p className="text-white/60">
+                            <span className="text-white/40">HSL </span>{color.hsl}
+                          </p>
+                          {rowIdx === 0 && color.rgb && <p className="text-white/60">
+                              <span className="text-white/40">RGB </span>{color.rgb}
+                            </p>}
+                        </div>
+                      </div>)}
+                  </div>)}
+              </div>
             </div>
+            
+            {/* Row 3: Icons - Full Width */}
+            <DesignSystemIcons />
           </div>
         </section>
 
@@ -1414,7 +1421,7 @@ const GamingNewsSiteProject = () => {
             </div>
             
             {/* Intro Section: Frictionless Account Creation */}
-            <OnboardingCallout subtitle="The Strategy" title="Frictionless Account Creation" description="Using onboarding as an opportunity to get users to create accounts without the traditional annoying signup flow. By delivering immediate value through personalization, users opt into accounts organically as they configure their experience—creating engagement before asking for commitment." image={onboardTitle} personaMappings={[]} reversed={false} />
+            <OnboardingCallout subtitle="The Strategy" title="Frictionless Account Creation" description="Using onboarding as an opportunity to get users to create accounts without the traditional annoying signup flow. By delivering immediate value through personalization, users opt into accounts organically as they configure their experience—creating engagement before asking for commitment." image={onboardTitleCut} personaMappings={[]} reversed={false} showDivider={true} />
             
             {/* Section 1: Vibe Check */}
             <OnboardingCallout subtitle="Step 1" title="Identity Segmentation" description="The user self-identifies their 'Gamer Type,' which radically alters the Home Screen layout and information density." image={onboardVibeCheck} personaMappings={[{
