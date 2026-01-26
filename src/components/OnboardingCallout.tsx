@@ -44,13 +44,11 @@ export const OnboardingCallout = ({
         )}
         style={{ transitionDelay: "100ms" }}
       >
-        <div className="relative rounded-xl overflow-hidden border border-[#2D2D3A] bg-[#1E1E24]">
-          <img 
-            src={image} 
-            alt={title}
-            className="w-full h-auto object-cover"
-          />
-        </div>
+        <img 
+          src={image} 
+          alt={title}
+          className="w-full h-auto object-cover rounded-xl"
+        />
       </div>
 
       {/* Text Column */}
