@@ -35,6 +35,18 @@ import {
   ArrowRight,
   RefreshCw,
   X,
+  Zap,
+  Wifi,
+  WifiOff,
+  Lock,
+  Unlock,
+  Sun,
+  Moon,
+  Volume2,
+  VolumeX,
+  Maximize,
+  Minimize,
+  RotateCw,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -44,80 +56,78 @@ interface IconShowcaseProps {
 
 const icons = [
   // Row 1
-  { name: "Home", Icon: Home },
-  { name: "Search", Icon: Search },
-  { name: "Settings", Icon: Settings },
-  { name: "Bell", Icon: Bell },
-  { name: "User", Icon: User },
-  { name: "Menu", Icon: Menu },
+  { Icon: Home },
+  { Icon: Search },
+  { Icon: Settings },
+  { Icon: Bell },
+  { Icon: User },
+  { Icon: Menu },
   // Row 2
-  { name: "Star", Icon: Star },
-  { name: "Heart", Icon: Heart },
-  { name: "Bookmark", Icon: Bookmark },
-  { name: "Share", Icon: Share2 },
-  { name: "Play", Icon: Play },
-  { name: "Pause", Icon: Pause },
+  { Icon: Star },
+  { Icon: Heart },
+  { Icon: Bookmark },
+  { Icon: Share2 },
+  { Icon: Play },
+  { Icon: Pause },
   // Row 3
-  { name: "Trophy", Icon: Trophy },
-  { name: "Gamepad", Icon: Gamepad2 },
-  { name: "Clock", Icon: Clock },
-  { name: "Calendar", Icon: Calendar },
-  { name: "Filter", Icon: Filter },
-  { name: "Layers", Icon: Layers },
+  { Icon: Trophy },
+  { Icon: Gamepad2 },
+  { Icon: Clock },
+  { Icon: Calendar },
+  { Icon: Filter },
+  { Icon: Layers },
   // Row 4
-  { name: "Eye", Icon: Eye },
-  { name: "EyeOff", Icon: EyeOff },
-  { name: "Alert", Icon: AlertCircle },
-  { name: "Check", Icon: CheckCircle },
-  { name: "Info", Icon: Info },
-  { name: "Message", Icon: MessageSquare },
+  { Icon: Eye },
+  { Icon: EyeOff },
+  { Icon: AlertCircle },
+  { Icon: CheckCircle },
+  { Icon: Info },
+  { Icon: MessageSquare },
   // Row 5
-  { name: "Download", Icon: Download },
-  { name: "Upload", Icon: Upload },
-  { name: "Trash", Icon: Trash2 },
-  { name: "Edit", Icon: Edit },
-  { name: "Copy", Icon: Copy },
-  { name: "External", Icon: ExternalLink },
+  { Icon: Download },
+  { Icon: Upload },
+  { Icon: Trash2 },
+  { Icon: Edit },
+  { Icon: Copy },
+  { Icon: ExternalLink },
   // Row 6
-  { name: "Down", Icon: ChevronDown },
-  { name: "Right", Icon: ChevronRight },
-  { name: "Back", Icon: ArrowLeft },
-  { name: "Forward", Icon: ArrowRight },
-  { name: "Refresh", Icon: RefreshCw },
-  { name: "Close", Icon: X },
+  { Icon: ChevronDown },
+  { Icon: ChevronRight },
+  { Icon: ArrowLeft },
+  { Icon: ArrowRight },
+  { Icon: RefreshCw },
+  { Icon: X },
+  // Row 7 - New icons
+  { Icon: Zap },
+  { Icon: Wifi },
+  { Icon: WifiOff },
+  { Icon: Lock },
+  { Icon: Unlock },
+  { Icon: Sun },
+  // Row 8 - New icons
+  { Icon: Moon },
+  { Icon: Volume2 },
+  { Icon: VolumeX },
+  { Icon: Maximize },
+  { Icon: Minimize },
+  { Icon: RotateCw },
 ];
 
 export const DesignSystemIcons = ({ className }: IconShowcaseProps) => {
   return (
     <div className={cn("bg-card border border-border rounded-lg p-4 md:p-6", className)}>
-      <h3 className="text-lg md:text-xl font-bold mb-2">Icons</h3>
-      <p className="text-sm text-muted-foreground mb-4 md:mb-6">
-        Material Design System icons. Weight 300, outlined by default, filled when selected.
-      </p>
+      <h3 className="text-lg md:text-xl font-bold mb-4 md:mb-6">Icons</h3>
       
-      <div className="grid grid-cols-4 md:grid-cols-6 gap-3 md:gap-4">
-        {icons.map(({ name, Icon }) => (
+      <div className="grid grid-cols-6 md:grid-cols-8 lg:grid-cols-12 gap-2 md:gap-3">
+        {icons.map(({ Icon }, index) => (
           <div
-            key={name}
-            className="group flex flex-col items-center gap-2 p-3 rounded-lg bg-muted/30 border border-border/50 hover:border-primary/50 hover:bg-primary/5 transition-all duration-200"
+            key={index}
+            className="group flex items-center justify-center p-3 rounded-lg hover:bg-[#8899A6]/10 transition-all duration-200"
           >
-            {/* Icon pair: outlined default, filled on hover */}
-            <div className="relative w-6 h-6">
-              {/* Outlined (default) */}
-              <Icon 
-                className="w-6 h-6 text-foreground/70 group-hover:opacity-0 transition-opacity duration-200 absolute inset-0" 
-                strokeWidth={1.5}
-              />
-              {/* Filled (hover) */}
-              <Icon 
-                className="w-6 h-6 text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-200 absolute inset-0" 
-                strokeWidth={1.5}
-                fill="currentColor"
-              />
-            </div>
-            <span className="text-[10px] md:text-xs text-muted-foreground text-center">
-              {name}
-            </span>
+            <Icon 
+              className="w-5 h-5 md:w-6 md:h-6 text-foreground/70 group-hover:text-foreground transition-colors duration-200" 
+              strokeWidth={1.5}
+            />
           </div>
         ))}
       </div>

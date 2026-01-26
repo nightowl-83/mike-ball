@@ -266,10 +266,10 @@ export const GamePersonaCard = ({
           </div>
         </div>
 
-        {/* Main Content - Horizontal Layout */}
-        <div className="flex flex-col lg:flex-row gap-2 p-2">
-          {/* Left: Avatar */}
-          <div className="lg:w-1/3 flex-shrink-0">
+        {/* Main Content - 3 Column Layout */}
+        <div className="flex flex-col lg:flex-row gap-3 p-3">
+          {/* Left: Avatar (25%) */}
+          <div className="lg:w-1/4 flex-shrink-0">
             <div className="relative aspect-square rounded-lg overflow-hidden bg-muted border border-border/50">
               <img 
                 src={avatar} 
@@ -277,88 +277,64 @@ export const GamePersonaCard = ({
                 style={{ filter: isVisible ? 'grayscale(0%)' : 'grayscale(100%)' }}
                 className="w-full h-full object-cover object-top transition-all duration-[2500ms] ease-out"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
-              <div className="absolute bottom-1 left-1 right-1 flex flex-wrap gap-1">
-                <span className="px-1.5 py-0.5 rounded bg-background/80 backdrop-blur-sm text-[9px] font-medium border border-border/50">
-                  {age}y
+              <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
+              {/* Age/Type badges - absolute bottom positioning */}
+              <div className="absolute bottom-2 left-2 right-2 flex flex-col gap-0.5">
+                <span className="text-sm font-bold text-white drop-shadow-lg">
+                  {age} years old
                 </span>
-                <span className="px-1.5 py-0.5 rounded bg-muted/80 backdrop-blur-sm text-[9px] font-medium text-muted-foreground border border-border/50 truncate">
+                <span className="text-sm text-white/80 drop-shadow-lg">
                   {playerType}
                 </span>
               </div>
             </div>
           </div>
 
-          {/* Right: 2x2 Grid - Compact */}
-          <div className="lg:w-2/3 grid grid-cols-2 gap-2">
-            {/* Attributes */}
-            <div className="p-2.5 rounded-lg bg-muted/30 border border-border/50">
-              <h4 className="text-xs uppercase tracking-wider text-muted-foreground font-semibold mb-1.5">Attributes</h4>
-              <div className="space-y-1.5">
-                {stats.slice(0, 4).map((stat, index) => (
-                  <div key={stat.subject}>
-                    <div className="flex justify-between text-xs mb-0.5">
-                      <span className="text-muted-foreground truncate mr-1">{stat.subject}</span>
-                      <span className="text-primary font-mono">{stat.value}</span>
-                    </div>
-                    <div className="h-1.5 bg-muted rounded-full overflow-hidden">
-                      <div 
-                        className={`h-full bg-gradient-to-r ${getStatColor(stat.value)} rounded-full`}
-                        style={{
-                          width: isVisible ? `${stat.value}%` : '0%',
-                          transition: 'width 2.5s cubic-bezier(0.4, 0, 0.2, 1)',
-                          transitionDelay: `${index * 0.15}s`
-                        }}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Skill Radar */}
-            <div className="p-2.5 rounded-lg bg-muted/30 border border-border/50">
-              <h4 className="text-xs uppercase tracking-wider text-muted-foreground font-semibold mb-1">Skill Radar</h4>
-              <div className="h-[90px]">
-                <ResponsiveContainer width="100%" height="100%">
-                  <RadarChart data={stats} cx="50%" cy="50%" outerRadius="65%">
-                    <PolarGrid stroke="hsl(var(--border))" strokeOpacity={0.5} />
-                    <PolarAngleAxis 
-                      dataKey="subject" 
-                      tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 8 }}
-                      tickLine={false}
-                    />
-                    <Radar
-                      name="Stats"
-                      dataKey="value"
-                      stroke="hsl(var(--primary))"
-                      fill="hsl(var(--primary))"
-                      fillOpacity={0.3}
-                      strokeWidth={1}
-                    />
-                  </RadarChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
-
+          {/* Middle: Objectives + Quote stacked (25%) */}
+          <div className="lg:w-1/4 flex flex-col gap-3">
             {/* Objectives */}
-            <div className="p-2.5 rounded-lg bg-muted/30 border border-border/50">
-              <h4 className="text-xs uppercase tracking-wider text-muted-foreground font-semibold mb-1.5">Objectives</h4>
-              <div className="space-y-1">
+            <div className="flex-1 p-3 rounded-lg bg-muted/30 border border-border/50">
+              <h4 className="text-xs uppercase tracking-wider text-muted-foreground font-semibold mb-2">Objectives</h4>
+              <div className="space-y-1.5">
                 {goals.slice(0, 3).map((goal, index) => (
                   <div key={index} className="flex items-start gap-1.5 text-xs">
                     <Target className="w-3 h-3 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground/90 leading-tight line-clamp-1">{goal.text}</span>
+                    <span className="text-foreground/90 leading-tight line-clamp-2">{goal.text}</span>
                   </div>
                 ))}
               </div>
             </div>
-
+            
             {/* Quote */}
-            <div className="p-2.5 rounded-lg bg-muted/30 border border-border/50 flex items-center">
-              <p className="text-xs text-muted-foreground italic leading-relaxed line-clamp-3">
+            <div className="p-3 rounded-lg bg-muted/30 border border-border/50">
+              <p className="text-xs text-muted-foreground italic leading-relaxed line-clamp-4">
                 "{quote}"
               </p>
+            </div>
+          </div>
+
+          {/* Right: Full-Height Skill Radar (50%) */}
+          <div className="lg:w-1/2 p-3 rounded-lg bg-muted/30 border border-border/50 flex flex-col">
+            <h4 className="text-xs uppercase tracking-wider text-muted-foreground font-semibold mb-2">Skill Radar</h4>
+            <div className="flex-1 min-h-[160px]">
+              <ResponsiveContainer width="100%" height="100%">
+                <RadarChart data={stats} cx="50%" cy="50%" outerRadius="75%">
+                  <PolarGrid stroke="hsl(var(--border))" strokeOpacity={0.5} />
+                  <PolarAngleAxis 
+                    dataKey="subject" 
+                    tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 10 }}
+                    tickLine={false}
+                  />
+                  <Radar
+                    name="Stats"
+                    dataKey="value"
+                    stroke="hsl(var(--primary))"
+                    fill="hsl(var(--primary))"
+                    fillOpacity={0.3}
+                    strokeWidth={1.5}
+                  />
+                </RadarChart>
+              </ResponsiveContainer>
             </div>
           </div>
         </div>
