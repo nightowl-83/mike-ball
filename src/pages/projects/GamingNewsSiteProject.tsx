@@ -1210,11 +1210,7 @@ const GamingNewsSiteProject = () => {
         <section className="relative py-8 md:py-16 bg-background">
           <div className="container mx-auto max-w-[1440px]">
             <div className="space-y-4">
-              <img 
-                src={happyPathWireframe} 
-                alt="Happy path user flow wireframe" 
-                className="w-full h-auto rounded-xl"
-              />
+              <img src={happyPathWireframe} alt="Happy path user flow wireframe" className="w-full h-auto rounded-xl" />
               <p className="text-sm text-muted-foreground text-center max-w-2xl mx-auto">
                 Early wireframe mapping the happy path user flow from discovery to engagement—visualizing how each persona navigates the core experience.
               </p>
@@ -1277,14 +1273,14 @@ const GamingNewsSiteProject = () => {
             {/* Row 1: Typography - 2 Column */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6">
               {/* Left: Font Display - Inverse (Powder background) */}
-              <div className="bg-[#D0E8F2] rounded-lg p-6 md:p-8 flex flex-col">
-                <h3 className="text-lg md:text-xl font-bold mb-4 text-[#121212]">Typography</h3>
+              <div className="rounded-lg p-6 md:p-8 flex flex-col bg-[#fbfcfe] px-[32px] py-[32px]">
+                <h3 className="text-lg md:text-xl font-bold mb-4 text-[#2c2c3a]">Typography</h3>
                 <div className="flex-1 flex items-center justify-center">
-                  <h1 className="text-7xl md:text-8xl lg:text-9xl font-bold text-[#121212]">Inter</h1>
+                  <h1 className="text-7xl md:text-8xl lg:text-9xl font-bold text-[#121217]">Inter</h1>
                 </div>
                 <div className="flex justify-between items-center text-[#2D2D3A]">
-                  <p className="text-sm md:text-base">Font Family</p>
-                  <p className="text-sm md:text-base text-right">Bold, Semi Bold, Medium, Regular</p>
+                  <p className="text-sm md:text-base text-[#8898a5]">Font Family</p>
+                  <p className="text-sm md:text-base text-right text-[#8898a5]">Bold, Semi Bold, Medium, Regular</p>
                 </div>
               </div>
               
