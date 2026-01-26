@@ -57,7 +57,10 @@ export const OnboardingCallout = ({
         <img 
           src={image} 
           alt={title}
-          className="w-full h-auto object-cover rounded-xl"
+          className={cn(
+            "w-full h-auto object-cover",
+            !noImageBackground && "rounded-xl"
+          )}
         />
       </div>
 

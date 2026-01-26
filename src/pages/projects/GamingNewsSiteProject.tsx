@@ -1,7 +1,7 @@
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Link, Navigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useProjectNavigation } from "@/hooks/useProjectNavigation";
 import { StickyNavHeader } from "@/components/StickyNavHeader";
@@ -28,6 +28,9 @@ import onboardVibeCheck from "@/assets/onboard-vibe-check.png";
 import onboardActiveDuty from "@/assets/onboard-active-duty.png";
 import onboardPermissions from "@/assets/onboard-permissions.png";
 import happyPathWireframe from "@/assets/happy-path-grn.png";
+// Wireframe transition images
+import wireframeFlow from "@/assets/wireframe-flow.png";
+import uiHidef from "@/assets/ui-hidef.png";
 const GamingNewsSiteProject = () => {
   // Check if user has access
   const hasAccess = sessionStorage.getItem("project-access-gaming-news-site") === "true";
@@ -48,8 +51,8 @@ const GamingNewsSiteProject = () => {
   const discoveryPersonaRef = useRef<HTMLDivElement>(null);
   const designRef = useRef<HTMLDivElement>(null);
   const designSystemRef = useRef<HTMLDivElement>(null);
+  const wireframeTransitionRef = useRef<HTMLDivElement>(null);
   const deliveryRef = useRef<HTMLDivElement>(null);
-  const outcomesRef = useRef<HTMLDivElement>(null);
   const nextProjectRef = useRef<HTMLDivElement>(null);
 
   // Section navigation data
@@ -114,12 +117,6 @@ const GamingNewsSiteProject = () => {
     number: '/04',
     ref: deliveryRef
   }, {
-    id: 'outcomes',
-    section: 'Outcomes',
-    subsection: '',
-    number: '/05',
-    ref: outcomesRef
-  }, {
     id: 'next-project',
     section: 'Next Project',
     subsection: '',
@@ -156,8 +153,28 @@ const GamingNewsSiteProject = () => {
   });
   const designAnim = useScrollAnimation();
   const deliveryAnim = useScrollAnimation();
-  const outcomesAnim = useScrollAnimation();
   const nextProjectAnim = useScrollAnimation();
+
+  // Wireframe transition parallax state
+  const [wireframeProgress, setWireframeProgress] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!wireframeTransitionRef.current) return;
+      const rect = wireframeTransitionRef.current.getBoundingClientRect();
+      const sectionHeight = wireframeTransitionRef.current.offsetHeight;
+      const viewportHeight = window.innerHeight;
+      
+      const scrolled = -rect.top;
+      const scrollableHeight = sectionHeight - viewportHeight;
+      const progress = Math.max(0, Math.min(1, scrolled / scrollableHeight));
+      
+      setWireframeProgress(progress);
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   // Color palette data for the design system - organized by family columns
   const colorColumns = [
   // Neutrals Column
@@ -1271,7 +1288,7 @@ const GamingNewsSiteProject = () => {
             <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-12">Design System</h2>
             
             {/* Row 1: Typography - 2 Column */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6 min-h-[400px]">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6 min-h-[500px]">
               {/* Left: Font Display - Inverse (Powder background) */}
               <div className="h-full rounded-lg p-6 md:p-8 flex flex-col bg-[#fbfcfe] px-[32px] py-[32px]">
                 <h3 className="text-lg md:text-xl font-bold mb-4 text-[#2c2c3a]">Typography</h3>
@@ -1338,28 +1355,24 @@ const GamingNewsSiteProject = () => {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 {colorColumns.map((column, colIdx) => <div key={colIdx} className="space-y-2">
                     {/* Column Label */}
-                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground/60 font-semibold mb-1">
+                    <p className="text-xs uppercase tracking-wider text-muted-foreground/60 font-semibold mb-1">
                       {colIdx === 0 ? 'Neutrals' : colIdx === 1 ? 'Darks' : colIdx === 2 ? 'Greens' : 'Reds'}
                     </p>
                     
-                    {column.map((color, rowIdx) => <div key={color.name} className={`flex rounded-lg overflow-hidden border border-border/50 ${rowIdx === 0 ? 'h-[185px]' : 'h-[100px]'}`}>
-                        {/* Color Swatch - 50% width for first column */}
-                        <div className={`flex-shrink-0 flex items-end p-2 w-1/2`} style={{
-                    backgroundColor: color.hex
-                  }}>
-                          <p className={`font-bold uppercase ${rowIdx === 0 ? 'text-[10px]' : 'text-[8px]'} ${color.isDark ? 'text-white' : 'text-gray-900'}`}>
+                    {column.map((color, rowIdx) => <div 
+                        key={color.name} 
+                        className={`rounded-lg overflow-hidden border border-border/50 ${rowIdx === 0 ? 'h-[185px]' : 'h-[100px]'}`}
+                        style={{ backgroundColor: color.hex }}
+                      >
+                        <div className={`w-full h-full flex flex-col justify-end p-3 ${color.isDark ? 'text-white' : 'text-gray-900'}`}>
+                          <p className={`font-bold uppercase mb-1 ${rowIdx === 0 ? 'text-sm' : 'text-xs'}`}>
                             {color.name}
                           </p>
-                        </div>
-                        {/* Specs */}
-                        <div className="flex-1 p-1.5 md:p-2 bg-[#1E1E24] text-[9px] space-y-0.5">
-                          <p className="text-white font-mono">{color.hex}</p>
-                          <p className="text-white/60">
-                            <span className="text-white/40">HSL </span>{color.hsl}
-                          </p>
-                          {rowIdx === 0 && color.rgb && <p className="text-white/60">
-                              <span className="text-white/40">RGB </span>{color.rgb}
-                            </p>}
+                          <p className="font-mono text-sm">{color.hex}</p>
+                          <p className={`text-xs ${color.isDark ? 'opacity-70' : 'opacity-60'}`}>{color.hsl}</p>
+                          {rowIdx === 0 && color.rgb && (
+                            <p className={`text-xs ${color.isDark ? 'opacity-70' : 'opacity-60'}`}>{color.rgb}</p>
+                          )}
                         </div>
                       </div>)}
                   </div>)}
@@ -1483,49 +1496,28 @@ const GamingNewsSiteProject = () => {
           </div>
         </section>
 
-        {/* Outcomes Section - 05 */}
-        <section ref={outcomesAnim.ref} className={`relative py-10 md:py-24 transition-all duration-700 ${outcomesAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div ref={outcomesRef} className="absolute top-0 left-0 w-full h-1" />
-          <div className="container mx-auto max-w-[1440px]">
-            <div className="flex items-baseline justify-between mb-4 md:mb-8">
-              <h2 className="text-3xl md:text-5xl lg:text-7xl xl:text-8xl font-bold flex-1">Outcomes</h2>
-              <span className="text-xl md:text-6xl lg:text-7xl font-bold font-mono opacity-20 text-right shrink-0">/05</span>
-            </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-16">
-              {/* Left Column */}
-              <div className="space-y-4 md:space-y-12">
-                <p className="text-xl text-muted-foreground">
-                  The utility-first approach validated our hypothesis: gamers want tools, not more content.
-                </p>
-              </div>
-
-              {/* Right Column */}
-              <div className="space-y-4 md:space-y-12">
-                <div className="space-y-4 md:space-y-6 text-base md:text-lg text-muted-foreground">
-                  <p>
-                    <strong className="text-secondary-foreground">User Satisfaction:</strong> Post-launch surveys showed 87% satisfaction rate, up from the 28% baseline for existing gaming news apps.
-                  </p>
-                  
-                  <p>
-                    <strong className="text-secondary-foreground">Spoiler Protection:</strong> The Spoiler Curtain became the #1 requested feature in app store reviews, with 94% of users enabling it for at least one game.
-                  </p>
-                  
-                  <p>
-                    <strong className="text-secondary-foreground">Second-Screen Usage:</strong> The Caffeine Toggle saw 67% adoption among guide readers, validating the second-screen use case.
-                  </p>
-                  
-                  <p>
-                    <strong className="text-secondary-foreground">Daily Engagement:</strong> Daily Brief mode drove 3x higher morning engagement compared to the full feed, with users averaging 4.2 minutes of focused reading.
-                  </p>
-                  
-                  <div className="p-6 rounded-xl bg-card/50 border-2 border-primary/20">
-                    <h3 className="text-xl font-bold mb-4 text-primary">Key Learnings</h3>
-                    <p>Utility features drive loyalty better than content volume.</p>
-                    <p className="mt-2">Respecting user preferences (like spoiler protection) builds trust and retention.</p>
-                    <p className="mt-2">Dark mode isn't just aesthetic—it's a core accessibility feature for gamers.</p>
-                  </div>
-                </div>
-              </div>
+        {/* Wireframe to HiDef Transition Section */}
+        <section ref={wireframeTransitionRef} className="relative h-[200vh]">
+          <div className="sticky top-0 h-screen overflow-hidden flex items-center justify-center">
+            {/* Wireframe Layer */}
+            <img 
+              src={wireframeFlow} 
+              alt="Wireframe designs showing user flow" 
+              className="absolute inset-0 w-full h-full object-cover object-center"
+              style={{ opacity: 1 - wireframeProgress }}
+            />
+            {/* HiDef Layer */}
+            <img 
+              src={uiHidef} 
+              alt="High fidelity UI designs" 
+              className="absolute inset-0 w-full h-full object-cover object-center"
+              style={{ opacity: wireframeProgress }}
+            />
+            {/* Caption */}
+            <div className="absolute bottom-12 left-0 right-0 text-center z-10">
+              <p className="text-lg md:text-xl text-white/90 bg-background/70 backdrop-blur-sm inline-block px-8 py-4 rounded-full">
+                Translating wireframes into high-fidelity UI
+              </p>
             </div>
           </div>
         </section>
