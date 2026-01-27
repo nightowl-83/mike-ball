@@ -8,7 +8,6 @@ import { StickyNavHeader } from "@/components/StickyNavHeader";
 import ProjectSectionNav from "@/components/ProjectSectionNav";
 import { ScrollStorySection } from "@/components/ScrollStorySection";
 import { GamePersonaCard } from "@/components/GamePersonaCard";
-
 import { DesignSystemIcons } from "@/components/DesignSystemIcons";
 import { OnboardingCallout } from "@/components/OnboardingCallout";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
@@ -154,22 +153,20 @@ const GamingNewsSiteProject = () => {
 
   // Wireframe transition parallax state
   const [wireframeProgress, setWireframeProgress] = useState(0);
-
   useEffect(() => {
     const handleScroll = () => {
       if (!wireframeTransitionRef.current) return;
       const rect = wireframeTransitionRef.current.getBoundingClientRect();
       const sectionHeight = wireframeTransitionRef.current.offsetHeight;
       const viewportHeight = window.innerHeight;
-      
       const scrolled = -rect.top;
       const scrollableHeight = sectionHeight - viewportHeight;
       const progress = Math.max(0, Math.min(1, scrolled / scrollableHeight));
-      
       setWireframeProgress(progress);
     };
-    
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('scroll', handleScroll, {
+      passive: true
+    });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
   // Color palette data for the design system - organized by family columns
@@ -315,7 +312,7 @@ const GamingNewsSiteProject = () => {
                 </div>
                 <div>
                   <span className="text-xs md:text-sm text-muted-foreground">Year</span>
-                  <p className="font-semibold text-sm md:text-base">2024</p>
+                  <p className="font-semibold text-sm md:text-base">2018</p>
                 </div>
               </div>
               <div className="flex flex-wrap gap-2 md:gap-3 pt-4 md:pt-6 overflow-visible">
@@ -657,112 +654,112 @@ const GamingNewsSiteProject = () => {
                       <CarouselItem>
                         <div ref={persona1Anim.ref}>
                           <GamePersonaCard name="Marcus T." classTitle="The Strategist" age={28} playerType="Competitive Gamer" avatar={gnsPersonaMarcus} level={99} classIcon="strategist" isVisible={persona1Anim.isVisible} variant="vertical" stats={[{
-                            subject: 'Focus',
-                            value: 85,
-                            fullMark: 100
-                          }, {
-                            subject: 'Speed',
-                            value: 98,
-                            fullMark: 100
-                          }, {
-                            subject: 'Efficiency',
-                            value: 92,
-                            fullMark: 100
-                          }, {
-                            subject: 'Meta',
-                            value: 95,
-                            fullMark: 100
-                          }, {
-                            subject: 'Patience',
-                            value: 15,
-                            fullMark: 100
-                          }, {
-                            subject: 'Dedication',
-                            value: 45,
-                            fullMark: 100
-                          }]} goals={[{
-                            text: 'Instant access to patch notes'
-                          }, {
-                            text: 'Real-time server status'
-                          }, {
-                            text: '"Just the Facts" summaries'
-                          }, {
-                            text: 'Zero scrolling through fluff'
-                          }]} quote="I don't have time to scroll through clickbait. Just tell me if the patch changed my main character and I'm good." />
+                          subject: 'Focus',
+                          value: 85,
+                          fullMark: 100
+                        }, {
+                          subject: 'Speed',
+                          value: 98,
+                          fullMark: 100
+                        }, {
+                          subject: 'Efficiency',
+                          value: 92,
+                          fullMark: 100
+                        }, {
+                          subject: 'Meta',
+                          value: 95,
+                          fullMark: 100
+                        }, {
+                          subject: 'Patience',
+                          value: 15,
+                          fullMark: 100
+                        }, {
+                          subject: 'Dedication',
+                          value: 45,
+                          fullMark: 100
+                        }]} goals={[{
+                          text: 'Instant access to patch notes'
+                        }, {
+                          text: 'Real-time server status'
+                        }, {
+                          text: '"Just the Facts" summaries'
+                        }, {
+                          text: 'Zero scrolling through fluff'
+                        }]} quote="I don't have time to scroll through clickbait. Just tell me if the patch changed my main character and I'm good." />
                         </div>
                       </CarouselItem>
                       <CarouselItem>
                         <div ref={persona2Anim.ref}>
                           <GamePersonaCard name="Elena R." classTitle="The Enthusiast" age={34} playerType="Story-Driven Gamer" avatar={gnsPersonaElena} level={87} classIcon="enthusiast" isVisible={persona2Anim.isVisible} variant="vertical" stats={[{
-                            subject: 'Story',
-                            value: 98,
-                            fullMark: 100
-                          }, {
-                            subject: 'Patience',
-                            value: 92,
-                            fullMark: 100
-                          }, {
-                            subject: 'Dedication',
-                            value: 75,
-                            fullMark: 100
-                          }, {
-                            subject: 'Immersion',
-                            value: 100,
-                            fullMark: 100
-                          }, {
-                            subject: 'Depth',
-                            value: 55,
-                            fullMark: 100
-                          }, {
-                            subject: 'Spoiler',
-                            value: 100,
-                            fullMark: 100
-                          }]} goals={[{
-                            text: 'Complete spoiler protection'
-                          }, {
-                            text: 'Curated narrative game coverage'
-                          }, {
-                            text: 'Premium reading experience'
-                          }, {
-                            text: 'Editorial-quality content'
-                          }]} quote="A headline spoiled the ending of a game I'd been playing for 40 hours. I literally stopped reading gaming news after that." />
+                          subject: 'Story',
+                          value: 98,
+                          fullMark: 100
+                        }, {
+                          subject: 'Patience',
+                          value: 92,
+                          fullMark: 100
+                        }, {
+                          subject: 'Dedication',
+                          value: 75,
+                          fullMark: 100
+                        }, {
+                          subject: 'Immersion',
+                          value: 100,
+                          fullMark: 100
+                        }, {
+                          subject: 'Depth',
+                          value: 55,
+                          fullMark: 100
+                        }, {
+                          subject: 'Spoiler',
+                          value: 100,
+                          fullMark: 100
+                        }]} goals={[{
+                          text: 'Complete spoiler protection'
+                        }, {
+                          text: 'Curated narrative game coverage'
+                        }, {
+                          text: 'Premium reading experience'
+                        }, {
+                          text: 'Editorial-quality content'
+                        }]} quote="A headline spoiled the ending of a game I'd been playing for 40 hours. I literally stopped reading gaming news after that." />
                         </div>
                       </CarouselItem>
                       <CarouselItem>
                         <div ref={persona3Anim.ref}>
                           <GamePersonaCard name="Kenji M." classTitle="The Explorer" age={22} playerType="Gaming Enthusiast" avatar={gnsPersonaKenji} level={72} classIcon="explorer" isVisible={persona3Anim.isVisible} variant="vertical" stats={[{
-                            subject: 'Multi',
-                            value: 88,
-                            fullMark: 100
-                          }, {
-                            subject: 'Gaming',
-                            value: 42,
-                            fullMark: 100
-                          }, {
-                            subject: 'Mobile',
-                            value: 95,
-                            fullMark: 100
-                          }, {
-                            subject: 'Curiosity',
-                            value: 90,
-                            fullMark: 100
-                          }, {
-                            subject: 'Adapt',
-                            value: 68,
-                            fullMark: 100
-                          }, {
-                            subject: 'Enthuse',
-                            value: 85,
-                            fullMark: 100
-                          }]} goals={[{
-                            text: 'Second-screen guide support'
-                          }, {
-                            text: 'Screen stays awake while gaming'
-                          }, {
-                            text: 'Quick daily gaming digest'
-                          }, {
-                            text: 'Ad-free reading experience'
-                          }]} quote="I use guides while playing, but my phone screen keeps turning off. Why isn't there a simple way to keep it on?" />
+                          subject: 'Multi',
+                          value: 88,
+                          fullMark: 100
+                        }, {
+                          subject: 'Gaming',
+                          value: 42,
+                          fullMark: 100
+                        }, {
+                          subject: 'Mobile',
+                          value: 95,
+                          fullMark: 100
+                        }, {
+                          subject: 'Curiosity',
+                          value: 90,
+                          fullMark: 100
+                        }, {
+                          subject: 'Adapt',
+                          value: 68,
+                          fullMark: 100
+                        }, {
+                          subject: 'Enthuse',
+                          value: 85,
+                          fullMark: 100
+                        }]} goals={[{
+                          text: 'Second-screen guide support'
+                        }, {
+                          text: 'Screen stays awake while gaming'
+                        }, {
+                          text: 'Quick daily gaming digest'
+                        }, {
+                          text: 'Ad-free reading experience'
+                        }]} quote="I use guides while playing, but my phone screen keeps turning off. Why isn't there a simple way to keep it on?" />
                         </div>
                       </CarouselItem>
                     </CarouselContent>
@@ -777,108 +774,108 @@ const GamingNewsSiteProject = () => {
                 <div className="hidden lg:grid lg:grid-cols-3 gap-6 lg:gap-8">
                   <div ref={persona1Anim.ref}>
                     <GamePersonaCard name="Marcus T." classTitle="The Strategist" age={28} playerType="Competitive Gamer" avatar={gnsPersonaMarcus} level={99} classIcon="strategist" isVisible={persona1Anim.isVisible} variant="vertical" stats={[{
-                      subject: 'Focus',
-                      value: 85,
-                      fullMark: 100
-                    }, {
-                      subject: 'Speed',
-                      value: 98,
-                      fullMark: 100
-                    }, {
-                      subject: 'Efficiency',
-                      value: 92,
-                      fullMark: 100
-                    }, {
-                      subject: 'Meta',
-                      value: 95,
-                      fullMark: 100
-                    }, {
-                      subject: 'Patience',
-                      value: 15,
-                      fullMark: 100
-                    }, {
-                      subject: 'Dedication',
-                      value: 45,
-                      fullMark: 100
-                    }]} goals={[{
-                      text: 'Instant access to patch notes'
-                    }, {
-                      text: 'Real-time server status'
-                    }, {
-                      text: '"Just the Facts" summaries'
-                    }, {
-                      text: 'Zero scrolling through fluff'
-                    }]} quote="I don't have time to scroll through clickbait. Just tell me if the patch changed my main character and I'm good." />
+                    subject: 'Focus',
+                    value: 85,
+                    fullMark: 100
+                  }, {
+                    subject: 'Speed',
+                    value: 98,
+                    fullMark: 100
+                  }, {
+                    subject: 'Efficiency',
+                    value: 92,
+                    fullMark: 100
+                  }, {
+                    subject: 'Meta',
+                    value: 95,
+                    fullMark: 100
+                  }, {
+                    subject: 'Patience',
+                    value: 15,
+                    fullMark: 100
+                  }, {
+                    subject: 'Dedication',
+                    value: 45,
+                    fullMark: 100
+                  }]} goals={[{
+                    text: 'Instant access to patch notes'
+                  }, {
+                    text: 'Real-time server status'
+                  }, {
+                    text: '"Just the Facts" summaries'
+                  }, {
+                    text: 'Zero scrolling through fluff'
+                  }]} quote="I don't have time to scroll through clickbait. Just tell me if the patch changed my main character and I'm good." />
                   </div>
                   <div ref={persona2Anim.ref}>
                     <GamePersonaCard name="Elena R." classTitle="The Enthusiast" age={34} playerType="Story-Driven Gamer" avatar={gnsPersonaElena} level={87} classIcon="enthusiast" isVisible={persona2Anim.isVisible} variant="vertical" stats={[{
-                      subject: 'Story',
-                      value: 98,
-                      fullMark: 100
-                    }, {
-                      subject: 'Patience',
-                      value: 92,
-                      fullMark: 100
-                    }, {
-                      subject: 'Dedication',
-                      value: 75,
-                      fullMark: 100
-                    }, {
-                      subject: 'Immersion',
-                      value: 100,
-                      fullMark: 100
-                    }, {
-                      subject: 'Depth',
-                      value: 55,
-                      fullMark: 100
-                    }, {
-                      subject: 'Spoiler',
-                      value: 100,
-                      fullMark: 100
-                    }]} goals={[{
-                      text: 'Complete spoiler protection'
-                    }, {
-                      text: 'Curated narrative game coverage'
-                    }, {
-                      text: 'Premium reading experience'
-                    }, {
-                      text: 'Editorial-quality content'
-                    }]} quote="A headline spoiled the ending of a game I'd been playing for 40 hours. I literally stopped reading gaming news after that." />
+                    subject: 'Story',
+                    value: 98,
+                    fullMark: 100
+                  }, {
+                    subject: 'Patience',
+                    value: 92,
+                    fullMark: 100
+                  }, {
+                    subject: 'Dedication',
+                    value: 75,
+                    fullMark: 100
+                  }, {
+                    subject: 'Immersion',
+                    value: 100,
+                    fullMark: 100
+                  }, {
+                    subject: 'Depth',
+                    value: 55,
+                    fullMark: 100
+                  }, {
+                    subject: 'Spoiler',
+                    value: 100,
+                    fullMark: 100
+                  }]} goals={[{
+                    text: 'Complete spoiler protection'
+                  }, {
+                    text: 'Curated narrative game coverage'
+                  }, {
+                    text: 'Premium reading experience'
+                  }, {
+                    text: 'Editorial-quality content'
+                  }]} quote="A headline spoiled the ending of a game I'd been playing for 40 hours. I literally stopped reading gaming news after that." />
                   </div>
                   <div ref={persona3Anim.ref}>
                     <GamePersonaCard name="Kenji M." classTitle="The Explorer" age={22} playerType="Gaming Enthusiast" avatar={gnsPersonaKenji} level={72} classIcon="explorer" isVisible={persona3Anim.isVisible} variant="vertical" stats={[{
-                      subject: 'Multi',
-                      value: 88,
-                      fullMark: 100
-                    }, {
-                      subject: 'Gaming',
-                      value: 42,
-                      fullMark: 100
-                    }, {
-                      subject: 'Mobile',
-                      value: 95,
-                      fullMark: 100
-                    }, {
-                      subject: 'Curiosity',
-                      value: 90,
-                      fullMark: 100
-                    }, {
-                      subject: 'Adapt',
-                      value: 68,
-                      fullMark: 100
-                    }, {
-                      subject: 'Enthuse',
-                      value: 85,
-                      fullMark: 100
-                    }]} goals={[{
-                      text: 'Second-screen guide support'
-                    }, {
-                      text: 'Screen stays awake while gaming'
-                    }, {
-                      text: 'Quick daily gaming digest'
-                    }, {
-                      text: 'Ad-free reading experience'
-                    }]} quote="I use guides while playing, but my phone screen keeps turning off. Why isn't there a simple way to keep it on?" />
+                    subject: 'Multi',
+                    value: 88,
+                    fullMark: 100
+                  }, {
+                    subject: 'Gaming',
+                    value: 42,
+                    fullMark: 100
+                  }, {
+                    subject: 'Mobile',
+                    value: 95,
+                    fullMark: 100
+                  }, {
+                    subject: 'Curiosity',
+                    value: 90,
+                    fullMark: 100
+                  }, {
+                    subject: 'Adapt',
+                    value: 68,
+                    fullMark: 100
+                  }, {
+                    subject: 'Enthuse',
+                    value: 85,
+                    fullMark: 100
+                  }]} goals={[{
+                    text: 'Second-screen guide support'
+                  }, {
+                    text: 'Screen stays awake while gaming'
+                  }, {
+                    text: 'Quick daily gaming digest'
+                  }, {
+                    text: 'Ad-free reading experience'
+                  }]} quote="I use guides while playing, but my phone screen keeps turning off. Why isn't there a simple way to keep it on?" />
                   </div>
                 </div>
               </div>
@@ -903,28 +900,17 @@ const GamingNewsSiteProject = () => {
         <section ref={wireframeTransitionRef} className="relative h-[300vh]">
           <div className="sticky top-0 h-screen overflow-hidden flex items-center justify-center">
             {/* Wireframe Layer */}
-            <img 
-              src={wireframeFlow} 
-              alt="Wireframe designs showing user flow" 
-              className="absolute inset-0 w-full h-full object-cover object-center"
-              style={{ 
-                opacity: 1 - wireframeProgress
-              }}
-            />
+            <img src={wireframeFlow} alt="Wireframe designs showing user flow" className="absolute inset-0 w-full h-full object-cover object-center" style={{
+            opacity: 1 - wireframeProgress
+          }} />
             {/* HiDef Layer */}
-            <img 
-              src={uiHidef} 
-              alt="High fidelity UI designs" 
-              className="absolute inset-0 w-full h-full object-cover object-center"
-              style={{ 
-                opacity: wireframeProgress
-              }}
-            />
+            <img src={uiHidef} alt="High fidelity UI designs" className="absolute inset-0 w-full h-full object-cover object-center" style={{
+            opacity: wireframeProgress
+          }} />
             {/* Caption - Inverse: light background with dark text */}
-            <div 
-              className="absolute bottom-12 left-0 right-0 text-center z-10 transition-opacity duration-300"
-              style={{ opacity: 1 - wireframeProgress }}
-            >
+            <div className="absolute bottom-12 left-0 right-0 text-center z-10 transition-opacity duration-300" style={{
+            opacity: 1 - wireframeProgress
+          }}>
               <p className="text-lg md:text-xl text-[#121217] bg-[#FAFBFD]/95 backdrop-blur-sm inline-block px-8 py-4 rounded-full font-medium shadow-lg">
                 Translating wireframes into high-fidelity UI
               </p>
@@ -1056,20 +1042,16 @@ const GamingNewsSiteProject = () => {
                       {colIdx === 0 ? 'Neutrals' : colIdx === 1 ? 'Darks' : colIdx === 2 ? 'Greens' : 'Reds'}
                     </p>
                     
-                    {column.map((color, rowIdx) => <div 
-                        key={color.name} 
-                        className={`rounded-lg overflow-hidden border border-border/50 ${rowIdx === 0 ? 'h-[185px]' : 'h-[100px]'}`}
-                        style={{ backgroundColor: color.hex }}
-                      >
+                    {column.map((color, rowIdx) => <div key={color.name} className={`rounded-lg overflow-hidden border border-border/50 ${rowIdx === 0 ? 'h-[185px]' : 'h-[100px]'}`} style={{
+                  backgroundColor: color.hex
+                }}>
                         <div className={`w-full h-full flex flex-col justify-end p-3 ${color.isDark ? 'text-white' : 'text-gray-900'}`}>
                           <p className={`font-bold uppercase mb-1 ${rowIdx === 0 ? 'text-sm' : 'text-xs'}`}>
                             {color.name}
                           </p>
                           <p className="font-mono text-sm">{color.hex}</p>
                           <p className={`text-xs ${color.isDark ? 'opacity-70' : 'opacity-60'}`}>{color.hsl}</p>
-                          {rowIdx === 0 && color.rgb && (
-                            <p className={`text-xs ${color.isDark ? 'opacity-70' : 'opacity-60'}`}>{color.rgb}</p>
-                          )}
+                          {rowIdx === 0 && color.rgb && <p className={`text-xs ${color.isDark ? 'opacity-70' : 'opacity-60'}`}>{color.rgb}</p>}
                         </div>
                       </div>)}
                   </div>)}
