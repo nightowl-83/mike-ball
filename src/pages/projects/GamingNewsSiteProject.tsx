@@ -31,6 +31,7 @@ import happyPathWireframe from "@/assets/happy-path-grn.png";
 // Wireframe transition images
 import wireframeFlow from "@/assets/wireframe-flow.png";
 import uiHidef from "@/assets/ui-hidef.png";
+import gnsDailyBriefing from "@/assets/gns-daily-briefing.png";
 const GamingNewsSiteProject = () => {
   // Check if user has access
   const hasAccess = sessionStorage.getItem("project-access-gaming-news-site") === "true";
@@ -1238,29 +1239,30 @@ const GamingNewsSiteProject = () => {
         {/* Wireframe to HiDef Transition Section - Moved before Design */}
         <section ref={wireframeTransitionRef} className="relative h-[200vh]">
           <div className="sticky top-0 h-screen overflow-hidden flex items-center justify-center">
-            {/* Wireframe Layer - Zoom out as it fades */}
+            {/* Wireframe Layer */}
             <img 
               src={wireframeFlow} 
               alt="Wireframe designs showing user flow" 
-              className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-100"
+              className="absolute inset-0 w-full h-full object-cover object-center"
               style={{ 
-                opacity: 1 - wireframeProgress,
-                transform: `scale(${1 + (wireframeProgress * 0.08)})`
+                opacity: 1 - wireframeProgress
               }}
             />
-            {/* HiDef Layer - Zoom in as it appears */}
+            {/* HiDef Layer */}
             <img 
               src={uiHidef} 
               alt="High fidelity UI designs" 
-              className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-100"
+              className="absolute inset-0 w-full h-full object-cover object-center"
               style={{ 
-                opacity: wireframeProgress,
-                transform: `scale(${1.08 - (wireframeProgress * 0.08)})`
+                opacity: wireframeProgress
               }}
             />
-            {/* Caption */}
-            <div className="absolute bottom-12 left-0 right-0 text-center z-10">
-              <p className="text-lg md:text-xl text-white/90 bg-background/70 backdrop-blur-sm inline-block px-8 py-4 rounded-full">
+            {/* Caption - High contrast that fades with wireframe */}
+            <div 
+              className="absolute bottom-12 left-0 right-0 text-center z-10 transition-opacity duration-300"
+              style={{ opacity: 1 - wireframeProgress }}
+            >
+              <p className="text-lg md:text-xl text-[#fbfcfe] bg-[#121217]/80 backdrop-blur-sm inline-block px-8 py-4 rounded-full font-medium">
                 Translating wireframes into high-fidelity UI
               </p>
             </div>
@@ -1333,45 +1335,44 @@ const GamingNewsSiteProject = () => {
                 </div>
               </div>
               
-              {/* Right: Type Styles */}
-              {/* Right: Type Styles - Center items on desktop */}
+              {/* Right: Type Styles - Container centered, items left-aligned */}
               <div className="h-full bg-card border border-border rounded-lg p-6 md:p-8 flex flex-col">
-                <div className="flex-1 grid grid-cols-2 gap-6 md:gap-8 items-center justify-center">
-                  {/* First Column - Centered */}
-                  <div className="space-y-3 md:space-y-4 flex flex-col items-center">
-                    <div className="text-center">
+                <div className="flex-1 grid grid-cols-2 gap-6 md:gap-8 items-center justify-items-center">
+                  {/* First Column - Left aligned items, centered in container */}
+                  <div className="space-y-3 md:space-y-4">
+                    <div className="text-left">
                       <p className="text-3xl md:text-4xl font-semibold">H1</p>
                       <p className="text-sm text-muted-foreground">32px Semi Bold</p>
                     </div>
-                    <div className="text-center">
+                    <div className="text-left">
                       <p className="text-2xl md:text-3xl font-semibold">H2</p>
                       <p className="text-sm text-muted-foreground">26px Semi Bold</p>
                     </div>
-                    <div className="text-center">
+                    <div className="text-left">
                       <p className="text-xl md:text-2xl font-medium">H3</p>
                       <p className="text-sm text-muted-foreground">22px Medium</p>
                     </div>
-                    <div className="text-center">
+                    <div className="text-left">
                       <p className="text-lg md:text-xl font-medium">H4</p>
                       <p className="text-sm text-muted-foreground">18px Medium</p>
                     </div>
                   </div>
                   
-                  {/* Second Column - Centered */}
-                  <div className="space-y-3 md:space-y-4 flex flex-col items-center">
-                    <div className="text-center">
+                  {/* Second Column - Left aligned items, centered in container */}
+                  <div className="space-y-3 md:space-y-4">
+                    <div className="text-left">
                       <p className="text-base md:text-lg font-semibold">Subtitle</p>
                       <p className="text-sm text-muted-foreground">16px Semi Bold</p>
                     </div>
-                    <div className="text-center">
+                    <div className="text-left">
                       <p className="text-base md:text-lg">Body</p>
                       <p className="text-sm text-muted-foreground">15px Regular</p>
                     </div>
-                    <div className="text-center">
+                    <div className="text-left">
                       <p className="text-sm md:text-base font-medium">Caption</p>
                       <p className="text-sm text-muted-foreground">13px Medium</p>
                     </div>
-                    <div className="text-center">
+                    <div className="text-left">
                       <p className="text-sm md:text-base">Small</p>
                       <p className="text-sm text-muted-foreground">11px Regular</p>
                     </div>
@@ -1521,7 +1522,7 @@ const GamingNewsSiteProject = () => {
       }, {
         subheader: "Daily Brief Mode",
         text: "Daily Brief Mode delivers a curated morning digest that surfaces the top 5 stories based on user preferences. Designed for commuters and time-conscious gamers, it's readable in under 5 minutes—giving you the signal without the noise.",
-        image: gnsHomePhoneShowcase,
+        image: gnsDailyBriefing,
         imageAlt: "Daily Brief Mode showing curated morning digest"
       }]} sectionTitle="Key Features" sectionNumber="/04" progressStyle="dots" />
 
