@@ -142,7 +142,7 @@ export const ScrollStorySection = ({
                     style={{ pointerEvents: isActive ? 'auto' : 'none' }}
                   >
                     {story.subheader && (
-                      <h3 className="text-lg md:text-xl font-bold text-[#fbfcfe] mb-4">
+                      <h3 className="text-lg md:text-xl font-bold text-[#8B9AAD] mb-4">
                         {story.subheader}
                       </h3>
                     )}
@@ -183,7 +183,7 @@ export const ScrollStorySection = ({
           </div>
 
           {/* Image Column */}
-          <div className="w-full md:w-1/2 h-1/2 md:h-full relative bg-muted/30 overflow-hidden">
+          <div className="w-full md:w-1/2 h-1/2 md:h-full relative overflow-hidden">
             {stories.map((story, index) => {
               const isActive = index === activeSlide;
               const scale = isActive ? 1 : 0.98;
