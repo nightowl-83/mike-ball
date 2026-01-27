@@ -74,10 +74,11 @@ export const ScrollStorySection = ({
               </div>
               {/* Progress Indicator - Now under title */}
               {showProgressIndicator && <div className="flex items-center gap-2">
-                  {progressStyle === 'dots' ? <div className="flex gap-2">
+                  {progressStyle === 'dots' ? <div className="flex flex-col lg:flex-row gap-2">
                       {stories.map((_, index) => <div key={index} className={cn('w-2 h-2 rounded-full transition-all duration-300', index === activeSlide ? 'bg-primary scale-125' : index < activeSlide ? 'bg-primary/50' : 'bg-muted-foreground/30')} />)}
-                    </div> : <div className="w-24 h-1 bg-muted-foreground/20 rounded-full overflow-hidden">
-                      <div className="h-full bg-primary rounded-full transition-all duration-300" style={{
+                    </div> : <div className="w-1 lg:w-24 h-24 lg:h-1 bg-muted-foreground/20 rounded-full overflow-hidden">
+                      <div className="w-full lg:w-auto lg:h-full bg-primary rounded-full transition-all duration-300" style={{
+                height: `${(activeSlide + slideProgress) / stories.length * 100}%`,
                 width: `${(activeSlide + slideProgress) / stories.length * 100}%`
               }} />
                     </div>}
