@@ -229,17 +229,11 @@ export const PasswordProtectedCard = ({
               <p className="text-muted-foreground/70 leading-relaxed">
                 {project.description}
               </p>
-              <div className="pt-4">
-                <span className="inline-flex items-center gap-2 text-sm text-primary bg-primary/10 px-4 py-2 rounded-full">
-                  <Lock className="w-4 h-4" />
-                  Under NDA
-                </span>
-              </div>
             </div>
             
             {/* Footer */}
             <div className="w-full mt-6">
-              <ProjectCardFooter tags={project.tags} company={project.company} variant="light" />
+              <ProjectCardFooter tags={project.tags} company={project.company} variant="light" ndaTag />
             </div>
           </div>
         </div>

@@ -13,7 +13,7 @@ import { DesignSystemIcons } from "@/components/DesignSystemIcons";
 import { OnboardingCallout } from "@/components/OnboardingCallout";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 // Image imports
-import gnsHeroPhone from "@/assets/gns-hero-phone.jpg";
+import gnsHeroMain from "@/assets/gns-hero-main.png";
 import gnsWalkthroughPhone from "@/assets/gns-walkthrough-phone.png";
 import gnsHomePhoneShowcase from "@/assets/gns-home-phone-showcase.png";
 import gnsCarouselSpoiler from "@/assets/gns-carousel-spoiler.jpg";
@@ -332,7 +332,7 @@ const GamingNewsSiteProject = () => {
 
           {/* Right: Hero Image */}
           <div className="w-full md:w-1/2 h-64 md:h-full relative bg-muted/50">
-            <img src={gnsHeroPhone} alt="Gaming News Site Game Hub interface mockup" className="w-full h-full object-cover object-center" />
+            <img src={gnsHeroMain} alt="Gaming News Site Game Hub interface mockup" className="w-full h-full object-cover object-center" />
           </div>
         </div>
       </section>
