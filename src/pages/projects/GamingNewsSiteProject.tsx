@@ -33,7 +33,10 @@ import wireframeFlow from "@/assets/wireframe-flow.png";
 import uiHidef from "@/assets/ui-hidef.png";
 import gnsDailyBriefing from "@/assets/gns-daily-briefing.png";
 const GamingNewsSiteProject = () => {
-  // No password protection - direct access
+  // Scroll to top on mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // Refs for sections
   const heroRef = useRef<HTMLDivElement>(null);
@@ -324,8 +327,8 @@ const GamingNewsSiteProject = () => {
           </div>
 
           {/* Right: Hero Image */}
-          <div className="w-full md:w-1/2 h-64 md:h-full relative bg-muted/50">
-            <img src={gnsHeroMain} alt="Gaming News Site Game Hub interface mockup" className="w-full h-full object-cover object-center" />
+          <div className="w-full md:w-1/2 h-64 md:h-full relative bg-muted/50 flex items-center justify-center">
+            <img src={gnsHeroMain} alt="Gaming News Site Game Hub interface mockup" className="w-full h-full object-contain" />
           </div>
         </div>
       </section>
@@ -884,7 +887,7 @@ const GamingNewsSiteProject = () => {
         </section>
 
         {/* Happy Path Wireframe Subsection */}
-        <section className="relative py-8 md:py-16 bg-background">
+        <section className="relative py-16 md:py-32 bg-background border-b border-border">
           <div className="container mx-auto max-w-[1440px]">
             <div className="space-y-8">
               {/* Caption moved above image with matching persona header style */}

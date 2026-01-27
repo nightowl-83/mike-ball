@@ -53,7 +53,7 @@ export const projectsData: ProjectData[] = [
     image: gnsHeroCard,
     route: "/projects/gaming-news-site",
     tags: ["Visual Design", "Content Strategy", "Mobile Design"],
-    layoutVariant: "password-protected",
+    layoutVariant: "minimal-centered",
     company: "CBS Interactive"
   },
   {
