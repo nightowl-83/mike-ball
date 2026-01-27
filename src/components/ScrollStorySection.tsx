@@ -135,14 +135,14 @@ export const ScrollStorySection = ({
                   <div
                     key={index}
                     className={cn(
-                      'absolute inset-0 flex items-center transition-all duration-700 ease-out',
+                      'absolute inset-0 flex flex-col justify-center transition-all duration-700 ease-out',
                       isActive ? 'opacity-100 translate-y-0' : 'opacity-0',
                       isPast ? '-translate-y-12' : 'translate-y-12'
                     )}
                     style={{ pointerEvents: isActive ? 'auto' : 'none' }}
                   >
                     {story.subheader && (
-                      <h3 className="text-lg md:text-xl font-bold text-primary mb-4">
+                      <h3 className="text-lg md:text-xl font-bold text-[#fbfcfe] mb-4">
                         {story.subheader}
                       </h3>
                     )}
