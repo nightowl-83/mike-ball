@@ -250,7 +250,7 @@ export const GamePersonaCard = ({
   // ============================================
   if (variant === "compact") {
     return (
-      <div className="relative bg-card/80 backdrop-blur-sm border border-border rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 group max-h-[50vh]">
+      <div className="relative bg-card/80 backdrop-blur-sm border border-border rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 group">
         {/* Subtle glow effect on hover */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         
@@ -266,10 +266,10 @@ export const GamePersonaCard = ({
           </div>
         </div>
 
-        {/* Main Content - 3 Column Layout */}
-        <div className="flex flex-col lg:flex-row gap-3 p-3">
-          {/* Left: Avatar (25%) */}
-          <div className="lg:w-1/4 flex-shrink-0">
+        {/* Main Content - Responsive Layout */}
+        <div className="flex flex-col md:grid md:grid-cols-2 lg:flex lg:flex-row gap-3 p-3">
+          {/* Left: Avatar - Full width on mobile, half on tablet, 25% on desktop */}
+          <div className="w-full md:col-span-1 lg:w-1/4 flex-shrink-0">
             <div className="relative aspect-square rounded-lg overflow-hidden bg-muted border border-border/50">
               <img 
                 src={avatar} 
@@ -290,14 +290,14 @@ export const GamePersonaCard = ({
             </div>
           </div>
 
-          {/* Middle: Objectives + Quote stacked (25%) */}
-          <div className="lg:w-1/4 flex flex-col gap-3">
+          {/* Middle: Objectives + Quote - Stack on mobile, side on tablet, 25% on desktop */}
+          <div className="w-full md:col-span-1 lg:w-1/4 flex flex-col gap-3">
             {/* Objectives */}
             <div className="flex-1 p-3 rounded-lg bg-muted/30 border border-border/50">
               <h4 className="text-xs uppercase tracking-wider text-muted-foreground font-semibold mb-2">Objectives</h4>
               <div className="space-y-1.5">
                 {goals.slice(0, 3).map((goal, index) => (
-                  <div key={index} className="flex items-start gap-1.5 text-xs">
+                  <div key={index} className="flex items-start gap-1.5 text-sm">
                     <Target className="w-3 h-3 text-primary flex-shrink-0 mt-0.5" />
                     <span className="text-foreground/90 leading-tight line-clamp-2">{goal.text}</span>
                   </div>
@@ -307,14 +307,14 @@ export const GamePersonaCard = ({
             
             {/* Quote */}
             <div className="p-3 rounded-lg bg-muted/30 border border-border/50">
-              <p className="text-xs text-muted-foreground italic leading-relaxed line-clamp-4">
+              <p className="text-sm text-muted-foreground italic leading-relaxed line-clamp-4">
                 "{quote}"
               </p>
             </div>
           </div>
 
-          {/* Right: Full-Height Skill Radar (50%) */}
-          <div className="lg:w-1/2 p-3 rounded-lg bg-muted/30 border border-border/50 flex flex-col">
+          {/* Right: Skill Radar - Full width on mobile/tablet, 50% on desktop */}
+          <div className="w-full md:col-span-2 lg:w-1/2 p-3 rounded-lg bg-muted/30 border border-border/50 flex flex-col">
             <h4 className="text-xs uppercase tracking-wider text-muted-foreground font-semibold mb-2">Skill Radar</h4>
             <div className="flex-1 min-h-[160px]">
               <ResponsiveContainer width="100%" height="100%">
