@@ -97,10 +97,10 @@ export const ScrollStorySection = ({
 
               // Split text into words for staggered animation
               const words = story.text.split(' ');
-              return <div key={index} className={cn('absolute inset-0 flex items-center transition-all duration-700 ease-out', isActive ? 'opacity-100 translate-y-0' : 'opacity-0', isPast ? '-translate-y-12' : 'translate-y-12')} style={{
+              return <div key={index} className={cn('absolute inset-0 flex flex-col justify-center transition-all duration-700 ease-out', isActive ? 'opacity-100 translate-y-0' : 'opacity-0', isPast ? '-translate-y-12' : 'translate-y-12')} style={{
                 pointerEvents: isActive ? 'auto' : 'none'
               }}>
-                    {story.subheader && <h3 className="text-lg md:text-xl mb-4 text-muted-foreground font-medium">
+                    {story.subheader && <h3 className="text-lg md:text-xl font-bold text-[#8B9AAD] mb-4">
                         {story.subheader}
                       </h3>}
                     <p className="text-lg md:text-xl lg:text-2xl leading-relaxed">
