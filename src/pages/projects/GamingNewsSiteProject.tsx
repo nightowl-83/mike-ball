@@ -1235,6 +1235,38 @@ const GamingNewsSiteProject = () => {
           </div>
         </section>
 
+        {/* Wireframe to HiDef Transition Section - Moved before Design */}
+        <section ref={wireframeTransitionRef} className="relative h-[200vh]">
+          <div className="sticky top-0 h-screen overflow-hidden flex items-center justify-center">
+            {/* Wireframe Layer - Zoom out as it fades */}
+            <img 
+              src={wireframeFlow} 
+              alt="Wireframe designs showing user flow" 
+              className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-100"
+              style={{ 
+                opacity: 1 - wireframeProgress,
+                transform: `scale(${1 + (wireframeProgress * 0.08)})`
+              }}
+            />
+            {/* HiDef Layer - Zoom in as it appears */}
+            <img 
+              src={uiHidef} 
+              alt="High fidelity UI designs" 
+              className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-100"
+              style={{ 
+                opacity: wireframeProgress,
+                transform: `scale(${1.08 - (wireframeProgress * 0.08)})`
+              }}
+            />
+            {/* Caption */}
+            <div className="absolute bottom-12 left-0 right-0 text-center z-10">
+              <p className="text-lg md:text-xl text-white/90 bg-background/70 backdrop-blur-sm inline-block px-8 py-4 rounded-full">
+                Translating wireframes into high-fidelity UI
+              </p>
+            </div>
+          </div>
+        </section>
+
         <section ref={designAnim.ref} className={`relative py-10 md:py-24 transition-all duration-700 ${designAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div ref={designRef} className="absolute top-0 left-0 w-full h-1" />
           <div className="container mx-auto max-w-[1440px]">
@@ -1289,8 +1321,8 @@ const GamingNewsSiteProject = () => {
             
             {/* Row 1: Typography - 2 Column */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6 min-h-[500px]">
-              {/* Left: Font Display - Inverse (Powder background) */}
-              <div className="h-full rounded-lg p-6 md:p-8 flex flex-col bg-[#fbfcfe] px-[32px] py-[32px]">
+              {/* Left: Font Display - Inverse (Powder background) - Increased height on mobile/tablet */}
+              <div className="h-full min-h-[300px] md:min-h-[350px] lg:min-h-0 rounded-lg p-6 md:p-8 flex flex-col bg-[#fbfcfe] px-[32px] py-[32px]">
                 <h3 className="text-lg md:text-xl font-bold mb-4 text-[#2c2c3a]">Typography</h3>
                 <div className="flex-1 flex items-center justify-center">
                   <h1 className="text-7xl md:text-8xl lg:text-9xl font-bold text-[#121217]">Inter</h1>
@@ -1302,43 +1334,44 @@ const GamingNewsSiteProject = () => {
               </div>
               
               {/* Right: Type Styles */}
+              {/* Right: Type Styles - Center items on desktop */}
               <div className="h-full bg-card border border-border rounded-lg p-6 md:p-8 flex flex-col">
-                <div className="flex-1 grid grid-cols-2 gap-6 md:gap-8">
-                  {/* First Column */}
-                  <div className="space-y-3 md:space-y-4">
-                    <div>
+                <div className="flex-1 grid grid-cols-2 gap-6 md:gap-8 items-center justify-center">
+                  {/* First Column - Centered */}
+                  <div className="space-y-3 md:space-y-4 flex flex-col items-center">
+                    <div className="text-center">
                       <p className="text-3xl md:text-4xl font-semibold">H1</p>
                       <p className="text-sm text-muted-foreground">32px Semi Bold</p>
                     </div>
-                    <div>
+                    <div className="text-center">
                       <p className="text-2xl md:text-3xl font-semibold">H2</p>
                       <p className="text-sm text-muted-foreground">26px Semi Bold</p>
                     </div>
-                    <div>
+                    <div className="text-center">
                       <p className="text-xl md:text-2xl font-medium">H3</p>
                       <p className="text-sm text-muted-foreground">22px Medium</p>
                     </div>
-                    <div>
+                    <div className="text-center">
                       <p className="text-lg md:text-xl font-medium">H4</p>
                       <p className="text-sm text-muted-foreground">18px Medium</p>
                     </div>
                   </div>
                   
-                  {/* Second Column */}
-                  <div className="space-y-3 md:space-y-4">
-                    <div>
+                  {/* Second Column - Centered */}
+                  <div className="space-y-3 md:space-y-4 flex flex-col items-center">
+                    <div className="text-center">
                       <p className="text-base md:text-lg font-semibold">Subtitle</p>
                       <p className="text-sm text-muted-foreground">16px Semi Bold</p>
                     </div>
-                    <div>
+                    <div className="text-center">
                       <p className="text-base md:text-lg">Body</p>
                       <p className="text-sm text-muted-foreground">15px Regular</p>
                     </div>
-                    <div>
+                    <div className="text-center">
                       <p className="text-sm md:text-base font-medium">Caption</p>
                       <p className="text-sm text-muted-foreground">13px Medium</p>
                     </div>
-                    <div>
+                    <div className="text-center">
                       <p className="text-sm md:text-base">Small</p>
                       <p className="text-sm text-muted-foreground">11px Regular</p>
                     </div>
@@ -1471,17 +1504,25 @@ const GamingNewsSiteProject = () => {
 
         {/* Feature Showcase - ScrollStorySection */}
         <ScrollStorySection stories={[{
+        subheader: "The Spoiler Curtain",
         text: "The Spoiler Curtain protects users from unwanted story reveals. Using intelligent content filtering, it detects and hides plot-sensitive information until you're ready to see it. A global 'Active Playing' setting lets users mark games they're currently experiencing.",
         image: gnsCarouselSpoiler,
         imageAlt: "Spoiler Curtain feature interface showing blurred content with reveal button"
       }, {
+        subheader: "The Caffeine Toggle",
         text: "The Caffeine Toggle enables second-screen support for late-night gaming sessions. With a single tap, the interface keeps the screen active while users reference guides on their TV—no more fumbling to unlock your phone mid-boss fight.",
         image: gnsCarouselCoffee,
         imageAlt: "Caffeine Toggle dark mode feature with Keep Screen On active"
       }, {
+        subheader: "Progressive Drawers",
         text: "Progressive Drawers eliminate content bloat for fluff-free reading. Long-form guides are broken into collapsible chapters, preventing scrolling fatigue and ensuring players don't accidentally read solutions for puzzles they haven't reached yet.",
         image: gnsCarouselDrawer,
         imageAlt: "Progressive Drawer feature showing expandable guide chapters"
+      }, {
+        subheader: "Daily Brief Mode",
+        text: "Daily Brief Mode delivers a curated morning digest that surfaces the top 5 stories based on user preferences. Designed for commuters and time-conscious gamers, it's readable in under 5 minutes—giving you the signal without the noise.",
+        image: gnsHomePhoneShowcase,
+        imageAlt: "Daily Brief Mode showing curated morning digest"
       }]} sectionTitle="Key Features" sectionNumber="/04" progressStyle="dots" />
 
         {/* Deliverables Box */}
@@ -1492,32 +1533,6 @@ const GamingNewsSiteProject = () => {
               <p className="text-muted-foreground">Complete design system with 40+ components optimized for dark mode.</p>
               <p className="text-muted-foreground mt-2">High-fidelity prototypes for iOS and Android with gesture interactions.</p>
               <p className="text-muted-foreground mt-2">User testing sessions validating spoiler protection and guide usability.</p>
-            </div>
-          </div>
-        </section>
-
-        {/* Wireframe to HiDef Transition Section */}
-        <section ref={wireframeTransitionRef} className="relative h-[200vh]">
-          <div className="sticky top-0 h-screen overflow-hidden flex items-center justify-center">
-            {/* Wireframe Layer */}
-            <img 
-              src={wireframeFlow} 
-              alt="Wireframe designs showing user flow" 
-              className="absolute inset-0 w-full h-full object-cover object-center"
-              style={{ opacity: 1 - wireframeProgress }}
-            />
-            {/* HiDef Layer */}
-            <img 
-              src={uiHidef} 
-              alt="High fidelity UI designs" 
-              className="absolute inset-0 w-full h-full object-cover object-center"
-              style={{ opacity: wireframeProgress }}
-            />
-            {/* Caption */}
-            <div className="absolute bottom-12 left-0 right-0 text-center z-10">
-              <p className="text-lg md:text-xl text-white/90 bg-background/70 backdrop-blur-sm inline-block px-8 py-4 rounded-full">
-                Translating wireframes into high-fidelity UI
-              </p>
             </div>
           </div>
         </section>

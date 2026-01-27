@@ -6,6 +6,7 @@ export interface StoryItem {
   text: string;
   image: string;
   imageAlt: string;
+  subheader?: string;
 }
 
 interface ScrollStorySectionProps {
@@ -140,6 +141,11 @@ export const ScrollStorySection = ({
                     )}
                     style={{ pointerEvents: isActive ? 'auto' : 'none' }}
                   >
+                    {story.subheader && (
+                      <h3 className="text-lg md:text-xl font-bold text-primary mb-4">
+                        {story.subheader}
+                      </h3>
+                    )}
                     <p className="text-lg md:text-xl lg:text-2xl leading-relaxed">
                       {words.map((word, wordIndex) => (
                         <span
