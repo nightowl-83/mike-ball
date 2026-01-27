@@ -1237,7 +1237,7 @@ const GamingNewsSiteProject = () => {
         </section>
 
         {/* Wireframe to HiDef Transition Section - Moved before Design */}
-        <section ref={wireframeTransitionRef} className="relative h-[200vh]">
+        <section ref={wireframeTransitionRef} className="relative h-[300vh]">
           <div className="sticky top-0 h-screen overflow-hidden flex items-center justify-center">
             {/* Wireframe Layer */}
             <img 
