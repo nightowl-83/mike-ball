@@ -233,7 +233,7 @@ export const PasswordProtectedCard = ({
             
             {/* Footer */}
             <div className="w-full mt-6">
-              <ProjectCardFooter tags={project.tags} company={project.company} variant="light" ndaTag />
+              <ProjectCardFooter tags={project.tags} company={project.company} variant="light" />
             </div>
           </div>
         </div>

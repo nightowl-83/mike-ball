@@ -1,6 +1,8 @@
 import { ProjectData } from "@/data/projectsData";
 import ProjectCardFooter from "@/components/ProjectCardFooter";
 import { ArrowUpRight } from "lucide-react";
+import { PersonaLayoutToggle } from "@/components/PersonaLayoutToggle";
+import { useState } from "react";
 
 // Sample project data for the playground
 const sampleProject: ProjectData = {
@@ -175,6 +177,8 @@ const CardContent = ({ project }: { project: ProjectData }) => (
 );
 
 const CardPlayground = () => {
+  const [personaLayout, setPersonaLayout] = useState<1 | 2 | 3 | 4>(3);
+  
   return (
     <div className="min-h-screen bg-background">
       <div className="container py-12">
@@ -190,6 +194,18 @@ const CardPlayground = () => {
           <Variation4 />
           <Variation5 />
           <Variation6 />
+        </div>
+
+        {/* Persona Layout Toggle Reference */}
+        <div className="mt-16 pt-12 border-t border-border">
+          <div className="mb-8">
+            <h2 className="text-2xl font-bold text-foreground mb-2">Persona Layout Toggle Reference</h2>
+            <p className="text-muted-foreground">Saved for future reference from Gaming News Site project</p>
+          </div>
+          <div className="flex items-center gap-4">
+            <PersonaLayoutToggle activeLayout={personaLayout} onLayoutChange={setPersonaLayout} />
+            <span className="text-sm text-muted-foreground">Current: V{personaLayout}</span>
+          </div>
         </div>
       </div>
     </div>
