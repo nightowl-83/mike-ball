@@ -1,4 +1,4 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Lock } from "lucide-react";
 
 interface ProjectCardFooterProps {
   tags: string[];
@@ -6,9 +6,10 @@ interface ProjectCardFooterProps {
   metrics?: string;
   variant?: "light" | "dark";
   ctaText?: string;
+  ndaTag?: boolean;
 }
 
-const ProjectCardFooter = ({ tags, company, metrics, variant = "dark", ctaText = "View Case Study" }: ProjectCardFooterProps) => {
+const ProjectCardFooter = ({ tags, company, metrics, variant = "dark", ctaText = "View Case Study", ndaTag = false }: ProjectCardFooterProps) => {
   const isDark = variant === "dark";
   
   return (
@@ -38,6 +39,12 @@ const ProjectCardFooter = ({ tags, company, metrics, variant = "dark", ctaText =
                 {tag}
               </span>
             ))}
+            {ndaTag && (
+              <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-xs px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-primary bg-primary/10 border border-primary/20">
+                <Lock className="w-3 h-3" />
+                Under NDA
+              </span>
+            )}
           </div>
         </div>
         
