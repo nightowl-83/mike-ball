@@ -1,116 +1,238 @@
 
 
-## Gaming News Site - Design System, Parallax Section & Cleanup Updates
+## Gaming News Site - Multi-Section Updates
 
 ### Overview
 
-This plan implements five key changes:
-1. Typography row height increase by 25%
-2. Color chips restructured to stacked layout with larger fonts
-3. New wireframe-to-HiDef parallax transition section
-4. Onboarding title image container cleanup
-5. Remove Outcomes section
+This plan addresses six key updates across multiple sections of the Gaming News Site project page:
+
+1. **Persona Card V2 (Compact)**: Increase font sizes for objectives and quotes, fix mobile/tablet layout
+2. **Design System Typography**: Center H1-Small items on desktop, increase inverse container height on mobile/tablet
+3. **Key Features Section**: Add subheaders for each feature, add "Daily Brief Mode" slide
+4. **Parallax Section**: Move before Design section, add zoom effect to images
 
 ---
 
-### 1. Typography Row - Increase Height by 25%
+### 1. Persona Card V2 (Compact) - Font Size & Mobile Layout
 
-**File:** `src/pages/projects/GamingNewsSiteProject.tsx` (line 1274)
+**File:** `src/components/GamePersonaCard.tsx` (lines 248-343)
 
-**Change:**
-- Current: `min-h-[400px]`
-- New: `min-h-[500px]` (400 x 1.25 = 500)
+**Current Issues:**
+- Objectives use `text-xs` (too small)
+- Quote uses `text-xs` (too small)
+- Mobile/tablet layout has content cut off after the avatar due to `max-h-[50vh]` constraint
 
+**Changes:**
+
+**A. Increase Font Sizes:**
+- Objectives text: `text-xs` to `text-sm`
+- Quote text: `text-xs` to `text-sm`
+- Section headers remain at `text-xs` for hierarchy
+
+**B. Fix Mobile/Tablet Layout:**
+- Remove `max-h-[50vh]` constraint that causes content cutoff
+- Change layout from 3-column to stacked on mobile/tablet:
+  - Mobile: Single column (avatar, then objectives/quote, then radar)
+  - Tablet (md): 2-column (avatar left, content right)
+  - Desktop (lg): Current 3-column layout
+- Allow content to flow naturally without height constraints
+
+**Updated Structure:**
 ```tsx
-<div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6 min-h-[500px]">
-```
+{/* Remove max-h-[50vh] */}
+<div className="relative bg-card/80 backdrop-blur-sm border border-border rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 group">
+  
+  {/* Main Content - Responsive Layout */}
+  <div className="flex flex-col md:grid md:grid-cols-2 lg:flex lg:flex-row gap-3 p-3">
+    {/* Avatar - Full width on mobile, half on tablet, 25% on desktop */}
+    <div className="w-full md:col-span-1 lg:w-1/4 flex-shrink-0">
+      ...
+    </div>
 
----
+    {/* Objectives + Quote - Stack on mobile, side on tablet, 25% on desktop */}
+    <div className="w-full md:col-span-1 lg:w-1/4 flex flex-col gap-3">
+      <div className="...">
+        <h4 className="text-xs ...">Objectives</h4>
+        <div className="flex items-start gap-1.5 text-sm"> {/* Changed from text-xs */}
+          ...
+        </div>
+      </div>
+      <div className="...">
+        <p className="text-sm text-muted-foreground italic ..."> {/* Changed from text-xs */}
+          "{quote}"
+        </p>
+      </div>
+    </div>
 
-### 2. Color Chips - Stacked Layout with Larger Fonts
-
-**File:** `src/pages/projects/GamingNewsSiteProject.tsx` (lines 1345-1364)
-
-**Current Layout:**
-```text
-[Color Swatch 50%] | [HEX/HSL/RGB specs on right]
-```
-
-**New Layout:**
-```text
-[Full-Width Color Swatch]
-  - Color Name (bottom-left)
-  - HEX
-  - HSL  
-  - RGB (primary row only)
-```
-
-**Font Size Increases:**
-- Color name: `text-[10px]` -> `text-sm` (primary), `text-[8px]` -> `text-xs` (secondary)
-- HEX: `text-[9px]` -> `text-sm font-mono`
-- HSL/RGB: `text-[9px]` -> `text-xs`
-
-**New Code Structure:**
-```tsx
-{column.map((color, rowIdx) => (
-  <div 
-    key={color.name} 
-    className={`rounded-lg overflow-hidden border border-border/50 ${rowIdx === 0 ? 'h-[185px]' : 'h-[100px]'}`}
-    style={{ backgroundColor: color.hex }}
-  >
-    <div className={`w-full h-full flex flex-col justify-end p-3 ${color.isDark ? 'text-white' : 'text-gray-900'}`}>
-      <p className={`font-bold uppercase mb-1 ${rowIdx === 0 ? 'text-sm' : 'text-xs'}`}>
-        {color.name}
-      </p>
-      <p className="font-mono text-sm">{color.hex}</p>
-      <p className={`text-xs ${color.isDark ? 'opacity-70' : 'opacity-60'}`}>{color.hsl}</p>
-      {rowIdx === 0 && color.rgb && (
-        <p className={`text-xs ${color.isDark ? 'opacity-70' : 'opacity-60'}`}>{color.rgb}</p>
-      )}
+    {/* Skill Radar - Full width on mobile/tablet, 50% on desktop */}
+    <div className="w-full lg:w-1/2 p-3 ...">
+      ...
     </div>
   </div>
-))}
+</div>
 ```
 
 ---
 
-### 3. New Wireframe-to-HiDef Parallax Transition Section
+### 2. Design System Typography Section
 
-**Location:** After Design System section (line 1372), before Delivery section
+**File:** `src/pages/projects/GamingNewsSiteProject.tsx` (lines 1290-1348)
 
-**Assets Required:**
-- Copy `user-uploads://Wireframe-2.png` -> `src/assets/wireframe-flow.png`
-- Copy `user-uploads://HIDEF-2.png` -> `src/assets/ui-hidef.png`
+**Changes:**
 
-**Implementation:**
+**A. Desktop - Center H1-Small Items:**
+The right column contains typography samples (H1, H2, H3, H4, Subtitle, Body, Caption, Small). Center these items vertically within their container using `items-center` and `justify-center`.
 
-A full-viewport (90vh) sticky section with scroll-driven parallax crossfade between wireframe and hi-def designs.
+**B. Mobile/Tablet - Increase Typography Inverse Container Height:**
+Add responsive min-height to the left "Inter" display column:
+- Current: Uses same height for all breakpoints
+- New: `min-h-[300px] md:min-h-[400px] lg:min-h-auto` (taller on mobile/tablet)
 
-**Technical Approach:**
-- Outer container: `h-[200vh]` to create scroll distance
-- Inner sticky container: `sticky top-0 h-screen` to keep images fixed
-- Calculate scroll progress (0-1) as section scrolls through viewport
-- Wireframe opacity: `1 - progress`
-- HiDef opacity: `progress`
-
-**New Code:**
+**Updated Structure:**
 ```tsx
-{/* Wireframe to HiDef Transition Section */}
+{/* Row 1: Typography - 2 Column */}
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6 min-h-[500px]">
+  {/* Left: Font Display - Increased height on mobile/tablet */}
+  <div className="h-full min-h-[300px] md:min-h-[350px] lg:min-h-0 rounded-lg p-6 md:p-8 flex flex-col bg-[#fbfcfe]">
+    ...
+  </div>
+  
+  {/* Right: Type Styles - Center items on desktop */}
+  <div className="h-full bg-card border border-border rounded-lg p-6 md:p-8 flex flex-col">
+    <div className="flex-1 grid grid-cols-2 gap-6 md:gap-8 items-center justify-center">
+      {/* First Column - Centered */}
+      <div className="space-y-3 md:space-y-4 flex flex-col items-center lg:items-center">
+        <div className="text-center lg:text-center">
+          <p className="text-3xl md:text-4xl font-semibold">H1</p>
+          <p className="text-sm text-muted-foreground">32px Semi Bold</p>
+        </div>
+        ...
+      </div>
+      
+      {/* Second Column - Centered */}
+      <div className="space-y-3 md:space-y-4 flex flex-col items-center lg:items-center">
+        ...
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+---
+
+### 3. Key Features Section - Add Subheaders + Daily Brief Slide
+
+**File:** `src/pages/projects/GamingNewsSiteProject.tsx` (lines 1472-1485)
+
+**Current Structure:**
+Each story item only has `text`, `image`, and `imageAlt`.
+
+**Changes:**
+
+**A. Update ScrollStorySection Component:**
+Add optional `subheader` field to `StoryItem` interface and display it above the paragraph text.
+
+**File:** `src/components/ScrollStorySection.tsx`
+
+```tsx
+export interface StoryItem {
+  text: string;
+  image: string;
+  imageAlt: string;
+  subheader?: string; // NEW: Feature name subheader
+}
+```
+
+Update the text rendering to include subheader:
+```tsx
+<div className="...">
+  {story.subheader && (
+    <h3 className="text-lg md:text-xl font-bold text-primary mb-4">
+      {story.subheader}
+    </h3>
+  )}
+  <p className="text-lg md:text-xl lg:text-2xl leading-relaxed">
+    {words.map(...)}
+  </p>
+</div>
+```
+
+**B. Update Feature Stories Data:**
+Add subheaders and new "Daily Brief Mode" slide:
+
+```tsx
+<ScrollStorySection 
+  stories={[
+    {
+      subheader: "The Spoiler Curtain",
+      text: "The Spoiler Curtain protects users from unwanted story reveals...",
+      image: gnsCarouselSpoiler,
+      imageAlt: "..."
+    },
+    {
+      subheader: "The Caffeine Toggle",
+      text: "The Caffeine Toggle enables second-screen support...",
+      image: gnsCarouselCoffee,
+      imageAlt: "..."
+    },
+    {
+      subheader: "Progressive Drawers",
+      text: "Progressive Drawers eliminate content bloat...",
+      image: gnsCarouselDrawer,
+      imageAlt: "..."
+    },
+    {
+      subheader: "Daily Brief Mode",
+      text: "Daily Brief Mode delivers a curated morning digest that surfaces the top 5 stories based on user preferences. Designed for commuters and time-conscious gamers, it's readable in under 5 minutes—giving you the signal without the noise.",
+      image: gnsHomePhoneShowcase, // Use existing home showcase image
+      imageAlt: "Daily Brief Mode showing curated morning digest"
+    }
+  ]}
+  sectionTitle="Key Features" 
+  sectionNumber="/04" 
+  progressStyle="dots" 
+/>
+```
+
+---
+
+### 4. Move Parallax Section Before Design + Add Zoom Effect
+
+**File:** `src/pages/projects/GamingNewsSiteProject.tsx`
+
+**Changes:**
+
+**A. Move Parallax Section:**
+- Current location: After "Deliverables Box" section (line 1499)
+- New location: After "Happy Path Wireframe" section (after line 1236), before "Design" section
+
+This places the wireframe-to-HiDef transition right before the Design section, creating a logical flow: Discovery > Wireframes > Wireframe Transition > Design
+
+**B. Add Zoom Effect:**
+Apply a subtle scale transform that increases from 1.0 to 1.05 as scroll progresses:
+
+```tsx
 <section ref={wireframeTransitionRef} className="relative h-[200vh]">
   <div className="sticky top-0 h-screen overflow-hidden flex items-center justify-center">
-    {/* Wireframe Layer */}
+    {/* Wireframe Layer - Zoom out as it fades */}
     <img 
       src={wireframeFlow} 
       alt="Wireframe designs showing user flow" 
-      className="absolute inset-0 w-full h-full object-cover object-center"
-      style={{ opacity: 1 - wireframeProgress }}
+      className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-100"
+      style={{ 
+        opacity: 1 - wireframeProgress,
+        transform: `scale(${1 + (wireframeProgress * 0.08)})` // 1.0 -> 1.08
+      }}
     />
-    {/* HiDef Layer */}
+    {/* HiDef Layer - Zoom in as it appears */}
     <img 
       src={uiHidef} 
       alt="High fidelity UI designs" 
-      className="absolute inset-0 w-full h-full object-cover object-center"
-      style={{ opacity: wireframeProgress }}
+      className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-100"
+      style={{ 
+        opacity: wireframeProgress,
+        transform: `scale(${1.08 - (wireframeProgress * 0.08)})` // 1.08 -> 1.0
+      }}
     />
     {/* Caption */}
     <div className="absolute bottom-12 left-0 right-0 text-center z-10">
@@ -122,123 +244,31 @@ A full-viewport (90vh) sticky section with scroll-driven parallax crossfade betw
 </section>
 ```
 
-**Scroll Progress Logic (add to component):**
-```tsx
-const wireframeTransitionRef = useRef<HTMLDivElement>(null);
-const [wireframeProgress, setWireframeProgress] = useState(0);
-
-useEffect(() => {
-  const handleScroll = () => {
-    if (!wireframeTransitionRef.current) return;
-    const rect = wireframeTransitionRef.current.getBoundingClientRect();
-    const sectionHeight = wireframeTransitionRef.current.offsetHeight;
-    const viewportHeight = window.innerHeight;
-    
-    const scrolled = -rect.top;
-    const scrollableHeight = sectionHeight - viewportHeight;
-    const progress = Math.max(0, Math.min(1, scrolled / scrollableHeight));
-    
-    setWireframeProgress(progress);
-  };
-  
-  window.addEventListener('scroll', handleScroll, { passive: true });
-  return () => window.removeEventListener('scroll', handleScroll);
-}, []);
-```
+The zoom effect creates visual depth:
+- Wireframe starts at normal scale (1.0), zooms slightly out (1.08) as it fades
+- HiDef starts zoomed in (1.08), settles to normal (1.0) as it appears
 
 ---
 
-### 4. Onboarding Title Image - Remove All Container Background
+### Files to Modify
 
-**File:** `src/components/OnboardingCallout.tsx` (lines 43-62)
-
-The current component already has `noImageBackground` prop but the image still has `rounded-xl` class. Update to conditionally remove all styling when `noImageBackground` is true.
-
-**Changes:**
-```tsx
-{/* Image Column */}
-<div 
-  className={cn(
-    "lg:col-span-7",
-    reversed ? "lg:order-2" : "lg:order-1",
-    "transition-all duration-700 ease-out",
-    anim.isVisible 
-      ? "opacity-100 translate-x-0" 
-      : reversed 
-        ? "opacity-0 translate-x-12" 
-        : "opacity-0 -translate-x-12"
-  )}
-  style={{ transitionDelay: "100ms" }}
->
-  <img 
-    src={image} 
-    alt={title}
-    className={cn(
-      "w-full h-auto object-cover",
-      !noImageBackground && "rounded-xl"
-    )}
-  />
-</div>
-```
-
-This ensures when `noImageBackground={true}` is passed:
-- No background color on container
-- No rounded corners on image
-- No border or texture styling
+| File | Changes |
+|------|---------|
+| `src/components/GamePersonaCard.tsx` | V2 variant: increase objective/quote font sizes, fix mobile/tablet layout |
+| `src/components/ScrollStorySection.tsx` | Add optional `subheader` prop to StoryItem interface and render it |
+| `src/pages/projects/GamingNewsSiteProject.tsx` | Typography centering, increased mobile height, move parallax section, add zoom effect, add subheaders to features, add Daily Brief slide |
 
 ---
 
-### 5. Remove Outcomes Section
-
-**File:** `src/pages/projects/GamingNewsSiteProject.tsx`
-
-**Remove:**
-- Lines 1486-1531: Entire Outcomes Section (`{/* Outcomes Section - 05 */}`)
-- Remove `outcomesRef` from the sticky navigation refs
-- Remove `outcomesAnim` scroll animation hook usage
-- Remove "Outcomes" from the `sections` array for sticky nav
-
-**Cleanup Required:**
-- Remove from section refs declaration
-- Update Next Project section number if applicable
-- Clean up any navigation-related references
-
----
-
-### Files to Create/Modify
-
-| File | Action |
-|------|--------|
-| `src/assets/wireframe-flow.png` | Copy from user upload (Wireframe-2.png) |
-| `src/assets/ui-hidef.png` | Copy from user upload (HIDEF-2.png) |
-| `src/pages/projects/GamingNewsSiteProject.tsx` | Typography height, color layout, parallax section, remove Outcomes |
-| `src/components/OnboardingCallout.tsx` | Remove rounded corners when noImageBackground is true |
-
----
-
-### Technical Implementation Notes
-
-**Import Additions (GamingNewsSiteProject.tsx):**
-```tsx
-import wireframeFlow from "@/assets/wireframe-flow.png";
-import uiHidef from "@/assets/ui-hidef.png";
-```
-
-**State Addition:**
-```tsx
-const [wireframeProgress, setWireframeProgress] = useState(0);
-const wireframeTransitionRef = useRef<HTMLDivElement>(null);
-```
+### Technical Implementation Summary
 
 **Execution Order:**
-1. Copy wireframe and hi-def images to `src/assets/`
-2. Update `OnboardingCallout.tsx` to conditionally remove rounded corners
+1. Update `GamePersonaCard.tsx` V2 variant with larger fonts and responsive layout
+2. Update `ScrollStorySection.tsx` to support subheaders
 3. Update `GamingNewsSiteProject.tsx`:
-   - Add image imports
-   - Add wireframe progress state and ref
-   - Add scroll effect for parallax
-   - Increase typography row height to 500px
-   - Restructure color chips to stacked layout
-   - Add parallax transition section after Design System
-   - Remove Outcomes section entirely
+   - Center typography items and increase mobile inverse container height
+   - Move parallax section before Design section
+   - Add zoom effect to parallax images
+   - Add subheaders to Key Features stories
+   - Add "Daily Brief Mode" as 4th slide
 
