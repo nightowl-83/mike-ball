@@ -215,4 +215,16 @@ All colors MUST be HSL.
     @apply h-[2px];
     background: rgba(255, 255, 255, 0.5);
   }
+
+  /* Slide-based scroll container */
+  .slide-container {
+    @apply h-screen overflow-y-auto;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+  }
+  
+  .slide-section {
+    @apply min-h-screen snap-start;
+    scroll-snap-align: start;
+  }
 }
