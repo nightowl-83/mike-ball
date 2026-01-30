@@ -2,7 +2,7 @@ import { ArrowRight, Database, Filter, BarChart3, Target, Lightbulb, TrendingUp,
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { SlideNav } from "@/components/SlideNav";
 import { useSlideNavigation } from "@/hooks/useSlideNavigation";
 import { cn } from "@/lib/utils";
@@ -81,62 +81,77 @@ const IntelligenceOverInventoryProject = () => {
 
   // Challenge section wheel-based progress state
   const [challengeActiveIndex, setChallengeActiveIndex] = useState(0);
-  const [wheelAccumulator, setWheelAccumulator] = useState(0);
-  const WHEEL_THRESHOLD = 80; // Amount of wheel delta needed to advance
+  const wheelAccumulatorRef = useRef(0);
+  const challengeSectionRef = useRef<HTMLDivElement>(null);
+  const WHEEL_THRESHOLD = 100; // Amount of wheel delta needed to advance
+  const isTransitioningRef = useRef(false);
 
-  // Handle wheel events for Challenge section sub-scroll
-  const handleChallengeWheel = useCallback((e: React.WheelEvent<HTMLDivElement>) => {
-    // Only process if we're on the Challenge section (index 1)
-    if (currentSectionIndex !== 1) return;
+  // Handle wheel events for Challenge section sub-scroll using native event
+  useEffect(() => {
+    const challengeSection = challengeSectionRef.current;
+    if (!challengeSection) return;
 
-    const delta = e.deltaY;
-    const newAccumulator = wheelAccumulator + delta;
-
-    // Scrolling down
-    if (delta > 0) {
-      if (newAccumulator >= WHEEL_THRESHOLD) {
-        if (challengeActiveIndex < challengePoints.length - 1) {
-          // Advance to next paragraph
-          e.preventDefault();
-          e.stopPropagation();
-          setChallengeActiveIndex(prev => prev + 1);
-          setWheelAccumulator(0);
-        } else {
-          // At last paragraph, allow scroll to next section
-          setWheelAccumulator(0);
-        }
-      } else {
+    const handleWheel = (e: WheelEvent) => {
+      // Only process if we're on the Challenge section (index 1)
+      if (currentSectionIndex !== 1) return;
+      
+      // Prevent rapid-fire transitions
+      if (isTransitioningRef.current) {
         e.preventDefault();
-        e.stopPropagation();
-        setWheelAccumulator(newAccumulator);
+        return;
       }
-    }
-    // Scrolling up
-    else if (delta < 0) {
-      if (newAccumulator <= -WHEEL_THRESHOLD) {
-        if (challengeActiveIndex > 0) {
-          // Go back to previous paragraph
-          e.preventDefault();
-          e.stopPropagation();
-          setChallengeActiveIndex(prev => prev - 1);
-          setWheelAccumulator(0);
+
+      const delta = e.deltaY;
+      wheelAccumulatorRef.current += delta;
+
+      // Scrolling down
+      if (delta > 0) {
+        if (wheelAccumulatorRef.current >= WHEEL_THRESHOLD) {
+          if (challengeActiveIndex < challengePoints.length - 1) {
+            // Advance to next paragraph - prevent scroll
+            e.preventDefault();
+            isTransitioningRef.current = true;
+            setChallengeActiveIndex(prev => prev + 1);
+            wheelAccumulatorRef.current = 0;
+            setTimeout(() => { isTransitioningRef.current = false; }, 400);
+          }
+          // At last paragraph, allow scroll to next section (don't prevent)
         } else {
-          // At first paragraph, allow scroll to previous section
-          setWheelAccumulator(0);
+          // Still accumulating - prevent scroll
+          e.preventDefault();
         }
-      } else {
-        e.preventDefault();
-        e.stopPropagation();
-        setWheelAccumulator(newAccumulator);
       }
-    }
-  }, [currentSectionIndex, challengeActiveIndex, wheelAccumulator, challengePoints.length]);
+      // Scrolling up
+      else if (delta < 0) {
+        if (wheelAccumulatorRef.current <= -WHEEL_THRESHOLD) {
+          if (challengeActiveIndex > 0) {
+            // Go back to previous paragraph - prevent scroll
+            e.preventDefault();
+            isTransitioningRef.current = true;
+            setChallengeActiveIndex(prev => prev - 1);
+            wheelAccumulatorRef.current = 0;
+            setTimeout(() => { isTransitioningRef.current = false; }, 400);
+          }
+          // At first paragraph, allow scroll to previous section (don't prevent)
+        } else {
+          // Still accumulating - prevent scroll
+          e.preventDefault();
+        }
+      }
+    };
+
+    challengeSection.addEventListener('wheel', handleWheel, { passive: false });
+    
+    return () => {
+      challengeSection.removeEventListener('wheel', handleWheel);
+    };
+  }, [currentSectionIndex, challengeActiveIndex, challengePoints.length]);
 
   // Reset challenge state when leaving the section
   useEffect(() => {
     if (currentSectionIndex !== 1) {
       setChallengeActiveIndex(0);
-      setWheelAccumulator(0);
+      wheelAccumulatorRef.current = 0;
     }
   }, [currentSectionIndex]);
 
@@ -203,9 +218,11 @@ const IntelligenceOverInventoryProject = () => {
 
         {/* The Challenge Section - /01 - Stepped Conversation */}
         <section
-          ref={(el) => { (sectionRefs[1] as any).current = el; }}
+          ref={(el) => { 
+            (sectionRefs[1] as any).current = el;
+            (challengeSectionRef as any).current = el;
+          }}
           className="slide-section flex items-center justify-center"
-          onWheel={handleChallengeWheel}
         >
           <div className="w-[85%] mx-auto">
             {/* Section Header */}
