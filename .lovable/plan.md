@@ -1,277 +1,206 @@
 
-# Intelligence Over Inventory - Slide-Based Navigation Redesign
+
+# Challenge Section - Stepped Conversation Redesign
 
 ## Overview
-Transform the Intelligence Over Inventory project page from a traditional scroll-based layout to a modern slide-based presentation format with a persistent left-side navigation column. Each section becomes a full-viewport "slide" that users can navigate via clicks or scrolling.
+Transform the Challenge section (/01) from the current card-based layout into an interactive, scroll-driven conversation where paragraphs progressively highlight as the user advances through the content. Each problem statement will transition from muted to highlighted (white/bold) based on scroll position within the section.
 
 ---
 
-## Visual Concept
+## Visual Behavior
 
 ```text
-+------------------+----------------------------------------+
-|                  |                                        |
-|   01 Overview    |                                        |
-|   02 Challenge   |          CURRENT SECTION               |
-|  [03 Solution]   |          FULL VIEWPORT                 |
-|   04 Impact      |          CONTENT                       |
-|   05 Strategy    |                                        |
-|   06 Gallery     |                                        |
-|   07 Vision      |                                        |
-|                  |                                        |
-+------------------+----------------------------------------+
-     Left Nav                    Main Content
-     (Fixed)                   (Snap Scrolling)
+State 1 (Initial):               State 2 (Progress):              State 3 (Further):
+┌────────────────────────┐       ┌────────────────────────┐       ┌────────────────────────┐
+│ The Challenge     /01  │       │ The Challenge     /01  │       │ The Challenge     /01  │
+│                        │       │                        │       │                        │
+│ ▪ [HIGHLIGHTED]        │       │   (dimmed)             │       │   (dimmed)             │
+│   Commodity data...    │       │   Commodity data...    │       │   Commodity data...    │
+│                        │       │                        │       │                        │
+│   (dimmed)             │       │ ▪ [HIGHLIGHTED]        │       │   (dimmed)             │
+│   Blind engagement...  │       │   Blind engagement...  │       │   Blind engagement...  │
+│                        │       │                        │       │                        │
+│   (dimmed)             │       │   (dimmed)             │       │ ▪ [HIGHLIGHTED]        │
+│   Generic metrics...   │       │   Generic metrics...   │       │   Generic metrics...   │
+│                        │       │                        │       │                        │
+│   (dimmed)             │       │   (dimmed)             │       │   (dimmed)             │
+│   Mental model...      │       │   Mental model...      │       │   Mental model...      │
+└────────────────────────┘       └────────────────────────┘       └────────────────────────┘
 ```
 
 ---
 
-## Key Features
+## Content Structure
 
-### 1. Left-Side Vertical Navigation
-- **Fixed position** on desktop (sticky on left edge)
-- Lists all major sections with their numbers
-- **Active state highlighting** for current section
-- **Clickable** to jump to any section
-- Subtle hover states matching existing design system
-- Collapses to bottom indicator on mobile
+Replace the current card-based problem blocks with flowing conversation paragraphs:
 
-### 2. Full-Viewport Sections
-- Each section fills `100vh` (full viewport height)
-- Content vertically centered within each section
-- Uses CSS `scroll-snap-type: y mandatory` for crisp transitions
-- Each section has `scroll-snap-align: start`
-
-### 3. Scroll Behavior
-- Native scroll still works (users can scroll freely)
-- Snap points create satisfying "click" into each section
-- Smooth scroll for navigation clicks
-
-### 4. Section Tracking
-- Uses Intersection Observer to track active section
-- Updates left nav highlight as user scrolls
-- Replaces existing `StickyNavHeader` and `ProjectSectionNav` components
+| Index | Short Title | Full Paragraph |
+|-------|-------------|----------------|
+| 0 | Opening | "The rural land marketplace was drowning in commodity data. Every competitor had access to the same 3rd-party feeds, creating a race to the bottom." |
+| 1 | Commodity Listings | "Identical listings populated every platform. No single marketplace could claim unique inventory—buyers saw the same properties everywhere they looked." |
+| 2 | Blind Engagement | "We had no insight into what buyers actually wanted. Engagement data existed, but it was siloed and surface-level—clicks without context." |
+| 3 | Generic Metrics | "Sellers received vanity metrics that looked good but told them nothing actionable. Views and saves, but no understanding of buyer intent or fit." |
+| 4 | Mental Model Gap | "Search filters were built from listing data, not buyer behavior. The experience forced users to think in database terms rather than natural land-buying language." |
 
 ---
 
-## Implementation Details
+## Technical Implementation
 
-### New Component: `SlideNav.tsx`
+### 1. New Hook: `useInSectionProgress`
 
-```text
-src/components/SlideNav.tsx
+Create a lightweight hook that tracks scroll progress within a single section slide for child paragraph highlighting.
+
+**File:** `src/hooks/useInSectionProgress.ts`
+
+**Purpose:** Track which paragraph is "active" based on scroll position within a slide container
+
+**Logic:**
+- Uses `requestAnimationFrame` for smooth performance
+- Calculates progress based on scroll position within the section
+- Returns `activeParagraphIndex` (0-4 based on progress)
+- Updates on wheel/scroll events within the section
+
+### 2. Challenge Section Refactor
+
+**Changes to `IntelligenceOverInventoryProject.tsx`:**
+
+1. **Remove two-column layout** - Use full-width for conversation flow
+2. **Replace card blocks** with styled paragraphs
+3. **Add scroll-progress-based highlighting**
+4. **Each paragraph starts muted, becomes white when active**
+
+### 3. Paragraph Styling
+
+**Inactive State:**
+```css
+text-muted-foreground
+font-normal
+opacity-60
+transition-all duration-500
 ```
 
-**Purpose:** Reusable left-side navigation component for slide-based project pages
-
-**Props Interface:**
-- `sections`: Array of section data (id, label, number, ref)
-- `currentIndex`: Currently active section index
-- `onNavigate`: Callback when user clicks a nav item
-- `className`: Optional additional styling
-
-**Structure:**
-- Fixed left positioning: `fixed left-0 top-0 h-screen`
-- Width: `w-16 md:w-64` (icons only on small screens, full labels on desktop)
-- Background: `bg-background/80 backdrop-blur-lg`
-- Border: `border-r border-border`
-- Z-index: `z-40`
-
-**Navigation Items:**
-- Number badge: `text-xs text-muted-foreground`
-- Label: `text-sm font-medium`
-- Active state: `text-primary bg-primary/10`
-- Hover state: `hover:bg-accent/50`
-
-### Modified: `IntelligenceOverInventoryProject.tsx`
-
-**Layout Changes:**
-
-1. **Root Container:**
-```tsx
-<div className="flex">
-  <SlideNav sections={sections} currentIndex={currentSectionIndex} onNavigate={scrollToSection} />
-  <main className="flex-1 ml-16 md:ml-64 h-screen overflow-y-auto snap-y snap-mandatory">
-    {/* Sections */}
-  </main>
-</div>
+**Active State:**
+```css
+text-foreground (white)
+font-semibold
+opacity-100
 ```
 
-2. **Each Section:**
+**Transition:** Smooth 500ms transition for color, weight, and opacity
+
+---
+
+## Component Structure
+
 ```tsx
-<section 
-  ref={sectionRef} 
-  className="h-screen snap-start flex items-center justify-center overflow-hidden"
->
-  <div className="container mx-auto max-w-[1200px] px-6 md:px-12">
-    {/* Section content */}
+// Challenge conversation data
+const challengePoints = [
+  {
+    text: "The rural land marketplace was drowning in commodity data. Every competitor had access to the same 3rd-party feeds, creating a race to the bottom."
+  },
+  {
+    text: "Identical listings populated every platform. No single marketplace could claim unique inventory—buyers saw the same properties everywhere they looked."
+  },
+  {
+    text: "We had no insight into what buyers actually wanted. Engagement data existed, but it was siloed and surface-level—clicks without context."
+  },
+  {
+    text: "Sellers received vanity metrics that looked good but told them nothing actionable. Views and saves, but no understanding of buyer intent or fit."
+  },
+  {
+    text: "Search filters were built from listing data, not buyer behavior. The experience forced users to think in database terms rather than natural land-buying language."
+  }
+];
+```
+
+```tsx
+{/* Challenge Section - Stepped Conversation */}
+<section className="slide-section flex items-center">
+  <div className="w-full px-4 md:px-8 lg:px-12">
+    {/* Section Header */}
+    <div className="flex items-start justify-between mb-12">
+      <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold text-foreground">
+        The Challenge
+      </h2>
+      <span className="text-6xl md:text-8xl font-bold font-mono opacity-20">
+        /01
+      </span>
+    </div>
+    
+    {/* Conversation Flow */}
+    <div className="max-w-4xl space-y-8">
+      {challengePoints.map((point, index) => (
+        <p
+          key={index}
+          className={cn(
+            "text-xl md:text-2xl lg:text-3xl leading-relaxed transition-all duration-500",
+            activePointIndex === index
+              ? "text-foreground font-semibold opacity-100"
+              : "text-muted-foreground font-normal opacity-50"
+          )}
+        >
+          {point.text}
+        </p>
+      ))}
+    </div>
   </div>
 </section>
 ```
 
-3. **Remove existing navigation components:**
-- Remove `StickyNavHeader` import and usage
-- Remove `ProjectSectionNav` import and usage
-- Simplify section tracking with direct scroll container ref
+---
 
-### New Hook: `useSlideNavigation.ts`
+## Interaction Mechanism
 
-```text
-src/hooks/useSlideNavigation.ts
-```
+### Option A: Wheel-Based Progress (Recommended)
 
-**Purpose:** Manages scroll-snap navigation state for slide-based pages
+Since the page uses scroll-snap, implement a sub-scroll progress tracker within each section:
 
-**Features:**
-- Tracks current section via Intersection Observer on scroll container
-- Provides `scrollToSection(index)` function
-- Returns `currentSectionIndex` state
-- Handles keyboard navigation (up/down arrows)
+1. When section is visible, capture wheel events
+2. Track cumulative delta to advance through paragraphs
+3. Each "scroll unit" advances the active paragraph
+4. When reaching the last paragraph, next scroll advances to next section
 
-**Interface:**
-```tsx
-interface UseSlideNavigationReturn {
-  currentSectionIndex: number;
-  scrollToSection: (index: number) => void;
-  containerRef: RefObject<HTMLDivElement>;
-}
-```
+### Option B: Auto-Progress on Section Enter
+
+Simpler approach:
+1. When section scrolls into view, start from first paragraph highlighted
+2. Auto-advance every 2 seconds OR
+3. Use small scroll gestures to advance
 
 ---
 
-## Section-Specific Adjustments
+## Implementation Approach
 
-### Hero Section
-- Remove two-column split (not needed for slide format)
-- Center content with max-width constraint
-- Hero image moves below text or becomes background element
-- Back button remains in top-left corner
+For this slide-based layout, I recommend using a **state-based approach** where:
 
-### The Challenge (/01)
-- Condense to fit single viewport
-- Problem bullets become a focused list
-- Visual placeholder on right (or below on mobile)
-
-### The Insight Engine (/02)
-- Flow steps arranged horizontally on desktop
-- Steps stack vertically on mobile
-- Background treatment remains
-
-### Dual-Interface Impact (/03)
-- Tabs remain functional
-- Tab content condensed to fit viewport
-- Image placeholders sized appropriately
-
-### Strategy & Influence (/04)
-- 3 cards arranged in row
-- Cards scale down slightly to fit viewport
-- On mobile: vertical stack with scroll-snap within section (optional)
-
-### Design Details (/05)
-- 2x2 grid condensed
-- Images smaller but still visible
-- Captions beneath
-
-### The AI Evolution (/06)
-- Centered text block
-- Plenty of whitespace
-- Acts as a visual breath before navigation
-
-### Next Project (/07)
-- Simple navigation CTA
-- Minimal layout
+1. The Challenge section maintains its own `activePointIndex` state
+2. Wheel events within the section increment/decrement this index
+3. Once the last point is reached, the next scroll advances to the next slide
+4. This creates a "sub-scroll" interaction within the snap section
 
 ---
 
-## Mobile Considerations
+## Files to Modify
 
-### Navigation
-- Left nav becomes bottom navigation bar or hidden with a toggle
-- Alternative: Small floating indicator showing "3/7" with tap to open full nav
-- Use drawer pattern from existing `sheet.tsx` component
-
-### Section Height
-- May use `min-h-screen` instead of fixed `h-screen` on mobile
-- Allow natural content overflow with snap alignment
-
-### Layout
-```text
-Mobile: Bottom nav indicator + tap to expand
-Tablet: Narrow left rail with icons only
-Desktop: Full left nav with labels
-```
+| File | Changes |
+|------|---------|
+| `src/pages/projects/IntelligenceOverInventoryProject.tsx` | Refactor Challenge section to stepped conversation with wheel-based paragraph progression |
 
 ---
 
-## CSS Updates
+## Typography Increase
 
-Add to `src/index.css`:
-
-```css
-@layer components {
-  /* Slide-based scroll container */
-  .slide-container {
-    @apply h-screen overflow-y-auto;
-    scroll-snap-type: y mandatory;
-    scroll-behavior: smooth;
-  }
-  
-  .slide-section {
-    @apply h-screen snap-start;
-    scroll-snap-align: start;
-  }
-}
-```
+As noted in the memory, all font sizes increased by 1 unit:
+- Paragraphs: `text-xl md:text-2xl lg:text-3xl` (up from current sizes)
+- Section header: `text-5xl md:text-7xl lg:text-8xl` (up from current)
+- Section number: `text-6xl md:text-8xl` (up from current)
 
 ---
 
-## Files to Create/Modify
+## Accessibility Considerations
 
-| File | Action | Description |
-|------|--------|-------------|
-| `src/components/SlideNav.tsx` | Create | Left-side vertical navigation component |
-| `src/hooks/useSlideNavigation.ts` | Create | Hook for slide navigation state |
-| `src/pages/projects/IntelligenceOverInventoryProject.tsx` | Modify | Refactor to slide-based layout |
-| `src/index.css` | Modify | Add scroll-snap utility classes |
+- Keyboard users can navigate with arrow keys (up/down to change paragraphs)
+- Focus states remain visible
+- Color contrast maintained between muted and highlighted states
+- Respects `prefers-reduced-motion` - instant transitions if enabled
 
----
-
-## Technical Considerations
-
-### Performance
-- Each section is rendered but off-screen sections are not visually processed
-- Images should use `loading="lazy"` (already in place)
-- Intersection Observer is performant for tracking
-
-### Accessibility
-- Keyboard navigation: Arrow keys move between sections
-- Focus management: Ensure focusable elements are reachable
-- Screen reader: Use `aria-current` on active nav item
-- Reduced motion: Respect `prefers-reduced-motion` for scroll behavior
-
-### Browser Support
-- `scroll-snap-type` is well-supported in modern browsers
-- Fallback: Regular scrolling works fine without snap
-
----
-
-## Reusability
-
-This pattern can be extracted for future project pages:
-
-1. **SlideNav component** - Plug into any page with sections array
-2. **useSlideNavigation hook** - Handles all navigation logic
-3. **CSS utilities** - `.slide-container` and `.slide-section` classes
-4. **Layout wrapper** - Could become a `SlideProjectLayout` component
-
-To create another slide-based project page:
-1. Import `SlideNav` and `useSlideNavigation`
-2. Define sections array with refs
-3. Wrap content in slide container with nav
-4. Apply `.slide-section` to each section
-
----
-
-## Summary
-
-This redesign transforms the Intelligence Over Inventory page into a modern, presentation-style experience while maintaining full design system compliance. The implementation creates reusable components (`SlideNav`, `useSlideNavigation`) that can be applied to future project pages, establishing a distinct template variant for slide-based case studies.
