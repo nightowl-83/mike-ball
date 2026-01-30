@@ -204,27 +204,27 @@ const IntelligenceOverInventoryProject = () => {
         {/* The Challenge Section - /01 - Stepped Conversation */}
         <section
           ref={(el) => { (sectionRefs[1] as any).current = el; }}
-          className="slide-section flex items-center"
+          className="slide-section flex items-center justify-center"
           onWheel={handleChallengeWheel}
         >
-          <div className="w-full px-4 md:px-8 lg:px-12">
+          <div className="w-[85%] mx-auto">
             {/* Section Header */}
             <div className="flex items-start justify-between mb-12">
-              <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold text-foreground">
+              <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground">
                 The Challenge
               </h2>
-              <span className="text-6xl md:text-8xl font-bold font-mono opacity-20 hidden md:block">
+              <span className="text-5xl md:text-7xl font-bold font-mono opacity-20 hidden md:block">
                 /01
               </span>
             </div>
 
             {/* Conversation Flow */}
-            <div className="max-w-4xl space-y-8">
+            <div className="max-w-4xl space-y-6">
               {challengePoints.map((point, index) => (
                 <p
                   key={index}
                   className={cn(
-                    "text-xl md:text-2xl lg:text-3xl leading-relaxed transition-all duration-500",
+                    "text-lg md:text-xl lg:text-2xl leading-relaxed transition-all duration-500",
                     challengeActiveIndex === index
                       ? "text-foreground font-semibold opacity-100"
                       : "text-muted-foreground font-normal opacity-50"
@@ -236,7 +236,7 @@ const IntelligenceOverInventoryProject = () => {
             </div>
 
             {/* Progress Indicator */}
-            <div className="flex gap-2 mt-12">
+            <div className="flex gap-2 mt-10">
               {challengePoints.map((_, index) => (
                 <button
                   key={index}
