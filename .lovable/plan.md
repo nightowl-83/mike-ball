@@ -1,240 +1,277 @@
 
-# Intelligence Over Inventory - New Project Case Study Page
+# Intelligence Over Inventory - Slide-Based Navigation Redesign
 
 ## Overview
-Create a new project case study page titled "Intelligence Over Inventory" that follows the established design patterns, typography, color system, and spacing conventions from existing project pages (Rural Land Marketplace, Marketing Hub, Gaming News Site). The implementation will be designed for reusability as a template for future projects.
+Transform the Intelligence Over Inventory project page from a traditional scroll-based layout to a modern slide-based presentation format with a persistent left-side navigation column. Each section becomes a full-viewport "slide" that users can navigate via clicks or scrolling.
 
 ---
 
-## Page Structure
+## Visual Concept
 
-The page follows the standard project page sequence established in the architecture:
-
-1. **Narrative Hero** (Two-column split)
-2. **Strategic Conflict Section** (Two-column problem/visual)
-3. **The Insight Engine** (Full-width technical innovation)
-4. **Dual-Interface Impact** (Tabbed comparison)
-5. **Strategy & Influence Grid** (Bento/card grid)
-6. **Design Detail Gallery** (Image grid with captions)
-7. **Future Vision Footer** (Centered text block)
-8. **Next Project Navigation**
+```text
++------------------+----------------------------------------+
+|                  |                                        |
+|   01 Overview    |                                        |
+|   02 Challenge   |          CURRENT SECTION               |
+|  [03 Solution]   |          FULL VIEWPORT                 |
+|   04 Impact      |          CONTENT                       |
+|   05 Strategy    |                                        |
+|   06 Gallery     |                                        |
+|   07 Vision      |                                        |
+|                  |                                        |
++------------------+----------------------------------------+
+     Left Nav                    Main Content
+     (Fixed)                   (Snap Scrolling)
+```
 
 ---
 
-## Detailed Section Specifications
+## Key Features
 
-### 1. Narrative Hero Section
-- **Layout:** Two-column split (following `RuralLandMarketplaceProject.tsx` hero pattern)
-- **Left Column:**
-  - Category pill badge (`bg-primary/10 text-primary`)
-  - H1: "Intelligence Over Inventory" 
-  - H2/Subhead: "Transforming Commodity Data into First-Party Insights"
-  - Role/Timeline/Year metadata grid
-  - Tags row using existing pill styling
-- **Right Column:** Hero image placeholder (responsive `object-contain`)
-- **Impact Metrics:** Flex-row of badge/pill components below the description
-  - Example: "+45% Lead Quality" | "3x Seller Engagement" | "First-Party Data"
+### 1. Left-Side Vertical Navigation
+- **Fixed position** on desktop (sticky on left edge)
+- Lists all major sections with their numbers
+- **Active state highlighting** for current section
+- **Clickable** to jump to any section
+- Subtle hover states matching existing design system
+- Collapses to bottom indicator on mobile
 
-### 2. Strategic Conflict Section
-- **Layout:** Standard two-column section with section number (`/01`)
-- **Left Column - Problem Block:**
-  - Section title: "The Challenge"
-  - Description text explaining 3rd-party feed limitations
-  - Bullet list with primary-colored dots (existing pattern)
-  - Highlighted callout box (`bg-card/50 border-primary/20`)
-- **Right Column:**
-  - Placeholder image container for "Market Saturation" visual
-  - Caption using `text-sm text-muted-foreground`
+### 2. Full-Viewport Sections
+- Each section fills `100vh` (full viewport height)
+- Content vertically centered within each section
+- Uses CSS `scroll-snap-type: y mandatory` for crisp transitions
+- Each section has `scroll-snap-align: start`
 
-### 3. The Insight Engine (Technical Innovation)
-- **Layout:** Full-width section with `bg-card/30` background
-- **Section Number:** `/02`
-- **Structure:**
-  - Section header with title left, number right
-  - Step-based flow visualization:
-    - Horizontal flow on desktop, vertical on mobile
-    - Each step: Icon + Label + Description
-    - Steps: Lead Data → Keyword Parser → Intent Mapping → UI Filters
-  - Visual connection lines between steps
-- **Pattern:** Uses existing process step styling from Design Process sections
+### 3. Scroll Behavior
+- Native scroll still works (users can scroll freely)
+- Snap points create satisfying "click" into each section
+- Smooth scroll for navigation clicks
 
-### 4. Dual-Interface Impact (Side-by-Side)
-- **Layout:** Full-width section with tabbed interface
-- **Section Number:** `/03`
-- **Implementation:** Uses existing `Tabs` component from `@radix-ui/react-tabs`
-- **Two Tabs:**
-  1. **Marketing Site Tab:** Advanced filters driven by buyer intent
-     - Description text
-     - Feature highlights
-     - Placeholder image
-  2. **Marketing Hub Tab:** Performance Coach dashboard with ROI nudges
-     - Description text
-     - Seller-focused metrics
-     - Placeholder image
-- **Styling:** Tabs follow existing `TabsList`, `TabsTrigger`, `TabsContent` patterns
-
-### 5. Strategy & Influence Grid
-- **Layout:** Bento grid or 3-column card layout
-- **Section Number:** `/04`
-- **Three Cards/Pillars:**
-  1. "Challenging Research Assumptions"
-  2. "Data-Informed Execution"  
-  3. "Business Value Alignment"
-- **Card Structure:** (following existing card patterns)
-  - Number indicator (01, 02, 03)
-  - Title (H3)
-  - Description paragraph
-  - Optional icon or visual element
-- **Styling:** `bg-card rounded-2xl p-8 shadow-sm`
-
-### 6. Design Detail Gallery
-- **Layout:** Responsive grid (2 columns on desktop, 1 on mobile)
-- **Section Number:** `/05`
-- **Image Cards:**
-  - Rounded container with image
-  - Caption below using `text-sm text-muted-foreground`
-  - Caption explains specific design decisions (typography, component logic)
-- **Pattern:** Follows the showcase grid pattern from existing projects
-
-### 7. Future Vision Footer
-- **Layout:** Centered text block
-- **Title:** "The AI Evolution"
-- **Content:** Simple paragraph about next steps
-- **Styling:** 
-  - `text-center` container
-  - Max-width constraint
-  - `py-10 md:py-24` spacing
-
-### 8. Next Project Navigation
-- **Layout:** Standard next project pattern (from existing projects)
-- **Structure:**
-  - "Next Project" label
-  - Project title
-  - Brief description
-  - "View Project" button with arrow
+### 4. Section Tracking
+- Uses Intersection Observer to track active section
+- Updates left nav highlight as user scrolls
+- Replaces existing `StickyNavHeader` and `ProjectSectionNav` components
 
 ---
 
-## Technical Specifications
+## Implementation Details
 
-### File Structure
-```
-src/pages/projects/IntelligenceOverInventoryProject.tsx
+### New Component: `SlideNav.tsx`
+
+```text
+src/components/SlideNav.tsx
 ```
 
-### Required Imports
+**Purpose:** Reusable left-side navigation component for slide-based project pages
+
+**Props Interface:**
+- `sections`: Array of section data (id, label, number, ref)
+- `currentIndex`: Currently active section index
+- `onNavigate`: Callback when user clicks a nav item
+- `className`: Optional additional styling
+
+**Structure:**
+- Fixed left positioning: `fixed left-0 top-0 h-screen`
+- Width: `w-16 md:w-64` (icons only on small screens, full labels on desktop)
+- Background: `bg-background/80 backdrop-blur-lg`
+- Border: `border-r border-border`
+- Z-index: `z-40`
+
+**Navigation Items:**
+- Number badge: `text-xs text-muted-foreground`
+- Label: `text-sm font-medium`
+- Active state: `text-primary bg-primary/10`
+- Hover state: `hover:bg-accent/50`
+
+### Modified: `IntelligenceOverInventoryProject.tsx`
+
+**Layout Changes:**
+
+1. **Root Container:**
 ```tsx
-import { ArrowLeft, ArrowRight, Database, Filter, BarChart3, Target, Lightbulb, TrendingUp } from "lucide-react";
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useRef, useEffect } from "react";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { useProjectNavigation } from "@/hooks/useProjectNavigation";
-import { StickyNavHeader } from "@/components/StickyNavHeader";
-import ProjectSectionNav from "@/components/ProjectSectionNav";
+<div className="flex">
+  <SlideNav sections={sections} currentIndex={currentSectionIndex} onNavigate={scrollToSection} />
+  <main className="flex-1 ml-16 md:ml-64 h-screen overflow-y-auto snap-y snap-mandatory">
+    {/* Sections */}
+  </main>
+</div>
 ```
 
-### Routing Update
-Add to `src/App.tsx`:
+2. **Each Section:**
 ```tsx
-import IntelligenceOverInventoryProject from "./pages/projects/IntelligenceOverInventoryProject";
-
-// In Routes:
-<Route path="/projects/intelligence-over-inventory" element={<IntelligenceOverInventoryProject />} />
+<section 
+  ref={sectionRef} 
+  className="h-screen snap-start flex items-center justify-center overflow-hidden"
+>
+  <div className="container mx-auto max-w-[1200px] px-6 md:px-12">
+    {/* Section content */}
+  </div>
+</section>
 ```
 
-### Data Entry
-Add to `src/data/projectsData.ts`:
+3. **Remove existing navigation components:**
+- Remove `StickyNavHeader` import and usage
+- Remove `ProjectSectionNav` import and usage
+- Simplify section tracking with direct scroll container ref
+
+### New Hook: `useSlideNavigation.ts`
+
+```text
+src/hooks/useSlideNavigation.ts
+```
+
+**Purpose:** Manages scroll-snap navigation state for slide-based pages
+
+**Features:**
+- Tracks current section via Intersection Observer on scroll container
+- Provides `scrollToSection(index)` function
+- Returns `currentSectionIndex` state
+- Handles keyboard navigation (up/down arrows)
+
+**Interface:**
 ```tsx
-{
-  id: "intelligence-over-inventory",
-  title: "Intelligence Over Inventory",
-  description: "Transforming commodity data into first-party insights with advanced filtering and seller performance coaching.",
-  category: "Product Strategy",
-  image: "", // Placeholder
-  route: "/projects/intelligence-over-inventory",
-  tags: ["Product Strategy", "Data Systems", "UX Design"],
-  layoutVariant: "hero-accent",
-  company: "CoStar Group"
+interface UseSlideNavigationReturn {
+  currentSectionIndex: number;
+  scrollToSection: (index: number) => void;
+  containerRef: RefObject<HTMLDivElement>;
 }
 ```
 
-### Section Navigation Setup
-```tsx
-const sections = [
-  { id: 'hero', section: 'Overview', subsection: '', number: '', ref: heroRef },
-  { id: 'conflict', section: 'Challenge', subsection: '', number: '/01', ref: conflictRef },
-  { id: 'engine', section: 'Solution', subsection: '', number: '/02', ref: engineRef },
-  { id: 'impact', section: 'Impact', subsection: '', number: '/03', ref: impactRef },
-  { id: 'strategy', section: 'Strategy', subsection: '', number: '/04', ref: strategyRef },
-  { id: 'gallery', section: 'Gallery', subsection: '', number: '/05', ref: galleryRef },
-  { id: 'vision', section: 'Vision', subsection: '', number: '', ref: visionRef },
-  { id: 'next-project', section: 'Next Project', subsection: '', number: '', ref: nextProjectRef }
-];
+---
+
+## Section-Specific Adjustments
+
+### Hero Section
+- Remove two-column split (not needed for slide format)
+- Center content with max-width constraint
+- Hero image moves below text or becomes background element
+- Back button remains in top-left corner
+
+### The Challenge (/01)
+- Condense to fit single viewport
+- Problem bullets become a focused list
+- Visual placeholder on right (or below on mobile)
+
+### The Insight Engine (/02)
+- Flow steps arranged horizontally on desktop
+- Steps stack vertically on mobile
+- Background treatment remains
+
+### Dual-Interface Impact (/03)
+- Tabs remain functional
+- Tab content condensed to fit viewport
+- Image placeholders sized appropriately
+
+### Strategy & Influence (/04)
+- 3 cards arranged in row
+- Cards scale down slightly to fit viewport
+- On mobile: vertical stack with scroll-snap within section (optional)
+
+### Design Details (/05)
+- 2x2 grid condensed
+- Images smaller but still visible
+- Captions beneath
+
+### The AI Evolution (/06)
+- Centered text block
+- Plenty of whitespace
+- Acts as a visual breath before navigation
+
+### Next Project (/07)
+- Simple navigation CTA
+- Minimal layout
+
+---
+
+## Mobile Considerations
+
+### Navigation
+- Left nav becomes bottom navigation bar or hidden with a toggle
+- Alternative: Small floating indicator showing "3/7" with tap to open full nav
+- Use drawer pattern from existing `sheet.tsx` component
+
+### Section Height
+- May use `min-h-screen` instead of fixed `h-screen` on mobile
+- Allow natural content overflow with snap alignment
+
+### Layout
+```text
+Mobile: Bottom nav indicator + tap to expand
+Tablet: Narrow left rail with icons only
+Desktop: Full left nav with labels
 ```
 
 ---
 
-## Design System Compliance
+## CSS Updates
 
-### Spacing
-- **Container:** `container mx-auto max-w-[1440px]`
-- **Section Padding:** `py-10 md:py-24`
-- **Mobile Horizontal Padding:** 24px (via container)
-- **Grid Gaps:** `gap-4 md:gap-16`
+Add to `src/index.css`:
 
-### Typography
-- **H1:** `text-3xl md:text-4xl lg:text-6xl xl:text-7xl font-bold`
-- **H2:** `text-3xl md:text-5xl lg:text-7xl xl:text-8xl font-bold`
-- **Body:** `text-base md:text-lg text-muted-foreground`
-- **Section Numbers:** `text-xl md:text-6xl lg:text-7xl font-bold font-mono opacity-20`
-
-### Colors
-- **Primary accents:** `text-primary`, `bg-primary/10`
-- **Backgrounds:** `bg-background`, `bg-card/30`, `bg-card`
-- **Borders:** `border-border`, `border-primary/20`
-- **Text:** `text-foreground`, `text-muted-foreground`
-
-### Interactive States
-- **Buttons:** Using existing `Button` component variants
-- **Tabs:** Standard Radix tab styling from `tabs.tsx`
-- **Hover:** `hover:bg-accent`, transitions
-
----
-
-## Template Reusability Notes
-
-For future projects, the following patterns can be replicated:
-
-1. **Copy the entire file structure** and replace content
-2. **Section refs and navigation** - Update section names in the `sections` array
-3. **Hero metadata** - Swap title, description, role, timeline, tags
-4. **Tabbed sections** - Reuse the Tabs pattern for any A/B comparison
-5. **Card grids** - Adjust grid columns (`grid-cols-1 md:grid-cols-2 lg:grid-cols-3`)
-6. **Flow diagrams** - Modify step data arrays for different processes
-7. **Image placeholders** - Replace src attributes as assets become available
-
-The page structure is modular - sections can be added, removed, or reordered by adjusting the JSX order and `sections` array.
+```css
+@layer components {
+  /* Slide-based scroll container */
+  .slide-container {
+    @apply h-screen overflow-y-auto;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+  }
+  
+  .slide-section {
+    @apply h-screen snap-start;
+    scroll-snap-align: start;
+  }
+}
+```
 
 ---
 
 ## Files to Create/Modify
 
-| File | Action |
-|------|--------|
-| `src/pages/projects/IntelligenceOverInventoryProject.tsx` | Create new file |
-| `src/App.tsx` | Add route |
-| `src/data/projectsData.ts` | Add project entry |
+| File | Action | Description |
+|------|--------|-------------|
+| `src/components/SlideNav.tsx` | Create | Left-side vertical navigation component |
+| `src/hooks/useSlideNavigation.ts` | Create | Hook for slide navigation state |
+| `src/pages/projects/IntelligenceOverInventoryProject.tsx` | Modify | Refactor to slide-based layout |
+| `src/index.css` | Modify | Add scroll-snap utility classes |
 
 ---
 
-## Placeholder Content
+## Technical Considerations
 
-All image sources will initially use placeholder strings (`""` or placeholder image paths) that can be replaced when actual assets are provided. The structure supports:
-- Hero image
-- Market saturation visual
-- Marketing Site screenshots
-- Marketing Hub dashboard screenshots
-- Design detail gallery images (4-6 slots)
+### Performance
+- Each section is rendered but off-screen sections are not visually processed
+- Images should use `loading="lazy"` (already in place)
+- Intersection Observer is performant for tracking
 
+### Accessibility
+- Keyboard navigation: Arrow keys move between sections
+- Focus management: Ensure focusable elements are reachable
+- Screen reader: Use `aria-current` on active nav item
+- Reduced motion: Respect `prefers-reduced-motion` for scroll behavior
+
+### Browser Support
+- `scroll-snap-type` is well-supported in modern browsers
+- Fallback: Regular scrolling works fine without snap
+
+---
+
+## Reusability
+
+This pattern can be extracted for future project pages:
+
+1. **SlideNav component** - Plug into any page with sections array
+2. **useSlideNavigation hook** - Handles all navigation logic
+3. **CSS utilities** - `.slide-container` and `.slide-section` classes
+4. **Layout wrapper** - Could become a `SlideProjectLayout` component
+
+To create another slide-based project page:
+1. Import `SlideNav` and `useSlideNavigation`
+2. Define sections array with refs
+3. Wrap content in slide container with nav
+4. Apply `.slide-section` to each section
+
+---
+
+## Summary
+
+This redesign transforms the Intelligence Over Inventory page into a modern, presentation-style experience while maintaining full design system compliance. The implementation creates reusable components (`SlideNav`, `useSlideNavigation`) that can be applied to future project pages, establishing a distinct template variant for slide-based case studies.
