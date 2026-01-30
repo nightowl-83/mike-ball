@@ -2,10 +2,10 @@ import { ArrowRight, Database, Filter, BarChart3, Target, Lightbulb, TrendingUp,
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useEffect } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { SlideNav } from "@/components/SlideNav";
 import { useSlideNavigation } from "@/hooks/useSlideNavigation";
-
+import { cn } from "@/lib/utils";
 const IntelligenceOverInventoryProject = () => {
   // Section data for navigation
   const sectionData = [
@@ -70,6 +70,76 @@ const IntelligenceOverInventoryProject = () => {
     { caption: "Analytics view showing lead quality metrics" }
   ];
 
+  // Challenge section conversation points
+  const challengePoints = [
+    { text: "The rural land marketplace was drowning in commodity data. Every competitor had access to the same 3rd-party feeds, creating a race to the bottom." },
+    { text: "Identical listings populated every platform. No single marketplace could claim unique inventory—buyers saw the same properties everywhere they looked." },
+    { text: "We had no insight into what buyers actually wanted. Engagement data existed, but it was siloed and surface-level—clicks without context." },
+    { text: "Sellers received vanity metrics that looked good but told them nothing actionable. Views and saves, but no understanding of buyer intent or fit." },
+    { text: "Search filters were built from listing data, not buyer behavior. The experience forced users to think in database terms rather than natural land-buying language." }
+  ];
+
+  // Challenge section wheel-based progress state
+  const [challengeActiveIndex, setChallengeActiveIndex] = useState(0);
+  const [wheelAccumulator, setWheelAccumulator] = useState(0);
+  const WHEEL_THRESHOLD = 80; // Amount of wheel delta needed to advance
+
+  // Handle wheel events for Challenge section sub-scroll
+  const handleChallengeWheel = useCallback((e: React.WheelEvent<HTMLDivElement>) => {
+    // Only process if we're on the Challenge section (index 1)
+    if (currentSectionIndex !== 1) return;
+
+    const delta = e.deltaY;
+    const newAccumulator = wheelAccumulator + delta;
+
+    // Scrolling down
+    if (delta > 0) {
+      if (newAccumulator >= WHEEL_THRESHOLD) {
+        if (challengeActiveIndex < challengePoints.length - 1) {
+          // Advance to next paragraph
+          e.preventDefault();
+          e.stopPropagation();
+          setChallengeActiveIndex(prev => prev + 1);
+          setWheelAccumulator(0);
+        } else {
+          // At last paragraph, allow scroll to next section
+          setWheelAccumulator(0);
+        }
+      } else {
+        e.preventDefault();
+        e.stopPropagation();
+        setWheelAccumulator(newAccumulator);
+      }
+    }
+    // Scrolling up
+    else if (delta < 0) {
+      if (newAccumulator <= -WHEEL_THRESHOLD) {
+        if (challengeActiveIndex > 0) {
+          // Go back to previous paragraph
+          e.preventDefault();
+          e.stopPropagation();
+          setChallengeActiveIndex(prev => prev - 1);
+          setWheelAccumulator(0);
+        } else {
+          // At first paragraph, allow scroll to previous section
+          setWheelAccumulator(0);
+        }
+      } else {
+        e.preventDefault();
+        e.stopPropagation();
+        setWheelAccumulator(newAccumulator);
+      }
+    }
+  }, [currentSectionIndex, challengeActiveIndex, wheelAccumulator, challengePoints.length]);
+
+  // Reset challenge state when leaving the section
+  useEffect(() => {
+    if (currentSectionIndex !== 1) {
+      setChallengeActiveIndex(0);
+      setWheelAccumulator(0);
+    }
+  }, [currentSectionIndex]);
+
   return (
     <div className="flex bg-background">
       {/* Slide Navigation */}
@@ -131,61 +201,55 @@ const IntelligenceOverInventoryProject = () => {
           </div>
         </section>
 
-        {/* The Challenge Section - /01 */}
+        {/* The Challenge Section - /01 - Stepped Conversation */}
         <section
           ref={(el) => { (sectionRefs[1] as any).current = el; }}
           className="slide-section flex items-center"
+          onWheel={handleChallengeWheel}
         >
           <div className="w-full px-4 md:px-8 lg:px-12">
             {/* Section Header */}
-            <div className="flex items-start justify-between mb-8">
-              <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground">
+            <div className="flex items-start justify-between mb-12">
+              <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold text-foreground">
                 The Challenge
               </h2>
-              <span className="text-5xl md:text-7xl font-bold font-mono opacity-20 hidden md:block">
+              <span className="text-6xl md:text-8xl font-bold font-mono opacity-20 hidden md:block">
                 /01
               </span>
             </div>
 
-            {/* Two Column Layout */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10">
-              {/* Left: Problem Block */}
-              <div className="space-y-6">
-                <p className="text-lg md:text-xl text-muted-foreground">
-                  The rural land marketplace was drowning in commodity data. Every competitor had access to the same 
-                  3rd-party feeds, creating a race to the bottom.
+            {/* Conversation Flow */}
+            <div className="max-w-4xl space-y-8">
+              {challengePoints.map((point, index) => (
+                <p
+                  key={index}
+                  className={cn(
+                    "text-xl md:text-2xl lg:text-3xl leading-relaxed transition-all duration-500",
+                    challengeActiveIndex === index
+                      ? "text-foreground font-semibold opacity-100"
+                      : "text-muted-foreground font-normal opacity-50"
+                  )}
+                >
+                  {point.text}
                 </p>
-                
-                {/* Description Cards */}
-                <div className="space-y-4">
-                  <div className="p-4 rounded-lg bg-card/50 border border-border">
-                    <p className="text-base md:text-lg font-medium text-foreground mb-1">Commodity Listings</p>
-                    <p className="text-base text-muted-foreground">Identical listings across all competitor platforms with no differentiation.</p>
-                  </div>
-                  <div className="p-4 rounded-lg bg-card/50 border border-border">
-                    <p className="text-base md:text-lg font-medium text-foreground mb-1">Blind Engagement</p>
-                    <p className="text-base text-muted-foreground">No insight into buyer intent or preferences driving searches.</p>
-                  </div>
-                  <div className="p-4 rounded-lg bg-card/50 border border-border">
-                    <p className="text-base md:text-lg font-medium text-foreground mb-1">Generic Metrics</p>
-                    <p className="text-base text-muted-foreground">Sellers received surface-level performance data without actionable insights.</p>
-                  </div>
-                  <div className="p-4 rounded-lg bg-card/50 border border-border">
-                    <p className="text-base md:text-lg font-medium text-foreground mb-1">Mental Model Mismatch</p>
-                    <p className="text-base text-muted-foreground">Search filters didn't align with how buyers naturally think about land.</p>
-                  </div>
-                </div>
-              </div>
+              ))}
+            </div>
 
-              {/* Right: Visual Placeholder */}
-              <div className="space-y-3">
-                <div className="aspect-video bg-muted/50 border border-border rounded-xl flex items-center justify-center">
-                  <p className="text-muted-foreground text-base">Market Saturation Visual</p>
-                </div>
-                <p className="text-base text-muted-foreground">
-                  Competitive analysis showing feature parity across major platforms
-                </p>
-              </div>
+            {/* Progress Indicator */}
+            <div className="flex gap-2 mt-12">
+              {challengePoints.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setChallengeActiveIndex(index)}
+                  className={cn(
+                    "w-2 h-2 rounded-full transition-all duration-300",
+                    challengeActiveIndex === index
+                      ? "bg-primary w-6"
+                      : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                  )}
+                  aria-label={`Go to point ${index + 1}`}
+                />
+              ))}
             </div>
           </div>
         </section>
