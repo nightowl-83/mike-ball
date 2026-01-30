@@ -57,6 +57,17 @@ export const projectsData: ProjectData[] = [
     company: "CBS Interactive"
   },
   {
+    id: "intelligence-over-inventory",
+    title: "Intelligence Over Inventory",
+    description: "Transforming commodity data into first-party insights with advanced filtering and seller performance coaching.",
+    category: "Product Strategy",
+    image: "",
+    route: "/projects/intelligence-over-inventory",
+    tags: ["Product Strategy", "Data Systems", "UX Design"],
+    layoutVariant: "hero-accent",
+    company: "CoStar Group"
+  },
+  {
     id: "ar-travel-companion",
     title: "AR Travel Companion",
     description: "Augmented reality UI design for an immersive travel companion app, blending real-world exploration with digital guidance.",
