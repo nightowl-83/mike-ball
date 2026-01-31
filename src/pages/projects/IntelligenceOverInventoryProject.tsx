@@ -12,11 +12,12 @@ const IntelligenceOverInventoryProject = () => {
     { id: 'hero', label: 'Overview', number: '' },
     { id: 'conflict', label: 'The Challenge', number: '/01' },
     { id: 'engine', label: 'The Solution', number: '/02' },
-    { id: 'impact', label: 'Impact', number: '/03' },
-    { id: 'strategy', label: 'Strategy', number: '/04' },
-    { id: 'gallery', label: 'Gallery', number: '/05' },
-    { id: 'vision', label: 'Vision', number: '/06' },
-    { id: 'next-project', label: 'Next Project', number: '/07' }
+    { id: 'parsing', label: 'Parsing Tool', number: '/03' },
+    { id: 'impact', label: 'Impact', number: '/04' },
+    { id: 'strategy', label: 'Strategy', number: '/05' },
+    { id: 'gallery', label: 'Gallery', number: '/06' },
+    { id: 'vision', label: 'Vision', number: '/07' },
+    { id: 'next-project', label: 'Next Project', number: '/08' }
   ];
 
   // Use slide navigation hook
@@ -37,7 +38,8 @@ const IntelligenceOverInventoryProject = () => {
     { icon: Database, label: "Lead Data", description: "Capture buyer inquiries and engagement signals" },
     { icon: Filter, label: "Keyword Parser", description: "Extract intent keywords from lead messages" },
     { icon: Target, label: "Intent Mapping", description: "Map keywords to filter categories" },
-    { icon: BarChart3, label: "UI Filters", description: "Surface as advanced search options" }
+    { icon: BarChart3, label: "UI Filters", description: "Surface as advanced search options" },
+    { icon: Users, label: "Seller Training", description: "Provide data for what buyers are searching for" }
   ];
 
   // Strategy pillars data
@@ -274,10 +276,10 @@ const IntelligenceOverInventoryProject = () => {
         {/* The Insight Engine Section - /02 */}
         <section
           ref={(el) => { (sectionRefs[2] as any).current = el; }}
-          className="slide-section flex items-center bg-card/30"
+          className="slide-section flex flex-col pt-12 bg-card/30"
         >
           <div className="w-full px-4 md:px-8 lg:px-12">
-            {/* Section Header */}
+            {/* Section Header - Top Positioned */}
             <div className="flex items-start justify-between mb-8">
               <div className="flex-1">
                 <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground">
@@ -292,26 +294,97 @@ const IntelligenceOverInventoryProject = () => {
               </span>
             </div>
 
-            {/* Flow Steps */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-              {flowSteps.map((step, index) => (
-                <div key={step.label} className="relative">
-                  <div className="bg-card border border-border rounded-xl p-5 md:p-8 h-full">
-                    <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                      <step.icon className="w-6 h-6 md:w-7 md:h-7 text-primary" />
+            {/* Horizontal Flow with Staggered Cards */}
+            <div className="relative flex-1 flex items-center justify-center mt-8">
+              {/* Horizontal connecting line */}
+              <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-border hidden lg:block" />
+              
+              {/* Cards Container */}
+              <div className="flex flex-col lg:flex-row items-center justify-between w-full gap-4 lg:gap-2 relative">
+                {flowSteps.map((step, index) => (
+                  <div 
+                    key={step.label} 
+                    className={cn(
+                      "relative flex flex-col items-center z-10",
+                      // Stagger: even cards up, odd cards down (on desktop)
+                      index % 2 === 0 ? "lg:-translate-y-20" : "lg:translate-y-20"
+                    )}
+                  >
+                    {/* Card */}
+                    <div className="bg-card border border-border rounded-xl p-4 md:p-5 w-full lg:w-40 xl:w-48">
+                      <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary/10 flex items-center justify-center mb-3">
+                        <step.icon className="w-5 h-5 md:w-6 md:h-6 text-primary" />
+                      </div>
+                      <h3 className="text-base md:text-lg font-semibold text-foreground mb-1">{step.label}</h3>
+                      <p className="text-xs md:text-sm text-muted-foreground leading-snug">{step.description}</p>
                     </div>
-                    <h3 className="text-lg md:text-xl font-semibold text-foreground mb-2">{step.label}</h3>
-                    <p className="text-sm md:text-base text-muted-foreground">{step.description}</p>
+                    
+                    {/* Vertical connector to horizontal line (desktop only) */}
+                    <div className={cn(
+                      "hidden lg:block w-0.5 bg-border",
+                      index % 2 === 0 ? "h-8 order-last" : "h-8 order-first"
+                    )} />
+                    
+                    {/* Connection node on the line */}
+                    <div className={cn(
+                      "hidden lg:block w-3 h-3 rounded-full bg-primary shrink-0",
+                      index % 2 === 0 ? "order-last" : "order-first"
+                    )} />
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Dual-Interface Impact Section - /03 */}
+        {/* From Noise to Signal - Parsing Tool Section - /03 */}
         <section
           ref={(el) => { (sectionRefs[3] as any).current = el; }}
+          className="slide-section flex items-center"
+        >
+          <div className="w-full px-4 md:px-8 lg:px-12">
+            {/* Section Header */}
+            <div className="flex items-start justify-between mb-8">
+              <div className="flex-1">
+                <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground">
+                  From Noise to Signal
+                </h2>
+                <p className="text-lg md:text-xl text-muted-foreground mt-4 max-w-3xl">
+                  The parsing tool transforms unstructured lead messages into structured intent data, enabling smarter filters and actionable seller insights.
+                </p>
+              </div>
+              <span className="text-5xl md:text-7xl font-bold font-mono opacity-20 hidden md:block">
+                /03
+              </span>
+            </div>
+
+            {/* 3-Image Gallery */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+              <div className="space-y-3">
+                <div className="aspect-[4/3] bg-muted/50 border border-border rounded-xl flex items-center justify-center">
+                  <p className="text-muted-foreground text-sm md:text-base">Raw Lead Message</p>
+                </div>
+                <p className="text-sm text-muted-foreground">Unstructured buyer inquiries with varied language and intent signals.</p>
+              </div>
+              <div className="space-y-3">
+                <div className="aspect-[4/3] bg-muted/50 border border-border rounded-xl flex items-center justify-center">
+                  <p className="text-muted-foreground text-sm md:text-base">Parsing Engine</p>
+                </div>
+                <p className="text-sm text-muted-foreground">Keywords extracted and mapped to standardized filter categories.</p>
+              </div>
+              <div className="space-y-3">
+                <div className="aspect-[4/3] bg-muted/50 border border-border rounded-xl flex items-center justify-center">
+                  <p className="text-muted-foreground text-sm md:text-base">Structured Output</p>
+                </div>
+                <p className="text-sm text-muted-foreground">Clean intent data ready for UI filters and seller dashboards.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Dual-Interface Impact Section - /04 */}
+        <section
+          ref={(el) => { (sectionRefs[4] as any).current = el; }}
           className="slide-section flex items-center"
         >
           <div className="w-full px-4 md:px-8 lg:px-12">
@@ -321,7 +394,7 @@ const IntelligenceOverInventoryProject = () => {
                 Dual-Interface Impact
               </h2>
               <span className="text-5xl md:text-7xl font-bold font-mono opacity-20 hidden md:block">
-                /03
+                /04
               </span>
             </div>
 
@@ -409,9 +482,9 @@ const IntelligenceOverInventoryProject = () => {
           </div>
         </section>
 
-        {/* Strategy & Influence Grid - /04 */}
+        {/* Strategy & Influence Grid - /05 */}
         <section
-          ref={(el) => { (sectionRefs[4] as any).current = el; }}
+          ref={(el) => { (sectionRefs[5] as any).current = el; }}
           className="slide-section flex items-center bg-card/30"
         >
           <div className="w-full px-4 md:px-8 lg:px-12">
@@ -421,7 +494,7 @@ const IntelligenceOverInventoryProject = () => {
                 Strategy & Influence
               </h2>
               <span className="text-5xl md:text-7xl font-bold font-mono opacity-20 hidden md:block">
-                /04
+                /05
               </span>
             </div>
 
@@ -446,9 +519,9 @@ const IntelligenceOverInventoryProject = () => {
           </div>
         </section>
 
-        {/* Design Detail Gallery - /05 */}
+        {/* Design Detail Gallery - /06 */}
         <section
-          ref={(el) => { (sectionRefs[5] as any).current = el; }}
+          ref={(el) => { (sectionRefs[6] as any).current = el; }}
           className="slide-section flex items-center"
         >
           <div className="w-full px-4 md:px-8 lg:px-12">
@@ -458,7 +531,7 @@ const IntelligenceOverInventoryProject = () => {
                 Design Details
               </h2>
               <span className="text-5xl md:text-7xl font-bold font-mono opacity-20 hidden md:block">
-                /05
+                /06
               </span>
             </div>
 
@@ -476,15 +549,15 @@ const IntelligenceOverInventoryProject = () => {
           </div>
         </section>
 
-        {/* Future Vision - /06 */}
+        {/* Future Vision - /07 */}
         <section
-          ref={(el) => { (sectionRefs[6] as any).current = el; }}
+          ref={(el) => { (sectionRefs[7] as any).current = el; }}
           className="slide-section flex items-center bg-card/30"
         >
           <div className="w-full px-4 md:px-8 lg:px-12">
             <div className="text-center max-w-3xl mx-auto">
               <span className="text-5xl md:text-7xl font-bold font-mono opacity-20 block mb-4">
-                /06
+                /07
               </span>
               <h2 className="text-4xl md:text-6xl font-bold text-foreground mb-6">The AI Evolution</h2>
               <p className="text-lg md:text-xl text-muted-foreground">
@@ -496,9 +569,9 @@ const IntelligenceOverInventoryProject = () => {
           </div>
         </section>
 
-        {/* Next Project - /07 */}
+        {/* Next Project - /08 */}
         <section
-          ref={(el) => { (sectionRefs[7] as any).current = el; }}
+          ref={(el) => { (sectionRefs[8] as any).current = el; }}
           className="slide-section flex items-center"
         >
           <div className="w-full px-4 md:px-8 lg:px-12">
