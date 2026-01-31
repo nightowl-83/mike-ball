@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import { Palette } from 'lucide-react';
 
 const themes = [
-  { id: 'default', name: 'Purple', color: 'hsl(263 70% 65%)', className: '' },
+  { id: 'default', name: 'Blue', color: 'hsl(241 76% 55%)', className: '' },
   { id: 'red', name: 'Coral', color: 'hsl(9 85% 58%)', className: 'theme-red' },
   { id: 'teal', name: 'Teal', color: 'hsl(175 70% 45%)', className: 'theme-teal' },
-  { id: 'light', name: 'Light', color: 'hsl(263 70% 50%)', className: 'theme-light' },
+  { id: 'light', name: 'Light', color: 'hsl(241 76% 45%)', className: 'theme-light' },
 ];
 
 const ThemeToggle = () => {
