@@ -310,7 +310,7 @@ const IntelligenceOverInventoryProject = () => {
                       key={step.label} 
                       className={cn(
                         "relative flex flex-col items-center z-10",
-                        isAbove ? "-translate-y-32" : "translate-y-32"
+                        isAbove ? "-translate-y-20" : "translate-y-20"
                       )}
                     >
                       {/* Connector going UP for above cards */}
@@ -323,7 +323,7 @@ const IntelligenceOverInventoryProject = () => {
                             </div>
                             <p className="text-xs xl:text-sm text-muted-foreground leading-snug">{step.description}</p>
                           </div>
-                          <div className="w-0.5 h-12 bg-border" />
+                          <div className="w-0.5 h-6 bg-border" />
                           <div className="w-3 h-3 rounded-full bg-primary shrink-0" />
                         </>
                       )}
@@ -332,7 +332,7 @@ const IntelligenceOverInventoryProject = () => {
                       {!isAbove && (
                         <>
                           <div className="w-3 h-3 rounded-full bg-primary shrink-0" />
-                          <div className="w-0.5 h-12 bg-border" />
+                          <div className="w-0.5 h-6 bg-border" />
                           <div className="bg-card border border-border rounded-xl p-5 w-44 xl:w-52 shadow-sm">
                             <div className="flex items-start justify-between mb-2">
                               <h3 className="text-sm xl:text-base font-semibold text-foreground leading-tight">{step.label}</h3>
