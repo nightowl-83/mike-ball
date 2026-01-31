@@ -172,10 +172,10 @@ const IntelligenceOverInventoryProject = () => {
         {/* Hero Section */}
         <section
           ref={(el) => { (sectionRefs[0] as any).current = el; }}
-          className="slide-section flex items-center"
+          className="slide-section flex items-center justify-center"
         >
-          <div className="w-full px-4 md:px-8 lg:px-12 py-12">
-            <div className="space-y-6 max-w-4xl">
+          <div className="w-[85%] mx-auto py-12">
+            <div className="space-y-6 max-w-4xl mx-auto text-center">
               <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-base font-medium">
                 Product Strategy
               </span>
@@ -185,13 +185,13 @@ const IntelligenceOverInventoryProject = () => {
               <p className="text-2xl md:text-3xl text-muted-foreground">
                 Transforming Commodity Data into First-Party Insights
               </p>
-              <p className="text-lg md:text-xl text-muted-foreground max-w-3xl">
+              <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
                 A strategic initiative to convert generic 3rd-party listing data into proprietary buyer intent signals, 
                 powering advanced search filters and a seller performance coaching system.
               </p>
               
               {/* Metadata Grid */}
-              <div className="flex flex-wrap gap-8 pt-4">
+              <div className="flex flex-wrap justify-center gap-8 pt-4">
                 <div>
                   <span className="text-base text-muted-foreground">Role</span>
                   <p className="text-lg font-semibold">Lead Product Designer</p>
@@ -207,7 +207,7 @@ const IntelligenceOverInventoryProject = () => {
               </div>
 
               {/* Impact Metrics */}
-              <div className="flex flex-wrap gap-3 pt-4">
+              <div className="flex flex-wrap justify-center gap-3 pt-4">
                 <span className="px-4 py-2 rounded-full bg-primary/10 text-primary text-base font-semibold">+45% Lead Quality</span>
                 <span className="px-4 py-2 rounded-full bg-primary/10 text-primary text-base font-semibold">3x Seller Engagement</span>
                 <span className="px-4 py-2 rounded-full bg-primary/10 text-primary text-base font-semibold">First-Party Data</span>
