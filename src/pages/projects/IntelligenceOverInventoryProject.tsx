@@ -294,42 +294,81 @@ const IntelligenceOverInventoryProject = () => {
               </span>
             </div>
 
-            {/* Horizontal Flow with Staggered Cards */}
-            <div className="relative flex-1 flex items-center justify-center mt-8">
+            {/* Horizontal Flow with Staggered Cards - Desktop */}
+            <div className="relative flex-1 hidden lg:flex items-center justify-center">
               {/* Horizontal connecting line */}
-              <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-border hidden lg:block" />
+              <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-border" />
               
               {/* Cards Container */}
-              <div className="flex flex-col lg:flex-row items-center justify-between w-full gap-4 lg:gap-2 relative">
-                {flowSteps.map((step, index) => (
-                  <div 
-                    key={step.label} 
-                    className={cn(
-                      "relative flex flex-col items-center z-10",
-                      // Stagger: even cards up, odd cards down (on desktop)
-                      index % 2 === 0 ? "lg:-translate-y-20" : "lg:translate-y-20"
-                    )}
-                  >
-                    {/* Card */}
-                    <div className="bg-card border border-border rounded-xl p-4 md:p-5 w-full lg:w-40 xl:w-48">
-                      <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary/10 flex items-center justify-center mb-3">
-                        <step.icon className="w-5 h-5 md:w-6 md:h-6 text-primary" />
-                      </div>
-                      <h3 className="text-base md:text-lg font-semibold text-foreground mb-1">{step.label}</h3>
-                      <p className="text-xs md:text-sm text-muted-foreground leading-snug">{step.description}</p>
+              <div className="flex items-center justify-between w-full relative">
+                {flowSteps.map((step, index) => {
+                  // Cards at indices 0, 2, 4 go BELOW the line; 1, 3 go ABOVE
+                  const isAbove = [1, 3].includes(index);
+                  
+                  return (
+                    <div 
+                      key={step.label} 
+                      className={cn(
+                        "relative flex flex-col items-center z-10",
+                        isAbove ? "-translate-y-24" : "translate-y-24"
+                      )}
+                    >
+                      {/* Connector going UP for above cards */}
+                      {isAbove && (
+                        <>
+                          <div className="bg-card border border-border rounded-xl p-4 xl:p-5 w-40 xl:w-48">
+                            <div className="flex items-start justify-between mb-2">
+                              <h3 className="text-base xl:text-lg font-semibold text-foreground">{step.label}</h3>
+                              <step.icon className="w-5 h-5 text-primary shrink-0" />
+                            </div>
+                            <p className="text-xs xl:text-sm text-muted-foreground leading-snug">{step.description}</p>
+                          </div>
+                          <div className="w-0.5 h-8 bg-border" />
+                          <div className="w-3 h-3 rounded-full bg-primary shrink-0" />
+                        </>
+                      )}
+                      
+                      {/* Connector going DOWN for below cards */}
+                      {!isAbove && (
+                        <>
+                          <div className="w-3 h-3 rounded-full bg-primary shrink-0" />
+                          <div className="w-0.5 h-8 bg-border" />
+                          <div className="bg-card border border-border rounded-xl p-4 xl:p-5 w-40 xl:w-48">
+                            <div className="flex items-start justify-between mb-2">
+                              <h3 className="text-base xl:text-lg font-semibold text-foreground">{step.label}</h3>
+                              <step.icon className="w-5 h-5 text-primary shrink-0" />
+                            </div>
+                            <p className="text-xs xl:text-sm text-muted-foreground leading-snug">{step.description}</p>
+                          </div>
+                        </>
+                      )}
                     </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Mobile/Tablet: Vertical timeline layout */}
+            <div className="lg:hidden relative pl-8">
+              {/* Vertical line on the left */}
+              <div className="absolute left-3 top-0 bottom-0 w-0.5 bg-border" />
+              
+              <div className="space-y-4">
+                {flowSteps.map((step, index) => (
+                  <div key={step.label} className="relative flex items-start gap-4">
+                    {/* Connection node */}
+                    <div className="absolute left-[-20px] top-4 w-3 h-3 rounded-full bg-primary" />
+                    {/* Horizontal connector */}
+                    <div className="absolute left-[-8px] top-[18px] w-4 h-0.5 bg-border" />
                     
-                    {/* Vertical connector to horizontal line (desktop only) */}
-                    <div className={cn(
-                      "hidden lg:block w-0.5 bg-border",
-                      index % 2 === 0 ? "h-8 order-last" : "h-8 order-first"
-                    )} />
-                    
-                    {/* Connection node on the line */}
-                    <div className={cn(
-                      "hidden lg:block w-3 h-3 rounded-full bg-primary shrink-0",
-                      index % 2 === 0 ? "order-last" : "order-first"
-                    )} />
+                    {/* Card */}
+                    <div className="bg-card border border-border rounded-xl p-4 flex-1">
+                      <div className="flex items-start justify-between mb-2">
+                        <h3 className="text-base font-semibold text-foreground">{step.label}</h3>
+                        <step.icon className="w-5 h-5 text-primary shrink-0" />
+                      </div>
+                      <p className="text-sm text-muted-foreground leading-snug">{step.description}</p>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -358,25 +397,25 @@ const IntelligenceOverInventoryProject = () => {
               </span>
             </div>
 
-            {/* 3-Image Gallery */}
+            {/* 3-Image Gallery - Placeholder until images are re-uploaded */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
               <div className="space-y-3">
-                <div className="aspect-[4/3] bg-muted/50 border border-border rounded-xl flex items-center justify-center">
-                  <p className="text-muted-foreground text-sm md:text-base">Raw Lead Message</p>
+                <div className="aspect-[4/3] bg-muted/50 border border-border rounded-xl flex items-center justify-center overflow-hidden">
+                  <p className="text-muted-foreground text-sm md:text-base p-4 text-center">Upload & Configure<br/><span className="text-xs opacity-60">(Image needed)</span></p>
                 </div>
-                <p className="text-sm text-muted-foreground">Unstructured buyer inquiries with varied language and intent signals.</p>
+                <p className="text-sm text-muted-foreground">Upload email data and configure the parsing engine for analysis.</p>
               </div>
               <div className="space-y-3">
-                <div className="aspect-[4/3] bg-muted/50 border border-border rounded-xl flex items-center justify-center">
-                  <p className="text-muted-foreground text-sm md:text-base">Parsing Engine</p>
+                <div className="aspect-[4/3] bg-muted/50 border border-border rounded-xl flex items-center justify-center overflow-hidden">
+                  <p className="text-muted-foreground text-sm md:text-base p-4 text-center">Keyword Analysis<br/><span className="text-xs opacity-60">(Image needed)</span></p>
                 </div>
-                <p className="text-sm text-muted-foreground">Keywords extracted and mapped to standardized filter categories.</p>
+                <p className="text-sm text-muted-foreground">Track keyword trends over time with interactive charts and filters.</p>
               </div>
               <div className="space-y-3">
-                <div className="aspect-[4/3] bg-muted/50 border border-border rounded-xl flex items-center justify-center">
-                  <p className="text-muted-foreground text-sm md:text-base">Structured Output</p>
+                <div className="aspect-[4/3] bg-muted/50 border border-border rounded-xl flex items-center justify-center overflow-hidden">
+                  <p className="text-muted-foreground text-sm md:text-base p-4 text-center">Distribution Insights<br/><span className="text-xs opacity-60">(Image needed)</span></p>
                 </div>
-                <p className="text-sm text-muted-foreground">Clean intent data ready for UI filters and seller dashboards.</p>
+                <p className="text-sm text-muted-foreground">Visualize keyword distribution and identify top search terms.</p>
               </div>
             </div>
           </div>
@@ -385,99 +424,104 @@ const IntelligenceOverInventoryProject = () => {
         {/* Dual-Interface Impact Section - /04 */}
         <section
           ref={(el) => { (sectionRefs[4] as any).current = el; }}
-          className="slide-section flex items-center"
+          className="slide-section flex flex-col pt-12"
         >
-          <div className="w-full px-4 md:px-8 lg:px-12">
-            {/* Section Header */}
-            <div className="flex items-start justify-between mb-8">
+          <div className="w-full px-4 md:px-8 lg:px-12 flex flex-col h-full">
+            {/* Centered Header */}
+            <div className="text-center mb-6">
               <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground">
                 Dual-Interface Impact
               </h2>
-              <span className="text-5xl md:text-7xl font-bold font-mono opacity-20 hidden md:block">
+              <span className="text-4xl md:text-5xl font-bold font-mono opacity-20 block mt-2">
                 /04
               </span>
             </div>
 
-            {/* Tabs */}
-            <Tabs defaultValue="marketing-site" className="w-full">
-              <TabsList className="w-full md:w-auto mb-6 bg-muted/50">
-                <TabsTrigger value="marketing-site" className="flex-1 md:flex-none px-8 text-base">Marketing Site</TabsTrigger>
-                <TabsTrigger value="marketing-hub" className="flex-1 md:flex-none px-8 text-base">Marketing Hub</TabsTrigger>
-              </TabsList>
+            {/* Tabs - Centered */}
+            <Tabs defaultValue="marketing-site" className="w-full flex flex-col flex-1">
+              <div className="flex justify-center mb-6">
+                <TabsList className="bg-muted/50">
+                  <TabsTrigger value="marketing-site" className="px-6 md:px-8 text-base">Marketing Site</TabsTrigger>
+                  <TabsTrigger value="marketing-hub" className="px-6 md:px-8 text-base">Marketing Hub</TabsTrigger>
+                </TabsList>
+              </div>
 
-              <TabsContent value="marketing-site">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  <div className="space-y-5">
-                    <h3 className="text-2xl md:text-3xl font-bold text-foreground">Advanced Filters Driven by Buyer Intent</h3>
-                    <p className="text-lg text-muted-foreground">
-                      The insight engine surfaces new filter categories based on what buyers actually search for.
-                    </p>
-                    <div className="space-y-3">
-                      <div className="flex items-start gap-4">
-                        <Zap className="w-5 h-5 text-primary shrink-0 mt-1" />
-                        <div>
-                          <p className="text-base font-medium text-foreground">Intent-Based Categories</p>
-                          <p className="text-base text-muted-foreground">Filter groups derived from actual buyer search patterns.</p>
+              {/* Content fills remaining space */}
+              <div className="flex-1 flex items-center">
+                <TabsContent value="marketing-site" className="w-full m-0">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
+                    <div className="space-y-5">
+                      <h3 className="text-2xl md:text-3xl font-bold text-foreground">Advanced Filters Driven by Buyer Intent</h3>
+                      <p className="text-lg text-muted-foreground">
+                        The insight engine surfaces new filter categories based on what buyers actually search for.
+                      </p>
+                      <div className="space-y-3">
+                        <div className="flex items-start gap-4">
+                          <Zap className="w-5 h-5 text-primary shrink-0 mt-1" />
+                          <div>
+                            <p className="text-base font-medium text-foreground">Intent-Based Categories</p>
+                            <p className="text-base text-muted-foreground">Filter groups derived from actual buyer search patterns.</p>
+                          </div>
                         </div>
-                      </div>
-                      <div className="flex items-start gap-4">
-                        <Zap className="w-5 h-5 text-primary shrink-0 mt-1" />
-                        <div>
-                          <p className="text-base font-medium text-foreground">Dynamic Suggestions</p>
-                          <p className="text-base text-muted-foreground">Keywords that auto-populate based on trending searches.</p>
+                        <div className="flex items-start gap-4">
+                          <Zap className="w-5 h-5 text-primary shrink-0 mt-1" />
+                          <div>
+                            <p className="text-base font-medium text-foreground">Dynamic Suggestions</p>
+                            <p className="text-base text-muted-foreground">Keywords that auto-populate based on trending searches.</p>
+                          </div>
                         </div>
-                      </div>
-                      <div className="flex items-start gap-4">
-                        <Zap className="w-5 h-5 text-primary shrink-0 mt-1" />
-                        <div>
-                          <p className="text-base font-medium text-foreground">Personalized Rankings</p>
-                          <p className="text-base text-muted-foreground">Results ordered by relevance to user behavior.</p>
+                        <div className="flex items-start gap-4">
+                          <Zap className="w-5 h-5 text-primary shrink-0 mt-1" />
+                          <div>
+                            <p className="text-base font-medium text-foreground">Personalized Rankings</p>
+                            <p className="text-base text-muted-foreground">Results ordered by relevance to user behavior.</p>
+                          </div>
                         </div>
                       </div>
                     </div>
+                    <div className="aspect-video bg-muted/50 border border-border rounded-xl flex items-center justify-center">
+                      <p className="text-muted-foreground text-base">Marketing Site Screenshot</p>
+                    </div>
                   </div>
-                  <div className="aspect-video bg-muted/50 border border-border rounded-xl flex items-center justify-center">
-                    <p className="text-muted-foreground text-base">Marketing Site Screenshot</p>
-                  </div>
-                </div>
-              </TabsContent>
+                </TabsContent>
 
-              <TabsContent value="marketing-hub">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  <div className="space-y-5">
-                    <h3 className="text-2xl md:text-3xl font-bold text-foreground">Performance Coach Dashboard</h3>
-                    <p className="text-lg text-muted-foreground">
-                      Sellers receive personalized recommendations based on buyer engagement patterns.
-                    </p>
-                    <div className="space-y-3">
-                      <div className="flex items-start gap-4">
-                        <LineChart className="w-5 h-5 text-primary shrink-0 mt-1" />
-                        <div>
-                          <p className="text-base font-medium text-foreground">Real-Time Metrics</p>
-                          <p className="text-base text-muted-foreground">Live engagement data updated as buyers interact.</p>
+                <TabsContent value="marketing-hub" className="w-full m-0">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
+                    <div className="space-y-5">
+                      <h3 className="text-2xl md:text-3xl font-bold text-foreground">Performance Coach Dashboard</h3>
+                      <p className="text-lg text-muted-foreground">
+                        Sellers receive personalized recommendations based on buyer engagement patterns.
+                      </p>
+                      <div className="space-y-3">
+                        <div className="flex items-start gap-4">
+                          <LineChart className="w-5 h-5 text-primary shrink-0 mt-1" />
+                          <div>
+                            <p className="text-base font-medium text-foreground">Real-Time Metrics</p>
+                            <p className="text-base text-muted-foreground">Live engagement data updated as buyers interact.</p>
+                          </div>
                         </div>
-                      </div>
-                      <div className="flex items-start gap-4">
-                        <Users className="w-5 h-5 text-primary shrink-0 mt-1" />
-                        <div>
-                          <p className="text-base font-medium text-foreground">Buyer Behavior Insights</p>
-                          <p className="text-base text-muted-foreground">Understand what attracts and converts prospects.</p>
+                        <div className="flex items-start gap-4">
+                          <Users className="w-5 h-5 text-primary shrink-0 mt-1" />
+                          <div>
+                            <p className="text-base font-medium text-foreground">Buyer Behavior Insights</p>
+                            <p className="text-base text-muted-foreground">Understand what attracts and converts prospects.</p>
+                          </div>
                         </div>
-                      </div>
-                      <div className="flex items-start gap-4">
-                        <TrendingUp className="w-5 h-5 text-primary shrink-0 mt-1" />
-                        <div>
-                          <p className="text-base font-medium text-foreground">Optimization Tips</p>
-                          <p className="text-base text-muted-foreground">Actionable suggestions to improve listing performance.</p>
+                        <div className="flex items-start gap-4">
+                          <TrendingUp className="w-5 h-5 text-primary shrink-0 mt-1" />
+                          <div>
+                            <p className="text-base font-medium text-foreground">Optimization Tips</p>
+                            <p className="text-base text-muted-foreground">Actionable suggestions to improve listing performance.</p>
+                          </div>
                         </div>
                       </div>
                     </div>
+                    <div className="aspect-video bg-muted/50 border border-border rounded-xl flex items-center justify-center">
+                      <p className="text-muted-foreground text-base">Marketing Hub Dashboard</p>
+                    </div>
                   </div>
-                  <div className="aspect-video bg-muted/50 border border-border rounded-xl flex items-center justify-center">
-                    <p className="text-muted-foreground text-base">Marketing Hub Dashboard</p>
-                  </div>
-                </div>
-              </TabsContent>
+                </TabsContent>
+              </div>
             </Tabs>
           </div>
         </section>
