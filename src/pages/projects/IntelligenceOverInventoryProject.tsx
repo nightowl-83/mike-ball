@@ -276,10 +276,10 @@ const IntelligenceOverInventoryProject = () => {
         {/* The Insight Engine Section - /02 */}
         <section
           ref={(el) => { (sectionRefs[2] as any).current = el; }}
-          className="slide-section flex flex-col pt-12 bg-card/30"
+          className="slide-section flex items-center justify-center bg-card/30"
         >
           <div className="w-full px-4 md:px-8 lg:px-12">
-            {/* Section Header - Top Positioned */}
+            {/* Section Header */}
             <div className="flex items-start justify-between mb-8">
               <div className="flex-1">
                 <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground">
@@ -296,8 +296,8 @@ const IntelligenceOverInventoryProject = () => {
 
             {/* Horizontal Flow with Staggered Cards - Desktop */}
             <div className="relative flex-1 hidden lg:flex items-center justify-center py-8">
-              {/* Horizontal connecting line */}
-              <div className="absolute top-1/2 left-4 right-4 h-0.5 bg-border" />
+              {/* Horizontal connecting line - dashed */}
+              <div className="absolute top-1/2 left-4 right-4 border-t-2 border-dashed border-border" />
               
               {/* Cards Container */}
               <div className="flex items-center justify-around w-full relative px-4">
@@ -316,14 +316,14 @@ const IntelligenceOverInventoryProject = () => {
                       {/* Connector going UP for above cards */}
                       {isAbove && (
                         <>
-                          <div className="bg-card border border-border rounded-xl p-5 w-44 xl:w-52 shadow-sm">
-                            <div className="flex items-start justify-between mb-2">
-                              <h3 className="text-sm xl:text-base font-semibold text-foreground leading-tight">{step.label}</h3>
-                              <step.icon className="w-5 h-5 text-primary shrink-0 ml-2" />
+                          <div className="bg-card border border-border rounded-xl p-6 w-52 xl:w-64 shadow-sm">
+                            <div className="flex items-start justify-between mb-3">
+                              <h3 className="text-base xl:text-lg font-semibold text-foreground leading-tight">{step.label}</h3>
+                              <step.icon className="w-5 h-5 text-muted-foreground shrink-0 ml-2" />
                             </div>
-                            <p className="text-xs xl:text-sm text-muted-foreground leading-snug">{step.description}</p>
+                            <p className="text-sm xl:text-base text-muted-foreground leading-snug">{step.description}</p>
                           </div>
-                          <div className="w-0.5 h-6 bg-border" />
+                          <div className="w-0.5 h-6 border-l-2 border-dashed border-border" />
                           <div className="w-3 h-3 rounded-full bg-primary shrink-0" />
                         </>
                       )}
@@ -332,13 +332,13 @@ const IntelligenceOverInventoryProject = () => {
                       {!isAbove && (
                         <>
                           <div className="w-3 h-3 rounded-full bg-primary shrink-0" />
-                          <div className="w-0.5 h-6 bg-border" />
-                          <div className="bg-card border border-border rounded-xl p-5 w-44 xl:w-52 shadow-sm">
-                            <div className="flex items-start justify-between mb-2">
-                              <h3 className="text-sm xl:text-base font-semibold text-foreground leading-tight">{step.label}</h3>
-                              <step.icon className="w-5 h-5 text-primary shrink-0 ml-2" />
+                          <div className="w-0.5 h-6 border-l-2 border-dashed border-border" />
+                          <div className="bg-card border border-border rounded-xl p-6 w-52 xl:w-64 shadow-sm">
+                            <div className="flex items-start justify-between mb-3">
+                              <h3 className="text-base xl:text-lg font-semibold text-foreground leading-tight">{step.label}</h3>
+                              <step.icon className="w-5 h-5 text-muted-foreground shrink-0 ml-2" />
                             </div>
-                            <p className="text-xs xl:text-sm text-muted-foreground leading-snug">{step.description}</p>
+                            <p className="text-sm xl:text-base text-muted-foreground leading-snug">{step.description}</p>
                           </div>
                         </>
                       )}
@@ -350,22 +350,22 @@ const IntelligenceOverInventoryProject = () => {
 
             {/* Mobile/Tablet: Vertical timeline layout */}
             <div className="lg:hidden relative pl-8">
-              {/* Vertical line on the left */}
-              <div className="absolute left-3 top-0 bottom-0 w-0.5 bg-border" />
+              {/* Vertical line on the left - dashed */}
+              <div className="absolute left-3 top-0 bottom-0 border-l-2 border-dashed border-border" />
               
               <div className="space-y-4">
                 {flowSteps.map((step, index) => (
                   <div key={step.label} className="relative flex items-start gap-4">
                     {/* Connection node */}
                     <div className="absolute left-[-20px] top-4 w-3 h-3 rounded-full bg-primary" />
-                    {/* Horizontal connector */}
-                    <div className="absolute left-[-8px] top-[18px] w-4 h-0.5 bg-border" />
+                    {/* Horizontal connector - dashed */}
+                    <div className="absolute left-[-8px] top-[18px] w-4 border-t-2 border-dashed border-border" />
                     
                     {/* Card */}
-                    <div className="bg-card border border-border rounded-xl p-4 flex-1">
+                    <div className="bg-card border border-border rounded-xl p-5 flex-1">
                       <div className="flex items-start justify-between mb-2">
                         <h3 className="text-base font-semibold text-foreground">{step.label}</h3>
-                        <step.icon className="w-5 h-5 text-primary shrink-0" />
+                        <step.icon className="w-5 h-5 text-muted-foreground shrink-0" />
                       </div>
                       <p className="text-sm text-muted-foreground leading-snug">{step.description}</p>
                     </div>
@@ -427,19 +427,19 @@ const IntelligenceOverInventoryProject = () => {
           className="slide-section flex flex-col pt-12"
         >
           <div className="w-full px-4 md:px-8 lg:px-12 flex flex-col h-full">
-            {/* Centered Header */}
-            <div className="text-center mb-6">
+            {/* Header - Title left, Number right */}
+            <div className="flex items-start justify-between mb-6">
               <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground">
                 Dual-Interface Impact
               </h2>
-              <span className="text-4xl md:text-5xl font-bold font-mono opacity-20 block mt-2">
+              <span className="text-5xl md:text-7xl font-bold font-mono opacity-20 hidden md:block">
                 /04
               </span>
             </div>
 
-            {/* Tabs - Centered */}
+            {/* Tabs - Centered with spacing below */}
             <Tabs defaultValue="marketing-site" className="w-full flex flex-col flex-1">
-              <div className="flex justify-center mb-6">
+              <div className="flex justify-center mb-10">
                 <TabsList className="bg-muted/50">
                   <TabsTrigger value="marketing-site" className="px-6 md:px-8 text-base">Marketing Site</TabsTrigger>
                   <TabsTrigger value="marketing-hub" className="px-6 md:px-8 text-base">Marketing Hub</TabsTrigger>

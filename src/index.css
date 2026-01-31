@@ -17,7 +17,7 @@ All colors MUST be HSL.
     --popover: 220 20% 12%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 263 70% 65%;
+    --primary: 241 76% 55%;
     --primary-foreground: 210 40% 98%;
 
     --secondary: 220 15% 20%;
@@ -26,7 +26,7 @@ All colors MUST be HSL.
     --muted: 220 15% 20%;
     --muted-foreground: 215 15% 65%;
 
-    --accent: 263 70% 65%;
+    --accent: 241 76% 55%;
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 84.2% 60.2%;
@@ -34,26 +34,26 @@ All colors MUST be HSL.
 
     --border: 220 15% 20%;
     --input: 220 15% 20%;
-    --ring: 263 70% 65%;
+    --ring: 241 76% 55%;
 
     --radius: 0.75rem;
 
     /* Custom design tokens */
-    --gradient-primary: linear-gradient(135deg, hsl(263 70% 65%), hsl(220 85% 65%));
+    --gradient-primary: linear-gradient(135deg, hsl(241 76% 55%), hsl(220 85% 60%));
     --gradient-card: linear-gradient(180deg, hsl(220 20% 12%), hsl(220 20% 10%));
-    --gradient-accent: linear-gradient(135deg, hsl(263 70% 50%), hsl(280 70% 55%), hsl(240 70% 55%));
-    --shadow-glow: 0 0 40px hsl(263 70% 65% / 0.3);
+    --gradient-accent: linear-gradient(135deg, hsl(241 76% 50%), hsl(260 70% 55%), hsl(220 70% 55%));
+    --shadow-glow: 0 0 40px hsl(241 76% 55% / 0.3);
     --shadow-card: 0 10px 30px -10px hsl(220 25% 0% / 0.5);
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     --sidebar-background: 220 25% 8%;
     --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 263 70% 65%;
+    --sidebar-primary: 241 76% 55%;
     --sidebar-primary-foreground: 210 40% 98%;
     --sidebar-accent: 220 15% 20%;
     --sidebar-accent-foreground: 210 40% 98%;
     --sidebar-border: 220 15% 20%;
-    --sidebar-ring: 263 70% 65%;
+    --sidebar-ring: 241 76% 55%;
   }
 
   /* Red/Coral Theme */
@@ -94,30 +94,30 @@ All colors MUST be HSL.
     --card-foreground: 220 25% 10%;
     --popover: 0 0% 100%;
     --popover-foreground: 220 25% 10%;
-    --primary: 263 70% 50%;
+    --primary: 241 76% 45%;
     --primary-foreground: 0 0% 100%;
     --secondary: 220 15% 92%;
     --secondary-foreground: 220 25% 10%;
     --muted: 220 15% 92%;
     --muted-foreground: 220 10% 40%;
-    --accent: 263 70% 50%;
+    --accent: 241 76% 45%;
     --accent-foreground: 0 0% 100%;
     --border: 220 15% 85%;
     --input: 220 15% 90%;
-    --ring: 263 70% 50%;
-    --gradient-primary: linear-gradient(135deg, hsl(263 70% 50%), hsl(220 85% 55%));
+    --ring: 241 76% 45%;
+    --gradient-primary: linear-gradient(135deg, hsl(241 76% 45%), hsl(220 85% 55%));
     --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(220 15% 97%));
-    --gradient-accent: linear-gradient(135deg, hsl(263 70% 45%), hsl(280 70% 50%), hsl(240 70% 50%));
-    --shadow-glow: 0 0 40px hsl(263 70% 50% / 0.2);
+    --gradient-accent: linear-gradient(135deg, hsl(241 76% 40%), hsl(260 70% 50%), hsl(220 70% 50%));
+    --shadow-glow: 0 0 40px hsl(241 76% 45% / 0.2);
     --shadow-card: 0 10px 30px -10px hsl(220 25% 0% / 0.1);
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 220 25% 10%;
-    --sidebar-primary: 263 70% 50%;
+    --sidebar-primary: 241 76% 45%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 220 15% 92%;
     --sidebar-accent-foreground: 220 25% 10%;
     --sidebar-border: 220 15% 85%;
-    --sidebar-ring: 263 70% 50%;
+    --sidebar-ring: 241 76% 45%;
   }
 
   /* Gaming News Site Project Theme */
