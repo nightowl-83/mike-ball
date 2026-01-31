@@ -19,10 +19,17 @@ export function useSlideNavigation({
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   
-  // Create refs for each section
-  const sectionRefs = useRef<RefObject<HTMLDivElement>[]>(
-    Array.from({ length: sectionCount }, () => ({ current: null }))
-  ).current;
+  // Create refs for each section - use useMemo pattern to handle dynamic count
+  const sectionRefsRef = useRef<RefObject<HTMLDivElement>[]>([]);
+  
+  // Ensure we have enough refs for the current section count
+  if (sectionRefsRef.current.length !== sectionCount) {
+    sectionRefsRef.current = Array.from({ length: sectionCount }, (_, i) => 
+      sectionRefsRef.current[i] || { current: null }
+    );
+  }
+  
+  const sectionRefs = sectionRefsRef.current;
 
   // Scroll to a specific section
   const scrollToSection = useCallback((index: number) => {
