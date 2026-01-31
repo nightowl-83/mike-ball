@@ -1,145 +1,163 @@
 
-
-# Insight Engine Section Redesign + New Parsing Tool Section
+# Update Intelligence Over Inventory Project - Sections /02, /03, /04
 
 ## Overview
-This plan covers two major changes:
-1. Redesign the "Insight Engine" section (/02) with a horizontal 5-card flow connected by a line
-2. Add a new "Parsing Tool" section after /02 to showcase 3 images
+Three targeted updates to the IntelligenceOverInventoryProject.tsx file:
+1. Redesign Insight Engine (/02) card layout to match the reference
+2. Add actual parsing tool images to section /03
+3. Restructure Impact section (/04) layout
 
 ---
 
-## Part 1: Insight Engine Section Changes
+## Part 1: Insight Engine Section (/02) - Card Layout Redesign
 
-### Current State
-- 4 cards in a horizontal 2x2 / 4-column grid
-- Title and description centered vertically in the viewport
-- Cards: Lead Data, Keyword Parser, Intent Mapping, UI Filters
+### Current Layout
+- Cards have alternating offset pattern (even up, odd down)
+- Vertical connectors with nodes extend from cards to horizontal line
+- Icon at top left of each card
 
-### Proposed Changes
-
-**1. Move title to top of viewport**
-- Position header near the top with `pt-12` padding
-- Change from `flex items-center` to `flex flex-col pt-12`
-
-**2. Replace card grid with horizontal 5-card flow**
-- 5 cards displayed horizontally in a single row
-- Cards connected by a horizontal line running through them
-- Cards staggered vertically (alternating up/down) for visual interest
-
-**3. Add 5th card: Seller Training**
-- New card added at the end of the flow
-- Content: "Provide data for what buyers are searching for"
-
-### New Flow Steps Data
-
-| Step | Label | Description | Icon |
-|------|-------|-------------|------|
-| 1 | Lead Data | Capture buyer inquiries and engagement signals | Database |
-| 2 | Keyword Parser | Extract intent keywords from lead messages | Filter |
-| 3 | Intent Mapping | Map keywords to filter categories | Target |
-| 4 | UI Filters | Surface as advanced search options | BarChart3 |
-| 5 | Seller Training | Provide data for what buyers are searching for | Users |
-
-### Visual Layout (Desktop)
+### New Layout (Based on Reference)
 
 ```text
-┌─────────────────────────────────────────────────────────────────────────────┐
-│  The Insight Engine                                                    /02  │
-│  Converting engagement signals into actionable intelligence...              │
-│                                                                             │
-│     ┌─────────┐           ┌─────────┐           ┌─────────┐                │
-│     │  Lead   │           │ Intent  │           │ Seller  │                │
-│     │  Data   │           │ Mapping │           │Training │                │
-│     └────┬────┘           └────┬────┘           └────┬────┘                │
-│          │                     │                     │                      │
-│  ────────●─────────────────────●─────────────────────●─────────────────     │
-│          │                     │                     │                      │
-│     ┌────┴────┐           ┌────┴────┐                                      │
-│     │Keyword  │           │   UI    │                                      │
-│     │ Parser  │           │ Filters │                                      │
-│     └─────────┘           └─────────┘                                      │
-│                                                                             │
-└─────────────────────────────────────────────────────────────────────────────┘
+                    ┌─────────────────────┐           ┌─────────────────────┐
+                    │  Keyword Parser  ⊟  │           │    UI Filters    ⊟  │
+                    │  Extract intent...  │           │  Surface as...      │
+                    └──────────┬──────────┘           └──────────┬──────────┘
+                               │                                  │
+━━━━━━━━━━━━━━━━━━━━━●━━━━━━━━●━━━━━━━━━━━━━━━━●━━━━━━━━━━━━━━━━━●━━━━━━━━━━━━━━━━━●━━━━━━━━━
+                    │                                  │                           │
+       ┌────────────┴─────────────┐        ┌──────────┴──────────┐    ┌──────────┴──────────┐
+       │  Lead Data           ⊟  │        │  Intent Mapping  ⊟  │    │  Seller Training ⊟  │
+       │  Capture buyer...       │        │  Map keywords...    │    │  Provide data...    │
+       └─────────────────────────┘        └─────────────────────┘    └─────────────────────┘
 ```
 
-### Implementation Approach
+### Key Changes
+| Aspect | Current | New |
+|--------|---------|-----|
+| Card positions | Even=up, Odd=down | 0,2,4=below, 1,3=above |
+| Icon position | Top left with circle bg | Top right, inline with title |
+| Card content | Icon first, then title | Title left, icon right |
+| Connector direction | Based on card position | Above cards: connector goes up; Below cards: connector goes down |
 
-**Structure:**
-- Horizontal line running through the center of the section
-- Cards positioned above and below the line, alternating
-- Connection dots/nodes where cards meet the line
-- Responsive: Stack to 2-3 columns on tablet, single column on mobile
+### Desktop Implementation
+- Cards 1, 3, 5 (indices 0, 2, 4): Positioned BELOW the line
+- Cards 2, 4 (indices 1, 3): Positioned ABOVE the line
+- Horizontal line runs through the middle
+- Each card connects via vertical line to a node on the horizontal line
 
-**Styling:**
-- Cards: `bg-card border border-border rounded-xl p-6`
-- Horizontal line: `h-0.5 bg-border w-full absolute top-1/2`
-- Connection nodes: `w-3 h-3 rounded-full bg-primary`
-- Vertical connectors: `w-0.5 h-8 bg-border` from card to line
+### Tablet Layout Suggestion
+- Maintain horizontal flow with 3+2 stacking if needed
+- Reduce card widths proportionally
+- Keep stagger pattern visible but with reduced offset
+- Or: Single row with horizontal scroll
+
+### Mobile Layout Suggestion
+- Stack cards vertically in a timeline-style
+- Vertical line runs down the left side
+- Each card connects horizontally to the left line
+- Nodes mark each connection point
+- All cards aligned to the right of the line
 
 ---
 
-## Part 2: New Parsing Tool Section
+## Part 2: Parsing Tool Section (/03) - Add Images
 
-### Section Details
-- Position: After "Insight Engine" (/02), before "Dual-Interface Impact" (now /04)
-- This becomes section /03
-- All subsequent sections shift by +1
+### Images to Add
+Copy the 3 Trendi screenshots to src/assets:
+- `trendi-upload.png` - The upload email data interface
+- `trendi-overview.png` - The overview with keyword trends chart
+- `trendi-keywords.png` - The keywords distribution view
 
-### Section Content
-
-**Title:** "From Noise to Signal"
-
-**Subtitle:** "The parsing tool transforms unstructured lead messages into structured intent data, enabling smarter filters and actionable seller insights."
-
-**Layout:** 3-image horizontal gallery with placeholder images
-
+### Gallery Layout
 ```text
-┌─────────────────────────────────────────────────────┐
-│  From Noise to Signal                          /03  │
-│  The parsing tool transforms unstructured...        │
-│                                                     │
-│  ┌──────────┐   ┌──────────┐   ┌──────────┐        │
-│  │ Image 1  │   │ Image 2  │   │ Image 3  │        │
-│  │          │   │          │   │          │        │
-│  └──────────┘   └──────────┘   └──────────┘        │
-│                                                     │
-└─────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│  From Noise to Signal                                                      /03 │
+│  The parsing tool transforms unstructured...                                    │
+│                                                                                 │
+│  ┌──────────────────┐    ┌──────────────────┐    ┌──────────────────┐          │
+│  │   [trendi-       │    │   [trendi-       │    │   [trendi-       │          │
+│  │    upload.png]   │    │    overview.png] │    │    keywords.png] │          │
+│  └──────────────────┘    └──────────────────┘    └──────────────────┘          │
+│   Upload & Configure      Keyword Analysis        Distribution Insights         │
+└─────────────────────────────────────────────────────────────────────────────────┘
 ```
 
----
-
-## Section Navigation Updates
-
-| Index | Section ID | Section Number |
-|-------|------------|----------------|
-| 0 | hero | - |
-| 1 | conflict | /01 |
-| 2 | engine | /02 |
-| 3 | parsing (NEW) | /03 |
-| 4 | impact | /04 |
-| 5 | strategy | /05 |
-| 6 | gallery | /06 |
-| 7 | vision | /07 |
-| 8 | next-project | /08 |
+### Updated Captions
+1. **Upload & Configure** - "Upload email data and configure the parsing engine for analysis."
+2. **Keyword Analysis** - "Track keyword trends over time with interactive charts and filters."
+3. **Distribution Insights** - "Visualize keyword distribution and identify top search terms."
 
 ---
 
-## Technical Details
+## Part 3: Impact Section (/04) - Layout Restructure
+
+### Current Layout
+- Title and section number at top
+- Tabs below with default value
+- Content in a grid with text left, image right
+
+### New Layout
+```text
+┌──────────────────────────────────────────────────────────────────────────────────┐
+│                                                                             pt-12│
+│                          Dual-Interface Impact                                   │
+│                                  /04                                             │
+│                                                                                  │
+│                     ┌─────────────┐  ┌─────────────┐                            │
+│                     │ Marketing   │  │ Marketing   │                            │
+│                     │ Site        │  │ Hub         │                            │
+│                     └─────────────┘  └─────────────┘                            │
+│                                                                                  │
+│ ┌──────────────────────────────────────────────────────────────────────────────┐│
+│ │                                                                              ││
+│ │  ┌─────────────────────────────┐    ┌────────────────────────────────────┐  ││
+│ │  │  Title                      │    │                                    │  ││
+│ │  │  Description                │    │       [Image/Screenshot]           │  ││
+│ │  │  • Feature 1                │    │                                    │  ││
+│ │  │  • Feature 2                │    │                                    │  ││
+│ │  │  • Feature 3                │    │                                    │  ││
+│ │  └─────────────────────────────┘    └────────────────────────────────────┘  ││
+│ │                                                                   flex-1     ││
+│ └──────────────────────────────────────────────────────────────────────────────┘│
+└──────────────────────────────────────────────────────────────────────────────────┘
+```
+
+### Key Changes
+| Aspect | Current | New |
+|--------|---------|-----|
+| Section layout | `flex items-center` | `flex flex-col pt-12` |
+| Title position | Top left with number right | Centered at top of viewport |
+| Section number | Right aligned, same row | Below title, centered |
+| Tab position | Below title, left aligned | Centered below title |
+| Content area | Grid with margins | `flex-1` to fill remaining height |
+
+---
+
+## Technical Implementation
 
 ### Files to Modify
 - `src/pages/projects/IntelligenceOverInventoryProject.tsx`
 
-### Key Code Changes
+### Assets to Copy
+- `user-uploads://Screenshot_2026-01-31_at_11.06.42 AM.png` → `src/assets/trendi-upload.png`
+- `user-uploads://Screenshot_2026-01-31_at_11.10.02 AM.png` → `src/assets/trendi-overview.png`
+- `user-uploads://Screenshot_2026-01-31_at_11.10.21 AM.png` → `src/assets/trendi-keywords.png`
 
-1. **Update `sectionData` array** - Add new parsing section, update section numbers
-2. **Update `flowSteps` array** - Add 5th "Seller Training" step with Users icon
-3. **Refactor Insight Engine section** - Horizontal 5-card layout with connecting line and staggered positioning
-4. **Add new Parsing Tool section** - 3-column image grid with placeholder images
-5. **Update all section refs** - Add new ref, shift indices for sections after the new one
+### Code Changes Summary
 
-### Responsive Behavior
-- **Desktop:** 5 cards horizontal with staggered vertical positions, connected by line
-- **Tablet:** 3+2 layout or wrapped horizontal
-- **Mobile:** Vertical stack with left-side line
+**Section /02 (Insight Engine):**
+- Update stagger logic: `[1, 3].includes(index) ? "lg:-translate-y-24" : "lg:translate-y-24"`
+- Restructure card content: title and icon in flex row, description below
+- Adjust connector logic based on above/below positioning
 
+**Section /03 (Parsing Tool):**
+- Import the 3 Trendi images
+- Replace placeholder divs with actual `<img>` tags
+- Update captions to match image content
+
+**Section /04 (Impact):**
+- Change section class to `flex flex-col pt-12`
+- Create centered header block with title, number, and tabs
+- Wrap tab content in `flex-1` container to fill remaining viewport
+- Center-align the header and tabs
