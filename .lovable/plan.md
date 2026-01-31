@@ -1,206 +1,145 @@
 
 
-# Challenge Section - Stepped Conversation Redesign
+# Insight Engine Section Redesign + New Parsing Tool Section
 
 ## Overview
-Transform the Challenge section (/01) from the current card-based layout into an interactive, scroll-driven conversation where paragraphs progressively highlight as the user advances through the content. Each problem statement will transition from muted to highlighted (white/bold) based on scroll position within the section.
+This plan covers two major changes:
+1. Redesign the "Insight Engine" section (/02) with a horizontal 5-card flow connected by a line
+2. Add a new "Parsing Tool" section after /02 to showcase 3 images
 
 ---
 
-## Visual Behavior
+## Part 1: Insight Engine Section Changes
+
+### Current State
+- 4 cards in a horizontal 2x2 / 4-column grid
+- Title and description centered vertically in the viewport
+- Cards: Lead Data, Keyword Parser, Intent Mapping, UI Filters
+
+### Proposed Changes
+
+**1. Move title to top of viewport**
+- Position header near the top with `pt-12` padding
+- Change from `flex items-center` to `flex flex-col pt-12`
+
+**2. Replace card grid with horizontal 5-card flow**
+- 5 cards displayed horizontally in a single row
+- Cards connected by a horizontal line running through them
+- Cards staggered vertically (alternating up/down) for visual interest
+
+**3. Add 5th card: Seller Training**
+- New card added at the end of the flow
+- Content: "Provide data for what buyers are searching for"
+
+### New Flow Steps Data
+
+| Step | Label | Description | Icon |
+|------|-------|-------------|------|
+| 1 | Lead Data | Capture buyer inquiries and engagement signals | Database |
+| 2 | Keyword Parser | Extract intent keywords from lead messages | Filter |
+| 3 | Intent Mapping | Map keywords to filter categories | Target |
+| 4 | UI Filters | Surface as advanced search options | BarChart3 |
+| 5 | Seller Training | Provide data for what buyers are searching for | Users |
+
+### Visual Layout (Desktop)
 
 ```text
-State 1 (Initial):               State 2 (Progress):              State 3 (Further):
-┌────────────────────────┐       ┌────────────────────────┐       ┌────────────────────────┐
-│ The Challenge     /01  │       │ The Challenge     /01  │       │ The Challenge     /01  │
-│                        │       │                        │       │                        │
-│ ▪ [HIGHLIGHTED]        │       │   (dimmed)             │       │   (dimmed)             │
-│   Commodity data...    │       │   Commodity data...    │       │   Commodity data...    │
-│                        │       │                        │       │                        │
-│   (dimmed)             │       │ ▪ [HIGHLIGHTED]        │       │   (dimmed)             │
-│   Blind engagement...  │       │   Blind engagement...  │       │   Blind engagement...  │
-│                        │       │                        │       │                        │
-│   (dimmed)             │       │   (dimmed)             │       │ ▪ [HIGHLIGHTED]        │
-│   Generic metrics...   │       │   Generic metrics...   │       │   Generic metrics...   │
-│                        │       │                        │       │                        │
-│   (dimmed)             │       │   (dimmed)             │       │   (dimmed)             │
-│   Mental model...      │       │   Mental model...      │       │   Mental model...      │
-└────────────────────────┘       └────────────────────────┘       └────────────────────────┘
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  The Insight Engine                                                    /02  │
+│  Converting engagement signals into actionable intelligence...              │
+│                                                                             │
+│     ┌─────────┐           ┌─────────┐           ┌─────────┐                │
+│     │  Lead   │           │ Intent  │           │ Seller  │                │
+│     │  Data   │           │ Mapping │           │Training │                │
+│     └────┬────┘           └────┬────┘           └────┬────┘                │
+│          │                     │                     │                      │
+│  ────────●─────────────────────●─────────────────────●─────────────────     │
+│          │                     │                     │                      │
+│     ┌────┴────┐           ┌────┴────┐                                      │
+│     │Keyword  │           │   UI    │                                      │
+│     │ Parser  │           │ Filters │                                      │
+│     └─────────┘           └─────────┘                                      │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+### Implementation Approach
+
+**Structure:**
+- Horizontal line running through the center of the section
+- Cards positioned above and below the line, alternating
+- Connection dots/nodes where cards meet the line
+- Responsive: Stack to 2-3 columns on tablet, single column on mobile
+
+**Styling:**
+- Cards: `bg-card border border-border rounded-xl p-6`
+- Horizontal line: `h-0.5 bg-border w-full absolute top-1/2`
+- Connection nodes: `w-3 h-3 rounded-full bg-primary`
+- Vertical connectors: `w-0.5 h-8 bg-border` from card to line
+
+---
+
+## Part 2: New Parsing Tool Section
+
+### Section Details
+- Position: After "Insight Engine" (/02), before "Dual-Interface Impact" (now /04)
+- This becomes section /03
+- All subsequent sections shift by +1
+
+### Section Content
+
+**Title:** "From Noise to Signal"
+
+**Subtitle:** "The parsing tool transforms unstructured lead messages into structured intent data, enabling smarter filters and actionable seller insights."
+
+**Layout:** 3-image horizontal gallery with placeholder images
+
+```text
+┌─────────────────────────────────────────────────────┐
+│  From Noise to Signal                          /03  │
+│  The parsing tool transforms unstructured...        │
+│                                                     │
+│  ┌──────────┐   ┌──────────┐   ┌──────────┐        │
+│  │ Image 1  │   │ Image 2  │   │ Image 3  │        │
+│  │          │   │          │   │          │        │
+│  └──────────┘   └──────────┘   └──────────┘        │
+│                                                     │
+└─────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## Content Structure
+## Section Navigation Updates
 
-Replace the current card-based problem blocks with flowing conversation paragraphs:
-
-| Index | Short Title | Full Paragraph |
-|-------|-------------|----------------|
-| 0 | Opening | "The rural land marketplace was drowning in commodity data. Every competitor had access to the same 3rd-party feeds, creating a race to the bottom." |
-| 1 | Commodity Listings | "Identical listings populated every platform. No single marketplace could claim unique inventory—buyers saw the same properties everywhere they looked." |
-| 2 | Blind Engagement | "We had no insight into what buyers actually wanted. Engagement data existed, but it was siloed and surface-level—clicks without context." |
-| 3 | Generic Metrics | "Sellers received vanity metrics that looked good but told them nothing actionable. Views and saves, but no understanding of buyer intent or fit." |
-| 4 | Mental Model Gap | "Search filters were built from listing data, not buyer behavior. The experience forced users to think in database terms rather than natural land-buying language." |
-
----
-
-## Technical Implementation
-
-### 1. New Hook: `useInSectionProgress`
-
-Create a lightweight hook that tracks scroll progress within a single section slide for child paragraph highlighting.
-
-**File:** `src/hooks/useInSectionProgress.ts`
-
-**Purpose:** Track which paragraph is "active" based on scroll position within a slide container
-
-**Logic:**
-- Uses `requestAnimationFrame` for smooth performance
-- Calculates progress based on scroll position within the section
-- Returns `activeParagraphIndex` (0-4 based on progress)
-- Updates on wheel/scroll events within the section
-
-### 2. Challenge Section Refactor
-
-**Changes to `IntelligenceOverInventoryProject.tsx`:**
-
-1. **Remove two-column layout** - Use full-width for conversation flow
-2. **Replace card blocks** with styled paragraphs
-3. **Add scroll-progress-based highlighting**
-4. **Each paragraph starts muted, becomes white when active**
-
-### 3. Paragraph Styling
-
-**Inactive State:**
-```css
-text-muted-foreground
-font-normal
-opacity-60
-transition-all duration-500
-```
-
-**Active State:**
-```css
-text-foreground (white)
-font-semibold
-opacity-100
-```
-
-**Transition:** Smooth 500ms transition for color, weight, and opacity
+| Index | Section ID | Section Number |
+|-------|------------|----------------|
+| 0 | hero | - |
+| 1 | conflict | /01 |
+| 2 | engine | /02 |
+| 3 | parsing (NEW) | /03 |
+| 4 | impact | /04 |
+| 5 | strategy | /05 |
+| 6 | gallery | /06 |
+| 7 | vision | /07 |
+| 8 | next-project | /08 |
 
 ---
 
-## Component Structure
+## Technical Details
 
-```tsx
-// Challenge conversation data
-const challengePoints = [
-  {
-    text: "The rural land marketplace was drowning in commodity data. Every competitor had access to the same 3rd-party feeds, creating a race to the bottom."
-  },
-  {
-    text: "Identical listings populated every platform. No single marketplace could claim unique inventory—buyers saw the same properties everywhere they looked."
-  },
-  {
-    text: "We had no insight into what buyers actually wanted. Engagement data existed, but it was siloed and surface-level—clicks without context."
-  },
-  {
-    text: "Sellers received vanity metrics that looked good but told them nothing actionable. Views and saves, but no understanding of buyer intent or fit."
-  },
-  {
-    text: "Search filters were built from listing data, not buyer behavior. The experience forced users to think in database terms rather than natural land-buying language."
-  }
-];
-```
+### Files to Modify
+- `src/pages/projects/IntelligenceOverInventoryProject.tsx`
 
-```tsx
-{/* Challenge Section - Stepped Conversation */}
-<section className="slide-section flex items-center">
-  <div className="w-full px-4 md:px-8 lg:px-12">
-    {/* Section Header */}
-    <div className="flex items-start justify-between mb-12">
-      <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold text-foreground">
-        The Challenge
-      </h2>
-      <span className="text-6xl md:text-8xl font-bold font-mono opacity-20">
-        /01
-      </span>
-    </div>
-    
-    {/* Conversation Flow */}
-    <div className="max-w-4xl space-y-8">
-      {challengePoints.map((point, index) => (
-        <p
-          key={index}
-          className={cn(
-            "text-xl md:text-2xl lg:text-3xl leading-relaxed transition-all duration-500",
-            activePointIndex === index
-              ? "text-foreground font-semibold opacity-100"
-              : "text-muted-foreground font-normal opacity-50"
-          )}
-        >
-          {point.text}
-        </p>
-      ))}
-    </div>
-  </div>
-</section>
-```
+### Key Code Changes
 
----
+1. **Update `sectionData` array** - Add new parsing section, update section numbers
+2. **Update `flowSteps` array** - Add 5th "Seller Training" step with Users icon
+3. **Refactor Insight Engine section** - Horizontal 5-card layout with connecting line and staggered positioning
+4. **Add new Parsing Tool section** - 3-column image grid with placeholder images
+5. **Update all section refs** - Add new ref, shift indices for sections after the new one
 
-## Interaction Mechanism
-
-### Option A: Wheel-Based Progress (Recommended)
-
-Since the page uses scroll-snap, implement a sub-scroll progress tracker within each section:
-
-1. When section is visible, capture wheel events
-2. Track cumulative delta to advance through paragraphs
-3. Each "scroll unit" advances the active paragraph
-4. When reaching the last paragraph, next scroll advances to next section
-
-### Option B: Auto-Progress on Section Enter
-
-Simpler approach:
-1. When section scrolls into view, start from first paragraph highlighted
-2. Auto-advance every 2 seconds OR
-3. Use small scroll gestures to advance
-
----
-
-## Implementation Approach
-
-For this slide-based layout, I recommend using a **state-based approach** where:
-
-1. The Challenge section maintains its own `activePointIndex` state
-2. Wheel events within the section increment/decrement this index
-3. Once the last point is reached, the next scroll advances to the next slide
-4. This creates a "sub-scroll" interaction within the snap section
-
----
-
-## Files to Modify
-
-| File | Changes |
-|------|---------|
-| `src/pages/projects/IntelligenceOverInventoryProject.tsx` | Refactor Challenge section to stepped conversation with wheel-based paragraph progression |
-
----
-
-## Typography Increase
-
-As noted in the memory, all font sizes increased by 1 unit:
-- Paragraphs: `text-xl md:text-2xl lg:text-3xl` (up from current sizes)
-- Section header: `text-5xl md:text-7xl lg:text-8xl` (up from current)
-- Section number: `text-6xl md:text-8xl` (up from current)
-
----
-
-## Accessibility Considerations
-
-- Keyboard users can navigate with arrow keys (up/down to change paragraphs)
-- Focus states remain visible
-- Color contrast maintained between muted and highlighted states
-- Respects `prefers-reduced-motion` - instant transitions if enabled
+### Responsive Behavior
+- **Desktop:** 5 cards horizontal with staggered vertical positions, connected by line
+- **Tablet:** 3+2 layout or wrapped horizontal
+- **Mobile:** Vertical stack with left-side line
 
