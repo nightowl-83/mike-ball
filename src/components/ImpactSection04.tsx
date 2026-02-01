@@ -257,44 +257,50 @@ const SpotlightPattern = ({ activeBlock, setActiveBlock }: { activeBlock: number
 const StackedPattern = ({ activeBlock, setActiveBlock }: { activeBlock: number; setActiveBlock: (i: number) => void }) => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-      {/* Stacked Cards */}
-      <div className="lg:col-span-1 relative h-[350px]">
+      {/* Stacked Cards - cards stack with peek areas visible for clicking */}
+      <div className="lg:col-span-1 relative" style={{ height: '380px' }}>
         {hubBlocks.map((block, index) => {
-          // Calculate position based on distance from active
-          const distance = index - activeBlock;
           const isActive = index === activeBlock;
-          const isBehind = distance > 0;
-          const offset = Math.abs(distance);
+          // Calculate visual order: active card on top, others stacked behind with offset
+          const distanceFromActive = index - activeBlock;
+          const absDistance = Math.abs(distanceFromActive);
+          
+          // Z-index: active highest, then decreasing by distance
+          const zIndex = isActive ? 30 : 20 - absDistance;
+          
+          // Transform: active at 0, others offset by 40px per position (larger peek area)
+          const yOffset = isActive ? 0 : distanceFromActive * 40;
+          const scale = isActive ? 1 : 1 - absDistance * 0.04;
+          const opacity = isActive ? 1 : 0.85 - absDistance * 0.15;
           
           return (
             <div
               key={block.title}
               onClick={() => setActiveBlock(index)}
               className={cn(
-                "absolute inset-x-0 bg-card border border-border rounded-xl p-6 cursor-pointer transition-all duration-500 ease-out",
-                isActive 
-                  ? "z-30 shadow-lg" 
-                  : offset === 1 
-                    ? "z-20 shadow-md" 
-                    : "z-10 shadow-sm"
+                "absolute inset-x-0 top-0 bg-card border border-border rounded-xl p-6 cursor-pointer transition-all duration-500 ease-out",
+                isActive ? "shadow-lg ring-1 ring-primary/20" : "shadow-md hover:shadow-lg"
               )}
               style={{
-                transform: isActive 
-                  ? "translateY(0) scale(1)" 
-                  : `translateY(${distance * 20}px) scale(${1 - offset * 0.05})`,
-                opacity: isActive ? 1 : 1 - offset * 0.2,
+                transform: `translateY(${yOffset}px) scale(${scale})`,
+                opacity,
+                zIndex,
               }}
             >
               <h4 className="text-lg font-semibold text-foreground mb-3">{block.title}</h4>
               <blockquote className="text-base md:text-lg font-semibold text-foreground italic border-l-4 border-primary pl-4 mb-4">
                 "{block.quote}"
               </blockquote>
-              <p className={cn(
-                "text-sm text-muted-foreground leading-relaxed transition-all duration-500",
-                isActive ? "opacity-100" : "opacity-0 h-0 overflow-hidden"
-              )}>
-                {block.narrative}
-              </p>
+              <div 
+                className={cn(
+                  "overflow-hidden transition-all duration-500 ease-out",
+                  isActive ? "max-h-48 opacity-100" : "max-h-0 opacity-0"
+                )}
+              >
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {block.narrative}
+                </p>
+              </div>
             </div>
           );
         })}
