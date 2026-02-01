@@ -1,11 +1,14 @@
-import { ArrowRight, Database, Filter, BarChart3, Target, Lightbulb, TrendingUp, Zap, Users, LineChart } from "lucide-react";
+import { ArrowRight, ArrowLeft, Database, Filter, BarChart3, Target, Lightbulb, TrendingUp, Zap, Users, LineChart, ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { Progress } from "@/components/ui/progress";
 import { useEffect, useState, useCallback, useRef } from "react";
 import { SlideNav } from "@/components/SlideNav";
 import { useSlideNavigation } from "@/hooks/useSlideNavigation";
 import { cn } from "@/lib/utils";
+import { ImpactSection04 } from "@/components/ImpactSection04";
 import trendiUpload from "@/assets/trendi-upload.png";
 import trendiKeywords from "@/assets/trendi-keywords.png";
 import trendiRegions from "@/assets/trendi-regions.png";
@@ -425,109 +428,7 @@ const IntelligenceOverInventoryProject = () => {
         </section>
 
         {/* Dual-Interface Impact Section - /04 */}
-        <section
-          ref={(el) => { (sectionRefs[4] as any).current = el; }}
-          className="slide-section flex flex-col pt-12"
-        >
-          <div className="w-full px-4 md:px-8 lg:px-12 flex flex-col h-full">
-            {/* Header - Title left, Number right */}
-            <div className="flex items-start justify-between mb-6">
-              <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground">
-                Dual-Interface Impact
-              </h2>
-              <span className="text-5xl md:text-7xl font-bold font-mono opacity-20 hidden md:block">
-                /04
-              </span>
-            </div>
-
-            {/* Tabs - Centered with spacing below */}
-            <Tabs defaultValue="marketing-site" className="w-full flex flex-col flex-1">
-              <div className="flex justify-center mb-16">
-                <TabsList className="bg-muted/50">
-                  <TabsTrigger value="marketing-site" className="px-6 md:px-8 text-base">Marketing Site</TabsTrigger>
-                  <TabsTrigger value="marketing-hub" className="px-6 md:px-8 text-base">Marketing Hub</TabsTrigger>
-                </TabsList>
-              </div>
-
-              {/* Content fills remaining space */}
-              <div className="flex-1 flex items-center">
-                <TabsContent value="marketing-site" className="w-full m-0">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
-                    <div className="space-y-5">
-                      <h3 className="text-2xl md:text-3xl font-bold text-foreground">Advanced Filters Driven by Buyer Intent</h3>
-                      <p className="text-lg text-muted-foreground">
-                        The insight engine surfaces new filter categories based on what buyers actually search for.
-                      </p>
-                      <div className="space-y-3">
-                        <div className="flex items-start gap-4">
-                          <Zap className="w-5 h-5 text-primary shrink-0 mt-1" />
-                          <div>
-                            <p className="text-base font-medium text-foreground">Intent-Based Categories</p>
-                            <p className="text-base text-muted-foreground">Filter groups derived from actual buyer search patterns.</p>
-                          </div>
-                        </div>
-                        <div className="flex items-start gap-4">
-                          <Zap className="w-5 h-5 text-primary shrink-0 mt-1" />
-                          <div>
-                            <p className="text-base font-medium text-foreground">Dynamic Suggestions</p>
-                            <p className="text-base text-muted-foreground">Keywords that auto-populate based on trending searches.</p>
-                          </div>
-                        </div>
-                        <div className="flex items-start gap-4">
-                          <Zap className="w-5 h-5 text-primary shrink-0 mt-1" />
-                          <div>
-                            <p className="text-base font-medium text-foreground">Personalized Rankings</p>
-                            <p className="text-base text-muted-foreground">Results ordered by relevance to user behavior.</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="aspect-video bg-muted/50 border border-border rounded-xl flex items-center justify-center">
-                      <p className="text-muted-foreground text-base">Marketing Site Screenshot</p>
-                    </div>
-                  </div>
-                </TabsContent>
-
-                <TabsContent value="marketing-hub" className="w-full m-0">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
-                    <div className="space-y-5">
-                      <h3 className="text-2xl md:text-3xl font-bold text-foreground">Performance Coach Dashboard</h3>
-                      <p className="text-lg text-muted-foreground">
-                        Sellers receive personalized recommendations based on buyer engagement patterns.
-                      </p>
-                      <div className="space-y-3">
-                        <div className="flex items-start gap-4">
-                          <LineChart className="w-5 h-5 text-primary shrink-0 mt-1" />
-                          <div>
-                            <p className="text-base font-medium text-foreground">Real-Time Metrics</p>
-                            <p className="text-base text-muted-foreground">Live engagement data updated as buyers interact.</p>
-                          </div>
-                        </div>
-                        <div className="flex items-start gap-4">
-                          <Users className="w-5 h-5 text-primary shrink-0 mt-1" />
-                          <div>
-                            <p className="text-base font-medium text-foreground">Buyer Behavior Insights</p>
-                            <p className="text-base text-muted-foreground">Understand what attracts and converts prospects.</p>
-                          </div>
-                        </div>
-                        <div className="flex items-start gap-4">
-                          <TrendingUp className="w-5 h-5 text-primary shrink-0 mt-1" />
-                          <div>
-                            <p className="text-base font-medium text-foreground">Optimization Tips</p>
-                            <p className="text-base text-muted-foreground">Actionable suggestions to improve listing performance.</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="aspect-video bg-muted/50 border border-border rounded-xl flex items-center justify-center">
-                      <p className="text-muted-foreground text-base">Marketing Hub Dashboard</p>
-                    </div>
-                  </div>
-                </TabsContent>
-              </div>
-            </Tabs>
-          </div>
-        </section>
+        <ImpactSection04 sectionRef={(el) => { (sectionRefs[4] as any).current = el; }} />
 
         {/* Strategy & Influence Grid - /05 */}
         <section
