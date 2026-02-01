@@ -6,6 +6,9 @@ import { useEffect, useState, useCallback, useRef } from "react";
 import { SlideNav } from "@/components/SlideNav";
 import { useSlideNavigation } from "@/hooks/useSlideNavigation";
 import { cn } from "@/lib/utils";
+import trendiUpload from "@/assets/trendi-upload.png";
+import trendiKeywords from "@/assets/trendi-keywords.png";
+import trendiRegions from "@/assets/trendi-regions.png";
 const IntelligenceOverInventoryProject = () => {
   // Section data for navigation
   const sectionData = [
@@ -397,23 +400,23 @@ const IntelligenceOverInventoryProject = () => {
               </span>
             </div>
 
-            {/* 3-Image Gallery - Placeholder until images are re-uploaded */}
+            {/* 3-Image Gallery */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
               <div className="space-y-3">
-                <div className="aspect-[4/3] bg-muted/50 border border-border rounded-xl flex items-center justify-center overflow-hidden">
-                  <p className="text-muted-foreground text-sm md:text-base p-4 text-center">Upload & Configure<br/><span className="text-xs opacity-60">(Image needed)</span></p>
+                <div className="aspect-[4/3] bg-muted/50 border border-border rounded-xl overflow-hidden">
+                  <img src={trendiUpload} alt="Upload & Configure" className="w-full h-full object-cover" />
                 </div>
                 <p className="text-sm text-muted-foreground">Upload email data and configure the parsing engine for analysis.</p>
               </div>
               <div className="space-y-3">
-                <div className="aspect-[4/3] bg-muted/50 border border-border rounded-xl flex items-center justify-center overflow-hidden">
-                  <p className="text-muted-foreground text-sm md:text-base p-4 text-center">Keyword Analysis<br/><span className="text-xs opacity-60">(Image needed)</span></p>
+                <div className="aspect-[4/3] bg-muted/50 border border-border rounded-xl overflow-hidden">
+                  <img src={trendiKeywords} alt="Keyword Analysis" className="w-full h-full object-cover" />
                 </div>
                 <p className="text-sm text-muted-foreground">Track keyword trends over time with interactive charts and filters.</p>
               </div>
               <div className="space-y-3">
-                <div className="aspect-[4/3] bg-muted/50 border border-border rounded-xl flex items-center justify-center overflow-hidden">
-                  <p className="text-muted-foreground text-sm md:text-base p-4 text-center">Distribution Insights<br/><span className="text-xs opacity-60">(Image needed)</span></p>
+                <div className="aspect-[4/3] bg-muted/50 border border-border rounded-xl overflow-hidden">
+                  <img src={trendiRegions} alt="Distribution Insights" className="w-full h-full object-cover" />
                 </div>
                 <p className="text-sm text-muted-foreground">Visualize keyword distribution and identify top search terms.</p>
               </div>
