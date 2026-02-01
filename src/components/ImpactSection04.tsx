@@ -1,8 +1,7 @@
-import { useState, useEffect, useRef } from "react";
-import { ChevronLeft, ChevronRight, Pause, Play, Zap, LineChart, Users, TrendingUp } from "lucide-react";
+import { useState } from "react";
+import { ChevronLeft, ChevronRight, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 
 // Narrative content blocks for Marketing Hub
@@ -24,323 +23,41 @@ const hubBlocks = [
   }
 ];
 
-type PatternType = 'pills' | 'carousel' | 'spotlight' | 'stacked';
+// Marketplace content for the second tab
+const marketplaceContent = {
+  title: "Advanced Filters Driven by Buyer Intent",
+  description: "The insight engine surfaces new filter categories based on what buyers actually search for.",
+  features: [
+    {
+      title: "Intent-Based Categories",
+      description: "Filter groups derived from actual buyer search patterns."
+    },
+    {
+      title: "Dynamic Suggestions",
+      description: "Keywords that auto-populate based on trending searches."
+    }
+  ]
+};
 
 interface ImpactSection04Props {
   sectionRef: (el: HTMLElement | null) => void;
 }
 
-// Pattern 1: Horizontal Pills
-const PillsPattern = ({ activeBlock, setActiveBlock }: { activeBlock: number; setActiveBlock: (i: number) => void }) => (
-  <div className="space-y-8">
-    {/* Pill Navigation */}
-    <div className="flex flex-wrap gap-2">
-      {hubBlocks.map((block, index) => (
-        <button
-          key={block.title}
-          onClick={() => setActiveBlock(index)}
-          className={cn(
-            "px-4 py-2 rounded-full text-sm font-medium transition-all duration-300",
-            activeBlock === index
-              ? "bg-primary text-primary-foreground"
-              : "bg-muted/50 text-muted-foreground hover:bg-muted"
-          )}
-        >
-          {block.title}
-        </button>
-      ))}
-    </div>
-    
-    {/* Content */}
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-      <div className="lg:col-span-1 space-y-4">
-        <blockquote className="text-xl md:text-2xl font-semibold text-foreground italic border-l-4 border-primary pl-4">
-          "{hubBlocks[activeBlock].quote}"
-        </blockquote>
-        <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-          {hubBlocks[activeBlock].narrative}
-        </p>
-      </div>
-      <div className="lg:col-span-2 h-[calc(100vh-420px)] min-h-[300px] bg-muted/50 border border-border rounded-xl flex items-center justify-center transition-all duration-500">
-        <p className="text-muted-foreground text-base">Image for "{hubBlocks[activeBlock].title}"</p>
-      </div>
-    </div>
-  </div>
-);
+export const ImpactSection04 = ({ sectionRef }: ImpactSection04Props) => {
+  const [activeBlock, setActiveBlock] = useState(0);
+  const [activeTab, setActiveTab] = useState<'marketing-hub' | 'marketing-site'>('marketing-hub');
 
-// Pattern 2: Card Carousel with Arrows
-const CarouselPattern = ({ activeBlock, setActiveBlock }: { activeBlock: number; setActiveBlock: (i: number) => void }) => {
   const goNext = () => setActiveBlock((activeBlock + 1) % hubBlocks.length);
   const goPrev = () => setActiveBlock((activeBlock - 1 + hubBlocks.length) % hubBlocks.length);
-  
-  return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-        {/* Text Column with Arrows */}
-        <div className="lg:col-span-1 space-y-6">
-          <div className="flex items-center gap-2">
-            <Button variant="outline" size="icon" onClick={goPrev} className="shrink-0">
-              <ChevronLeft className="w-4 h-4" />
-            </Button>
-            <span className="text-sm text-muted-foreground">
-              {activeBlock + 1} / {hubBlocks.length}
-            </span>
-            <Button variant="outline" size="icon" onClick={goNext} className="shrink-0">
-              <ChevronRight className="w-4 h-4" />
-            </Button>
-          </div>
-          
-          <div className="overflow-hidden">
-            <div 
-              className="transition-transform duration-500 ease-out"
-              style={{ transform: `translateX(-${activeBlock * 100}%)` }}
-            >
-              <div className="flex">
-                {hubBlocks.map((block, index) => (
-                  <div key={block.title} className="w-full shrink-0 pr-4">
-                    <h4 className="text-lg font-semibold text-foreground mb-3">{block.title}</h4>
-                    <blockquote className="text-lg md:text-xl font-semibold text-foreground italic border-l-4 border-primary pl-4 mb-4">
-                      "{block.quote}"
-                    </blockquote>
-                    <p className="text-base text-muted-foreground leading-relaxed">
-                      {block.narrative}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-          
-          {/* Dot Indicators */}
-          <div className="flex gap-2">
-            {hubBlocks.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setActiveBlock(index)}
-                className={cn(
-                  "w-2 h-2 rounded-full transition-all duration-300",
-                  activeBlock === index
-                    ? "bg-primary w-6"
-                    : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
-                )}
-              />
-            ))}
-          </div>
-        </div>
-        
-        {/* Image Column */}
-        <div className="lg:col-span-2 h-[calc(100vh-420px)] min-h-[300px] bg-muted/50 border border-border rounded-xl flex items-center justify-center relative overflow-hidden">
-          {hubBlocks.map((block, index) => (
-            <div
-              key={block.title}
-              className={cn(
-                "absolute inset-0 flex items-center justify-center transition-opacity duration-500",
-                activeBlock === index ? "opacity-100" : "opacity-0"
-              )}
-            >
-              <p className="text-muted-foreground text-base">Image for "{block.title}"</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-};
 
-// Pattern 3: Auto-Rotating Spotlight
-const SpotlightPattern = ({ activeBlock, setActiveBlock }: { activeBlock: number; setActiveBlock: (i: number) => void }) => {
-  const [isPaused, setIsPaused] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
-  const DURATION = 6000; // 6 seconds
-  
-  useEffect(() => {
-    if (isPaused) {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-      return;
-    }
-    
-    const startTime = Date.now() - (progress / 100) * DURATION;
-    
-    intervalRef.current = setInterval(() => {
-      const elapsed = Date.now() - startTime;
-      const newProgress = (elapsed / DURATION) * 100;
-      
-      if (newProgress >= 100) {
-        setActiveBlock((activeBlock + 1) % hubBlocks.length);
-        setProgress(0);
-      } else {
-        setProgress(newProgress);
-      }
-    }, 50);
-    
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-    };
-  }, [isPaused, activeBlock, setActiveBlock]);
-  
-  // Reset progress when activeBlock changes
-  useEffect(() => {
-    setProgress(0);
-  }, [activeBlock]);
-  
-  return (
-    <div className="space-y-6">
-      {/* Progress Bar */}
-      <div 
-        className="relative cursor-pointer group"
-        onClick={() => setIsPaused(!isPaused)}
-      >
-        <div className="h-1 bg-muted rounded-full overflow-hidden">
-          <div 
-            className="h-full bg-primary transition-all duration-100 ease-linear"
-            style={{ width: `${progress}%` }}
-          />
-        </div>
-        <div className="absolute right-0 -top-8 opacity-0 group-hover:opacity-100 transition-opacity">
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            {isPaused ? <Play className="w-4 h-4" /> : <Pause className="w-4 h-4" />}
-            {isPaused ? "Click to resume" : "Click to pause"}
-          </div>
-        </div>
-      </div>
-      
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-        <div className="lg:col-span-1 space-y-4">
-          <h4 className="text-lg font-semibold text-foreground">{hubBlocks[activeBlock].title}</h4>
-          <blockquote className="text-xl md:text-2xl font-semibold text-foreground italic border-l-4 border-primary pl-4">
-            "{hubBlocks[activeBlock].quote}"
-          </blockquote>
-          <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-            {hubBlocks[activeBlock].narrative}
-          </p>
-          
-          {/* Manual Navigation */}
-          <div className="flex gap-2 pt-4">
-            {hubBlocks.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => {
-                  setActiveBlock(index);
-                  setProgress(0);
-                }}
-                className={cn(
-                  "w-2 h-2 rounded-full transition-all duration-300",
-                  activeBlock === index
-                    ? "bg-primary w-6"
-                    : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
-                )}
-              />
-            ))}
-          </div>
-        </div>
-        
-        <div className="lg:col-span-2 h-[calc(100vh-420px)] min-h-[300px] bg-muted/50 border border-border rounded-xl flex items-center justify-center relative overflow-hidden">
-          {hubBlocks.map((block, index) => (
-            <div
-              key={block.title}
-              className={cn(
-                "absolute inset-0 flex items-center justify-center transition-opacity duration-700",
-                activeBlock === index ? "opacity-100" : "opacity-0"
-              )}
-            >
-              <p className="text-muted-foreground text-base">Image for "{block.title}"</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-};
-
-// Pattern 4: Stacked Cards
-const StackedPattern = ({ activeBlock, setActiveBlock }: { activeBlock: number; setActiveBlock: (i: number) => void }) => {
-  return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-      {/* Stacked Cards - cards stack with peek areas visible for clicking */}
-      <div className="lg:col-span-1 relative" style={{ height: '380px' }}>
-        {hubBlocks.map((block, index) => {
-          const isActive = index === activeBlock;
-          // Calculate visual order: active card on top, others stacked behind with offset
-          const distanceFromActive = index - activeBlock;
-          const absDistance = Math.abs(distanceFromActive);
-          
-          // Z-index: active highest, then decreasing by distance
-          const zIndex = isActive ? 30 : 20 - absDistance;
-          
-          // Transform: active at 0, others offset by 40px per position (larger peek area)
-          const yOffset = isActive ? 0 : distanceFromActive * 40;
-          const scale = isActive ? 1 : 1 - absDistance * 0.04;
-          const opacity = isActive ? 1 : 0.85 - absDistance * 0.15;
-          
-          return (
-            <div
-              key={block.title}
-              onClick={() => setActiveBlock(index)}
-              className={cn(
-                "absolute inset-x-0 top-0 bg-card border border-border rounded-xl p-6 cursor-pointer transition-all duration-500 ease-out",
-                isActive ? "shadow-lg ring-1 ring-primary/20" : "shadow-md hover:shadow-lg"
-              )}
-              style={{
-                transform: `translateY(${yOffset}px) scale(${scale})`,
-                opacity,
-                zIndex,
-              }}
-            >
-              <h4 className="text-lg font-semibold text-foreground mb-3">{block.title}</h4>
-              <blockquote className="text-base md:text-lg font-semibold text-foreground italic border-l-4 border-primary pl-4 mb-4">
-                "{block.quote}"
-              </blockquote>
-              <div 
-                className={cn(
-                  "overflow-hidden transition-all duration-500 ease-out",
-                  isActive ? "max-h-48 opacity-100" : "max-h-0 opacity-0"
-                )}
-              >
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {block.narrative}
-                </p>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-      
-      {/* Image Column */}
-      <div className="lg:col-span-2 h-[calc(100vh-420px)] min-h-[300px] bg-muted/50 border border-border rounded-xl flex items-center justify-center relative overflow-hidden">
-        {hubBlocks.map((block, index) => (
-          <div
-            key={block.title}
-            className={cn(
-              "absolute inset-0 flex items-center justify-center transition-opacity duration-500",
-              activeBlock === index ? "opacity-100" : "opacity-0"
-            )}
-          >
-            <p className="text-muted-foreground text-base">Image for "{block.title}"</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
-
-export const ImpactSection04 = ({ sectionRef }: ImpactSection04Props) => {
-  const [activePattern, setActivePattern] = useState<PatternType>('pills');
-  const [activeBlock, setActiveBlock] = useState(0);
-  
-  // Reset active block when pattern changes
-  useEffect(() => {
-    setActiveBlock(0);
-  }, [activePattern]);
-  
   return (
     <section
       ref={sectionRef}
-      className="slide-section flex flex-col pt-12"
+      className="slide-section flex flex-col pt-12 relative"
     >
-      <div className="w-full px-4 md:px-8 lg:px-12 flex flex-col h-full">
+      <div className="w-full px-4 md:px-8 lg:px-12 flex flex-col h-full pb-24">
         {/* Header - Title left, Number right */}
-        <div className="flex items-start justify-between mb-12">
+        <div className="flex items-start justify-between mb-4">
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground">
             Dual-Interface Impact
           </h2>
@@ -349,89 +66,117 @@ export const ImpactSection04 = ({ sectionRef }: ImpactSection04Props) => {
           </span>
         </div>
 
-        {/* Pattern Selector */}
-        <div className="flex items-center gap-4 mb-8">
-          <span className="text-sm text-muted-foreground">Pattern:</span>
-          <ToggleGroup 
-            type="single" 
-            value={activePattern} 
-            onValueChange={(val) => val && setActivePattern(val as PatternType)}
-            className="bg-muted/50 rounded-lg p-1"
-          >
-            <ToggleGroupItem value="pills" className="text-sm px-3">Pills</ToggleGroupItem>
-            <ToggleGroupItem value="carousel" className="text-sm px-3">Carousel</ToggleGroupItem>
-            <ToggleGroupItem value="spotlight" className="text-sm px-3">Spotlight</ToggleGroupItem>
-            <ToggleGroupItem value="stacked" className="text-sm px-3">Stacked</ToggleGroupItem>
-          </ToggleGroup>
+        {/* Subtitle */}
+        <p className="text-lg md:text-xl text-muted-foreground mb-12">
+          How the data affected the buyer & seller experience
+        </p>
+
+        {/* Carousel Control Row */}
+        <div className="flex justify-between items-center mb-6">
+          {/* Left: Slide Title */}
+          <h3 className="text-lg md:text-xl font-semibold text-foreground">
+            {activeTab === 'marketing-hub' 
+              ? hubBlocks[activeBlock].title 
+              : marketplaceContent.title}
+          </h3>
+          
+          {/* Right: Count + Arrows (only for Marketing Hub) */}
+          {activeTab === 'marketing-hub' && (
+            <div className="flex items-center gap-3">
+              <span className="text-sm text-muted-foreground">
+                {activeBlock + 1} of {hubBlocks.length}
+              </span>
+              <Button variant="outline" size="icon" onClick={goPrev} className="h-9 w-9">
+                <ChevronLeft className="w-4 h-4" />
+              </Button>
+              <Button variant="outline" size="icon" onClick={goNext} className="h-9 w-9">
+                <ChevronRight className="w-4 h-4" />
+              </Button>
+            </div>
+          )}
         </div>
 
-        {/* Tabs - Marketing Hub first */}
-        <Tabs defaultValue="marketing-hub" className="w-full flex flex-col flex-1">
-          <div className="flex justify-center mb-8">
-            <TabsList className="bg-muted/50">
-              <TabsTrigger value="marketing-hub" className="px-6 md:px-8 text-base">Marketing Hub</TabsTrigger>
-              <TabsTrigger value="marketing-site" className="px-6 md:px-8 text-base">Marketing Site</TabsTrigger>
-            </TabsList>
-          </div>
+        {/* Divider */}
+        <Separator className="mb-8" />
 
-          {/* Content fills remaining space */}
-          <div className="flex-1">
-            <TabsContent value="marketing-hub" className="w-full m-0">
-              {activePattern === 'pills' && (
-                <PillsPattern activeBlock={activeBlock} setActiveBlock={setActiveBlock} />
-              )}
-              {activePattern === 'carousel' && (
-                <CarouselPattern activeBlock={activeBlock} setActiveBlock={setActiveBlock} />
-              )}
-              {activePattern === 'spotlight' && (
-                <SpotlightPattern activeBlock={activeBlock} setActiveBlock={setActiveBlock} />
-              )}
-              {activePattern === 'stacked' && (
-                <StackedPattern activeBlock={activeBlock} setActiveBlock={setActiveBlock} />
-              )}
-            </TabsContent>
-
-            <TabsContent value="marketing-site" className="w-full m-0">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-                <div className="lg:col-span-1 space-y-5">
-                  <h3 className="text-2xl md:text-3xl font-bold text-foreground">Advanced Filters Driven by Buyer Intent</h3>
-                  <p className="text-lg text-muted-foreground">
-                    The insight engine surfaces new filter categories based on what buyers actually search for.
-                  </p>
-                  <div className="space-y-3">
-                    <div className="flex items-start gap-4">
+        {/* Content Area */}
+        <div className="flex-1">
+          {activeTab === 'marketing-hub' ? (
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+              {/* Text Column */}
+              <div className="lg:col-span-1 space-y-4">
+                <blockquote className="text-xl md:text-2xl font-semibold text-foreground italic border-l-4 border-primary pl-4">
+                  "{hubBlocks[activeBlock].quote}"
+                </blockquote>
+                <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                  {hubBlocks[activeBlock].narrative}
+                </p>
+              </div>
+              
+              {/* Image Column */}
+              <div className="lg:col-span-2 h-[calc(100vh-480px)] min-h-[300px] bg-muted/50 border border-border rounded-xl flex items-center justify-center transition-all duration-500">
+                <p className="text-muted-foreground text-base">Image for "{hubBlocks[activeBlock].title}"</p>
+              </div>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+              {/* Text Column */}
+              <div className="lg:col-span-1 space-y-5">
+                <p className="text-lg text-muted-foreground">
+                  {marketplaceContent.description}
+                </p>
+                <div className="space-y-3">
+                  {marketplaceContent.features.map((feature) => (
+                    <div key={feature.title} className="flex items-start gap-4">
                       <Zap className="w-5 h-5 text-primary shrink-0 mt-1" />
                       <div>
-                        <p className="text-base font-medium text-foreground">Intent-Based Categories</p>
-                        <p className="text-base text-muted-foreground">Filter groups derived from actual buyer search patterns.</p>
+                        <p className="text-base font-medium text-foreground">{feature.title}</p>
+                        <p className="text-base text-muted-foreground">{feature.description}</p>
                       </div>
                     </div>
-                    <div className="flex items-start gap-4">
-                      <Zap className="w-5 h-5 text-primary shrink-0 mt-1" />
-                      <div>
-                        <p className="text-base font-medium text-foreground">Dynamic Suggestions</p>
-                        <p className="text-base text-muted-foreground">Keywords that auto-populate based on trending searches.</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-4">
-                      <Zap className="w-5 h-5 text-primary shrink-0 mt-1" />
-                      <div>
-                        <p className="text-base font-medium text-foreground">Personalized Rankings</p>
-                        <p className="text-base text-muted-foreground">Results ordered by relevance to user behavior.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="lg:col-span-2 h-[calc(100vh-420px)] min-h-[300px] bg-muted/50 border border-border rounded-xl flex items-center justify-center">
-                  <p className="text-muted-foreground text-base">Marketing Site Screenshot</p>
+                  ))}
                 </div>
               </div>
-            </TabsContent>
-          </div>
-        </Tabs>
+              
+              {/* Image Column */}
+              <div className="lg:col-span-2 h-[calc(100vh-480px)] min-h-[300px] bg-muted/50 border border-border rounded-xl flex items-center justify-center">
+                <p className="text-muted-foreground text-base">Marketplace Filter UI</p>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Floating Tab Toggle */}
+      <div className="absolute bottom-0 left-0 right-0 flex justify-center py-6 animate-in slide-in-from-bottom-4 duration-500">
+        <div className="bg-background/50 backdrop-blur-md rounded-full p-1.5 flex gap-1 border border-border">
+          <button
+            onClick={() => {
+              setActiveTab('marketing-hub');
+              setActiveBlock(0);
+            }}
+            className={cn(
+              "px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300",
+              activeTab === 'marketing-hub'
+                ? "bg-foreground text-background"
+                : "text-muted-foreground hover:text-foreground"
+            )}
+          >
+            Marketing Hub
+          </button>
+          <button
+            onClick={() => setActiveTab('marketing-site')}
+            className={cn(
+              "px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300",
+              activeTab === 'marketing-site'
+                ? "bg-foreground text-background"
+                : "text-muted-foreground hover:text-foreground"
+            )}
+          >
+            Market Place
+          </button>
+        </div>
       </div>
     </section>
   );
 };
-
-export default ImpactSection04;
