@@ -280,7 +280,7 @@ const IntelligenceOverInventoryProject = () => {
         >
           <div className="w-full px-4 md:px-8 lg:px-12">
             {/* Section Header */}
-            <div className="flex items-start justify-between mb-8">
+            <div className="flex items-start justify-between mb-16">
               <div className="flex-1">
                 <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground">
                   The Insight Engine
@@ -439,7 +439,7 @@ const IntelligenceOverInventoryProject = () => {
 
             {/* Tabs - Centered with spacing below */}
             <Tabs defaultValue="marketing-site" className="w-full flex flex-col flex-1">
-              <div className="flex justify-center mb-10">
+              <div className="flex justify-center mb-16">
                 <TabsList className="bg-muted/50">
                   <TabsTrigger value="marketing-site" className="px-6 md:px-8 text-base">Marketing Site</TabsTrigger>
                   <TabsTrigger value="marketing-hub" className="px-6 md:px-8 text-base">Marketing Hub</TabsTrigger>
