@@ -32,6 +32,12 @@ const IntelligenceOverInventoryProject = () => {
     threshold: 0.5,
   });
 
+  // Dual-mode toggle state (persists across sections /04-/07)
+  const [activeDataMode, setActiveDataMode] = useState<'marketing-hub' | 'marketplace'>('marketing-hub');
+  
+  // Show toggle only on sections 4-7 (Impact, Strategy, Gallery, Vision)
+  const showDualModeToggle = currentSectionIndex >= 4 && currentSectionIndex <= 7;
+
   // Scroll to top on mount
   useEffect(() => {
     if (containerRef.current) {
@@ -175,7 +181,10 @@ const IntelligenceOverInventoryProject = () => {
       {/* Main Content - Slide Container */}
       <main
         ref={containerRef}
-        className="flex-1 ml-16 md:ml-56 lg:ml-64 slide-container"
+        className={cn(
+          "flex-1 ml-16 md:ml-56 lg:ml-64 slide-container transition-colors duration-500",
+          activeDataMode === 'marketplace' && "theme-light"
+        )}
       >
         {/* Hero Section */}
         <section
@@ -428,7 +437,10 @@ const IntelligenceOverInventoryProject = () => {
         </section>
 
         {/* Dual-Interface Impact Section - /04 */}
-        <ImpactSection04 sectionRef={(el) => { (sectionRefs[4] as any).current = el; }} />
+        <ImpactSection04 
+          sectionRef={(el) => { (sectionRefs[4] as any).current = el; }} 
+          activeTab={activeDataMode}
+        />
 
         {/* Strategy & Influence Grid - /05 */}
         <section
@@ -539,6 +551,41 @@ const IntelligenceOverInventoryProject = () => {
           </div>
         </section>
       </main>
+
+      {/* Floating Dual-Mode Toggle - Visible on sections /04-/07 */}
+      {showDualModeToggle && (
+        <div className={cn(
+          "fixed bottom-0 left-16 md:left-56 lg:left-64 right-0",
+          "flex justify-center py-12",
+          "animate-in slide-in-from-bottom-4 duration-500",
+          "z-50 pointer-events-none"
+        )}>
+          <div className="bg-background/50 backdrop-blur-md rounded-full p-1.5 flex gap-1 border border-border pointer-events-auto">
+            <button
+              onClick={() => setActiveDataMode('marketing-hub')}
+              className={cn(
+                "px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300",
+                activeDataMode === 'marketing-hub'
+                  ? "bg-foreground text-background"
+                  : "text-muted-foreground hover:text-foreground"
+              )}
+            >
+              Marketing Hub
+            </button>
+            <button
+              onClick={() => setActiveDataMode('marketplace')}
+              className={cn(
+                "px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300",
+                activeDataMode === 'marketplace'
+                  ? "bg-foreground text-background"
+                  : "text-muted-foreground hover:text-foreground"
+              )}
+            >
+              Marketplace
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
