@@ -1,129 +1,217 @@
 
-
-# Global Design System + Intelligence Over Inventory Updates
+# Section /04 Interactive Pattern Prototype
 
 ## Overview
-Four targeted updates across the design system and the project page:
-1. Update primary color site-wide from purple to #3835E2
-2. Enhance Insight Engine (/02) card connectors and center content
-3. Remove icon colors and increase card sizes in /02
-4. Fix Impact section (/04) header layout and spacing
+Implement all four interaction patterns for the Marketing Hub content blocks in section /04, with a meta-toggle to switch between them so you can evaluate each approach in context.
 
 ---
 
-## Part 1: Global Primary Color Update
+## What You'll Get
 
-### Color Conversion
-| Property | Current | New (#3835E2) |
-|----------|---------|---------------|
-| Hex | ~#9B87F5 | #3835E2 |
-| HSL | 263 70% 65% | 241 76% 55% |
+A "Pattern Selector" dropdown at the top of section /04 that lets you switch between:
 
-### Files to Update
-**src/index.css** - Update all instances of the purple color
-
-### Changes in `:root`
-| Token | Current HSL | New HSL |
-|-------|-------------|---------|
-| `--primary` | 263 70% 65% | 241 76% 55% |
-| `--accent` | 263 70% 65% | 241 76% 55% |
-| `--ring` | 263 70% 65% | 241 76% 55% |
-| `--sidebar-primary` | 263 70% 65% | 241 76% 55% |
-| `--sidebar-ring` | 263 70% 65% | 241 76% 55% |
-| `--gradient-primary` | hsl(263 70% 65%), hsl(220 85% 65%) | hsl(241 76% 55%), hsl(220 85% 60%) |
-| `--gradient-accent` | hsl(263 70% 50%), hsl(280 70% 55%), hsl(240 70% 55%) | hsl(241 76% 50%), hsl(260 70% 55%), hsl(220 70% 55%) |
-| `--shadow-glow` | hsl(263 70% 65% / 0.3) | hsl(241 76% 55% / 0.3) |
-
-### Changes in `.theme-light`
-| Token | Current HSL | New HSL |
-|-------|-------------|---------|
-| `--primary` | 263 70% 50% | 241 76% 45% |
-| `--accent` | 263 70% 50% | 241 76% 45% |
-| `--ring` | 263 70% 50% | 241 76% 45% |
-| `--sidebar-primary` | 263 70% 50% | 241 76% 45% |
-| `--sidebar-ring` | 263 70% 50% | 241 76% 45% |
-| `--gradient-primary` | Update to new blue |
-| `--gradient-accent` | Update to new blue |
-| `--shadow-glow` | Update to new blue |
+| Pattern | Description |
+|---------|-------------|
+| **Horizontal Pills** | Row of 3 pill buttons below title; click to switch content |
+| **Card Carousel** | Left/right arrows to slide through content cards |
+| **Auto-Spotlight** | Auto-advances every 6s with progress bar; click to pause |
+| **Stacked Cards** | Overlapping cards that "pop" forward when clicked |
 
 ---
 
-## Part 2: Insight Engine Section (/02) - Visual Enhancements
+## Shared Changes (All Patterns)
 
-### Current State
-- Content positioned at top with `pt-12` (via section header)
-- Connector lines are solid thin lines (`h-0.5 bg-border`)
-- Icons use `text-primary` color
-- Cards are `w-44 xl:w-52`
+### 1. Layout Update: 1/3 Split
+```text
++--------+------------------------+
+| 1/3    |          2/3           |
+| Text   |    Image (viewport)    |
++--------+------------------------+
+```
+- Grid: `lg:grid-cols-3`
+- Image column: `h-[calc(100vh-280px)]` for viewport-filling height
 
-### Changes
+### 2. Spacing Increases (2x)
+- Title to Pattern Selector: `mb-12` (was `mb-6`)
+- Pattern Selector to Tabs: `mb-8`
+- Tabs to Content: `mb-32` (was `mb-16`)
 
-**A. Center Content in Viewport**
-- Change section class from `flex items-start` to `flex items-center justify-center`
-- Remove top padding from header, let flex centering handle positioning
+### 3. Tab Order Swap
+- Default: `marketing-hub` (first)
+- Order: Marketing Hub | Marketing Site
 
-**B. Enhanced Connector Lines**
-- Change from solid to dashed: `border-dashed border-t-2 border-border` instead of `h-0.5 bg-border`
-- OR use gradient: linear-gradient from transparent to primary to transparent
-- Increase horizontal line thickness for visual weight
+### 4. Narrative Content (Marketing Hub)
+Replace bullet points with three narrative blocks:
 
-**C. Remove Icon Colors**
-- Change `text-primary` to `text-muted-foreground` for all card icons
-- Applies to both desktop and mobile layouts
+**Block 1: The Seller's "Aha" Moment**
+> "We shifted from asking for data to proving its ROI."
 
-**D. Increase Card Sizes**
-- Desktop: Change from `w-44 xl:w-52` to `w-52 xl:w-64`
-- Increase padding from `p-5` to `p-6`
-- Increase text sizes slightly
+By surfacing buyer intent directly within the listing flow, we transformed a chore into a competitive advantage. We didn't just ask for utility info; we showed sellers that it was their fastest path to a 5x lead increase.
+
+**Block 2: Gamifying Quality**
+> "The Completeness Score became our invisible coach."
+
+We used gamification to align seller behavior with search engine success. It provided a clear, actionable roadmap for sellers to improve their own visibility without needing a manual support touch-point.
+
+**Block 3: Closing the Loop**
+> "We built a self-correcting data flywheel."
+
+This created a bridge between two platforms: buyer questions fueled seller prompts, which in turn unlocked the filters buyers needed. The system started learning and improving its own data density.
 
 ---
 
-## Part 3: Impact Section (/04) - Header Layout
+## Pattern Implementations
 
-### Current State
-```
-          Dual-Interface Impact
-                 /04
-        [Marketing Site] [Hub]
-```
+### Pattern 1: Horizontal Pill Tabs
 
-### New Layout
-```
-Dual-Interface Impact                    /04
-        [Marketing Site] [Hub]
-
-       [Content with more spacing]
+```text
+[ The Seller's "Aha" ]  [ Gamifying Quality ]  [ Closing the Loop ]
+         ↓ active
++--------+------------------------+
+| Quote  |                        |
+| Para-  |        IMAGE 1         |
+| graph  |                        |
++--------+------------------------+
 ```
 
-### Changes
-- Move section number to same line as title (flex row with justify-between)
-- Add margin between tabs and content: `mb-8` or `mb-10` on the tabs container
-- Maintain centered tabs but with more vertical breathing room
+- Horizontal row of pill-shaped buttons
+- Active pill: `bg-primary text-primary-foreground`
+- Inactive: `bg-muted/50 text-muted-foreground hover:bg-muted`
+- Click to switch content and image instantly
+
+### Pattern 2: Card Carousel with Arrows
+
+```text
+         ←  [ Content Card ]  →
++--------+------------------------+
+| Quote  |                        |
+| Para-  |        IMAGE           |
+| graph  |                        |
++--------+------------------------+
+    ●  ○  ○  (dot indicators)
+```
+
+- Left/right arrow buttons flanking the text column
+- Dot indicators below showing position (1/3, 2/3, 3/3)
+- Smooth slide transition between cards
+- Image cross-fades on change
+
+### Pattern 3: Auto-Rotating Spotlight
+
+```text
+[━━━━━━━━━━━━━━━━░░░░] 6s progress bar
++--------+------------------------+
+| Quote  |                        |
+| Para-  |        IMAGE           |
+| graph  |                        |
++--------+------------------------+
+```
+
+- Auto-advances every 6 seconds
+- Linear progress bar shows time remaining
+- Click anywhere to pause/resume
+- Pause icon appears on hover
+- Image cross-fades smoothly
+
+### Pattern 4: Stacked Cards
+
+```text
+     ┌─────────────┐
+   ┌─┤  Card 3     │
+ ┌─┤ └─────────────┘
+ │ │   Card 2
+ └─┴───────────────┘
+   Card 1 (front)
+```
+
+Visual representation:
+- Three cards visually "stacked" with offset shadows
+- Active card: full opacity, translateY(0), scale(1)
+- Behind cards: reduced opacity, translateY offset, scale(0.95/0.9)
+- Click a back card to bring it forward
+- Cards animate position swap with 500ms transition
 
 ---
 
-## Technical Summary
+## Technical Implementation
 
-### Files to Modify
-1. `src/index.css` - Primary color update
-2. `src/pages/projects/IntelligenceOverInventoryProject.tsx` - Section layouts
+### New State Variables
+```tsx
+const [activePattern, setActivePattern] = useState<'pills' | 'carousel' | 'spotlight' | 'stacked'>('pills');
+const [activeBlock, setActiveBlock] = useState(0);
+const [isPaused, setIsPaused] = useState(false);
+```
 
-### Code Changes Detail
+### Content Data Structure
+```tsx
+const hubBlocks = [
+  {
+    title: "The Seller's 'Aha' Moment",
+    quote: "We shifted from asking for data to proving its ROI.",
+    narrative: "By surfacing buyer intent directly within the listing flow...",
+    image: popularFeaturesImage // placeholder until uploaded
+  },
+  {
+    title: "Gamifying Quality",
+    quote: "The Completeness Score became our invisible coach.",
+    narrative: "We used gamification to align seller behavior...",
+    image: completenessScoreImage // placeholder until uploaded
+  },
+  {
+    title: "Closing the Loop",
+    quote: "We built a self-correcting data flywheel.",
+    narrative: "This created a bridge between two platforms...",
+    image: flywheelImage // placeholder until uploaded
+  }
+];
+```
 
-**src/index.css:**
-- Replace all `263 70% 65%` with `241 76% 55%` in `:root`
-- Replace all `263 70% 50%` with `241 76% 45%` in `.theme-light`
-- Update gradient and shadow values accordingly
+### Pattern Selector Component
+```tsx
+<div className="flex items-center gap-4 mb-8">
+  <span className="text-sm text-muted-foreground">Pattern:</span>
+  <ToggleGroup type="single" value={activePattern} onValueChange={setActivePattern}>
+    <ToggleGroupItem value="pills">Pills</ToggleGroupItem>
+    <ToggleGroupItem value="carousel">Carousel</ToggleGroupItem>
+    <ToggleGroupItem value="spotlight">Spotlight</ToggleGroupItem>
+    <ToggleGroupItem value="stacked">Stacked</ToggleGroupItem>
+  </ToggleGroup>
+</div>
+```
 
-**IntelligenceOverInventoryProject.tsx:**
+### Auto-Rotation Logic (Spotlight)
+```tsx
+useEffect(() => {
+  if (activePattern !== 'spotlight' || isPaused) return;
+  const timer = setInterval(() => {
+    setActiveBlock((prev) => (prev + 1) % 3);
+  }, 6000);
+  return () => clearInterval(timer);
+}, [activePattern, isPaused]);
+```
 
-Section /02:
-- Line 278: Change section class to `flex items-center justify-center`
-- Lines 300, 326, 335: Change horizontal/vertical connectors to dashed style
-- Lines 322, 339, 368: Change icon color from `text-primary` to `text-muted-foreground`
-- Lines 319, 336, 365: Increase card width and padding
+---
 
-Section /04:
-- Lines 430-438: Restructure header to single row with title left, number right
-- Line 442: Add `mb-10` for spacing between tabs and content
+## Files to Modify
 
+| File | Changes |
+|------|---------|
+| `src/pages/projects/IntelligenceOverInventoryProject.tsx` | Section /04 rewrite (~100 lines) |
+
+---
+
+## Assets Needed
+
+The three Marketing Hub images will use placeholders until you upload:
+1. **Popular Features UI** - for Block 1
+2. **Property Completeness Score** - for Block 2
+3. **Flywheel Diagram** - for Block 3
+
+---
+
+## After Implementation
+
+Once you test all four patterns:
+1. Pick your favorite
+2. Tell me which one to keep
+3. I'll remove the pattern selector and finalize the chosen design
