@@ -1,193 +1,171 @@
 
-# Section /04 Interactive Pattern Prototype
+
+# Section /04 Carousel Layout Redesign
 
 ## Overview
-Implement all four interaction patterns for the Marketing Hub content blocks in section /04, with a meta-toggle to switch between them so you can evaluate each approach in context.
+Redesign the "Dual-Interface Impact" section to use a cleaner carousel layout with a floating tab toggle, based on the provided reference image.
 
 ---
 
-## What You'll Get
+## Changes Summary
 
-A "Pattern Selector" dropdown at the top of section /04 that lets you switch between:
-
-| Pattern | Description |
-|---------|-------------|
-| **Horizontal Pills** | Row of 3 pill buttons below title; click to switch content |
-| **Card Carousel** | Left/right arrows to slide through content cards |
-| **Auto-Spotlight** | Auto-advances every 6s with progress bar; click to pause |
-| **Stacked Cards** | Overlapping cards that "pop" forward when clicked |
-
----
-
-## Shared Changes (All Patterns)
-
-### 1. Layout Update: 1/3 Split
-```text
-+--------+------------------------+
-| 1/3    |          2/3           |
-| Text   |    Image (viewport)    |
-+--------+------------------------+
-```
-- Grid: `lg:grid-cols-3`
-- Image column: `h-[calc(100vh-280px)]` for viewport-filling height
-
-### 2. Spacing Increases (2x)
-- Title to Pattern Selector: `mb-12` (was `mb-6`)
-- Pattern Selector to Tabs: `mb-8`
-- Tabs to Content: `mb-32` (was `mb-16`)
-
-### 3. Tab Order Swap
-- Default: `marketing-hub` (first)
-- Order: Marketing Hub | Marketing Site
-
-### 4. Narrative Content (Marketing Hub)
-Replace bullet points with three narrative blocks:
-
-**Block 1: The Seller's "Aha" Moment**
-> "We shifted from asking for data to proving its ROI."
-
-By surfacing buyer intent directly within the listing flow, we transformed a chore into a competitive advantage. We didn't just ask for utility info; we showed sellers that it was their fastest path to a 5x lead increase.
-
-**Block 2: Gamifying Quality**
-> "The Completeness Score became our invisible coach."
-
-We used gamification to align seller behavior with search engine success. It provided a clear, actionable roadmap for sellers to improve their own visibility without needing a manual support touch-point.
-
-**Block 3: Closing the Loop**
-> "We built a self-correcting data flywheel."
-
-This created a bridge between two platforms: buyer questions fueled seller prompts, which in turn unlocked the filters buyers needed. The system started learning and improving its own data density.
+| Change | Description |
+|--------|-------------|
+| Add subtitle | "How the data affected the buyer & seller experience" below main title |
+| Carousel controls | Move slide title + controls to a single full-width row above content |
+| Add divider | Thin horizontal separator between controls row and content |
+| Floating toggle | Tab switcher floats at bottom with blur/dark background |
+| Remove patterns | Delete Pills, Spotlight, Stacked patterns and pattern selector |
 
 ---
 
-## Pattern Implementations
-
-### Pattern 1: Horizontal Pill Tabs
+## Visual Layout
 
 ```text
-[ The Seller's "Aha" ]  [ Gamifying Quality ]  [ Closing the Loop ]
-         ↓ active
-+--------+------------------------+
-| Quote  |                        |
-| Para-  |        IMAGE 1         |
-| graph  |                        |
-+--------+------------------------+
++----------------------------------------------------------+
+|  Dual-Interface Impact                              /04  |
+|  How the data affected the buyer & seller experience     |
++----------------------------------------------------------+
+|  The Seller's 'Aha' Moment                   1 of 3  < > |
++----------------------------------------------------------+  <- thin divider
+|                                                          |
+|  +-------------+    +--------------------------------+   |
+|  | Quote block |    |                                |   |
+|  | Narrative   |    |        Image Placeholder       |   |
+|  |             |    |                                |   |
+|  +-------------+    +--------------------------------+   |
+|                                                          |
++----------------------------------------------------------+
+                                                          
++----------------------------------------------------------+
+|  [██ Marketing Hub ██]  [ Market Place ]                 |  <- floating bar
++----------------------------------------------------------+
 ```
 
-- Horizontal row of pill-shaped buttons
-- Active pill: `bg-primary text-primary-foreground`
-- Inactive: `bg-muted/50 text-muted-foreground hover:bg-muted`
-- Click to switch content and image instantly
+---
 
-### Pattern 2: Card Carousel with Arrows
+## Detailed Changes
+
+### 1. Add Subtitle
+- Text: "How the data affected the buyer & seller experience"
+- Position: Below main title, before carousel controls
+- Styling: `text-lg md:text-xl text-muted-foreground`
+
+### 2. Carousel Control Row
+Replace the current carousel pattern with a new layout:
 
 ```text
-         ←  [ Content Card ]  →
-+--------+------------------------+
-| Quote  |                        |
-| Para-  |        IMAGE           |
-| graph  |                        |
-+--------+------------------------+
-    ●  ○  ○  (dot indicators)
+Left side:           Right side:
+[Slide Title]        [1 of 3]  [<]  [>]
 ```
 
-- Left/right arrow buttons flanking the text column
-- Dot indicators below showing position (1/3, 2/3, 3/3)
-- Smooth slide transition between cards
-- Image cross-fades on change
+- **Full width row** spanning the content container
+- **Left**: Slide title (e.g., "The Seller's 'Aha' Moment")
+- **Right**: Slide count "1 of 3" + arrow buttons
+- Layout: `flex justify-between items-center`
 
-### Pattern 3: Auto-Rotating Spotlight
+### 3. Divider Element
+- Add `<Separator />` component between controls row and content
+- Styling: thin 1px line with `border-border` color
+- Spacing: `my-6` for breathing room
 
-```text
-[━━━━━━━━━━━━━━━━░░░░] 6s progress bar
-+--------+------------------------+
-| Quote  |                        |
-| Para-  |        IMAGE           |
-| graph  |                        |
-+--------+------------------------+
-```
+### 4. Content Area (Below Divider)
+- Keep the 1/3 text + 2/3 image split (`lg:grid-cols-3`)
+- Remove the slide title from the text column (it's now in the control row)
+- Content shows quote + narrative only
 
-- Auto-advances every 6 seconds
-- Linear progress bar shows time remaining
-- Click anywhere to pause/resume
-- Pause icon appears on hover
-- Image cross-fades smoothly
+### 5. Floating Tab Toggle
+Transform the Marketing Hub / Market Place tabs into a floating element:
 
-### Pattern 4: Stacked Cards
+**Container styling:**
+- `fixed bottom-0` (or `absolute` within section)
+- Full width minus page left navigation
+- Dark background with 50% opacity: `bg-background/50`
+- Backdrop blur: `backdrop-blur-md`
+- Smooth slide-up animation on section entry
 
-```text
-     ┌─────────────┐
-   ┌─┤  Card 3     │
- ┌─┤ └─────────────┘
- │ │   Card 2
- └─┴───────────────┘
-   Card 1 (front)
-```
+**Toggle pills styling:**
+- Full pill shape: `rounded-full` instead of rounded corners
+- Active: `bg-primary text-primary-foreground`
+- Inactive: `bg-transparent text-muted-foreground`
+- Container: centered within the floating bar
 
-Visual representation:
-- Three cards visually "stacked" with offset shadows
-- Active card: full opacity, translateY(0), scale(1)
-- Behind cards: reduced opacity, translateY offset, scale(0.95/0.9)
-- Click a back card to bring it forward
-- Cards animate position swap with 500ms transition
+**Animation:**
+- Enter: `translate-y-0 opacity-100`
+- Exit: `translate-y-full opacity-0`
+- Transition: `transition-all duration-500`
+
+### 6. Remove Pattern Selector & Other Patterns
+- Delete: `PillsPattern`, `SpotlightPattern`, `StackedPattern` components
+- Delete: `activePattern` state and `PatternType` type
+- Delete: ToggleGroup pattern selector UI
+- Keep only the carousel logic (refactored into the main component)
 
 ---
 
 ## Technical Implementation
 
-### New State Variables
+### State Changes
 ```tsx
-const [activePattern, setActivePattern] = useState<'pills' | 'carousel' | 'spotlight' | 'stacked'>('pills');
+// Remove
+const [activePattern, setActivePattern] = useState<PatternType>('pills');
+
+// Keep
 const [activeBlock, setActiveBlock] = useState(0);
-const [isPaused, setIsPaused] = useState(false);
+const [activeTab, setActiveTab] = useState<'marketing-hub' | 'marketing-site'>('marketing-hub');
 ```
 
-### Content Data Structure
+### Control Row Component
 ```tsx
-const hubBlocks = [
-  {
-    title: "The Seller's 'Aha' Moment",
-    quote: "We shifted from asking for data to proving its ROI.",
-    narrative: "By surfacing buyer intent directly within the listing flow...",
-    image: popularFeaturesImage // placeholder until uploaded
-  },
-  {
-    title: "Gamifying Quality",
-    quote: "The Completeness Score became our invisible coach.",
-    narrative: "We used gamification to align seller behavior...",
-    image: completenessScoreImage // placeholder until uploaded
-  },
-  {
-    title: "Closing the Loop",
-    quote: "We built a self-correcting data flywheel.",
-    narrative: "This created a bridge between two platforms...",
-    image: flywheelImage // placeholder until uploaded
-  }
-];
-```
-
-### Pattern Selector Component
-```tsx
-<div className="flex items-center gap-4 mb-8">
-  <span className="text-sm text-muted-foreground">Pattern:</span>
-  <ToggleGroup type="single" value={activePattern} onValueChange={setActivePattern}>
-    <ToggleGroupItem value="pills">Pills</ToggleGroupItem>
-    <ToggleGroupItem value="carousel">Carousel</ToggleGroupItem>
-    <ToggleGroupItem value="spotlight">Spotlight</ToggleGroupItem>
-    <ToggleGroupItem value="stacked">Stacked</ToggleGroupItem>
-  </ToggleGroup>
+<div className="flex justify-between items-center">
+  {/* Left: Slide Title */}
+  <h3 className="text-lg md:text-xl font-semibold text-foreground">
+    {hubBlocks[activeBlock].title}
+  </h3>
+  
+  {/* Right: Count + Arrows */}
+  <div className="flex items-center gap-3">
+    <span className="text-sm text-muted-foreground">
+      {activeBlock + 1} of {hubBlocks.length}
+    </span>
+    <Button variant="outline" size="icon" onClick={goPrev}>
+      <ChevronLeft className="w-4 h-4" />
+    </Button>
+    <Button variant="outline" size="icon" onClick={goNext}>
+      <ChevronRight className="w-4 h-4" />
+    </Button>
+  </div>
 </div>
 ```
 
-### Auto-Rotation Logic (Spotlight)
+### Floating Toggle Bar
 ```tsx
-useEffect(() => {
-  if (activePattern !== 'spotlight' || isPaused) return;
-  const timer = setInterval(() => {
-    setActiveBlock((prev) => (prev + 1) % 3);
-  }, 6000);
-  return () => clearInterval(timer);
-}, [activePattern, isPaused]);
+<div className="absolute bottom-0 left-0 right-0 flex justify-center py-6">
+  <div className="bg-background/50 backdrop-blur-md rounded-full p-1.5 flex gap-1">
+    <button
+      onClick={() => setActiveTab('marketing-hub')}
+      className={cn(
+        "px-6 py-2.5 rounded-full text-sm font-medium transition-all",
+        activeTab === 'marketing-hub'
+          ? "bg-foreground text-background"
+          : "text-muted-foreground hover:text-foreground"
+      )}
+    >
+      Marketing Hub
+    </button>
+    <button
+      onClick={() => setActiveTab('marketing-site')}
+      className={cn(
+        "px-6 py-2.5 rounded-full text-sm font-medium transition-all",
+        activeTab === 'marketing-site'
+          ? "bg-foreground text-background"
+          : "text-muted-foreground hover:text-foreground"
+      )}
+    >
+      Market Place
+    </button>
+  </div>
+</div>
 ```
 
 ---
@@ -196,22 +174,12 @@ useEffect(() => {
 
 | File | Changes |
 |------|---------|
-| `src/pages/projects/IntelligenceOverInventoryProject.tsx` | Section /04 rewrite (~100 lines) |
+| `src/components/ImpactSection04.tsx` | Complete rewrite - remove 3 patterns, simplify to carousel only, add floating toggle |
 
 ---
 
-## Assets Needed
+## Code Reduction
+- Before: ~437 lines with 4 pattern components
+- After: ~180 lines with clean carousel-only implementation
+- Removed: Pills, Spotlight, Stacked patterns and pattern selector
 
-The three Marketing Hub images will use placeholders until you upload:
-1. **Popular Features UI** - for Block 1
-2. **Property Completeness Score** - for Block 2
-3. **Flywheel Diagram** - for Block 3
-
----
-
-## After Implementation
-
-Once you test all four patterns:
-1. Pick your favorite
-2. Tell me which one to keep
-3. I'll remove the pattern selector and finalize the chosen design
