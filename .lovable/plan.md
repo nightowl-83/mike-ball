@@ -1,9 +1,9 @@
 
 
-# Section /04 Carousel Layout Redesign
+# Persistent Dual-Mode Toggle with Light Theme for Marketplace
 
 ## Overview
-Redesign the "Dual-Interface Impact" section to use a cleaner carousel layout with a floating tab toggle, based on the provided reference image.
+Implement a persistent toggle between Marketing Hub and Marketplace modes that affects sections /04 through /07. When Marketplace is selected, the page will switch to a light theme to visually distinguish the buyer-facing experience from the seller-facing Marketing Hub.
 
 ---
 
@@ -11,161 +11,188 @@ Redesign the "Dual-Interface Impact" section to use a cleaner carousel layout wi
 
 | Change | Description |
 |--------|-------------|
-| Add subtitle | "How the data affected the buyer & seller experience" below main title |
-| Carousel controls | Move slide title + controls to a single full-width row above content |
-| Add divider | Thin horizontal separator between controls row and content |
-| Floating toggle | Tab switcher floats at bottom with blur/dark background |
-| Remove patterns | Delete Pills, Spotlight, Stacked patterns and pattern selector |
+| Toggle padding | Add `py-12` (increased from `py-6`) to render toggle higher on desktop |
+| Marketplace content | Add two new narrative sections: "The 'Invisibility' Problem" and "Intent-Based Navigation" |
+| Rename toggle | Change "Market Place" to "Marketplace" |
+| Persistent toggle | Lift state to parent component so toggle affects sections /04–/07 |
+| Light mode for Marketplace | Apply `theme-light` class to main content when Marketplace is selected |
 
 ---
 
-## Visual Layout
+## Visual Concept
 
 ```text
-+----------------------------------------------------------+
-|  Dual-Interface Impact                              /04  |
-|  How the data affected the buyer & seller experience     |
-+----------------------------------------------------------+
-|  The Seller's 'Aha' Moment                   1 of 3  < > |
-+----------------------------------------------------------+  <- thin divider
-|                                                          |
-|  +-------------+    +--------------------------------+   |
-|  | Quote block |    |                                |   |
-|  | Narrative   |    |        Image Placeholder       |   |
-|  |             |    |                                |   |
-|  +-------------+    +--------------------------------+   |
-|                                                          |
-+----------------------------------------------------------+
-                                                          
-+----------------------------------------------------------+
-|  [██ Marketing Hub ██]  [ Market Place ]                 |  <- floating bar
-+----------------------------------------------------------+
+Marketing Hub (Default - Dark Mode):
+┌──────────────────────────────────────────────────────┐
+│  ████████████████████████████████████████████████  │ <- Dark background
+│                                                      │
+│  [Content specific to seller experience]             │
+│                                                      │
+│         [ Marketing Hub ]  [ Marketplace ]           │ <- Toggle higher
+└──────────────────────────────────────────────────────┘
+
+Marketplace (Light Mode):
+┌──────────────────────────────────────────────────────┐
+│  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  │ <- Light background
+│                                                      │
+│  [Content specific to buyer experience]              │
+│                                                      │
+│         [ Marketing Hub ]  [ Marketplace ]           │
+└──────────────────────────────────────────────────────┘
 ```
 
 ---
 
 ## Detailed Changes
 
-### 1. Add Subtitle
-- Text: "How the data affected the buyer & seller experience"
-- Position: Below main title, before carousel controls
-- Styling: `text-lg md:text-xl text-muted-foreground`
+### 1. Increase Toggle Bottom Padding
+Change the floating toggle container from `py-6` to `py-12` to position it higher on desktop screens:
 
-### 2. Carousel Control Row
-Replace the current carousel pattern with a new layout:
+```tsx
+// Before
+<div className="absolute bottom-0 left-0 right-0 flex justify-center py-6 ...">
 
-```text
-Left side:           Right side:
-[Slide Title]        [1 of 3]  [<]  [>]
+// After  
+<div className="absolute bottom-0 left-0 right-0 flex justify-center py-12 ...">
 ```
 
-- **Full width row** spanning the content container
-- **Left**: Slide title (e.g., "The Seller's 'Aha' Moment")
-- **Right**: Slide count "1 of 3" + arrow buttons
-- Layout: `flex justify-between items-center`
+### 2. Rename Toggle Label
+Change "Market Place" to "Marketplace":
 
-### 3. Divider Element
-- Add `<Separator />` component between controls row and content
-- Styling: thin 1px line with `border-border` color
-- Spacing: `my-6` for breathing room
+```tsx
+// Before
+>Market Place</button>
 
-### 4. Content Area (Below Divider)
-- Keep the 1/3 text + 2/3 image split (`lg:grid-cols-3`)
-- Remove the slide title from the text column (it's now in the control row)
-- Content shows quote + narrative only
+// After
+>Marketplace</button>
+```
 
-### 5. Floating Tab Toggle
-Transform the Marketing Hub / Market Place tabs into a floating element:
+### 3. Add Marketplace Content for Section /04
+Add two narrative carousel slides for the Marketplace tab:
 
-**Container styling:**
-- `fixed bottom-0` (or `absolute` within section)
-- Full width minus page left navigation
-- Dark background with 50% opacity: `bg-background/50`
-- Backdrop blur: `backdrop-blur-md`
-- Smooth slide-up animation on section entry
+**Slide 1: The "Invisibility" Problem**
+> Quote: "Turning 'Dark Data' into Searchable Value."
+> 
+> Narrative: In a market flooded with identical 3rd-party listings, our users were struggling to find land that met basic survivability needs—water, power, and road access. This data existed in the leads, but was invisible on the page.
 
-**Toggle pills styling:**
-- Full pill shape: `rounded-full` instead of rounded corners
-- Active: `bg-primary text-primary-foreground`
-- Inactive: `bg-transparent text-muted-foreground`
-- Container: centered within the floating bar
+**Slide 2: Intent-Based Navigation**
+> Quote: "We didn't design filters; we designed answers."
+> 
+> Narrative: Using the lead parser, I prioritized a 'Utility First' navigation. We elevated the attributes that our users were most vocal about in their inquiries, drastically reducing the 'pogo-sticking' behavior between the search page and listing details.
 
-**Animation:**
-- Enter: `translate-y-0 opacity-100`
-- Exit: `translate-y-full opacity-0`
-- Transition: `transition-all duration-500`
+### 4. Lift Toggle State to Parent Component
+Move the `activeTab` state from `ImpactSection04` up to `IntelligenceOverInventoryProject`:
 
-### 6. Remove Pattern Selector & Other Patterns
-- Delete: `PillsPattern`, `SpotlightPattern`, `StackedPattern` components
-- Delete: `activePattern` state and `PatternType` type
-- Delete: ToggleGroup pattern selector UI
-- Keep only the carousel logic (refactored into the main component)
+```tsx
+// In IntelligenceOverInventoryProject.tsx
+const [activeDataMode, setActiveDataMode] = useState<'marketing-hub' | 'marketplace'>('marketing-hub');
+```
+
+Pass this state down to all sections that need it:
+- Section /04 (Impact)
+- Section /05 (Strategy)
+- Section /06 (Gallery)
+- Section /07 (Vision)
+
+### 5. Create Fixed Floating Toggle Component
+Extract the toggle into a fixed-position component that persists across sections:
+
+```tsx
+// New component or inline in parent
+<div className={cn(
+  "fixed bottom-0 left-16 md:left-56 lg:left-64 right-0",
+  "flex justify-center py-12",
+  "animate-in slide-in-from-bottom-4 duration-500",
+  "z-50"
+)}>
+  <div className="bg-background/50 backdrop-blur-md rounded-full p-1.5 flex gap-1 border border-border">
+    <button ... >Marketing Hub</button>
+    <button ... >Marketplace</button>
+  </div>
+</div>
+```
+
+The toggle only appears when the user is on sections /04–/07 (indices 4–7).
+
+### 6. Apply Light Theme for Marketplace Mode
+When `activeDataMode === 'marketplace'`, add `theme-light` class to the main content area:
+
+```tsx
+<main
+  ref={containerRef}
+  className={cn(
+    "flex-1 ml-16 md:ml-56 lg:ml-64 slide-container",
+    activeDataMode === 'marketplace' && "theme-light"
+  )}
+>
+```
+
+The existing `theme-light` class in `index.css` already defines all the inverted color values needed.
+
+### 7. Update Sections /05–/07 for Dual Content
+
+**Section /05 - Strategy & Influence:**
+- Marketing Hub: Keep existing 3-pillar strategy cards
+- Marketplace: Add buyer-focused strategy content (placeholder for now)
+
+**Section /06 - Design Details (Gallery):**
+- Marketing Hub: Seller-facing design details
+- Marketplace: Buyer-facing filter/search UI designs
+
+**Section /07 - Vision:**
+- Marketing Hub: AI Evolution for sellers
+- Marketplace: AI-powered search for buyers
 
 ---
 
 ## Technical Implementation
 
-### State Changes
+### Updated ImpactSection04 Props
 ```tsx
-// Remove
-const [activePattern, setActivePattern] = useState<PatternType>('pills');
-
-// Keep
-const [activeBlock, setActiveBlock] = useState(0);
-const [activeTab, setActiveTab] = useState<'marketing-hub' | 'marketing-site'>('marketing-hub');
+interface ImpactSection04Props {
+  sectionRef: (el: HTMLElement | null) => void;
+  activeTab: 'marketing-hub' | 'marketplace';
+  onTabChange: (tab: 'marketing-hub' | 'marketplace') => void;
+}
 ```
 
-### Control Row Component
+### Marketplace Content Data
 ```tsx
-<div className="flex justify-between items-center">
-  {/* Left: Slide Title */}
-  <h3 className="text-lg md:text-xl font-semibold text-foreground">
-    {hubBlocks[activeBlock].title}
-  </h3>
-  
-  {/* Right: Count + Arrows */}
-  <div className="flex items-center gap-3">
-    <span className="text-sm text-muted-foreground">
-      {activeBlock + 1} of {hubBlocks.length}
-    </span>
-    <Button variant="outline" size="icon" onClick={goPrev}>
-      <ChevronLeft className="w-4 h-4" />
-    </Button>
-    <Button variant="outline" size="icon" onClick={goNext}>
-      <ChevronRight className="w-4 h-4" />
-    </Button>
-  </div>
-</div>
+const marketplaceBlocks = [
+  {
+    title: "The 'Invisibility' Problem",
+    quote: "Turning 'Dark Data' into Searchable Value.",
+    narrative: "In a market flooded with identical 3rd-party listings, our users were struggling to find land that met basic survivability needs—water, power, and road access. This data existed in the leads, but was invisible on the page."
+  },
+  {
+    title: "Intent-Based Navigation",
+    quote: "We didn't design filters; we designed answers.",
+    narrative: "Using the lead parser, I prioritized a 'Utility First' navigation. We elevated the attributes that our users were most vocal about in their inquiries, drastically reducing the 'pogo-sticking' behavior between the search page and listing details."
+  }
+];
 ```
 
-### Floating Toggle Bar
+### Toggle Visibility Logic
 ```tsx
-<div className="absolute bottom-0 left-0 right-0 flex justify-center py-6">
-  <div className="bg-background/50 backdrop-blur-md rounded-full p-1.5 flex gap-1">
-    <button
-      onClick={() => setActiveTab('marketing-hub')}
-      className={cn(
-        "px-6 py-2.5 rounded-full text-sm font-medium transition-all",
-        activeTab === 'marketing-hub'
-          ? "bg-foreground text-background"
-          : "text-muted-foreground hover:text-foreground"
-      )}
-    >
-      Marketing Hub
-    </button>
-    <button
-      onClick={() => setActiveTab('marketing-site')}
-      className={cn(
-        "px-6 py-2.5 rounded-full text-sm font-medium transition-all",
-        activeTab === 'marketing-site'
-          ? "bg-foreground text-background"
-          : "text-muted-foreground hover:text-foreground"
-      )}
-    >
-      Market Place
-    </button>
+// Only show toggle on sections 4-7
+const showDualModeToggle = currentSectionIndex >= 4 && currentSectionIndex <= 7;
+
+{showDualModeToggle && (
+  <div className="fixed bottom-0 ...">
+    {/* Toggle buttons */}
   </div>
-</div>
+)}
+```
+
+### Theme Transition
+Add smooth transition for theme changes:
+```tsx
+<main
+  className={cn(
+    "... transition-colors duration-500",
+    activeDataMode === 'marketplace' && "theme-light"
+  )}
+>
 ```
 
 ---
@@ -174,12 +201,41 @@ const [activeTab, setActiveTab] = useState<'marketing-hub' | 'marketing-site'>('
 
 | File | Changes |
 |------|---------|
-| `src/components/ImpactSection04.tsx` | Complete rewrite - remove 3 patterns, simplify to carousel only, add floating toggle |
+| `src/components/ImpactSection04.tsx` | Update props, add marketplace content blocks, remove internal toggle (moved to parent), adjust bottom padding |
+| `src/pages/projects/IntelligenceOverInventoryProject.tsx` | Add `activeDataMode` state, add fixed floating toggle, pass state to sections /04–/07, apply theme class |
 
 ---
 
-## Code Reduction
-- Before: ~437 lines with 4 pattern components
-- After: ~180 lines with clean carousel-only implementation
-- Removed: Pills, Spotlight, Stacked patterns and pattern selector
+## Section Content Structure
+
+### Section /04 - Impact
+| Mode | Content |
+|------|---------|
+| Marketing Hub | Seller's Aha Moment, Gamifying Quality, Closing the Loop |
+| Marketplace | The Invisibility Problem, Intent-Based Navigation |
+
+### Section /05 - Strategy (placeholder content for now)
+| Mode | Content |
+|------|---------|
+| Marketing Hub | Existing 3-pillar strategy cards |
+| Marketplace | Buyer-focused strategy pillars (TBD) |
+
+### Section /06 - Gallery (placeholder content for now)
+| Mode | Content |
+|------|---------|
+| Marketing Hub | Seller-facing design screenshots |
+| Marketplace | Buyer-facing filter/search UI |
+
+### Section /07 - Vision (placeholder content for now)
+| Mode | Content |
+|------|---------|
+| Marketing Hub | AI Evolution for sellers |
+| Marketplace | AI-powered search vision for buyers |
+
+---
+
+## Animation Details
+- Toggle appears with `slide-in-from-bottom-4` animation
+- Theme transition uses `transition-colors duration-500` for smooth light/dark swap
+- Toggle only visible on sections /04–/07
 
