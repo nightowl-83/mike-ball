@@ -35,6 +35,9 @@ const IntelligenceOverInventoryProject = () => {
   // Dual-mode toggle state (persists across sections /04-/07)
   const [activeDataMode, setActiveDataMode] = useState<'marketing-hub' | 'marketplace'>('marketing-hub');
   
+  // Section /02 layout toggle state
+  const [section02Layout, setSection02Layout] = useState<'horizontal' | 'vertical'>('horizontal');
+  
   // Show toggle only on sections 4-7 (Impact, Strategy, Gallery, Vision)
   const showDualModeToggle = currentSectionIndex >= 4 && currentSectionIndex <= 7;
 
@@ -183,6 +186,7 @@ const IntelligenceOverInventoryProject = () => {
         ref={containerRef}
         className={cn(
           "flex-1 ml-16 md:ml-56 lg:ml-64 slide-container transition-colors duration-500",
+          "bg-background",
           activeDataMode === 'marketplace' && "theme-light"
         )}
       >
@@ -295,7 +299,7 @@ const IntelligenceOverInventoryProject = () => {
         >
           <div className="w-full px-4 md:px-8 lg:px-12">
             {/* Section Header */}
-            <div className="flex items-start justify-between mb-16">
+            <div className="flex items-start justify-between mb-8">
               <div className="flex-1">
                 <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground">
                   The Insight Engine
@@ -309,85 +313,146 @@ const IntelligenceOverInventoryProject = () => {
               </span>
             </div>
 
-            {/* Horizontal Flow with Staggered Cards - Desktop */}
-            <div className="relative flex-1 hidden lg:flex items-center justify-center py-8">
-              {/* Horizontal connecting line - dashed */}
-              <div className="absolute top-1/2 left-4 right-4 border-t-2 border-dashed border-border" />
-              
-              {/* Cards Container */}
-              <div className="flex items-center justify-around w-full relative px-4">
-                {flowSteps.map((step, index) => {
-                  // Cards at indices 0, 2, 4 go BELOW the line; 1, 3 go ABOVE
-                  const isAbove = [1, 3].includes(index);
-                  
-                  return (
-                    <div 
-                      key={step.label} 
-                      className={cn(
-                        "relative flex flex-col items-center z-10",
-                        isAbove ? "-translate-y-20" : "translate-y-20"
-                      )}
-                    >
-                      {/* Connector going UP for above cards */}
-                      {isAbove && (
-                        <>
-                          <div className="bg-card border border-border rounded-xl p-6 w-52 xl:w-64 shadow-sm">
-                            <div className="flex items-start justify-between mb-3">
-                              <h3 className="text-base xl:text-lg font-semibold text-foreground leading-tight">{step.label}</h3>
-                              <step.icon className="w-5 h-5 text-muted-foreground shrink-0 ml-2" />
-                            </div>
-                            <p className="text-sm xl:text-base text-muted-foreground leading-snug">{step.description}</p>
-                          </div>
-                          <div className="w-0.5 h-6 border-l-2 border-dashed border-border" />
-                          <div className="w-3 h-3 rounded-full bg-primary shrink-0" />
-                        </>
-                      )}
-                      
-                      {/* Connector going DOWN for below cards */}
-                      {!isAbove && (
-                        <>
-                          <div className="w-3 h-3 rounded-full bg-primary shrink-0" />
-                          <div className="w-0.5 h-6 border-l-2 border-dashed border-border" />
-                          <div className="bg-card border border-border rounded-xl p-6 w-52 xl:w-64 shadow-sm">
-                            <div className="flex items-start justify-between mb-3">
-                              <h3 className="text-base xl:text-lg font-semibold text-foreground leading-tight">{step.label}</h3>
-                              <step.icon className="w-5 h-5 text-muted-foreground shrink-0 ml-2" />
-                            </div>
-                            <p className="text-sm xl:text-base text-muted-foreground leading-snug">{step.description}</p>
-                          </div>
-                        </>
-                      )}
-                    </div>
-                  );
-                })}
+            {/* Layout Toggle */}
+            <div className="flex items-center gap-2 mb-8">
+              <span className="text-sm text-muted-foreground">Layout:</span>
+              <div className="flex gap-1 p-1 bg-muted/50 rounded-lg">
+                <button
+                  onClick={() => setSection02Layout('horizontal')}
+                  className={cn(
+                    "px-3 py-1.5 rounded-md text-xs font-medium transition-all",
+                    section02Layout === 'horizontal'
+                      ? "bg-primary text-primary-foreground"
+                      : "text-muted-foreground hover:text-foreground"
+                  )}
+                >
+                  Horizontal
+                </button>
+                <button
+                  onClick={() => setSection02Layout('vertical')}
+                  className={cn(
+                    "px-3 py-1.5 rounded-md text-xs font-medium transition-all",
+                    section02Layout === 'vertical'
+                      ? "bg-primary text-primary-foreground"
+                      : "text-muted-foreground hover:text-foreground"
+                  )}
+                >
+                  Vertical
+                </button>
               </div>
             </div>
 
-            {/* Mobile/Tablet: Vertical timeline layout */}
-            <div className="lg:hidden relative pl-8">
-              {/* Vertical line on the left - dashed */}
-              <div className="absolute left-3 top-0 bottom-0 border-l-2 border-dashed border-border" />
-              
-              <div className="space-y-4">
-                {flowSteps.map((step, index) => (
-                  <div key={step.label} className="relative flex items-start gap-4">
-                    {/* Connection node */}
-                    <div className="absolute left-[-20px] top-4 w-3 h-3 rounded-full bg-primary" />
-                    {/* Horizontal connector - dashed */}
-                    <div className="absolute left-[-8px] top-[18px] w-4 border-t-2 border-dashed border-border" />
+            {/* Horizontal Flow with Staggered Cards - Desktop (only when horizontal selected) */}
+            {section02Layout === 'horizontal' && (
+              <div className="relative flex-1 hidden lg:flex items-center justify-center py-8">
+                {/* Horizontal connecting line - dashed */}
+                <div className="absolute top-1/2 left-4 right-4 border-t-2 border-dashed border-border" />
+                
+                {/* Cards Container */}
+                <div className="flex items-center justify-around w-full relative px-4">
+                  {flowSteps.map((step, index) => {
+                    // Cards at indices 0, 2, 4 go BELOW the line; 1, 3 go ABOVE
+                    const isAbove = [1, 3].includes(index);
                     
-                    {/* Card */}
-                    <div className="bg-card border border-border rounded-xl p-5 flex-1">
-                      <div className="flex items-start justify-between mb-2">
-                        <h3 className="text-base font-semibold text-foreground">{step.label}</h3>
-                        <step.icon className="w-5 h-5 text-muted-foreground shrink-0" />
+                    return (
+                      <div 
+                        key={step.label} 
+                        className={cn(
+                          "relative flex flex-col items-center z-10",
+                          isAbove ? "-translate-y-20" : "translate-y-20"
+                        )}
+                      >
+                        {/* Connector going UP for above cards */}
+                        {isAbove && (
+                          <>
+                            <div className="bg-card border border-border rounded-xl p-6 w-52 xl:w-64 shadow-sm">
+                              <div className="flex items-start justify-between mb-3">
+                                <h3 className="text-base xl:text-lg font-semibold text-foreground leading-tight">{step.label}</h3>
+                                <step.icon className="w-5 h-5 text-muted-foreground shrink-0 ml-2" />
+                              </div>
+                              <p className="text-sm xl:text-base text-muted-foreground leading-snug">{step.description}</p>
+                            </div>
+                            <div className="w-0.5 h-6 border-l-2 border-dashed border-border" />
+                            <div className="w-3 h-3 rounded-full bg-primary shrink-0" />
+                          </>
+                        )}
+                        
+                        {/* Connector going DOWN for below cards */}
+                        {!isAbove && (
+                          <>
+                            <div className="w-3 h-3 rounded-full bg-primary shrink-0" />
+                            <div className="w-0.5 h-6 border-l-2 border-dashed border-border" />
+                            <div className="bg-card border border-border rounded-xl p-6 w-52 xl:w-64 shadow-sm">
+                              <div className="flex items-start justify-between mb-3">
+                                <h3 className="text-base xl:text-lg font-semibold text-foreground leading-tight">{step.label}</h3>
+                                <step.icon className="w-5 h-5 text-muted-foreground shrink-0 ml-2" />
+                              </div>
+                              <p className="text-sm xl:text-base text-muted-foreground leading-snug">{step.description}</p>
+                            </div>
+                          </>
+                        )}
                       </div>
-                      <p className="text-sm text-muted-foreground leading-snug">{step.description}</p>
-                    </div>
-                  </div>
-                ))}
+                    );
+                  })}
+                </div>
               </div>
-            </div>
+            )}
+
+            {/* Vertical Layout - Single Column (all screen sizes when vertical selected) */}
+            {section02Layout === 'vertical' && (
+              <div className="relative pl-8 max-w-2xl mx-auto">
+                {/* Vertical dashed line */}
+                <div className="absolute left-3 top-0 bottom-0 border-l-2 border-dashed border-border" />
+                
+                <div className="space-y-6">
+                  {flowSteps.map((step, index) => (
+                    <div key={step.label} className="relative flex items-start gap-6">
+                      {/* Node on the line */}
+                      <div className="absolute left-[-20px] top-6 w-3 h-3 rounded-full bg-primary" />
+                      {/* Horizontal connector */}
+                      <div className="absolute left-[-8px] top-[26px] w-4 border-t-2 border-dashed border-border" />
+                      
+                      {/* Card - Full width in column */}
+                      <div className="bg-card border border-border rounded-xl p-6 flex-1">
+                        <div className="flex items-start justify-between mb-3">
+                          <h3 className="text-lg font-semibold text-foreground">{step.label}</h3>
+                          <step.icon className="w-5 h-5 text-muted-foreground" />
+                        </div>
+                        <p className="text-base text-muted-foreground">{step.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Mobile/Tablet fallback - show only when horizontal on desktop */}
+            {section02Layout === 'horizontal' && (
+              <div className="lg:hidden relative pl-8">
+                {/* Vertical line on the left - dashed */}
+                <div className="absolute left-3 top-0 bottom-0 border-l-2 border-dashed border-border" />
+                
+                <div className="space-y-4">
+                  {flowSteps.map((step, index) => (
+                    <div key={step.label} className="relative flex items-start gap-4">
+                      {/* Connection node */}
+                      <div className="absolute left-[-20px] top-4 w-3 h-3 rounded-full bg-primary" />
+                      {/* Horizontal connector - dashed */}
+                      <div className="absolute left-[-8px] top-[18px] w-4 border-t-2 border-dashed border-border" />
+                      
+                      {/* Card */}
+                      <div className="bg-card border border-border rounded-xl p-5 flex-1">
+                        <div className="flex items-start justify-between mb-2">
+                          <h3 className="text-base font-semibold text-foreground">{step.label}</h3>
+                          <step.icon className="w-5 h-5 text-muted-foreground shrink-0" />
+                        </div>
+                        <p className="text-sm text-muted-foreground leading-snug">{step.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </section>
 
