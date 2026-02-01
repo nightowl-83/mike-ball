@@ -47,13 +47,16 @@ export const ImpactSection04 = ({ sectionRef, activeTab }: ImpactSection04Props)
   // Get the current blocks based on active tab
   const currentBlocks = activeTab === 'marketing-hub' ? hubBlocks : marketplaceBlocks;
 
+  // Clamp activeBlock to valid range to prevent out-of-bounds access
+  const safeActiveBlock = Math.min(activeBlock, currentBlocks.length - 1);
+
   // Reset active block when tab changes
   useEffect(() => {
     setActiveBlock(0);
   }, [activeTab]);
 
-  const goNext = () => setActiveBlock((activeBlock + 1) % currentBlocks.length);
-  const goPrev = () => setActiveBlock((activeBlock - 1 + currentBlocks.length) % currentBlocks.length);
+  const goNext = () => setActiveBlock((safeActiveBlock + 1) % currentBlocks.length);
+  const goPrev = () => setActiveBlock((safeActiveBlock - 1 + currentBlocks.length) % currentBlocks.length);
 
   return (
     <section
@@ -80,13 +83,13 @@ export const ImpactSection04 = ({ sectionRef, activeTab }: ImpactSection04Props)
         <div className="flex justify-between items-center mb-6">
           {/* Left: Slide Title */}
           <h3 className="text-lg md:text-xl font-semibold text-foreground">
-            {currentBlocks[activeBlock].title}
+            {currentBlocks[safeActiveBlock].title}
           </h3>
           
           {/* Right: Count + Arrows */}
           <div className="flex items-center gap-3">
             <span className="text-sm text-muted-foreground">
-              {activeBlock + 1} of {currentBlocks.length}
+              {safeActiveBlock + 1} of {currentBlocks.length}
             </span>
             <Button variant="outline" size="icon" onClick={goPrev} className="h-9 w-9">
               <ChevronLeft className="w-4 h-4" />
@@ -106,16 +109,16 @@ export const ImpactSection04 = ({ sectionRef, activeTab }: ImpactSection04Props)
             {/* Text Column */}
             <div className="lg:col-span-1 space-y-4">
               <blockquote className="text-xl md:text-2xl font-semibold text-foreground italic border-l-4 border-primary pl-4">
-                "{currentBlocks[activeBlock].quote}"
+                "{currentBlocks[safeActiveBlock].quote}"
               </blockquote>
               <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                {currentBlocks[activeBlock].narrative}
+                {currentBlocks[safeActiveBlock].narrative}
               </p>
             </div>
             
             {/* Image Column */}
             <div className="lg:col-span-2 h-[calc(100vh-480px)] min-h-[300px] bg-muted/50 border border-border rounded-xl flex items-center justify-center transition-all duration-500">
-              <p className="text-muted-foreground text-base">Image for "{currentBlocks[activeBlock].title}"</p>
+              <p className="text-muted-foreground text-base">Image for "{currentBlocks[safeActiveBlock].title}"</p>
             </div>
           </div>
         </div>
