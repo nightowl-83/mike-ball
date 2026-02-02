@@ -1,4 +1,4 @@
-import { ArrowRight, ArrowLeft, Database, Filter, BarChart3, Target, Lightbulb, TrendingUp, Zap, Users, LineChart, ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
+import { ArrowRight, Database, Filter, BarChart3, Target, Users, ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -12,6 +12,8 @@ import { ImpactSection04 } from "@/components/ImpactSection04";
 import trendiUpload from "@/assets/trendi-upload.png";
 import trendiKeywords from "@/assets/trendi-keywords.png";
 import trendiRegions from "@/assets/trendi-regions.png";
+import trendiAdvanced from "@/assets/trendi-advanced.png";
+import mhCompletenessCards from "@/assets/mh-completeness-cards.png";
 
 const IntelligenceOverInventoryProject = () => {
   // Section data for navigation
@@ -39,8 +41,15 @@ const IntelligenceOverInventoryProject = () => {
   // Section /02 layout toggle state
   const [section02Layout, setSection02Layout] = useState<'horizontal' | 'vertical'>('horizontal');
   
-  // Show toggle only on sections 4-7 (Impact, Strategy, Gallery, Vision)
-  const showDualModeToggle = currentSectionIndex >= 4 && currentSectionIndex <= 7;
+  // Show toggle only on section 4 (Impact)
+  const showDualModeToggle = currentSectionIndex === 4;
+
+  // Auto-reset to dark mode when leaving /04
+  useEffect(() => {
+    if (currentSectionIndex !== 4 && activeDataMode === 'marketplace') {
+      setActiveDataMode('marketing-hub');
+    }
+  }, [currentSectionIndex, activeDataMode]);
 
   // Scroll to top on mount
   useEffect(() => {
@@ -58,26 +67,28 @@ const IntelligenceOverInventoryProject = () => {
     { icon: Users, label: "Seller Training", description: "Provide data for what buyers are searching for" }
   ];
 
-  // Strategy pillars data
-  const strategyPillars = [
+  // Strategy items data (new alternating layout)
+  const strategyItems = [
     {
       number: "01",
-      title: "Challenging Research Assumptions",
-      description: "Pushed back on initial research findings that favored simplified filters. Data showed power users needed granular controls.",
-      icon: Lightbulb
+      title: "Challenging the \"More is Better\" Fallacy",
+      description: "We pushed back against the assumption that simply increasing lead volume was our primary goal. We realized that if we didn't address the content of those leads, we were just creating more work for sellers without necessarily increasing their success rate. I used the lead parsing data to prove that there was a gap between what buyers were asking and what sellers were providing. I shifted the conversation from \"How do we get more clicks?\" to \"How do we help sellers answer these common questions upfront?\"",
+      image: trendiKeywords
     },
     {
       number: "02",
-      title: "Data-Informed Execution",
-      description: "Built a feedback loop between lead quality metrics and filter usage patterns. Each iteration was validated against conversion data.",
-      icon: TrendingUp
-    },
-    {
-      number: "03",
-      title: "Business Value Alignment",
-      description: "Positioned first-party data collection as a competitive moat. Shifted stakeholder focus from feature parity to unique value creation.",
-      icon: Target
+      title: "Data-Informed Coaching (The Marketing Hub)",
+      description: "By shifting our mindset from delivering more leads to delivering quality leads, we challenged how we present data to our users. Instead of a passive listing form, the Hub became a coaching tool. We implemented the \"Popular Features\" section and the Property Completeness Score. We used the parser's findings to tell sellers exactly what they were missing. \"Water and Electricity are often asked about by buyers. Properties that include this see an average of 5x more leads.\"",
+      image: mhCompletenessCards
     }
+  ];
+
+  // Parsing tool cards data (2x2 grid)
+  const parsingCards = [
+    { image: trendiUpload, title: "Upload & Configure", caption: "Upload email data and configure the parsing engine for analysis." },
+    { image: trendiKeywords, title: "Keyword Analysis", caption: "Track keyword trends over time with interactive charts and filters." },
+    { image: trendiRegions, title: "Distribution Insights", caption: "Visualize keyword distribution and identify top search terms." },
+    { image: trendiAdvanced, title: "Advanced Trend Analysis", caption: "Deep dive into temporal patterns and emerging buyer interests." }
   ];
 
   // Gallery items data
@@ -209,7 +220,7 @@ const IntelligenceOverInventoryProject = () => {
                 Transforming Commodity Data into First-Party Insights
               </p>
               <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-                A strategic initiative to convert generic 3rd-party listing data into proprietary buyer intent signals, 
+                A strategic initiative to convert generic 3rd-party listing data into proprietary buyer intent data, 
                 powering advanced search filters and a seller performance coaching system.
               </p>
               
@@ -307,7 +318,7 @@ const IntelligenceOverInventoryProject = () => {
                   The Insight Engine
                 </h2>
                 <p className="text-lg md:text-xl text-muted-foreground mt-4 max-w-2xl">
-                  A data pipeline that transforms buyer engagement signals into actionable product features.
+                  A data pipeline that transforms raw buyer interactions into actionable product features.
                 </p>
               </div>
               <span className="text-5xl md:text-7xl font-bold font-mono opacity-20 hidden md:block">
@@ -458,20 +469,20 @@ const IntelligenceOverInventoryProject = () => {
           </div>
         </section>
 
-        {/* From Noise to Signal - Parsing Tool Section - /03 */}
+        {/* Lead Intelligence Tool - Parsing Tool Section - /03 */}
         <section
           ref={(el) => { (sectionRefs[3] as any).current = el; }}
-          className="slide-section flex items-start overflow-y-auto py-12"
+          className="slide-section flex items-center"
         >
           <div className="w-full px-4 md:px-8 lg:px-12">
             {/* Section Header */}
-            <div className="flex items-start justify-between mb-12">
+            <div className="flex items-start justify-between mb-8">
               <div className="flex-1">
                 <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground">
-                  From Noise to Signal
+                  The Lead Intelligence Tool
                 </h2>
                 <p className="text-lg md:text-xl text-muted-foreground mt-4 max-w-3xl">
-                  The parsing tool transforms unstructured lead messages into structured intent data, enabling smarter filters and actionable seller insights.
+                  The parsing tool extracts buyer intent from unstructured lead data, enabling smarter filters and actionable seller insights.
                 </p>
               </div>
               <span className="text-5xl md:text-7xl font-bold font-mono opacity-20 hidden md:block">
@@ -479,28 +490,23 @@ const IntelligenceOverInventoryProject = () => {
               </span>
             </div>
 
-            {/* Stacked Full-Width Gallery */}
-            <div className="space-y-12">
-              <div className="space-y-4">
-                <div className="w-full aspect-[16/9] bg-muted/30 border border-border rounded-xl overflow-hidden">
-                  <img src={trendiUpload} alt="Upload & Configure" className="w-full h-full object-cover object-top" />
+            {/* 2x2 Card Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {parsingCards.map((card, index) => (
+                <div key={index} className="bg-card border border-border rounded-xl overflow-hidden">
+                  <div className="aspect-[4/3] overflow-hidden">
+                    <img 
+                      src={card.image} 
+                      alt={card.title}
+                      className="w-full h-full object-cover object-top"
+                    />
+                  </div>
+                  <div className="p-4">
+                    <h3 className="text-lg font-semibold text-foreground mb-1">{card.title}</h3>
+                    <p className="text-sm text-muted-foreground">{card.caption}</p>
+                  </div>
                 </div>
-                <p className="text-base text-muted-foreground max-w-2xl">Upload email data and configure the parsing engine for analysis.</p>
-              </div>
-              
-              <div className="space-y-4">
-                <div className="w-full aspect-[16/9] bg-muted/30 border border-border rounded-xl overflow-hidden">
-                  <img src={trendiKeywords} alt="Keyword Analysis" className="w-full h-full object-cover object-top" />
-                </div>
-                <p className="text-base text-muted-foreground max-w-2xl">Track keyword trends over time with interactive charts and filters.</p>
-              </div>
-              
-              <div className="space-y-4">
-                <div className="w-full aspect-[16/9] bg-muted/30 border border-border rounded-xl overflow-hidden">
-                  <img src={trendiRegions} alt="Distribution Insights" className="w-full h-full object-cover object-top" />
-                </div>
-                <p className="text-base text-muted-foreground max-w-2xl">Visualize keyword distribution and identify top search terms.</p>
-              </div>
+              ))}
             </div>
           </div>
         </section>
@@ -511,7 +517,7 @@ const IntelligenceOverInventoryProject = () => {
           activeTab={activeDataMode}
         />
 
-        {/* Strategy & Influence Grid - /05 */}
+        {/* Strategy & Influence - /05 - Alternating Layout */}
         <section
           ref={(el) => { (sectionRefs[5] as any).current = el; }}
           className="slide-section flex items-center bg-card/30"
@@ -527,21 +533,35 @@ const IntelligenceOverInventoryProject = () => {
               </span>
             </div>
 
-            {/* 3-Column Card Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-              {strategyPillars.map((pillar) => (
-                <div
-                  key={pillar.number}
-                  className="bg-card rounded-xl p-6 md:p-8 border border-border hover:border-primary/20 transition-colors"
+            {/* Alternating 2-Column Layout */}
+            <div className="space-y-12">
+              {strategyItems.map((item, index) => (
+                <div 
+                  key={item.number}
+                  className={cn(
+                    "grid grid-cols-1 lg:grid-cols-2 gap-8 items-center"
+                  )}
                 >
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="text-3xl md:text-4xl font-bold font-mono text-primary/30">{pillar.number}</span>
-                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                      <pillar.icon className="w-6 h-6 text-primary" />
-                    </div>
+                  {/* Image side */}
+                  <div className={cn(
+                    "aspect-video bg-muted/30 border border-border rounded-xl overflow-hidden",
+                    index % 2 === 1 && "lg:order-2"
+                  )}>
+                    {item.image ? (
+                      <img src={item.image} alt={item.title} className="w-full h-full object-cover object-top" />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center">
+                        <p className="text-muted-foreground">Visual placeholder</p>
+                      </div>
+                    )}
                   </div>
-                  <h3 className="text-xl font-semibold text-foreground mb-3">{pillar.title}</h3>
-                  <p className="text-base text-muted-foreground">{pillar.description}</p>
+                  
+                  {/* Text side */}
+                  <div className={cn("space-y-4", index % 2 === 1 && "lg:order-1")}>
+                    <span className="text-4xl font-bold font-mono text-primary/30">/{item.number}</span>
+                    <h3 className="text-2xl font-semibold text-foreground">{item.title}</h3>
+                    <p className="text-base text-muted-foreground leading-relaxed">{item.description}</p>
+                  </div>
                 </div>
               ))}
             </div>
