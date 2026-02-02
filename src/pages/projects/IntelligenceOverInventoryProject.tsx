@@ -12,7 +12,7 @@ import { ImpactSection04 } from "@/components/ImpactSection04";
 import trendiUpload from "@/assets/trendi-upload.png";
 import trendiKeywords from "@/assets/trendi-keywords.png";
 import trendiRegions from "@/assets/trendi-regions.png";
-import featureRipplesImage from "@/assets/feature-ripples.jpg";
+
 const IntelligenceOverInventoryProject = () => {
   // Section data for navigation
   const sectionData = [
@@ -23,7 +23,6 @@ const IntelligenceOverInventoryProject = () => {
     { id: 'impact', label: 'Impact', number: '/04' },
     { id: 'strategy', label: 'Strategy', number: '/05' },
     { id: 'gallery', label: 'Gallery', number: '/06' },
-    { id: 'ripples', label: 'Ripples', number: '/06.5' },
     { id: 'vision', label: 'Vision', number: '/07' },
     { id: 'next-project', label: 'Next Project', number: '/08' }
   ];
@@ -40,11 +39,8 @@ const IntelligenceOverInventoryProject = () => {
   // Section /02 layout toggle state
   const [section02Layout, setSection02Layout] = useState<'horizontal' | 'vertical'>('horizontal');
   
-  // Feature Ripples section ref
-  const rippleSectionRef = useRef<HTMLElement>(null);
-  
-  // Show toggle only on sections 4-8 (Impact, Strategy, Gallery, Ripples, Vision)
-  const showDualModeToggle = currentSectionIndex >= 4 && currentSectionIndex <= 8;
+  // Show toggle only on sections 4-7 (Impact, Strategy, Gallery, Vision)
+  const showDualModeToggle = currentSectionIndex >= 4 && currentSectionIndex <= 7;
 
   // Scroll to top on mount
   useEffect(() => {
@@ -580,48 +576,9 @@ const IntelligenceOverInventoryProject = () => {
           </div>
         </section>
 
-        {/* Feature Ripples Section - /06.5 */}
-        <section
-          ref={(el) => { 
-            (sectionRefs[7] as any).current = el;
-            rippleSectionRef.current = el;
-          }}
-          className="slide-section flex items-center justify-center"
-        >
-          <div className="w-full h-full flex flex-col items-center justify-center px-4 md:px-8 lg:px-12">
-            {/* Header */}
-            <div className="flex items-start justify-between w-full mb-8">
-              <div>
-                <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground">
-                  Feature Ripples
-                </h2>
-                <p className="text-lg md:text-xl text-muted-foreground mt-2">
-                  how this data affects the rest of the app ecosystem
-                </p>
-              </div>
-              <span className="text-5xl md:text-7xl font-bold font-mono opacity-20 hidden md:block">
-                /06.5
-              </span>
-            </div>
-            
-            {/* Image Container - Cropped to square initially, fills viewport */}
-            <div className="flex-1 w-full flex items-center justify-center">
-              <div 
-                className="overflow-hidden rounded-xl aspect-square max-h-[60vh] max-w-[60vh]"
-              >
-                <img 
-                  src={featureRipplesImage}
-                  alt="Feature ripples ecosystem diagram"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Future Vision - /07 */}
         <section
-          ref={(el) => { (sectionRefs[8] as any).current = el; }}
+          ref={(el) => { (sectionRefs[7] as any).current = el; }}
           className="slide-section flex items-center bg-card/30"
         >
           <div className="w-full px-4 md:px-8 lg:px-12">
@@ -641,7 +598,7 @@ const IntelligenceOverInventoryProject = () => {
 
         {/* Next Project - /08 */}
         <section
-          ref={(el) => { (sectionRefs[9] as any).current = el; }}
+          ref={(el) => { (sectionRefs[8] as any).current = el; }}
           className="slide-section flex items-center"
         >
           <div className="w-full px-4 md:px-8 lg:px-12">
