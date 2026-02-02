@@ -4,15 +4,10 @@ const Hero = () => {
   return (
     <>
       <Navbar />
-      <section className="relative min-h-screen flex items-center justify-center bg-background">
-        {/* Subtle texture overlay */}
-        <div 
-          className="absolute inset-0 z-0 opacity-[0.03]"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-          }}
-        />
-
+      <section 
+        data-bg-state="floating"
+        className="relative min-h-screen flex items-center justify-center"
+      >
         {/* Content */}
         <div className="relative z-10 container mx-auto px-6 pt-32 pb-20 text-center animate-fade-in">
           <div className="max-w-4xl mx-auto space-y-12">
