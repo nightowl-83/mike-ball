@@ -40,8 +40,7 @@ const IntelligenceOverInventoryProject = () => {
   // Section /02 layout toggle state
   const [section02Layout, setSection02Layout] = useState<'horizontal' | 'vertical'>('horizontal');
   
-  // Feature Ripples scroll progress state
-  const [rippleProgress, setRippleProgress] = useState(0);
+  // Feature Ripples section ref
   const rippleSectionRef = useRef<HTMLElement>(null);
   
   // Show toggle only on sections 4-8 (Impact, Strategy, Gallery, Ripples, Vision)
@@ -178,25 +177,6 @@ const IntelligenceOverInventoryProject = () => {
     }
   }, [currentSectionIndex]);
 
-  // Feature Ripples scroll-driven animation
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!rippleSectionRef.current) return;
-      const rect = rippleSectionRef.current.getBoundingClientRect();
-      const sectionHeight = rippleSectionRef.current.offsetHeight;
-      const viewportHeight = window.innerHeight;
-      
-      // Calculate progress based on how far into the section we've scrolled
-      const scrolled = viewportHeight - rect.top;
-      const totalScrollable = sectionHeight;
-      const progress = Math.max(0, Math.min(1, scrolled / totalScrollable));
-      
-      setRippleProgress(progress);
-    };
-    
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   return (
     <div className="flex bg-background">
@@ -606,44 +586,35 @@ const IntelligenceOverInventoryProject = () => {
             (sectionRefs[7] as any).current = el;
             rippleSectionRef.current = el;
           }}
-          className="min-h-[200vh] relative"
+          className="slide-section flex items-center justify-center"
         >
-          {/* Sticky Container */}
-          <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden">
-            {/* Header - Fades out as image expands */}
-            <div 
-              className="absolute top-12 left-0 right-0 px-4 md:px-8 lg:px-12 z-10 transition-opacity duration-300"
-              style={{ opacity: 1 - rippleProgress }}
-            >
-              <div className="flex items-start justify-between">
-                <div>
-                  <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground">
-                    Feature Ripples
-                  </h2>
-                  <p className="text-lg md:text-xl text-muted-foreground mt-2">
-                    how this data affects the rest of the app ecosystem
-                  </p>
-                </div>
-                <span className="text-5xl md:text-7xl font-bold font-mono opacity-20 hidden md:block">
-                  /06.5
-                </span>
+          <div className="w-full h-full flex flex-col items-center justify-center px-4 md:px-8 lg:px-12">
+            {/* Header */}
+            <div className="flex items-start justify-between w-full mb-8">
+              <div>
+                <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground">
+                  Feature Ripples
+                </h2>
+                <p className="text-lg md:text-xl text-muted-foreground mt-2">
+                  how this data affects the rest of the app ecosystem
+                </p>
               </div>
+              <span className="text-5xl md:text-7xl font-bold font-mono opacity-20 hidden md:block">
+                /06.5
+              </span>
             </div>
             
-            {/* Expanding Image Container */}
-            <div 
-              className="overflow-hidden"
-              style={{
-                width: `calc(min(50vh, 50vw) + (100vw - min(50vh, 50vw)) * ${rippleProgress})`,
-                height: `calc(min(50vh, 50vw) + (100vh - min(50vh, 50vw)) * ${rippleProgress})`,
-                borderRadius: `${(1 - rippleProgress) * 16}px`,
-              }}
-            >
-              <img 
-                src={featureRipplesImage}
-                alt="Feature ripples ecosystem diagram"
-                className="w-full h-full object-cover"
-              />
+            {/* Image Container - Cropped to square initially, fills viewport */}
+            <div className="flex-1 w-full flex items-center justify-center">
+              <div 
+                className="overflow-hidden rounded-xl aspect-square max-h-[60vh] max-w-[60vh]"
+              >
+                <img 
+                  src={featureRipplesImage}
+                  alt="Feature ripples ecosystem diagram"
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
           </div>
         </section>
