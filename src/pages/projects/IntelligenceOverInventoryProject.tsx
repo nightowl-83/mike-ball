@@ -461,11 +461,11 @@ const IntelligenceOverInventoryProject = () => {
         {/* From Noise to Signal - Parsing Tool Section - /03 */}
         <section
           ref={(el) => { (sectionRefs[3] as any).current = el; }}
-          className="slide-section flex items-center"
+          className="slide-section flex items-start overflow-y-auto py-12"
         >
           <div className="w-full px-4 md:px-8 lg:px-12">
             {/* Section Header */}
-            <div className="flex items-start justify-between mb-8">
+            <div className="flex items-start justify-between mb-12">
               <div className="flex-1">
                 <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground">
                   From Noise to Signal
@@ -479,25 +479,27 @@ const IntelligenceOverInventoryProject = () => {
               </span>
             </div>
 
-            {/* 3-Image Gallery */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-              <div className="space-y-3">
-                <div className="aspect-[4/3] bg-muted/50 border border-border rounded-xl overflow-hidden">
-                  <img src={trendiUpload} alt="Upload & Configure" className="w-full h-full object-cover" />
+            {/* Stacked Full-Width Gallery */}
+            <div className="space-y-12">
+              <div className="space-y-4">
+                <div className="w-full aspect-[16/9] bg-muted/30 border border-border rounded-xl overflow-hidden">
+                  <img src={trendiUpload} alt="Upload & Configure" className="w-full h-full object-cover object-top" />
                 </div>
-                <p className="text-sm text-muted-foreground">Upload email data and configure the parsing engine for analysis.</p>
+                <p className="text-base text-muted-foreground max-w-2xl">Upload email data and configure the parsing engine for analysis.</p>
               </div>
-              <div className="space-y-3">
-                <div className="aspect-[4/3] bg-muted/50 border border-border rounded-xl overflow-hidden">
-                  <img src={trendiKeywords} alt="Keyword Analysis" className="w-full h-full object-cover" />
+              
+              <div className="space-y-4">
+                <div className="w-full aspect-[16/9] bg-muted/30 border border-border rounded-xl overflow-hidden">
+                  <img src={trendiKeywords} alt="Keyword Analysis" className="w-full h-full object-cover object-top" />
                 </div>
-                <p className="text-sm text-muted-foreground">Track keyword trends over time with interactive charts and filters.</p>
+                <p className="text-base text-muted-foreground max-w-2xl">Track keyword trends over time with interactive charts and filters.</p>
               </div>
-              <div className="space-y-3">
-                <div className="aspect-[4/3] bg-muted/50 border border-border rounded-xl overflow-hidden">
-                  <img src={trendiRegions} alt="Distribution Insights" className="w-full h-full object-cover" />
+              
+              <div className="space-y-4">
+                <div className="w-full aspect-[16/9] bg-muted/30 border border-border rounded-xl overflow-hidden">
+                  <img src={trendiRegions} alt="Distribution Insights" className="w-full h-full object-cover object-top" />
                 </div>
-                <p className="text-sm text-muted-foreground">Visualize keyword distribution and identify top search terms.</p>
+                <p className="text-base text-muted-foreground max-w-2xl">Visualize keyword distribution and identify top search terms.</p>
               </div>
             </div>
           </div>

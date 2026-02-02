@@ -3,22 +3,30 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 
+// Import Marketing Hub images
+import mhUtilitiesForm from "@/assets/mh-utilities-form.png";
+import mhCompletenessCards from "@/assets/mh-completeness-cards.png";
+import mhUtilitiesSearch from "@/assets/mh-utilities-search.png";
+
 // Narrative content blocks for Marketing Hub
 const hubBlocks = [
   {
     title: "The Seller's 'Aha' Moment",
     quote: "We shifted from asking for data to proving its ROI.",
-    narrative: "By surfacing buyer intent directly within the listing flow, we transformed a chore into a competitive advantage. We didn't just ask for utility info; we showed sellers that it was their fastest path to a 5x lead increase."
+    narrative: "By surfacing buyer intent directly within the listing flow, we transformed a chore into a competitive advantage. We didn't just ask for utility info; we showed sellers that it was their fastest path to a 5x lead increase.",
+    image: mhUtilitiesForm
   },
   {
     title: "Gamifying Quality",
     quote: "The Completeness Score became our invisible coach.",
-    narrative: "We used gamification to align seller behavior with search engine success. It provided a clear, actionable roadmap for sellers to improve their own visibility without needing a manual support touch-point."
+    narrative: "We used gamification to align seller behavior with search engine success. It provided a clear, actionable roadmap for sellers to improve their own visibility without needing a manual support touch-point.",
+    image: mhCompletenessCards
   },
   {
     title: "Closing the Loop",
     quote: "We built a self-correcting data flywheel.",
-    narrative: "This created a bridge between two platforms: buyer questions fueled seller prompts, which in turn unlocked the filters buyers needed. The system started learning and improving its own data density."
+    narrative: "This created a bridge between two platforms: buyer questions fueled seller prompts, which in turn unlocked the filters buyers needed. The system started learning and improving its own data density.",
+    image: mhUtilitiesSearch
   }
 ];
 
@@ -27,12 +35,14 @@ const marketplaceBlocks = [
   {
     title: "The 'Invisibility' Problem",
     quote: "Turning 'Dark Data' into Searchable Value.",
-    narrative: "In a market flooded with identical 3rd-party listings, our users were struggling to find land that met basic survivability needs—water, power, and road access. This data existed in the leads, but was invisible on the page."
+    narrative: "In a market flooded with identical 3rd-party listings, our users were struggling to find land that met basic survivability needs—water, power, and road access. This data existed in the leads, but was invisible on the page.",
+    image: null as string | null
   },
   {
     title: "Intent-Based Navigation",
     quote: "We didn't design filters; we designed answers.",
-    narrative: "Using the lead parser, I prioritized a 'Utility First' navigation. We elevated the attributes that our users were most vocal about in their inquiries, drastically reducing the 'pogo-sticking' behavior between the search page and listing details."
+    narrative: "Using the lead parser, I prioritized a 'Utility First' navigation. We elevated the attributes that our users were most vocal about in their inquiries, drastically reducing the 'pogo-sticking' behavior between the search page and listing details.",
+    image: null as string | null
   }
 ];
 
@@ -117,8 +127,18 @@ export const ImpactSection04 = ({ sectionRef, activeTab }: ImpactSection04Props)
             </div>
             
             {/* Image Column */}
-            <div className="lg:col-span-2 h-[calc(100vh-480px)] min-h-[300px] bg-muted/50 border border-border rounded-xl flex items-center justify-center transition-all duration-500">
-              <p className="text-muted-foreground text-base">Image for "{currentBlocks[safeActiveBlock].title}"</p>
+            <div className="lg:col-span-2 h-[calc(100vh-480px)] min-h-[300px] bg-muted/30 border border-border rounded-xl overflow-hidden transition-all duration-500">
+              {currentBlocks[safeActiveBlock].image ? (
+                <img 
+                  src={currentBlocks[safeActiveBlock].image} 
+                  alt={currentBlocks[safeActiveBlock].title}
+                  className="w-full h-full object-cover object-top"
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center">
+                  <p className="text-muted-foreground text-base">Image for "{currentBlocks[safeActiveBlock].title}"</p>
+                </div>
+              )}
             </div>
           </div>
         </div>
