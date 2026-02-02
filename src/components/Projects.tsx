@@ -37,7 +37,7 @@ const Projects = () => {
   };
 
   return (
-    <section id="work" className="py-12 md:py-24 scroll-mt-24">
+    <section id="work" data-bg-state="grid" className="py-12 md:py-24 scroll-mt-24">
       <div className="container mx-auto max-w-[1080px] px-4 md:px-6">
         {/* Section Header */}
         <div className="text-center space-y-3 md:space-y-4 mb-12 md:mb-16 animate-fade-in">
