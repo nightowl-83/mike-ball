@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowRight, Database, Filter, BarChart3, Target, Users, ChevronLeft, ChevronRight, Lightbulb, Sparkles, TrendingUp, Brain } from "lucide-react";
+import { ArrowDown, ArrowRight, Database, Filter, BarChart3, Target, Users, ChevronLeft, ChevronRight, Lightbulb, Sparkles, TrendingUp, Brain, Quote, MessageSquare } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState, useRef, useCallback } from "react";
@@ -18,7 +18,7 @@ import analyticsScoreCard from "@/assets/Analytics-Score_Card.png";
 import marketCompareOptions from "@/assets/Market-Compare-Options.png";
 
 const IntelligenceOverInventoryProject = () => {
-  // Section data for navigation - Added "The Idea" section
+  // Section data for navigation - Added Gallery section
   const sectionData = [
     { id: 'hero', label: 'Overview', number: '' },
     { id: 'conflict', label: 'The Challenge', number: '/01', subtitle: 'Understanding the commodity data problem' },
@@ -27,6 +27,7 @@ const IntelligenceOverInventoryProject = () => {
     { id: 'parsing', label: 'Parsing Tool', number: '/03', subtitle: 'Extracting buyer intent from leads' },
     { id: 'impact', label: 'Impact', number: '/04', subtitle: 'Dual-interface implementation' },
     { id: 'strategy', label: 'Strategy', number: '/05', subtitle: 'Influencing product direction' },
+    { id: 'gallery', label: 'Gallery', number: '', subtitle: 'Messaging and treatment variations' },
     { id: 'vision', label: 'Vision', number: '/06', subtitle: 'The AI-powered future' },
     { id: 'next-project', label: 'Next Project', number: '/07' }
   ];
@@ -94,15 +95,8 @@ const IntelligenceOverInventoryProject = () => {
       image: marketCompareOptions
     }
   ];
-  
-  // Gallery images for Strategy section
-  const strategyGalleryImages = [
-    { src: hubAnalyticsCore, alt: "Analytics Core Dashboard" },
-    { src: analyticsScoreCard, alt: "Listing Completeness Score" },
-    { src: marketCompareOptions, alt: "Market Comparison Options" }
-  ];
 
-  // Parsing tool cards data - with text boxes and swapped image layout
+  // Parsing tool cards data - 2 column design with proper aspect ratios
   const parsingCardPairs = [
     { 
       images: [
@@ -132,12 +126,15 @@ const IntelligenceOverInventoryProject = () => {
     }
   ];
 
-  // Vision roadmap items
+  // Vision roadmap items - with associated images
   const visionItems = [
-    { icon: Brain, title: "Predictive Matching", description: "ML models predict buyer preferences before they search" },
-    { icon: Sparkles, title: "Proactive Discovery", description: "Surface listings that match latent intent patterns" },
-    { icon: TrendingUp, title: "Engagement Analytics", description: "Deep analysis of cross-platform behavior signals" }
+    { icon: Brain, title: "Predictive Matching", description: "ML models predict buyer preferences before they search", image: hubAnalyticsCore },
+    { icon: Sparkles, title: "Proactive Discovery", description: "Surface listings that match latent intent patterns", image: analyticsScoreCard },
+    { icon: TrendingUp, title: "Engagement Analytics", description: "Deep analysis of cross-platform behavior signals", image: marketCompareOptions }
   ];
+  
+  // Vision active index for 2-column clickable layout
+  const [visionActiveIndex, setVisionActiveIndex] = useState(0);
 
   // Challenge section conversation points
   const challengePoints = [
@@ -155,7 +152,8 @@ const IntelligenceOverInventoryProject = () => {
   const WHEEL_THRESHOLD = 100;
   const isTransitioningRef = useRef(false);
 
-  // "The Idea" section - now just a simple blockquote, no state needed
+  // "The Idea" section - toggle between blockquote variations
+  const [ideaVariant, setIdeaVariant] = useState<'centered' | 'split'>('centered');
 
   // Slide indices for fade-up navigation (no carousel API needed)
   const [parsingActiveIndex, setParsingActiveIndex] = useState(0);
@@ -203,7 +201,7 @@ const IntelligenceOverInventoryProject = () => {
             setParsingActiveIndex(newIdx);
           }
         }
-        // Section 6: Strategy - fade navigation
+        // Section 6: Strategy - fade navigation (index shifted due to gallery)
         else if (currentSectionIndex === 6) {
           e.preventDefault();
           const newIdx = strategyActiveIndex + direction;
@@ -414,8 +412,8 @@ const IntelligenceOverInventoryProject = () => {
               <p className="text-xl md:text-2xl text-muted-foreground animate-fade-in [animation-delay:200ms]">
                 Transforming Commodity Data into First-Party Insights
               </p>
-              <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto animate-fade-in [animation-delay:300ms]">
-                A strategic initiative to convert generic 3rd-party listing data into proprietary buyer intent data—powering advanced search filters and a seller performance coaching system.
+              <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto animate-fade-in [animation-delay:300ms]">
+                A strategic initiative to convert generic 3rd-party listing data into proprietary buyer intent data—powering advanced search filters and seller performance coaching.
               </p>
               
               {/* Metadata Grid */}
@@ -434,10 +432,10 @@ const IntelligenceOverInventoryProject = () => {
                 </div>
               </div>
 
-              {/* Impact Metrics */}
+              {/* Impact Metrics - Light text for better legibility */}
               <div className="flex flex-wrap justify-center gap-3 pt-4 animate-fade-in [animation-delay:500ms]">
-                <span className="px-4 py-2 rounded-full bg-primary/15 text-primary border border-primary/20 text-base font-semibold">+45% Lead Quality</span>
-                <span className="px-4 py-2 rounded-full bg-primary/15 text-primary border border-primary/20 text-base font-semibold">First-Party Data</span>
+                <span className="px-4 py-2 rounded-full bg-primary text-primary-foreground text-base font-semibold">+45% Lead Quality</span>
+                <span className="px-4 py-2 rounded-full bg-primary text-primary-foreground text-base font-semibold">First-Party Data</span>
               </div>
             </div>
           </div>
@@ -534,7 +532,7 @@ const IntelligenceOverInventoryProject = () => {
           </div>
         </section>
 
-        {/* The Idea Section - Enhanced with visual interest */}
+        {/* The Idea Section - Toggle between two blockquote variations */}
         <section
           ref={(el) => { 
             (sectionRefs[2] as any).current = el;
@@ -544,30 +542,99 @@ const IntelligenceOverInventoryProject = () => {
           {/* Subtle background gradient */}
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
           
-          <div className="w-[85%] mx-auto max-w-4xl relative z-10">
-            {/* Lightbulb icon above quote */}
+          <div className="w-[85%] mx-auto relative z-10">
+            {/* Variant Toggle */}
             <div className="flex justify-center mb-8">
-              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
-                <Lightbulb className="w-8 h-8 text-primary" />
+              <div className="bg-card border border-border rounded-full p-1 flex gap-1">
+                <button
+                  onClick={() => setIdeaVariant('centered')}
+                  className={cn(
+                    "px-4 py-2 rounded-full text-sm font-medium transition-all",
+                    ideaVariant === 'centered' 
+                      ? "bg-primary text-primary-foreground" 
+                      : "text-muted-foreground hover:text-foreground"
+                  )}
+                >
+                  <Quote className="w-4 h-4 inline mr-2" />
+                  Centered
+                </button>
+                <button
+                  onClick={() => setIdeaVariant('split')}
+                  className={cn(
+                    "px-4 py-2 rounded-full text-sm font-medium transition-all",
+                    ideaVariant === 'split' 
+                      ? "bg-primary text-primary-foreground" 
+                      : "text-muted-foreground hover:text-foreground"
+                  )}
+                >
+                  <MessageSquare className="w-4 h-4 inline mr-2" />
+                  Split
+                </button>
               </div>
             </div>
             
-            <blockquote className="text-center space-y-8">
-              <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed italic">
-                "One of my accounts called in asking if we could add to display 'Owner Financing' when available. He said{" "}
-                <span className="font-semibold text-foreground not-italic">
-                  'I sent multiple inquiries to the sellers on your site and he never responded'
-                </span>"
-              </p>
-              <footer className="text-base text-muted-foreground/80 font-medium tracking-wide uppercase">
-                — Account Manager Feature Request
-              </footer>
-              <div className="pt-6 border-t border-border/50">
-                <p className="text-2xl md:text-3xl font-semibold text-primary leading-relaxed">
-                  The leads themselves could tell us what buyers actually want.
-                </p>
+            {/* Variation 1: Centered (Original) */}
+            {ideaVariant === 'centered' && (
+              <div className="max-w-4xl mx-auto animate-fade-in">
+                {/* Lightbulb icon above quote */}
+                <div className="flex justify-center mb-8">
+                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
+                    <Lightbulb className="w-8 h-8 text-primary" />
+                  </div>
+                </div>
+                
+                <blockquote className="text-center space-y-8">
+                  <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed italic">
+                    "One of my accounts called in asking if we could add to display 'Owner Financing' when available. He said{" "}
+                    <span className="font-semibold text-foreground not-italic">
+                      'I sent multiple inquiries to the sellers on your site and he never responded'
+                    </span>"
+                  </p>
+                  <footer className="text-base text-muted-foreground/80 font-medium tracking-wide uppercase">
+                    — Account Manager Feature Request
+                  </footer>
+                  <div className="pt-6 border-t border-border/50">
+                    <p className="text-2xl md:text-3xl font-semibold text-primary leading-relaxed">
+                      The leads themselves could tell us what buyers actually want.
+                    </p>
+                  </div>
+                </blockquote>
               </div>
-            </blockquote>
+            )}
+            
+            {/* Variation 2: Split Layout with cards */}
+            {ideaVariant === 'split' && (
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center animate-fade-in">
+                {/* Left: Quote Card */}
+                <div className="bg-card border border-border rounded-2xl p-8 relative">
+                  <Quote className="w-12 h-12 text-primary/20 absolute top-6 left-6" />
+                  <div className="pl-8 pt-8">
+                    <p className="text-lg md:text-xl text-muted-foreground leading-relaxed italic mb-6">
+                      "One of my accounts called in asking if we could add to display 'Owner Financing' when available. He said{" "}
+                      <span className="font-semibold text-foreground not-italic">
+                        'I sent multiple inquiries to the sellers on your site and he never responded'
+                      </span>"
+                    </p>
+                    <footer className="text-sm text-muted-foreground/80 font-medium tracking-wide uppercase">
+                      — Account Manager Feature Request
+                    </footer>
+                  </div>
+                </div>
+                
+                {/* Right: Insight Card */}
+                <div className="bg-primary/5 border border-primary/20 rounded-2xl p-8">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                      <Lightbulb className="w-6 h-6 text-primary" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-foreground">The Insight</h3>
+                  </div>
+                  <p className="text-2xl md:text-3xl font-semibold text-primary leading-relaxed">
+                    The leads themselves could tell us what buyers actually want.
+                  </p>
+                </div>
+              </div>
+            )}
           </div>
           
           {/* Connecting line to next section */}
@@ -638,7 +705,7 @@ const IntelligenceOverInventoryProject = () => {
           </div>
         </section>
 
-        {/* Lead Intelligence Tool - Parsing Tool Section - /03 */}
+        {/* Lead Intelligence Tool - Parsing Tool Section - /03 - 2 Column Layout */}
         <section
           ref={(el) => { 
             (sectionRefs[4] as any).current = el;
@@ -646,9 +713,9 @@ const IntelligenceOverInventoryProject = () => {
           }}
           className="slide-section flex flex-col pt-8 relative min-h-screen"
         >
-          <div className="w-full px-4 md:px-8 lg:px-12 flex flex-col flex-1 pb-24">
+          <div className="w-full px-4 md:px-8 lg:px-12 flex flex-col flex-1 pb-32">
             {/* Section Header */}
-            <div className="flex items-start justify-between mb-8">
+            <div className="flex items-start justify-between mb-12">
               <div className="flex-1">
                 <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground">
                   The Lead Intelligence Tool
@@ -662,7 +729,7 @@ const IntelligenceOverInventoryProject = () => {
               </span>
             </div>
 
-            {/* Content fills remaining viewport - 3:1 ratio with fade-up animation */}
+            {/* Content fills remaining viewport - 2 column layout with fade-up animation */}
             <div className="flex-1 relative overflow-hidden">
               {parsingCardPairs.map((pair, pairIndex) => {
                 const isActive = parsingActiveIndex === pairIndex;
@@ -672,7 +739,7 @@ const IntelligenceOverInventoryProject = () => {
                   <div
                     key={pairIndex}
                     className={cn(
-                      "absolute inset-0 grid grid-cols-1 lg:grid-cols-4 gap-8 items-start h-full transition-all duration-700 ease-out",
+                      "absolute inset-0 grid grid-cols-1 lg:grid-cols-2 gap-12 items-start h-full transition-all duration-700 ease-out",
                       isActive 
                         ? "opacity-100 translate-y-0 z-10" 
                         : isPast
@@ -680,41 +747,41 @@ const IntelligenceOverInventoryProject = () => {
                           : "opacity-0 translate-y-12 pointer-events-none z-0"
                     )}
                   >
-                    {/* Images Column - 3 columns with 16:9 aspect ratio containers */}
-                    <div className="relative lg:col-span-3 h-[400px] lg:h-full min-h-[400px]">
-                      {/* Secondary image - back (swapped order) */}
-                      <div className="absolute left-0 top-0 w-[70%] aspect-[16/10] rounded-xl overflow-hidden shadow-xl border border-border bg-card">
+                    {/* Images Column - stacked with proper aspect ratios */}
+                    <div className="relative h-[500px] lg:h-full">
+                      {/* Secondary image - back */}
+                      <div className="absolute left-0 top-0 w-[85%] rounded-xl overflow-hidden shadow-xl border border-border bg-card">
                         <img 
                           src={pair.images[1].src} 
                           alt={pair.images[1].title}
-                          className="w-full h-full object-contain bg-muted/30"
+                          className="w-full h-auto object-contain"
                         />
                       </div>
-                      {/* Primary image - front, overlapping (swapped order) */}
-                      <div className="absolute right-0 bottom-4 w-[75%] aspect-[16/10] rounded-xl overflow-hidden shadow-2xl border border-border bg-card">
+                      {/* Primary image - front, overlapping */}
+                      <div className="absolute right-0 bottom-8 w-[85%] rounded-xl overflow-hidden shadow-2xl border border-border bg-card">
                         <img 
                           src={pair.images[0].src} 
                           alt={pair.images[0].title}
-                          className="w-full h-full object-contain bg-muted/30"
+                          className="w-full h-auto object-contain"
                         />
                       </div>
                     </div>
 
-                    {/* Text Column - 1 column with boxed layout */}
-                    <div className="space-y-4 lg:col-span-1">
+                    {/* Text Column */}
+                    <div className="space-y-6">
                       {/* Main content box */}
-                      <div className="bg-card border border-border rounded-xl p-5 space-y-3">
-                        <h3 className="text-lg md:text-xl font-semibold text-foreground">{pair.title}</h3>
-                        <p className="text-sm md:text-base text-muted-foreground leading-relaxed">{pair.description}</p>
+                      <div className="bg-card border border-border rounded-xl p-6 space-y-4">
+                        <h3 className="text-xl md:text-2xl font-semibold text-foreground">{pair.title}</h3>
+                        <p className="text-base md:text-lg text-muted-foreground leading-relaxed">{pair.description}</p>
                       </div>
                       
                       {/* Highlights box */}
-                      <div className="bg-primary/5 border border-primary/20 rounded-xl p-5 space-y-3">
+                      <div className="bg-primary/5 border border-primary/20 rounded-xl p-6 space-y-4">
                         <h4 className="text-sm font-semibold text-primary uppercase tracking-wide">Key Capabilities</h4>
-                        <ul className="space-y-2">
+                        <ul className="space-y-3">
                           {pair.highlights.map((highlight, idx) => (
-                            <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
-                              <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                            <li key={idx} className="flex items-start gap-3 text-base text-muted-foreground">
+                              <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
                               {highlight}
                             </li>
                           ))}
@@ -770,7 +837,7 @@ const IntelligenceOverInventoryProject = () => {
           isActive={currentSectionIndex === 5}
         />
 
-        {/* Strategy & Influence - /05 - Consistent Layout with Gallery */}
+        {/* Strategy & Influence - /05 - No Gallery */}
         <section
           ref={(el) => { 
             (sectionRefs[6] as any).current = el;
@@ -778,15 +845,15 @@ const IntelligenceOverInventoryProject = () => {
           }}
           className="slide-section flex flex-col pt-8 bg-card/30 relative min-h-screen"
         >
-          <div className="w-full px-4 md:px-8 lg:px-12 flex flex-col flex-1 pb-24">
+          <div className="w-full px-4 md:px-8 lg:px-12 flex flex-col flex-1 pb-32">
             {/* Section Header */}
-            <div className="flex items-start justify-between mb-8">
+            <div className="flex items-start justify-between mb-12">
               <div className="flex-1">
                 <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground">
                   Strategy & Influence
                 </h2>
                 <p className="text-lg md:text-xl text-muted-foreground mt-3 max-w-2xl">
-                  Influencing product direction with data
+                  How I used the data to shape product decisions
                 </p>
               </div>
               <span className="text-5xl md:text-7xl font-bold font-mono opacity-20 hidden md:block">
@@ -794,8 +861,8 @@ const IntelligenceOverInventoryProject = () => {
               </span>
             </div>
 
-            {/* Content fills remaining viewport - fade-up animation */}
-            <div className="flex-1 relative overflow-hidden min-h-[500px]">
+            {/* Content fills remaining viewport - with fade-up animation */}
+            <div className="flex-1 relative overflow-hidden">
               {strategyItems.map((item, index) => {
                 const isActive = strategyActiveIndex === index;
                 const isPast = strategyActiveIndex > index;
@@ -812,12 +879,12 @@ const IntelligenceOverInventoryProject = () => {
                           : "opacity-0 translate-y-12 pointer-events-none z-0"
                     )}
                   >
-                    {/* Image Column - consistent position (no alternating) with better aspect ratio */}
-                    <div className="aspect-[16/10] bg-muted/30 border border-border rounded-xl overflow-hidden">
+                    {/* Image Column */}
+                    <div className="bg-muted/30 border border-border rounded-xl overflow-hidden">
                       {item.image ? (
-                        <img src={item.image} alt={item.title} className="w-full h-full object-contain bg-card" />
+                        <img src={item.image} alt={item.title} className="w-full h-auto object-contain bg-card" />
                       ) : (
-                        <div className="w-full h-full flex items-center justify-center">
+                        <div className="w-full aspect-[16/10] flex items-center justify-center">
                           <p className="text-muted-foreground">Visual placeholder</p>
                         </div>
                       )}
@@ -831,22 +898,6 @@ const IntelligenceOverInventoryProject = () => {
                   </div>
                 );
               })}
-            </div>
-            
-            {/* Gallery Section */}
-            <div className="mt-12 pt-8 border-t border-border">
-              <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-6">Related Deliverables</h4>
-              <div className="grid grid-cols-3 gap-4">
-                {strategyGalleryImages.map((img, index) => (
-                  <div 
-                    key={index}
-                    className="aspect-[16/10] bg-card border border-border rounded-lg overflow-hidden hover:border-primary/50 transition-colors cursor-pointer"
-                    onClick={() => setStrategyActiveIndex(index)}
-                  >
-                    <img src={img.src} alt={img.alt} className="w-full h-full object-contain" />
-                  </div>
-                ))}
-              </div>
             </div>
           </div>
 
@@ -884,9 +935,58 @@ const IntelligenceOverInventoryProject = () => {
           )}
         </section>
 
-        {/* Future Vision - /06 - Enhanced with roadmap */}
+        {/* Messaging & Treatment Variations Gallery - New Section */}
         <section
           ref={(el) => { (sectionRefs[7] as any).current = el; }}
+          className="slide-section flex flex-col pt-8 relative min-h-screen"
+        >
+          <div className="w-full px-4 md:px-8 lg:px-12 flex flex-col flex-1 pb-32">
+            {/* Section Header */}
+            <div className="flex items-start justify-between mb-12">
+              <div className="flex-1">
+                <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground">
+                  Messaging & Treatment Variations
+                </h2>
+                <p className="text-lg md:text-xl text-muted-foreground mt-3 max-w-2xl">
+                  Exploring different approaches to communicate value
+                </p>
+              </div>
+            </div>
+
+            {/* 2 Column Gallery Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 flex-1">
+              {/* Placeholder slots for user to add images */}
+              <div className="bg-card border border-border rounded-xl overflow-hidden aspect-[16/10] flex items-center justify-center">
+                <div className="text-center p-8">
+                  <p className="text-muted-foreground">Add screenshot here</p>
+                  <p className="text-sm text-muted-foreground/60 mt-2">Upload images to populate gallery</p>
+                </div>
+              </div>
+              <div className="bg-card border border-border rounded-xl overflow-hidden aspect-[16/10] flex items-center justify-center">
+                <div className="text-center p-8">
+                  <p className="text-muted-foreground">Add screenshot here</p>
+                  <p className="text-sm text-muted-foreground/60 mt-2">Upload images to populate gallery</p>
+                </div>
+              </div>
+              <div className="bg-card border border-border rounded-xl overflow-hidden aspect-[16/10] flex items-center justify-center">
+                <div className="text-center p-8">
+                  <p className="text-muted-foreground">Add screenshot here</p>
+                  <p className="text-sm text-muted-foreground/60 mt-2">Upload images to populate gallery</p>
+                </div>
+              </div>
+              <div className="bg-card border border-border rounded-xl overflow-hidden aspect-[16/10] flex items-center justify-center">
+                <div className="text-center p-8">
+                  <p className="text-muted-foreground">Add screenshot here</p>
+                  <p className="text-sm text-muted-foreground/60 mt-2">Upload images to populate gallery</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Future Vision - /06 - 2 Column Clickable Layout */}
+        <section
+          ref={(el) => { (sectionRefs[8] as any).current = el; }}
           className="slide-section flex items-center bg-card/30"
         >
           <div className="w-full px-4 md:px-8 lg:px-12">
@@ -905,27 +1005,49 @@ const IntelligenceOverInventoryProject = () => {
               </span>
             </div>
 
-            {/* Vision Content */}
-            <div className="max-w-4xl mx-auto">
-              <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed mb-12 text-center">
-                The next phase integrates machine learning to predict buyer preferences before they search—
-                turning the marketplace from reactive search to proactive discovery.
-              </p>
-
-              {/* Roadmap Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* 2 Column Layout: Clickable Items + Image */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+              {/* Left Column: Clickable Cards */}
+              <div className="space-y-4">
+                <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                  The next phase integrates machine learning to predict buyer preferences before they search—
+                  turning the marketplace from reactive search to proactive discovery.
+                </p>
+                
                 {visionItems.map((item, index) => (
-                  <div 
+                  <button
                     key={index}
-                    className="bg-card border border-border rounded-xl p-6 hover:border-primary/50 transition-colors duration-300"
+                    onClick={() => setVisionActiveIndex(index)}
+                    className={cn(
+                      "w-full text-left bg-card border rounded-xl p-6 transition-all duration-300",
+                      visionActiveIndex === index 
+                        ? "border-primary bg-primary/5" 
+                        : "border-border hover:border-primary/50"
+                    )}
                   >
-                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                      <item.icon className="w-6 h-6 text-primary" />
+                    <div className="flex items-start gap-4">
+                      <div className={cn(
+                        "w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 transition-colors",
+                        visionActiveIndex === index ? "bg-primary/20" : "bg-primary/10"
+                      )}>
+                        <item.icon className="w-6 h-6 text-primary" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-foreground mb-1">{item.title}</h3>
+                        <p className="text-muted-foreground">{item.description}</p>
+                      </div>
                     </div>
-                    <h3 className="text-lg font-semibold text-foreground mb-2">{item.title}</h3>
-                    <p className="text-muted-foreground">{item.description}</p>
-                  </div>
+                  </button>
                 ))}
+              </div>
+              
+              {/* Right Column: Image Display */}
+              <div className="bg-muted/30 border border-border rounded-xl overflow-hidden sticky top-8">
+                <img 
+                  src={visionItems[visionActiveIndex].image} 
+                  alt={visionItems[visionActiveIndex].title}
+                  className="w-full h-auto object-contain transition-opacity duration-300"
+                />
               </div>
             </div>
           </div>
@@ -933,7 +1055,7 @@ const IntelligenceOverInventoryProject = () => {
 
         {/* Next Project - /07 */}
         <section
-          ref={(el) => { (sectionRefs[8] as any).current = el; }}
+          ref={(el) => { (sectionRefs[9] as any).current = el; }}
           className="slide-section flex items-center"
         >
           <div className="w-full px-4 md:px-8 lg:px-12">
