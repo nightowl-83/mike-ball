@@ -57,9 +57,19 @@ export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab, scrollToS
   const [activeBlockIndex, setActiveBlockIndex] = useState(0);
   const hasInitialized = useRef(false);
 
+  // Clamp activeBlockIndex to valid range
+  const safeIndex = Math.max(0, Math.min(activeBlockIndex, allBlocks.length - 1));
+  
   // Determine the current mode based on which slide we're on
-  const currentBlock = allBlocks[activeBlockIndex];
-  const isMarketingHub = activeBlockIndex < 3;
+  const currentBlock = allBlocks[safeIndex];
+  const isMarketingHub = safeIndex < 3;
+  
+  // Sync state if it was out of bounds
+  useEffect(() => {
+    if (activeBlockIndex !== safeIndex) {
+      setActiveBlockIndex(safeIndex);
+    }
+  }, [activeBlockIndex, safeIndex]);
 
   // Reset to first slide when section becomes active (only once per visit)
   useEffect(() => {
