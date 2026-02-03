@@ -11,9 +11,9 @@ import mhUtilitiesSearch from "@/assets/mh-utilities-search.png";
 import completeCards from "@/assets/Complete-Cards-1600-900.png";
 import utilitiesDeskMobile from "@/assets/Utilities-Desk-Mobile-16-9.png";
 
-// Unified content blocks - Marketing Hub first, then Marketplace
+// Unified content blocks - Marketing Hub first (0-2), then Marketplace (3)
 const allBlocks = [
-  // Marketing Hub slides (0-1)
+  // Marketing Hub slides (0-2)
   {
     title: "The Seller's 'Aha' Moment",
     quote: "We shifted from asking for data to proving its ROI.",
@@ -35,11 +35,12 @@ const allBlocks = [
     image: mhUtilitiesSearch,
     mode: 'marketing-hub' as const
   },
-  // Marketplace slides (3) - Combined slide 3 and 5 content
+  // Marketplace slides (3)
   {
     title: "Intent-Based Navigation",
     quote: "We didn't design filters; we designed answers.",
-    narrative: "Using the lead parser, I prioritized a 'Utility First' navigation. We elevated the attributes that our users were most vocal about in their inquiries, drastically reducing the 'pogo-sticking' behavior between the search page and listing details.\n\nIn a market flooded with identical 3rd-party listings, our users were struggling to find land that met basic survivability needs—water, power, and road access. This data existed in the leads, but was invisible on the page.",
+    subtitle: "Using the lead parser, I prioritized a 'Utility First' navigation. We elevated the attributes that our users were most vocal about in their inquiries, drastically reducing the 'pogo-sticking' behavior between the search page and listing details.",
+    narrative: "In a market flooded with identical 3rd-party listings, our users were struggling to find land that met basic survivability needs—water, power, and road access. This data existed in the leads, but was invisible on the page.",
     image: utilitiesDeskMobile,
     mode: 'marketplace' as const
   }
@@ -56,6 +57,7 @@ interface ImpactSection04Props {
 export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab, scrollToSection, isActive }: ImpactSection04Props) => {
   const [activeBlockIndex, setActiveBlockIndex] = useState(0);
   const hasInitialized = useRef(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   // Clamp activeBlockIndex to valid range
   const safeIndex = Math.max(0, Math.min(activeBlockIndex, allBlocks.length - 1));
@@ -88,6 +90,11 @@ export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab, scrollToS
       setActiveTab(isMarketingHub ? 'marketing-hub' : 'marketplace');
     }
   }, [isMarketingHub, setActiveTab]);
+
+  // Reset image loaded state when slide changes
+  useEffect(() => {
+    setImageLoaded(false);
+  }, [safeIndex]);
 
   const goNext = () => {
     if (activeBlockIndex < allBlocks.length - 1) {
@@ -151,26 +158,45 @@ export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab, scrollToS
           </span>
         </div>
 
-        {/* Subtitle */}
-        <p className="text-lg md:text-xl text-muted-foreground mb-12">
-          How the data affected the buyer & seller experience
-        </p>
+        {/* Subtitle with Toggle */}
+        <div className="flex items-center gap-4 mb-12">
+          <p className="text-lg md:text-xl text-muted-foreground">
+            How the data affected the buyer & seller experience
+          </p>
+          {/* Toggle as section navigation */}
+          <div className="flex items-center gap-2 ml-auto">
+            <button
+              onClick={handleMarketingHubClick}
+              className={cn(
+                "px-4 py-2 rounded-full text-sm font-medium transition-all duration-300",
+                isMarketingHub 
+                  ? "bg-primary text-primary-foreground" 
+                  : "bg-muted/50 text-muted-foreground hover:bg-muted"
+              )}
+            >
+              Marketing Hub
+            </button>
+            <button
+              onClick={handleMarketplaceClick}
+              className={cn(
+                "px-4 py-2 rounded-full text-sm font-medium transition-all duration-300",
+                !isMarketingHub 
+                  ? "bg-primary text-primary-foreground" 
+                  : "bg-muted/50 text-muted-foreground hover:bg-muted"
+              )}
+            >
+              Marketplace
+            </button>
+          </div>
+        </div>
 
         {/* Carousel Control Row */}
         <div className="flex justify-between items-center mb-6">
-          {/* Left: Slide Title with mode indicator */}
+          {/* Left: Slide Title */}
           <div className="flex items-center gap-3">
             <h3 className="text-lg md:text-xl font-semibold text-foreground">
               {currentBlock.title}
             </h3>
-            <span className={cn(
-              "text-xs font-medium px-2.5 py-1 rounded-full border",
-              isMarketingHub 
-                ? 'bg-primary/15 text-primary border-primary/30' 
-                : 'bg-foreground/10 text-foreground border-foreground/20'
-            )}>
-              {isMarketingHub ? 'Marketing Hub' : 'Marketplace'}
-            </span>
           </div>
           
           {/* Right: Count + Arrows + Continue */}
@@ -229,12 +255,17 @@ export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab, scrollToS
               <blockquote className="text-xl md:text-2xl font-semibold text-foreground italic border-l-4 border-primary pl-4">
                 "{currentBlock.quote}"
               </blockquote>
+              {'subtitle' in currentBlock && currentBlock.subtitle && (
+                <p className="text-base md:text-lg text-primary/80 leading-relaxed font-medium">
+                  {currentBlock.subtitle}
+                </p>
+              )}
               <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
                 {currentBlock.narrative}
               </p>
             </div>
             
-            {/* Image Column */}
+            {/* Image Column with load animation */}
             <div className={cn(
               "lg:col-span-2 h-[calc(100vh-480px)] min-h-[300px] bg-muted/30 border border-border rounded-xl overflow-hidden flex items-center justify-center",
               "transition-all duration-500"
@@ -243,9 +274,13 @@ export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab, scrollToS
                 <img 
                   src={currentBlock.image} 
                   alt={currentBlock.title}
+                  onLoad={() => setImageLoaded(true)}
                   className={cn(
-                    "max-w-full max-h-full transition-all duration-500",
-                    activeBlockIndex >= 3 ? "object-contain" : "w-full h-full object-cover object-top"
+                    "max-w-full max-h-full transition-all duration-700",
+                    activeBlockIndex >= 3 ? "object-contain" : "w-full h-full object-cover object-top",
+                    imageLoaded 
+                      ? "opacity-100 translate-y-0" 
+                      : "opacity-0 translate-y-4"
                   )}
                 />
               ) : (
@@ -255,25 +290,6 @@ export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab, scrollToS
               )}
             </div>
           </div>
-        </div>
-
-        {/* Progress dots - SINGLE instance */}
-        <div className="flex justify-center gap-2 mt-8">
-          {allBlocks.map((block, index) => (
-            <button
-              key={index}
-              onClick={() => setActiveBlockIndex(index)}
-              className={cn(
-                "w-2 h-2 rounded-full transition-all duration-300",
-                activeBlockIndex === index
-                  ? "bg-primary w-6"
-                  : block.mode === 'marketing-hub'
-                    ? "bg-primary/30 hover:bg-primary/50"
-                    : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
-              )}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
         </div>
       </div>
     </section>
