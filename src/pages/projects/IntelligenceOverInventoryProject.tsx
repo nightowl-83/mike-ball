@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowRight, Database, Filter, BarChart3, Target, Users, ChevronLeft, ChevronRight, Sparkles, TrendingUp, Brain, Quote } from "lucide-react";
+import { ArrowDown, ArrowRight, Database, Filter, BarChart3, Target, Users, ChevronLeft, ChevronRight, Sparkles, TrendingUp, Brain, Quote, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState, useRef, useCallback } from "react";
@@ -198,23 +198,23 @@ const IntelligenceOverInventoryProject = () => {
   const visionItems = [{
     icon: Brain,
     title: "Predictive Matching",
-    description: "ML models predict buyer preferences before they search",
-    image: hubAnalyticsCore
+    description: "ML models predict buyer preferences before they search"
   }, {
     icon: Sparkles,
     title: "Proactive Discovery",
-    description: "Surface listings that match latent intent patterns",
-    image: analyticsScoreCard
+    description: "Surface listings that match latent intent patterns"
   }, {
     icon: TrendingUp,
     title: "Engagement Analytics",
-    description: "Deep analysis of cross-platform behavior signals",
-    image: marketCompareOptions
+    description: "Deep analysis of cross-platform behavior signals"
   }, {
     icon: Target,
     title: "Regional Interest Heat Maps",
-    description: "Use keyword data to create heat maps showing regions where different interests are popular—wind farms, crops, minerals, natural gas, and more",
-    image: trendiRegions
+    description: "Use keyword data to create heat maps showing regions where different interests are popular—wind farms, crops, minerals, natural gas, and more"
+  }, {
+    icon: Zap,
+    title: "Automating Parser Tool",
+    description: "Use the parser tool to automatically identify trends and patterns in user behavior"
   }];
 
   // Vision active index for 2-column clickable layout
@@ -691,7 +691,7 @@ const IntelligenceOverInventoryProject = () => {
               const isActive = parsingActiveIndex === pairIndex;
               const isPast = parsingActiveIndex > pairIndex;
               return <div key={pairIndex} className={cn("absolute inset-0 flex items-center justify-center transition-all duration-700 ease-out", isActive ? "opacity-100 translate-y-0 z-10" : isPast ? "opacity-0 -translate-y-12 pointer-events-none z-0" : "opacity-0 translate-y-12 pointer-events-none z-0")}>
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full max-w-7xl mx-auto">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full max-w-[1600px] mx-auto">
                     {/* Image Column - matching section 05 layout */}
                     <div className="rounded-xl overflow-hidden">
                       <div className="relative">
@@ -772,7 +772,7 @@ const IntelligenceOverInventoryProject = () => {
               const isActive = strategyActiveIndex === index;
               const isPast = strategyActiveIndex > index;
               return <div key={index} className={cn("absolute inset-0 flex items-center justify-center transition-all duration-700 ease-out", isActive ? "opacity-100 translate-y-0 z-10" : isPast ? "opacity-0 -translate-y-12 pointer-events-none z-0" : "opacity-0 translate-y-12 pointer-events-none z-0")}>
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full max-w-7xl mx-auto">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full max-w-[1600px] mx-auto">
                     {/* Image Column - no border, no background */}
                     <div className="rounded-xl overflow-hidden">
                       {item.image ? <img src={item.image} alt={item.title} className="w-full h-auto object-contain" /> : <div className="w-full aspect-[16/10] flex items-center justify-center bg-muted/30">
@@ -869,31 +869,27 @@ const IntelligenceOverInventoryProject = () => {
               </span>
             </div>
 
-            {/* 2 Column Layout: Clickable Items + Image */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-              {/* Left Column: Clickable Cards */}
-              <div className="space-y-4">
-                <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                  The next phase integrates machine learning to predict buyer preferences before they search—
-                  turning the marketplace from reactive search to proactive discovery.
-                </p>
-                
-                {visionItems.map((item, index) => <button key={index} onClick={() => setVisionActiveIndex(index)} className={cn("w-full text-left bg-card border rounded-xl p-6 transition-all duration-300", visionActiveIndex === index ? "border-primary bg-primary/5" : "border-border hover:border-primary/50")}>
+            {/* Vision Items Grid */}
+            <div className="space-y-6">
+              <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl">
+                The next phase integrates machine learning to predict buyer preferences before they search—
+                turning the marketplace from reactive search to proactive discovery.
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {visionItems.map((item, index) => (
+                  <div key={index} className="bg-card border border-border rounded-xl p-6 hover:border-primary/50 transition-all duration-300">
                     <div className="flex items-start gap-4">
-                      <div className={cn("w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 transition-colors", visionActiveIndex === index ? "bg-primary/20" : "bg-primary/10")}>
+                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                         <item.icon className="w-6 h-6 text-primary" />
                       </div>
                       <div>
                         <h3 className="text-lg font-semibold text-foreground mb-1">{item.title}</h3>
-                        <p className="text-muted-foreground">{item.description}</p>
+                        <p className="text-muted-foreground text-sm">{item.description}</p>
                       </div>
                     </div>
-                  </button>)}
-              </div>
-              
-              {/* Right Column: Image Display */}
-              <div className="bg-muted/30 border border-border rounded-xl overflow-hidden sticky top-8">
-                <img src={visionItems[visionActiveIndex].image} alt={visionItems[visionActiveIndex].title} className="w-full h-auto object-contain transition-opacity duration-300" />
+                  </div>
+                ))}
               </div>
             </div>
           </div>
