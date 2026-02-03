@@ -1,14 +1,19 @@
 import { ArrowRight, Database, Filter, BarChart3, Target, Users, ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import { Progress } from "@/components/ui/progress";
-import { useEffect, useState, useCallback, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { SlideNav } from "@/components/SlideNav";
 import { useSlideNavigation } from "@/hooks/useSlideNavigation";
 import { cn } from "@/lib/utils";
 import { ImpactSection04 } from "@/components/ImpactSection04";
+import { useIsMobile } from "@/hooks/use-mobile";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import trendiUpload from "@/assets/trendi-upload.png";
 import trendiKeywords from "@/assets/trendi-keywords.png";
 import trendiRegions from "@/assets/trendi-regions.png";
@@ -38,8 +43,8 @@ const IntelligenceOverInventoryProject = () => {
   // Dual-mode toggle state (persists across sections /04-/07)
   const [activeDataMode, setActiveDataMode] = useState<'marketing-hub' | 'marketplace'>('marketing-hub');
   
-  // Section /02 layout toggle state
-  const [section02Layout, setSection02Layout] = useState<'horizontal' | 'vertical'>('horizontal');
+  // Mobile detection
+  const isMobile = useIsMobile();
   
   // Show toggle only on section 4 (Impact)
   const showDualModeToggle = currentSectionIndex === 4;
@@ -198,7 +203,9 @@ const IntelligenceOverInventoryProject = () => {
       <main
         ref={containerRef}
         className={cn(
-          "flex-1 ml-16 md:ml-56 lg:ml-64 slide-container transition-colors duration-500",
+          "flex-1 slide-container transition-colors duration-500",
+          "ml-0 md:ml-56 lg:ml-64", // No margin on mobile (top nav), margin on desktop (side nav)
+          "pt-14 md:pt-0", // Padding top for mobile top nav
           "bg-background",
           activeDataMode === 'marketplace' && "theme-light"
         )}
@@ -326,146 +333,31 @@ const IntelligenceOverInventoryProject = () => {
               </span>
             </div>
 
-            {/* Layout Toggle */}
-            <div className="flex items-center gap-2 mb-8">
-              <span className="text-sm text-muted-foreground">Layout:</span>
-              <div className="flex gap-1 p-1 bg-muted/50 rounded-lg">
-                <button
-                  onClick={() => setSection02Layout('horizontal')}
-                  className={cn(
-                    "px-3 py-1.5 rounded-md text-xs font-medium transition-all",
-                    section02Layout === 'horizontal'
-                      ? "bg-primary text-primary-foreground"
-                      : "text-muted-foreground hover:text-foreground"
-                  )}
-                >
-                  Horizontal
-                </button>
-                <button
-                  onClick={() => setSection02Layout('vertical')}
-                  className={cn(
-                    "px-3 py-1.5 rounded-md text-xs font-medium transition-all",
-                    section02Layout === 'vertical'
-                      ? "bg-primary text-primary-foreground"
-                      : "text-muted-foreground hover:text-foreground"
-                  )}
-                >
-                  Vertical
-                </button>
+            {/* Vertical Layout - Single Column with solid purple line */}
+            <div className="relative pl-8 max-w-2xl mx-auto">
+              {/* Vertical solid purple line */}
+              <div className="absolute left-3 top-0 bottom-0 w-0.5 bg-primary" />
+              
+              <div className="space-y-6">
+                {flowSteps.map((step, index) => (
+                  <div key={step.label} className="relative flex items-start gap-6">
+                    {/* Node on the line */}
+                    <div className="absolute left-[-20px] top-6 w-3 h-3 rounded-full bg-primary" />
+                    {/* Horizontal connector - solid purple */}
+                    <div className="absolute left-[-8px] top-[26px] w-4 h-0.5 bg-primary" />
+                    
+                    {/* Card - Full width in column */}
+                    <div className="bg-card border border-border rounded-xl p-6 flex-1">
+                      <div className="flex items-start justify-between mb-3">
+                        <h3 className="text-lg font-semibold text-foreground">{step.label}</h3>
+                        <step.icon className="w-5 h-5 text-muted-foreground" />
+                      </div>
+                      <p className="text-base text-muted-foreground">{step.description}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-
-            {/* Horizontal Flow with Staggered Cards - Desktop (only when horizontal selected) */}
-            {section02Layout === 'horizontal' && (
-              <div className="relative flex-1 hidden lg:flex items-center justify-center py-8">
-                {/* Horizontal connecting line - dashed */}
-                <div className="absolute top-1/2 left-4 right-4 border-t-2 border-dashed border-border" />
-                
-                {/* Cards Container */}
-                <div className="flex items-center justify-around w-full relative px-4">
-                  {flowSteps.map((step, index) => {
-                    // Cards at indices 0, 2, 4 go BELOW the line; 1, 3 go ABOVE
-                    const isAbove = [1, 3].includes(index);
-                    
-                    return (
-                      <div 
-                        key={step.label} 
-                        className={cn(
-                          "relative flex flex-col items-center z-10",
-                          isAbove ? "-translate-y-20" : "translate-y-20"
-                        )}
-                      >
-                        {/* Connector going UP for above cards */}
-                        {isAbove && (
-                          <>
-                            <div className="bg-card border border-border rounded-xl p-6 w-52 xl:w-64 shadow-sm">
-                              <div className="flex items-start justify-between mb-3">
-                                <h3 className="text-base xl:text-lg font-semibold text-foreground leading-tight">{step.label}</h3>
-                                <step.icon className="w-5 h-5 text-muted-foreground shrink-0 ml-2" />
-                              </div>
-                              <p className="text-sm xl:text-base text-muted-foreground leading-snug">{step.description}</p>
-                            </div>
-                            <div className="w-0.5 h-6 border-l-2 border-dashed border-border" />
-                            <div className="w-3 h-3 rounded-full bg-primary shrink-0" />
-                          </>
-                        )}
-                        
-                        {/* Connector going DOWN for below cards */}
-                        {!isAbove && (
-                          <>
-                            <div className="w-3 h-3 rounded-full bg-primary shrink-0" />
-                            <div className="w-0.5 h-6 border-l-2 border-dashed border-border" />
-                            <div className="bg-card border border-border rounded-xl p-6 w-52 xl:w-64 shadow-sm">
-                              <div className="flex items-start justify-between mb-3">
-                                <h3 className="text-base xl:text-lg font-semibold text-foreground leading-tight">{step.label}</h3>
-                                <step.icon className="w-5 h-5 text-muted-foreground shrink-0 ml-2" />
-                              </div>
-                              <p className="text-sm xl:text-base text-muted-foreground leading-snug">{step.description}</p>
-                            </div>
-                          </>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-
-            {/* Vertical Layout - Single Column (all screen sizes when vertical selected) */}
-            {section02Layout === 'vertical' && (
-              <div className="relative pl-8 max-w-2xl mx-auto">
-                {/* Vertical dashed line */}
-                <div className="absolute left-3 top-0 bottom-0 border-l-2 border-dashed border-border" />
-                
-                <div className="space-y-6">
-                  {flowSteps.map((step, index) => (
-                    <div key={step.label} className="relative flex items-start gap-6">
-                      {/* Node on the line */}
-                      <div className="absolute left-[-20px] top-6 w-3 h-3 rounded-full bg-primary" />
-                      {/* Horizontal connector */}
-                      <div className="absolute left-[-8px] top-[26px] w-4 border-t-2 border-dashed border-border" />
-                      
-                      {/* Card - Full width in column */}
-                      <div className="bg-card border border-border rounded-xl p-6 flex-1">
-                        <div className="flex items-start justify-between mb-3">
-                          <h3 className="text-lg font-semibold text-foreground">{step.label}</h3>
-                          <step.icon className="w-5 h-5 text-muted-foreground" />
-                        </div>
-                        <p className="text-base text-muted-foreground">{step.description}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Mobile/Tablet fallback - show only when horizontal on desktop */}
-            {section02Layout === 'horizontal' && (
-              <div className="lg:hidden relative pl-8">
-                {/* Vertical line on the left - dashed */}
-                <div className="absolute left-3 top-0 bottom-0 border-l-2 border-dashed border-border" />
-                
-                <div className="space-y-4">
-                  {flowSteps.map((step, index) => (
-                    <div key={step.label} className="relative flex items-start gap-4">
-                      {/* Connection node */}
-                      <div className="absolute left-[-20px] top-4 w-3 h-3 rounded-full bg-primary" />
-                      {/* Horizontal connector - dashed */}
-                      <div className="absolute left-[-8px] top-[18px] w-4 border-t-2 border-dashed border-border" />
-                      
-                      {/* Card */}
-                      <div className="bg-card border border-border rounded-xl p-5 flex-1">
-                        <div className="flex items-start justify-between mb-2">
-                          <h3 className="text-base font-semibold text-foreground">{step.label}</h3>
-                          <step.icon className="w-5 h-5 text-muted-foreground shrink-0" />
-                        </div>
-                        <p className="text-sm text-muted-foreground leading-snug">{step.description}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
           </div>
         </section>
 
@@ -490,24 +382,38 @@ const IntelligenceOverInventoryProject = () => {
               </span>
             </div>
 
-            {/* 2x2 Card Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {parsingCards.map((card, index) => (
-                <div key={index} className="bg-card border border-border rounded-xl overflow-hidden">
-                  <div className="aspect-[4/3] overflow-hidden">
-                    <img 
-                      src={card.image} 
-                      alt={card.title}
-                      className="w-full h-full object-cover object-top"
-                    />
-                  </div>
-                  <div className="p-4">
-                    <h3 className="text-lg font-semibold text-foreground mb-1">{card.title}</h3>
-                    <p className="text-sm text-muted-foreground">{card.caption}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+            {/* Carousel */}
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-4">
+                {parsingCards.map((card, index) => (
+                  <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/2">
+                    <div className="bg-card border border-border rounded-xl overflow-hidden h-full">
+                      <div className="aspect-[4/3] overflow-hidden">
+                        <img 
+                          src={card.image} 
+                          alt={card.title}
+                          className="w-full h-full object-cover object-top"
+                        />
+                      </div>
+                      <div className="p-4">
+                        <h3 className="text-lg font-semibold text-foreground mb-1">{card.title}</h3>
+                        <p className="text-sm text-muted-foreground">{card.caption}</p>
+                      </div>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <div className="flex items-center justify-center gap-2 mt-6">
+                <CarouselPrevious className="static translate-y-0" />
+                <CarouselNext className="static translate-y-0" />
+              </div>
+            </Carousel>
           </div>
         </section>
 
@@ -517,7 +423,7 @@ const IntelligenceOverInventoryProject = () => {
           activeTab={activeDataMode}
         />
 
-        {/* Strategy & Influence - /05 - Alternating Layout */}
+        {/* Strategy & Influence - /05 - Carousel Layout */}
         <section
           ref={(el) => { (sectionRefs[5] as any).current = el; }}
           className="slide-section flex items-center bg-card/30"
@@ -533,38 +439,44 @@ const IntelligenceOverInventoryProject = () => {
               </span>
             </div>
 
-            {/* Alternating 2-Column Layout */}
-            <div className="space-y-12">
-              {strategyItems.map((item, index) => (
-                <div 
-                  key={item.number}
-                  className={cn(
-                    "grid grid-cols-1 lg:grid-cols-2 gap-8 items-center"
-                  )}
-                >
-                  {/* Image side */}
-                  <div className={cn(
-                    "aspect-video bg-muted/30 border border-border rounded-xl overflow-hidden",
-                    index % 2 === 1 && "lg:order-2"
-                  )}>
-                    {item.image ? (
-                      <img src={item.image} alt={item.title} className="w-full h-full object-cover object-top" />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center">
-                        <p className="text-muted-foreground">Visual placeholder</p>
+            {/* Carousel */}
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-4">
+                {strategyItems.map((item, index) => (
+                  <CarouselItem key={item.number} className="pl-4 lg:basis-1/2">
+                    <div className="grid grid-cols-1 gap-6 h-full">
+                      {/* Image */}
+                      <div className="aspect-video bg-muted/30 border border-border rounded-xl overflow-hidden">
+                        {item.image ? (
+                          <img src={item.image} alt={item.title} className="w-full h-full object-cover object-top" />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center">
+                            <p className="text-muted-foreground">Visual placeholder</p>
+                          </div>
+                        )}
                       </div>
-                    )}
-                  </div>
-                  
-                  {/* Text side */}
-                  <div className={cn("space-y-4", index % 2 === 1 && "lg:order-1")}>
-                    <span className="text-4xl font-bold font-mono text-primary/30">/{item.number}</span>
-                    <h3 className="text-2xl font-semibold text-foreground">{item.title}</h3>
-                    <p className="text-base text-muted-foreground leading-relaxed">{item.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+                      
+                      {/* Text */}
+                      <div className="space-y-4">
+                        <span className="text-4xl font-bold font-mono text-primary/30">/{item.number}</span>
+                        <h3 className="text-2xl font-semibold text-foreground">{item.title}</h3>
+                        <p className="text-base text-muted-foreground leading-relaxed">{item.description}</p>
+                      </div>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <div className="flex items-center justify-center gap-2 mt-6">
+                <CarouselPrevious className="static translate-y-0" />
+                <CarouselNext className="static translate-y-0" />
+              </div>
+            </Carousel>
           </div>
         </section>
 
@@ -644,7 +556,8 @@ const IntelligenceOverInventoryProject = () => {
       {/* Floating Dual-Mode Toggle - Visible on sections /04-/07 */}
       {showDualModeToggle && (
         <div className={cn(
-          "fixed bottom-0 left-16 md:left-56 lg:left-64 right-0",
+          "fixed bottom-0 right-0",
+          "left-0 md:left-56 lg:left-64", // Full width on mobile, offset on desktop
           "flex justify-center py-12",
           "animate-in slide-in-from-bottom-4 duration-500",
           "z-50 pointer-events-none"
