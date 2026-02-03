@@ -96,10 +96,10 @@ export default function AnimatedBackground({
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    // Initialize particles - position below subtitle (roughly 45% from top)
+    // Initialize particles - position lower on screen (65% from top)
     const particleCount = 100;
     const centerX = canvas.width / 2;
-    const centerY = canvas.height * 0.55; // Position cloud at 55% down (below subtitle)
+    const centerY = canvas.height * 0.65; // Position cloud at 65% down
     
     if (particlesRef.current.length === 0) {
       particlesRef.current = Array.from({ length: particleCount }, () => {
