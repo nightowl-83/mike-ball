@@ -88,7 +88,7 @@ All colors MUST be HSL.
 
   /* Light Mode */
   .theme-light {
-    --background: 0 0% 98%;
+    --background: 220 20% 96%;
     --foreground: 220 25% 10%;
     --card: 0 0% 100%;
     --card-foreground: 220 25% 10%;
@@ -96,7 +96,7 @@ All colors MUST be HSL.
     --popover-foreground: 220 25% 10%;
     --primary: 241 76% 45%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 220 15% 92%;
+    --secondary: 220 15% 90%;
     --secondary-foreground: 220 25% 10%;
     --muted: 220 15% 92%;
     --muted-foreground: 220 10% 40%;
@@ -110,7 +110,7 @@ All colors MUST be HSL.
     --gradient-accent: linear-gradient(135deg, hsl(241 76% 40%), hsl(260 70% 50%), hsl(220 70% 50%));
     --shadow-glow: 0 0 40px hsl(241 76% 45% / 0.2);
     --shadow-card: 0 10px 30px -10px hsl(220 25% 0% / 0.1);
-    --sidebar-background: 0 0% 98%;
+    --sidebar-background: 220 20% 96%;
     --sidebar-foreground: 220 25% 10%;
     --sidebar-primary: 241 76% 45%;
     --sidebar-primary-foreground: 0 0% 100%;

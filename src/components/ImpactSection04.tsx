@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -58,14 +58,27 @@ interface ImpactSection04Props {
   activeTab: 'marketing-hub' | 'marketplace';
   setActiveTab?: (tab: 'marketing-hub' | 'marketplace') => void;
   scrollToSection?: (index: number) => void;
+  isActive?: boolean;
 }
 
-export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab, scrollToSection }: ImpactSection04Props) => {
+export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab, scrollToSection, isActive }: ImpactSection04Props) => {
   const [activeBlockIndex, setActiveBlockIndex] = useState(0);
+  const hasInitialized = useRef(false);
 
   // Determine the current mode based on which slide we're on
   const currentBlock = allBlocks[activeBlockIndex];
   const isMarketingHub = activeBlockIndex < 3;
+
+  // Reset to first slide when section becomes active (only once per visit)
+  useEffect(() => {
+    if (isActive && !hasInitialized.current) {
+      setActiveBlockIndex(0);
+      hasInitialized.current = true;
+    }
+    if (!isActive) {
+      hasInitialized.current = false;
+    }
+  }, [isActive]);
 
   // Update parent's activeTab when crossing the boundary
   useEffect(() => {
@@ -84,6 +97,22 @@ export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab, scrollToS
     if (activeBlockIndex > 0) {
       setActiveBlockIndex(activeBlockIndex - 1);
     }
+  };
+
+  // Handle clicking on marketplace toggle - jump to slide 3
+  const handleMarketplaceClick = () => {
+    if (setActiveTab) {
+      setActiveTab('marketplace');
+    }
+    setActiveBlockIndex(3); // Jump to first marketplace slide
+  };
+
+  // Handle clicking on marketing hub toggle - jump to slide 0
+  const handleMarketingHubClick = () => {
+    if (setActiveTab) {
+      setActiveTab('marketing-hub');
+    }
+    setActiveBlockIndex(0); // Jump to first marketing hub slide
   };
 
   // Keyboard navigation
@@ -125,17 +154,17 @@ export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab, scrollToS
         <div className="flex justify-between items-center mb-6">
           {/* Left: Slide Title with mode indicator */}
           <div className="flex items-center gap-3">
-            <span className={cn(
-              "text-xs font-medium px-2 py-1 rounded-full",
-              isMarketingHub 
-                ? 'bg-primary/10 text-primary' 
-                : 'bg-gray-200 text-gray-800'
-            )}>
-              {isMarketingHub ? 'Marketing Hub' : 'Marketplace'}
-            </span>
             <h3 className="text-lg md:text-xl font-semibold text-foreground">
               {currentBlock.title}
             </h3>
+            <span className={cn(
+              "text-xs font-medium px-2.5 py-1 rounded-full border",
+              isMarketingHub 
+                ? 'bg-primary/15 text-primary border-primary/30' 
+                : 'bg-foreground/10 text-foreground border-foreground/20'
+            )}>
+              {isMarketingHub ? 'Marketing Hub' : 'Marketplace'}
+            </span>
           </div>
           
           {/* Right: Count + Arrows + Continue */}
@@ -150,7 +179,7 @@ export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab, scrollToS
               disabled={activeBlockIndex === 0}
               className={cn(
                 "h-9 w-9",
-                !isMarketingHub && "border-gray-300 text-gray-800 hover:bg-gray-100"
+                !isMarketingHub && "border-foreground/20 text-foreground hover:bg-foreground/10"
               )}
             >
               <ChevronLeft className="w-4 h-4" />
@@ -162,7 +191,7 @@ export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab, scrollToS
               disabled={activeBlockIndex === allBlocks.length - 1}
               className={cn(
                 "h-9 w-9",
-                !isMarketingHub && "border-gray-300 text-gray-800 hover:bg-gray-100"
+                !isMarketingHub && "border-foreground/20 text-foreground hover:bg-foreground/10"
               )}
             >
               <ChevronRight className="w-4 h-4" />
@@ -173,7 +202,7 @@ export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab, scrollToS
                 onClick={() => scrollToSection(6)}
                 className={cn(
                   "gap-2 ml-2",
-                  !isMarketingHub && "border-gray-300 text-gray-800 hover:bg-gray-100"
+                  !isMarketingHub && "border-foreground/20 text-foreground hover:bg-foreground/10"
                 )}
               >
                 Continue
@@ -222,37 +251,20 @@ export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab, scrollToS
           </div>
         </div>
 
-        {/* Progress dots */}
+        {/* Progress dots - SINGLE instance */}
         <div className="flex justify-center gap-2 mt-8">
           {allBlocks.map((block, index) => (
             <button
               key={index}
               onClick={() => setActiveBlockIndex(index)}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              className={cn(
+                "w-2 h-2 rounded-full transition-all duration-300",
                 activeBlockIndex === index
                   ? "bg-primary w-6"
                   : block.mode === 'marketing-hub'
                     ? "bg-primary/30 hover:bg-primary/50"
                     : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
-              }`}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
-        </div>
-
-        {/* Progress dots */}
-        <div className="flex justify-center gap-2 mt-8">
-          {allBlocks.map((block, index) => (
-            <button
-              key={index}
-              onClick={() => setActiveBlockIndex(index)}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                activeBlockIndex === index
-                  ? "bg-primary w-6"
-                  : block.mode === 'marketing-hub'
-                    ? "bg-primary/30 hover:bg-primary/50"
-                    : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
-              }`}
+              )}
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}
