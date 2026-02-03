@@ -42,7 +42,6 @@ export const SlideNav = ({
         </Link>
       </div>
 
-      {/* Section List */}
       <div className="flex-1 flex flex-col justify-center gap-1 px-2 md:px-4">
         {sections.map((section, index) => (
           <button
@@ -60,14 +59,16 @@ export const SlideNav = ({
                 : "text-muted-foreground hover:text-foreground"
             )}
           >
-            <span
-              className={cn(
-                "text-xs font-mono w-8 shrink-0",
-                currentIndex === index ? "text-primary" : "text-muted-foreground/60"
-              )}
-            >
-              {section.number || `0${index + 1}`}
-            </span>
+            {section.number && (
+              <span
+                className={cn(
+                  "text-xs font-mono w-8 shrink-0",
+                  currentIndex === index ? "text-primary" : "text-muted-foreground/60"
+                )}
+              >
+                {section.number}
+              </span>
+            )}
             <span className="text-sm font-medium truncate">
               {section.label}
             </span>
@@ -104,9 +105,11 @@ export const SlideNav = ({
             
             <SheetTrigger asChild>
               <button className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-card/80 border border-border">
-                <span className="text-xs font-mono text-muted-foreground">
-                  {sections[currentIndex]?.number || `0${currentIndex + 1}`}
-                </span>
+                {sections[currentIndex]?.number && (
+                  <span className="text-xs font-mono text-muted-foreground">
+                    {sections[currentIndex].number}
+                  </span>
+                )}
                 <span className="text-sm font-medium text-foreground">
                   {sections[currentIndex]?.label}
                 </span>
