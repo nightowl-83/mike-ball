@@ -7,6 +7,8 @@ import { useSlideNavigation } from "@/hooks/useSlideNavigation";
 import { cn } from "@/lib/utils";
 import { ImpactSection04 } from "@/components/ImpactSection04";
 import { useIsMobile } from "@/hooks/use-mobile";
+import ImageLightbox from "@/components/ImageLightbox";
+import AnimatedBackground from "@/components/AnimatedBackground";
 // Removed embla carousel imports - using custom fade-up transitions
 import trendiUpload from "@/assets/trendi-upload.png";
 import trendiKeywords from "@/assets/trendi-keywords.png";
@@ -26,6 +28,12 @@ import scoreSilos from "@/assets/Score-Silos-1440.png";
 import scoreVariations from "@/assets/Score-Variations-1440.png";
 import whyImage from "@/assets/Why.png";
 import marketCompareOptions2 from "@/assets/Market-Compare-Options-2.png";
+// New gallery images
+import trendi1 from "@/assets/trendi-1-2.png";
+import trendi2 from "@/assets/trendi-2-2.png";
+import trendi3 from "@/assets/trendi-3-2.png";
+import trendi4 from "@/assets/trendi-4-2.png";
+import messagingType from "@/assets/messaging-type.png";
 const IntelligenceOverInventoryProject = () => {
   // Section data for navigation - Added Gallery section
   const sectionData = [{
@@ -459,12 +467,17 @@ const IntelligenceOverInventoryProject = () => {
     });
     return () => strategySection.removeEventListener('wheel', handleWheel);
   }, [currentSectionIndex, strategyActiveIndex, strategyItems.length]);
-  return <div className="flex bg-background">
+  return <div className="flex bg-background relative">
+      {/* Animated Background - Vertices state */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <AnimatedBackground initialState="vertices" />
+      </div>
+
       {/* Slide Navigation */}
       <SlideNav sections={sectionData} currentIndex={currentSectionIndex} onNavigate={scrollToSection} />
 
       {/* Main Content - Slide Container */}
-      <main ref={containerRef} className={cn("flex-1 slide-container transition-colors duration-500", "ml-0 md:ml-56 lg:ml-64", "pt-14 md:pt-0", "bg-background", activeDataMode === 'marketplace' && "theme-light")}>
+      <main ref={containerRef} className={cn("flex-1 slide-container transition-colors duration-500 relative z-10", "ml-0 md:ml-56 lg:ml-64", "pt-14 md:pt-0", "bg-background/80 backdrop-blur-sm", activeDataMode === 'marketplace' && "theme-light")}>
         {/* Hero Section */}
         <section ref={el => {
         (sectionRefs[0] as any).current = el;
@@ -694,7 +707,7 @@ const IntelligenceOverInventoryProject = () => {
                     <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center w-full max-w-[1600px] mx-auto">
                     {/* Image Column - 3/5 width */}
                     <div className="lg:col-span-3 rounded-xl overflow-hidden">
-                      <img src={pair.images[0].src} alt={pair.images[0].title} className="w-full h-auto object-contain" />
+                      <ImageLightbox src={pair.images[0].src} alt={pair.images[0].title} className="w-full h-auto object-contain" />
                     </div>
                     
                     {/* Text Column - 2/5 width */}
@@ -772,7 +785,7 @@ const IntelligenceOverInventoryProject = () => {
                     <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center w-full max-w-[1600px] mx-auto">
                     {/* Image Column - 3/5 width */}
                     <div className="lg:col-span-3 rounded-xl overflow-hidden">
-                      {item.image ? <img src={item.image} alt={item.title} className="w-full h-auto object-contain" /> : <div className="w-full aspect-[16/10] flex items-center justify-center bg-muted/30">
+                      {item.image ? <ImageLightbox src={item.image} alt={item.title} className="w-full h-auto object-contain" /> : <div className="w-full aspect-[16/10] flex items-center justify-center bg-muted/30">
                           <p className="text-muted-foreground">Visual placeholder</p>
                         </div>}
                     </div>
@@ -828,19 +841,35 @@ const IntelligenceOverInventoryProject = () => {
             {/* 2 Column Gallery Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 flex-1">
               <div className="bg-card border border-border rounded-xl overflow-hidden">
-                <img src={qualityHoverStates} alt="Lead Quality Hover States" className="w-full h-auto object-contain" />
+                <ImageLightbox src={qualityHoverStates} alt="Lead Quality Hover States" className="w-full h-auto object-contain" />
               </div>
               <div className="bg-card border border-border rounded-xl overflow-hidden">
-                <img src={whyImage} alt="Lead Rating Reasons" className="w-full h-auto object-contain" />
+                <ImageLightbox src={whyImage} alt="Lead Rating Reasons" className="w-full h-auto object-contain" />
               </div>
               <div className="bg-card border border-border rounded-xl overflow-hidden">
-                <img src={scoreSilos} alt="Listing Completeness Score Silos" className="w-full h-auto object-contain" />
+                <ImageLightbox src={scoreSilos} alt="Listing Completeness Score Silos" className="w-full h-auto object-contain" />
               </div>
               <div className="bg-card border border-border rounded-xl overflow-hidden">
-                <img src={scoreVariations} alt="Score UI Variations" className="w-full h-auto object-contain" />
+                <ImageLightbox src={scoreVariations} alt="Score UI Variations" className="w-full h-auto object-contain" />
               </div>
               <div className="bg-card border border-border rounded-xl overflow-hidden md:col-span-2">
-                <img src={marketCompareOptions2} alt="Market Compare UI Options" className="w-full h-auto object-contain" />
+                <ImageLightbox src={marketCompareOptions2} alt="Market Compare UI Options" className="w-full h-auto object-contain" />
+              </div>
+              {/* New Trendi tool images */}
+              <div className="bg-card border border-border rounded-xl overflow-hidden">
+                <ImageLightbox src={trendi1} alt="Trendi Upload Interface" className="w-full h-auto object-contain" />
+              </div>
+              <div className="bg-card border border-border rounded-xl overflow-hidden">
+                <ImageLightbox src={trendi2} alt="Trendi Keywords Dashboard" className="w-full h-auto object-contain" />
+              </div>
+              <div className="bg-card border border-border rounded-xl overflow-hidden">
+                <ImageLightbox src={trendi3} alt="Trendi Regional Insights" className="w-full h-auto object-contain" />
+              </div>
+              <div className="bg-card border border-border rounded-xl overflow-hidden">
+                <ImageLightbox src={trendi4} alt="Trendi Advanced Analysis" className="w-full h-auto object-contain" />
+              </div>
+              <div className="bg-card border border-border rounded-xl overflow-hidden md:col-span-2">
+                <ImageLightbox src={messagingType} alt="Messaging Type Variations" className="w-full h-auto object-contain" />
               </div>
             </div>
           </div>

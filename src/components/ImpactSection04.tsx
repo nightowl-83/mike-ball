@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { ChevronLeft, ChevronRight, ArrowDown } from "lucide-react";
+import { ChevronLeft, ChevronRight, ArrowDown, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
@@ -58,6 +58,7 @@ export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab, scrollToS
   const [activeBlockIndex, setActiveBlockIndex] = useState(0);
   const hasInitialized = useRef(false);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   // Clamp activeBlockIndex to valid range
   const safeIndex = Math.max(0, Math.min(activeBlockIndex, allBlocks.length - 1));
@@ -248,18 +249,42 @@ export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab, scrollToS
                 : "bg-white/50 border border-gray-200"
             )}>
               {currentBlock.image ? (
-                <img 
-                  src={currentBlock.image} 
-                  alt={currentBlock.title}
-                  onLoad={() => setImageLoaded(true)}
-                  className={cn(
-                    "max-w-full max-h-full transition-all duration-700",
-                    currentBlock.mode === 'marketplace' ? "object-contain" : "w-full h-full object-cover object-top",
-                    imageLoaded 
-                      ? "opacity-100 translate-y-0" 
-                      : "opacity-0 translate-y-4"
+                <>
+                  <img 
+                    src={currentBlock.image} 
+                    alt={currentBlock.title}
+                    onLoad={() => setImageLoaded(true)}
+                    onClick={() => setLightboxOpen(true)}
+                    className={cn(
+                      "max-w-full max-h-full transition-all duration-700 cursor-zoom-in hover:scale-[1.02]",
+                      currentBlock.mode === 'marketplace' ? "object-contain" : "w-full h-full object-cover object-top",
+                      imageLoaded 
+                        ? "opacity-100 translate-y-0" 
+                        : "opacity-0 translate-y-4"
+                    )}
+                  />
+                  {lightboxOpen && (
+                    <div 
+                      className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4 md:p-8 animate-fade-in"
+                      onClick={() => setLightboxOpen(false)}
+                    >
+                      <button
+                        onClick={() => setLightboxOpen(false)}
+                        className="absolute top-4 right-4 md:top-8 md:right-8 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors z-10"
+                        aria-label="Close lightbox"
+                      >
+                        <X className="w-6 h-6 text-white" />
+                      </button>
+                      
+                      <img
+                        src={currentBlock.image}
+                        alt={currentBlock.title}
+                        className="max-w-full max-h-full object-contain animate-scale-in"
+                        onClick={(e) => e.stopPropagation()}
+                      />
+                    </div>
                   )}
-                />
+                </>
               ) : (
                 <div className="w-full h-full flex items-center justify-center">
                   <p className={cn(
