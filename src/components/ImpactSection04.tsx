@@ -30,18 +30,18 @@ const allBlocks = [
   },
   // Marketplace slides (2-3) - LIGHT MODE
   {
-    title: "Closing the Loop",
-    quote: "We built a self-correcting data flywheel.",
-    narrative: "This created a bridge between two platforms: buyer questions fueled seller prompts, which in turn unlocked the filters buyers needed. The system started learning and improving its own data density.",
-    image: mhUtilitiesSearch,
-    mode: 'marketplace' as const
-  },
-  {
     title: "Intent-Based Navigation",
     quote: "We didn't design filters; we designed answers.",
     subtitle: "Using the lead parser, I prioritized a 'Utility First' navigation. We elevated the attributes that our users were most vocal about in their inquiries, drastically reducing the 'pogo-sticking' behavior between the search page and listing details.",
     narrative: "In a market flooded with identical 3rd-party listings, our users were struggling to find land that met basic survivability needs—water, power, and road access. This data existed in the leads, but was invisible on the page.",
     image: utilitiesDeskMobile,
+    mode: 'marketplace' as const
+  },
+  {
+    title: "Closing the Loop",
+    quote: "We built a self-correcting data flywheel.",
+    narrative: "This created a bridge between two platforms: buyer questions fueled seller prompts, which in turn unlocked the filters buyers needed. The system started learning and improving its own data density.",
+    image: mhUtilitiesSearch,
     mode: 'marketplace' as const
   }
 ];
