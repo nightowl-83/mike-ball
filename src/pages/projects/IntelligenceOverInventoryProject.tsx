@@ -96,12 +96,12 @@ const IntelligenceOverInventoryProject = () => {
     threshold: 0.5
   });
 
-  // Dual-mode toggle state (persists across sections /04-/07)
+  // Dual-mode toggle state (only affects Section 04 visually)
   const [activeDataMode, setActiveDataMode] = useState<'marketing-hub' | 'marketplace'>('marketing-hub');
 
-  // Track if user has visited section 04 to persist their mode preference
-  const hasVisitedSection04 = useRef(false);
+  // Track user's last selection in section 04 to restore when returning
   const lastModeOnSection04 = useRef<'marketing-hub' | 'marketplace'>('marketing-hub');
+  const wasOnSection04 = useRef(false);
 
   // Mobile detection
   const isMobile = useIsMobile();
@@ -109,19 +109,27 @@ const IntelligenceOverInventoryProject = () => {
   // Show toggle only on section 5 (Impact) - index shifted due to new section
   const showDualModeToggle = currentSectionIndex === 5;
 
-  // Track mode when on section 04, restore when returning
-  // Auto-revert to dark mode when leaving section 04 while in light (marketplace) mode
+  // Section 04 mode persistence and revert logic
   useEffect(() => {
-    if (currentSectionIndex === 5) {
-      hasVisitedSection04.current = true;
-      lastModeOnSection04.current = activeDataMode;
-    } else {
-      // If we've left section 04 and were in marketplace (light) mode, revert to dark
-      if (activeDataMode === 'marketplace') {
-        setActiveDataMode('marketing-hub');
+    const isOnSection04 = currentSectionIndex === 5;
+    
+    if (isOnSection04) {
+      // Entering or on section 04 - restore user's last selection if returning
+      if (!wasOnSection04.current && lastModeOnSection04.current !== activeDataMode) {
+        setActiveDataMode(lastModeOnSection04.current);
       }
+      wasOnSection04.current = true;
+    } else {
+      // Leaving section 04 - save current mode and revert to dark
+      if (wasOnSection04.current) {
+        lastModeOnSection04.current = activeDataMode;
+        if (activeDataMode === 'marketplace') {
+          setActiveDataMode('marketing-hub');
+        }
+      }
+      wasOnSection04.current = false;
     }
-  }, [currentSectionIndex]);
+  }, [currentSectionIndex, activeDataMode]);
 
   // Scroll to top on mount
   useEffect(() => {
@@ -467,17 +475,17 @@ const IntelligenceOverInventoryProject = () => {
     });
     return () => strategySection.removeEventListener('wheel', handleWheel);
   }, [currentSectionIndex, strategyActiveIndex, strategyItems.length]);
-  return <div className="flex bg-background relative">
-      {/* Animated Background - Vertices state */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
+  return <div className="flex bg-transparent relative">
+      {/* Animated Background - Vertices state - lower z-index */}
+      <div className="fixed inset-0 -z-10 pointer-events-none">
         <AnimatedBackground initialState="vertices" />
       </div>
 
       {/* Slide Navigation */}
       <SlideNav sections={sectionData} currentIndex={currentSectionIndex} onNavigate={scrollToSection} />
 
-      {/* Main Content - Slide Container */}
-      <main ref={containerRef} className={cn("flex-1 slide-container transition-colors duration-500 relative z-10", "ml-0 md:ml-56 lg:ml-64", "pt-14 md:pt-0", "bg-background/80 backdrop-blur-sm", activeDataMode === 'marketplace' && "theme-light")}>
+      {/* Main Content - Slide Container - semi-transparent bg so animated bg shows through */}
+      <main ref={containerRef} className={cn("flex-1 slide-container transition-colors duration-500 relative z-10", "ml-0 md:ml-56 lg:ml-64", "pt-14 md:pt-0", "bg-background/90")}>
         {/* Hero Section */}
         <section ref={el => {
         (sectionRefs[0] as any).current = el;
