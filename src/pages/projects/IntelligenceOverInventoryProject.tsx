@@ -702,7 +702,7 @@ const IntelligenceOverInventoryProject = () => {
                     
                     {/* Text Column - matching section 05 layout */}
                     <div className="flex flex-col justify-center h-full lg:pl-8 lg:pr-16">
-                      <div className="space-y-6 max-w-xl">
+                      <div className="space-y-6 max-w-2xl">
                         <h3 className="text-2xl md:text-4xl font-semibold text-foreground">{pair.title}</h3>
                         <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">{pair.description}</p>
                         
