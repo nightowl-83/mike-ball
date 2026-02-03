@@ -686,13 +686,14 @@ const IntelligenceOverInventoryProject = () => {
             </div>
 
             {/* Content fills remaining viewport - matches 05 layout */}
-            <div className="flex-1 relative overflow-hidden flex items-center">
+            <div className="flex-1 relative overflow-hidden flex items-center justify-center">
               {parsingCardPairs.map((pair, pairIndex) => {
               const isActive = parsingActiveIndex === pairIndex;
               const isPast = parsingActiveIndex > pairIndex;
-              return <div key={pairIndex} className={cn("absolute inset-0 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center h-full transition-all duration-700 ease-out", isActive ? "opacity-100 translate-y-0 z-10" : isPast ? "opacity-0 -translate-y-12 pointer-events-none z-0" : "opacity-0 translate-y-12 pointer-events-none z-0")}>
+              return <div key={pairIndex} className={cn("absolute inset-0 flex items-center justify-center transition-all duration-700 ease-out", isActive ? "opacity-100 translate-y-0 z-10" : isPast ? "opacity-0 -translate-y-12 pointer-events-none z-0" : "opacity-0 translate-y-12 pointer-events-none z-0")}>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full max-w-7xl mx-auto">
                     {/* Image Column - matching section 05 layout */}
-                    <div className="border border-border rounded-xl overflow-hidden">
+                    <div className="rounded-xl overflow-hidden">
                       <div className="relative">
                         {/* Primary image - front */}
                         <img src={pair.images[0].src} alt={pair.images[0].title} className="w-full h-auto object-contain" />
@@ -716,6 +717,7 @@ const IntelligenceOverInventoryProject = () => {
                           </ul>
                         </div>
                       </div>
+                    </div>
                     </div>
                   </div>;
             })}
@@ -765,13 +767,14 @@ const IntelligenceOverInventoryProject = () => {
             </div>
 
             {/* Content fills remaining viewport - with fade-up animation */}
-            <div className="flex-1 relative overflow-hidden flex items-center">
+            <div className="flex-1 relative overflow-hidden flex items-center justify-center">
               {strategyItems.map((item, index) => {
               const isActive = strategyActiveIndex === index;
               const isPast = strategyActiveIndex > index;
-              return <div key={index} className={cn("absolute inset-0 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center h-full transition-all duration-700 ease-out", isActive ? "opacity-100 translate-y-0 z-10" : isPast ? "opacity-0 -translate-y-12 pointer-events-none z-0" : "opacity-0 translate-y-12 pointer-events-none z-0")}>
-                    {/* Image Column - no background color */}
-                    <div className="border border-border rounded-xl overflow-hidden">
+              return <div key={index} className={cn("absolute inset-0 flex items-center justify-center transition-all duration-700 ease-out", isActive ? "opacity-100 translate-y-0 z-10" : isPast ? "opacity-0 -translate-y-12 pointer-events-none z-0" : "opacity-0 translate-y-12 pointer-events-none z-0")}>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full max-w-7xl mx-auto">
+                    {/* Image Column - no border, no background */}
+                    <div className="rounded-xl overflow-hidden">
                       {item.image ? <img src={item.image} alt={item.title} className="w-full h-auto object-contain" /> : <div className="w-full aspect-[16/10] flex items-center justify-center bg-muted/30">
                           <p className="text-muted-foreground">Visual placeholder</p>
                         </div>}
@@ -785,6 +788,7 @@ const IntelligenceOverInventoryProject = () => {
                         <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">{item.description}</p>
                         {'secondaryDescription' in item && item.secondaryDescription && <p className="text-base md:text-lg text-muted-foreground/80 leading-relaxed">{item.secondaryDescription}</p>}
                       </div>
+                    </div>
                     </div>
                   </div>;
             })}
