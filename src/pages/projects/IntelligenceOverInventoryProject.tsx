@@ -497,7 +497,7 @@ const IntelligenceOverInventoryProject = () => {
 
               {/* Impact Metrics - Neutral text color, lower font weight */}
               <div className="flex flex-wrap justify-center gap-3 pt-4 animate-fade-in [animation-delay:500ms]">
-                <span className="px-4 py-2 rounded-full bg-primary/15 text-muted-foreground border border-primary/20 text-base font-normal">First-Party Data · Product Strategy</span>
+                <span className="px-4 py-2 rounded-full border border-primary/20 text-base font-normal bg-[#3835e3]/15 text-primary-foreground">First-Party Data · Product Strategy</span>
               </div>
             </div>
           </div>
