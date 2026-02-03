@@ -11,9 +11,9 @@ import mhUtilitiesSearch from "@/assets/mh-utilities-search.png";
 import completeCards from "@/assets/Complete-Cards-1600-900.png";
 import utilitiesDeskMobile from "@/assets/Utilities-Desk-Mobile-16-9.png";
 
-// Unified content blocks - Marketing Hub first (0-2), then Marketplace (3)
+// 4 slides: 2 Marketing Hub (dark), 2 Marketplace (light)
 const allBlocks = [
-  // Marketing Hub slides (0-2)
+  // Marketing Hub slides (0-1) - DARK MODE
   {
     title: "The Seller's 'Aha' Moment",
     quote: "We shifted from asking for data to proving its ROI.",
@@ -28,14 +28,14 @@ const allBlocks = [
     image: completeCards,
     mode: 'marketing-hub' as const
   },
+  // Marketplace slides (2-3) - LIGHT MODE
   {
     title: "Closing the Loop",
     quote: "We built a self-correcting data flywheel.",
     narrative: "This created a bridge between two platforms: buyer questions fueled seller prompts, which in turn unlocked the filters buyers needed. The system started learning and improving its own data density.",
     image: mhUtilitiesSearch,
-    mode: 'marketing-hub' as const
+    mode: 'marketplace' as const
   },
-  // Marketplace slides (3)
   {
     title: "Intent-Based Navigation",
     quote: "We didn't design filters; we designed answers.",
@@ -62,9 +62,9 @@ export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab, scrollToS
   // Clamp activeBlockIndex to valid range
   const safeIndex = Math.max(0, Math.min(activeBlockIndex, allBlocks.length - 1));
   
-  // Determine the current mode based on which slide we're on
+  // Determine if we're in Marketing Hub (slides 0-1) or Marketplace (slides 2-3)
   const currentBlock = allBlocks[safeIndex];
-  const isMarketingHub = safeIndex < 3;
+  const isMarketingHub = safeIndex < 2;
   
   // Sync state if it was out of bounds
   useEffect(() => {
@@ -108,20 +108,14 @@ export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab, scrollToS
     }
   };
 
-  // Handle clicking on marketplace toggle - jump to slide 3
+  // Handle clicking on marketplace toggle - jump to slide 2 (first marketplace slide)
   const handleMarketplaceClick = () => {
-    if (setActiveTab) {
-      setActiveTab('marketplace');
-    }
-    setActiveBlockIndex(3); // Jump to first marketplace slide
+    setActiveBlockIndex(2);
   };
 
-  // Handle clicking on marketing hub toggle - jump to slide 0
+  // Handle clicking on marketing hub toggle - jump to slide 0 (first marketing hub slide)
   const handleMarketingHubClick = () => {
-    if (setActiveTab) {
-      setActiveTab('marketing-hub');
-    }
-    setActiveBlockIndex(0); // Jump to first marketing hub slide
+    setActiveBlockIndex(0);
   };
 
   // Keyboard navigation - only when section is active
@@ -145,63 +139,83 @@ export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab, scrollToS
   return (
     <section
       ref={sectionRef}
-      className="slide-section flex flex-col pt-12 relative"
+      className={cn(
+        "slide-section flex flex-col pt-12 relative transition-colors duration-500",
+        isMarketingHub 
+          ? "bg-background text-foreground" 
+          : "bg-[hsl(220_20%_96%)] text-gray-900"
+      )}
     >
-      <div className="w-full px-4 md:px-8 lg:px-12 flex flex-col h-full pb-32">
+      <div className="w-full px-4 md:px-8 lg:px-12 flex flex-col h-full pb-8">
         {/* Header - Title left, Number right */}
         <div className="flex items-start justify-between mb-4">
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground">
+          <h2 className={cn(
+            "text-3xl md:text-5xl lg:text-6xl font-bold",
+            isMarketingHub ? "text-foreground" : "text-gray-900"
+          )}>
             Dual-Interface Impact
           </h2>
-          <span className="text-5xl md:text-7xl font-bold font-mono opacity-20 hidden md:block">
+          <span className={cn(
+            "text-5xl md:text-7xl font-bold font-mono opacity-20 hidden md:block",
+            isMarketingHub ? "" : "text-gray-900"
+          )}>
             /04
           </span>
         </div>
 
-        {/* Subtitle with Toggle */}
-        <div className="flex items-center gap-4 mb-12">
-          <p className="text-lg md:text-xl text-muted-foreground">
-            How the data affected the buyer & seller experience
-          </p>
-          {/* Toggle as section navigation */}
-          <div className="flex items-center gap-2 ml-auto">
-            <button
-              onClick={handleMarketingHubClick}
-              className={cn(
-                "px-4 py-2 rounded-full text-sm font-medium transition-all duration-300",
-                isMarketingHub 
-                  ? "bg-primary text-primary-foreground" 
-                  : "bg-muted/50 text-muted-foreground hover:bg-muted"
-              )}
-            >
-              Marketing Hub
-            </button>
-            <button
-              onClick={handleMarketplaceClick}
-              className={cn(
-                "px-4 py-2 rounded-full text-sm font-medium transition-all duration-300",
-                !isMarketingHub 
-                  ? "bg-primary text-primary-foreground" 
-                  : "bg-muted/50 text-muted-foreground hover:bg-muted"
-              )}
-            >
-              Marketplace
-            </button>
-          </div>
-        </div>
+        {/* Subtitle */}
+        <p className={cn(
+          "text-lg md:text-xl mb-8",
+          isMarketingHub ? "text-muted-foreground" : "text-gray-600"
+        )}>
+          How the data affected the buyer & seller experience
+        </p>
 
-        {/* Carousel Control Row */}
+        {/* Divider */}
+        <Separator className={cn("mb-6", !isMarketingHub && "bg-gray-300")} />
+
+        {/* Carousel Control Row - Title left, Toggle + Arrows right */}
         <div className="flex justify-between items-center mb-6">
           {/* Left: Slide Title */}
-          <div className="flex items-center gap-3">
-            <h3 className="text-lg md:text-xl font-semibold text-foreground">
-              {currentBlock.title}
-            </h3>
-          </div>
+          <h3 className={cn(
+            "text-lg md:text-xl font-semibold",
+            isMarketingHub ? "text-foreground" : "text-gray-900"
+          )}>
+            {currentBlock.title}
+          </h3>
           
-          {/* Right: Count + Arrows + Continue */}
+          {/* Right: Toggle + Count + Arrows + Continue */}
           <div className="flex items-center gap-3">
-            <span className="text-sm text-muted-foreground">
+            {/* Mode Toggle Pills */}
+            <div className="flex items-center gap-2">
+              <button
+                onClick={handleMarketingHubClick}
+                className={cn(
+                  "px-4 py-2 rounded-full text-sm font-medium transition-all duration-300",
+                  isMarketingHub 
+                    ? "bg-primary text-primary-foreground" 
+                    : "bg-gray-200 text-gray-600 hover:bg-gray-300"
+                )}
+              >
+                Marketing Hub
+              </button>
+              <button
+                onClick={handleMarketplaceClick}
+                className={cn(
+                  "px-4 py-2 rounded-full text-sm font-medium transition-all duration-300",
+                  !isMarketingHub 
+                    ? "bg-gray-800 text-white" 
+                    : "bg-muted/50 text-muted-foreground hover:bg-muted"
+                )}
+              >
+                Marketplace
+              </button>
+            </div>
+
+            <span className={cn(
+              "text-sm",
+              isMarketingHub ? "text-muted-foreground" : "text-gray-500"
+            )}>
               {activeBlockIndex + 1} of {allBlocks.length}
             </span>
             <Button 
@@ -211,7 +225,7 @@ export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab, scrollToS
               disabled={activeBlockIndex === 0}
               className={cn(
                 "h-9 w-9",
-                !isMarketingHub && "border-foreground/20 text-foreground hover:bg-foreground/10"
+                !isMarketingHub && "border-gray-300 text-gray-700 hover:bg-gray-200 bg-white"
               )}
             >
               <ChevronLeft className="w-4 h-4" />
@@ -223,7 +237,7 @@ export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab, scrollToS
               disabled={activeBlockIndex === allBlocks.length - 1}
               className={cn(
                 "h-9 w-9",
-                !isMarketingHub && "border-foreground/20 text-foreground hover:bg-foreground/10"
+                !isMarketingHub && "border-gray-300 text-gray-700 hover:bg-gray-200 bg-white"
               )}
             >
               <ChevronRight className="w-4 h-4" />
@@ -234,7 +248,7 @@ export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab, scrollToS
                 onClick={() => scrollToSection(6)}
                 className={cn(
                   "gap-2 ml-2",
-                  !isMarketingHub && "border-foreground/20 text-foreground hover:bg-foreground/10"
+                  !isMarketingHub && "border-gray-300 text-gray-700 hover:bg-gray-200 bg-white"
                 )}
               >
                 Continue
@@ -244,31 +258,41 @@ export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab, scrollToS
           </div>
         </div>
 
-        {/* Divider */}
-        <Separator className="mb-8" />
-
-        {/* Content Area */}
-        <div className="flex-1">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+        {/* Content Area - Expanded height */}
+        <div className="flex-1 min-h-0">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 h-full items-start">
             {/* Text Column */}
             <div className="lg:col-span-1 space-y-4">
-              <blockquote className="text-xl md:text-2xl font-semibold text-foreground italic border-l-4 border-primary pl-4">
+              <blockquote className={cn(
+                "text-xl md:text-2xl font-semibold italic border-l-4 pl-4",
+                isMarketingHub 
+                  ? "text-foreground border-primary" 
+                  : "text-gray-900 border-gray-800"
+              )}>
                 "{currentBlock.quote}"
               </blockquote>
               {'subtitle' in currentBlock && currentBlock.subtitle && (
-                <p className="text-base md:text-lg text-primary/80 leading-relaxed font-medium">
+                <p className={cn(
+                  "text-base md:text-lg leading-relaxed font-medium",
+                  isMarketingHub ? "text-primary/80" : "text-gray-700"
+                )}>
                   {currentBlock.subtitle}
                 </p>
               )}
-              <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+              <p className={cn(
+                "text-base md:text-lg leading-relaxed",
+                isMarketingHub ? "text-muted-foreground" : "text-gray-600"
+              )}>
                 {currentBlock.narrative}
               </p>
             </div>
             
-            {/* Image Column with load animation */}
+            {/* Image Column - Expanded height */}
             <div className={cn(
-              "lg:col-span-2 h-[calc(100vh-480px)] min-h-[300px] bg-muted/30 border border-border rounded-xl overflow-hidden flex items-center justify-center",
-              "transition-all duration-500"
+              "lg:col-span-2 h-[calc(100vh-380px)] min-h-[350px] rounded-xl overflow-hidden flex items-center justify-center",
+              isMarketingHub 
+                ? "bg-muted/30 border border-border" 
+                : "bg-white/50 border border-gray-200"
             )}>
               {currentBlock.image ? (
                 <img 
@@ -277,7 +301,7 @@ export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab, scrollToS
                   onLoad={() => setImageLoaded(true)}
                   className={cn(
                     "max-w-full max-h-full transition-all duration-700",
-                    activeBlockIndex >= 3 ? "object-contain" : "w-full h-full object-cover object-top",
+                    currentBlock.mode === 'marketplace' ? "object-contain" : "w-full h-full object-cover object-top",
                     imageLoaded 
                       ? "opacity-100 translate-y-0" 
                       : "opacity-0 translate-y-4"
@@ -285,7 +309,12 @@ export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab, scrollToS
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center">
-                  <p className="text-muted-foreground text-base">Image for "{currentBlock.title}"</p>
+                  <p className={cn(
+                    "text-base",
+                    isMarketingHub ? "text-muted-foreground" : "text-gray-500"
+                  )}>
+                    Image for "{currentBlock.title}"
+                  </p>
                 </div>
               )}
             </div>
