@@ -397,10 +397,10 @@ const IntelligenceOverInventoryProject = () => {
               <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-base font-medium animate-fade-in">
                 Product Strategy
               </span>
-              <h1 className="text-5xl md:text-6xl lg:text-8xl font-bold text-foreground leading-tight animate-fade-in [animation-delay:100ms]">
+              <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-foreground leading-tight animate-fade-in [animation-delay:100ms]">
                 Intelligence Over<br />Inventory
               </h1>
-              <p className="text-2xl md:text-3xl text-muted-foreground animate-fade-in [animation-delay:200ms]">
+              <p className="text-xl md:text-2xl text-muted-foreground animate-fade-in [animation-delay:200ms]">
                 Transforming Commodity Data into First-Party Insights
               </p>
               <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto animate-fade-in [animation-delay:300ms]">
@@ -446,7 +446,7 @@ const IntelligenceOverInventoryProject = () => {
             {/* Section Header */}
             <div className="flex items-start justify-between mb-12">
               <div className="flex-1">
-                <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground">
+                <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground">
                   The Challenge
                 </h2>
                 <p className="text-lg md:text-xl text-muted-foreground mt-4 max-w-2xl">
@@ -579,7 +579,7 @@ const IntelligenceOverInventoryProject = () => {
             {/* Section Header */}
             <div className="flex items-start justify-between mb-8">
               <div className="flex-1">
-                <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground">
+                <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground">
                   The Insight Engine
                 </h2>
                 <p className="text-lg md:text-xl text-muted-foreground mt-4 max-w-2xl">
@@ -621,7 +621,7 @@ const IntelligenceOverInventoryProject = () => {
             {/* Section Header */}
             <div className="flex items-start justify-between mb-6">
               <div className="flex-1">
-                <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground">
+                <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground">
                   The Lead Intelligence Tool
                 </h2>
                 <p className="text-lg md:text-xl text-muted-foreground mt-4 max-w-3xl">
@@ -658,7 +658,7 @@ const IntelligenceOverInventoryProject = () => {
                         )}>
                           {/* Primary image - back */}
                           <div className={cn(
-                            "absolute left-0 top-0 w-[75%] h-[85%] rounded-xl overflow-hidden shadow-2xl border border-border transition-all duration-700",
+                            "absolute left-0 top-0 w-[85%] h-[90%] rounded-xl overflow-hidden shadow-2xl border border-border transition-all duration-700",
                             parsingActiveIndex === pairIndex ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                           )}>
                             <img 
@@ -669,7 +669,7 @@ const IntelligenceOverInventoryProject = () => {
                           </div>
                           {/* Secondary image - front, overlapping */}
                           <div className={cn(
-                            "absolute right-0 bottom-0 w-[65%] h-[75%] rounded-xl overflow-hidden shadow-2xl border border-border transition-all duration-700 delay-100",
+                            "absolute right-0 bottom-0 w-[75%] h-[80%] rounded-xl overflow-hidden shadow-2xl border border-border transition-all duration-700 delay-100",
                             parsingActiveIndex === pairIndex ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                           )}>
                             <img 
@@ -686,18 +686,18 @@ const IntelligenceOverInventoryProject = () => {
                           pairIndex % 2 === 1 && "lg:order-1"
                         )}>
                           <div className={cn(
-                            "space-y-4 transition-all duration-700",
+                            "space-y-2 transition-all duration-700",
                             parsingActiveIndex === pairIndex ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                           )}>
-                            <h3 className="text-2xl md:text-3xl font-semibold text-foreground">{pair.images[0].title}</h3>
-                            <p className="text-lg md:text-xl text-muted-foreground">{pair.captions[0]}</p>
+                            <h3 className="text-lg md:text-xl font-semibold text-foreground">{pair.images[0].title}</h3>
+                            <p className="text-sm md:text-base text-muted-foreground">{pair.captions[0]}</p>
                           </div>
                           <div className={cn(
-                            "space-y-4 pt-4 border-t border-border transition-all duration-700 delay-75",
+                            "space-y-2 pt-3 border-t border-border transition-all duration-700 delay-75",
                             parsingActiveIndex === pairIndex ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                           )}>
-                            <h3 className="text-2xl md:text-3xl font-semibold text-foreground">{pair.images[1].title}</h3>
-                            <p className="text-lg md:text-xl text-muted-foreground">{pair.captions[1]}</p>
+                            <h3 className="text-lg md:text-xl font-semibold text-foreground">{pair.images[1].title}</h3>
+                            <p className="text-sm md:text-base text-muted-foreground">{pair.captions[1]}</p>
                           </div>
                         </div>
                       </div>
@@ -763,7 +763,7 @@ const IntelligenceOverInventoryProject = () => {
             {/* Section Header */}
             <div className="flex items-start justify-between mb-6">
               <div className="flex-1">
-                <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground">
+                <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground">
                   Strategy & Influence
                 </h2>
                 <p className="text-lg md:text-xl text-muted-foreground mt-4 max-w-2xl">
@@ -869,7 +869,7 @@ const IntelligenceOverInventoryProject = () => {
             {/* Section Header */}
             <div className="flex items-start justify-between mb-12">
               <div className="flex-1">
-                <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground">
+                <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground">
                   The AI Evolution
                 </h2>
                 <p className="text-lg md:text-xl text-muted-foreground mt-4 max-w-2xl">

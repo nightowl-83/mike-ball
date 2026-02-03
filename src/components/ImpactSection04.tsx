@@ -107,7 +107,7 @@ export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab }: ImpactS
       <div className="w-full px-4 md:px-8 lg:px-12 flex flex-col h-full pb-32">
         {/* Header - Title left, Number right */}
         <div className="flex items-start justify-between mb-4">
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground">
             Dual-Interface Impact
           </h2>
           <span className="text-5xl md:text-7xl font-bold font-mono opacity-20 hidden md:block">
