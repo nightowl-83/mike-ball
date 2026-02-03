@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowRight, Database, Filter, BarChart3, Target, Users, ChevronLeft, ChevronRight, Lightbulb, Sparkles, TrendingUp, Brain, Quote, MessageSquare } from "lucide-react";
+import { ArrowDown, ArrowRight, Database, Filter, BarChart3, Target, Users, ChevronLeft, ChevronRight, Sparkles, TrendingUp, Brain, Quote } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState, useRef, useCallback } from "react";
@@ -52,14 +52,18 @@ const IntelligenceOverInventoryProject = () => {
   const showDualModeToggle = currentSectionIndex === 5;
 
   // Track mode when on section 04, restore when returning
+  // Auto-revert to dark mode when leaving section 04 while in light (marketplace) mode
   useEffect(() => {
     if (currentSectionIndex === 5) {
       hasVisitedSection04.current = true;
       lastModeOnSection04.current = activeDataMode;
+    } else {
+      // If we've left section 04 and were in marketplace (light) mode, revert to dark
+      if (activeDataMode === 'marketplace') {
+        setActiveDataMode('marketing-hub');
+      }
     }
-    // Only reset mode when navigating away from section 04 to sections OTHER than 05/06
-    // This ensures returning to 04 from 05 preserves the mode
-  }, [currentSectionIndex, activeDataMode]);
+  }, [currentSectionIndex]);
 
   // Scroll to top on mount
   useEffect(() => {
@@ -151,8 +155,7 @@ const IntelligenceOverInventoryProject = () => {
   const WHEEL_THRESHOLD = 100;
   const isTransitioningRef = useRef(false);
 
-  // "The Idea" section - toggle between blockquote variations
-  const [ideaVariant, setIdeaVariant] = useState<'centered' | 'split'>('centered');
+  // "The Idea" section - using centered layout only (toggle removed)
 
   // Slide indices for fade-up navigation (no carousel API needed)
   const [parsingActiveIndex, setParsingActiveIndex] = useState(0);
@@ -431,10 +434,10 @@ const IntelligenceOverInventoryProject = () => {
                 </div>
               </div>
 
-              {/* Impact Metrics - Light text for better legibility */}
+              {/* Impact Metrics - Semi-opaque bg with neutral text */}
               <div className="flex flex-wrap justify-center gap-3 pt-4 animate-fade-in [animation-delay:500ms]">
-                <span className="px-4 py-2 rounded-full bg-primary text-primary-foreground text-base font-semibold">+45% Lead Quality</span>
-                <span className="px-4 py-2 rounded-full bg-primary text-primary-foreground text-base font-semibold">First-Party Data</span>
+                <span className="px-4 py-2 rounded-full bg-primary/15 text-foreground border border-primary/20 text-base font-semibold">+45% Lead Quality</span>
+                <span className="px-4 py-2 rounded-full bg-primary/15 text-foreground border border-primary/20 text-base font-semibold">First-Party Data</span>
               </div>
             </div>
           </div>
@@ -546,7 +549,7 @@ const IntelligenceOverInventoryProject = () => {
           </div>
         </section>
 
-        {/* The Idea Section - Toggle between two blockquote variations */}
+        {/* The Idea Section - Centered blockquote layout */}
         <section
           ref={(el) => { 
             (sectionRefs[2] as any).current = el;
@@ -557,107 +560,41 @@ const IntelligenceOverInventoryProject = () => {
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
           
           <div className="w-[85%] mx-auto relative z-10">
-            {/* Variant Toggle */}
-            <div className="flex justify-center mb-8">
-              <div className="bg-card border border-border rounded-full p-1 flex gap-1">
-                <button
-                  onClick={() => setIdeaVariant('centered')}
-                  className={cn(
-                    "px-4 py-2 rounded-full text-sm font-medium transition-all",
-                    ideaVariant === 'centered' 
-                      ? "bg-primary text-primary-foreground" 
-                      : "text-muted-foreground hover:text-foreground"
-                  )}
-                >
-                  <Quote className="w-4 h-4 inline mr-2" />
-                  Centered
-                </button>
-                <button
-                  onClick={() => setIdeaVariant('split')}
-                  className={cn(
-                    "px-4 py-2 rounded-full text-sm font-medium transition-all",
-                    ideaVariant === 'split' 
-                      ? "bg-primary text-primary-foreground" 
-                      : "text-muted-foreground hover:text-foreground"
-                  )}
-                >
-                  <MessageSquare className="w-4 h-4 inline mr-2" />
-                  Split
-                </button>
+            {/* Centered Layout - Dark bg with floating dots */}
+            <div className="max-w-4xl mx-auto animate-fade-in relative">
+              {/* Dark card with subtle dot pattern */}
+              <div className="bg-card/80 backdrop-blur border border-border rounded-3xl p-12 md:p-16 relative overflow-hidden">
+                {/* Subtle floating dots decoration */}
+                <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30">
+                  <div className="absolute top-8 left-12 w-2 h-2 rounded-full bg-primary" />
+                  <div className="absolute top-16 right-20 w-1.5 h-1.5 rounded-full bg-primary" />
+                  <div className="absolute top-24 left-1/4 w-1 h-1 rounded-full bg-primary" />
+                  <div className="absolute top-12 right-1/3 w-2 h-2 rounded-full bg-primary" />
+                  <div className="absolute bottom-20 left-16 w-1.5 h-1.5 rounded-full bg-primary" />
+                  <div className="absolute bottom-12 right-24 w-2 h-2 rounded-full bg-primary" />
+                </div>
+                
+                {/* Quote icon circle */}
+                <div className="flex justify-center mb-10">
+                  <div className="w-16 h-16 rounded-full bg-background flex items-center justify-center shadow-lg">
+                    <Quote className="w-7 h-7 text-primary" />
+                  </div>
+                </div>
+                
+                <blockquote className="text-center space-y-6 relative z-10">
+                  <p className="text-lg md:text-xl lg:text-2xl text-foreground leading-relaxed font-light">
+                    An Account Manager flagged that buyers were reaching out to sellers about 'Owner Financing' and getting no response. It was a clear signal that our listings were missing the very information that drove the final purchase decision.
+                  </p>
+                </blockquote>
+              </div>
+              
+              {/* Insight below - neutral color for second sentence */}
+              <div className="mt-8 text-center">
+                <p className="text-2xl md:text-3xl font-light text-muted-foreground leading-relaxed">
+                  The leads themselves could tell us what buyers actually want.
+                </p>
               </div>
             </div>
-            
-            {/* Variation 1: Centered - Dark bg with floating dots inspired by first reference */}
-            {ideaVariant === 'centered' && (
-              <div className="max-w-4xl mx-auto animate-fade-in relative">
-                {/* Dark card with subtle dot pattern */}
-                <div className="bg-card/80 backdrop-blur border border-border rounded-3xl p-12 md:p-16 relative overflow-hidden">
-                  {/* Subtle floating dots decoration */}
-                  <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30">
-                    <div className="absolute top-8 left-12 w-2 h-2 rounded-full bg-primary" />
-                    <div className="absolute top-16 right-20 w-1.5 h-1.5 rounded-full bg-primary" />
-                    <div className="absolute top-24 left-1/4 w-1 h-1 rounded-full bg-primary" />
-                    <div className="absolute top-12 right-1/3 w-2 h-2 rounded-full bg-primary" />
-                    <div className="absolute bottom-20 left-16 w-1.5 h-1.5 rounded-full bg-primary" />
-                    <div className="absolute bottom-12 right-24 w-2 h-2 rounded-full bg-primary" />
-                  </div>
-                  
-                  {/* Quote icon circle */}
-                  <div className="flex justify-center mb-10">
-                    <div className="w-16 h-16 rounded-full bg-background flex items-center justify-center shadow-lg">
-                      <Quote className="w-7 h-7 text-primary" />
-                    </div>
-                  </div>
-                  
-                  <blockquote className="text-center space-y-6 relative z-10">
-                    <p className="text-lg md:text-xl lg:text-2xl text-foreground leading-relaxed tracking-wide uppercase font-medium">
-                      An Account Manager flagged that buyers were reaching out to sellers about 'Owner Financing' and getting no response. It was a clear signal that our listings were missing the very information that drove the final purchase decision.
-                    </p>
-                  </blockquote>
-                </div>
-                
-                {/* Insight below */}
-                <div className="mt-8 text-center">
-                  <p className="text-2xl md:text-3xl font-semibold text-primary leading-relaxed">
-                    The leads themselves could tell us what buyers actually want.
-                  </p>
-                </div>
-              </div>
-            )}
-            
-            {/* Variation 2: Classic quote with attribution - Serif/italic inspired by references */}
-            {ideaVariant === 'split' && (
-              <div className="max-w-4xl mx-auto animate-fade-in">
-                {/* Dark full-width card */}
-                <div className="bg-card border border-border rounded-2xl p-12 md:p-16 text-center relative">
-                  {/* Decorative red/primary accents at edges */}
-                  <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                    <div className="absolute -top-20 -left-20 w-40 h-40 bg-primary/10 rounded-full blur-3xl" />
-                    <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-primary/10 rounded-full blur-3xl" />
-                  </div>
-                  
-                  <blockquote className="relative z-10 space-y-8">
-                    <p className="text-xl md:text-2xl lg:text-3xl text-primary leading-relaxed font-serif italic">
-                      "An Account Manager flagged that buyers were reaching out to sellers about 'Owner Financing' and getting no response. It was a clear signal that our listings were missing the very information that drove the final purchase decision."
-                    </p>
-                    <footer className="text-base text-muted-foreground font-medium tracking-wide">
-                      Account Manager Insight
-                    </footer>
-                  </blockquote>
-                </div>
-                
-                {/* Insight card below */}
-                <div className="mt-6 bg-primary/5 border border-primary/20 rounded-xl p-6 text-center">
-                  <div className="flex items-center justify-center gap-3 mb-4">
-                    <Lightbulb className="w-6 h-6 text-primary" />
-                    <h3 className="text-lg font-semibold text-foreground">The Insight</h3>
-                  </div>
-                  <p className="text-xl md:text-2xl font-semibold text-primary leading-relaxed">
-                    The leads themselves could tell us what buyers actually want.
-                  </p>
-                </div>
-              </div>
-            )}
           </div>
           
           {/* Connecting line to next section */}
@@ -790,8 +727,8 @@ const IntelligenceOverInventoryProject = () => {
                       </div>
                     </div>
 
-                    {/* Text Column */}
-                    <div className="space-y-6">
+                    {/* Text Column - constrained width on desktop */}
+                    <div className="space-y-6 lg:max-w-[50%]">
                       {/* Main content box */}
                       <div className="bg-card border border-border rounded-xl p-6 space-y-4">
                         <h3 className="text-xl md:text-2xl font-semibold text-foreground">{pair.title}</h3>
