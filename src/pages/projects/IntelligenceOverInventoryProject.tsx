@@ -691,17 +691,14 @@ const IntelligenceOverInventoryProject = () => {
               const isActive = parsingActiveIndex === pairIndex;
               const isPast = parsingActiveIndex > pairIndex;
               return <div key={pairIndex} className={cn("absolute inset-0 flex items-center justify-center transition-all duration-700 ease-out", isActive ? "opacity-100 translate-y-0 z-10" : isPast ? "opacity-0 -translate-y-12 pointer-events-none z-0" : "opacity-0 translate-y-12 pointer-events-none z-0")}>
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full max-w-[1600px] mx-auto">
-                    {/* Image Column - matching section 05 layout - larger image */}
-                    <div className="rounded-xl overflow-hidden flex items-center justify-center">
-                      <div className="relative w-[120%] max-w-none -ml-[10%]">
-                        {/* Primary image - front - enlarged */}
-                        <img src={pair.images[0].src} alt={pair.images[0].title} className="w-full h-auto object-contain" />
-                      </div>
+                    <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center w-full max-w-[1600px] mx-auto">
+                    {/* Image Column - 3/5 width */}
+                    <div className="lg:col-span-3 rounded-xl overflow-hidden">
+                      <img src={pair.images[0].src} alt={pair.images[0].title} className="w-full h-auto object-contain" />
                     </div>
                     
-                    {/* Text Column - matching section 05 layout */}
-                    <div className="flex flex-col justify-center h-full lg:pl-8 lg:pr-16">
+                    {/* Text Column - 2/5 width */}
+                    <div className="lg:col-span-2 flex flex-col justify-center h-full lg:pl-8 lg:pr-8">
                       <div className="space-y-6 max-w-2xl">
                         <h3 className="text-2xl md:text-4xl font-semibold text-foreground">{pair.title}</h3>
                         <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">{pair.description}</p>
@@ -772,16 +769,16 @@ const IntelligenceOverInventoryProject = () => {
               const isActive = strategyActiveIndex === index;
               const isPast = strategyActiveIndex > index;
               return <div key={index} className={cn("absolute inset-0 flex items-center justify-center transition-all duration-700 ease-out", isActive ? "opacity-100 translate-y-0 z-10" : isPast ? "opacity-0 -translate-y-12 pointer-events-none z-0" : "opacity-0 translate-y-12 pointer-events-none z-0")}>
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full max-w-[1600px] mx-auto">
-                    {/* Image Column - no border, no background - larger image */}
-                    <div className="rounded-xl overflow-hidden flex items-center justify-center">
-                      {item.image ? <div className="w-[120%] max-w-none -ml-[10%]"><img src={item.image} alt={item.title} className="w-full h-auto object-contain" /></div> : <div className="w-full aspect-[16/10] flex items-center justify-center bg-muted/30">
+                    <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center w-full max-w-[1600px] mx-auto">
+                    {/* Image Column - 3/5 width */}
+                    <div className="lg:col-span-3 rounded-xl overflow-hidden">
+                      {item.image ? <img src={item.image} alt={item.title} className="w-full h-auto object-contain" /> : <div className="w-full aspect-[16/10] flex items-center justify-center bg-muted/30">
                           <p className="text-muted-foreground">Visual placeholder</p>
                         </div>}
                     </div>
                     
-                    {/* Text Column - increased padding, centered content */}
-                    <div className="flex flex-col justify-center h-full lg:pl-8 lg:pr-16">
+                    {/* Text Column - 2/5 width */}
+                    <div className="lg:col-span-2 flex flex-col justify-center h-full lg:pl-8 lg:pr-8">
                       <div className="space-y-6 max-w-lg">
                         <h3 className="text-2xl md:text-4xl font-semibold text-foreground">{item.title}</h3>
                         {'subtitle' in item && item.subtitle && <h4 className="text-lg md:text-xl font-medium text-primary">{item.subtitle}</h4>}
