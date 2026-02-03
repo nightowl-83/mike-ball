@@ -87,15 +87,18 @@ export function useSlideNavigation({
         return;
       }
 
-      if (event.key === "ArrowDown" || event.key === "ArrowRight") {
+      // Up/Down arrows navigate between sections
+      if (event.key === "ArrowDown") {
         event.preventDefault();
         const nextIndex = Math.min(currentSectionIndex + 1, sectionCount - 1);
         scrollToSection(nextIndex);
-      } else if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
+      } else if (event.key === "ArrowUp") {
         event.preventDefault();
         const prevIndex = Math.max(currentSectionIndex - 1, 0);
         scrollToSection(prevIndex);
       }
+      // Left/Right arrows are reserved for carousel/item navigation within sections
+      // (handled by individual section components)
     };
 
     // Check for reduced motion preference
