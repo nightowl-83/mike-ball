@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
@@ -57,9 +57,10 @@ interface ImpactSection04Props {
   sectionRef: (el: HTMLElement | null) => void;
   activeTab: 'marketing-hub' | 'marketplace';
   setActiveTab?: (tab: 'marketing-hub' | 'marketplace') => void;
+  scrollToSection?: (index: number) => void;
 }
 
-export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab }: ImpactSection04Props) => {
+export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab, scrollToSection }: ImpactSection04Props) => {
   const [activeBlockIndex, setActiveBlockIndex] = useState(0);
 
   // Determine the current mode based on which slide we're on
@@ -137,7 +138,7 @@ export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab }: ImpactS
             </h3>
           </div>
           
-          {/* Right: Count + Arrows */}
+          {/* Right: Count + Arrows + Continue */}
           <div className="flex items-center gap-3">
             <span className="text-sm text-muted-foreground">
               {activeBlockIndex + 1} of {allBlocks.length}
@@ -166,6 +167,19 @@ export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab }: ImpactS
             >
               <ChevronRight className="w-4 h-4" />
             </Button>
+            {scrollToSection && (
+              <Button
+                variant="outline"
+                onClick={() => scrollToSection(6)}
+                className={cn(
+                  "gap-2 ml-2",
+                  !isMarketingHub && "border-gray-300 text-gray-800 hover:bg-gray-100"
+                )}
+              >
+                Continue
+                <ArrowRight className="w-4 h-4" />
+              </Button>
+            )}
           </div>
         </div>
 
@@ -186,13 +200,16 @@ export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab }: ImpactS
             </div>
             
             {/* Image Column */}
-            <div className="lg:col-span-2 h-[calc(100vh-480px)] min-h-[300px] bg-muted/30 border border-border rounded-xl overflow-hidden transition-all duration-500 flex items-center justify-center">
+            <div className={cn(
+              "lg:col-span-2 h-[calc(100vh-480px)] min-h-[300px] bg-muted/30 border border-border rounded-xl overflow-hidden flex items-center justify-center",
+              "transition-all duration-500"
+            )}>
               {currentBlock.image ? (
                 <img 
                   src={currentBlock.image} 
                   alt={currentBlock.title}
                   className={cn(
-                    "max-w-full max-h-full object-contain",
+                    "max-w-full max-h-full transition-all duration-500",
                     // For Marketplace slides (3 and 4), use contain to preserve aspect ratio
                     activeBlockIndex >= 3 ? "object-contain" : "w-full h-full object-cover object-top"
                   )}
