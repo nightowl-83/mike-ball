@@ -6,10 +6,10 @@ const Hero = () => {
       <Navbar />
       <section 
         data-bg-state="floating"
-        className="relative min-h-screen flex items-start justify-center pt-32 md:pt-40"
+        className="relative min-h-screen flex items-start justify-center"
       >
-        {/* Content */}
-        <div className="relative z-10 container mx-auto px-6 text-center animate-fade-in">
+        {/* Content - positioned between navbar and cloud (~30% from top) */}
+        <div className="relative z-10 container mx-auto px-6 text-center animate-fade-in" style={{ paddingTop: '25vh' }}>
           <div className="max-w-4xl mx-auto space-y-6">
             {/* Main Heading */}
             <div className="space-y-4">
