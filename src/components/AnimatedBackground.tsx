@@ -96,10 +96,10 @@ export default function AnimatedBackground({
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    // Initialize particles
+    // Initialize particles - offset 150px down from center
     const particleCount = 100;
     const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2;
+    const centerY = canvas.height / 2 + 150; // Offset 150px down
     
     if (particlesRef.current.length === 0) {
       particlesRef.current = Array.from({ length: particleCount }, () => {

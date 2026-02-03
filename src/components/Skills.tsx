@@ -63,7 +63,7 @@ const Skills = ({ variant = "colored" }: SkillsProps) => {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-background">
+    <section className="py-16 md:py-24">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
