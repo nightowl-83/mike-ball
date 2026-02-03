@@ -34,7 +34,12 @@ const Index = () => {
     
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
+        // Sort entries by their position on page to handle multiple intersecting sections
+        const sortedEntries = [...entries].sort((a, b) => {
+          return a.boundingClientRect.top - b.boundingClientRect.top;
+        });
+        
+        sortedEntries.forEach((entry) => {
           if (entry.isIntersecting) {
             const newState = entry.target.getAttribute('data-bg-state');
             if (newState === 'floating' || newState === 'grid') {
@@ -43,7 +48,10 @@ const Index = () => {
           }
         });
       },
-      { threshold: 0.5 }
+      { 
+        threshold: 0.1, // Lower threshold - trigger earlier
+        rootMargin: '-10% 0px -10% 0px' // Trigger when section is 10% into viewport
+      }
     );
 
     sections.forEach((section) => observer.observe(section));
