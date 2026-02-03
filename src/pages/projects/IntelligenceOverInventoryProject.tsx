@@ -16,6 +16,9 @@ import mhCompletenessCards from "@/assets/mh-completeness-cards.png";
 import hubAnalyticsCore from "@/assets/Hub-Analytics-Core.png";
 import analyticsScoreCard from "@/assets/Analytics-Score_Card.png";
 import marketCompareOptions from "@/assets/Market-Compare-Options.png";
+import hubAnalyticsCore1440 from "@/assets/Hub-Analytics-Core-1440.png";
+import leadWellAnalyze from "@/assets/Lead-Well-Analyiize-1440.png";
+import hubAnalyticsLeadsPort from "@/assets/Hub-Analytics-Leads-Port-1440.png";
 
 const IntelligenceOverInventoryProject = () => {
   // Section data for navigation - Added Gallery section
@@ -81,22 +84,32 @@ const IntelligenceOverInventoryProject = () => {
     { icon: Users, label: "Seller Training", description: "Provide data for what buyers are searching for" }
   ];
 
-  // Strategy items data - updated with new images
+  // Strategy items data - updated with new images and 5 sections
   const strategyItems = [
     {
+      title: "Lead Volume vs Quality",
+      description: "An earlier effort to drive lead volume had unintended consequences. Our initial success created a new problem. By making it easier for buyers to find and contact sellers, we significantly increased lead volume. However, sellers began reporting that the \"noise\" had also increased. They were spending more time filtering through low-intent inquiries, which created a new form of friction in their workflow.",
+      image: hubAnalyticsCore1440
+    },
+    {
+      title: "Challenging the Initial Direction",
+      description: "I had to challenge our team's reliance on \"Total Leads\" as the primary success metric. While the charts looked great, the user experience for our sellers was actually degrading. I pushed for a move away from simple volume toward Market Comparison and Lead Quality.",
+      image: hubAnalyticsCore1440
+    },
+    {
       title: "Challenging the \"More is Better\" Fallacy",
-      description: "We pushed back against the assumption that simply increasing lead volume was our primary goal. We realized that if we didn't address the content of those leads, we were just creating more work for sellers without necessarily increasing their success rate. I used the lead parsing data to prove that there was a gap between what buyers were asking and what sellers were providing. I shifted the conversation from \"How do we get more clicks?\" to \"How do we help sellers answer these common questions upfront?\"",
-      image: hubAnalyticsCore
+      description: "A lead count of five means something very different in remote Idaho than it does in a high-turnover market. To solve this, I shifted our focus from raw volume to relative benchmarking—providing the regional context sellers needed to gauge their actual performance.\n\nBy surfacing comparative data, like '+5 leads more than similar listings,' we moved the needle from vanity metrics to actionable market intelligence, showing sellers exactly where they stood against their neighbors.",
+      image: hubAnalyticsCore1440
+    },
+    {
+      title: "Lead Strength Indicators",
+      description: "We implemented a \"Lead Strength\" system within the Marketing Hub. Using the same parsing logic from the buyer side, we flagged leads that contained high-intent signals—such as specific move-in timelines or proof of funds.",
+      image: leadWellAnalyze
     },
     {
       title: "Data-Informed Coaching (The Marketing Hub)",
-      description: "By shifting our mindset from delivering more leads to delivering quality leads, we challenged how we present data to our users. Instead of a passive listing form, the Hub became a coaching tool. We implemented the \"Popular Features\" section and the Property Completeness Score. We used the parser's findings to tell sellers exactly what they were missing. \"Water and Electricity are often asked about by buyers. Properties that include this see an average of 5x more leads.\"",
-      image: analyticsScoreCard
-    },
-    {
-      title: "Market Comparison Intelligence",
-      description: "We developed a market comparison system that allowed sellers to see how their listings performed against nearby properties. Instead of abstract metrics, we showed actionable comparisons: 'Your interactions are 12% better than nearby listings' or 'Market Average +5'. This transformed vanity metrics into competitive intelligence, giving sellers the context they needed to understand their position in the market.",
-      image: marketCompareOptions
+      description: "By shifting our mindset from delivering more leads to delivering quality leads, we challenged how we present data to our users. Instead of a passive listing form, the Hub became a coaching tool.\n\nThe \"Popular Features\" section and Property Completeness Score could be used to guide users checking their listings performance as well.\n\nThe same messaging, \"Water and Electricity are often asked about by buyers. Properties that include this see an average of 5x more leads.\" could guide users to provide this additional information.\n\nThis allowed sellers to prioritize their day. We weren't just giving them more work; we were giving them a way to manage it. This shift proved that as a Lead Designer, my responsibility isn't just to the buyer's ease of use, but to the seller's operational efficiency.",
+      image: hubAnalyticsLeadsPort
     }
   ];
 
