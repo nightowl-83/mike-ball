@@ -649,7 +649,7 @@ const IntelligenceOverInventoryProject = () => {
                   )}
                 >
                   {/* Images Column - 3 columns */}
-                  <div className="relative h-full lg:col-span-3">
+                  <div className="relative lg:col-span-3 h-[400px] lg:h-full min-h-[400px]">
                     {/* Primary image - back */}
                     <div className={cn(
                       "absolute left-0 top-0 w-[85%] h-[90%] rounded-xl overflow-hidden shadow-2xl border border-border transition-all duration-700 delay-100",
@@ -778,7 +778,7 @@ const IntelligenceOverInventoryProject = () => {
                 >
                   {/* Image Column - consistent position (no alternating) */}
                   <div className={cn(
-                    "h-full bg-muted/30 border border-border rounded-xl overflow-hidden transition-all duration-700 delay-100",
+                    "h-[400px] lg:h-full min-h-[400px] bg-muted/30 border border-border rounded-xl overflow-hidden transition-all duration-700 delay-100",
                     strategyActiveIndex === index ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                   )}>
                     {item.image ? (
