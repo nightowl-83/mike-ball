@@ -128,24 +128,18 @@ export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab }: ImpactS
               "text-xs font-medium px-2 py-1 rounded-full",
               isMarketingHub 
                 ? 'bg-primary/10 text-primary' 
-                : 'bg-muted text-foreground'
+                : 'bg-gray-200 text-gray-800'
             )}>
               {isMarketingHub ? 'Marketing Hub' : 'Marketplace'}
             </span>
-            <h3 className={cn(
-              "text-lg md:text-xl font-semibold",
-              isMarketingHub ? "text-foreground" : "text-foreground"
-            )}>
+            <h3 className="text-lg md:text-xl font-semibold text-foreground">
               {currentBlock.title}
             </h3>
           </div>
           
           {/* Right: Count + Arrows */}
           <div className="flex items-center gap-3">
-            <span className={cn(
-              "text-sm",
-              isMarketingHub ? "text-muted-foreground" : "text-muted-foreground"
-            )}>
+            <span className="text-sm text-muted-foreground">
               {activeBlockIndex + 1} of {allBlocks.length}
             </span>
             <Button 
@@ -155,7 +149,7 @@ export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab }: ImpactS
               disabled={activeBlockIndex === 0}
               className={cn(
                 "h-9 w-9",
-                !isMarketingHub && "border-border text-foreground hover:bg-muted"
+                !isMarketingHub && "border-gray-300 text-gray-800 hover:bg-gray-100"
               )}
             >
               <ChevronLeft className="w-4 h-4" />
@@ -167,7 +161,7 @@ export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab }: ImpactS
               disabled={activeBlockIndex === allBlocks.length - 1}
               className={cn(
                 "h-9 w-9",
-                !isMarketingHub && "border-border text-foreground hover:bg-muted"
+                !isMarketingHub && "border-gray-300 text-gray-800 hover:bg-gray-100"
               )}
             >
               <ChevronRight className="w-4 h-4" />
@@ -192,12 +186,16 @@ export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab }: ImpactS
             </div>
             
             {/* Image Column */}
-            <div className="lg:col-span-2 h-[calc(100vh-480px)] min-h-[300px] bg-muted/30 border border-border rounded-xl overflow-hidden transition-all duration-500">
+            <div className="lg:col-span-2 h-[calc(100vh-480px)] min-h-[300px] bg-muted/30 border border-border rounded-xl overflow-hidden transition-all duration-500 flex items-center justify-center">
               {currentBlock.image ? (
                 <img 
                   src={currentBlock.image} 
                   alt={currentBlock.title}
-                  className="w-full h-full object-cover object-top"
+                  className={cn(
+                    "max-w-full max-h-full object-contain",
+                    // For Marketplace slides (3 and 4), use contain to preserve aspect ratio
+                    activeBlockIndex >= 3 ? "object-contain" : "w-full h-full object-cover object-top"
+                  )}
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center">
