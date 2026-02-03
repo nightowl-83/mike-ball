@@ -2,6 +2,7 @@ import marketingHubDashboard from "@/assets/marketing-hub-dashboard.webp";
 import ruralLandMarketplace from "@/assets/land-flat-homepage.png";
 import nightOwlLogo from "@/assets/night-owl-logo.svg";
 import gnsHeroCard from "@/assets/gns-hero-card.png";
+import trendHero from "@/assets/trend-hero.png";
 
 export type LayoutVariant = "hero-accent" | "hero-centered" | "two-column" | "minimal-centered" | "locked" | "side-project" | "password-protected" | "coming-soon";
 
@@ -18,6 +19,7 @@ export interface ProjectData {
   company?: string;
   metrics?: string;
   isLocked?: boolean;
+  ndaTag?: boolean;
 }
 
 export const projectsData: ProjectData[] = [
@@ -61,11 +63,12 @@ export const projectsData: ProjectData[] = [
     title: "Intelligence Over Inventory",
     description: "Transforming commodity data into first-party insights with advanced filtering and seller performance coaching.",
     category: "Product Strategy",
-    image: "",
+    image: trendHero,
     route: "/projects/intelligence-over-inventory",
     tags: ["Product Strategy", "Data Systems", "UX Design"],
-    layoutVariant: "hero-accent",
-    company: "CoStar Group"
+    layoutVariant: "password-protected",
+    company: "CoStar Group",
+    ndaTag: true
   },
   {
     id: "ar-travel-companion",

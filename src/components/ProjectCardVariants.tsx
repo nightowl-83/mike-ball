@@ -14,7 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 interface ProjectCardProps {
-  project: ProjectData;
+  project: ProjectData & { ndaTag?: boolean };
 }
 
 // Hero Accent Card - Full width with gradient background
@@ -233,7 +233,7 @@ export const PasswordProtectedCard = ({
             
             {/* Footer */}
             <div className="w-full mt-6">
-              <ProjectCardFooter tags={project.tags} company={project.company} variant="light" />
+              <ProjectCardFooter tags={project.tags} company={project.company} variant="light" ndaTag={project.ndaTag} />
             </div>
           </div>
         </div>

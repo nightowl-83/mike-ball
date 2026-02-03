@@ -191,7 +191,7 @@ const IntelligenceOverInventoryProject = () => {
     }],
     title: "Regional & Temporal Insights",
     description: "Understanding that buyer needs vary by region and season, the tool breaks down keyword frequency by geography and time. This allows us to prioritize feature requests and tailor the seller coaching experience to specific markets.",
-    highlights: ["Geographic distribution mapping", "Seasonal trend identification", "Priority scoring for product roadmap"]
+    highlights: ["Geographic distribution mapping", "Trend identification", "Priority scoring for product roadmap"]
   }];
 
   // Vision roadmap items - with associated images
@@ -692,10 +692,10 @@ const IntelligenceOverInventoryProject = () => {
               const isPast = parsingActiveIndex > pairIndex;
               return <div key={pairIndex} className={cn("absolute inset-0 flex items-center justify-center transition-all duration-700 ease-out", isActive ? "opacity-100 translate-y-0 z-10" : isPast ? "opacity-0 -translate-y-12 pointer-events-none z-0" : "opacity-0 translate-y-12 pointer-events-none z-0")}>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full max-w-[1600px] mx-auto">
-                    {/* Image Column - matching section 05 layout */}
-                    <div className="rounded-xl overflow-hidden">
-                      <div className="relative">
-                        {/* Primary image - front */}
+                    {/* Image Column - matching section 05 layout - larger image */}
+                    <div className="rounded-xl overflow-hidden flex items-center justify-center">
+                      <div className="relative w-[120%] max-w-none -ml-[10%]">
+                        {/* Primary image - front - enlarged */}
                         <img src={pair.images[0].src} alt={pair.images[0].title} className="w-full h-auto object-contain" />
                       </div>
                     </div>
@@ -773,9 +773,9 @@ const IntelligenceOverInventoryProject = () => {
               const isPast = strategyActiveIndex > index;
               return <div key={index} className={cn("absolute inset-0 flex items-center justify-center transition-all duration-700 ease-out", isActive ? "opacity-100 translate-y-0 z-10" : isPast ? "opacity-0 -translate-y-12 pointer-events-none z-0" : "opacity-0 translate-y-12 pointer-events-none z-0")}>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full max-w-[1600px] mx-auto">
-                    {/* Image Column - no border, no background */}
-                    <div className="rounded-xl overflow-hidden">
-                      {item.image ? <img src={item.image} alt={item.title} className="w-full h-auto object-contain" /> : <div className="w-full aspect-[16/10] flex items-center justify-center bg-muted/30">
+                    {/* Image Column - no border, no background - larger image */}
+                    <div className="rounded-xl overflow-hidden flex items-center justify-center">
+                      {item.image ? <div className="w-[120%] max-w-none -ml-[10%]"><img src={item.image} alt={item.title} className="w-full h-auto object-contain" /></div> : <div className="w-full aspect-[16/10] flex items-center justify-center bg-muted/30">
                           <p className="text-muted-foreground">Visual placeholder</p>
                         </div>}
                     </div>
@@ -785,8 +785,8 @@ const IntelligenceOverInventoryProject = () => {
                       <div className="space-y-6 max-w-lg">
                         <h3 className="text-2xl md:text-4xl font-semibold text-foreground">{item.title}</h3>
                         {'subtitle' in item && item.subtitle && <h4 className="text-lg md:text-xl font-medium text-primary">{item.subtitle}</h4>}
-                        <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">{item.description}</p>
-                        {'secondaryDescription' in item && item.secondaryDescription && <p className="text-base md:text-lg text-muted-foreground/80 leading-relaxed">{item.secondaryDescription}</p>}
+                        <p className="text-base md:text-lg text-muted-foreground leading-relaxed">{item.description}</p>
+                        {'secondaryDescription' in item && item.secondaryDescription && <p className="text-base md:text-lg text-muted-foreground leading-relaxed">{item.secondaryDescription}</p>}
                       </div>
                     </div>
                     </div>
