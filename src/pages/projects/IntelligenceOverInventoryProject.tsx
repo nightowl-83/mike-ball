@@ -1,4 +1,4 @@
-import { ArrowRight, Database, Filter, BarChart3, Target, Users, ChevronLeft, ChevronRight, Lightbulb, Sparkles, TrendingUp, Brain } from "lucide-react";
+import { ArrowDown, ArrowRight, Database, Filter, BarChart3, Target, Users, ChevronLeft, ChevronRight, Lightbulb, Sparkles, TrendingUp, Brain } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState, useRef, useCallback } from "react";
@@ -13,6 +13,9 @@ import trendiKeywords from "@/assets/trendi-keywords.png";
 import trendiRegions from "@/assets/trendi-regions.png";
 import trendiAdvanced from "@/assets/trendi-advanced.png";
 import mhCompletenessCards from "@/assets/mh-completeness-cards.png";
+import hubAnalyticsCore from "@/assets/Hub-Analytics-Core.png";
+import analyticsScoreCard from "@/assets/Analytics-Score_Card.png";
+import marketCompareOptions from "@/assets/Market-Compare-Options.png";
 
 const IntelligenceOverInventoryProject = () => {
   // Section data for navigation - Added "The Idea" section
@@ -73,40 +76,58 @@ const IntelligenceOverInventoryProject = () => {
     { icon: Users, label: "Seller Training", description: "Provide data for what buyers are searching for" }
   ];
 
-  // Strategy items data - removed numbering
+  // Strategy items data - updated with new images
   const strategyItems = [
     {
       title: "Challenging the \"More is Better\" Fallacy",
       description: "We pushed back against the assumption that simply increasing lead volume was our primary goal. We realized that if we didn't address the content of those leads, we were just creating more work for sellers without necessarily increasing their success rate. I used the lead parsing data to prove that there was a gap between what buyers were asking and what sellers were providing. I shifted the conversation from \"How do we get more clicks?\" to \"How do we help sellers answer these common questions upfront?\"",
-      image: trendiKeywords
+      image: hubAnalyticsCore
     },
     {
       title: "Data-Informed Coaching (The Marketing Hub)",
       description: "By shifting our mindset from delivering more leads to delivering quality leads, we challenged how we present data to our users. Instead of a passive listing form, the Hub became a coaching tool. We implemented the \"Popular Features\" section and the Property Completeness Score. We used the parser's findings to tell sellers exactly what they were missing. \"Water and Electricity are often asked about by buyers. Properties that include this see an average of 5x more leads.\"",
-      image: mhCompletenessCards
+      image: analyticsScoreCard
+    },
+    {
+      title: "Market Comparison Intelligence",
+      description: "We developed a market comparison system that allowed sellers to see how their listings performed against nearby properties. Instead of abstract metrics, we showed actionable comparisons: 'Your interactions are 12% better than nearby listings' or 'Market Average +5'. This transformed vanity metrics into competitive intelligence, giving sellers the context they needed to understand their position in the market.",
+      image: marketCompareOptions
     }
   ];
+  
+  // Gallery images for Strategy section
+  const strategyGalleryImages = [
+    { src: hubAnalyticsCore, alt: "Analytics Core Dashboard" },
+    { src: analyticsScoreCard, alt: "Listing Completeness Score" },
+    { src: marketCompareOptions, alt: "Market Comparison Options" }
+  ];
 
-  // Parsing tool cards data - paired for overlapping effect
+  // Parsing tool cards data - with text boxes and swapped image layout
   const parsingCardPairs = [
     { 
       images: [
-        { src: trendiUpload, title: "Upload & Configure" },
-        { src: trendiKeywords, title: "Keyword Analysis" }
+        { src: trendiKeywords, title: "Keyword Analysis" },
+        { src: trendiUpload, title: "Upload & Configure" }
       ],
-      captions: [
-        "Upload email data and configure the parsing engine for analysis.",
-        "Track keyword trends over time with interactive charts and filters."
+      title: "Extracting Buyer Intent",
+      description: "The tool parses thousands of lead emails to identify recurring keywords and phrases. By analyzing what buyers are asking about—financing options, water access, road conditions—we can surface the data gaps that sellers need to fill.",
+      highlights: [
+        "Natural language processing for lead content",
+        "Trend tracking over configurable time periods",
+        "Exportable reports for stakeholder review"
       ]
     },
     { 
       images: [
-        { src: trendiRegions, title: "Distribution Insights" },
-        { src: trendiAdvanced, title: "Advanced Trend Analysis" }
+        { src: trendiAdvanced, title: "Advanced Trend Analysis" },
+        { src: trendiRegions, title: "Distribution Insights" }
       ],
-      captions: [
-        "Visualize keyword distribution and identify top search terms.",
-        "Deep dive into temporal patterns and emerging buyer interests."
+      title: "Regional & Temporal Insights",
+      description: "Understanding that buyer needs vary by region and season, the tool breaks down keyword frequency by geography and time. This allows us to prioritize feature requests and tailor the seller coaching experience to specific markets.",
+      highlights: [
+        "Geographic distribution mapping",
+        "Seasonal trend identification",
+        "Priority scoring for product roadmap"
       ]
     }
   ];
@@ -508,7 +529,7 @@ const IntelligenceOverInventoryProject = () => {
               className="gap-2 ml-2"
             >
               Continue
-              <ArrowRight className="w-4 h-4" />
+              <ArrowDown className="w-4 h-4" />
             </Button>
           </div>
         </section>
@@ -623,11 +644,11 @@ const IntelligenceOverInventoryProject = () => {
             (sectionRefs[4] as any).current = el;
             (parsingSectionRef as any).current = el;
           }}
-          className="slide-section flex flex-col pt-8 relative h-screen"
+          className="slide-section flex flex-col pt-8 relative min-h-screen"
         >
-          <div className="w-full px-4 md:px-8 lg:px-12 flex flex-col flex-1 pb-20">
+          <div className="w-full px-4 md:px-8 lg:px-12 flex flex-col flex-1 pb-24">
             {/* Section Header */}
-            <div className="flex items-start justify-between mb-4">
+            <div className="flex items-start justify-between mb-8">
               <div className="flex-1">
                 <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground">
                   The Lead Intelligence Tool
@@ -651,7 +672,7 @@ const IntelligenceOverInventoryProject = () => {
                   <div
                     key={pairIndex}
                     className={cn(
-                      "absolute inset-0 grid grid-cols-1 lg:grid-cols-4 gap-8 items-center h-full transition-all duration-700 ease-out",
+                      "absolute inset-0 grid grid-cols-1 lg:grid-cols-4 gap-8 items-start h-full transition-all duration-700 ease-out",
                       isActive 
                         ? "opacity-100 translate-y-0 z-10" 
                         : isPast
@@ -659,35 +680,45 @@ const IntelligenceOverInventoryProject = () => {
                           : "opacity-0 translate-y-12 pointer-events-none z-0"
                     )}
                   >
-                    {/* Images Column - 3 columns */}
+                    {/* Images Column - 3 columns with 16:9 aspect ratio containers */}
                     <div className="relative lg:col-span-3 h-[400px] lg:h-full min-h-[400px]">
-                      {/* Primary image - back */}
-                      <div className="absolute left-0 top-0 w-[85%] h-[90%] rounded-xl overflow-hidden shadow-2xl border border-border">
-                        <img 
-                          src={pair.images[0].src} 
-                          alt={pair.images[0].title}
-                          className="w-full h-full object-cover object-top"
-                        />
-                      </div>
-                      {/* Secondary image - front, overlapping */}
-                      <div className="absolute right-0 bottom-0 w-[75%] h-[80%] rounded-xl overflow-hidden shadow-2xl border border-border">
+                      {/* Secondary image - back (swapped order) */}
+                      <div className="absolute left-0 top-0 w-[70%] aspect-[16/10] rounded-xl overflow-hidden shadow-xl border border-border bg-card">
                         <img 
                           src={pair.images[1].src} 
                           alt={pair.images[1].title}
-                          className="w-full h-full object-cover object-top"
+                          className="w-full h-full object-contain bg-muted/30"
+                        />
+                      </div>
+                      {/* Primary image - front, overlapping (swapped order) */}
+                      <div className="absolute right-0 bottom-4 w-[75%] aspect-[16/10] rounded-xl overflow-hidden shadow-2xl border border-border bg-card">
+                        <img 
+                          src={pair.images[0].src} 
+                          alt={pair.images[0].title}
+                          className="w-full h-full object-contain bg-muted/30"
                         />
                       </div>
                     </div>
 
-                    {/* Text Column - 1 column */}
-                    <div className="space-y-6 lg:col-span-1">
-                      <div className="space-y-2">
-                        <h3 className="text-lg md:text-xl font-semibold text-foreground">{pair.images[0].title}</h3>
-                        <p className="text-sm md:text-base text-muted-foreground">{pair.captions[0]}</p>
+                    {/* Text Column - 1 column with boxed layout */}
+                    <div className="space-y-4 lg:col-span-1">
+                      {/* Main content box */}
+                      <div className="bg-card border border-border rounded-xl p-5 space-y-3">
+                        <h3 className="text-lg md:text-xl font-semibold text-foreground">{pair.title}</h3>
+                        <p className="text-sm md:text-base text-muted-foreground leading-relaxed">{pair.description}</p>
                       </div>
-                      <div className="space-y-2 pt-3 border-t border-border">
-                        <h3 className="text-lg md:text-xl font-semibold text-foreground">{pair.images[1].title}</h3>
-                        <p className="text-sm md:text-base text-muted-foreground">{pair.captions[1]}</p>
+                      
+                      {/* Highlights box */}
+                      <div className="bg-primary/5 border border-primary/20 rounded-xl p-5 space-y-3">
+                        <h4 className="text-sm font-semibold text-primary uppercase tracking-wide">Key Capabilities</h4>
+                        <ul className="space-y-2">
+                          {pair.highlights.map((highlight, idx) => (
+                            <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
+                              <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                              {highlight}
+                            </li>
+                          ))}
+                        </ul>
                       </div>
                     </div>
                   </div>
@@ -724,7 +755,7 @@ const IntelligenceOverInventoryProject = () => {
                 className="gap-2 ml-2"
               >
                 Continue
-                <ArrowRight className="w-4 h-4" />
+                <ArrowDown className="w-4 h-4" />
               </Button>
             </div>
           )}
@@ -739,17 +770,17 @@ const IntelligenceOverInventoryProject = () => {
           isActive={currentSectionIndex === 5}
         />
 
-        {/* Strategy & Influence - /05 - Consistent Layout */}
+        {/* Strategy & Influence - /05 - Consistent Layout with Gallery */}
         <section
           ref={(el) => { 
             (sectionRefs[6] as any).current = el;
             (strategySectionRef as any).current = el;
           }}
-          className="slide-section flex flex-col pt-8 bg-card/30 relative h-screen"
+          className="slide-section flex flex-col pt-8 bg-card/30 relative min-h-screen"
         >
-          <div className="w-full px-4 md:px-8 lg:px-12 flex flex-col flex-1 pb-20">
+          <div className="w-full px-4 md:px-8 lg:px-12 flex flex-col flex-1 pb-24">
             {/* Section Header */}
-            <div className="flex items-start justify-between mb-4">
+            <div className="flex items-start justify-between mb-8">
               <div className="flex-1">
                 <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground">
                   Strategy & Influence
@@ -764,7 +795,7 @@ const IntelligenceOverInventoryProject = () => {
             </div>
 
             {/* Content fills remaining viewport - fade-up animation */}
-            <div className="flex-1 relative overflow-hidden">
+            <div className="flex-1 relative overflow-hidden min-h-[500px]">
               {strategyItems.map((item, index) => {
                 const isActive = strategyActiveIndex === index;
                 const isPast = strategyActiveIndex > index;
@@ -773,7 +804,7 @@ const IntelligenceOverInventoryProject = () => {
                   <div
                     key={index}
                     className={cn(
-                      "absolute inset-0 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center h-full transition-all duration-700 ease-out",
+                      "absolute inset-0 grid grid-cols-1 lg:grid-cols-2 gap-12 items-start h-full transition-all duration-700 ease-out pt-4",
                       isActive 
                         ? "opacity-100 translate-y-0 z-10" 
                         : isPast
@@ -781,10 +812,10 @@ const IntelligenceOverInventoryProject = () => {
                           : "opacity-0 translate-y-12 pointer-events-none z-0"
                     )}
                   >
-                    {/* Image Column - consistent position (no alternating) */}
-                    <div className="h-[400px] lg:h-full min-h-[400px] bg-muted/30 border border-border rounded-xl overflow-hidden">
+                    {/* Image Column - consistent position (no alternating) with better aspect ratio */}
+                    <div className="aspect-[16/10] bg-muted/30 border border-border rounded-xl overflow-hidden">
                       {item.image ? (
-                        <img src={item.image} alt={item.title} className="w-full h-full object-cover object-top" />
+                        <img src={item.image} alt={item.title} className="w-full h-full object-contain bg-card" />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center">
                           <p className="text-muted-foreground">Visual placeholder</p>
@@ -793,13 +824,29 @@ const IntelligenceOverInventoryProject = () => {
                     </div>
                     
                     {/* Text Column */}
-                    <div className="space-y-6">
+                    <div className="space-y-6 pt-4">
                       <h3 className="text-2xl md:text-4xl font-semibold text-foreground">{item.title}</h3>
                       <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">{item.description}</p>
                     </div>
                   </div>
                 );
               })}
+            </div>
+            
+            {/* Gallery Section */}
+            <div className="mt-12 pt-8 border-t border-border">
+              <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-6">Related Deliverables</h4>
+              <div className="grid grid-cols-3 gap-4">
+                {strategyGalleryImages.map((img, index) => (
+                  <div 
+                    key={index}
+                    className="aspect-[16/10] bg-card border border-border rounded-lg overflow-hidden hover:border-primary/50 transition-colors cursor-pointer"
+                    onClick={() => setStrategyActiveIndex(index)}
+                  >
+                    <img src={img.src} alt={img.alt} className="w-full h-full object-contain" />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -831,7 +878,7 @@ const IntelligenceOverInventoryProject = () => {
                 className="gap-2 ml-2"
               >
                 Continue
-                <ArrowRight className="w-4 h-4" />
+                <ArrowDown className="w-4 h-4" />
               </Button>
             </div>
           )}
