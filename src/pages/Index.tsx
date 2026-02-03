@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import Hero from "@/components/Hero";
 import Skills from "@/components/Skills";
@@ -11,6 +11,7 @@ type BackgroundState = 'floating' | 'grid';
 const Index = () => {
   const location = useLocation();
   const [bgState, setBgState] = useState<BackgroundState>('floating');
+  const heroRef = useRef<HTMLDivElement>(null);
   
   // Toggle between "colored" and "muted" to switch skill icon variants
   const skillVariant: "colored" | "muted" = "muted";
@@ -28,34 +29,23 @@ const Index = () => {
     }
   }, [location.hash]);
 
-  // IntersectionObserver to detect active section and update background state
+  // Scroll-based background state management
   useEffect(() => {
-    const sections = document.querySelectorAll('[data-bg-state]');
-    
-    const observer = new IntersectionObserver(
-      (entries) => {
-        // Sort entries by their position on page to handle multiple intersecting sections
-        const sortedEntries = [...entries].sort((a, b) => {
-          return a.boundingClientRect.top - b.boundingClientRect.top;
-        });
-        
-        sortedEntries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const newState = entry.target.getAttribute('data-bg-state');
-            if (newState === 'floating' || newState === 'grid') {
-              setBgState(newState);
-            }
-          }
-        });
-      },
-      { 
-        threshold: 0.01, // Trigger almost immediately when section appears
-        rootMargin: '0px 0px -80% 0px' // Trigger when top 20% of section is visible
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const heroBottom = heroRef.current?.offsetHeight || window.innerHeight;
+      
+      // Transition to grid when user starts scrolling (after 50px)
+      // Transition back to floating when scrolled back near hero bottom
+      if (scrollY > 50) {
+        setBgState('grid');
+      } else {
+        setBgState('floating');
       }
-    );
+    };
 
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
@@ -66,7 +56,7 @@ const Index = () => {
       </div>
 
       {/* Page content */}
-      <div className="min-h-screen">
+      <div className="min-h-screen" ref={heroRef}>
         <Hero />
         <Skills variant={skillVariant} />
         <Projects />
