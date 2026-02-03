@@ -37,17 +37,24 @@ const IntelligenceOverInventoryProject = () => {
   // Dual-mode toggle state (persists across sections /04-/07)
   const [activeDataMode, setActiveDataMode] = useState<'marketing-hub' | 'marketplace'>('marketing-hub');
   
+  // Track if user has visited section 04 to persist their mode preference
+  const hasVisitedSection04 = useRef(false);
+  const lastModeOnSection04 = useRef<'marketing-hub' | 'marketplace'>('marketing-hub');
+  
   // Mobile detection
   const isMobile = useIsMobile();
   
   // Show toggle only on section 5 (Impact) - index shifted due to new section
   const showDualModeToggle = currentSectionIndex === 5;
 
-  // Auto-reset to dark mode when leaving /04
+  // Track mode when on section 04, restore when returning
   useEffect(() => {
-    if (currentSectionIndex !== 5 && activeDataMode === 'marketplace') {
-      setActiveDataMode('marketing-hub');
+    if (currentSectionIndex === 5) {
+      hasVisitedSection04.current = true;
+      lastModeOnSection04.current = activeDataMode;
     }
+    // Only reset mode when navigating away from section 04 to sections OTHER than 05/06
+    // This ensures returning to 04 from 05 preserves the mode
   }, [currentSectionIndex, activeDataMode]);
 
   // Scroll to top on mount
@@ -736,6 +743,7 @@ const IntelligenceOverInventoryProject = () => {
           activeTab={activeDataMode}
           setActiveTab={setActiveDataMode}
           scrollToSection={scrollToSection}
+          isActive={currentSectionIndex === 5}
         />
 
         {/* Strategy & Influence - /05 - Consistent Layout */}
@@ -916,14 +924,21 @@ const IntelligenceOverInventoryProject = () => {
           "animate-in slide-in-from-bottom-4 duration-500",
           "z-50 pointer-events-none"
         )}>
-          <div className="bg-background/50 backdrop-blur-md rounded-full p-1.5 flex gap-1 border border-border pointer-events-auto">
+          <div className={cn(
+            "backdrop-blur-md rounded-full p-1.5 flex gap-1 border pointer-events-auto",
+            activeDataMode === 'marketplace' 
+              ? "bg-white/80 border-gray-300" 
+              : "bg-background/50 border-border"
+          )}>
             <button
               onClick={() => setActiveDataMode('marketing-hub')}
               className={cn(
                 "px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300",
                 activeDataMode === 'marketing-hub'
                   ? "bg-foreground text-background"
-                  : "text-muted-foreground hover:text-foreground"
+                  : activeDataMode === 'marketplace'
+                    ? "text-gray-600 hover:text-gray-900"
+                    : "text-muted-foreground hover:text-foreground"
               )}
             >
               Marketing Hub
@@ -933,7 +948,7 @@ const IntelligenceOverInventoryProject = () => {
               className={cn(
                 "px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300",
                 activeDataMode === 'marketplace'
-                  ? "bg-foreground text-background"
+                  ? "bg-gray-900 text-white"
                   : "text-muted-foreground hover:text-foreground"
               )}
             >
