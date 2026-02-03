@@ -404,8 +404,7 @@ const IntelligenceOverInventoryProject = () => {
                 Transforming Commodity Data into First-Party Insights
               </p>
               <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto animate-fade-in [animation-delay:300ms]">
-                A strategic initiative to convert generic 3rd-party listing data into proprietary buyer intent data, 
-                powering advanced search filters and a seller performance coaching system.
+                A strategic initiative to convert generic 3rd-party listing data into proprietary buyer intent data—powering advanced search filters and a seller performance coaching system.
               </p>
               
               {/* Metadata Grid */}
@@ -420,15 +419,14 @@ const IntelligenceOverInventoryProject = () => {
                 </div>
                 <div>
                   <span className="text-base text-muted-foreground">Year</span>
-                  <p className="text-lg font-semibold">2024</p>
+                  <p className="text-lg font-semibold">2025</p>
                 </div>
               </div>
 
               {/* Impact Metrics */}
               <div className="flex flex-wrap justify-center gap-3 pt-4 animate-fade-in [animation-delay:500ms]">
-                <span className="px-4 py-2 rounded-full bg-primary/10 text-primary text-base font-semibold">+45% Lead Quality</span>
-                <span className="px-4 py-2 rounded-full bg-primary/10 text-primary text-base font-semibold">3x Seller Engagement</span>
-                <span className="px-4 py-2 rounded-full bg-primary/10 text-primary text-base font-semibold">First-Party Data</span>
+                <span className="px-4 py-2 rounded-full bg-primary/15 text-primary border border-primary/20 text-base font-semibold">+45% Lead Quality</span>
+                <span className="px-4 py-2 rounded-full bg-primary/15 text-primary border border-primary/20 text-base font-semibold">First-Party Data</span>
               </div>
             </div>
           </div>
@@ -514,6 +512,14 @@ const IntelligenceOverInventoryProject = () => {
             >
               <ChevronRight className="w-5 h-5" />
             </Button>
+            <Button
+              variant="outline"
+              onClick={() => scrollToSection(2)}
+              className="gap-2 ml-2"
+            >
+              Continue
+              <ArrowRight className="w-4 h-4" />
+            </Button>
           </div>
         </section>
 
@@ -552,6 +558,18 @@ const IntelligenceOverInventoryProject = () => {
               </div>
             </blockquote>
           </div>
+          
+          {/* Connecting line to next section */}
+          <div 
+            className="absolute left-1/2 -translate-x-1/2 bottom-0 w-0.5 h-32"
+            style={{
+              background: `linear-gradient(
+                to bottom,
+                hsl(var(--background)) 0%,
+                hsl(var(--border)) 100%
+              )`
+            }}
+          />
         </section>
 
         {/* The Insight Engine Section - /02 */}
@@ -592,12 +610,12 @@ const IntelligenceOverInventoryProject = () => {
             </div>
 
             {/* Vertical Layout - cards only, no dots/connectors */}
-            <div className="max-w-2xl mx-auto space-y-6 relative">
+            <div className="max-w-2xl mx-auto space-y-4 relative">
               {flowSteps.map((step, index) => (
                 <div key={step.label} className="relative">
                   {/* Card */}
-                  <div className="bg-card border border-border rounded-xl p-6">
-                    <div className="flex items-start justify-between mb-3">
+                  <div className="bg-card border border-border rounded-xl p-4">
+                    <div className="flex items-start justify-between mb-2">
                       <h3 className="text-lg font-semibold text-foreground">{step.label}</h3>
                       <step.icon className="w-5 h-5 text-muted-foreground" />
                     </div>
@@ -615,16 +633,16 @@ const IntelligenceOverInventoryProject = () => {
             (sectionRefs[4] as any).current = el;
             (parsingSectionRef as any).current = el;
           }}
-          className="slide-section flex flex-col pt-12 pb-24 relative"
+          className="slide-section flex flex-col pt-8 relative"
         >
-          <div className="w-full px-4 md:px-8 lg:px-12 flex flex-col h-full">
+          <div className="w-full px-4 md:px-8 lg:px-12 flex flex-col h-full pb-20">
             {/* Section Header */}
-            <div className="flex items-start justify-between mb-6">
+            <div className="flex items-start justify-between mb-4">
               <div className="flex-1">
                 <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground">
                   The Lead Intelligence Tool
                 </h2>
-                <p className="text-lg md:text-xl text-muted-foreground mt-4 max-w-3xl">
+                <p className="text-lg md:text-xl text-muted-foreground mt-3 max-w-3xl">
                   I wanted a simple tool that would parse leads for keywords and see what our users were asking about.
                 </p>
               </div>
@@ -633,8 +651,8 @@ const IntelligenceOverInventoryProject = () => {
               </span>
             </div>
 
-            {/* Content fills remaining viewport */}
-            <div className="flex-1 min-h-0">
+            {/* Content fills remaining viewport - 3:1 ratio */}
+            <div className="flex-1 min-h-0 h-[calc(100vh-200px)]">
               <Carousel
                 setApi={setParsingCarouselApi}
                 opts={{
@@ -647,19 +665,15 @@ const IntelligenceOverInventoryProject = () => {
                   {parsingCardPairs.map((pair, pairIndex) => (
                     <CarouselItem key={pairIndex} className="pl-4 basis-full h-full">
                       <div className={cn(
-                        "grid grid-cols-1 lg:grid-cols-2 gap-12 items-center h-full transition-all duration-700",
-                        pairIndex % 2 === 1 && "lg:flex-row-reverse",
-                        parsingActiveIndex === pairIndex ? "opacity-100" : "opacity-0"
+                        "grid grid-cols-1 lg:grid-cols-4 gap-8 items-center h-full transition-all duration-500",
+                        parsingActiveIndex === pairIndex ? "opacity-100 scale-100" : "opacity-0 scale-[0.98] pointer-events-none absolute"
                       )}>
-                        {/* Images Column - alternates position */}
-                        <div className={cn(
-                          "relative h-full",
-                          pairIndex % 2 === 1 && "lg:order-2"
-                        )}>
+                        {/* Images Column - 3 columns */}
+                        <div className="relative h-full lg:col-span-3">
                           {/* Primary image - back */}
                           <div className={cn(
-                            "absolute left-0 top-0 w-[85%] h-[90%] rounded-xl overflow-hidden shadow-2xl border border-border transition-all duration-700",
-                            parsingActiveIndex === pairIndex ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                            "absolute left-0 top-0 w-[85%] h-[90%] rounded-xl overflow-hidden shadow-2xl border border-border transition-all duration-500",
+                            parsingActiveIndex === pairIndex ? "opacity-100 scale-100" : "opacity-0 scale-[0.98]"
                           )}>
                             <img 
                               src={pair.images[0].src} 
@@ -669,8 +683,8 @@ const IntelligenceOverInventoryProject = () => {
                           </div>
                           {/* Secondary image - front, overlapping */}
                           <div className={cn(
-                            "absolute right-0 bottom-0 w-[75%] h-[80%] rounded-xl overflow-hidden shadow-2xl border border-border transition-all duration-700 delay-100",
-                            parsingActiveIndex === pairIndex ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                            "absolute right-0 bottom-0 w-[75%] h-[80%] rounded-xl overflow-hidden shadow-2xl border border-border transition-all duration-500 delay-100",
+                            parsingActiveIndex === pairIndex ? "opacity-100 scale-100" : "opacity-0 scale-[0.98]"
                           )}>
                             <img 
                               src={pair.images[1].src} 
@@ -680,21 +694,18 @@ const IntelligenceOverInventoryProject = () => {
                           </div>
                         </div>
 
-                        {/* Text Column */}
-                        <div className={cn(
-                          "space-y-6",
-                          pairIndex % 2 === 1 && "lg:order-1"
-                        )}>
+                        {/* Text Column - 1 column */}
+                        <div className="space-y-6 lg:col-span-1">
                           <div className={cn(
-                            "space-y-2 transition-all duration-700",
-                            parsingActiveIndex === pairIndex ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                            "space-y-2 transition-all duration-500",
+                            parsingActiveIndex === pairIndex ? "opacity-100 scale-100" : "opacity-0 scale-[0.98]"
                           )}>
                             <h3 className="text-lg md:text-xl font-semibold text-foreground">{pair.images[0].title}</h3>
                             <p className="text-sm md:text-base text-muted-foreground">{pair.captions[0]}</p>
                           </div>
                           <div className={cn(
-                            "space-y-2 pt-3 border-t border-border transition-all duration-700 delay-75",
-                            parsingActiveIndex === pairIndex ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                            "space-y-2 pt-3 border-t border-border transition-all duration-500 delay-75",
+                            parsingActiveIndex === pairIndex ? "opacity-100 scale-100" : "opacity-0 scale-[0.98]"
                           )}>
                             <h3 className="text-lg md:text-xl font-semibold text-foreground">{pair.images[1].title}</h3>
                             <p className="text-sm md:text-base text-muted-foreground">{pair.captions[1]}</p>
@@ -740,6 +751,14 @@ const IntelligenceOverInventoryProject = () => {
               >
                 <ChevronRight className="w-5 h-5" />
               </Button>
+              <Button
+                variant="outline"
+                onClick={() => scrollToSection(5)}
+                className="gap-2 ml-2"
+              >
+                Continue
+                <ArrowRight className="w-4 h-4" />
+              </Button>
             </div>
           )}
         </section>
@@ -749,24 +768,25 @@ const IntelligenceOverInventoryProject = () => {
           sectionRef={(el) => { (sectionRefs[5] as any).current = el; }} 
           activeTab={activeDataMode}
           setActiveTab={setActiveDataMode}
+          scrollToSection={scrollToSection}
         />
 
-        {/* Strategy & Influence - /05 - Alternating Hero Layout */}
+        {/* Strategy & Influence - /05 - Consistent Layout */}
         <section
           ref={(el) => { 
             (sectionRefs[6] as any).current = el;
             (strategySectionRef as any).current = el;
           }}
-          className="slide-section flex flex-col pt-12 pb-24 bg-card/30 relative"
+          className="slide-section flex flex-col pt-8 bg-card/30 relative"
         >
-          <div className="w-full px-4 md:px-8 lg:px-12 flex flex-col h-full">
+          <div className="w-full px-4 md:px-8 lg:px-12 flex flex-col h-full pb-20">
             {/* Section Header */}
-            <div className="flex items-start justify-between mb-6">
+            <div className="flex items-start justify-between mb-4">
               <div className="flex-1">
                 <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground">
                   Strategy & Influence
                 </h2>
-                <p className="text-lg md:text-xl text-muted-foreground mt-4 max-w-2xl">
+                <p className="text-lg md:text-xl text-muted-foreground mt-3 max-w-2xl">
                   Influencing product direction with data
                 </p>
               </div>
@@ -776,7 +796,7 @@ const IntelligenceOverInventoryProject = () => {
             </div>
 
             {/* Content fills remaining viewport */}
-            <div className="flex-1 min-h-0">
+            <div className="flex-1 min-h-0 h-[calc(100vh-200px)]">
               <Carousel
                 setApi={setStrategyCarouselApi}
                 opts={{
@@ -789,14 +809,13 @@ const IntelligenceOverInventoryProject = () => {
                   {strategyItems.map((item, index) => (
                     <CarouselItem key={index} className="pl-4 basis-full h-full">
                       <div className={cn(
-                        "grid grid-cols-1 lg:grid-cols-2 gap-12 items-center h-full transition-all duration-700",
-                        strategyActiveIndex === index ? "opacity-100" : "opacity-0"
+                        "grid grid-cols-1 lg:grid-cols-2 gap-12 items-center h-full transition-all duration-500",
+                        strategyActiveIndex === index ? "opacity-100 scale-100" : "opacity-0 scale-[0.98] pointer-events-none absolute"
                       )}>
-                        {/* Image Column - alternates position */}
+                        {/* Image Column - consistent position (no alternating) */}
                         <div className={cn(
-                          "h-full bg-muted/30 border border-border rounded-xl overflow-hidden transition-all duration-700",
-                          index % 2 === 1 && "lg:order-2",
-                          strategyActiveIndex === index ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                          "h-full bg-muted/30 border border-border rounded-xl overflow-hidden transition-all duration-500",
+                          strategyActiveIndex === index ? "opacity-100 scale-100" : "opacity-0 scale-[0.98]"
                         )}>
                           {item.image ? (
                             <img src={item.image} alt={item.title} className="w-full h-full object-cover object-top" />
@@ -809,9 +828,8 @@ const IntelligenceOverInventoryProject = () => {
                         
                         {/* Text Column */}
                         <div className={cn(
-                          "space-y-6 transition-all duration-700 delay-100",
-                          index % 2 === 1 && "lg:order-1",
-                          strategyActiveIndex === index ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                          "space-y-6 transition-all duration-500 delay-100",
+                          strategyActiveIndex === index ? "opacity-100 scale-100" : "opacity-0 scale-[0.98]"
                         )}>
                           <h3 className="text-2xl md:text-4xl font-semibold text-foreground">{item.title}</h3>
                           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">{item.description}</p>
@@ -855,6 +873,14 @@ const IntelligenceOverInventoryProject = () => {
                 className="h-10 w-10"
               >
                 <ChevronRight className="w-5 h-5" />
+              </Button>
+              <Button
+                variant="outline"
+                onClick={() => scrollToSection(7)}
+                className="gap-2 ml-2"
+              >
+                Continue
+                <ArrowRight className="w-4 h-4" />
               </Button>
             </div>
           )}
