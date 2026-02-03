@@ -7,14 +7,7 @@ import { useSlideNavigation } from "@/hooks/useSlideNavigation";
 import { cn } from "@/lib/utils";
 import { ImpactSection04 } from "@/components/ImpactSection04";
 import { useIsMobile } from "@/hooks/use-mobile";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-  type CarouselApi,
-} from "@/components/ui/carousel";
+// Removed embla carousel imports - using custom fade-up transitions
 import trendiUpload from "@/assets/trendi-upload.png";
 import trendiKeywords from "@/assets/trendi-keywords.png";
 import trendiRegions from "@/assets/trendi-regions.png";
@@ -136,11 +129,7 @@ const IntelligenceOverInventoryProject = () => {
 
   // "The Idea" section - now just a simple blockquote, no state needed
 
-  // Carousel APIs for keyboard navigation
-  const [parsingCarouselApi, setParsingCarouselApi] = useState<CarouselApi>();
-  const [strategyCarouselApi, setStrategyCarouselApi] = useState<CarouselApi>();
-  
-  // Carousel indices for scroll-based navigation
+  // Slide indices for fade-up navigation (no carousel API needed)
   const [parsingActiveIndex, setParsingActiveIndex] = useState(0);
   const [strategyActiveIndex, setStrategyActiveIndex] = useState(0);
   
@@ -178,22 +167,20 @@ const IntelligenceOverInventoryProject = () => {
           }
         }
         // Section 2: The Idea - no internal navigation needed
-        // Section 4: Parsing Tool carousel
-        else if (currentSectionIndex === 4 && parsingCarouselApi) {
+        // Section 4: Parsing Tool - fade navigation
+        else if (currentSectionIndex === 4) {
           e.preventDefault();
-          if (direction === 1) {
-            parsingCarouselApi.scrollNext();
-          } else {
-            parsingCarouselApi.scrollPrev();
+          const newIdx = parsingActiveIndex + direction;
+          if (newIdx >= 0 && newIdx < parsingCardPairs.length) {
+            setParsingActiveIndex(newIdx);
           }
         }
-        // Section 6: Strategy carousel
-        else if (currentSectionIndex === 6 && strategyCarouselApi) {
+        // Section 6: Strategy - fade navigation
+        else if (currentSectionIndex === 6) {
           e.preventDefault();
-          if (direction === 1) {
-            strategyCarouselApi.scrollNext();
-          } else {
-            strategyCarouselApi.scrollPrev();
+          const newIdx = strategyActiveIndex + direction;
+          if (newIdx >= 0 && newIdx < strategyItems.length) {
+            setStrategyActiveIndex(newIdx);
           }
         }
       }
@@ -201,7 +188,7 @@ const IntelligenceOverInventoryProject = () => {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [currentSectionIndex, challengeActiveIndex, challengePoints.length, parsingCarouselApi, strategyCarouselApi]);
+  }, [currentSectionIndex, challengeActiveIndex, challengePoints.length, parsingActiveIndex, parsingCardPairs.length, strategyActiveIndex, strategyItems.length]);
 
   // Handle wheel events for Challenge section sub-scroll
   useEffect(() => {
@@ -290,7 +277,6 @@ const IntelligenceOverInventoryProject = () => {
             e.preventDefault();
             parsingIsTransitioningRef.current = true;
             setParsingActiveIndex(prev => prev + 1);
-            parsingCarouselApi?.scrollNext();
             parsingWheelAccumulatorRef.current = 0;
             setTimeout(() => { parsingIsTransitioningRef.current = false; }, 400);
           }
@@ -303,7 +289,6 @@ const IntelligenceOverInventoryProject = () => {
             e.preventDefault();
             parsingIsTransitioningRef.current = true;
             setParsingActiveIndex(prev => prev - 1);
-            parsingCarouselApi?.scrollPrev();
             parsingWheelAccumulatorRef.current = 0;
             setTimeout(() => { parsingIsTransitioningRef.current = false; }, 400);
           }
@@ -315,7 +300,7 @@ const IntelligenceOverInventoryProject = () => {
 
     parsingSection.addEventListener('wheel', handleWheel, { passive: false });
     return () => parsingSection.removeEventListener('wheel', handleWheel);
-  }, [currentSectionIndex, parsingActiveIndex, parsingCardPairs.length, parsingCarouselApi]);
+  }, [currentSectionIndex, parsingActiveIndex, parsingCardPairs.length]);
 
   // Wheel handler for /05 Strategy
   useEffect(() => {
@@ -339,7 +324,6 @@ const IntelligenceOverInventoryProject = () => {
             e.preventDefault();
             strategyIsTransitioningRef.current = true;
             setStrategyActiveIndex(prev => prev + 1);
-            strategyCarouselApi?.scrollNext();
             strategyWheelAccumulatorRef.current = 0;
             setTimeout(() => { strategyIsTransitioningRef.current = false; }, 400);
           }
@@ -352,7 +336,6 @@ const IntelligenceOverInventoryProject = () => {
             e.preventDefault();
             strategyIsTransitioningRef.current = true;
             setStrategyActiveIndex(prev => prev - 1);
-            strategyCarouselApi?.scrollPrev();
             strategyWheelAccumulatorRef.current = 0;
             setTimeout(() => { strategyIsTransitioningRef.current = false; }, 400);
           }
@@ -364,7 +347,7 @@ const IntelligenceOverInventoryProject = () => {
 
     strategySection.addEventListener('wheel', handleWheel, { passive: false });
     return () => strategySection.removeEventListener('wheel', handleWheel);
-  }, [currentSectionIndex, strategyActiveIndex, strategyItems.length, strategyCarouselApi]);
+  }, [currentSectionIndex, strategyActiveIndex, strategyItems.length]);
 
 
   return (
@@ -651,71 +634,65 @@ const IntelligenceOverInventoryProject = () => {
               </span>
             </div>
 
-            {/* Content fills remaining viewport - 3:1 ratio */}
-            <div className="flex-1 min-h-0 h-[calc(100vh-200px)]">
-              <Carousel
-                setApi={setParsingCarouselApi}
-                opts={{
-                  align: "start",
-                  loop: false,
-                }}
-                className="w-full h-full"
-              >
-                <CarouselContent className="-ml-4 h-full">
-                  {parsingCardPairs.map((pair, pairIndex) => (
-                    <CarouselItem key={pairIndex} className="pl-4 basis-full h-full">
-                      <div className={cn(
-                        "grid grid-cols-1 lg:grid-cols-4 gap-8 items-center h-full transition-all duration-500",
-                        parsingActiveIndex === pairIndex ? "opacity-100 scale-100" : "opacity-0 scale-[0.98] pointer-events-none absolute"
-                      )}>
-                        {/* Images Column - 3 columns */}
-                        <div className="relative h-full lg:col-span-3">
-                          {/* Primary image - back */}
-                          <div className={cn(
-                            "absolute left-0 top-0 w-[85%] h-[90%] rounded-xl overflow-hidden shadow-2xl border border-border transition-all duration-500",
-                            parsingActiveIndex === pairIndex ? "opacity-100 scale-100" : "opacity-0 scale-[0.98]"
-                          )}>
-                            <img 
-                              src={pair.images[0].src} 
-                              alt={pair.images[0].title}
-                              className="w-full h-full object-cover object-top"
-                            />
-                          </div>
-                          {/* Secondary image - front, overlapping */}
-                          <div className={cn(
-                            "absolute right-0 bottom-0 w-[75%] h-[80%] rounded-xl overflow-hidden shadow-2xl border border-border transition-all duration-500 delay-100",
-                            parsingActiveIndex === pairIndex ? "opacity-100 scale-100" : "opacity-0 scale-[0.98]"
-                          )}>
-                            <img 
-                              src={pair.images[1].src} 
-                              alt={pair.images[1].title}
-                              className="w-full h-full object-cover object-top"
-                            />
-                          </div>
-                        </div>
+            {/* Content fills remaining viewport - 3:1 ratio with fade-up animation */}
+            <div className="flex-1 min-h-0 h-[calc(100vh-200px)] relative overflow-hidden">
+              {parsingCardPairs.map((pair, pairIndex) => (
+                <div
+                  key={pairIndex}
+                  className={cn(
+                    "absolute inset-0 grid grid-cols-1 lg:grid-cols-4 gap-8 items-center h-full transition-all duration-700 ease-out",
+                    parsingActiveIndex === pairIndex 
+                      ? "opacity-100 translate-y-0" 
+                      : parsingActiveIndex > pairIndex
+                        ? "opacity-0 -translate-y-12 pointer-events-none"
+                        : "opacity-0 translate-y-12 pointer-events-none"
+                  )}
+                >
+                  {/* Images Column - 3 columns */}
+                  <div className="relative h-full lg:col-span-3">
+                    {/* Primary image - back */}
+                    <div className={cn(
+                      "absolute left-0 top-0 w-[85%] h-[90%] rounded-xl overflow-hidden shadow-2xl border border-border transition-all duration-700 delay-100",
+                      parsingActiveIndex === pairIndex ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                    )}>
+                      <img 
+                        src={pair.images[0].src} 
+                        alt={pair.images[0].title}
+                        className="w-full h-full object-cover object-top"
+                      />
+                    </div>
+                    {/* Secondary image - front, overlapping */}
+                    <div className={cn(
+                      "absolute right-0 bottom-0 w-[75%] h-[80%] rounded-xl overflow-hidden shadow-2xl border border-border transition-all duration-700 delay-200",
+                      parsingActiveIndex === pairIndex ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                    )}>
+                      <img 
+                        src={pair.images[1].src} 
+                        alt={pair.images[1].title}
+                        className="w-full h-full object-cover object-top"
+                      />
+                    </div>
+                  </div>
 
-                        {/* Text Column - 1 column */}
-                        <div className="space-y-6 lg:col-span-1">
-                          <div className={cn(
-                            "space-y-2 transition-all duration-500",
-                            parsingActiveIndex === pairIndex ? "opacity-100 scale-100" : "opacity-0 scale-[0.98]"
-                          )}>
-                            <h3 className="text-lg md:text-xl font-semibold text-foreground">{pair.images[0].title}</h3>
-                            <p className="text-sm md:text-base text-muted-foreground">{pair.captions[0]}</p>
-                          </div>
-                          <div className={cn(
-                            "space-y-2 pt-3 border-t border-border transition-all duration-500 delay-75",
-                            parsingActiveIndex === pairIndex ? "opacity-100 scale-100" : "opacity-0 scale-[0.98]"
-                          )}>
-                            <h3 className="text-lg md:text-xl font-semibold text-foreground">{pair.images[1].title}</h3>
-                            <p className="text-sm md:text-base text-muted-foreground">{pair.captions[1]}</p>
-                          </div>
-                        </div>
-                      </div>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-              </Carousel>
+                  {/* Text Column - 1 column */}
+                  <div className="space-y-6 lg:col-span-1">
+                    <div className={cn(
+                      "space-y-2 transition-all duration-700 delay-150",
+                      parsingActiveIndex === pairIndex ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+                    )}>
+                      <h3 className="text-lg md:text-xl font-semibold text-foreground">{pair.images[0].title}</h3>
+                      <p className="text-sm md:text-base text-muted-foreground">{pair.captions[0]}</p>
+                    </div>
+                    <div className={cn(
+                      "space-y-2 pt-3 border-t border-border transition-all duration-700 delay-200",
+                      parsingActiveIndex === pairIndex ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+                    )}>
+                      <h3 className="text-lg md:text-xl font-semibold text-foreground">{pair.images[1].title}</h3>
+                      <p className="text-sm md:text-base text-muted-foreground">{pair.captions[1]}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -726,12 +703,7 @@ const IntelligenceOverInventoryProject = () => {
               <Button
                 variant="outline"
                 size="icon"
-                onClick={() => {
-                  if (parsingActiveIndex > 0) {
-                    setParsingActiveIndex(prev => prev - 1);
-                    parsingCarouselApi?.scrollPrev();
-                  }
-                }}
+                onClick={() => setParsingActiveIndex(prev => Math.max(0, prev - 1))}
                 disabled={parsingActiveIndex === 0}
                 className="h-10 w-10"
               >
@@ -740,12 +712,7 @@ const IntelligenceOverInventoryProject = () => {
               <Button
                 variant="outline"
                 size="icon"
-                onClick={() => {
-                  if (parsingActiveIndex < parsingCardPairs.length - 1) {
-                    setParsingActiveIndex(prev => prev + 1);
-                    parsingCarouselApi?.scrollNext();
-                  }
-                }}
+                onClick={() => setParsingActiveIndex(prev => Math.min(parsingCardPairs.length - 1, prev + 1))}
                 disabled={parsingActiveIndex === parsingCardPairs.length - 1}
                 className="h-10 w-10"
               >
@@ -795,50 +762,44 @@ const IntelligenceOverInventoryProject = () => {
               </span>
             </div>
 
-            {/* Content fills remaining viewport */}
-            <div className="flex-1 min-h-0 h-[calc(100vh-200px)]">
-              <Carousel
-                setApi={setStrategyCarouselApi}
-                opts={{
-                  align: "start",
-                  loop: false,
-                }}
-                className="w-full h-full"
-              >
-                <CarouselContent className="-ml-4 h-full">
-                  {strategyItems.map((item, index) => (
-                    <CarouselItem key={index} className="pl-4 basis-full h-full">
-                      <div className={cn(
-                        "grid grid-cols-1 lg:grid-cols-2 gap-12 items-center h-full transition-all duration-500",
-                        strategyActiveIndex === index ? "opacity-100 scale-100" : "opacity-0 scale-[0.98] pointer-events-none absolute"
-                      )}>
-                        {/* Image Column - consistent position (no alternating) */}
-                        <div className={cn(
-                          "h-full bg-muted/30 border border-border rounded-xl overflow-hidden transition-all duration-500",
-                          strategyActiveIndex === index ? "opacity-100 scale-100" : "opacity-0 scale-[0.98]"
-                        )}>
-                          {item.image ? (
-                            <img src={item.image} alt={item.title} className="w-full h-full object-cover object-top" />
-                          ) : (
-                            <div className="w-full h-full flex items-center justify-center">
-                              <p className="text-muted-foreground">Visual placeholder</p>
-                            </div>
-                          )}
-                        </div>
-                        
-                        {/* Text Column */}
-                        <div className={cn(
-                          "space-y-6 transition-all duration-500 delay-100",
-                          strategyActiveIndex === index ? "opacity-100 scale-100" : "opacity-0 scale-[0.98]"
-                        )}>
-                          <h3 className="text-2xl md:text-4xl font-semibold text-foreground">{item.title}</h3>
-                          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">{item.description}</p>
-                        </div>
+            {/* Content fills remaining viewport - fade-up animation */}
+            <div className="flex-1 min-h-0 h-[calc(100vh-200px)] relative overflow-hidden">
+              {strategyItems.map((item, index) => (
+                <div
+                  key={index}
+                  className={cn(
+                    "absolute inset-0 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center h-full transition-all duration-700 ease-out",
+                    strategyActiveIndex === index 
+                      ? "opacity-100 translate-y-0" 
+                      : strategyActiveIndex > index
+                        ? "opacity-0 -translate-y-12 pointer-events-none"
+                        : "opacity-0 translate-y-12 pointer-events-none"
+                  )}
+                >
+                  {/* Image Column - consistent position (no alternating) */}
+                  <div className={cn(
+                    "h-full bg-muted/30 border border-border rounded-xl overflow-hidden transition-all duration-700 delay-100",
+                    strategyActiveIndex === index ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                  )}>
+                    {item.image ? (
+                      <img src={item.image} alt={item.title} className="w-full h-full object-cover object-top" />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center">
+                        <p className="text-muted-foreground">Visual placeholder</p>
                       </div>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-              </Carousel>
+                    )}
+                  </div>
+                  
+                  {/* Text Column */}
+                  <div className={cn(
+                    "space-y-6 transition-all duration-700 delay-150",
+                    strategyActiveIndex === index ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+                  )}>
+                    <h3 className="text-2xl md:text-4xl font-semibold text-foreground">{item.title}</h3>
+                    <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">{item.description}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -849,12 +810,7 @@ const IntelligenceOverInventoryProject = () => {
               <Button
                 variant="outline"
                 size="icon"
-                onClick={() => {
-                  if (strategyActiveIndex > 0) {
-                    setStrategyActiveIndex(prev => prev - 1);
-                    strategyCarouselApi?.scrollPrev();
-                  }
-                }}
+                onClick={() => setStrategyActiveIndex(prev => Math.max(0, prev - 1))}
                 disabled={strategyActiveIndex === 0}
                 className="h-10 w-10"
               >
@@ -863,12 +819,7 @@ const IntelligenceOverInventoryProject = () => {
               <Button
                 variant="outline"
                 size="icon"
-                onClick={() => {
-                  if (strategyActiveIndex < strategyItems.length - 1) {
-                    setStrategyActiveIndex(prev => prev + 1);
-                    strategyCarouselApi?.scrollNext();
-                  }
-                }}
+                onClick={() => setStrategyActiveIndex(prev => Math.min(strategyItems.length - 1, prev + 1))}
                 disabled={strategyActiveIndex === strategyItems.length - 1}
                 className="h-10 w-10"
               >

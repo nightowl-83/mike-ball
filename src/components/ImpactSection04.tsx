@@ -186,41 +186,57 @@ export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab, scrollToS
         {/* Divider */}
         <Separator className="mb-8" />
 
-        {/* Content Area */}
-        <div className="flex-1">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-            {/* Text Column */}
-            <div className="lg:col-span-1 space-y-4">
-              <blockquote className="text-xl md:text-2xl font-semibold text-foreground italic border-l-4 border-primary pl-4">
-                "{currentBlock.quote}"
-              </blockquote>
-              <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                {currentBlock.narrative}
-              </p>
-            </div>
-            
-            {/* Image Column */}
-            <div className={cn(
-              "lg:col-span-2 h-[calc(100vh-480px)] min-h-[300px] bg-muted/30 border border-border rounded-xl overflow-hidden flex items-center justify-center",
-              "transition-all duration-500"
-            )}>
-              {currentBlock.image ? (
-                <img 
-                  src={currentBlock.image} 
-                  alt={currentBlock.title}
-                  className={cn(
-                    "max-w-full max-h-full transition-all duration-500",
-                    // For Marketplace slides (3 and 4), use contain to preserve aspect ratio
-                    activeBlockIndex >= 3 ? "object-contain" : "w-full h-full object-cover object-top"
-                  )}
-                />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center">
-                  <p className="text-muted-foreground text-base">Image for "{currentBlock.title}"</p>
-                </div>
+        {/* Content Area - fade-up animation */}
+        <div className="flex-1 relative overflow-hidden">
+          {allBlocks.map((block, index) => (
+            <div 
+              key={index}
+              className={cn(
+                "absolute inset-0 grid grid-cols-1 lg:grid-cols-3 gap-8 items-start transition-all duration-700 ease-out",
+                activeBlockIndex === index 
+                  ? "opacity-100 translate-y-0" 
+                  : activeBlockIndex > index
+                    ? "opacity-0 -translate-y-12 pointer-events-none"
+                    : "opacity-0 translate-y-12 pointer-events-none"
               )}
+            >
+              {/* Text Column */}
+              <div className={cn(
+                "lg:col-span-1 space-y-4 transition-all duration-700 delay-100",
+                activeBlockIndex === index ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+              )}>
+                <blockquote className="text-xl md:text-2xl font-semibold text-foreground italic border-l-4 border-primary pl-4">
+                  "{block.quote}"
+                </blockquote>
+                <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                  {block.narrative}
+                </p>
+              </div>
+              
+              {/* Image Column */}
+              <div className={cn(
+                "lg:col-span-2 h-[calc(100vh-480px)] min-h-[300px] bg-muted/30 border border-border rounded-xl overflow-hidden flex items-center justify-center",
+                "transition-all duration-700 delay-150",
+                activeBlockIndex === index ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              )}>
+                {block.image ? (
+                  <img 
+                    src={block.image} 
+                    alt={block.title}
+                    className={cn(
+                      "max-w-full max-h-full transition-all duration-500",
+                      // For Marketplace slides (3 and 4), use contain to preserve aspect ratio
+                      index >= 3 ? "object-contain" : "w-full h-full object-cover object-top"
+                    )}
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center">
+                    <p className="text-muted-foreground text-base">Image for "{block.title}"</p>
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
+          ))}
         </div>
 
         {/* Progress dots */}
