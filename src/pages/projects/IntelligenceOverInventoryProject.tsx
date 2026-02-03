@@ -1,7 +1,7 @@
 import { ArrowRight, Database, Filter, BarChart3, Target, Users, ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { SlideNav } from "@/components/SlideNav";
 import { useSlideNavigation } from "@/hooks/useSlideNavigation";
 import { cn } from "@/lib/utils";
@@ -13,6 +13,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  type CarouselApi,
 } from "@/components/ui/carousel";
 import trendiUpload from "@/assets/trendi-upload.png";
 import trendiKeywords from "@/assets/trendi-keywords.png";
@@ -21,10 +22,11 @@ import trendiAdvanced from "@/assets/trendi-advanced.png";
 import mhCompletenessCards from "@/assets/mh-completeness-cards.png";
 
 const IntelligenceOverInventoryProject = () => {
-  // Section data for navigation
+  // Section data for navigation - Added "The Idea" section
   const sectionData = [
     { id: 'hero', label: 'Overview', number: '' },
     { id: 'conflict', label: 'The Challenge', number: '/01' },
+    { id: 'idea', label: 'The Idea', number: '' },
     { id: 'engine', label: 'The Solution', number: '/02' },
     { id: 'parsing', label: 'Parsing Tool', number: '/03' },
     { id: 'impact', label: 'Impact', number: '/04' },
@@ -46,12 +48,12 @@ const IntelligenceOverInventoryProject = () => {
   // Mobile detection
   const isMobile = useIsMobile();
   
-  // Show toggle only on section 4 (Impact)
-  const showDualModeToggle = currentSectionIndex === 4;
+  // Show toggle only on section 5 (Impact) - index shifted due to new section
+  const showDualModeToggle = currentSectionIndex === 5;
 
   // Auto-reset to dark mode when leaving /04
   useEffect(() => {
-    if (currentSectionIndex !== 4 && activeDataMode === 'marketplace') {
+    if (currentSectionIndex !== 5 && activeDataMode === 'marketplace') {
       setActiveDataMode('marketing-hub');
     }
   }, [currentSectionIndex, activeDataMode]);
@@ -72,28 +74,42 @@ const IntelligenceOverInventoryProject = () => {
     { icon: Users, label: "Seller Training", description: "Provide data for what buyers are searching for" }
   ];
 
-  // Strategy items data (new alternating layout)
+  // Strategy items data - removed numbering
   const strategyItems = [
     {
-      number: "01",
       title: "Challenging the \"More is Better\" Fallacy",
       description: "We pushed back against the assumption that simply increasing lead volume was our primary goal. We realized that if we didn't address the content of those leads, we were just creating more work for sellers without necessarily increasing their success rate. I used the lead parsing data to prove that there was a gap between what buyers were asking and what sellers were providing. I shifted the conversation from \"How do we get more clicks?\" to \"How do we help sellers answer these common questions upfront?\"",
       image: trendiKeywords
     },
     {
-      number: "02",
       title: "Data-Informed Coaching (The Marketing Hub)",
       description: "By shifting our mindset from delivering more leads to delivering quality leads, we challenged how we present data to our users. Instead of a passive listing form, the Hub became a coaching tool. We implemented the \"Popular Features\" section and the Property Completeness Score. We used the parser's findings to tell sellers exactly what they were missing. \"Water and Electricity are often asked about by buyers. Properties that include this see an average of 5x more leads.\"",
       image: mhCompletenessCards
     }
   ];
 
-  // Parsing tool cards data (2x2 grid)
-  const parsingCards = [
-    { image: trendiUpload, title: "Upload & Configure", caption: "Upload email data and configure the parsing engine for analysis." },
-    { image: trendiKeywords, title: "Keyword Analysis", caption: "Track keyword trends over time with interactive charts and filters." },
-    { image: trendiRegions, title: "Distribution Insights", caption: "Visualize keyword distribution and identify top search terms." },
-    { image: trendiAdvanced, title: "Advanced Trend Analysis", caption: "Deep dive into temporal patterns and emerging buyer interests." }
+  // Parsing tool cards data - paired for overlapping effect
+  const parsingCardPairs = [
+    { 
+      images: [
+        { src: trendiUpload, title: "Upload & Configure" },
+        { src: trendiKeywords, title: "Keyword Analysis" }
+      ],
+      captions: [
+        "Upload email data and configure the parsing engine for analysis.",
+        "Track keyword trends over time with interactive charts and filters."
+      ]
+    },
+    { 
+      images: [
+        { src: trendiRegions, title: "Distribution Insights" },
+        { src: trendiAdvanced, title: "Advanced Trend Analysis" }
+      ],
+      captions: [
+        "Visualize keyword distribution and identify top search terms.",
+        "Deep dive into temporal patterns and emerging buyer interests."
+      ]
+    }
   ];
 
   // Gallery items data
@@ -117,19 +133,85 @@ const IntelligenceOverInventoryProject = () => {
   const [challengeActiveIndex, setChallengeActiveIndex] = useState(0);
   const wheelAccumulatorRef = useRef(0);
   const challengeSectionRef = useRef<HTMLDivElement>(null);
-  const WHEEL_THRESHOLD = 100; // Amount of wheel delta needed to advance
+  const WHEEL_THRESHOLD = 100;
   const isTransitioningRef = useRef(false);
 
-  // Handle wheel events for Challenge section sub-scroll using native event
+  // "The Idea" section state
+  const [ideaAdvanced, setIdeaAdvanced] = useState(false);
+  const ideaSectionRef = useRef<HTMLDivElement>(null);
+  const ideaWheelAccumulatorRef = useRef(0);
+  const ideaIsTransitioningRef = useRef(false);
+
+  // Carousel APIs for keyboard navigation
+  const [parsingCarouselApi, setParsingCarouselApi] = useState<CarouselApi>();
+  const [strategyCarouselApi, setStrategyCarouselApi] = useState<CarouselApi>();
+
+  // Keyboard navigation for Left/Right within sections
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Check if focus is on an input
+      const activeElement = document.activeElement;
+      if (
+        activeElement?.tagName === "INPUT" ||
+        activeElement?.tagName === "TEXTAREA" ||
+        activeElement?.getAttribute("contenteditable") === "true"
+      ) {
+        return;
+      }
+
+      if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
+        const direction = e.key === "ArrowRight" ? 1 : -1;
+        
+        // Section 1: Challenge - advance text
+        if (currentSectionIndex === 1) {
+          e.preventDefault();
+          const newIndex = challengeActiveIndex + direction;
+          if (newIndex >= 0 && newIndex < challengePoints.length) {
+            setChallengeActiveIndex(newIndex);
+          }
+        }
+        // Section 2: The Idea - toggle advanced state
+        else if (currentSectionIndex === 2) {
+          e.preventDefault();
+          if (direction === 1 && !ideaAdvanced) {
+            setIdeaAdvanced(true);
+          } else if (direction === -1 && ideaAdvanced) {
+            setIdeaAdvanced(false);
+          }
+        }
+        // Section 4: Parsing Tool carousel
+        else if (currentSectionIndex === 4 && parsingCarouselApi) {
+          e.preventDefault();
+          if (direction === 1) {
+            parsingCarouselApi.scrollNext();
+          } else {
+            parsingCarouselApi.scrollPrev();
+          }
+        }
+        // Section 6: Strategy carousel
+        else if (currentSectionIndex === 6 && strategyCarouselApi) {
+          e.preventDefault();
+          if (direction === 1) {
+            strategyCarouselApi.scrollNext();
+          } else {
+            strategyCarouselApi.scrollPrev();
+          }
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [currentSectionIndex, challengeActiveIndex, challengePoints.length, ideaAdvanced, parsingCarouselApi, strategyCarouselApi]);
+
+  // Handle wheel events for Challenge section sub-scroll
   useEffect(() => {
     const challengeSection = challengeSectionRef.current;
     if (!challengeSection) return;
 
     const handleWheel = (e: WheelEvent) => {
-      // Only process if we're on the Challenge section (index 1)
       if (currentSectionIndex !== 1) return;
       
-      // Prevent rapid-fire transitions
       if (isTransitioningRef.current) {
         e.preventDefault();
         return;
@@ -138,54 +220,89 @@ const IntelligenceOverInventoryProject = () => {
       const delta = e.deltaY;
       wheelAccumulatorRef.current += delta;
 
-      // Scrolling down
       if (delta > 0) {
         if (wheelAccumulatorRef.current >= WHEEL_THRESHOLD) {
           if (challengeActiveIndex < challengePoints.length - 1) {
-            // Advance to next paragraph - prevent scroll
             e.preventDefault();
             isTransitioningRef.current = true;
             setChallengeActiveIndex(prev => prev + 1);
             wheelAccumulatorRef.current = 0;
             setTimeout(() => { isTransitioningRef.current = false; }, 400);
           }
-          // At last paragraph, allow scroll to next section (don't prevent)
         } else {
-          // Still accumulating - prevent scroll
           e.preventDefault();
         }
-      }
-      // Scrolling up
-      else if (delta < 0) {
+      } else if (delta < 0) {
         if (wheelAccumulatorRef.current <= -WHEEL_THRESHOLD) {
           if (challengeActiveIndex > 0) {
-            // Go back to previous paragraph - prevent scroll
             e.preventDefault();
             isTransitioningRef.current = true;
             setChallengeActiveIndex(prev => prev - 1);
             wheelAccumulatorRef.current = 0;
             setTimeout(() => { isTransitioningRef.current = false; }, 400);
           }
-          // At first paragraph, allow scroll to previous section (don't prevent)
         } else {
-          // Still accumulating - prevent scroll
           e.preventDefault();
         }
       }
     };
 
     challengeSection.addEventListener('wheel', handleWheel, { passive: false });
-    
-    return () => {
-      challengeSection.removeEventListener('wheel', handleWheel);
-    };
+    return () => challengeSection.removeEventListener('wheel', handleWheel);
   }, [currentSectionIndex, challengeActiveIndex, challengePoints.length]);
 
-  // Reset challenge state when leaving the section
+  // Handle wheel events for "The Idea" section
+  useEffect(() => {
+    const ideaSection = ideaSectionRef.current;
+    if (!ideaSection) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      if (currentSectionIndex !== 2) return;
+      
+      if (ideaIsTransitioningRef.current) {
+        e.preventDefault();
+        return;
+      }
+
+      const delta = e.deltaY;
+      ideaWheelAccumulatorRef.current += delta;
+
+      if (delta > 0 && !ideaAdvanced) {
+        if (ideaWheelAccumulatorRef.current >= WHEEL_THRESHOLD) {
+          e.preventDefault();
+          ideaIsTransitioningRef.current = true;
+          setIdeaAdvanced(true);
+          ideaWheelAccumulatorRef.current = 0;
+          setTimeout(() => { ideaIsTransitioningRef.current = false; }, 400);
+        } else {
+          e.preventDefault();
+        }
+      } else if (delta < 0 && ideaAdvanced) {
+        if (ideaWheelAccumulatorRef.current <= -WHEEL_THRESHOLD) {
+          e.preventDefault();
+          ideaIsTransitioningRef.current = true;
+          setIdeaAdvanced(false);
+          ideaWheelAccumulatorRef.current = 0;
+          setTimeout(() => { ideaIsTransitioningRef.current = false; }, 400);
+        } else {
+          e.preventDefault();
+        }
+      }
+    };
+
+    ideaSection.addEventListener('wheel', handleWheel, { passive: false });
+    return () => ideaSection.removeEventListener('wheel', handleWheel);
+  }, [currentSectionIndex, ideaAdvanced]);
+
+  // Reset states when leaving sections
   useEffect(() => {
     if (currentSectionIndex !== 1) {
       setChallengeActiveIndex(0);
       wheelAccumulatorRef.current = 0;
+    }
+    if (currentSectionIndex !== 2) {
+      setIdeaAdvanced(false);
+      ideaWheelAccumulatorRef.current = 0;
     }
   }, [currentSectionIndex]);
 
@@ -204,8 +321,8 @@ const IntelligenceOverInventoryProject = () => {
         ref={containerRef}
         className={cn(
           "flex-1 slide-container transition-colors duration-500",
-          "ml-0 md:ml-56 lg:ml-64", // No margin on mobile (top nav), margin on desktop (side nav)
-          "pt-14 md:pt-0", // Padding top for mobile top nav
+          "ml-0 md:ml-56 lg:ml-64",
+          "pt-14 md:pt-0",
           "bg-background",
           activeDataMode === 'marketplace' && "theme-light"
         )}
@@ -263,7 +380,7 @@ const IntelligenceOverInventoryProject = () => {
             (sectionRefs[1] as any).current = el;
             (challengeSectionRef as any).current = el;
           }}
-          className="slide-section flex items-center justify-center"
+          className="slide-section flex items-center justify-center relative"
         >
           <div className="w-[85%] mx-auto">
             {/* Section Header */}
@@ -310,11 +427,123 @@ const IntelligenceOverInventoryProject = () => {
               ))}
             </div>
           </div>
+
+          {/* Navigation Arrows - Bottom Right */}
+          <div className="absolute bottom-8 right-8 flex items-center gap-2">
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={() => setChallengeActiveIndex(prev => Math.max(0, prev - 1))}
+              disabled={challengeActiveIndex === 0}
+              className="h-10 w-10"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </Button>
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={() => setChallengeActiveIndex(prev => Math.min(challengePoints.length - 1, prev + 1))}
+              disabled={challengeActiveIndex === challengePoints.length - 1}
+              className="h-10 w-10"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </Button>
+          </div>
+        </section>
+
+        {/* NEW: The Idea Section */}
+        <section
+          ref={(el) => { 
+            (sectionRefs[2] as any).current = el;
+            (ideaSectionRef as any).current = el;
+          }}
+          className="slide-section flex items-center justify-center relative"
+        >
+          <div className="w-[85%] mx-auto max-w-4xl">
+            <div className="space-y-8">
+              {/* Intro text - fades out when advanced */}
+              <p className={cn(
+                "text-xl md:text-2xl text-muted-foreground leading-relaxed transition-all duration-700",
+                ideaAdvanced ? "opacity-20" : "opacity-100"
+              )}>
+                A casual feature request conversation with an Account Manager gave us an idea...
+              </p>
+
+              {/* Quote block - always visible */}
+              <blockquote className="border-l-4 border-primary bg-primary/10 p-6 rounded-r-xl">
+                <p className={cn(
+                  "text-lg md:text-xl leading-relaxed transition-all duration-700",
+                  ideaAdvanced ? "text-foreground" : "text-muted-foreground"
+                )}>
+                  "One of my accounts called in asking if we could add to display 'Owner Financing' when available. He said{" "}
+                  <span className="font-semibold text-foreground bg-primary/20 px-1 rounded">
+                    'I sent multiple inquiries to the sellers on your site and he never responded'
+                  </span>"
+                </p>
+              </blockquote>
+
+              {/* Context text - fades out when advanced */}
+              <p className={cn(
+                "text-xl md:text-2xl text-muted-foreground leading-relaxed transition-all duration-700",
+                ideaAdvanced ? "opacity-20" : "opacity-100"
+              )}>
+                ...even though we have limited direct contact with users, we might have another avenue...
+              </p>
+
+              {/* Final insight - stays visible */}
+              <p className={cn(
+                "text-2xl md:text-3xl font-semibold leading-relaxed transition-all duration-700",
+                ideaAdvanced ? "text-primary opacity-100" : "text-muted-foreground opacity-60"
+              )}>
+                The leads themselves could tell us what buyers actually want.
+              </p>
+            </div>
+
+            {/* Progress indicator */}
+            <div className="flex gap-2 mt-10">
+              <button
+                onClick={() => setIdeaAdvanced(false)}
+                className={cn(
+                  "w-2 h-2 rounded-full transition-all duration-300",
+                  !ideaAdvanced ? "bg-primary w-6" : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                )}
+              />
+              <button
+                onClick={() => setIdeaAdvanced(true)}
+                className={cn(
+                  "w-2 h-2 rounded-full transition-all duration-300",
+                  ideaAdvanced ? "bg-primary w-6" : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                )}
+              />
+            </div>
+          </div>
+
+          {/* Navigation Arrows - Bottom Right */}
+          <div className="absolute bottom-8 right-8 flex items-center gap-2">
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={() => setIdeaAdvanced(false)}
+              disabled={!ideaAdvanced}
+              className="h-10 w-10"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </Button>
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={() => setIdeaAdvanced(true)}
+              disabled={ideaAdvanced}
+              className="h-10 w-10"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </Button>
+          </div>
         </section>
 
         {/* The Insight Engine Section - /02 */}
         <section
-          ref={(el) => { (sectionRefs[2] as any).current = el; }}
+          ref={(el) => { (sectionRefs[3] as any).current = el; }}
           className="slide-section flex items-center justify-center bg-card/30"
         >
           <div className="w-full px-4 md:px-8 lg:px-12">
@@ -333,20 +562,33 @@ const IntelligenceOverInventoryProject = () => {
               </span>
             </div>
 
-            {/* Vertical Layout - Single Column with solid purple line */}
+            {/* Vertical Layout with gradient connector */}
             <div className="relative pl-8 max-w-2xl mx-auto">
-              {/* Vertical solid purple line */}
-              <div className="absolute left-3 top-0 bottom-0 w-0.5 bg-primary" />
+              {/* Full-height gradient line - behind cards */}
+              <div 
+                className="absolute left-3 top-0 bottom-0 w-0.5 -z-0"
+                style={{
+                  background: `linear-gradient(
+                    to bottom,
+                    hsl(var(--background)) 0%,
+                    hsl(var(--border)) 10%,
+                    hsl(var(--primary)) 30%,
+                    hsl(var(--primary)) 70%,
+                    hsl(var(--border)) 90%,
+                    hsl(var(--background)) 100%
+                  )`
+                }}
+              />
               
-              <div className="space-y-6">
+              <div className="space-y-6 relative z-10">
                 {flowSteps.map((step, index) => (
                   <div key={step.label} className="relative flex items-start gap-6">
                     {/* Node on the line */}
-                    <div className="absolute left-[-20px] top-6 w-3 h-3 rounded-full bg-primary" />
-                    {/* Horizontal connector - solid purple */}
+                    <div className="absolute left-[-20px] top-6 w-3 h-3 rounded-full bg-primary border-2 border-background" />
+                    {/* Horizontal connector */}
                     <div className="absolute left-[-8px] top-[26px] w-4 h-0.5 bg-primary" />
                     
-                    {/* Card - Full width in column */}
+                    {/* Card */}
                     <div className="bg-card border border-border rounded-xl p-6 flex-1">
                       <div className="flex items-start justify-between mb-3">
                         <h3 className="text-lg font-semibold text-foreground">{step.label}</h3>
@@ -363,18 +605,18 @@ const IntelligenceOverInventoryProject = () => {
 
         {/* Lead Intelligence Tool - Parsing Tool Section - /03 */}
         <section
-          ref={(el) => { (sectionRefs[3] as any).current = el; }}
+          ref={(el) => { (sectionRefs[4] as any).current = el; }}
           className="slide-section flex items-center"
         >
           <div className="w-full px-4 md:px-8 lg:px-12">
             {/* Section Header */}
-            <div className="flex items-start justify-between mb-8">
+            <div className="flex items-start justify-between mb-4">
               <div className="flex-1">
                 <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground">
                   The Lead Intelligence Tool
                 </h2>
                 <p className="text-lg md:text-xl text-muted-foreground mt-4 max-w-3xl">
-                  The parsing tool extracts buyer intent from unstructured lead data, enabling smarter filters and actionable seller insights.
+                  I wanted a simple tool that would parse leads for keywords and see what our users were asking about.
                 </p>
               </div>
               <span className="text-5xl md:text-7xl font-bold font-mono opacity-20 hidden md:block">
@@ -382,8 +624,9 @@ const IntelligenceOverInventoryProject = () => {
               </span>
             </div>
 
-            {/* Carousel */}
+            {/* Overlapping Image Carousel */}
             <Carousel
+              setApi={setParsingCarouselApi}
               opts={{
                 align: "start",
                 loop: true,
@@ -391,19 +634,48 @@ const IntelligenceOverInventoryProject = () => {
               className="w-full"
             >
               <CarouselContent className="-ml-4">
-                {parsingCards.map((card, index) => (
-                  <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/2">
-                    <div className="bg-card border border-border rounded-xl overflow-hidden h-full">
-                      <div className="aspect-[4/3] overflow-hidden">
-                        <img 
-                          src={card.image} 
-                          alt={card.title}
-                          className="w-full h-full object-cover object-top"
-                        />
+                {parsingCardPairs.map((pair, pairIndex) => (
+                  <CarouselItem key={pairIndex} className="pl-4 basis-full">
+                    <div className={cn(
+                      "grid grid-cols-1 lg:grid-cols-2 gap-8 items-center",
+                      pairIndex % 2 === 1 && "lg:flex-row-reverse"
+                    )}>
+                      {/* Images Column - alternates position */}
+                      <div className={cn(
+                        "relative h-[400px]",
+                        pairIndex % 2 === 1 && "lg:order-2"
+                      )}>
+                        {/* Primary image - back */}
+                        <div className="absolute left-0 top-0 w-[75%] h-[85%] rounded-xl overflow-hidden shadow-2xl border border-border">
+                          <img 
+                            src={pair.images[0].src} 
+                            alt={pair.images[0].title}
+                            className="w-full h-full object-cover object-top"
+                          />
+                        </div>
+                        {/* Secondary image - front, overlapping */}
+                        <div className="absolute right-0 bottom-0 w-[65%] h-[75%] rounded-xl overflow-hidden shadow-2xl border border-border">
+                          <img 
+                            src={pair.images[1].src} 
+                            alt={pair.images[1].title}
+                            className="w-full h-full object-cover object-top"
+                          />
+                        </div>
                       </div>
-                      <div className="p-4">
-                        <h3 className="text-lg font-semibold text-foreground mb-1">{card.title}</h3>
-                        <p className="text-sm text-muted-foreground">{card.caption}</p>
+
+                      {/* Text Column */}
+                      <div className={cn(
+                        "space-y-6",
+                        pairIndex % 2 === 1 && "lg:order-1"
+                      )}>
+                        <div className="space-y-4">
+                          <h3 className="text-2xl font-semibold text-foreground">{pair.images[0].title}</h3>
+                          <p className="text-lg text-muted-foreground">{pair.captions[0]}</p>
+                        </div>
+                        <div className="space-y-4 pt-4 border-t border-border">
+                          <h3 className="text-2xl font-semibold text-foreground">{pair.images[1].title}</h3>
+                          <p className="text-lg text-muted-foreground">{pair.captions[1]}</p>
+                        </div>
                       </div>
                     </div>
                   </CarouselItem>
@@ -419,13 +691,14 @@ const IntelligenceOverInventoryProject = () => {
 
         {/* Dual-Interface Impact Section - /04 */}
         <ImpactSection04 
-          sectionRef={(el) => { (sectionRefs[4] as any).current = el; }} 
+          sectionRef={(el) => { (sectionRefs[5] as any).current = el; }} 
           activeTab={activeDataMode}
+          setActiveTab={setActiveDataMode}
         />
 
-        {/* Strategy & Influence - /05 - Carousel Layout */}
+        {/* Strategy & Influence - /05 - Alternating Hero Layout */}
         <section
-          ref={(el) => { (sectionRefs[5] as any).current = el; }}
+          ref={(el) => { (sectionRefs[6] as any).current = el; }}
           className="slide-section flex items-center bg-card/30"
         >
           <div className="w-full px-4 md:px-8 lg:px-12">
@@ -439,8 +712,9 @@ const IntelligenceOverInventoryProject = () => {
               </span>
             </div>
 
-            {/* Carousel */}
+            {/* Alternating Hero Layout Carousel */}
             <Carousel
+              setApi={setStrategyCarouselApi}
               opts={{
                 align: "start",
                 loop: true,
@@ -449,10 +723,15 @@ const IntelligenceOverInventoryProject = () => {
             >
               <CarouselContent className="-ml-4">
                 {strategyItems.map((item, index) => (
-                  <CarouselItem key={item.number} className="pl-4 lg:basis-1/2">
-                    <div className="grid grid-cols-1 gap-6 h-full">
-                      {/* Image */}
-                      <div className="aspect-video bg-muted/30 border border-border rounded-xl overflow-hidden">
+                  <CarouselItem key={index} className="pl-4 basis-full">
+                    <div className={cn(
+                      "grid grid-cols-1 lg:grid-cols-2 gap-8 items-center"
+                    )}>
+                      {/* Image Column - alternates position */}
+                      <div className={cn(
+                        "aspect-video lg:aspect-[4/3] bg-muted/30 border border-border rounded-xl overflow-hidden",
+                        index % 2 === 1 && "lg:order-2"
+                      )}>
                         {item.image ? (
                           <img src={item.image} alt={item.title} className="w-full h-full object-cover object-top" />
                         ) : (
@@ -462,11 +741,13 @@ const IntelligenceOverInventoryProject = () => {
                         )}
                       </div>
                       
-                      {/* Text */}
-                      <div className="space-y-4">
-                        <span className="text-4xl font-bold font-mono text-primary/30">/{item.number}</span>
-                        <h3 className="text-2xl font-semibold text-foreground">{item.title}</h3>
-                        <p className="text-base text-muted-foreground leading-relaxed">{item.description}</p>
+                      {/* Text Column */}
+                      <div className={cn(
+                        "space-y-4",
+                        index % 2 === 1 && "lg:order-1"
+                      )}>
+                        <h3 className="text-2xl md:text-3xl font-semibold text-foreground">{item.title}</h3>
+                        <p className="text-base md:text-lg text-muted-foreground leading-relaxed">{item.description}</p>
                       </div>
                     </div>
                   </CarouselItem>
@@ -482,7 +763,7 @@ const IntelligenceOverInventoryProject = () => {
 
         {/* Design Detail Gallery - /06 */}
         <section
-          ref={(el) => { (sectionRefs[6] as any).current = el; }}
+          ref={(el) => { (sectionRefs[7] as any).current = el; }}
           className="slide-section flex items-center"
         >
           <div className="w-full px-4 md:px-8 lg:px-12">
@@ -512,7 +793,7 @@ const IntelligenceOverInventoryProject = () => {
 
         {/* Future Vision - /07 */}
         <section
-          ref={(el) => { (sectionRefs[7] as any).current = el; }}
+          ref={(el) => { (sectionRefs[8] as any).current = el; }}
           className="slide-section flex items-center bg-card/30"
         >
           <div className="w-full px-4 md:px-8 lg:px-12">
@@ -532,7 +813,7 @@ const IntelligenceOverInventoryProject = () => {
 
         {/* Next Project - /08 */}
         <section
-          ref={(el) => { (sectionRefs[8] as any).current = el; }}
+          ref={(el) => { (sectionRefs[9] as any).current = el; }}
           className="slide-section flex items-center"
         >
           <div className="w-full px-4 md:px-8 lg:px-12">
@@ -553,11 +834,11 @@ const IntelligenceOverInventoryProject = () => {
         </section>
       </main>
 
-      {/* Floating Dual-Mode Toggle - Visible on sections /04-/07 */}
+      {/* Floating Dual-Mode Toggle - Visible on section /04 */}
       {showDualModeToggle && (
         <div className={cn(
           "fixed bottom-0 right-0",
-          "left-0 md:left-56 lg:left-64", // Full width on mobile, offset on desktop
+          "left-0 md:left-56 lg:left-64",
           "flex justify-center py-12",
           "animate-in slide-in-from-bottom-4 duration-500",
           "z-50 pointer-events-none"

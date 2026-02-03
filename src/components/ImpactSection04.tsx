@@ -8,65 +8,92 @@ import mhUtilitiesForm from "@/assets/mh-utilities-form.png";
 import mhCompletenessCards from "@/assets/mh-completeness-cards.png";
 import mhUtilitiesSearch from "@/assets/mh-utilities-search.png";
 
-// Narrative content blocks for Marketing Hub
-const hubBlocks = [
+// Unified content blocks - Marketing Hub first, then Marketplace
+const allBlocks = [
+  // Marketing Hub slides (0-2)
   {
     title: "The Seller's 'Aha' Moment",
     quote: "We shifted from asking for data to proving its ROI.",
     narrative: "By surfacing buyer intent directly within the listing flow, we transformed a chore into a competitive advantage. We didn't just ask for utility info; we showed sellers that it was their fastest path to a 5x lead increase.",
-    image: mhUtilitiesForm
+    image: mhUtilitiesForm,
+    mode: 'marketing-hub' as const
   },
   {
     title: "Gamifying Quality",
     quote: "The Completeness Score became our invisible coach.",
     narrative: "We used gamification to align seller behavior with search engine success. It provided a clear, actionable roadmap for sellers to improve their own visibility without needing a manual support touch-point.",
-    image: mhCompletenessCards
+    image: mhCompletenessCards,
+    mode: 'marketing-hub' as const
   },
   {
     title: "Closing the Loop",
     quote: "We built a self-correcting data flywheel.",
     narrative: "This created a bridge between two platforms: buyer questions fueled seller prompts, which in turn unlocked the filters buyers needed. The system started learning and improving its own data density.",
-    image: mhUtilitiesSearch
-  }
-];
-
-// Marketplace content blocks
-const marketplaceBlocks = [
+    image: mhUtilitiesSearch,
+    mode: 'marketing-hub' as const
+  },
+  // Marketplace slides (3-4)
   {
     title: "The 'Invisibility' Problem",
     quote: "Turning 'Dark Data' into Searchable Value.",
     narrative: "In a market flooded with identical 3rd-party listings, our users were struggling to find land that met basic survivability needs—water, power, and road access. This data existed in the leads, but was invisible on the page.",
-    image: null as string | null
+    image: null as string | null,
+    mode: 'marketplace' as const
   },
   {
     title: "Intent-Based Navigation",
     quote: "We didn't design filters; we designed answers.",
     narrative: "Using the lead parser, I prioritized a 'Utility First' navigation. We elevated the attributes that our users were most vocal about in their inquiries, drastically reducing the 'pogo-sticking' behavior between the search page and listing details.",
-    image: null as string | null
+    image: null as string | null,
+    mode: 'marketplace' as const
   }
 ];
 
 interface ImpactSection04Props {
   sectionRef: (el: HTMLElement | null) => void;
   activeTab: 'marketing-hub' | 'marketplace';
+  setActiveTab?: (tab: 'marketing-hub' | 'marketplace') => void;
 }
 
-export const ImpactSection04 = ({ sectionRef, activeTab }: ImpactSection04Props) => {
-  const [activeBlock, setActiveBlock] = useState(0);
+export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab }: ImpactSection04Props) => {
+  const [activeBlockIndex, setActiveBlockIndex] = useState(0);
 
-  // Get the current blocks based on active tab
-  const currentBlocks = activeTab === 'marketing-hub' ? hubBlocks : marketplaceBlocks;
+  // Determine the current mode based on which slide we're on
+  const currentBlock = allBlocks[activeBlockIndex];
+  const isMarketingHub = activeBlockIndex < 3;
 
-  // Clamp activeBlock to valid range to prevent out-of-bounds access
-  const safeActiveBlock = Math.min(activeBlock, currentBlocks.length - 1);
-
-  // Reset active block when tab changes
+  // Update parent's activeTab when crossing the boundary
   useEffect(() => {
-    setActiveBlock(0);
-  }, [activeTab]);
+    if (setActiveTab) {
+      setActiveTab(isMarketingHub ? 'marketing-hub' : 'marketplace');
+    }
+  }, [isMarketingHub, setActiveTab]);
 
-  const goNext = () => setActiveBlock((safeActiveBlock + 1) % currentBlocks.length);
-  const goPrev = () => setActiveBlock((safeActiveBlock - 1 + currentBlocks.length) % currentBlocks.length);
+  const goNext = () => {
+    if (activeBlockIndex < allBlocks.length - 1) {
+      setActiveBlockIndex(activeBlockIndex + 1);
+    }
+  };
+
+  const goPrev = () => {
+    if (activeBlockIndex > 0) {
+      setActiveBlockIndex(activeBlockIndex - 1);
+    }
+  };
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") {
+        goPrev();
+      } else if (e.key === "ArrowRight") {
+        goNext();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [activeBlockIndex]);
 
   return (
     <section
@@ -91,20 +118,41 @@ export const ImpactSection04 = ({ sectionRef, activeTab }: ImpactSection04Props)
 
         {/* Carousel Control Row */}
         <div className="flex justify-between items-center mb-6">
-          {/* Left: Slide Title */}
-          <h3 className="text-lg md:text-xl font-semibold text-foreground">
-            {currentBlocks[safeActiveBlock].title}
-          </h3>
+          {/* Left: Slide Title with mode indicator */}
+          <div className="flex items-center gap-3">
+            <span className={`text-xs font-medium px-2 py-1 rounded-full ${
+              isMarketingHub 
+                ? 'bg-primary/10 text-primary' 
+                : 'bg-secondary text-secondary-foreground'
+            }`}>
+              {isMarketingHub ? 'Marketing Hub' : 'Marketplace'}
+            </span>
+            <h3 className="text-lg md:text-xl font-semibold text-foreground">
+              {currentBlock.title}
+            </h3>
+          </div>
           
           {/* Right: Count + Arrows */}
           <div className="flex items-center gap-3">
             <span className="text-sm text-muted-foreground">
-              {safeActiveBlock + 1} of {currentBlocks.length}
+              {activeBlockIndex + 1} of {allBlocks.length}
             </span>
-            <Button variant="outline" size="icon" onClick={goPrev} className="h-9 w-9">
+            <Button 
+              variant="outline" 
+              size="icon" 
+              onClick={goPrev} 
+              disabled={activeBlockIndex === 0}
+              className="h-9 w-9"
+            >
               <ChevronLeft className="w-4 h-4" />
             </Button>
-            <Button variant="outline" size="icon" onClick={goNext} className="h-9 w-9">
+            <Button 
+              variant="outline" 
+              size="icon" 
+              onClick={goNext} 
+              disabled={activeBlockIndex === allBlocks.length - 1}
+              className="h-9 w-9"
+            >
               <ChevronRight className="w-4 h-4" />
             </Button>
           </div>
@@ -119,28 +167,46 @@ export const ImpactSection04 = ({ sectionRef, activeTab }: ImpactSection04Props)
             {/* Text Column */}
             <div className="lg:col-span-1 space-y-4">
               <blockquote className="text-xl md:text-2xl font-semibold text-foreground italic border-l-4 border-primary pl-4">
-                "{currentBlocks[safeActiveBlock].quote}"
+                "{currentBlock.quote}"
               </blockquote>
               <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                {currentBlocks[safeActiveBlock].narrative}
+                {currentBlock.narrative}
               </p>
             </div>
             
             {/* Image Column */}
             <div className="lg:col-span-2 h-[calc(100vh-480px)] min-h-[300px] bg-muted/30 border border-border rounded-xl overflow-hidden transition-all duration-500">
-              {currentBlocks[safeActiveBlock].image ? (
+              {currentBlock.image ? (
                 <img 
-                  src={currentBlocks[safeActiveBlock].image} 
-                  alt={currentBlocks[safeActiveBlock].title}
+                  src={currentBlock.image} 
+                  alt={currentBlock.title}
                   className="w-full h-full object-cover object-top"
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center">
-                  <p className="text-muted-foreground text-base">Image for "{currentBlocks[safeActiveBlock].title}"</p>
+                  <p className="text-muted-foreground text-base">Image for "{currentBlock.title}"</p>
                 </div>
               )}
             </div>
           </div>
+        </div>
+
+        {/* Progress dots */}
+        <div className="flex justify-center gap-2 mt-8">
+          {allBlocks.map((block, index) => (
+            <button
+              key={index}
+              onClick={() => setActiveBlockIndex(index)}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                activeBlockIndex === index
+                  ? "bg-primary w-6"
+                  : block.mode === 'marketing-hub'
+                    ? "bg-primary/30 hover:bg-primary/50"
+                    : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
         </div>
       </div>
     </section>
