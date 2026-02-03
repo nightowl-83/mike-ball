@@ -136,11 +136,7 @@ const IntelligenceOverInventoryProject = () => {
   const WHEEL_THRESHOLD = 100;
   const isTransitioningRef = useRef(false);
 
-  // "The Idea" section state
-  const [ideaAdvanced, setIdeaAdvanced] = useState(false);
-  const ideaSectionRef = useRef<HTMLDivElement>(null);
-  const ideaWheelAccumulatorRef = useRef(0);
-  const ideaIsTransitioningRef = useRef(false);
+  // "The Idea" section - now just a simple blockquote, no state needed
 
   // Carousel APIs for keyboard navigation
   const [parsingCarouselApi, setParsingCarouselApi] = useState<CarouselApi>();
@@ -183,15 +179,7 @@ const IntelligenceOverInventoryProject = () => {
             setChallengeActiveIndex(newIndex);
           }
         }
-        // Section 2: The Idea - toggle advanced state
-        else if (currentSectionIndex === 2) {
-          e.preventDefault();
-          if (direction === 1 && !ideaAdvanced) {
-            setIdeaAdvanced(true);
-          } else if (direction === -1 && ideaAdvanced) {
-            setIdeaAdvanced(false);
-          }
-        }
+        // Section 2: The Idea - no internal navigation needed
         // Section 4: Parsing Tool carousel
         else if (currentSectionIndex === 4 && parsingCarouselApi) {
           e.preventDefault();
@@ -215,7 +203,7 @@ const IntelligenceOverInventoryProject = () => {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [currentSectionIndex, challengeActiveIndex, challengePoints.length, ideaAdvanced, parsingCarouselApi, strategyCarouselApi]);
+  }, [currentSectionIndex, challengeActiveIndex, challengePoints.length, parsingCarouselApi, strategyCarouselApi]);
 
   // Handle wheel events for Challenge section sub-scroll
   useEffect(() => {
@@ -264,58 +252,13 @@ const IntelligenceOverInventoryProject = () => {
     return () => challengeSection.removeEventListener('wheel', handleWheel);
   }, [currentSectionIndex, challengeActiveIndex, challengePoints.length]);
 
-  // Handle wheel events for "The Idea" section
-  useEffect(() => {
-    const ideaSection = ideaSectionRef.current;
-    if (!ideaSection) return;
-
-    const handleWheel = (e: WheelEvent) => {
-      if (currentSectionIndex !== 2) return;
-      
-      if (ideaIsTransitioningRef.current) {
-        e.preventDefault();
-        return;
-      }
-
-      const delta = e.deltaY;
-      ideaWheelAccumulatorRef.current += delta;
-
-      if (delta > 0 && !ideaAdvanced) {
-        if (ideaWheelAccumulatorRef.current >= WHEEL_THRESHOLD) {
-          e.preventDefault();
-          ideaIsTransitioningRef.current = true;
-          setIdeaAdvanced(true);
-          ideaWheelAccumulatorRef.current = 0;
-          setTimeout(() => { ideaIsTransitioningRef.current = false; }, 400);
-        } else {
-          e.preventDefault();
-        }
-      } else if (delta < 0 && ideaAdvanced) {
-        if (ideaWheelAccumulatorRef.current <= -WHEEL_THRESHOLD) {
-          e.preventDefault();
-          ideaIsTransitioningRef.current = true;
-          setIdeaAdvanced(false);
-          ideaWheelAccumulatorRef.current = 0;
-          setTimeout(() => { ideaIsTransitioningRef.current = false; }, 400);
-        } else {
-          e.preventDefault();
-        }
-      }
-    };
-
-    ideaSection.addEventListener('wheel', handleWheel, { passive: false });
-    return () => ideaSection.removeEventListener('wheel', handleWheel);
-  }, [currentSectionIndex, ideaAdvanced]);
+  // "The Idea" section no longer needs wheel handling - it's just a blockquote
 
   // Reset states when leaving sections
   useEffect(() => {
     if (currentSectionIndex !== 1) {
       setChallengeActiveIndex(0);
       wheelAccumulatorRef.current = 0;
-    }
-    if (currentSectionIndex !== 2) {
-      setIdeaAdvanced(false);
-      ideaWheelAccumulatorRef.current = 0;
     }
     if (currentSectionIndex !== 4) {
       setParsingActiveIndex(0);
@@ -570,53 +513,28 @@ const IntelligenceOverInventoryProject = () => {
           </div>
         </section>
 
-        {/* NEW: The Idea Section */}
+        {/* NEW: The Idea Section - Simple Blockquote */}
         <section
           ref={(el) => { 
             (sectionRefs[2] as any).current = el;
-            (ideaSectionRef as any).current = el;
           }}
-          className="slide-section flex items-center justify-center relative"
+          className="slide-section flex items-center justify-center"
         >
-          <div className="w-[85%] mx-auto max-w-4xl text-center">
-            <div className="space-y-8">
-              {/* Intro text - fades out when advanced */}
-              <p className={cn(
-                "text-xl md:text-2xl text-muted-foreground leading-relaxed transition-all duration-700",
-                ideaAdvanced ? "opacity-20" : "opacity-100"
-              )}>
-                A casual feature request conversation with an Account Manager gave us an idea...
+          <div className="w-[85%] mx-auto max-w-4xl">
+            <blockquote className="text-center space-y-8">
+              <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed italic">
+                "One of my accounts called in asking if we could add to display 'Owner Financing' when available. He said{" "}
+                <span className="font-semibold text-foreground">
+                  'I sent multiple inquiries to the sellers on your site and he never responded'
+                </span>"
               </p>
-
-              {/* Quote block - always visible, centered */}
-              <blockquote className="border-l-4 border-primary p-6 text-left max-w-2xl mx-auto">
-                <p className={cn(
-                  "text-lg md:text-xl leading-relaxed transition-all duration-700",
-                  ideaAdvanced ? "text-foreground" : "text-muted-foreground"
-                )}>
-                  "One of my accounts called in asking if we could add to display 'Owner Financing' when available. He said{" "}
-                  <span className="font-semibold text-foreground">
-                    'I sent multiple inquiries to the sellers on your site and he never responded'
-                  </span>"
-                </p>
-              </blockquote>
-
-              {/* Context text - fades out when advanced */}
-              <p className={cn(
-                "text-xl md:text-2xl text-muted-foreground leading-relaxed transition-all duration-700",
-                ideaAdvanced ? "opacity-20" : "opacity-100"
-              )}>
-                ...even though we have limited direct contact with users, we might have another avenue...
-              </p>
-
-              {/* Final insight - stays visible */}
-              <p className={cn(
-                "text-2xl md:text-3xl font-semibold leading-relaxed transition-all duration-700",
-                ideaAdvanced ? "text-primary opacity-100" : "text-muted-foreground opacity-60"
-              )}>
+              <footer className="text-lg text-muted-foreground">
+                — Account Manager Feature Request
+              </footer>
+              <p className="text-2xl md:text-3xl font-semibold text-primary leading-relaxed pt-4">
                 The leads themselves could tell us what buyers actually want.
               </p>
-            </div>
+            </blockquote>
           </div>
         </section>
 
@@ -625,9 +543,9 @@ const IntelligenceOverInventoryProject = () => {
           ref={(el) => { (sectionRefs[3] as any).current = el; }}
           className="slide-section flex items-center justify-center relative"
         >
-          {/* Full viewport height gradient line - behind everything */}
+          {/* Full viewport height gradient line - CENTERED on page */}
           <div 
-            className="absolute left-1/2 -translate-x-1/2 md:left-[calc(50%-200px)] md:translate-x-0 top-0 bottom-0 w-0.5 z-0"
+            className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-0.5 z-0"
             style={{
               background: `linear-gradient(
                 to bottom,
@@ -681,11 +599,11 @@ const IntelligenceOverInventoryProject = () => {
             (sectionRefs[4] as any).current = el;
             (parsingSectionRef as any).current = el;
           }}
-          className="slide-section flex items-center relative"
+          className="slide-section flex flex-col pt-12 pb-24 relative"
         >
-          <div className="w-full px-4 md:px-8 lg:px-12">
+          <div className="w-full px-4 md:px-8 lg:px-12 flex flex-col h-full">
             {/* Section Header */}
-            <div className="flex items-start justify-between mb-8">
+            <div className="flex items-start justify-between mb-6">
               <div className="flex-1">
                 <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground">
                   The Lead Intelligence Tool
@@ -699,69 +617,83 @@ const IntelligenceOverInventoryProject = () => {
               </span>
             </div>
 
-            {/* Overlapping Image Carousel - scroll controlled, no buttons */}
-            <Carousel
-              setApi={setParsingCarouselApi}
-              opts={{
-                align: "start",
-                loop: false,
-              }}
-              className="w-full"
-            >
-              <CarouselContent className="-ml-4">
-                {parsingCardPairs.map((pair, pairIndex) => (
-                  <CarouselItem key={pairIndex} className="pl-4 basis-full">
-                    <div className={cn(
-                      "grid grid-cols-1 lg:grid-cols-2 gap-12 items-center transition-opacity duration-700",
-                      pairIndex % 2 === 1 && "lg:flex-row-reverse",
-                      parsingActiveIndex === pairIndex ? "opacity-100" : "opacity-0"
-                    )}>
-                      {/* Images Column - alternates position */}
+            {/* Content fills remaining viewport */}
+            <div className="flex-1 min-h-0">
+              <Carousel
+                setApi={setParsingCarouselApi}
+                opts={{
+                  align: "start",
+                  loop: false,
+                }}
+                className="w-full h-full"
+              >
+                <CarouselContent className="-ml-4 h-full">
+                  {parsingCardPairs.map((pair, pairIndex) => (
+                    <CarouselItem key={pairIndex} className="pl-4 basis-full h-full">
                       <div className={cn(
-                        "relative h-[50vh] min-h-[400px]",
-                        pairIndex % 2 === 1 && "lg:order-2"
+                        "grid grid-cols-1 lg:grid-cols-2 gap-12 items-center h-full transition-all duration-700",
+                        pairIndex % 2 === 1 && "lg:flex-row-reverse",
+                        parsingActiveIndex === pairIndex ? "opacity-100" : "opacity-0"
                       )}>
-                        {/* Primary image - back */}
-                        <div className="absolute left-0 top-0 w-[75%] h-[85%] rounded-xl overflow-hidden shadow-2xl border border-border animate-fade-in">
-                          <img 
-                            src={pair.images[0].src} 
-                            alt={pair.images[0].title}
-                            className="w-full h-full object-cover object-top"
-                          />
+                        {/* Images Column - alternates position */}
+                        <div className={cn(
+                          "relative h-full",
+                          pairIndex % 2 === 1 && "lg:order-2"
+                        )}>
+                          {/* Primary image - back */}
+                          <div className={cn(
+                            "absolute left-0 top-0 w-[75%] h-[85%] rounded-xl overflow-hidden shadow-2xl border border-border transition-all duration-700",
+                            parsingActiveIndex === pairIndex ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                          )}>
+                            <img 
+                              src={pair.images[0].src} 
+                              alt={pair.images[0].title}
+                              className="w-full h-full object-cover object-top"
+                            />
+                          </div>
+                          {/* Secondary image - front, overlapping */}
+                          <div className={cn(
+                            "absolute right-0 bottom-0 w-[65%] h-[75%] rounded-xl overflow-hidden shadow-2xl border border-border transition-all duration-700 delay-100",
+                            parsingActiveIndex === pairIndex ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                          )}>
+                            <img 
+                              src={pair.images[1].src} 
+                              alt={pair.images[1].title}
+                              className="w-full h-full object-cover object-top"
+                            />
+                          </div>
                         </div>
-                        {/* Secondary image - front, overlapping */}
-                        <div className="absolute right-0 bottom-0 w-[65%] h-[75%] rounded-xl overflow-hidden shadow-2xl border border-border animate-fade-in" style={{ animationDelay: '0.15s' }}>
-                          <img 
-                            src={pair.images[1].src} 
-                            alt={pair.images[1].title}
-                            className="w-full h-full object-cover object-top"
-                          />
-                        </div>
-                      </div>
 
-                      {/* Text Column */}
-                      <div className={cn(
-                        "space-y-6",
-                        pairIndex % 2 === 1 && "lg:order-1"
-                      )}>
-                        <div className="space-y-4 animate-fade-in">
-                          <h3 className="text-2xl md:text-3xl font-semibold text-foreground">{pair.images[0].title}</h3>
-                          <p className="text-lg md:text-xl text-muted-foreground">{pair.captions[0]}</p>
-                        </div>
-                        <div className="space-y-4 pt-4 border-t border-border animate-fade-in" style={{ animationDelay: '0.1s' }}>
-                          <h3 className="text-2xl md:text-3xl font-semibold text-foreground">{pair.images[1].title}</h3>
-                          <p className="text-lg md:text-xl text-muted-foreground">{pair.captions[1]}</p>
+                        {/* Text Column */}
+                        <div className={cn(
+                          "space-y-6",
+                          pairIndex % 2 === 1 && "lg:order-1"
+                        )}>
+                          <div className={cn(
+                            "space-y-4 transition-all duration-700",
+                            parsingActiveIndex === pairIndex ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                          )}>
+                            <h3 className="text-2xl md:text-3xl font-semibold text-foreground">{pair.images[0].title}</h3>
+                            <p className="text-lg md:text-xl text-muted-foreground">{pair.captions[0]}</p>
+                          </div>
+                          <div className={cn(
+                            "space-y-4 pt-4 border-t border-border transition-all duration-700 delay-75",
+                            parsingActiveIndex === pairIndex ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                          )}>
+                            <h3 className="text-2xl md:text-3xl font-semibold text-foreground">{pair.images[1].title}</h3>
+                            <p className="text-lg md:text-xl text-muted-foreground">{pair.captions[1]}</p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-            </Carousel>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+              </Carousel>
+            </div>
           </div>
 
-          {/* Navigation Arrows - Bottom Right */}
-          <div className="absolute bottom-8 right-8 flex items-center gap-2">
+          {/* Navigation Arrows - Fixed Bottom Right of Viewport */}
+          <div className="fixed bottom-8 right-8 flex items-center gap-2 z-50">
             <Button
               variant="outline"
               size="icon"
@@ -806,11 +738,11 @@ const IntelligenceOverInventoryProject = () => {
             (sectionRefs[6] as any).current = el;
             (strategySectionRef as any).current = el;
           }}
-          className="slide-section flex items-center bg-card/30 relative"
+          className="slide-section flex flex-col pt-12 pb-24 bg-card/30 relative"
         >
-          <div className="w-full px-4 md:px-8 lg:px-12">
+          <div className="w-full px-4 md:px-8 lg:px-12 flex flex-col h-full">
             {/* Section Header */}
-            <div className="flex items-start justify-between mb-8">
+            <div className="flex items-start justify-between mb-6">
               <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground">
                 Strategy & Influence
               </h2>
@@ -819,53 +751,57 @@ const IntelligenceOverInventoryProject = () => {
               </span>
             </div>
 
-            {/* Alternating Hero Layout Carousel - scroll controlled */}
-            <Carousel
-              setApi={setStrategyCarouselApi}
-              opts={{
-                align: "start",
-                loop: false,
-              }}
-              className="w-full"
-            >
-              <CarouselContent className="-ml-4">
-                {strategyItems.map((item, index) => (
-                  <CarouselItem key={index} className="pl-4 basis-full">
-                    <div className={cn(
-                      "grid grid-cols-1 lg:grid-cols-2 gap-12 items-center transition-opacity duration-700",
-                      strategyActiveIndex === index ? "opacity-100" : "opacity-0"
-                    )}>
-                      {/* Image Column - alternates position */}
+            {/* Content fills remaining viewport */}
+            <div className="flex-1 min-h-0">
+              <Carousel
+                setApi={setStrategyCarouselApi}
+                opts={{
+                  align: "start",
+                  loop: false,
+                }}
+                className="w-full h-full"
+              >
+                <CarouselContent className="-ml-4 h-full">
+                  {strategyItems.map((item, index) => (
+                    <CarouselItem key={index} className="pl-4 basis-full h-full">
                       <div className={cn(
-                        "h-[50vh] min-h-[400px] bg-muted/30 border border-border rounded-xl overflow-hidden animate-fade-in",
-                        index % 2 === 1 && "lg:order-2"
+                        "grid grid-cols-1 lg:grid-cols-2 gap-12 items-center h-full transition-all duration-700",
+                        strategyActiveIndex === index ? "opacity-100" : "opacity-0"
                       )}>
-                        {item.image ? (
-                          <img src={item.image} alt={item.title} className="w-full h-full object-cover object-top" />
-                        ) : (
-                          <div className="w-full h-full flex items-center justify-center">
-                            <p className="text-muted-foreground">Visual placeholder</p>
-                          </div>
-                        )}
+                        {/* Image Column - alternates position */}
+                        <div className={cn(
+                          "h-full bg-muted/30 border border-border rounded-xl overflow-hidden transition-all duration-700",
+                          index % 2 === 1 && "lg:order-2",
+                          strategyActiveIndex === index ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                        )}>
+                          {item.image ? (
+                            <img src={item.image} alt={item.title} className="w-full h-full object-cover object-top" />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center">
+                              <p className="text-muted-foreground">Visual placeholder</p>
+                            </div>
+                          )}
+                        </div>
+                        
+                        {/* Text Column */}
+                        <div className={cn(
+                          "space-y-6 transition-all duration-700 delay-100",
+                          index % 2 === 1 && "lg:order-1",
+                          strategyActiveIndex === index ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                        )}>
+                          <h3 className="text-2xl md:text-4xl font-semibold text-foreground">{item.title}</h3>
+                          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">{item.description}</p>
+                        </div>
                       </div>
-                      
-                      {/* Text Column */}
-                      <div className={cn(
-                        "space-y-6 animate-fade-in",
-                        index % 2 === 1 && "lg:order-1"
-                      )} style={{ animationDelay: '0.1s' }}>
-                        <h3 className="text-2xl md:text-4xl font-semibold text-foreground">{item.title}</h3>
-                        <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">{item.description}</p>
-                      </div>
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-            </Carousel>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+              </Carousel>
+            </div>
           </div>
 
-          {/* Navigation Arrows - Bottom Right */}
-          <div className="absolute bottom-8 right-8 flex items-center gap-2">
+          {/* Navigation Arrows - Fixed Bottom Right of Viewport */}
+          <div className="fixed bottom-8 right-8 flex items-center gap-2 z-50">
             <Button
               variant="outline"
               size="icon"
