@@ -210,6 +210,11 @@ const IntelligenceOverInventoryProject = () => {
     title: "Engagement Analytics",
     description: "Deep analysis of cross-platform behavior signals",
     image: marketCompareOptions
+  }, {
+    icon: Target,
+    title: "Regional Interest Heat Maps",
+    description: "Use keyword data to create heat maps showing regions where different interests are popular—wind farms, crops, minerals, natural gas, and more",
+    image: trendiRegions
   }];
 
   // Vision active index for 2-column clickable layout
@@ -681,11 +686,11 @@ const IntelligenceOverInventoryProject = () => {
             </div>
 
             {/* Content fills remaining viewport - matches 05 layout */}
-            <div className="flex-1 relative overflow-hidden">
+            <div className="flex-1 relative overflow-hidden flex items-center">
               {parsingCardPairs.map((pair, pairIndex) => {
               const isActive = parsingActiveIndex === pairIndex;
               const isPast = parsingActiveIndex > pairIndex;
-              return <div key={pairIndex} className={cn("absolute inset-0 grid grid-cols-1 lg:grid-cols-2 gap-12 items-start h-full transition-all duration-700 ease-out pt-4", isActive ? "opacity-100 translate-y-0 z-10" : isPast ? "opacity-0 -translate-y-12 pointer-events-none z-0" : "opacity-0 translate-y-12 pointer-events-none z-0")}>
+              return <div key={pairIndex} className={cn("absolute inset-0 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center h-full transition-all duration-700 ease-out", isActive ? "opacity-100 translate-y-0 z-10" : isPast ? "opacity-0 -translate-y-12 pointer-events-none z-0" : "opacity-0 translate-y-12 pointer-events-none z-0")}>
                     {/* Image Column - matching section 05 layout */}
                     <div className="border border-border rounded-xl overflow-hidden">
                       <div className="relative">
@@ -760,11 +765,11 @@ const IntelligenceOverInventoryProject = () => {
             </div>
 
             {/* Content fills remaining viewport - with fade-up animation */}
-            <div className="flex-1 relative overflow-hidden">
+            <div className="flex-1 relative overflow-hidden flex items-center">
               {strategyItems.map((item, index) => {
               const isActive = strategyActiveIndex === index;
               const isPast = strategyActiveIndex > index;
-              return <div key={index} className={cn("absolute inset-0 grid grid-cols-1 lg:grid-cols-2 gap-12 items-start h-full transition-all duration-700 ease-out pt-4", isActive ? "opacity-100 translate-y-0 z-10" : isPast ? "opacity-0 -translate-y-12 pointer-events-none z-0" : "opacity-0 translate-y-12 pointer-events-none z-0")}>
+              return <div key={index} className={cn("absolute inset-0 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center h-full transition-all duration-700 ease-out", isActive ? "opacity-100 translate-y-0 z-10" : isPast ? "opacity-0 -translate-y-12 pointer-events-none z-0" : "opacity-0 translate-y-12 pointer-events-none z-0")}>
                     {/* Image Column - no background color */}
                     <div className="border border-border rounded-xl overflow-hidden">
                       {item.image ? <img src={item.image} alt={item.title} className="w-full h-auto object-contain" /> : <div className="w-full aspect-[16/10] flex items-center justify-center bg-muted/30">
