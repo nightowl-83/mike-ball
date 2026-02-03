@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
@@ -115,19 +115,23 @@ export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab, scrollToS
     setActiveBlockIndex(0); // Jump to first marketing hub slide
   };
 
-  // Keyboard navigation
+  // Keyboard navigation - only when section is active
   useEffect(() => {
+    if (!isActive) return;
+    
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "ArrowLeft") {
+        e.preventDefault();
         goPrev();
       } else if (e.key === "ArrowRight") {
+        e.preventDefault();
         goNext();
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [activeBlockIndex]);
+  }, [activeBlockIndex, isActive]);
 
   return (
     <section
@@ -206,7 +210,7 @@ export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab, scrollToS
                 )}
               >
                 Continue
-                <ArrowRight className="w-4 h-4" />
+                <ArrowDown className="w-4 h-4" />
               </Button>
             )}
           </div>
