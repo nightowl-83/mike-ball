@@ -19,6 +19,7 @@ import marketCompareOptions from "@/assets/Market-Compare-Options.png";
 import hubAnalyticsCore1440 from "@/assets/Hub-Analytics-Core-1440.png";
 import leadWellAnalyze from "@/assets/Lead-Well-Analyiize-1440.png";
 import hubAnalyticsLeadsPort from "@/assets/Hub-Analytics-Leads-Port-1440.png";
+import callouts4_3Market from "@/assets/Callouts-4_3-Market.png";
 
 const IntelligenceOverInventoryProject = () => {
   // Section data for navigation - Added Gallery section
@@ -84,22 +85,19 @@ const IntelligenceOverInventoryProject = () => {
     { icon: Users, label: "Seller Training", description: "Provide data for what buyers are searching for" }
   ];
 
-  // Strategy items data - updated with new images and 5 sections
+  // Strategy items data - updated with combined slides 1&2, new image for slide 3
   const strategyItems = [
     {
       title: "Lead Volume vs Quality",
+      subtitle: "Challenging the Initial Direction",
       description: "An earlier effort to drive lead volume had unintended consequences. Our initial success created a new problem. By making it easier for buyers to find and contact sellers, we significantly increased lead volume. However, sellers began reporting that the \"noise\" had also increased. They were spending more time filtering through low-intent inquiries, which created a new form of friction in their workflow.",
-      image: hubAnalyticsCore1440
-    },
-    {
-      title: "Challenging the Initial Direction",
-      description: "I had to challenge our team's reliance on \"Total Leads\" as the primary success metric. While the charts looked great, the user experience for our sellers was actually degrading. I pushed for a move away from simple volume toward Market Comparison and Lead Quality.",
+      secondaryDescription: "I had to challenge our team's reliance on \"Total Leads\" as the primary success metric. While the charts looked great, the user experience for our sellers was actually degrading. I pushed for a move away from simple volume toward Market Comparison and Lead Quality.",
       image: hubAnalyticsCore1440
     },
     {
       title: "Challenging the \"More is Better\" Fallacy",
       description: "A lead count of five means something very different in remote Idaho than it does in a high-turnover market. To solve this, I shifted our focus from raw volume to relative benchmarking—providing the regional context sellers needed to gauge their actual performance.\n\nBy surfacing comparative data, like '+5 leads more than similar listings,' we moved the needle from vanity metrics to actionable market intelligence, showing sellers exactly where they stood against their neighbors.",
-      image: hubAnalyticsCore1440
+      image: callouts4_3Market
     },
     {
       title: "Lead Strength Indicators",
@@ -863,10 +861,18 @@ const IntelligenceOverInventoryProject = () => {
                       )}
                     </div>
                     
-                    {/* Text Column */}
-                    <div className="space-y-6 pt-4">
-                      <h3 className="text-2xl md:text-4xl font-semibold text-foreground">{item.title}</h3>
-                      <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">{item.description}</p>
+                    {/* Text Column - increased padding, centered content */}
+                    <div className="flex flex-col justify-center h-full lg:pl-8 lg:pr-16">
+                      <div className="space-y-6 max-w-lg">
+                        <h3 className="text-2xl md:text-4xl font-semibold text-foreground">{item.title}</h3>
+                        {'subtitle' in item && item.subtitle && (
+                          <h4 className="text-lg md:text-xl font-medium text-primary">{item.subtitle}</h4>
+                        )}
+                        <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">{item.description}</p>
+                        {'secondaryDescription' in item && item.secondaryDescription && (
+                          <p className="text-base md:text-lg text-muted-foreground/80 leading-relaxed">{item.secondaryDescription}</p>
+                        )}
+                      </div>
                     </div>
                   </div>
                 );
