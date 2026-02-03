@@ -2,11 +2,15 @@ import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { cn } from "@/lib/utils";
 
 // Import Marketing Hub images
 import mhUtilitiesForm from "@/assets/mh-utilities-form.png";
 import mhCompletenessCards from "@/assets/mh-completeness-cards.png";
 import mhUtilitiesSearch from "@/assets/mh-utilities-search.png";
+// Import Marketplace images
+import ldpMobileUtilities from "@/assets/LDP-Mobile-Utilities.png";
+import utilitiesSearch from "@/assets/Utilities-Search-2.png";
 
 // Unified content blocks - Marketing Hub first, then Marketplace
 const allBlocks = [
@@ -37,14 +41,14 @@ const allBlocks = [
     title: "The 'Invisibility' Problem",
     quote: "Turning 'Dark Data' into Searchable Value.",
     narrative: "In a market flooded with identical 3rd-party listings, our users were struggling to find land that met basic survivability needs—water, power, and road access. This data existed in the leads, but was invisible on the page.",
-    image: null as string | null,
+    image: ldpMobileUtilities,
     mode: 'marketplace' as const
   },
   {
     title: "Intent-Based Navigation",
     quote: "We didn't design filters; we designed answers.",
     narrative: "Using the lead parser, I prioritized a 'Utility First' navigation. We elevated the attributes that our users were most vocal about in their inquiries, drastically reducing the 'pogo-sticking' behavior between the search page and listing details.",
-    image: null as string | null,
+    image: utilitiesSearch,
     mode: 'marketplace' as const
   }
 ];
@@ -120,21 +124,28 @@ export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab }: ImpactS
         <div className="flex justify-between items-center mb-6">
           {/* Left: Slide Title with mode indicator */}
           <div className="flex items-center gap-3">
-            <span className={`text-xs font-medium px-2 py-1 rounded-full ${
+            <span className={cn(
+              "text-xs font-medium px-2 py-1 rounded-full",
               isMarketingHub 
                 ? 'bg-primary/10 text-primary' 
-                : 'bg-secondary text-secondary-foreground'
-            }`}>
+                : 'bg-muted text-foreground'
+            )}>
               {isMarketingHub ? 'Marketing Hub' : 'Marketplace'}
             </span>
-            <h3 className="text-lg md:text-xl font-semibold text-foreground">
+            <h3 className={cn(
+              "text-lg md:text-xl font-semibold",
+              isMarketingHub ? "text-foreground" : "text-foreground"
+            )}>
               {currentBlock.title}
             </h3>
           </div>
           
           {/* Right: Count + Arrows */}
           <div className="flex items-center gap-3">
-            <span className="text-sm text-muted-foreground">
+            <span className={cn(
+              "text-sm",
+              isMarketingHub ? "text-muted-foreground" : "text-muted-foreground"
+            )}>
               {activeBlockIndex + 1} of {allBlocks.length}
             </span>
             <Button 
@@ -142,7 +153,10 @@ export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab }: ImpactS
               size="icon" 
               onClick={goPrev} 
               disabled={activeBlockIndex === 0}
-              className="h-9 w-9"
+              className={cn(
+                "h-9 w-9",
+                !isMarketingHub && "border-border text-foreground hover:bg-muted"
+              )}
             >
               <ChevronLeft className="w-4 h-4" />
             </Button>
@@ -151,7 +165,10 @@ export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab }: ImpactS
               size="icon" 
               onClick={goNext} 
               disabled={activeBlockIndex === allBlocks.length - 1}
-              className="h-9 w-9"
+              className={cn(
+                "h-9 w-9",
+                !isMarketingHub && "border-border text-foreground hover:bg-muted"
+              )}
             >
               <ChevronRight className="w-4 h-4" />
             </Button>

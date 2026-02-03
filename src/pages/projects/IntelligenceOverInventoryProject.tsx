@@ -145,6 +145,19 @@ const IntelligenceOverInventoryProject = () => {
   // Carousel APIs for keyboard navigation
   const [parsingCarouselApi, setParsingCarouselApi] = useState<CarouselApi>();
   const [strategyCarouselApi, setStrategyCarouselApi] = useState<CarouselApi>();
+  
+  // Carousel indices for scroll-based navigation
+  const [parsingActiveIndex, setParsingActiveIndex] = useState(0);
+  const [strategyActiveIndex, setStrategyActiveIndex] = useState(0);
+  
+  // Wheel accumulators for /03 and /05
+  const parsingSectionRef = useRef<HTMLDivElement>(null);
+  const parsingWheelAccumulatorRef = useRef(0);
+  const parsingIsTransitioningRef = useRef(false);
+  
+  const strategySectionRef = useRef<HTMLDivElement>(null);
+  const strategyWheelAccumulatorRef = useRef(0);
+  const strategyIsTransitioningRef = useRef(false);
 
   // Keyboard navigation for Left/Right within sections
   useEffect(() => {
@@ -304,7 +317,113 @@ const IntelligenceOverInventoryProject = () => {
       setIdeaAdvanced(false);
       ideaWheelAccumulatorRef.current = 0;
     }
+    if (currentSectionIndex !== 4) {
+      setParsingActiveIndex(0);
+      parsingWheelAccumulatorRef.current = 0;
+    }
+    if (currentSectionIndex !== 6) {
+      setStrategyActiveIndex(0);
+      strategyWheelAccumulatorRef.current = 0;
+    }
   }, [currentSectionIndex]);
+
+  // Wheel handler for /03 Parsing Tool
+  useEffect(() => {
+    const parsingSection = parsingSectionRef.current;
+    if (!parsingSection) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      if (currentSectionIndex !== 4) return;
+      
+      if (parsingIsTransitioningRef.current) {
+        e.preventDefault();
+        return;
+      }
+
+      const delta = e.deltaY;
+      parsingWheelAccumulatorRef.current += delta;
+
+      if (delta > 0) {
+        if (parsingWheelAccumulatorRef.current >= WHEEL_THRESHOLD) {
+          if (parsingActiveIndex < parsingCardPairs.length - 1) {
+            e.preventDefault();
+            parsingIsTransitioningRef.current = true;
+            setParsingActiveIndex(prev => prev + 1);
+            parsingCarouselApi?.scrollNext();
+            parsingWheelAccumulatorRef.current = 0;
+            setTimeout(() => { parsingIsTransitioningRef.current = false; }, 400);
+          }
+        } else {
+          e.preventDefault();
+        }
+      } else if (delta < 0) {
+        if (parsingWheelAccumulatorRef.current <= -WHEEL_THRESHOLD) {
+          if (parsingActiveIndex > 0) {
+            e.preventDefault();
+            parsingIsTransitioningRef.current = true;
+            setParsingActiveIndex(prev => prev - 1);
+            parsingCarouselApi?.scrollPrev();
+            parsingWheelAccumulatorRef.current = 0;
+            setTimeout(() => { parsingIsTransitioningRef.current = false; }, 400);
+          }
+        } else {
+          e.preventDefault();
+        }
+      }
+    };
+
+    parsingSection.addEventListener('wheel', handleWheel, { passive: false });
+    return () => parsingSection.removeEventListener('wheel', handleWheel);
+  }, [currentSectionIndex, parsingActiveIndex, parsingCardPairs.length, parsingCarouselApi]);
+
+  // Wheel handler for /05 Strategy
+  useEffect(() => {
+    const strategySection = strategySectionRef.current;
+    if (!strategySection) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      if (currentSectionIndex !== 6) return;
+      
+      if (strategyIsTransitioningRef.current) {
+        e.preventDefault();
+        return;
+      }
+
+      const delta = e.deltaY;
+      strategyWheelAccumulatorRef.current += delta;
+
+      if (delta > 0) {
+        if (strategyWheelAccumulatorRef.current >= WHEEL_THRESHOLD) {
+          if (strategyActiveIndex < strategyItems.length - 1) {
+            e.preventDefault();
+            strategyIsTransitioningRef.current = true;
+            setStrategyActiveIndex(prev => prev + 1);
+            strategyCarouselApi?.scrollNext();
+            strategyWheelAccumulatorRef.current = 0;
+            setTimeout(() => { strategyIsTransitioningRef.current = false; }, 400);
+          }
+        } else {
+          e.preventDefault();
+        }
+      } else if (delta < 0) {
+        if (strategyWheelAccumulatorRef.current <= -WHEEL_THRESHOLD) {
+          if (strategyActiveIndex > 0) {
+            e.preventDefault();
+            strategyIsTransitioningRef.current = true;
+            setStrategyActiveIndex(prev => prev - 1);
+            strategyCarouselApi?.scrollPrev();
+            strategyWheelAccumulatorRef.current = 0;
+            setTimeout(() => { strategyIsTransitioningRef.current = false; }, 400);
+          }
+        } else {
+          e.preventDefault();
+        }
+      }
+    };
+
+    strategySection.addEventListener('wheel', handleWheel, { passive: false });
+    return () => strategySection.removeEventListener('wheel', handleWheel);
+  }, [currentSectionIndex, strategyActiveIndex, strategyItems.length, strategyCarouselApi]);
 
 
   return (
@@ -459,7 +578,7 @@ const IntelligenceOverInventoryProject = () => {
           }}
           className="slide-section flex items-center justify-center relative"
         >
-          <div className="w-[85%] mx-auto max-w-4xl">
+          <div className="w-[85%] mx-auto max-w-4xl text-center">
             <div className="space-y-8">
               {/* Intro text - fades out when advanced */}
               <p className={cn(
@@ -469,14 +588,14 @@ const IntelligenceOverInventoryProject = () => {
                 A casual feature request conversation with an Account Manager gave us an idea...
               </p>
 
-              {/* Quote block - always visible */}
-              <blockquote className="border-l-4 border-primary bg-primary/10 p-6 rounded-r-xl">
+              {/* Quote block - always visible, centered */}
+              <blockquote className="border-l-4 border-primary p-6 text-left max-w-2xl mx-auto">
                 <p className={cn(
                   "text-lg md:text-xl leading-relaxed transition-all duration-700",
                   ideaAdvanced ? "text-foreground" : "text-muted-foreground"
                 )}>
                   "One of my accounts called in asking if we could add to display 'Owner Financing' when available. He said{" "}
-                  <span className="font-semibold text-foreground bg-primary/20 px-1 rounded">
+                  <span className="font-semibold text-foreground">
                     'I sent multiple inquiries to the sellers on your site and he never responded'
                   </span>"
                 </p>
@@ -498,55 +617,31 @@ const IntelligenceOverInventoryProject = () => {
                 The leads themselves could tell us what buyers actually want.
               </p>
             </div>
-
-            {/* Progress indicator */}
-            <div className="flex gap-2 mt-10">
-              <button
-                onClick={() => setIdeaAdvanced(false)}
-                className={cn(
-                  "w-2 h-2 rounded-full transition-all duration-300",
-                  !ideaAdvanced ? "bg-primary w-6" : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
-                )}
-              />
-              <button
-                onClick={() => setIdeaAdvanced(true)}
-                className={cn(
-                  "w-2 h-2 rounded-full transition-all duration-300",
-                  ideaAdvanced ? "bg-primary w-6" : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
-                )}
-              />
-            </div>
-          </div>
-
-          {/* Navigation Arrows - Bottom Right */}
-          <div className="absolute bottom-8 right-8 flex items-center gap-2">
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={() => setIdeaAdvanced(false)}
-              disabled={!ideaAdvanced}
-              className="h-10 w-10"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={() => setIdeaAdvanced(true)}
-              disabled={ideaAdvanced}
-              className="h-10 w-10"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </Button>
           </div>
         </section>
 
         {/* The Insight Engine Section - /02 */}
         <section
           ref={(el) => { (sectionRefs[3] as any).current = el; }}
-          className="slide-section flex items-center justify-center bg-card/30"
+          className="slide-section flex items-center justify-center relative"
         >
-          <div className="w-full px-4 md:px-8 lg:px-12">
+          {/* Full viewport height gradient line - behind everything */}
+          <div 
+            className="absolute left-1/2 -translate-x-1/2 md:left-[calc(50%-200px)] md:translate-x-0 top-0 bottom-0 w-0.5 z-0"
+            style={{
+              background: `linear-gradient(
+                to bottom,
+                hsl(var(--background)) 0%,
+                hsl(var(--border)) 15%,
+                hsl(var(--primary)) 35%,
+                hsl(var(--primary)) 65%,
+                hsl(var(--border)) 85%,
+                hsl(var(--background)) 100%
+              )`
+            }}
+          />
+          
+          <div className="w-full px-4 md:px-8 lg:px-12 relative z-10">
             {/* Section Header */}
             <div className="flex items-start justify-between mb-8">
               <div className="flex-1">
@@ -562,55 +657,35 @@ const IntelligenceOverInventoryProject = () => {
               </span>
             </div>
 
-            {/* Vertical Layout with gradient connector */}
-            <div className="relative pl-8 max-w-2xl mx-auto">
-              {/* Full-height gradient line - behind cards */}
-              <div 
-                className="absolute left-3 top-0 bottom-0 w-0.5 -z-0"
-                style={{
-                  background: `linear-gradient(
-                    to bottom,
-                    hsl(var(--background)) 0%,
-                    hsl(var(--border)) 10%,
-                    hsl(var(--primary)) 30%,
-                    hsl(var(--primary)) 70%,
-                    hsl(var(--border)) 90%,
-                    hsl(var(--background)) 100%
-                  )`
-                }}
-              />
-              
-              <div className="space-y-6 relative z-10">
-                {flowSteps.map((step, index) => (
-                  <div key={step.label} className="relative flex items-start gap-6">
-                    {/* Node on the line */}
-                    <div className="absolute left-[-20px] top-6 w-3 h-3 rounded-full bg-primary border-2 border-background" />
-                    {/* Horizontal connector */}
-                    <div className="absolute left-[-8px] top-[26px] w-4 h-0.5 bg-primary" />
-                    
-                    {/* Card */}
-                    <div className="bg-card border border-border rounded-xl p-6 flex-1">
-                      <div className="flex items-start justify-between mb-3">
-                        <h3 className="text-lg font-semibold text-foreground">{step.label}</h3>
-                        <step.icon className="w-5 h-5 text-muted-foreground" />
-                      </div>
-                      <p className="text-base text-muted-foreground">{step.description}</p>
+            {/* Vertical Layout - cards only, no dots/connectors */}
+            <div className="max-w-2xl mx-auto space-y-6 relative">
+              {flowSteps.map((step, index) => (
+                <div key={step.label} className="relative">
+                  {/* Card */}
+                  <div className="bg-card border border-border rounded-xl p-6">
+                    <div className="flex items-start justify-between mb-3">
+                      <h3 className="text-lg font-semibold text-foreground">{step.label}</h3>
+                      <step.icon className="w-5 h-5 text-muted-foreground" />
                     </div>
+                    <p className="text-base text-muted-foreground">{step.description}</p>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
         {/* Lead Intelligence Tool - Parsing Tool Section - /03 */}
         <section
-          ref={(el) => { (sectionRefs[4] as any).current = el; }}
-          className="slide-section flex items-center"
+          ref={(el) => { 
+            (sectionRefs[4] as any).current = el;
+            (parsingSectionRef as any).current = el;
+          }}
+          className="slide-section flex items-center relative"
         >
           <div className="w-full px-4 md:px-8 lg:px-12">
             {/* Section Header */}
-            <div className="flex items-start justify-between mb-4">
+            <div className="flex items-start justify-between mb-8">
               <div className="flex-1">
                 <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground">
                   The Lead Intelligence Tool
@@ -624,12 +699,12 @@ const IntelligenceOverInventoryProject = () => {
               </span>
             </div>
 
-            {/* Overlapping Image Carousel */}
+            {/* Overlapping Image Carousel - scroll controlled, no buttons */}
             <Carousel
               setApi={setParsingCarouselApi}
               opts={{
                 align: "start",
-                loop: true,
+                loop: false,
               }}
               className="w-full"
             >
@@ -637,16 +712,17 @@ const IntelligenceOverInventoryProject = () => {
                 {parsingCardPairs.map((pair, pairIndex) => (
                   <CarouselItem key={pairIndex} className="pl-4 basis-full">
                     <div className={cn(
-                      "grid grid-cols-1 lg:grid-cols-2 gap-8 items-center",
-                      pairIndex % 2 === 1 && "lg:flex-row-reverse"
+                      "grid grid-cols-1 lg:grid-cols-2 gap-12 items-center transition-opacity duration-700",
+                      pairIndex % 2 === 1 && "lg:flex-row-reverse",
+                      parsingActiveIndex === pairIndex ? "opacity-100" : "opacity-0"
                     )}>
                       {/* Images Column - alternates position */}
                       <div className={cn(
-                        "relative h-[400px]",
+                        "relative h-[50vh] min-h-[400px]",
                         pairIndex % 2 === 1 && "lg:order-2"
                       )}>
                         {/* Primary image - back */}
-                        <div className="absolute left-0 top-0 w-[75%] h-[85%] rounded-xl overflow-hidden shadow-2xl border border-border">
+                        <div className="absolute left-0 top-0 w-[75%] h-[85%] rounded-xl overflow-hidden shadow-2xl border border-border animate-fade-in">
                           <img 
                             src={pair.images[0].src} 
                             alt={pair.images[0].title}
@@ -654,7 +730,7 @@ const IntelligenceOverInventoryProject = () => {
                           />
                         </div>
                         {/* Secondary image - front, overlapping */}
-                        <div className="absolute right-0 bottom-0 w-[65%] h-[75%] rounded-xl overflow-hidden shadow-2xl border border-border">
+                        <div className="absolute right-0 bottom-0 w-[65%] h-[75%] rounded-xl overflow-hidden shadow-2xl border border-border animate-fade-in" style={{ animationDelay: '0.15s' }}>
                           <img 
                             src={pair.images[1].src} 
                             alt={pair.images[1].title}
@@ -668,24 +744,52 @@ const IntelligenceOverInventoryProject = () => {
                         "space-y-6",
                         pairIndex % 2 === 1 && "lg:order-1"
                       )}>
-                        <div className="space-y-4">
-                          <h3 className="text-2xl font-semibold text-foreground">{pair.images[0].title}</h3>
-                          <p className="text-lg text-muted-foreground">{pair.captions[0]}</p>
+                        <div className="space-y-4 animate-fade-in">
+                          <h3 className="text-2xl md:text-3xl font-semibold text-foreground">{pair.images[0].title}</h3>
+                          <p className="text-lg md:text-xl text-muted-foreground">{pair.captions[0]}</p>
                         </div>
-                        <div className="space-y-4 pt-4 border-t border-border">
-                          <h3 className="text-2xl font-semibold text-foreground">{pair.images[1].title}</h3>
-                          <p className="text-lg text-muted-foreground">{pair.captions[1]}</p>
+                        <div className="space-y-4 pt-4 border-t border-border animate-fade-in" style={{ animationDelay: '0.1s' }}>
+                          <h3 className="text-2xl md:text-3xl font-semibold text-foreground">{pair.images[1].title}</h3>
+                          <p className="text-lg md:text-xl text-muted-foreground">{pair.captions[1]}</p>
                         </div>
                       </div>
                     </div>
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <div className="flex items-center justify-center gap-2 mt-6">
-                <CarouselPrevious className="static translate-y-0" />
-                <CarouselNext className="static translate-y-0" />
-              </div>
             </Carousel>
+          </div>
+
+          {/* Navigation Arrows - Bottom Right */}
+          <div className="absolute bottom-8 right-8 flex items-center gap-2">
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={() => {
+                if (parsingActiveIndex > 0) {
+                  setParsingActiveIndex(prev => prev - 1);
+                  parsingCarouselApi?.scrollPrev();
+                }
+              }}
+              disabled={parsingActiveIndex === 0}
+              className="h-10 w-10"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </Button>
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={() => {
+                if (parsingActiveIndex < parsingCardPairs.length - 1) {
+                  setParsingActiveIndex(prev => prev + 1);
+                  parsingCarouselApi?.scrollNext();
+                }
+              }}
+              disabled={parsingActiveIndex === parsingCardPairs.length - 1}
+              className="h-10 w-10"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </Button>
           </div>
         </section>
 
@@ -698,8 +802,11 @@ const IntelligenceOverInventoryProject = () => {
 
         {/* Strategy & Influence - /05 - Alternating Hero Layout */}
         <section
-          ref={(el) => { (sectionRefs[6] as any).current = el; }}
-          className="slide-section flex items-center bg-card/30"
+          ref={(el) => { 
+            (sectionRefs[6] as any).current = el;
+            (strategySectionRef as any).current = el;
+          }}
+          className="slide-section flex items-center bg-card/30 relative"
         >
           <div className="w-full px-4 md:px-8 lg:px-12">
             {/* Section Header */}
@@ -712,12 +819,12 @@ const IntelligenceOverInventoryProject = () => {
               </span>
             </div>
 
-            {/* Alternating Hero Layout Carousel */}
+            {/* Alternating Hero Layout Carousel - scroll controlled */}
             <Carousel
               setApi={setStrategyCarouselApi}
               opts={{
                 align: "start",
-                loop: true,
+                loop: false,
               }}
               className="w-full"
             >
@@ -725,11 +832,12 @@ const IntelligenceOverInventoryProject = () => {
                 {strategyItems.map((item, index) => (
                   <CarouselItem key={index} className="pl-4 basis-full">
                     <div className={cn(
-                      "grid grid-cols-1 lg:grid-cols-2 gap-8 items-center"
+                      "grid grid-cols-1 lg:grid-cols-2 gap-12 items-center transition-opacity duration-700",
+                      strategyActiveIndex === index ? "opacity-100" : "opacity-0"
                     )}>
                       {/* Image Column - alternates position */}
                       <div className={cn(
-                        "aspect-video lg:aspect-[4/3] bg-muted/30 border border-border rounded-xl overflow-hidden",
+                        "h-[50vh] min-h-[400px] bg-muted/30 border border-border rounded-xl overflow-hidden animate-fade-in",
                         index % 2 === 1 && "lg:order-2"
                       )}>
                         {item.image ? (
@@ -743,21 +851,49 @@ const IntelligenceOverInventoryProject = () => {
                       
                       {/* Text Column */}
                       <div className={cn(
-                        "space-y-4",
+                        "space-y-6 animate-fade-in",
                         index % 2 === 1 && "lg:order-1"
-                      )}>
-                        <h3 className="text-2xl md:text-3xl font-semibold text-foreground">{item.title}</h3>
-                        <p className="text-base md:text-lg text-muted-foreground leading-relaxed">{item.description}</p>
+                      )} style={{ animationDelay: '0.1s' }}>
+                        <h3 className="text-2xl md:text-4xl font-semibold text-foreground">{item.title}</h3>
+                        <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">{item.description}</p>
                       </div>
                     </div>
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <div className="flex items-center justify-center gap-2 mt-6">
-                <CarouselPrevious className="static translate-y-0" />
-                <CarouselNext className="static translate-y-0" />
-              </div>
             </Carousel>
+          </div>
+
+          {/* Navigation Arrows - Bottom Right */}
+          <div className="absolute bottom-8 right-8 flex items-center gap-2">
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={() => {
+                if (strategyActiveIndex > 0) {
+                  setStrategyActiveIndex(prev => prev - 1);
+                  strategyCarouselApi?.scrollPrev();
+                }
+              }}
+              disabled={strategyActiveIndex === 0}
+              className="h-10 w-10"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </Button>
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={() => {
+                if (strategyActiveIndex < strategyItems.length - 1) {
+                  setStrategyActiveIndex(prev => prev + 1);
+                  strategyCarouselApi?.scrollNext();
+                }
+              }}
+              disabled={strategyActiveIndex === strategyItems.length - 1}
+              className="h-10 w-10"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </Button>
           </div>
         </section>
 
