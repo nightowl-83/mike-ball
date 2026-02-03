@@ -6,15 +6,14 @@ import { cn } from "@/lib/utils";
 
 // Import Marketing Hub images
 import mhUtilitiesForm from "@/assets/mh-utilities-form.png";
-import mhCompletenessCards from "@/assets/mh-completeness-cards.png";
 import mhUtilitiesSearch from "@/assets/mh-utilities-search.png";
-// Import Marketplace images
-import ldpMobileUtilities from "@/assets/LDP-Mobile-Utilities.png";
-import utilitiesSearch from "@/assets/Utilities-Search-2.png";
+// Import new images
+import completeCards from "@/assets/Complete-Cards-1600-900.png";
+import utilitiesDeskMobile from "@/assets/Utilities-Desk-Mobile-16-9.png";
 
 // Unified content blocks - Marketing Hub first, then Marketplace
 const allBlocks = [
-  // Marketing Hub slides (0-2)
+  // Marketing Hub slides (0-1)
   {
     title: "The Seller's 'Aha' Moment",
     quote: "We shifted from asking for data to proving its ROI.",
@@ -26,7 +25,7 @@ const allBlocks = [
     title: "Gamifying Quality",
     quote: "The Completeness Score became our invisible coach.",
     narrative: "We used gamification to align seller behavior with search engine success. It provided a clear, actionable roadmap for sellers to improve their own visibility without needing a manual support touch-point.",
-    image: mhCompletenessCards,
+    image: completeCards,
     mode: 'marketing-hub' as const
   },
   {
@@ -36,19 +35,12 @@ const allBlocks = [
     image: mhUtilitiesSearch,
     mode: 'marketing-hub' as const
   },
-  // Marketplace slides (3-4)
-  {
-    title: "The 'Invisibility' Problem",
-    quote: "Turning 'Dark Data' into Searchable Value.",
-    narrative: "In a market flooded with identical 3rd-party listings, our users were struggling to find land that met basic survivability needs—water, power, and road access. This data existed in the leads, but was invisible on the page.",
-    image: ldpMobileUtilities,
-    mode: 'marketplace' as const
-  },
+  // Marketplace slides (3) - Combined slide 3 and 5 content
   {
     title: "Intent-Based Navigation",
     quote: "We didn't design filters; we designed answers.",
-    narrative: "Using the lead parser, I prioritized a 'Utility First' navigation. We elevated the attributes that our users were most vocal about in their inquiries, drastically reducing the 'pogo-sticking' behavior between the search page and listing details.",
-    image: utilitiesSearch,
+    narrative: "Using the lead parser, I prioritized a 'Utility First' navigation. We elevated the attributes that our users were most vocal about in their inquiries, drastically reducing the 'pogo-sticking' behavior between the search page and listing details.\n\nIn a market flooded with identical 3rd-party listings, our users were struggling to find land that met basic survivability needs—water, power, and road access. This data existed in the leads, but was invisible on the page.",
+    image: utilitiesDeskMobile,
     mode: 'marketplace' as const
   }
 ];
