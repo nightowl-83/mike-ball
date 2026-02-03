@@ -1,4 +1,4 @@
-import { ArrowRight, Database, Filter, BarChart3, Target, Users, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, Database, Filter, BarChart3, Target, Users, ChevronLeft, ChevronRight, Lightbulb, Sparkles, TrendingUp, Brain } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState, useRef, useCallback } from "react";
@@ -25,15 +25,14 @@ const IntelligenceOverInventoryProject = () => {
   // Section data for navigation - Added "The Idea" section
   const sectionData = [
     { id: 'hero', label: 'Overview', number: '' },
-    { id: 'conflict', label: 'The Challenge', number: '/01' },
+    { id: 'conflict', label: 'The Challenge', number: '/01', subtitle: 'Understanding the commodity data problem' },
     { id: 'idea', label: 'The Idea', number: '' },
-    { id: 'engine', label: 'The Solution', number: '/02' },
-    { id: 'parsing', label: 'Parsing Tool', number: '/03' },
-    { id: 'impact', label: 'Impact', number: '/04' },
-    { id: 'strategy', label: 'Strategy', number: '/05' },
-    { id: 'gallery', label: 'Gallery', number: '/06' },
-    { id: 'vision', label: 'Vision', number: '/07' },
-    { id: 'next-project', label: 'Next Project', number: '/08' }
+    { id: 'engine', label: 'The Solution', number: '/02', subtitle: 'Building the data pipeline' },
+    { id: 'parsing', label: 'Parsing Tool', number: '/03', subtitle: 'Extracting buyer intent from leads' },
+    { id: 'impact', label: 'Impact', number: '/04', subtitle: 'Dual-interface implementation' },
+    { id: 'strategy', label: 'Strategy', number: '/05', subtitle: 'Influencing product direction' },
+    { id: 'vision', label: 'Vision', number: '/06', subtitle: 'The AI-powered future' },
+    { id: 'next-project', label: 'Next Project', number: '/07' }
   ];
 
   // Use slide navigation hook
@@ -112,12 +111,11 @@ const IntelligenceOverInventoryProject = () => {
     }
   ];
 
-  // Gallery items data
-  const galleryItems = [
-    { caption: "Filter interface showing intent-driven categories with visual hierarchy" },
-    { caption: "Performance Coach dashboard with contextual nudges" },
-    { caption: "Mobile filter experience with progressive disclosure" },
-    { caption: "Analytics view showing lead quality metrics" }
+  // Vision roadmap items
+  const visionItems = [
+    { icon: Brain, title: "Predictive Matching", description: "ML models predict buyer preferences before they search" },
+    { icon: Sparkles, title: "Proactive Discovery", description: "Surface listings that match latent intent patterns" },
+    { icon: TrendingUp, title: "Engagement Analytics", description: "Deep analysis of cross-platform behavior signals" }
   ];
 
   // Challenge section conversation points
@@ -392,26 +390,26 @@ const IntelligenceOverInventoryProject = () => {
         {/* Hero Section */}
         <section
           ref={(el) => { (sectionRefs[0] as any).current = el; }}
-          className="slide-section flex items-center justify-center"
+          className="slide-section flex items-center justify-center group/section"
         >
           <div className="w-[85%] mx-auto py-12">
             <div className="space-y-6 max-w-4xl mx-auto text-center">
-              <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-base font-medium">
+              <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-base font-medium animate-fade-in">
                 Product Strategy
               </span>
-              <h1 className="text-5xl md:text-6xl lg:text-8xl font-bold text-foreground leading-tight">
+              <h1 className="text-5xl md:text-6xl lg:text-8xl font-bold text-foreground leading-tight animate-fade-in [animation-delay:100ms]">
                 Intelligence Over<br />Inventory
               </h1>
-              <p className="text-2xl md:text-3xl text-muted-foreground">
+              <p className="text-2xl md:text-3xl text-muted-foreground animate-fade-in [animation-delay:200ms]">
                 Transforming Commodity Data into First-Party Insights
               </p>
-              <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
+              <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto animate-fade-in [animation-delay:300ms]">
                 A strategic initiative to convert generic 3rd-party listing data into proprietary buyer intent data, 
                 powering advanced search filters and a seller performance coaching system.
               </p>
               
               {/* Metadata Grid */}
-              <div className="flex flex-wrap justify-center gap-8 pt-4">
+              <div className="flex flex-wrap justify-center gap-8 pt-4 animate-fade-in [animation-delay:400ms]">
                 <div>
                   <span className="text-base text-muted-foreground">Role</span>
                   <p className="text-lg font-semibold">Lead Product Designer</p>
@@ -427,7 +425,7 @@ const IntelligenceOverInventoryProject = () => {
               </div>
 
               {/* Impact Metrics */}
-              <div className="flex flex-wrap justify-center gap-3 pt-4">
+              <div className="flex flex-wrap justify-center gap-3 pt-4 animate-fade-in [animation-delay:500ms]">
                 <span className="px-4 py-2 rounded-full bg-primary/10 text-primary text-base font-semibold">+45% Lead Quality</span>
                 <span className="px-4 py-2 rounded-full bg-primary/10 text-primary text-base font-semibold">3x Seller Engagement</span>
                 <span className="px-4 py-2 rounded-full bg-primary/10 text-primary text-base font-semibold">First-Party Data</span>
@@ -447,15 +445,20 @@ const IntelligenceOverInventoryProject = () => {
           <div className="w-[85%] mx-auto">
             {/* Section Header */}
             <div className="flex items-start justify-between mb-12">
-              <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground">
-                The Challenge
-              </h2>
+              <div className="flex-1">
+                <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground">
+                  The Challenge
+                </h2>
+                <p className="text-lg md:text-xl text-muted-foreground mt-4 max-w-2xl">
+                  Understanding the commodity data problem
+                </p>
+              </div>
               <span className="text-5xl md:text-7xl font-bold font-mono opacity-20 hidden md:block">
                 /01
               </span>
             </div>
 
-            {/* Conversation Flow */}
+            {/* Conversation Flow - improved contrast for inactive states */}
             <div className="max-w-4xl space-y-6">
               {challengePoints.map((point, index) => (
                 <p
@@ -463,8 +466,8 @@ const IntelligenceOverInventoryProject = () => {
                   className={cn(
                     "text-lg md:text-xl lg:text-2xl leading-relaxed transition-all duration-500",
                     challengeActiveIndex === index
-                      ? "text-foreground font-semibold opacity-100"
-                      : "text-muted-foreground font-normal opacity-50"
+                      ? "text-foreground font-semibold"
+                      : "text-muted-foreground/70 font-normal"
                   )}
                 >
                   {point.text}
@@ -472,7 +475,7 @@ const IntelligenceOverInventoryProject = () => {
               ))}
             </div>
 
-            {/* Progress Indicator */}
+            {/* Progress Indicator - with focus states */}
             <div className="flex gap-2 mt-10">
               {challengePoints.map((_, index) => (
                 <button
@@ -480,11 +483,12 @@ const IntelligenceOverInventoryProject = () => {
                   onClick={() => setChallengeActiveIndex(index)}
                   className={cn(
                     "w-2 h-2 rounded-full transition-all duration-300",
+                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                     challengeActiveIndex === index
                       ? "bg-primary w-6"
                       : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
                   )}
-                  aria-label={`Go to point ${index + 1}`}
+                  aria-label={`Go to challenge point ${index + 1} of ${challengePoints.length}`}
                 />
               ))}
             </div>
@@ -513,27 +517,39 @@ const IntelligenceOverInventoryProject = () => {
           </div>
         </section>
 
-        {/* NEW: The Idea Section - Simple Blockquote */}
+        {/* The Idea Section - Enhanced with visual interest */}
         <section
           ref={(el) => { 
             (sectionRefs[2] as any).current = el;
           }}
-          className="slide-section flex items-center justify-center"
+          className="slide-section flex items-center justify-center relative overflow-hidden"
         >
-          <div className="w-[85%] mx-auto max-w-4xl">
+          {/* Subtle background gradient */}
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
+          
+          <div className="w-[85%] mx-auto max-w-4xl relative z-10">
+            {/* Lightbulb icon above quote */}
+            <div className="flex justify-center mb-8">
+              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
+                <Lightbulb className="w-8 h-8 text-primary" />
+              </div>
+            </div>
+            
             <blockquote className="text-center space-y-8">
               <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed italic">
                 "One of my accounts called in asking if we could add to display 'Owner Financing' when available. He said{" "}
-                <span className="font-semibold text-foreground">
+                <span className="font-semibold text-foreground not-italic">
                   'I sent multiple inquiries to the sellers on your site and he never responded'
                 </span>"
               </p>
-              <footer className="text-lg text-muted-foreground">
+              <footer className="text-base text-muted-foreground/80 font-medium tracking-wide uppercase">
                 — Account Manager Feature Request
               </footer>
-              <p className="text-2xl md:text-3xl font-semibold text-primary leading-relaxed pt-4">
-                The leads themselves could tell us what buyers actually want.
-              </p>
+              <div className="pt-6 border-t border-border/50">
+                <p className="text-2xl md:text-3xl font-semibold text-primary leading-relaxed">
+                  The leads themselves could tell us what buyers actually want.
+                </p>
+              </div>
             </blockquote>
           </div>
         </section>
@@ -692,37 +708,40 @@ const IntelligenceOverInventoryProject = () => {
             </div>
           </div>
 
-          {/* Navigation Arrows - Fixed Bottom Right of Viewport */}
-          <div className="fixed bottom-8 right-8 flex items-center gap-2 z-50">
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={() => {
-                if (parsingActiveIndex > 0) {
-                  setParsingActiveIndex(prev => prev - 1);
-                  parsingCarouselApi?.scrollPrev();
-                }
-              }}
-              disabled={parsingActiveIndex === 0}
-              className="h-10 w-10"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={() => {
-                if (parsingActiveIndex < parsingCardPairs.length - 1) {
-                  setParsingActiveIndex(prev => prev + 1);
-                  parsingCarouselApi?.scrollNext();
-                }
-              }}
-              disabled={parsingActiveIndex === parsingCardPairs.length - 1}
-              className="h-10 w-10"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </Button>
-          </div>
+          {/* Navigation Arrows - Only visible when on this section */}
+          {currentSectionIndex === 4 && (
+            <div className="fixed bottom-8 right-8 flex items-center gap-2 z-50 md:flex hidden">
+              <span className="text-sm text-muted-foreground mr-2">{parsingActiveIndex + 1}/{parsingCardPairs.length}</span>
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={() => {
+                  if (parsingActiveIndex > 0) {
+                    setParsingActiveIndex(prev => prev - 1);
+                    parsingCarouselApi?.scrollPrev();
+                  }
+                }}
+                disabled={parsingActiveIndex === 0}
+                className="h-10 w-10"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </Button>
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={() => {
+                  if (parsingActiveIndex < parsingCardPairs.length - 1) {
+                    setParsingActiveIndex(prev => prev + 1);
+                    parsingCarouselApi?.scrollNext();
+                  }
+                }}
+                disabled={parsingActiveIndex === parsingCardPairs.length - 1}
+                className="h-10 w-10"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </Button>
+            </div>
+          )}
         </section>
 
         {/* Dual-Interface Impact Section - /04 */}
@@ -743,9 +762,14 @@ const IntelligenceOverInventoryProject = () => {
           <div className="w-full px-4 md:px-8 lg:px-12 flex flex-col h-full">
             {/* Section Header */}
             <div className="flex items-start justify-between mb-6">
-              <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground">
-                Strategy & Influence
-              </h2>
+              <div className="flex-1">
+                <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground">
+                  Strategy & Influence
+                </h2>
+                <p className="text-lg md:text-xl text-muted-foreground mt-4 max-w-2xl">
+                  Influencing product direction with data
+                </p>
+              </div>
               <span className="text-5xl md:text-7xl font-bold font-mono opacity-20 hidden md:block">
                 /05
               </span>
@@ -800,92 +824,92 @@ const IntelligenceOverInventoryProject = () => {
             </div>
           </div>
 
-          {/* Navigation Arrows - Fixed Bottom Right of Viewport */}
-          <div className="fixed bottom-8 right-8 flex items-center gap-2 z-50">
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={() => {
-                if (strategyActiveIndex > 0) {
-                  setStrategyActiveIndex(prev => prev - 1);
-                  strategyCarouselApi?.scrollPrev();
-                }
-              }}
-              disabled={strategyActiveIndex === 0}
-              className="h-10 w-10"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={() => {
-                if (strategyActiveIndex < strategyItems.length - 1) {
-                  setStrategyActiveIndex(prev => prev + 1);
-                  strategyCarouselApi?.scrollNext();
-                }
-              }}
-              disabled={strategyActiveIndex === strategyItems.length - 1}
-              className="h-10 w-10"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </Button>
-          </div>
+          {/* Navigation Arrows - Only visible when on this section */}
+          {currentSectionIndex === 6 && (
+            <div className="fixed bottom-8 right-8 flex items-center gap-2 z-50 md:flex hidden">
+              <span className="text-sm text-muted-foreground mr-2">{strategyActiveIndex + 1}/{strategyItems.length}</span>
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={() => {
+                  if (strategyActiveIndex > 0) {
+                    setStrategyActiveIndex(prev => prev - 1);
+                    strategyCarouselApi?.scrollPrev();
+                  }
+                }}
+                disabled={strategyActiveIndex === 0}
+                className="h-10 w-10"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </Button>
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={() => {
+                  if (strategyActiveIndex < strategyItems.length - 1) {
+                    setStrategyActiveIndex(prev => prev + 1);
+                    strategyCarouselApi?.scrollNext();
+                  }
+                }}
+                disabled={strategyActiveIndex === strategyItems.length - 1}
+                className="h-10 w-10"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </Button>
+            </div>
+          )}
         </section>
 
-        {/* Design Detail Gallery - /06 */}
+        {/* Future Vision - /06 - Enhanced with roadmap */}
         <section
           ref={(el) => { (sectionRefs[7] as any).current = el; }}
-          className="slide-section flex items-center"
+          className="slide-section flex items-center bg-card/30"
         >
           <div className="w-full px-4 md:px-8 lg:px-12">
             {/* Section Header */}
-            <div className="flex items-start justify-between mb-8">
-              <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground">
-                Design Details
-              </h2>
+            <div className="flex items-start justify-between mb-12">
+              <div className="flex-1">
+                <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground">
+                  The AI Evolution
+                </h2>
+                <p className="text-lg md:text-xl text-muted-foreground mt-4 max-w-2xl">
+                  The future of proactive discovery
+                </p>
+              </div>
               <span className="text-5xl md:text-7xl font-bold font-mono opacity-20 hidden md:block">
                 /06
               </span>
             </div>
 
-            {/* 2x2 Image Grid */}
-            <div className="grid grid-cols-2 gap-4 md:gap-6">
-              {galleryItems.map((item, index) => (
-                <div key={index} className="space-y-2">
-                  <div className="aspect-video bg-muted/50 border border-border rounded-xl flex items-center justify-center">
-                    <p className="text-muted-foreground text-sm md:text-base">Design Detail {index + 1}</p>
+            {/* Vision Content */}
+            <div className="max-w-4xl mx-auto">
+              <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed mb-12 text-center">
+                The next phase integrates machine learning to predict buyer preferences before they search—
+                turning the marketplace from reactive search to proactive discovery.
+              </p>
+
+              {/* Roadmap Cards */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {visionItems.map((item, index) => (
+                  <div 
+                    key={index}
+                    className="bg-card border border-border rounded-xl p-6 hover:border-primary/50 transition-colors duration-300"
+                  >
+                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                      <item.icon className="w-6 h-6 text-primary" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-foreground mb-2">{item.title}</h3>
+                    <p className="text-muted-foreground">{item.description}</p>
                   </div>
-                  <p className="text-sm md:text-base text-muted-foreground">{item.caption}</p>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Future Vision - /07 */}
+        {/* Next Project - /07 */}
         <section
           ref={(el) => { (sectionRefs[8] as any).current = el; }}
-          className="slide-section flex items-center bg-card/30"
-        >
-          <div className="w-full px-4 md:px-8 lg:px-12">
-            <div className="text-center max-w-3xl mx-auto">
-              <span className="text-5xl md:text-7xl font-bold font-mono opacity-20 block mb-4">
-                /07
-              </span>
-              <h2 className="text-4xl md:text-6xl font-bold text-foreground mb-6">The AI Evolution</h2>
-              <p className="text-lg md:text-xl text-muted-foreground">
-                The next phase integrates machine learning to predict buyer preferences before they search. 
-                By analyzing engagement patterns across the platform, we can surface listings that match 
-                latent intent—turning the marketplace from reactive search to proactive discovery.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Next Project - /08 */}
-        <section
-          ref={(el) => { (sectionRefs[9] as any).current = el; }}
           className="slide-section flex items-center"
         >
           <div className="w-full px-4 md:px-8 lg:px-12">
