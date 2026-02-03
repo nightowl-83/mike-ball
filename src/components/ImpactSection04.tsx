@@ -174,7 +174,7 @@ export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab, scrollToS
         {/* Divider */}
         <Separator className={cn("mb-6", !isMarketingHub && "bg-gray-300")} />
 
-        {/* Carousel Control Row - Title left, Toggle + Arrows right */}
+        {/* Carousel Control Row - Title left, Toggle right */}
         <div className="flex justify-between items-center mb-6">
           {/* Left: Slide Title */}
           <h3 className={cn(
@@ -184,77 +184,30 @@ export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab, scrollToS
             {currentBlock.title}
           </h3>
           
-          {/* Right: Toggle + Count + Arrows + Continue */}
-          <div className="flex items-center gap-3">
-            {/* Mode Toggle Pills */}
-            <div className="flex items-center gap-2">
-              <button
-                onClick={handleMarketingHubClick}
-                className={cn(
-                  "px-4 py-2 rounded-full text-sm font-medium transition-all duration-300",
-                  isMarketingHub 
-                    ? "bg-primary text-primary-foreground" 
-                    : "bg-gray-200 text-gray-600 hover:bg-gray-300"
-                )}
-              >
-                Marketing Hub
-              </button>
-              <button
-                onClick={handleMarketplaceClick}
-                className={cn(
-                  "px-4 py-2 rounded-full text-sm font-medium transition-all duration-300",
-                  !isMarketingHub 
-                    ? "bg-gray-800 text-white" 
-                    : "bg-muted/50 text-muted-foreground hover:bg-muted"
-                )}
-              >
-                Marketplace
-              </button>
-            </div>
-
-            <span className={cn(
-              "text-sm",
-              isMarketingHub ? "text-muted-foreground" : "text-gray-500"
-            )}>
-              {activeBlockIndex + 1} of {allBlocks.length}
-            </span>
-            <Button 
-              variant="outline" 
-              size="icon" 
-              onClick={goPrev} 
-              disabled={activeBlockIndex === 0}
+          {/* Right: Toggle Pills only */}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={handleMarketingHubClick}
               className={cn(
-                "h-9 w-9",
-                !isMarketingHub && "border-gray-300 text-gray-700 hover:bg-gray-200 bg-white"
+                "px-4 py-2 rounded-full text-sm font-medium transition-all duration-300",
+                isMarketingHub 
+                  ? "bg-primary text-primary-foreground" 
+                  : "bg-gray-200 text-gray-600 hover:bg-gray-300"
               )}
             >
-              <ChevronLeft className="w-4 h-4" />
-            </Button>
-            <Button 
-              variant="outline" 
-              size="icon" 
-              onClick={goNext} 
-              disabled={activeBlockIndex === allBlocks.length - 1}
+              Marketing Hub
+            </button>
+            <button
+              onClick={handleMarketplaceClick}
               className={cn(
-                "h-9 w-9",
-                !isMarketingHub && "border-gray-300 text-gray-700 hover:bg-gray-200 bg-white"
+                "px-4 py-2 rounded-full text-sm font-medium transition-all duration-300",
+                !isMarketingHub 
+                  ? "bg-gray-800 text-white" 
+                  : "bg-muted/50 text-muted-foreground hover:bg-muted"
               )}
             >
-              <ChevronRight className="w-4 h-4" />
-            </Button>
-            {scrollToSection && (
-              <Button
-                variant="outline"
-                onClick={() => scrollToSection(6)}
-                className={cn(
-                  "gap-2 ml-2",
-                  !isMarketingHub && "border-gray-300 text-gray-700 hover:bg-gray-200 bg-white"
-                )}
-              >
-                Continue
-                <ArrowDown className="w-4 h-4" />
-              </Button>
-            )}
+              Marketplace
+            </button>
           </div>
         </div>
 
@@ -319,6 +272,53 @@ export const ImpactSection04 = ({ sectionRef, activeTab, setActiveTab, scrollToS
               )}
             </div>
           </div>
+        </div>
+
+        {/* Bottom Right Carousel Controls */}
+        <div className="absolute bottom-8 right-4 md:right-8 lg:right-12 flex items-center gap-3">
+          <span className={cn(
+            "text-sm",
+            isMarketingHub ? "text-muted-foreground" : "text-gray-500"
+          )}>
+            {activeBlockIndex + 1} of {allBlocks.length}
+          </span>
+          <Button 
+            variant="outline" 
+            size="icon" 
+            onClick={goPrev} 
+            disabled={activeBlockIndex === 0}
+            className={cn(
+              "h-9 w-9",
+              !isMarketingHub && "border-gray-300 text-gray-700 hover:bg-gray-200 bg-white"
+            )}
+          >
+            <ChevronLeft className="w-4 h-4" />
+          </Button>
+          <Button 
+            variant="outline" 
+            size="icon" 
+            onClick={goNext} 
+            disabled={activeBlockIndex === allBlocks.length - 1}
+            className={cn(
+              "h-9 w-9",
+              !isMarketingHub && "border-gray-300 text-gray-700 hover:bg-gray-200 bg-white"
+            )}
+          >
+            <ChevronRight className="w-4 h-4" />
+          </Button>
+          {scrollToSection && (
+            <Button
+              variant="outline"
+              onClick={() => scrollToSection(6)}
+              className={cn(
+                "gap-2 ml-2",
+                !isMarketingHub && "border-gray-300 text-gray-700 hover:bg-gray-200 bg-white"
+              )}
+            >
+              Continue
+              <ArrowDown className="w-4 h-4" />
+            </Button>
+          )}
         </div>
       </div>
     </section>
