@@ -623,9 +623,9 @@ const IntelligenceOverInventoryProject = () => {
             (sectionRefs[4] as any).current = el;
             (parsingSectionRef as any).current = el;
           }}
-          className="slide-section flex flex-col pt-8 relative"
+          className="slide-section flex flex-col pt-8 relative h-screen"
         >
-          <div className="w-full px-4 md:px-8 lg:px-12 flex flex-col h-full pb-20">
+          <div className="w-full px-4 md:px-8 lg:px-12 flex flex-col flex-1 pb-20">
             {/* Section Header */}
             <div className="flex items-start justify-between mb-4">
               <div className="flex-1">
@@ -642,64 +642,57 @@ const IntelligenceOverInventoryProject = () => {
             </div>
 
             {/* Content fills remaining viewport - 3:1 ratio with fade-up animation */}
-            <div className="flex-1 min-h-0 h-[calc(100vh-200px)] relative overflow-hidden">
-              {parsingCardPairs.map((pair, pairIndex) => (
-                <div
-                  key={pairIndex}
-                  className={cn(
-                    "absolute inset-0 grid grid-cols-1 lg:grid-cols-4 gap-8 items-center h-full transition-all duration-700 ease-out",
-                    parsingActiveIndex === pairIndex 
-                      ? "opacity-100 translate-y-0" 
-                      : parsingActiveIndex > pairIndex
-                        ? "opacity-0 -translate-y-12 pointer-events-none"
-                        : "opacity-0 translate-y-12 pointer-events-none"
-                  )}
-                >
-                  {/* Images Column - 3 columns */}
-                  <div className="relative lg:col-span-3 h-[400px] lg:h-full min-h-[400px]">
-                    {/* Primary image - back */}
-                    <div className={cn(
-                      "absolute left-0 top-0 w-[85%] h-[90%] rounded-xl overflow-hidden shadow-2xl border border-border transition-all duration-700 delay-100",
-                      parsingActiveIndex === pairIndex ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                    )}>
-                      <img 
-                        src={pair.images[0].src} 
-                        alt={pair.images[0].title}
-                        className="w-full h-full object-cover object-top"
-                      />
+            <div className="flex-1 relative overflow-hidden">
+              {parsingCardPairs.map((pair, pairIndex) => {
+                const isActive = parsingActiveIndex === pairIndex;
+                const isPast = parsingActiveIndex > pairIndex;
+                
+                return (
+                  <div
+                    key={pairIndex}
+                    className={cn(
+                      "absolute inset-0 grid grid-cols-1 lg:grid-cols-4 gap-8 items-center h-full transition-all duration-700 ease-out",
+                      isActive 
+                        ? "opacity-100 translate-y-0 z-10" 
+                        : isPast
+                          ? "opacity-0 -translate-y-12 pointer-events-none z-0"
+                          : "opacity-0 translate-y-12 pointer-events-none z-0"
+                    )}
+                  >
+                    {/* Images Column - 3 columns */}
+                    <div className="relative lg:col-span-3 h-[400px] lg:h-full min-h-[400px]">
+                      {/* Primary image - back */}
+                      <div className="absolute left-0 top-0 w-[85%] h-[90%] rounded-xl overflow-hidden shadow-2xl border border-border">
+                        <img 
+                          src={pair.images[0].src} 
+                          alt={pair.images[0].title}
+                          className="w-full h-full object-cover object-top"
+                        />
+                      </div>
+                      {/* Secondary image - front, overlapping */}
+                      <div className="absolute right-0 bottom-0 w-[75%] h-[80%] rounded-xl overflow-hidden shadow-2xl border border-border">
+                        <img 
+                          src={pair.images[1].src} 
+                          alt={pair.images[1].title}
+                          className="w-full h-full object-cover object-top"
+                        />
+                      </div>
                     </div>
-                    {/* Secondary image - front, overlapping */}
-                    <div className={cn(
-                      "absolute right-0 bottom-0 w-[75%] h-[80%] rounded-xl overflow-hidden shadow-2xl border border-border transition-all duration-700 delay-200",
-                      parsingActiveIndex === pairIndex ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                    )}>
-                      <img 
-                        src={pair.images[1].src} 
-                        alt={pair.images[1].title}
-                        className="w-full h-full object-cover object-top"
-                      />
-                    </div>
-                  </div>
 
-                  {/* Text Column - 1 column */}
-                  <div className="space-y-6 lg:col-span-1">
-                    <div className={cn(
-                      "space-y-2 transition-all duration-700 delay-150",
-                      parsingActiveIndex === pairIndex ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-                    )}>
-                      <h3 className="text-lg md:text-xl font-semibold text-foreground">{pair.images[0].title}</h3>
-                      <p className="text-sm md:text-base text-muted-foreground">{pair.captions[0]}</p>
-                    </div>
-                    <div className={cn(
-                      "space-y-2 pt-3 border-t border-border transition-all duration-700 delay-200",
-                      parsingActiveIndex === pairIndex ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-                    )}>
-                      <h3 className="text-lg md:text-xl font-semibold text-foreground">{pair.images[1].title}</h3>
-                      <p className="text-sm md:text-base text-muted-foreground">{pair.captions[1]}</p>
+                    {/* Text Column - 1 column */}
+                    <div className="space-y-6 lg:col-span-1">
+                      <div className="space-y-2">
+                        <h3 className="text-lg md:text-xl font-semibold text-foreground">{pair.images[0].title}</h3>
+                        <p className="text-sm md:text-base text-muted-foreground">{pair.captions[0]}</p>
+                      </div>
+                      <div className="space-y-2 pt-3 border-t border-border">
+                        <h3 className="text-lg md:text-xl font-semibold text-foreground">{pair.images[1].title}</h3>
+                        <p className="text-sm md:text-base text-muted-foreground">{pair.captions[1]}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 
@@ -752,9 +745,9 @@ const IntelligenceOverInventoryProject = () => {
             (sectionRefs[6] as any).current = el;
             (strategySectionRef as any).current = el;
           }}
-          className="slide-section flex flex-col pt-8 bg-card/30 relative"
+          className="slide-section flex flex-col pt-8 bg-card/30 relative h-screen"
         >
-          <div className="w-full px-4 md:px-8 lg:px-12 flex flex-col h-full pb-20">
+          <div className="w-full px-4 md:px-8 lg:px-12 flex flex-col flex-1 pb-20">
             {/* Section Header */}
             <div className="flex items-start justify-between mb-4">
               <div className="flex-1">
@@ -771,43 +764,42 @@ const IntelligenceOverInventoryProject = () => {
             </div>
 
             {/* Content fills remaining viewport - fade-up animation */}
-            <div className="flex-1 min-h-0 h-[calc(100vh-200px)] relative overflow-hidden">
-              {strategyItems.map((item, index) => (
-                <div
-                  key={index}
-                  className={cn(
-                    "absolute inset-0 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center h-full transition-all duration-700 ease-out",
-                    strategyActiveIndex === index 
-                      ? "opacity-100 translate-y-0" 
-                      : strategyActiveIndex > index
-                        ? "opacity-0 -translate-y-12 pointer-events-none"
-                        : "opacity-0 translate-y-12 pointer-events-none"
-                  )}
-                >
-                  {/* Image Column - consistent position (no alternating) */}
-                  <div className={cn(
-                    "h-[400px] lg:h-full min-h-[400px] bg-muted/30 border border-border rounded-xl overflow-hidden transition-all duration-700 delay-100",
-                    strategyActiveIndex === index ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                  )}>
-                    {item.image ? (
-                      <img src={item.image} alt={item.title} className="w-full h-full object-cover object-top" />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center">
-                        <p className="text-muted-foreground">Visual placeholder</p>
-                      </div>
+            <div className="flex-1 relative overflow-hidden">
+              {strategyItems.map((item, index) => {
+                const isActive = strategyActiveIndex === index;
+                const isPast = strategyActiveIndex > index;
+                
+                return (
+                  <div
+                    key={index}
+                    className={cn(
+                      "absolute inset-0 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center h-full transition-all duration-700 ease-out",
+                      isActive 
+                        ? "opacity-100 translate-y-0 z-10" 
+                        : isPast
+                          ? "opacity-0 -translate-y-12 pointer-events-none z-0"
+                          : "opacity-0 translate-y-12 pointer-events-none z-0"
                     )}
+                  >
+                    {/* Image Column - consistent position (no alternating) */}
+                    <div className="h-[400px] lg:h-full min-h-[400px] bg-muted/30 border border-border rounded-xl overflow-hidden">
+                      {item.image ? (
+                        <img src={item.image} alt={item.title} className="w-full h-full object-cover object-top" />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center">
+                          <p className="text-muted-foreground">Visual placeholder</p>
+                        </div>
+                      )}
+                    </div>
+                    
+                    {/* Text Column */}
+                    <div className="space-y-6">
+                      <h3 className="text-2xl md:text-4xl font-semibold text-foreground">{item.title}</h3>
+                      <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">{item.description}</p>
+                    </div>
                   </div>
-                  
-                  {/* Text Column */}
-                  <div className={cn(
-                    "space-y-6 transition-all duration-700 delay-150",
-                    strategyActiveIndex === index ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-                  )}>
-                    <h3 className="text-2xl md:text-4xl font-semibold text-foreground">{item.title}</h3>
-                    <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">{item.description}</p>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 
