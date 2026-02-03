@@ -49,8 +49,8 @@ const Index = () => {
         });
       },
       { 
-        threshold: 0.1, // Lower threshold - trigger earlier
-        rootMargin: '-10% 0px -10% 0px' // Trigger when section is 10% into viewport
+        threshold: 0.01, // Trigger almost immediately when section appears
+        rootMargin: '0px 0px -80% 0px' // Trigger when top 20% of section is visible
       }
     );
 
