@@ -466,9 +466,7 @@ const IntelligenceOverInventoryProject = () => {
       }} className="slide-section flex items-center justify-center group/section">
           <div className="w-[85%] mx-auto py-12">
             <div className="space-y-6 max-w-4xl mx-auto text-center">
-              <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-base font-medium animate-fade-in">
-                Product Strategy
-              </span>
+              
               <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-foreground leading-tight animate-fade-in [animation-delay:100ms]">
                 Intelligence Over<br />Inventory
               </h1>
@@ -497,7 +495,7 @@ const IntelligenceOverInventoryProject = () => {
 
               {/* Impact Metrics - Neutral text color, lower font weight */}
               <div className="flex flex-wrap justify-center gap-3 pt-4 animate-fade-in [animation-delay:500ms]">
-                <span className="px-4 py-2 rounded-full border border-primary/20 text-base font-normal bg-[#3835e3]/15 text-primary-foreground">First-Party Data · Product Strategy</span>
+                <span className="px-4 py-2 rounded-full border border-primary/20 text-base font-normal bg-[#3835e3]/20 text-[#3a38dc]">First-Party Data  ·  Product Strategy</span>
               </div>
             </div>
           </div>
