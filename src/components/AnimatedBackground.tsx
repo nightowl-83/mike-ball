@@ -96,10 +96,10 @@ export default function AnimatedBackground({
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    // Initialize particles - offset 150px down from center
+    // Initialize particles - position below subtitle (roughly 45% from top)
     const particleCount = 100;
     const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2 + 150; // Offset 150px down
+    const centerY = canvas.height * 0.55; // Position cloud at 55% down (below subtitle)
     
     if (particlesRef.current.length === 0) {
       particlesRef.current = Array.from({ length: particleCount }, () => {
@@ -387,8 +387,8 @@ export default function AnimatedBackground({
           particle.targetY = wavePositions[i].y;
         }
 
-        // Smooth transition to target (2.5s timing = ~0.016 easing per frame)
-        const easing = 0.02;
+        // Faster transition to target (1s timing = ~0.05 easing per frame)
+        const easing = 0.05;
         particle.x += (particle.targetX - particle.x) * easing;
         particle.y += (particle.targetY - particle.y) * easing;
 

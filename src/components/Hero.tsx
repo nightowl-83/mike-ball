@@ -6,13 +6,13 @@ const Hero = () => {
       <Navbar />
       <section 
         data-bg-state="floating"
-        className="relative min-h-screen flex items-center justify-center"
+        className="relative min-h-screen flex items-start justify-center pt-32 md:pt-40"
       >
         {/* Content */}
-        <div className="relative z-10 container mx-auto px-6 pt-32 pb-20 text-center animate-fade-in">
-          <div className="max-w-4xl mx-auto space-y-12">
+        <div className="relative z-10 container mx-auto px-6 text-center animate-fade-in">
+          <div className="max-w-4xl mx-auto space-y-6">
             {/* Main Heading */}
-            <div className="space-y-6">
+            <div className="space-y-4">
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight">
                 Hello, I'm Mike<span className="text-primary">.</span>
               </h1>
