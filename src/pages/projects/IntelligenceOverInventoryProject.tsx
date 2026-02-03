@@ -20,6 +20,12 @@ import hubAnalyticsCore1440 from "@/assets/Hub-Analytics-Core-1440.png";
 import leadWellAnalyze from "@/assets/Lead-Well-Analyiize-1440.png";
 import hubAnalyticsLeadsPort from "@/assets/Hub-Analytics-Leads-Port-1440.png";
 import callouts4_3Market from "@/assets/Callouts-4_3-Market.png";
+// Gallery images
+import qualityHoverStates from "@/assets/Quality-Hover-States.png";
+import scoreSilos from "@/assets/Score-Silos-1440.png";
+import scoreVariations from "@/assets/Score-Variations-1440.png";
+import whyImage from "@/assets/Why.png";
+import marketCompareOptions2 from "@/assets/Market-Compare-Options-2.png";
 
 const IntelligenceOverInventoryProject = () => {
   // Section data for navigation - Added Gallery section
@@ -85,7 +91,7 @@ const IntelligenceOverInventoryProject = () => {
     { icon: Users, label: "Seller Training", description: "Provide data for what buyers are searching for" }
   ];
 
-  // Strategy items data - updated with combined slides 1&2, new image for slide 3
+  // Strategy items data - updated with combined slides 1&2, new image for slide 3, split paragraphs
   const strategyItems = [
     {
       title: "Lead Volume vs Quality",
@@ -96,17 +102,20 @@ const IntelligenceOverInventoryProject = () => {
     },
     {
       title: "Challenging the \"More is Better\" Fallacy",
-      description: "A lead count of five means something very different in remote Idaho than it does in a high-turnover market. To solve this, I shifted our focus from raw volume to relative benchmarking—providing the regional context sellers needed to gauge their actual performance.\n\nBy surfacing comparative data, like '+5 leads more than similar listings,' we moved the needle from vanity metrics to actionable market intelligence, showing sellers exactly where they stood against their neighbors.",
+      description: "A lead count of five means something very different in remote Idaho than it does in a high-turnover market. To solve this, I shifted our focus from raw volume to relative benchmarking—providing the regional context sellers needed to gauge their actual performance.",
+      secondaryDescription: "By surfacing comparative data, like '+5 leads more than similar listings,' we moved the needle from vanity metrics to actionable market intelligence, showing sellers exactly where they stood against their neighbors.",
       image: callouts4_3Market
     },
     {
       title: "Lead Strength Indicators",
       description: "We implemented a \"Lead Strength\" system within the Marketing Hub. Using the same parsing logic from the buyer side, we flagged leads that contained high-intent signals—such as specific move-in timelines or proof of funds.",
+      secondaryDescription: "By pairing parsed keywords with user-submitted lead quality ratings, we could begin to teach the system what 'good' leads actually look like. This feedback loop allowed the model to learn from seller behavior and improve its scoring over time.",
       image: leadWellAnalyze
     },
     {
       title: "Data-Informed Coaching (The Marketing Hub)",
-      description: "By shifting our mindset from delivering more leads to delivering quality leads, we challenged how we present data to our users. Instead of a passive listing form, the Hub became a coaching tool.\n\nThe \"Popular Features\" section and Property Completeness Score could be used to guide users checking their listings performance as well.\n\nThe same messaging, \"Water and Electricity are often asked about by buyers. Properties that include this see an average of 5x more leads.\" could guide users to provide this additional information.\n\nThis allowed sellers to prioritize their day. We weren't just giving them more work; we were giving them a way to manage it. This shift proved that as a Lead Designer, my responsibility isn't just to the buyer's ease of use, but to the seller's operational efficiency.",
+      description: "By shifting our mindset from delivering more leads to delivering quality leads, we challenged how we present data to our users. Instead of a passive listing form, the Hub became a coaching tool. The \"Popular Features\" section and Property Completeness Score could be used to guide users checking their listings performance as well.",
+      secondaryDescription: "The same messaging, \"Water and Electricity are often asked about by buyers. Properties that include this see an average of 5x more leads.\" could guide users to provide this additional information. This allowed sellers to prioritize their day. We weren't just giving them more work; we were giving them a way to manage it. This shift proved that as a Lead Designer, my responsibility isn't just to the buyer's ease of use, but to the seller's operational efficiency.",
       image: hubAnalyticsLeadsPort
     }
   ];
@@ -445,10 +454,9 @@ const IntelligenceOverInventoryProject = () => {
                 </div>
               </div>
 
-              {/* Impact Metrics - Semi-opaque bg with neutral text */}
+              {/* Impact Metrics - Neutral text color, lower font weight */}
               <div className="flex flex-wrap justify-center gap-3 pt-4 animate-fade-in [animation-delay:500ms]">
-                <span className="px-4 py-2 rounded-full bg-primary/15 text-foreground border border-primary/20 text-base font-semibold">+45% Lead Quality</span>
-                <span className="px-4 py-2 rounded-full bg-primary/15 text-foreground border border-primary/20 text-base font-semibold">First-Party Data</span>
+                <span className="px-4 py-2 rounded-full bg-primary/15 text-muted-foreground border border-primary/20 text-base font-normal">First-Party Data · Product Strategy</span>
               </div>
             </div>
           </div>
@@ -700,7 +708,7 @@ const IntelligenceOverInventoryProject = () => {
               </span>
             </div>
 
-            {/* Content fills remaining viewport - 2 column layout with fade-up animation */}
+            {/* Content fills remaining viewport - matches 05 layout */}
             <div className="flex-1 relative overflow-hidden">
               {parsingCardPairs.map((pair, pairIndex) => {
                 const isActive = parsingActiveIndex === pairIndex;
@@ -710,7 +718,7 @@ const IntelligenceOverInventoryProject = () => {
                   <div
                     key={pairIndex}
                     className={cn(
-                      "absolute inset-0 grid grid-cols-1 lg:grid-cols-2 gap-12 items-start h-full transition-all duration-700 ease-out",
+                      "absolute inset-0 grid grid-cols-1 lg:grid-cols-2 gap-12 items-start h-full transition-all duration-700 ease-out pt-4",
                       isActive 
                         ? "opacity-100 translate-y-0 z-10" 
                         : isPast
@@ -718,18 +726,10 @@ const IntelligenceOverInventoryProject = () => {
                           : "opacity-0 translate-y-12 pointer-events-none z-0"
                     )}
                   >
-                    {/* Images Column - stacked with proper aspect ratios */}
-                    <div className="relative h-[500px] lg:h-full">
-                      {/* Secondary image - back */}
-                      <div className="absolute left-0 top-0 w-[85%] rounded-xl overflow-hidden shadow-xl border border-border bg-card">
-                        <img 
-                          src={pair.images[1].src} 
-                          alt={pair.images[1].title}
-                          className="w-full h-auto object-contain"
-                        />
-                      </div>
-                      {/* Primary image - front, overlapping */}
-                      <div className="absolute right-0 bottom-8 w-[85%] rounded-xl overflow-hidden shadow-2xl border border-border bg-card">
+                    {/* Image Column - matching section 05 layout */}
+                    <div className="border border-border rounded-xl overflow-hidden">
+                      <div className="relative">
+                        {/* Primary image - front */}
                         <img 
                           src={pair.images[0].src} 
                           alt={pair.images[0].title}
@@ -737,26 +737,25 @@ const IntelligenceOverInventoryProject = () => {
                         />
                       </div>
                     </div>
-
-                    {/* Text Column - constrained width on desktop */}
-                    <div className="space-y-6 lg:max-w-[50%]">
-                      {/* Main content box */}
-                      <div className="bg-card border border-border rounded-xl p-6 space-y-4">
-                        <h3 className="text-xl md:text-2xl font-semibold text-foreground">{pair.title}</h3>
-                        <p className="text-base md:text-lg text-muted-foreground leading-relaxed">{pair.description}</p>
-                      </div>
-                      
-                      {/* Highlights box */}
-                      <div className="bg-primary/5 border border-primary/20 rounded-xl p-6 space-y-4">
-                        <h4 className="text-sm font-semibold text-primary uppercase tracking-wide">Key Capabilities</h4>
-                        <ul className="space-y-3">
-                          {pair.highlights.map((highlight, idx) => (
-                            <li key={idx} className="flex items-start gap-3 text-base text-muted-foreground">
-                              <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-                              {highlight}
-                            </li>
-                          ))}
-                        </ul>
+                    
+                    {/* Text Column - matching section 05 layout */}
+                    <div className="flex flex-col justify-center h-full lg:pl-8 lg:pr-16">
+                      <div className="space-y-6 max-w-lg">
+                        <h3 className="text-2xl md:text-4xl font-semibold text-foreground">{pair.title}</h3>
+                        <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">{pair.description}</p>
+                        
+                        {/* Highlights box */}
+                        <div className="bg-primary/5 border border-primary/20 rounded-xl p-6 space-y-4">
+                          <h4 className="text-sm font-semibold text-primary uppercase tracking-wide">Key Capabilities</h4>
+                          <ul className="space-y-3">
+                            {pair.highlights.map((highlight, idx) => (
+                              <li key={idx} className="flex items-start gap-3 text-base text-muted-foreground">
+                                <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+                                {highlight}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -850,12 +849,12 @@ const IntelligenceOverInventoryProject = () => {
                           : "opacity-0 translate-y-12 pointer-events-none z-0"
                     )}
                   >
-                    {/* Image Column */}
-                    <div className="bg-muted/30 border border-border rounded-xl overflow-hidden">
+                    {/* Image Column - no background color */}
+                    <div className="border border-border rounded-xl overflow-hidden">
                       {item.image ? (
-                        <img src={item.image} alt={item.title} className="w-full h-auto object-contain bg-card" />
+                        <img src={item.image} alt={item.title} className="w-full h-auto object-contain" />
                       ) : (
-                        <div className="w-full aspect-[16/10] flex items-center justify-center">
+                        <div className="w-full aspect-[16/10] flex items-center justify-center bg-muted/30">
                           <p className="text-muted-foreground">Visual placeholder</p>
                         </div>
                       )}
@@ -934,30 +933,20 @@ const IntelligenceOverInventoryProject = () => {
 
             {/* 2 Column Gallery Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 flex-1">
-              {/* Placeholder slots for user to add images */}
-              <div className="bg-card border border-border rounded-xl overflow-hidden aspect-[16/10] flex items-center justify-center">
-                <div className="text-center p-8">
-                  <p className="text-muted-foreground">Add screenshot here</p>
-                  <p className="text-sm text-muted-foreground/60 mt-2">Upload images to populate gallery</p>
-                </div>
+              <div className="bg-card border border-border rounded-xl overflow-hidden">
+                <img src={qualityHoverStates} alt="Lead Quality Hover States" className="w-full h-auto object-contain" />
               </div>
-              <div className="bg-card border border-border rounded-xl overflow-hidden aspect-[16/10] flex items-center justify-center">
-                <div className="text-center p-8">
-                  <p className="text-muted-foreground">Add screenshot here</p>
-                  <p className="text-sm text-muted-foreground/60 mt-2">Upload images to populate gallery</p>
-                </div>
+              <div className="bg-card border border-border rounded-xl overflow-hidden">
+                <img src={whyImage} alt="Lead Rating Reasons" className="w-full h-auto object-contain" />
               </div>
-              <div className="bg-card border border-border rounded-xl overflow-hidden aspect-[16/10] flex items-center justify-center">
-                <div className="text-center p-8">
-                  <p className="text-muted-foreground">Add screenshot here</p>
-                  <p className="text-sm text-muted-foreground/60 mt-2">Upload images to populate gallery</p>
-                </div>
+              <div className="bg-card border border-border rounded-xl overflow-hidden">
+                <img src={scoreSilos} alt="Listing Completeness Score Silos" className="w-full h-auto object-contain" />
               </div>
-              <div className="bg-card border border-border rounded-xl overflow-hidden aspect-[16/10] flex items-center justify-center">
-                <div className="text-center p-8">
-                  <p className="text-muted-foreground">Add screenshot here</p>
-                  <p className="text-sm text-muted-foreground/60 mt-2">Upload images to populate gallery</p>
-                </div>
+              <div className="bg-card border border-border rounded-xl overflow-hidden">
+                <img src={scoreVariations} alt="Score UI Variations" className="w-full h-auto object-contain" />
+              </div>
+              <div className="bg-card border border-border rounded-xl overflow-hidden md:col-span-2">
+                <img src={marketCompareOptions2} alt="Market Compare UI Options" className="w-full h-auto object-contain" />
               </div>
             </div>
           </div>
