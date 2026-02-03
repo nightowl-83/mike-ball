@@ -136,13 +136,12 @@ const IntelligenceOverInventoryProject = () => {
   // Vision active index for 2-column clickable layout
   const [visionActiveIndex, setVisionActiveIndex] = useState(0);
 
-  // Challenge section conversation points
+  // Challenge section conversation points - updated content
   const challengePoints = [
-    { text: "The rural land marketplace was drowning in commodity data. Every competitor had access to the same 3rd-party feeds, creating a race to the bottom." },
-    { text: "Identical listings populated every platform. No single marketplace could claim unique inventory—buyers saw the same properties everywhere they looked." },
-    { text: "We had no insight into what buyers actually wanted. Engagement data existed, but it was siloed and surface-level—clicks without context." },
-    { text: "Sellers received vanity metrics that looked good but told them nothing actionable. Views and saves, but no understanding of buyer intent or fit." },
-    { text: "Search filters were built from listing data, not buyer behavior. The experience forced users to think in database terms rather than natural land-buying language." }
+    { title: "The Market Reality", text: "While we maintained a strong core of unique listings, the majority of our traffic was driven by third-party feeds. Because these same base listings appeared on every competing platform, new-to-market products could easily chip away at our traffic by offering similar utility with less overhead." },
+    { title: "The Insight Gap", text: "We knew people were clicking, but we didn't know why. Our engagement data was surface-level—we could see that a listing was popular, but we couldn't see the specific requirements or 'deal-breakers' that buyers were looking for within the data." },
+    { title: "The Seller Disconnect", text: "Sellers were receiving vanity metrics like total views and saves. These numbers looked good on a report but offered zero guidance on how to actually close a deal. A seller with 1,000 views and zero leads had no way to know if their price was wrong or if they were missing a key piece of information." },
+    { title: "Database-First Filtering", text: "Our search filters were limited by the technical constraints of the incoming feeds. We were forcing buyers to search based on how the database was structured, rather than the natural language of land buying (e.g., 'Is there power at the road?' or 'Does it have a well?')." }
   ];
 
   // Challenge section wheel-based progress state
@@ -465,20 +464,35 @@ const IntelligenceOverInventoryProject = () => {
               </span>
             </div>
 
-            {/* Conversation Flow - improved contrast for inactive states */}
-            <div className="max-w-4xl space-y-6">
+            {/* Conversation Flow - with titles */}
+            <div className="max-w-4xl space-y-8">
               {challengePoints.map((point, index) => (
-                <p
+                <div
                   key={index}
                   className={cn(
-                    "text-lg md:text-xl lg:text-2xl leading-relaxed transition-all duration-500",
+                    "transition-all duration-500",
                     challengeActiveIndex === index
-                      ? "text-foreground font-semibold"
-                      : "text-muted-foreground/70 font-normal"
+                      ? "opacity-100"
+                      : "opacity-40"
                   )}
                 >
-                  {point.text}
-                </p>
+                  <h3 className={cn(
+                    "text-base md:text-lg font-semibold mb-2 transition-colors duration-500",
+                    challengeActiveIndex === index
+                      ? "text-primary"
+                      : "text-muted-foreground"
+                  )}>
+                    {point.title}
+                  </h3>
+                  <p className={cn(
+                    "text-lg md:text-xl leading-relaxed transition-all duration-500",
+                    challengeActiveIndex === index
+                      ? "text-foreground"
+                      : "text-muted-foreground/70"
+                  )}>
+                    {point.text}
+                  </p>
+                </div>
               ))}
             </div>
 
@@ -573,63 +587,72 @@ const IntelligenceOverInventoryProject = () => {
               </div>
             </div>
             
-            {/* Variation 1: Centered (Original) */}
+            {/* Variation 1: Centered - Dark bg with floating dots inspired by first reference */}
             {ideaVariant === 'centered' && (
-              <div className="max-w-4xl mx-auto animate-fade-in">
-                {/* Lightbulb icon above quote */}
-                <div className="flex justify-center mb-8">
-                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
-                    <Lightbulb className="w-8 h-8 text-primary" />
+              <div className="max-w-4xl mx-auto animate-fade-in relative">
+                {/* Dark card with subtle dot pattern */}
+                <div className="bg-card/80 backdrop-blur border border-border rounded-3xl p-12 md:p-16 relative overflow-hidden">
+                  {/* Subtle floating dots decoration */}
+                  <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30">
+                    <div className="absolute top-8 left-12 w-2 h-2 rounded-full bg-primary" />
+                    <div className="absolute top-16 right-20 w-1.5 h-1.5 rounded-full bg-primary" />
+                    <div className="absolute top-24 left-1/4 w-1 h-1 rounded-full bg-primary" />
+                    <div className="absolute top-12 right-1/3 w-2 h-2 rounded-full bg-primary" />
+                    <div className="absolute bottom-20 left-16 w-1.5 h-1.5 rounded-full bg-primary" />
+                    <div className="absolute bottom-12 right-24 w-2 h-2 rounded-full bg-primary" />
                   </div>
+                  
+                  {/* Quote icon circle */}
+                  <div className="flex justify-center mb-10">
+                    <div className="w-16 h-16 rounded-full bg-background flex items-center justify-center shadow-lg">
+                      <Quote className="w-7 h-7 text-primary" />
+                    </div>
+                  </div>
+                  
+                  <blockquote className="text-center space-y-6 relative z-10">
+                    <p className="text-lg md:text-xl lg:text-2xl text-foreground leading-relaxed tracking-wide uppercase font-medium">
+                      An Account Manager flagged that buyers were reaching out to sellers about 'Owner Financing' and getting no response. It was a clear signal that our listings were missing the very information that drove the final purchase decision.
+                    </p>
+                  </blockquote>
                 </div>
                 
-                <blockquote className="text-center space-y-8">
-                  <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed italic">
-                    "One of my accounts called in asking if we could add to display 'Owner Financing' when available. He said{" "}
-                    <span className="font-semibold text-foreground not-italic">
-                      'I sent multiple inquiries to the sellers on your site and he never responded'
-                    </span>"
+                {/* Insight below */}
+                <div className="mt-8 text-center">
+                  <p className="text-2xl md:text-3xl font-semibold text-primary leading-relaxed">
+                    The leads themselves could tell us what buyers actually want.
                   </p>
-                  <footer className="text-base text-muted-foreground/80 font-medium tracking-wide uppercase">
-                    — Account Manager Feature Request
-                  </footer>
-                  <div className="pt-6 border-t border-border/50">
-                    <p className="text-2xl md:text-3xl font-semibold text-primary leading-relaxed">
-                      The leads themselves could tell us what buyers actually want.
-                    </p>
-                  </div>
-                </blockquote>
+                </div>
               </div>
             )}
             
-            {/* Variation 2: Split Layout with cards */}
+            {/* Variation 2: Classic quote with attribution - Serif/italic inspired by references */}
             {ideaVariant === 'split' && (
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center animate-fade-in">
-                {/* Left: Quote Card */}
-                <div className="bg-card border border-border rounded-2xl p-8 relative">
-                  <Quote className="w-12 h-12 text-primary/20 absolute top-6 left-6" />
-                  <div className="pl-8 pt-8">
-                    <p className="text-lg md:text-xl text-muted-foreground leading-relaxed italic mb-6">
-                      "One of my accounts called in asking if we could add to display 'Owner Financing' when available. He said{" "}
-                      <span className="font-semibold text-foreground not-italic">
-                        'I sent multiple inquiries to the sellers on your site and he never responded'
-                      </span>"
-                    </p>
-                    <footer className="text-sm text-muted-foreground/80 font-medium tracking-wide uppercase">
-                      — Account Manager Feature Request
-                    </footer>
+              <div className="max-w-4xl mx-auto animate-fade-in">
+                {/* Dark full-width card */}
+                <div className="bg-card border border-border rounded-2xl p-12 md:p-16 text-center relative">
+                  {/* Decorative red/primary accents at edges */}
+                  <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                    <div className="absolute -top-20 -left-20 w-40 h-40 bg-primary/10 rounded-full blur-3xl" />
+                    <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-primary/10 rounded-full blur-3xl" />
                   </div>
+                  
+                  <blockquote className="relative z-10 space-y-8">
+                    <p className="text-xl md:text-2xl lg:text-3xl text-primary leading-relaxed font-serif italic">
+                      "An Account Manager flagged that buyers were reaching out to sellers about 'Owner Financing' and getting no response. It was a clear signal that our listings were missing the very information that drove the final purchase decision."
+                    </p>
+                    <footer className="text-base text-muted-foreground font-medium tracking-wide">
+                      Account Manager Insight
+                    </footer>
+                  </blockquote>
                 </div>
                 
-                {/* Right: Insight Card */}
-                <div className="bg-primary/5 border border-primary/20 rounded-2xl p-8">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                      <Lightbulb className="w-6 h-6 text-primary" />
-                    </div>
+                {/* Insight card below */}
+                <div className="mt-6 bg-primary/5 border border-primary/20 rounded-xl p-6 text-center">
+                  <div className="flex items-center justify-center gap-3 mb-4">
+                    <Lightbulb className="w-6 h-6 text-primary" />
                     <h3 className="text-lg font-semibold text-foreground">The Insight</h3>
                   </div>
-                  <p className="text-2xl md:text-3xl font-semibold text-primary leading-relaxed">
+                  <p className="text-xl md:text-2xl font-semibold text-primary leading-relaxed">
                     The leads themselves could tell us what buyers actually want.
                   </p>
                 </div>
