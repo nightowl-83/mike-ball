@@ -49,7 +49,7 @@ import tabletMobileMock from "@/assets/PD-Tablet-Mobile-Mock.png";
 import homeTabletMock from "@/assets/Home-Tablet-Mock.jpg";
 import landDetails3up from "@/assets/Land-Details-3up.png";
 import multiLocation from "@/assets/Multi-Location.jpg";
-import landUiMobile from "@/assets/Land-UI-Mobile.jpg";
+import landUiMobile from "@/assets/land-ui-mobile-2.jpg";
 import imageCarouselHome from "@/assets/Image-Carousel-Home.png";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useHorizontalDragScroll } from "@/hooks/useHorizontalDragScroll";
